@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 pages = [('Main page', 'index'),
+         ('Sample code', 'samples'),
          ('Download', 'download'),
          ('Videos', 'videos'),
          ('Documentation', 'documentation'),
