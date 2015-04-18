@@ -43,9 +43,12 @@ executable('myapp', 'myapp.c',
 
 <h2>A Qt 5 app</h2>
 <pre>project('qt5 demo', 'cpp')
-qt5 = import('qt5')
+
 qt5_dep = dependency('qt5', modules : 'Widgets')
 
+# Import the extension module that knows how
+# to invoke Qt tools.
+qt5 = import('qt5')
 prep = qt5.preprocess(moc_headers : 'mainWindow.h',
                       ui_files : 'mainWindow.ui')
 
