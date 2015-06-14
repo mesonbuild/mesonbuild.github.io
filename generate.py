@@ -3,10 +3,11 @@
 pages = [('Main page', 'index'),
          ('Sample code', 'samples'),
          ('Download', 'download'),
-         ('Videos', 'videos'),
          ('Documentation', 'documentation'),
+         ('Dependencies', 'dependencies'),
          ('Development', 'development'),
          ('Community', 'community'),
+         ('Videos', 'videos'),
          ('Legal', 'legal')]
 
 pref = open('prefix.html').read()
