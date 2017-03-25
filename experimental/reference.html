@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reference manual &#8212; Bob McBob 1.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Bob McBob 1.2.3 documentation" href="index.html" />
+    <link rel="prev" title="Unity builds" href="unitybuilds.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reference-manual">
+<h1>Reference manual<a class="headerlink" href="#reference-manual" title="Permalink to this headline">¶</a></h1>
+<p>This page lists functions and methods available in Meson scripts. For
+more in-depth documentation on how to use them, refer to the
+<span class="xref doc">/manual</span>. For more basic information about how Meson works,
+take a look at the <span class="xref doc">/syntax</span>.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>The following functions are available in build files. Click on each to
+see the description and usage.</p>
+<dl class="function">
+<dt id="add_global_arguments">
+<code class="descname">add_global_arguments</code><span class="sig-paren">(</span><em>arg1</em>, <em>arg2</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#add_global_arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the positional arguments to the compiler command line for the
+language specified in <cite>language</cite> keyword argument. Note that there
+is no way to remove an argument set in this way. If you have an
+argument that is only used in a subset of targets, you have to
+specify it in per-target flags.</p>
+<p>The arguments are used in all compiler invocations with the exception
+of compile tests, because you might need to run a compile test with
+and without the argument in question. For this reason only the
+arguments explicitly specified are used during compile tests.</p>
+<dl class="docutils">
+<dt><strong>Note:</strong> Usually you should use <code class="docutils literal"><span class="pre">add_project_arguments</span></code> instead,</dt>
+<dd>because that works even when you project is used as a subproject.</dd>
+</dl>
+<p><strong>Note:</strong> You must pass always arguments individually <code class="docutils literal"><span class="pre">arg1,</span> <span class="pre">arg2,</span>&#160; <span class="pre">...</span></code> rather than as a string <code class="docutils literal"><span class="pre">'arg1</span> <span class="pre">arg2',</span> <span class="pre">...</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="objects">
+<h2>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="build_machine">
+<em class="property">class </em><code class="descname">build_machine</code><a class="headerlink" href="#build_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides information about the build machine — the machine that is
+doing the actual compilation. See <span class="xref doc">/crosscompilation</span>. It has the
+following methods:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cpu_family">
+<code class="descname">cpu_family</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpu_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the CPU family name. Guaranteed to
+return <cite>x86</cite> for 32-bit userland on x86 CPUs, <cite>x86_64</cite> for
+64-bit userland on x86 CPUs, <cite>arm</cite> for 32-bit userland on
+all ARM CPUs, etc.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cpu">
+<code class="descname">cpu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpu" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a more specific CPU name, such as <cite>i686</cite>, <cite>amd64</cite>, etc</p>
+</dd></dl>
+
+<p>If you think the returned values for any of these are incorrect for
+your system or CPU, please file <a class="reference external" href="https://github.com/mesonbuild/meson/issues/new">a bug report</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Reference manual</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#objects">Objects</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="unitybuilds.html" title="previous chapter">Unity builds</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/reference.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, You Know.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/reference.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

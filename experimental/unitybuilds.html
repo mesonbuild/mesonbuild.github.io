@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Unity builds &#8212; Bob McBob 1.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Bob McBob 1.2.3 documentation" href="index.html" />
+    <link rel="prev" title="Using Meson" href="quickguide.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="unity-builds">
+<h1>Unity builds<a class="headerlink" href="#unity-builds" title="Permalink to this headline">¶</a></h1>
+<p>Unity builds are a technique for cutting down build times. The way it
+works is relatively straightforward. Suppose we have source files
+<code class="docutils literal"><span class="pre">src1.c</span></code>, <code class="docutils literal"><span class="pre">src2.c</span></code> and <code class="docutils literal"><span class="pre">src3.c</span></code>. Normally we would run the compiler
+three times, once for each file. In a unity build we instead compile
+all these sources in a single unit. The simplest approach is to create
+a new source file that looks like this.</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;src1.c&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;src2.c&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;src3.c&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>This is then compiled rather than the individual files. The exact
+speedup depends on the code base, of course, but it is not uncommon to
+obtain more than 50% speedup in compile times. This happens even
+though the Unity build uses only one CPU whereas individual compiles
+can be run in parallel. Unity builds can also lead to faster code,
+because the compiler can do more aggressive optimizations
+(e.g. inlining).</p>
+<p>The downside is that incremental builds are as slow as full rebuilds
+(because that is what they are). Unity compiles also use more memory,
+which may become an issue in certain scenarios. There may also be some
+bugs in the source that need to be fixed before Unity compiles
+work. As an example, if both <code class="docutils literal"><span class="pre">src1.c</span></code> and <code class="docutils literal"><span class="pre">src2.c</span></code> contain a
+static function or variable of the same name, there will be a clash.</p>
+<p>Meson has built-in support for unity builds. To enable them, just pass
+the <code class="docutils literal"><span class="pre">--unity</span></code> command line argument or enable unity builds with the
+GUI. No code changes are necessary apart from the potential clash
+issue discussed above. Meson will automatically generate all the
+necessary inclusion files for you.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quickguide.html" title="previous chapter">Using Meson</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/unitybuilds.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, You Know.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/unitybuilds.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
