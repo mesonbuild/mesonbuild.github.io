@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Adding new projects to wrap</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Adding-new-projects-to-wrapdb.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Adding-new-projects-to-wrapdb.md">
+<h1 id="adding-new-projects-to-wrap">Adding new projects to wrap</h1>
+<p><strong>If you don't have permissions to do something on this page, please open issue against https://github.com/mesonbuild/wrapweb/issues to let us know that you want to start new project.</strong></p>
+<h2 id="overview">Overview</h2>
+<p>The wrap provider service is a simple web service that makes it easy to download build definitions for projects. It works in much the same way as Debian: we take the unaltered upstream source package and add a new build system to it as a patch. These build systems are stored as Git repositories on Github. They only contain build definition files. You may also think of them as an overlay to upstream source.</p>
+<h2 id="creator-script">Creator script</h2>
+<p>The WrapDB repository has a <a href="https://github.com/mesonbuild/wrapweb/blob/master/tools/repoinit.py">helper script</a> to generate new repositories. The documentation below roughly explains what it does using plain shell commands.</p>
+<h2 id="choosing-the-repository-name">Choosing the repository name</h2>
+<p>Wrapped subprojects are used much like external dependencies. Thus they should have the same name as the upstream projects. If the project provides a pkg-config file, then the repository name should be the same as the pkg-config name. Usually this is the name of the project, such as <code>libpng</code>. Sometimes it is slightly different, however. As an example the libogg project's chosen pkg-config name is <code>ogg</code> instead of <code>libogg</code>, which is the reason why the repository is named plain <code>ogg</code>.</p>
+<h2 id="adding-new-project-to-the-wrap-provider-service">Adding new project to the Wrap provider service</h2>
+<p>Each project gets its own repo. It is initialised like this:</p>
+<pre><code>git init
+git add readme.txt
+git commit -a -m 'Start of project foobar.'
+git tag commit_zero -a -m 'A tag that helps get revision ids for releases.'
+git remote add origin &lt;repo url&gt;
+git push -u origin master
+git push --tags
+</code></pre>
+<p>Note that this is the <em>only</em> commit that will ever be made to master branch. All other commits are done to branches.</p>
+<p>Repo names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
+<h2 id="adding-a-new-branch-to-an-existing-project">Adding a new branch to an existing project</h2>
+<p>Create a new branch whose name matches the upstream release number.</p>
+<pre><code>git checkout master
+git checkout -b 1.0.0
+git push origin 1.0.0
+(or from Github web page, remember to branch from master)
+</code></pre>
+<p>Branch names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
+<h2 id="adding-a-new-release-to-an-existing-branch">Adding a new release to an existing branch</h2>
+<p>Here is where the magic happens. Whenever a new commit is pushed into Github's project branch, a new wrap is generated with an incremented version number. All the old releases remain unaltered. New commits are always done via Github merge requests and must be reviewed by someone other than the submitter.</p>
+<p>Note that your Git repo must <em>not</em> contain the subdirectory of the source release. That gets added automatically by the service. You also must <em>not</em> commit any source code from the original tarball into the wrap repository.</p>
+<p>First you need to fork the repository to your own page. Then you can create the first Wrap commit that usually looks something like this.</p>
+<pre><code>tar xzf libfoo_1.0.0.tar.gz
+git clone -b 1.0.0 git@github.com:yourusername/libfoo.git tmpdir
+mv tmpdir/.git libfoo-1.0.0
+rm -rf tmpdir
+cd libfoo-1.0.0
+git reset --hard
+emacs upstream.wrap meson.build
+&lt;verify that your project builds and runs&gt;
+git add upstream.wrap meson.build
+git commit -a -m 'Created wrap files for libfoo-1.0.0.'
+git push origin 1.0.0
+</code></pre>
+<p>Now you can file a merge request. Remember to file it against branch 1.0.0 rather than master. Github should do this automatically.</p>
+<h2 id="changes-to-original-source">Changes to original source</h2>
+<p>The point of a wrap is to provide the upstream project with as few changes as possible. Most projects should not contain anything more than a few Meson definition files. Sometimes it may be necessary to add a template header file or something similar. These should be held at a minimum.</p>
+<p>It should especially be noted that there must <strong>not</strong> be any patches to functionality. All such changes must be submitted to upstream. You may also host your own Git repo with the changes if you wish. The Wrap system has native support for Git subprojects.</p>
+<h2 id="reviewing-wraps">Reviewing wraps</h2>
+<p>See <a href="Wrap-review-guidelines.html">Wrap review guidelines</a>.</p>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

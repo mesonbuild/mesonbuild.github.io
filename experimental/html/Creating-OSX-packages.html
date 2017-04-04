@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Creating OSX packages</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Creating-OSX-packages.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Creating-OSX-packages.md">
+<h1 id="creating-osx-packages">Creating OSX packages</h1>
+<p>Meson does not have native support for building OSX packages but it does provide all the tools you need to create one yourself. The reason for this is that it is a very hard task to write a system that provides for all the different ways to do that but it is very easy to write simple scripts for each application.</p>
+<p>Sample code for this can be found in <a href="https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries">the Meson manual test suite</a>.</p>
+<h2 id="creating-an-app-bundle">Creating an app bundle</h2>
+<p>OSX app bundles are actually extremely simple. They are just a directory of files in a certain format. All the details you need to know are on <a href="https://stackoverflow.com/questions/1596945/building-osx-app-bundle">this page</a> and it is highly recommended that you read it first.</p>
+<p>Let's assume that we are creating our app bundle into <code>/tmp/myapp.app</code>. Suppose we have one executable, so we need to install that into <code>Contents/MacOS</code>. If we define the executable like this:</p>
+<pre><code class="language-meson">executable('myapp', 'foo1.c', ..., install : true)
+</code></pre>
+<p>then we just need to initialize our build tree with this command:</p>
+<pre><code class="language-console">$ meson --prefix=/tmp/myapp.app \
+        --bindir=Contents/MacOS \
+        builddir \
+        &lt;other flags you might need&gt;
+</code></pre>
+<p>Now when we do <code>ninja install</code> the bundle is properly staged. If you have any resource files or data, you need to install them into <code>Contents/Resources</code> either by custom install commands or specifying more install paths to the Meson command.</p>
+<p>Next we need to install an <code>Info.plist</code> file and an icon. For those we need the following two Meson definitions.</p>
+<pre><code class="language-meson">install_data('myapp.icns', install_dir : 'Contents/Resources')
+install_data('Info.plist', install_dir : 'Contents')
+</code></pre>
+<p>The format of <code>Info.plist</code> can be found in the link or the sample project linked above. Be careful, the sample code on the linked page is malformed, it is missing a less than character (&lt;) before <code>!DOCTYPE</code>. The simplest way to get an icon in the <code>icns</code> format is to save your image as a tiff an then use the <code>tiff2icns</code> helper application that comes with XCode.</p>
+<p>Some applications assume that the working directory of the app process is the same where the binary executable is. If this is the case for you, then you need to create a wrapper script that looks like this:</p>
+<pre><code class="language-bash">#!/bin/bash
+
+cd "${0%/*}"
+./myapp
+</code></pre>
+<p>install it with this:</p>
+<pre><code class="language-meson">install_data('myapp.sh', install_dir : 'Contents/MacOS')
+</code></pre>
+<p>and make sure that you specify <code>myapp.sh</code> as the executable to run in your <code>Info.plist</code>.</p>
+<p>If you are not using any external libraries, this is all you need to do. You now have a full app bundle in <code>/tmp/myapp.app</code> that you can use. Most applications use third party frameworks and libraries, though, so you need to add them to the bundle so it will work on other peoples' machines.</p>
+<p>As an example we are going to use the <a href="https://libsdl.org/">SDL2</a> framework. In order to bundle it in our app, we first specify an installer script to run.</p>
+<pre><code class="language-meson">meson.set_install_script('install_script.sh')
+</code></pre>
+<p>The install script does two things. First it copies the whole framework into our bundle.</p>
+<pre><code class="language-console">$ mkdir -p ${MESON_INSTALL_PREFIX}/Contents/Frameworks
+$ cp -R /Library/Frameworks/SDL2.framework \
+        ${MESON_INSTALL_PREFIX}/Contents/Frameworks
+</code></pre>
+<p>Then it needs to alter the library search path of our executable(s). This tells OSX that the libraries your app needs are inside your bundle. In the case of SDL2, the invocation goes like this:</p>
+<pre><code class="language-console">$ install_name_tool -change @rpath/SDL2.framework/Versions/A/SDL2 \
+    @executable_path/../FrameWorks/SDL2.framework/Versions/A/SDL2 \
+    ${MESON_INSTALL_PREFIX}/Contents/MacOS/myapp
+</code></pre>
+<p>This is the part of OSX app bundling that you must always do manually. OSX dependencies come in many shapes and forms and unfortunately there is no reliable automatic way to determine how each dependency should be handled. Frameworks go to the <code>Frameworks</code> directory while plain <code>.dylib</code> files usually go to <code>Contents/Resources/lib</code> (but you can put them wherever you like). To get this done you have to check what your program links against with <code>otool -L /path/to/binary</code> and manually add the copy and fix steps to your install script. Do not copy system libraries inside your bundle, though.</p>
+<p>After this you have a fully working, self-contained OSX app bundle ready for distribution.</p>
+<h2 id="creating-a-dmg-installer">Creating a .dmg installer</h2>
+<p>A .dmg installer is similarly quite simple, at its core it is basically a fancy compressed archive. A good description can be found on <a href="https://el-tramo.be/guides/fancy-dmg/">this page</a>. Please read it and create a template image file according to its instructions.</p>
+<p>The actual process of creating the installer is very simple: you mount the template image, copy your app bundle in it, unmount it and convert the image into a compressed archive. The actual commands to do this are not particularly interesting, feel free to steal them from either the linked page above or from the sample script in Meson's test suite.</p>
+<h2 id="putting-it-all-together">Putting it all together</h2>
+<p>There are many ways to put the .dmg installer together and different people will do it in different ways. The linked sample code does it by having two different scripts. This separates the different pieces generating the installer into logical pieces.</p>
+<p><code>install_script.sh</code> only deals with embedding dependencies and fixing the library paths.</p>
+<p><code>build_osx_installer.sh</code> sets up the build with the proper paths, compiles, installs and generates the .dmg package.</p>
+<p>The main reasoning here is that in order to build a complete OSX installer package from source, all you need to do is to cd into the source tree and run <code>./build_osx_installer.sh</code>. To build packages on other platforms you would write scripts such as <code>build_windows_installer.bat</code> and so on.</p>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

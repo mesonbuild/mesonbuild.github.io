@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Creating Linux binaries</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Creating-Linux-binaries.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Creating-Linux-binaries.md">
+<h1 id="creating-linux-binaries">Creating Linux binaries</h1>
+<p>Creating Linux binaries that can be downloaded and run on any distro (like .dmg packages for OSX or .exe installers for Windows) has traditionally been difficult. This is even more tricky if you want to use modern compilers and features, which is especially desired in game development. There is still no simple turn key solution for this problem but with a bit of setup it can be relatively straightforward.</p>
+<h2 id="installing-system-and-gcc">Installing system and GCC</h2>
+<p>First you need to do a fresh operating system install. You can use spare hardware, VirtualBox, cloud or whatever you want. Note that the distro you install must be <em>at least as old</em> as the oldest release you wish to support. Debian stable is usually a good choice, though immediately after its release you might want to use Debian oldstable or the previous Ubuntu LTS. The oldest supported version of CentOS is also a good choice.</p>
+<p>Once you have installed the system, you need to install build dependencies for GCC. In Debian based distros this can be done with the following commands:</p>
+<pre><code class="language-console">$ apt get build dep g++
+$ apt get install pkg config libgmp dev libmpfr dev libmpc dev
+</code></pre>
+<p>Then create a <code>src</code> subdirectory in your home directory. Copypaste the following into <code>install_gcc.sh</code> and execute it.</p>
+<pre><code class="language-bash">#!/bin/sh
+
+wget ftp://ftp.fu berlin.de/unix/languages/gcc/releases/gcc 4.9.2/gcc 4.9.2.tar.bz2
+tar xf gcc 4.9.2.tar.bz2
+
+mkdir objdir
+cd objdir
+../gcc 4.9.2/configure   disable bootstrap   prefix=${HOME}/devroot \
+                         disable multilib   enable languages=c,c++
+make  j 4
+make install strip
+ln  s gcc ${HOME}/devroot/bin/cc
+</code></pre>
+<p>Then finally add the following lines to your <code>.bashrc</code>.</p>
+<pre><code class="language-console">$ export LD_LIBRARY_PATH=${HOME}/devroot/lib
+$ export PATH=${HOME}/devroot/bin:$PATH
+$ export PKG_CONFIG_PATH=${HOME}/devroot/lib/pkgconfig
+</code></pre>
+<p>Log out and back in and now your build environment is ready to use.</p>
+<h2 id="adding-other-tools">Adding other tools</h2>
+<p>Old distros might have too old versions of some tools. For Meson this could include Python 3 and Ninja. If this is the case you need to download, build and install new versions into <code>~/devroot</code> in the usual way.</p>
+<h2 id="adding-dependencies">Adding dependencies</h2>
+<p>You want to embed and statically link every dependency you can (especially C++ dependencies). Meson's [Wrap package manager might be of use here](Wrap dependency system manual). This is equivalent to what you would do on Windows, OSX, Android etc. Sometimes static linking is not possible. In these cases you need to copy the .so files inside your package. Let's use SDL2 as an example. First we download and install it as usual giving it our custom install prefix (that is, <code>./configure prefix=${HOME}/devroot</code>). This makes Meson's dependency detector pick it up automatically.</p>
+<h2 id="building-and-installing">Building and installing</h2>
+<p>Building happens in much the same way as normally. There are just two things to note. First, you must tell GCC to link the C++ standard library statically. If you don't then your app is guaranteed to break as different distros have binary incompatible C++ libraries. The second thing is that you need to point your install prefix to some empty staging area. Here's the meson command to do that:</p>
+<pre><code class="language-console">$ LDFLAGS= static libstdc++ meson   prefix=/tmp/myapp &lt;other args&gt;
+</code></pre>
+<p>The aim is to put the executable in <code>/tmp/myapp/bin</code> and shared libraries to <code>/tmp/myapp/lib</code>. The next thing you need is the embedder. It takes your dependencies (in this case only <code>libSDL2 2.0.so.0</code>) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of <code>ldd binary_file</code>. Be sure not to copy system libraries (<code>libc</code>, <code>libpthread</code>, <code>libm</code> etc). For an example, see the <a href="https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries">sample project</a>.</p>
+<p>Make the script run during install with this:</p>
+<pre><code class="language-meson">meson.set_install_script('linux_bundler.sh')
+</code></pre>
+<h2 id="final-steps">Final steps</h2>
+<p>If you try to run the program now it will most likely fail to start or crashes. The reason for this is that the system does not know that the executable needs libraries from the <code>lib</code> directory. The solution for this is a simple wrapper script. Create a script called <code>myapp.sh</code> with the following content:</p>
+<pre><code class="language-bash">#!/bin/bash
+
+cd "${0%/*}"
+export LD_LIBRARY_PATH="`pwd`/lib"
+bin/myapp
+</code></pre>
+<p>Install it with this Meson snippet:</p>
+<pre><code class="language-meson">install_data('myapp.sh', install_dir : '.')
+</code></pre>
+<p>And now you are done. Zip up your <code>/tmp/myapp</code> directory and you have a working binary ready for deployment. To run the program, just unzip the file and run <code>myapp.sh</code>.</p>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Comparisions</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Comparisons.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Comparisons.md">
+<h1 id="comparing-meson-with-other-build-systems">Comparing Meson with other build systems</h1>
+<p>A common question is <em>Why should I choose Meson over a different build system X?</em> There is no one true answer to this as it depends on the use case. Almost all build systems have all the functionality needed to build medium-to-large projects so the decision is usually made on other points. Here we list some pros and cons of various build systems to help you do the decision yourself.</p>
+<h2 id="gnu-autotools">GNU Autotools</h2>
+<h3 id="pros">Pros</h3>
+<p>Excellent support for legacy Unix platforms, large selection of existing modules.</p>
+<h3 id="cons">Cons</h3>
+<p>Needlessly slow, complicated, hard to use correctly, unreliable, painful to debug, ununderstandable for most people, poor support for non-Unix platforms (especially Windows).</p>
+<h2 id="cmake">CMake</h2>
+<h3 id="pros1">Pros</h3>
+<p>Great support for multiple backends (Visual Studio, XCode, etc).</p>
+<h3 id="cons1">Cons</h3>
+<p>The scripting language is cumbersome to work with. Some simple things are more complicated than necessary.</p>
+<h2 id="scons">SCons</h2>
+<h3 id="pros2">Pros</h3>
+<p>Full power of Python available for defining your build.</p>
+<h3 id="cons2">Cons</h3>
+<p>Slow. Requires you to pass your configuration settings on every invocation. That is, if you do <code>scons OPT1 OPT2</code> and then just <code>scons</code>, it will reconfigure everything without settings <code>OPT1</code> and <code>OPT2</code>. Every other build system remembers build options from the previous invocation.</p>
+<h2 id="bazel">Bazel</h2>
+<h1 id="pros3">Pros</h1>
+<p>Proven to scale to very large projects.</p>
+<h2 id="cons3">Cons</h2>
+<p>Implemented in Java. Poor Windows support. Heavily focused on Google's way of doing things (which may be a good or a bad thing). Contributing code requires <a href="https://bazel.build/contributing.html">signing a CLA</a>.</p>
+<h2 id="meson">Meson</h2>
+<h3 id="pros4">Pros</h3>
+<p>The fastest build system [see measurements](Performance comparison), user friendly, designed to be as invisible to the developer as possible, native support for modern tools (precompiled headers, coverage, Valgrind etc). Not Turing complete so build definition files are easy to read and understand.</p>
+<h3 id="cons4">Cons</h3>
+<p>Relatively new so it does not have a large user base yet, and may thus contain some unknown bugs. Visual Studio and XCode backends not as high quality as Ninja one.</p>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

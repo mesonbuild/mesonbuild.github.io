@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>IDE integration</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="IDE-integration.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="IDE-integration.md">
+<h1 id="ide-integration">IDE integration</h1>
+<p>Meson has exporters for Visual Studio and XCode, but writing a custom backend for every IDE out there is not a scalable approach. To solve this problem, Meson provides an API that makes it easy for any IDE or build tool to integrate Meson builds and provide an experience comparable to a solution native to the IDE.</p>
+<p>The basic tool for this is a script called <code>mesonintrospect.py</code>. Some distro packages might not expose this script in the regular path, and in this case you need to execute it from the install directory.</p>
+<p>The first thing to do when setting up a Meson project in an IDE is to select the source and build directories. For this example we assume that the source resides in an Eclipse-like directory called <code>workspace/project</code> and the build tree is nested inside it as <code>workspace/project/build</code>. First we initialise Meson by running the following command in the source directory.</p>
+<pre><code>meson build
+</code></pre>
+<p>For the remainder of the document we assume that all commands are executed inside the build directory unless otherwise specified.</p>
+<p>The first thing you probably want is to get a list of top level targets. For that we use the introspection tool. It comes with extensive command line help so we recommend using that in case problems appear.</p>
+<pre><code>mesonintrospect.py --targets
+</code></pre>
+<p>The JSON formats will not be specified in this document. The easiest way of learning them is to look at sample output from the tool.</p>
+<p>Once you have a list of targets, you probably need the list of source files that comprise the target. To get this list for a target, say <code>exampletarget</code>, issue the following command.</p>
+<pre><code>mesonintrospect.py --target-files exampletarget
+</code></pre>
+<p>In order to make code completion work, you need the compiler flags for each compilation step. Meson does not provide this itself, but the Ninja tool Meson uses to build does provide it. To find out the compile steps necessary to build target foo, issue the following command.</p>
+<pre><code>ninja -t commands foo
+</code></pre>
+<p>Note that if the target has dependencies (such as generated sources), then the commands for those show up in this list as well, so you need to do some filtering. Alternatively you can grab every command invocation in the <a href="http://clang.llvm.org/docs/JSONCompilationDatabase.html">clang tools db</a> format that is written to a file called <code>compile_commands.json</code> in the build directory.</p>
+<p>The next thing to display is the list of options that can be set. These include build type and so on. Here's how to extract them.</p>
+<pre><code>mesonintrospect.py --buildoptions
+</code></pre>
+<p>To set the options, use the <code>mesonconf.py</code> binary.</p>
+<p>Compilation and unit tests are done as usual by running the <code>ninja</code> and <code>ninja test</code> commands. A JSON formatted result log can be found in <code>workspace/project/build/meson-logs/testlog.json</code>.</p>
+<p>When these tests fail, the user probably wants to run the failing test in a debugger. To make this as integrated as possible, extract the test test setups with this command.</p>
+<pre><code>mesonintrospect.py --tests
+</code></pre>
+<p>This provides you with all the information needed to run the test: what command to execute, command line arguments and environment variable settings.</p>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

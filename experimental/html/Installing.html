@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Installing</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Installing.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Installing.md">
+<h1 id="installing">Installing</h1>
+<p>By default Meson will not install anything. Build targets can be installed by tagging them as installable in the definition.</p>
+<pre><code class="language-meson">project('install', 'c')
+shared_library('mylib', 'libfile.c', install : true)
+</code></pre>
+<p>There is usually no need to specify install paths or the like. Meson
+will automatically install it to the standards-conforming location. In
+this particular case the executable is installed to the <code>bin</code>
+subdirectory of the install prefix. However if you wish to override the
+install dir, you can do that with the <code>install_dir</code> argument.</p>
+<pre><code class="language-meson">executable('prog', 'prog.c', install : true, install_dir : 'my/special/dir')
+</code></pre>
+<p>Other install commands are the following.</p>
+<pre><code class="language-meson">install_headers('header.h', subdir : 'projname') # -&gt; include/projname/header.h
+install_man('foo.1') # -&gt; share/man/man1/foo.1.gz
+install_data('datafile.cat', install_dir : join_paths(get_option('datadir'), 'progname')) # -&gt; share/progname/datafile.dat
+</code></pre>
+<p>Sometimes you want to copy an entire subtree directly. For this use case there is the <code>install_subdir</code> command, which can be used like this.</p>
+<pre><code class="language-meson">install_subdir('mydir', install_dir : 'include') # mydir subtree -&gt; include/mydir
+</code></pre>
+<p>Most of the time you want to install files relative to the install
+prefix. Sometimes you need to go outside of the prefix (such as writing
+files to <code>/etc</code> instead of <code>/usr/etc</code>. This can be accomplished by
+giving an absolute install path.</p>
+<pre><code class="language-meson">install_data(sources : 'foo.dat', install_dir : '/etc') # -&gt; /etc/foo.dat
+</code></pre>
+<h2 id="custom-install-behaviour">Custom install behaviour</h2>
+<p>Sometimes you need to do more than just install basic targets. Meson makes this easy by allowing you to specify a custom script to execute at install time. As an example, here is a script that generates an empty file in a custom directory.</p>
+<pre><code class="language-bash">#!/bin/sh
+
+mkdir "${DESTDIR}/${MESON_INSTALL_PREFIX}/mydir"
+touch "${DESTDIR}/${MESON_INSTALL_PREFIX}/mydir/file.dat"
+</code></pre>
+<p>As you can see, Meson sets up some environment variables to help you write your script (<code>DESTDIR</code> is not set by Meson, it is inherited from the outside environment). In addition to the install prefix, Meson also sets the variables <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>.</p>
+<p>Telling Meson to run this script at install time is a one-liner.</p>
+<pre><code class="language-meson">meson.set_install_script('myscript.sh')
+</code></pre>
+<p>The argument is the name of the script file relative to the current subdirectory.</p>
+<h2 id="destdir-support">DESTDIR support</h2>
+<p>Sometimes you need to install to a different directory than the install prefix. This is most common when building rpm or deb packages. This is done with the <code>DESTDIR</code> environment variable and it is used just like with other build systems:</p>
+<pre><code class="language-console">$ DESTDIR=/path/to/staging/area ninja install
+</code></pre>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

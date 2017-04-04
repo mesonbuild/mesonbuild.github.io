@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Running meson</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Running-Meson.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Running-Meson.md">
+<h1 id="running-meson">Running meson</h1>
+<p>There are two different ways of invoking Meson. First, you can run it directly from the source tree with the command <code>/path/to/source/meson.py</code>. Meson may also be installed in which case the command is simply <code>meson</code>. In this manual we only use the latter format for simplicity.</p>
+<p>At the time of writing only a command line version of Meson is available. This means that Meson must be invoked using the terminal. If you wish to use the MSVC compiler, you need to run Meson under "Visual Studio command prompt".</p>
+<h1 id="configuring-the-source">Configuring the source</h1>
+<p>Let us assume that we have a source tree that has a Meson build system. This means that at the topmost directory has a file called <code>meson.build</code>. We run the following commands to get the build started.</p>
+<pre><code>cd /path/to/source/root
+mkdir build
+cd build
+meson ..
+</code></pre>
+<p>First we create a directory to hold all files generated during the build. Then we go into it and invoke Meson, giving it the location of the source root. Meson then loads the build configuration file and writes the corresponding build backend in the build directory. By default Meson generates a <em>debug build</em>, which turns on basic warnings and debug information and disables compiler optimizations.</p>
+<p>You can specify a different type of build with the <code>--buildtype</code> command line argument. It can have one of the following values.</p>
+<p>value | meaning
+------|--------
+<code>plain</code> | no extra build flags are used, even for compiler warnings, useful for distro packagers and other cases where you need to specify all arguments by yourself
+<code>debug</code> | debug info is generated but the result is not optimized, this is the default
+<code>debugoptimized</code> | debug info is generated and the code is optimized (on most compilers this means <code>-g -O2</code>)
+<code>release</code> | full optimization, no debug info</p>
+<p>The build directory is mandatory. The reason for this is that it simplifies the build process immensely. Meson will not under any circumstances write files inside the source directory (if it does, it is a bug and should be fixed). This means that the user does not need to add a bunch of files to their revision control's ignore list. It also means that you can create arbitrarily many build directories for any given source tree. If we wanted to test building the source code with the Clang compiler instead of the system default, we could just type the following commands.</p>
+<pre><code>cd /path/to/source/root
+mkdir buildclang
+cd buildclang
+CC=clang CXX=clang++ meson ..
+</code></pre>
+<p>This separation is even more powerful if your code has multiple configuration options (such as multiple data backends). You can create a separate subdirectory for each of them. You can also have build directories for optimized builds, code coverage, static analysis and so on. They are all neatly separated and use the same source tree. Changing between different configurations is just a question of changing to the corresponding directory.</p>
+<p>Unless otherwise mentioned, all following command line invocations are meant to be run in the build directory.</p>
+<p>By default Meson will use the Ninja backend to build your project. If you wish to use any of the other backends, you need to pass the corresponding argument during configuration time. As an example, here is how you would use Meson to generate a Visual studio solution.</p>
+<pre><code>meson &lt;source dir&gt; &lt;build dir&gt; --backend=vs2010
+</code></pre>
+<p>You can then open the generated solution with Visual Studio and compile it in the usual way. A list of backends can be obtained with <code>meson --help</code>.</p>
+<h1 id="building-the-source">Building the source</h1>
+<p>If you are not using an IDE, Meson uses the <a href="http://martine.github.com/ninja/">Ninja build system</a> to actually build the code. To start the build, simply type the following command.</p>
+<pre><code>ninja
+</code></pre>
+<p>The main usability difference between Ninja and Make is that Ninja will automatically detect the number of CPUs in your computer and parallelize itself accordingly. You can override the amount of parallel processes used with the command line argument <code>-j &amp;lt;num processes&amp;gt;</code>.</p>
+<p>It should be noted that after the initial configure step <code>ninja</code> is the only command you ever need to type to compile. No matter how you alter your source tree (short of moving it to a completely new location), Meson will detect the changes and regenerate itself accordingly. This is especially handy if you have multiple build directories. Often one of them is used for development (the "debug" build) and others only every now and then (such as a "static analysis" build). Any configuration can be built just by <code>cd</code>'ing to the corresponding directory and running Ninja.</p>
+<h1 id="running-tests">Running tests</h1>
+<p>Meson provides native support for running tests. The command to do that is simple.</p>
+<pre><code>ninja test
+</code></pre>
+<p>Meson does not force the use of any particular testing framework. You are free to use GTest, Boost Test, Check or even custom executables.</p>
+<h1 id="installing">Installing</h1>
+<p>Installing the built software is just as simple.</p>
+<pre><code>ninja install
+</code></pre>
+<p>By default Meson installs to <code>/usr/local</code>. This can be changed by passing the command line argument <code>--prefix /your/prefix</code> to Meson during configure time. Meson also supports the <code>DESTDIR</code> variable used in e.g. building packages. It is used like this:</p>
+<pre><code>DESTDIR=/path/to/staging ninja install
+</code></pre>
+<h1 id="command-line-help">Command line help</h1>
+<p>Meson has a standard command line help feature. It can be accessed with the following command.</p>
+<pre><code>meson --help
+</code></pre>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>A simple comparison</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Simple-comparison.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Simple-comparison.md">
+<h1 id="a-simple-comparison">A simple comparison</h1>
+<p>In this experiment we generated one thousand C files with contents that looked like this.</p>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+#include"header.h"
+
+int func23() { return 0; }
+</code></pre>
+<p>The function number was different in each file. In addition there was a main C file that just called each function in turn. We then generated build system files for <em>Meson</em>, <em>CMake</em>, <em>SCons</em>, <em>Premake</em> and <em>Autotools</em> that compiled these files into a single executable.</p>
+<p>With this we measured three different things. The first is configuration time, that is, the time the build system takes to generate necessary build files. This is usually called the <em>configure step</em>. The time was measured in seconds.</p>
+<p>The second thing to measure was the build time. This should be limited by the compiler and in the optimal case should be the same for every build system. Four parallel processes were used in this test.</p>
+<p>The third thing we measured was the empty build time. This measures how much time the build system takes to check the states of all source files because if any of them could potentially cause a rebuild.</p>
+<p>Since CMake has two different backends, Make and Ninja, we ran the tests on both of them. All tests were run on a 2011 era Macbook Pro running Ubuntu 13/04. The tests were run multiple times and we always took the fastest time.</p>
+<p>Here are the results for configuration time.</p>
+<p><img src="images/conftime.png" alt="Configuration times" id="configuration-times"></p>
+<p>The reason SCons got zero seconds on this test is because you cannot separate configure and build steps. They run as one unit. Autotools is the clear loser of this test as it is over an order of magnitude slower than the second slowest one. This configuration time includes both autogen and configure. All other systems take less than one second to do this setup, which is fast enough for a human being to interpret as instantaneous.</p>
+<p><img src="https://raw.githubusercontent.com/wiki/jpakkane/meson/buildtime.png" alt="Build times" id="build-times"></p>
+<p>Build times are a bit more even. SCons is the slowest, being almost ten seconds slower than the second slowest. Some of it is work from the configure step but it still has the worst performance. Premake is the fastest Make-based build system narrowly beating out Autotools. Both Ninja-based build systems are faster than all non-Ninja ones with Meson being slightly faster. In practice the difference is minimal. The advantages of Ninja can be seen by comparing CMake's times when using Make or Ninja. It is possible to shave off 3.5 seconds (over 20%) of the total build time just by changing the backend. The project's CMake configuration files don't need any changes.</p>
+<p><img src="https://raw.githubusercontent.com/wiki/jpakkane/meson/emptytime.png" alt="No-op time" id="noop-time"></p>
+<p>Empty build times reflect the performance of regular build times. SCons is again the slowest taking over three seconds compared to Meson, which takes only 0.03 seconds, a difference of two orders of magnitude. Even Autotools, the fastest Make-based system, is almost one order of magnitude slower. Ninja holds the top spots just like in the previous test.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>Build system performance matters. Even with this extremely simple example we can find differences between various popular build systems. As the project size increases, these differences grow even larger. (The author has witnessed no-op build times of 30 seconds for Make versus less than one second for Ninja when compiling the Clang compiler.) Keeping incremental build times low is one of the major keys of programmer productivity as it allows developers to iterate faster and stay in the creative zone.</p>
+<h2 id="original-scripts">Original scripts</h2>
+<p>Those who want to run these experiments themselves can download the scripts here:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/wiki/jpakkane/meson/gen_src.py">Generator script</a></li>
+<li><a href="https://raw.githubusercontent.com/wiki/jpakkane/meson/measure.py">Measurement script</a></li>
+</ul>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<nav id="toc"></nav>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>
