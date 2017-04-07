@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Porting from autotools</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Porting-from-autotools.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Porting-from-autotools.md">
+<h1 id="porting-from-autotools">Porting from autotools</h1>
+<p>This page uses <a href="https://github.com/hughsie/appstream-glib/">appstream-glib</a> as an example project. Appstream-Glib contains some libraries, gobject-introspection, tests, man pages, i18n, bash-completion with optional flags to build/notbuild support for some things.</p>
+<p>Meson comes with a helper script <code>ac_converter</code> that you can use to convert the basic autoconf checks for your project.</p>
+<h2 id="configureac">Configure.ac</h2>
+<p>First let's look at <code>configure.ac</code> and write the same in <code>meson.build</code>.</p>
+<pre><code class="language-autoconf">AC_PREREQ(2.63)
+</code></pre>
+<p>Meson doesn't provide the same function, so just ignore this.</p>
+<h3 id="defining-variables">Defining variables</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-autoconf">m4_define([as_major_version], [0])
+m4_define([as_minor_version], [3])
+m4_define([as_micro_version], [6])
+m4_define([as_version],
+          [as_major_version.as_minor_version.as_micro_version])
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">
+as_version = meson.project_version() # set in project() below
+ver_arr = as_version.split('.')
+
+as_major_version = ver_arr[0]
+as_minor_version = ver_arr[1]
+as_micro_version = ver_arr[2]
+</code></pre>
+<h3 id="initializing-project-and-setting-compilers">Initializing project and setting compilers</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-autoconf">AC_INIT([appstream-glib],[as_version])
+AC_PROG_CC
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">project('appstream-glib', 'c', version : '0.3.6')
+</code></pre>
+<p>Note that this must be the first line of your <code>meson.build</code> file.</p>
+<h3 id="ac_subst">AC_SUBST</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-autoconf">AC_SUBST(AS_MAJOR_VERSION)
+AC_SUBST(AS_MINOR_VERSION)
+AC_SUBST(AS_MICRO_VERSION)
+AC_SUBST(AS_VERSION)
+</code></pre>
+<p>You don't need to do the same in Meson, because it does not have two different types of files (Makefile, configure).</p>
+<h3 id="auto-headers">Auto headers</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-autoconf">AC_CONFIG_HEADERS([config.h])
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">conf = configuration_data()
+# Surround the version in quotes to make it a C string
+conf.set_quoted('VERSION', as_version)
+configure_file(output : 'config.h',
+               configuration : conf)
+</code></pre>
+<p>Meson doesn't support autoheaders, you need to manually specify what do you want to see in header file, write <code>configuration_data()</code> object and use <code>configure_file()</code>.</p>
+<p>You can also substitute variables of type <code>@SOME_VAR@</code> with configure data. The details are on the <a href="Configuration.html">configuration page</a>.</p>
+<h3 id="finding-programs">Finding programs</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-autoconf">AC_PATH_PROG(GPERF, [gperf], [no])
+if test x$GPERF != xno ; then
+        AC_DEFINE(HAVE_GPERF,[1], [Use gperf])
+fi
+AM_CONDITIONAL(HAVE_GPERF, [test x$GPERF != xno])
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">gperf = find_program('gperf', required : false)
+if gperf.found()
+  conf.set('HAVE_GPERF', 1)
+endif
+</code></pre>
+<h3 id="finding-pkgconfig-modules">Finding pkgconfig modules</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-autoconf">PKG_CHECK_MODULES(SOUP, libsoup-2.4 &gt;= 2.24)
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">soup = dependency('libsoup-2.4', version : '&gt;= 2.24')
+</code></pre>
+<h3 id="arguments">Arguments</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-autoconf">AC_ARG_ENABLE(dep11, AS_HELP_STRING([--enable-dep11],[enable DEP-11]),
+              enable_dep11=$enableval,enable_dep11=yes)
+AM_CONDITIONAL(HAVE_DEP11, test x$enable_dep11 = xyes)
+if test x$enable_dep11 = xyes; then
+  AC_CHECK_HEADER(yaml.h, [], [AC_MSG_ERROR([No yaml.h])])
+  YAML_LIBS="-lyaml"
+  AC_SUBST(YAML_LIBS)
+  AC_DEFINE(AS_BUILD_DEP11,1,[Build DEP-11 code])
+fi
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">if get_option('enable-dep11')
+  yaml = dependency('yaml-0.1')
+  conf.set('AS_BUILD_DEP11', 1)
+else
+  yaml = dependency('yaml-0.1', required : false)
+endif
+</code></pre>
+<p><code>meson_options.txt</code>:</p>
+<pre><code class="language-meson">option('enable-dep11', type : 'boolean', value : true, description : 'enable DEP-11')
+</code></pre>
+<h2 id="makefileam">Makefile.am</h2>
+<p>Next step is <code>Makefile.am</code>. In meson you don't need to have other file, you still use <code>meson.build</code>.</p>
+<h3 id="sub-directories">Sub directories</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">SUBDIRS =                                         \
+        libappstream-glib
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">subdir('libappstream-glib')
+</code></pre>
+<h3 id="cleanfiles-extra_dist-etc">*CLEANFILES, EXTRA_DIST, etc.</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">DISTCLEANFILES =                                        \
+        appstream-glib-*.tar.xz
+
+MAINTAINERCLEANFILES =                                  \
+        *~                                              \
+        ABOUT-NLS                                       \
+        aclocal.m4                                      \
+        ChangeLog                                       \
+        compile                                         \
+        config.guess                                    \
+        config.h.*                                      \
+        config.rpath
+
+EXTRA_DIST =                                            \
+        COPYING                                         \
+        MAINTAINERS                                     \
+        AUTHORS                                         \
+        README.md                                       \
+        NEWS                                            \
+        autogen.sh                                      \
+        config.h
+</code></pre>
+<p>In Meson you don't need have <code>*CLEANFILES</code>, because in meson you are building in temporary directory (usually called <code>build</code>), you manually removing it. You also not need to use <code>EXTRA_DIST</code>, because you will make tarballs via <code>git archive</code> or something like this.</p>
+<h3 id="glibcompileresources">glib-compile-resources</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">as-resources.c: appstream-glib.gresource.xml                    \
+                as-stock-icons.txt                              \
+                as-license-ids.txt                              \
+                as-blacklist-ids.txt                            \
+                as-category-ids.txt                             \
+                as-environment-ids.txt
+        $(AM_V_GEN)                                             \
+        glib-compile-resources                                  \
+                --sourcedir=$(srcdir)                           \
+                --sourcedir=$(top_builddir)/data                \
+                --target=$@                                     \
+                --generate-source                               \
+                --c-name as                                     \
+                $(srcdir)/appstream-glib.gresource.xml
+as-resources.h: appstream-glib.gresource.xml                    \
+                as-stock-icons.txt                              \
+                as-license-ids.txt                              \
+                as-blacklist-ids.txt                            \
+                as-category-ids.txt                             \
+                as-environment-ids.txt
+        $(AM_V_GEN)                                             \
+        glib-compile-resources                                  \
+                --sourcedir=$(srcdir)                           \
+                --sourcedir=$(top_builddir)/data                \
+                --target=$@                                     \
+                --generate-header                               \
+                --c-name as                                     \
+                $(srcdir)/appstream-glib.gresource.xml
+
+BUILT_SOURCES =                                                 \
+        as-resources.c                                          \
+        as-resources.h
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">asresources = gnome.compile_resources(
+  'as-resources', 'appstream-glib.gresource.xml',
+  source_dir : '.',
+  c_name : 'as')
+</code></pre>
+<h3 id="headers">Headers</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">libappstream_glib_includedir = $(includedir)/libappstream-glib
+libappstream_glib_include_HEADERS =                             \
+        appstream-glib.h                                        \
+        as-app.h                                                \
+        as-bundle.h                                             \
+        as-enums.h                                              \
+        as-icon.h                                               \
+        as-image.h                                              \
+        as-inf.h                                                \
+        as-node.h                                               \
+        as-problem.h                                            \
+        as-provide.h                                            \
+        as-release.h                                            \
+        as-screenshot.h                                         \
+        as-store.h                                              \
+        as-tag.h                                                \
+        as-utils.h                                              \
+        as-version.h
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">headers = [
+  'appstream-glib.h',
+  'as-app.h',
+  'as-bundle.h',
+  'as-enums.h',
+  'as-icon.h',
+  'as-image.h',
+  'as-inf.h',
+  'as-node.h',
+  'as-problem.h',
+  'as-provide.h',
+  'as-release.h',
+  'as-screenshot.h',
+  'as-store.h',
+  'as-tag.h',
+  'as-utils.h',
+  'as-version.h']
+install_headers(headers, subdir : 'libappstream-glib')
+</code></pre>
+<h3 id="libraries">Libraries</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">lib_LTLIBRARIES =                                               \
+        libappstream-glib.la
+libappstream_glib_la_SOURCES =                                  \
+        as-app.c                                                \
+        as-app-desktop.c                                        \
+        as-app-inf.c                                            \
+        as-app-private.h                                        \
+        as-app-validate.c                                       \
+        as-bundle.c                                             \
+        as-bundle-private.h                                     \
+        as-cleanup.h                                            \
+        as-enums.c                                              \
+        as-icon.c                                               \
+        as-icon-private.h                                       \
+        as-image.c                                              \
+        as-image-private.h                                      \
+        as-inf.c                                                \
+        as-inf.h                                                \
+        as-node.c                                               \
+        as-node-private.h                                       \
+        as-problem.c                                            \
+        as-problem.h                                            \
+        as-provide.c                                            \
+        as-provide-private.h                                    \
+        as-release.c                                            \
+        as-release-private.h                                    \
+        as-resources.c                                          \
+        as-resources.h                                          \
+        as-screenshot.c                                         \
+        as-screenshot-private.h                                 \
+        as-store.c                                              \
+        as-tag.c                                                \
+        as-utils.c                                              \
+        as-utils-private.h                                      \
+        as-version.h                                            \
+        as-yaml.c                                               \
+        as-yaml.h
+
+libappstream_glib_la_LIBADD =                                   \
+        $(GLIB_LIBS)                                            \
+        $(GDKPIXBUF_LIBS)                                       \
+        $(LIBARCHIVE_LIBS)                                      \
+        $(SOUP_LIBS)                                            \
+        $(YAML_LIBS)
+
+libappstream_glib_la_LDFLAGS =                                  \
+        -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)    \
+        -export-dynamic                                         \
+        -no-undefined                                           \
+        -export-symbols-regex '^as_.*'
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">sources = [
+  'as-app.c',
+  'as-app-desktop.c',
+  'as-app-inf.c',
+  'as-app-private.h',
+  'as-app-validate.c',
+  'as-bundle.c',
+  'as-bundle-private.h',
+  'as-cleanup.h',
+  'as-enums.c',
+  'as-icon.c',
+  'as-icon-private.h',
+  'as-image.c',
+  'as-image-private.h',
+  'as-inf.c',
+  'as-inf.h',
+  'as-node.c',
+  'as-node-private.h',
+  'as-problem.c',
+  'as-problem.h',
+  'as-provide.c',
+  'as-provide-private.h',
+  'as-release.c',
+  'as-release-private.h',
+  asresources,
+  'as-screenshot.c',
+  'as-screenshot-private.h',
+  'as-store.c',
+  'as-tag.c',
+  'as-utils.c',
+  'as-utils-private.h',
+  'as-version.h',
+  'as-yaml.c',
+  'as-yaml.h']
+
+deps = [glib, gdkpixbuf, libarchive, soup, yaml]
+
+mapfile = 'appstream-glib.map'
+vflag = '-Wl,--version-script,@0@/@1@'.format(meson.current_source_dir(), mapfile)
+asglib = shared_library(
+  'appstream-glib', sources,
+  soversion : lt_current,
+  version : lt_version,
+  dependencies : deps,
+  include_directories : include_directories('@0@/..'.format(meson.current_build_dir())),
+  link_args : ['-Wl,--no-undefined', vflag],
+  link_depends : mapfile,
+  install : true)
+</code></pre>
+<p><code>appstream-glib.map</code>:</p>
+<pre><code>{
+global:
+    as_*;
+local:
+    *;
+};
+</code></pre>
+<h3 id="custom-targets">Custom targets</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">if HAVE_GPERF
+as-tag-private.h: as-tag.gperf
+        $(AM_V_GEN) gperf &lt; $&lt; &gt; $@
+
+libappstream_glib_la_SOURCES += as-tag-private.h
+BUILT_SOURCES += as-tag-private.h
+endif
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">if gperf.found()
+  astagpriv = custom_target('gperf as-tag',
+                            output : 'as-tag-private.h',
+                            input : 'as-tag.gperf',
+                            command : [gperf, '@INPUT@', '--output-file', '@OUTPUT@'])
+  sources = sources + [astagpriv]
+endif
+</code></pre>
+<h3 id="global-cflags">Global CFLAGS</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">AM_CPPFLAGS =                                                   \
+        -DAS_COMPILATION                                        \
+        -DLOCALSTATEDIR=\""$(localstatedir)"\"                  \
+        -DG_LOG_DOMAIN=\"As\"
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">add_global_arguments('-DG_LOG_DOMAIN="As"', language : 'c')
+add_global_arguments('-DAS_COMPILATION', language : 'c')
+add_global_arguments('-DLOCALSTATEDIR="/var"', language : 'c')
+</code></pre>
+<h3 id="tests">Tests</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">check_PROGRAMS =                                                \
+        as-self-test
+as_self_test_SOURCES =                                          \
+        as-self-test.c
+as_self_test_LDADD =                                            \
+        $(GLIB_LIBS)                                            \
+        $(GDKPIXBUF_LIBS)                                       \
+        $(LIBARCHIVE_LIBS)                                      \
+        $(SOUP_LIBS)                                            \
+        $(YAML_LIBS)                                            \
+        $(lib_LTLIBRARIES)
+as_self_test_CFLAGS = -DTESTDATADIR=\""$(top_srcdir)/data/tests"\"
+
+TESTS = as-self-test
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">selftest = executable(
+  'as-self-test', 'as-self-test.c',
+  include_directories : include_directories('@0@/..'.format(meson.current_build_dir())),
+  dependencies : deps,
+  c_args : '-DTESTDATADIR="@0@/../data/tests"'.format(meson.current_source_dir()),
+  link_with : asglib)
+test('as-self-test', selftest)
+</code></pre>
+<h3 id="gobject-introspection">GObject Introspection</h3>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">introspection_sources =                                         \
+        as-app.c                                                \
+        as-app-validate.c                                       \
+        as-app.h                                                \
+        as-bundle.c                                             \
+        as-bundle.h                                             \
+        as-enums.c                                              \
+        as-enums.h                                              \
+        as-icon.c                                               \
+        as-icon.h                                               \
+        as-image.c                                              \
+        as-image.h                                              \
+        as-inf.c                                                \
+        as-inf.h                                                \
+        as-node.c                                               \
+        as-node.h                                               \
+        as-problem.c                                            \
+        as-problem.h                                            \
+        as-provide.c                                            \
+        as-provide.h                                            \
+        as-release.c                                            \
+        as-release.h                                            \
+        as-screenshot.c                                         \
+        as-screenshot.h                                         \
+        as-store.c                                              \
+        as-store.h                                              \
+        as-tag.c                                                \
+        as-tag.h                                                \
+        as-utils.c                                              \
+        as-utils.h                                              \
+        as-version.h
+
+AppStreamGlib-1.0.gir: libappstream-glib.la
+AppStreamGlib_1_0_gir_INCLUDES = GObject-2.0 Gio-2.0 GdkPixbuf-2.0
+AppStreamGlib_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
+AppStreamGlib_1_0_gir_SCANNERFLAGS = --identifier-prefix=As \
+                                --symbol-prefix=as_ \
+                                --warn-all \
+                                --add-include-path=$(srcdir)
+AppStreamGlib_1_0_gir_EXPORT_PACKAGES = appstream-glib
+AppStreamGlib_1_0_gir_LIBS = libappstream-glib.la
+AppStreamGlib_1_0_gir_FILES = $(introspection_sources)
+INTROSPECTION_GIRS += AppStreamGlib-1.0.gir
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+CLEANFILES += $(gir_DATA) $(typelib_DATA)
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">introspection_sources = [
+  'as-app.c',
+  'as-app-validate.c',
+  'as-app.h',
+  'as-bundle.c',
+  'as-bundle.h',
+  'as-enums.c',
+  'as-enums.h',
+  'as-icon.c',
+  'as-icon.h',
+  'as-image.c',
+  'as-image.h',
+  'as-inf.c',
+  'as-inf.h',
+  'as-node.c',
+  'as-node.h',
+  'as-problem.c',
+  'as-problem.h',
+  'as-provide.c',
+  'as-provide.h',
+  'as-release.c',
+  'as-release.h',
+  'as-screenshot.c',
+  'as-screenshot.h',
+  'as-store.c',
+  'as-store.h',
+  'as-tag.c',
+  'as-tag.h',
+  'as-utils.c',
+  'as-utils.h']
+  'as-version.h']
+
+gnome.generate_gir(asglib,
+  sources : introspection_sources,
+  nsversion : '1.0',
+  namespace : 'AppStreamGlib',
+  symbol_prefix : 'as_',
+  identifier_prefix : 'As',
+  export_packages : 'appstream-glib',
+  includes : ['GObject-2.0', 'Gio-2.0', 'GdkPixbuf-2.0'],
+  install : true
+)
+</code></pre>
+<h3 id="gsettings">GSettings</h3>
+<p><code>configure.ac</code>:</p>
+<pre><code class="language-sh">GLIB_GSETTINGS
+</code></pre>
+<p><code>Makefile.am</code>:</p>
+<pre><code class="language-make">gsettings_SCHEMAS = foo.gschema.xml
+@GSETTINGS_RULES@
+</code></pre>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">install_data('foo.gschema.xml', install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas'))
+meson.add_install_script('meson_post_install.py')
+</code></pre>
+<p><code>meson_post_install.py</code>:</p>
+<pre><code class="language-python">#!/usr/bin/env python3
+
+import os
+import subprocess
+
+schemadir = os.path.join(os.environ['MESON_INSTALL_PREFIX'], 'share', 'glib-2.0', 'schemas')
+
+if not os.environ.get('DESTDIR'):
+	print('Compiling gsettings schemas...')
+	subprocess.call(['glib-compile-schemas', schemadir])
+</code></pre>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<div id="toc-column">
+		<div id="toc-wrapper" class="mCustomScrollbar" data-mcs-theme="dark">
+			<nav id="toc"></nav>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

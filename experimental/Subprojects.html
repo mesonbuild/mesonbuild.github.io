@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Subprojects</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target="#toc" data-offset="70">
+
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="home-link" class="hotdoc-navbar-brand">
+				<img src="images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<form action="" class="navbar-form navbar-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                       </form>
+
+		</div>
+	</div>
+</nav>
+
+<main class="page-row page-row-expanded">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Subprojects.html" class="page_container" id="page-wrapper">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
+	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
+		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
+			<div class="sidenav-main-panel-body">
+				<div id="site-navigation">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Subprojects.md">
+<h1 id="subprojects">Subprojects</h1>
+<p>Some platforms do not provide a native packaging system. In these cases it is common to bundle all third party libraries in your source tree. This is usually frowned upon because it makes it hard to add these kinds of projects into e.g. those Linux distributions that forbid bundled libraries.</p>
+<p>Meson tries to solve this problem by making it extremely easy to provide both at the same time. The way this is done is that Meson allows you to take any other Meson project and make it a part of your build without (in the best case) any changes to its Meson setup. It becomes a transparent part of the project. The basic idiom goes something like this.</p>
+<pre><code class="language-meson">dep = dependency('foo', required : false)
+if dep.found()
+  # set up project using external dependency
+else
+  subproject('foo')
+  # set up rest of project as if foo was provided by this project
+endif
+</code></pre>
+<p>All Meson features of the subproject, such as project options keep working and can be set in the master project. There are a few limitations, the most imporant being that global compiler arguments must be set in the main project before calling subproject. Subprojects must not set global arguments because there is no way to do that reliably over multiple subprojects. To check whether you are running as a subproject, use the <code>is_subproject</code> function.</p>
+<p>As an example, suppose we have a simple project that provides a shared library.</p>
+<pre><code class="language-meson">project('simple', 'c')
+i = include_directories('include')
+l = shared_library('simple', 'simple.c', include_directories : i, install : true)
+</code></pre>
+<p>Then we could use that from a master project. First we generate a subdirectory called <code>subprojects</code> in the root of the master directory. Then we create a subdirectory called <code>simple</code> and put the subproject in that directory. Now the subproject can be used like this.</p>
+<pre><code class="language-meson">project('master', 'c')
+dep = dependency('simple', required : false)
+if dep.found()
+  i = []
+  l = []
+else
+  sp = subproject('simple') # This is a name of a subdirectory in subprojects.
+  i = sp.get_variable('i')
+  l = sp.get_variable('l')
+endif
+exe = executable('prog', 'prog.c', include_directories : i, link_with : l,
+                 deps : dep, install : true)
+</code></pre>
+<p>With this setup the system dependency is used when it is available, otherwise we fall back on the bundled version.</p>
+<p>It should be noted that this only works for subprojects that are built with Meson. It can not be used with any other build system. The reason is the simple fact that there is no possible way to do this reliably with mixed build systems.</p>
+<p>Subprojects can use other subprojects, but all subprojects must reside in the top level <code>subprojects</code> directory. Recursive use of subprojects is not allowed, though, so you can't have subproject <code>a</code> that uses subproject <code>b</code> and have <code>b</code> also use <code>a</code>.</p>
+<h2 id="subprojects-and-dependencies">Subprojects and dependencies</h2>
+<p>A common use case is to use subprojects to provide dependencies on platforms that do not provide them out of the box. This is especially common on Windows. Meson makes this easy while at the same time using system dependencies if are available. The way to do this is to set up a subproject that builds the dependency and has an internal dependency declared like this:</p>
+<pre><code class="language-meson">proj_dep = declare_dependency(...)
+</code></pre>
+<p>Then you can use the subproject in the master project like this:</p>
+<pre><code class="language-meson">sp_dep = dependency('subproj_pkgconfig_name', fallback : ['subproj_name', 'proj_dep']
+</code></pre>
+<p>This uses the system dependency when available and the self built version if not. If you want to always use the subproject, that is also possible, just use <code>subproject</code> and <code>get_variable</code> as discussed above to get the dependency object.</p>
+<h1 id="obtaining-subprojects">Obtaining subprojects</h1>
+<p>Meson ships with a dependency system to automatically obtain dependency subprojects. It is documented in the [Wrap dependency system manual](Wrap dependency system manual).</p>
+
+</div>
+
+
+        <div id="subpages"></div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+</div>
+<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
+	<div id="toc-column">
+		<div id="toc-wrapper" class="mCustomScrollbar" data-mcs-theme="dark">
+			<nav id="toc"></nav>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+</main>
+
+
+<footer class="page-row">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
+		<div class="col-sm-12 col-md-9 col-xl-8">
+						
+<hr>
+
+<div class="license-description">
+	<table>
+		<tbody>
+			<tr>
+			<td>
+				<em>Content in this page is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+				license, unless otherwise noted.</em>
+			</td>
+			<td>
+						<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+				<img src="assets/CC-BY-SAv4.0.png" class="license-logo">
+			</a>
+						</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+		</div>
+		<div class="hidden-xs col-xl-2"></div>
+	</div>
+</div>
+</footer>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>
