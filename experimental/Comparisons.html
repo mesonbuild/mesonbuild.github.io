@@ -8,7 +8,6 @@
 <title>Comparisions</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
-<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
@@ -61,10 +60,10 @@
 		<div class="navbar-collapse collapse" id="navbar-wrapper">
 			<ul class="nav navbar-nav" id="menu">
 							</ul>
-			<form action="" class="navbar-form navbar-right">
+			<form action="" class="navbar-form navbar-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
-                                       <input type="text" class="form-control" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
-                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
                                </div>
                        </form>
 
@@ -128,7 +127,11 @@
 	</div>
 </div>
 <div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
-	<nav id="toc"></nav>
+	<div id="toc-column">
+		<div id="toc-wrapper" class="mCustomScrollbar" data-mcs-theme="dark">
+			<nav id="toc"></nav>
+		</div>
+	</div>
 </div>
 	</div>
 </div>
