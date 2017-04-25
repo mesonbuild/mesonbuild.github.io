@@ -1,29 +1,41 @@
-<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
-	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
-		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
-			<div class="sidenav-main-panel-body">
-				<div id="site-navigation">
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+@require(page)
 
-<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+@if not page.meta.get("full-width"):
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+@end
+
+<div id="body">
 	<div id="main">
 		@def content():
 		@end
 		@content()
-        <div id="subpages"/>
+		<subpages>
+		</subpages>
 	</div>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-</div>
-<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
-	<div id="toc-column">
-		<div id="toc-wrapper" class="mCustomScrollbar" data-mcs-theme="dark">
-			<nav id="toc"></nav>
-		</div>
+	<div id="footer">
+		@include("footer.html")
 	</div>
 </div>
+
+@if not page.meta.get("full-width"):
+<div id="toc-column">
+	@def edit_button():
+	@end
+	@(btn = edit_button())
+	@if btn:
+	<div class="edit-button">
+		@btn
+	</div>
+	@end
+	<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+@end
+@end

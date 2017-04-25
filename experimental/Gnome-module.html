@@ -1,9 +1,12 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
+
+<base href=".">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <title>GNOME module</title>
 
@@ -22,11 +25,9 @@
 <script src="assets/js/compare-versions.js"></script>
 <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="assets/js/bootstrap-toc.min.js"></script>
-<script src="assets/js/utils.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
 <script src="assets/js/tag_filtering.js"></script>
 <script src="assets/js/language_switching.js"></script>
-<script src="assets/js/navigation.js"></script>
-
 
 <script src="assets/js/lines_around_headings.js"></script>
 
@@ -35,60 +36,128 @@
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
 
-
 <title>The Meson® Build System</title>
-<link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="shortcut icon" href="images/favicon.png">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
 
 </head>
 
-<body data-spy="scroll" data-target="#toc" data-offset="70">
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
 
-<nav class="navbar navbar-fixed-top navbar-default">
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
 	<div class="container-fluid">
-		<div class="navbar-header">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a id="home-link" class="hotdoc-navbar-brand">
-				<img src="images/meson_logo.png" alt="Home" id="home">
-			</a>
-		</div>
-		<div class="navbar-collapse collapse" id="navbar-wrapper">
-			<ul class="nav navbar-nav" id="menu">
-							</ul>
-			<form action="" class="navbar-form navbar-right" id="navbar-search-form">
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
 				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
                                </div>
-                       </form>
-
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
 		</div>
 	</div>
 </nav>
 
-<main class="page-row page-row-expanded">
+<main>
 <div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Gnome-module.html" class="page_container" id="page-wrapper">
-	<div class="row">
-		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
-	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
-		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
-			<div class="sidenav-main-panel-body">
-				<div id="site-navigation">
-				</div>
-			</div>
-		</div>
-	</div>
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
 </div>
 
-<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+<div id="body">
 	<div id="main">
 				
-<div id="page-description" data-hotdoc-source="Gnome-module.md">
+<div id="page-description" data-hotdoc-source="Gnome-module.md" data-hotdoc-role="main">
 <h1 id="gnome-module">GNOME module</h1>
 <p>This module provides helper tools for build operations needed when building Gnome/GLib programs.</p>
 <p><strong>Note</strong>: the compilation commands here might not work properly when you change the source files. This is a bug in the respective compilers which do not expose the required dependency information. This has been reported upstream in <a href="https://bugzilla.gnome.org/show_bug.cgi?id=745754">this bug</a>. Until this is fixed you need to be careful when changing your source files.</p>
@@ -97,43 +166,72 @@
 <h3 id="gnomecompile_resources">gnome.compile_resources()</h3>
 <p>This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the xml file containing the resource definitions. If the name is <code>foobar</code>, Meson will generate a header file called <code>foobar.h</code>, which you can then include in your sources. There are two keyword arguments.</p>
 <ul>
-<li><code>source_dir</code>: a list of subdirectories where the resource compiler should look up the files, relative to the location of the xml file</li>
-<li><code>c_name</code>: passed to the resource compiler as an argument after <code>--c-name</code></li>
-<li><code>extra_args</code>: extra command line arguments to pass to the resource compiler</li>
+<li>
+<code>source_dir</code>: a list of subdirectories where the resource compiler should look up the files, relative to the location of the xml file</li>
+<li>
+<code>c_name</code>: passed to the resource compiler as an argument after <code>--c-name</code>
+</li>
+<li>
+<code>extra_args</code>: extra command line arguments to pass to the resource compiler</li>
 </ul>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
 <h3 id="gnomegenerate_gir">gnome.generate_gir()</h3>
 <p>Generates GObject introspection data. Takes one positional argument, the build target you want to build gir data for. There are several keyword arguments. Many of these map directly to the <code>g-ir-scanner</code> tool so see its documentation for more information.</p>
 <ul>
-<li><code>sources</code>: the list of sources to be scanned for gir data</li>
-<li><code>nsversion</code>: namespace version</li>
-<li><code>namespace</code>: the namespace for this gir object which determines output files</li>
-<li><code>symbol_prefix</code>: the symbol prefix for the gir object, e.g. <code>gtk</code></li>
-<li><code>identifier_prefix</code>: the identifier prefix for the gir object, e.g. <code>Gtk</code></li>
-<li><code>export_packages</code>: extra packages the gir file exports</li>
-<li><code>includes</code>: list of gir names to be included, can also be a GirTarget</li>
-<li><code>dependencies</code>: deps to use during introspection scanning</li>
-<li><code>link_with</code>: list of libraries to link with</li>
-<li><code>include_directories</code>: extra include paths to look for gir files</li>
-<li><code>install</code>: if true, install the generated files</li>
-<li><code>install_dir_gir</code>: (<em>Added 0.35.0</em>) which directory to install the gir file into</li>
-<li><code>install_dir_typelib</code>: (<em>Added 0.35.0</em>) which directory to install the typelib file into</li>
-<li><code>extra_args</code>: command line arguments to pass to gir compiler</li>
+<li>
+<code>sources</code>: the list of sources to be scanned for gir data</li>
+<li>
+<code>nsversion</code>: namespace version</li>
+<li>
+<code>namespace</code>: the namespace for this gir object which determines output files</li>
+<li>
+<code>symbol_prefix</code>: the symbol prefix for the gir object, e.g. <code>gtk</code>
+</li>
+<li>
+<code>identifier_prefix</code>: the identifier prefix for the gir object, e.g. <code>Gtk</code>
+</li>
+<li>
+<code>export_packages</code>: extra packages the gir file exports</li>
+<li>
+<code>includes</code>: list of gir names to be included, can also be a GirTarget</li>
+<li>
+<code>dependencies</code>: deps to use during introspection scanning</li>
+<li>
+<code>link_with</code>: list of libraries to link with</li>
+<li>
+<code>include_directories</code>: extra include paths to look for gir files</li>
+<li>
+<code>install</code>: if true, install the generated files</li>
+<li>
+<code>install_dir_gir</code>: (<em>Added 0.35.0</em>) which directory to install the gir file into</li>
+<li>
+<code>install_dir_typelib</code>: (<em>Added 0.35.0</em>) which directory to install the typelib file into</li>
+<li>
+<code>extra_args</code>: command line arguments to pass to gir compiler</li>
 </ul>
 <p>Returns an array of two elements which are: <code>[gir_target, typelib_target]</code></p>
 <h3 id="gnomegenmarshal">gnome.genmarshal()</h3>
 <p>Generates a marshal file using the <code>glib-genmarshal</code> tool. The first argument is the basename of
 the output files.</p>
 <ul>
-<li><code>sources</code>: the list of sources to use as inputs</li>
-<li><code>prefix</code>: the prefix to use for symbols</li>
-<li><code>install_header</code>: if true, install the generated header</li>
-<li><code>install_dir</code>: directory to install header to</li>
-<li><code>stdinc</code>: if true, include the standard marshallers from glib</li>
-<li><code>nostdinc</code>: if true, don't include the standard marshallers from glib</li>
-<li><code>internal</code>: if true, mark generated sources as internal</li>
-<li><code>skip_source</code>: if true, skip source location comments</li>
-<li><code>valist_marshallers</code>: if true, generate va_list marshallers</li>
+<li>
+<code>sources</code>: the list of sources to use as inputs</li>
+<li>
+<code>prefix</code>: the prefix to use for symbols</li>
+<li>
+<code>install_header</code>: if true, install the generated header</li>
+<li>
+<code>install_dir</code>: directory to install header to</li>
+<li>
+<code>stdinc</code>: if true, include the standard marshallers from glib</li>
+<li>
+<code>nostdinc</code>: if true, don't include the standard marshallers from glib</li>
+<li>
+<code>internal</code>: if true, mark generated sources as internal</li>
+<li>
+<code>skip_source</code>: if true, skip source location comments</li>
+<li>
+<code>valist_marshallers</code>: if true, generate va_list marshallers</li>
 </ul>
 <p><em>Added 0.35.0</em></p>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
@@ -141,20 +239,34 @@ the output files.</p>
 <p>Generates enum files for GObject using the <code>glib-mkenums</code> tool. The first argument is the base name of the output files.</p>
 <p>Note that if you <code>#include</code> the generated header in any of the sources for a build target, you must add the generated header to the build target's list of sources to codify the dependency. This is true for all generated sources, not just <code>mkenums</code>.</p>
 <ul>
-<li><code>sources</code>: the list of sources to make enums with</li>
-<li><code>c_template</code>: template to use for generating the source</li>
-<li><code>h_template</code>: template to use for generating the header</li>
-<li><code>install_header</code>: if true, install the generated header</li>
-<li><code>install_dir</code>: directory to install the header</li>
-<li><code>comments</code>: comment passed to the command</li>
-<li><code>identifier_prefix</code>: prefix to use for the identifiers</li>
-<li><code>symbol_prefix</code>: prefix to use for the symbols</li>
-<li><code>eprod</code>: enum text</li>
-<li><code>fhead</code>: file header</li>
-<li><code>fprod</code>: file text</li>
-<li><code>ftail</code>: file tail</li>
-<li><code>vhead</code>: value text</li>
-<li><code>vtail</code>: value tail</li>
+<li>
+<code>sources</code>: the list of sources to make enums with</li>
+<li>
+<code>c_template</code>: template to use for generating the source</li>
+<li>
+<code>h_template</code>: template to use for generating the header</li>
+<li>
+<code>install_header</code>: if true, install the generated header</li>
+<li>
+<code>install_dir</code>: directory to install the header</li>
+<li>
+<code>comments</code>: comment passed to the command</li>
+<li>
+<code>identifier_prefix</code>: prefix to use for the identifiers</li>
+<li>
+<code>symbol_prefix</code>: prefix to use for the symbols</li>
+<li>
+<code>eprod</code>: enum text</li>
+<li>
+<code>fhead</code>: file header</li>
+<li>
+<code>fprod</code>: file text</li>
+<li>
+<code>ftail</code>: file tail</li>
+<li>
+<code>vhead</code>: value text</li>
+<li>
+<code>vtail</code>: value tail</li>
 </ul>
 <p><em>Added 0.35.0</em></p>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
@@ -162,16 +274,21 @@ the output files.</p>
 <p>When called, this method will compile the gschemas in the current directory. Note that this is not
 for installing schemas and is only useful when running the application locally for example during tests.</p>
 <h3 id="gnomegdbus_codegen">gnome.gdbus_codegen()</h3>
-<p>Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are two keyword arguments, <code>interface_prefix</code> and <code>namespace</code> which map to corresponding features of the compiler.</p>
+<p>Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are three keyword arguments. <code>interface_prefix</code> and <code>namespace</code> map to corresponding features of the compiler while <code>object_manager</code> (since 0.40.0), when set to true, generates object manager code.</p>
 <p>Returns an opaque object containing the source files. Add it to a top level target's source list.</p>
 <h3 id="gnomecompile_vapi">gnome.compile_vapi()</h3>
 <p>Creates a vapi file from gir. The first argument is the name of the library.</p>
 <ul>
-<li><code>sources</code>: the gir source to generate the vapi from</li>
-<li><code>packages</code>: vapi packages that are depended upon</li>
-<li><code>metadata_dirs</code>: extra directories to include for metadata files</li>
-<li><code>gir_dirs</code>: extra directories to include for gir files</li>
-<li><code>vapi_dirs</code>: extra directories to include for vapi files</li>
+<li>
+<code>sources</code>: the gir source to generate the vapi from</li>
+<li>
+<code>packages</code>: vapi packages that are depended upon</li>
+<li>
+<code>metadata_dirs</code>: extra directories to include for metadata files</li>
+<li>
+<code>gir_dirs</code>: extra directories to include for gir files</li>
+<li>
+<code>vapi_dirs</code>: extra directories to include for vapi files</li>
 </ul>
 <p>Returns a custom dependency that can be included when building other vapi or vala binaries.</p>
 <p><em>Added 0.36.0</em></p>
@@ -179,28 +296,51 @@ for installing schemas and is only useful when running the application locally f
 <p>Installs help documentation using Yelp. The first argument is the project id.</p>
 <p>This also creates two targets for translations <code>help-$project-update-po</code> and <code>help-$project-pot</code>.</p>
 <ul>
-<li><code>sources</code>: list of pages</li>
-<li><code>media</code>: list of media such as images</li>
-<li><code>symlink_media</code>: if media should be symlinked (requires newish yelp) defaults to <code>false</code></li>
-<li><code>languages</code>: list of languages for translations</li>
+<li>
+<code>sources</code>: list of pages</li>
+<li>
+<code>media</code>: list of media such as images</li>
+<li>
+<code>symlink_media</code>: if media should be symlinked (requires newish yelp) defaults to <code>false</code>
+</li>
+<li>
+<code>languages</code>: list of languages for translations</li>
 </ul>
 <p><em>Added 0.36.0</em></p>
 <h3 id="gnomegtkdoc">gnome.gtkdoc()</h3>
 <p>Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.</p>
 <ul>
-<li><code>main_xml</code>: specifies the main xml file</li>
-<li><code>main_sgml</code>: equal to <code>main_xml</code></li>
-<li><code>src_dir</code>: include_directories to include</li>
-<li><code>dependencies</code>: a list of dependencies</li>
-<li><code>install</code>: if true, installs the generated docs</li>
-<li><code>install_dir</code>: the directory to install the generated docs</li>
-<li><code>scan_args</code>: a list of arguments to pass to <code>gtkdoc-scan</code></li>
-<li><code>scanobjs_args</code>: a list of arguments to pass to <code>gtkdoc-scangobj</code></li>
-<li><code>gobject_typesfile</code>: a list of type files</li>
-<li><code>fixxref_args</code>: a list of arguments to pass to <code>gtkdoc-fixxref</code></li>
-<li><code>html_args</code> a list of arguments to pass to <code>gtkdoc-mkhtml</code></li>
-<li><code>html_assets</code>: a list of assets for the html pages</li>
-<li><code>content_files</code>: a list of content files</li>
+<li>
+<code>main_xml</code>: specifies the main xml file</li>
+<li>
+<code>main_sgml</code>: equal to <code>main_xml</code>
+</li>
+<li>
+<code>src_dir</code>: include_directories to include</li>
+<li>
+<code>dependencies</code>: a list of dependencies</li>
+<li>
+<code>install</code>: if true, installs the generated docs</li>
+<li>
+<code>install_dir</code>: the directory to install the generated docs</li>
+<li>
+<code>scan_args</code>: a list of arguments to pass to <code>gtkdoc-scan</code>
+</li>
+<li>
+<code>scanobjs_args</code>: a list of arguments to pass to <code>gtkdoc-scangobj</code>
+</li>
+<li>
+<code>gobject_typesfile</code>: a list of type files</li>
+<li>
+<code>fixxref_args</code>: a list of arguments to pass to <code>gtkdoc-fixxref</code>
+</li>
+<li>
+<code>html_args</code> a list of arguments to pass to <code>gtkdoc-mkhtml</code>
+</li>
+<li>
+<code>html_assets</code>: a list of assets for the html pages</li>
+<li>
+<code>content_files</code>: a list of content files</li>
 </ul>
 <h3 id="gnomegtkdoc_html_dir">gnome.gtkdoc_html_dir()</h3>
 <p>Takes as argument a module name and returns the path where that module's HTML files will be installed. Usually used with <code>install_data</code> to install extra files, such as images, to the output directory.</p>
@@ -208,30 +348,14 @@ for installing schemas and is only useful when running the application locally f
 </div>
 
 
-        <div id="subpages"></div>
+		
 	</div>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-</div>
-<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
-	<div id="toc-column">
-		<div id="toc-wrapper" class="mCustomScrollbar" data-mcs-theme="dark">
-			<nav id="toc"></nav>
-		</div>
-	</div>
-</div>
-	</div>
-</div>
-</main>
+	<div id="footer">
+		
 
-
-<footer class="page-row">
-	<div class="container-fluid">
-	<div class="row">
-		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
-		<div class="col-sm-12 col-md-9 col-xl-8">
-						
 <hr>
 
 <div class="license-description">
@@ -253,11 +377,21 @@ for installing schemas and is only useful when running the application locally f
 </div>
 
 
-		</div>
-		<div class="hidden-xs col-xl-2"></div>
 	</div>
 </div>
-</footer>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Gnome-module.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
 
 </body>
 

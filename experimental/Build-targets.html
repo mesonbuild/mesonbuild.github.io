@@ -1,9 +1,12 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
+
+<base href=".">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <title>Build targets</title>
 
@@ -22,11 +25,9 @@
 <script src="assets/js/compare-versions.js"></script>
 <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="assets/js/bootstrap-toc.min.js"></script>
-<script src="assets/js/utils.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
 <script src="assets/js/tag_filtering.js"></script>
 <script src="assets/js/language_switching.js"></script>
-<script src="assets/js/navigation.js"></script>
-
 
 <script src="assets/js/lines_around_headings.js"></script>
 
@@ -35,60 +36,128 @@
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
 
-
 <title>The Meson® Build System</title>
-<link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="shortcut icon" href="images/favicon.png">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
 
 </head>
 
-<body data-spy="scroll" data-target="#toc" data-offset="70">
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
 
-<nav class="navbar navbar-fixed-top navbar-default">
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
 	<div class="container-fluid">
-		<div class="navbar-header">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a id="home-link" class="hotdoc-navbar-brand">
-				<img src="images/meson_logo.png" alt="Home" id="home">
-			</a>
-		</div>
-		<div class="navbar-collapse collapse" id="navbar-wrapper">
-			<ul class="nav navbar-nav" id="menu">
-							</ul>
-			<form action="" class="navbar-form navbar-right" id="navbar-search-form">
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
 				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
                                </div>
-                       </form>
-
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
 		</div>
 	</div>
 </nav>
 
-<main class="page-row page-row-expanded">
+<main>
 <div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Build-targets.html" class="page_container" id="page-wrapper">
-	<div class="row">
-		<div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-2" id="sidenav-column">
-	<div class="panel panel-collapse" id="sidenav" data-hotdoc-role="navigation">
-		<div id="sitenav-wrapper" class="mCustomScrollbar" data-mcs-theme="minimal">
-			<div class="sidenav-main-panel-body">
-				<div id="site-navigation">
-				</div>
-			</div>
-		</div>
-	</div>
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
 </div>
 
-<div class="col-sm-12 col-md-9 col-lg-7 col-xl-8">
+<div id="body">
 	<div id="main">
 				
-<div id="page-description" data-hotdoc-source="Build-targets.md">
+<div id="page-description" data-hotdoc-source="Build-targets.md" data-hotdoc-role="main">
 <h1 id="build-targets">Build targets</h1>
 <p>Meson provides three kinds of build targets: executables, static libraries and shared libraries. They are created with the commands <code>executable</code>, <code>static_library</code> and <code>shared_library</code>, respectively. All objects created in this way are <strong>immutable</strong>. That is, you can not change any aspect of them after they have been constructed. This ensures that all information pertaining to a given build target is specified in one well defined place.</p>
 <p>As an example, here is how you would build a shared library.</p>
@@ -125,30 +194,14 @@ executable('classtest', 'classtest.cpp', objects : eo)
 </div>
 
 
-        <div id="subpages"></div>
+		
 	</div>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-</div>
-<div class="hidden-xs hidden-sm hidden-md col-lg-2 col-xl-2">
-	<div id="toc-column">
-		<div id="toc-wrapper" class="mCustomScrollbar" data-mcs-theme="dark">
-			<nav id="toc"></nav>
-		</div>
-	</div>
-</div>
-	</div>
-</div>
-</main>
+	<div id="footer">
+		
 
-
-<footer class="page-row">
-	<div class="container-fluid">
-	<div class="row">
-		<div class="hidden-xs hidden-sm col-md-3 col-xl-2"></div>
-		<div class="col-sm-12 col-md-9 col-xl-8">
-						
 <hr>
 
 <div class="license-description">
@@ -170,11 +223,21 @@ executable('classtest', 'classtest.cpp', objects : eo)
 </div>
 
 
-		</div>
-		<div class="hidden-xs col-xl-2"></div>
 	</div>
 </div>
-</footer>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Build-targets.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
 
 </body>
 
