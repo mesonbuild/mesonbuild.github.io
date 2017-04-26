@@ -1,0 +1,292 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Cross compilation</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Cross-compilation.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Cross-compilation.md" data-hotdoc-role="main">
+<h1 id="cross-compilation">Cross compilation</h1>
+<p>Meson has full support for cross compilation. Since cross compiling is more complicated than native building,
+let's first go over some nomenclature. The three most important definitions are traditionally called <em>build</em>, <em>host</em> and <em>target</em>. This is confusing because those terms are used for quite many different things. To simplify the issue, we are going to call these the <em>build machine</em>, <em>host machine</em> and <em>target machine</em>. Their definitions are the following</p>
+<ul>
+<li>
+<em>build machine</em> is the computer that is doing the actual compiling</li>
+<li>
+<em>host machine</em> is the machine on which the compiled binary will run</li>
+<li>
+<em>target machine</em> is the machine on which the compiled binary's output will run (this is only meaningful for programs such as compilers that, when run, produce object code for a different CPU than what the program is being run on)</li>
+</ul>
+<p>The <code>tl/dr</code> summary is the following: if you are doing regular cross compilation, you only care about <em>build_machine</em> and <em>host_machine</em>. Just ignore <em>target_machine</em> altogether and you will be correct 99% of the time. If your needs are more complex or you are interested in the actual details, do read on.</p>
+<p>This might be easier to understand through examples. Let's start with the regular, not cross-compiling case. In these cases all of these three machines are the same. Simple so far.</p>
+<p>Let's next look at the most common cross-compilation setup. Let's suppose you are on a 64 bit OSX machine and you are cross compiling a binary that will run on a 32 bit ARM Linux board. In this case your <em>build machine</em> is 64 bit OSX and both your <em>host</em> and <em>target machines</em> are 32 bit ARM Linux. This should be quite understandable as well.</p>
+<p>It gets a bit trickier when we think about how the cross compiler was generated. It was built and it runs on a specific platform but the output it generates is for a different platfom. In this case <em>build</em> and <em>host machines</em> are the same, but <em>target machine</em> is different.</p>
+<p>The most complicated case is when you cross-compile a cross compiler. As an example you can, on a Linux machine, generate a cross compiler that runs on Windows but produces binaries on MIPS Linux. In this case <em>build machine</em> is x86 Linux, <em>host machine</em> is x86 Windows and <em>target machine</em> is MIPS Linux. This setup is known as the <a href="https://en.wikipedia.org/wiki/Cross_compiler#Canadian_Cross">Canadian Cross</a>. As a side note, be careful when reading cross compilation articles on Wikipedia or the net in general. It is very common for them to get build, host and target mixed up, even in consecutive sentences, which can leave you puzzled until you figure it out.</p>
+<p>If you did not understand all of the details, don't worry. For most people it takes a while to wrap their head around these concepts. Don't panic, it might take a while to click, but you will get the hang of it eventually.</p>
+<h2 id="defining-the-environment">Defining the environment</h2>
+<p>Meson requires you to write a cross build definition file. It defines various properties of the cross build environment. The cross file consists of different sections. The first one is the list of executables that we are going to use. A sample snippet might look like this:</p>
+<pre><code class="language-ini">[binaries]
+c = '/usr/bin/i586-mingw32msvc-gcc'
+cpp = '/usr/bin/i586-mingw32msvc-g++'
+ar = '/usr/i586-mingw32msvc/bin/ar'
+strip = '/usr/i586-mingw32msvc/bin/strip'
+exe_wrapper = 'wine' # A command used to run generated executables.
+</code></pre>
+<p>The entries are pretty self explanatory but the last line is special. It defines a <em>wrapper command</em> that can be used to run executables for this host. In this case we can use Wine, which runs Windows applications on Linux. Other choices include running the application with qemu or a hardware simulator. If you have this kind of a wrapper, these lines are all you need to write. Meson will automatically use the given wrapper when it needs to run host binaries. This happens e.g. when running the project's test suite.</p>
+<p>The next section lists properties of the cross compiler and thus of the target system. It looks like this:</p>
+<pre><code class="language-ini">[properties]
+sizeof_int = 4
+sizeof_wchar_t = 4
+sizeof_void* = 4
+
+alignment_char = 1
+alignment_void* = 4
+alignment_double = 4
+
+has_function_printf = true
+
+c_args = ['-DCROSS=1', '-DSOMETHING=3']
+c_link_args = ['-some_link_arg']
+</code></pre>
+<p>In most cases you don't need the size and alignment settings, Meson will detect all these by compiling and running some sample programs. If your build requires some piece of data that is not listed here, Meson will stop and write an error message describing how to fix the issue. If you need extra compiler arguments to be used during cross compilation you can set them with <code>[langname]_args = [args]</code>. Just remember to specify the args as an array and not as a single string (i.e. not as <code>'-DCROSS=1 -DSOMETHING=3'</code>).</p>
+<p>The last bit is the definition of host and target machines. Every cross build definition must have one or both of them. If it had neither, the build would not be a cross build but a native build. You do not need to define the build machine, as all necessary information about it is extracted automatically. The definitions for host and target machines look the same. Here is a sample for host machine.</p>
+<pre><code class="language-ini">[host_machine]
+system = 'windows'
+cpu_family = 'x86'
+cpu = 'i686'
+endian = 'little'
+</code></pre>
+<p>These values define the machines sufficiently for cross compilation purposes. The corresponding target definition would look the same but have <code>target_machine</code> in the header. These values are available in your Meson scripts. There are three predefined variables called, surprisingly, <code>build_machine</code>, <code>host_machine</code> and <code>target_machine</code>. Determining the operating system of your host machine is simply a matter of calling <code>host_machine.system()</code>.</p>
+<p>There are two different values for the CPU. The first one is <code>cpu_family</code>. It is a general type of the CPU. Common values might include <code>x86</code>, <code>arm</code> or <code>x86_64</code>. The second value is <code>cpu</code> which is a more specific subtype for the CPU. Typical values for a <code>x86</code> CPU family might include <code>i386</code> or <code>i586</code> and for <code>arm</code> family <code>armv5</code> or <code>armv7hl</code>. Note that CPU type strings are very system dependent. You might get a different value if you check its value on the same machine but with different operating systems.</p>
+<p>If you do not define your host machine, it is assumed to be the build machine. Similarly if you do not specify target machine, it is assumed to be the host machine.</p>
+<h2 id="starting-a-cross-build">Starting a cross build</h2>
+<p>Once you have the cross file, starting a build is simple</p>
+<pre><code class="language-console">$ meson srcdir builddir --cross-file cross_file.txt
+</code></pre>
+<p>Once configuration is done, compilation is started by invoking Ninja in the usual way.</p>
+<h2 id="introspection-and-system-checks">Introspection and system checks</h2>
+<p>The main <em>meson</em> object provides two functions to determine cross compilation status.</p>
+<pre><code class="language-meson">meson.is_cross_build()  # returns true when cross compiling
+meson.has_exe_wrapper() # returns true if an exe wrapper has been defined
+</code></pre>
+<p>Note that the latter gives undefined return value when doing a native build.</p>
+<p>You can run system checks on both the system compiler or the cross compiler. You just have to specify which one to use.</p>
+<pre><code class="language-meson">build_compiler = meson.get_compiler('c', native : true)
+host_compiler = meson.get_compiler('c', native : false)
+
+build_int_size = build_compiler.sizeof('int')
+host_int_size  = host_compiler.sizeof('int')
+</code></pre>
+<h2 id="mixing-host-and-build-targets">Mixing host and build targets</h2>
+<p>Sometimes you need to build a tool which is used to generate source files. These are then compiled for the actual target. For this you would want to build some targets with the system's native compiler. This requires only one extra keyword argument.</p>
+<pre><code class="language-meson">native_exe = executable('mygen', 'mygen.c', native : true)
+</code></pre>
+<p>You can then take <code>native_exe</code> and use it as part of a generator rule or anything else you might want.</p>
+<h2 id="using-a-custom-standard-library">Using a custom standard library</h2>
+<p>Sometimes in cross compilation you need to build your own standard library instead of using the one provided by the compiler. Meson has built-in support for switching standard libraries transparently. The invocation to use in your cross file is the following:</p>
+<pre><code class="language-ini">[properties]
+c_stdlib = ['mylibc', 'mylibc_dep'] # Subproject name, dependency name
+</code></pre>
+<p>This specifies that C standard library is provided in the Meson subproject <code>mylibc</code> in internal dependency variable <code>mylibc_dep</code>. It is used on every cross built C target in the entire source tree (including subprojects) and the standard library is disabled. The build definitions of these targets do not need any modification.</p>
+<h2 id="changing-cross-file-settings">Changing cross file settings</h2>
+<p>Cross file settings are only read when the build directory is set up the first time. Any changes to them after the fact will be ignored. This is the same as regular compiles where you can't change the compiler once a build tree has been set up. If you need to edit your cross file, then you need to wipe your build tree and recreate it from scratch.</p>
+<h2 id="custom-data">Custom data</h2>
+<p>You can store arbitrary data in <code>properties</code> and access them from your Meson files. As an example if you cross file has this:</p>
+<pre><code class="language-ini">[properties]
+somekey = 'somevalue'
+</code></pre>
+<p>then you can access that using the <code>meson</code> object like this:</p>
+<pre><code class="language-meson">myvar = meson.get_cross_property('somekey')
+# myvar now has the value 'somevalue'
+</code></pre>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Cross-compilation.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

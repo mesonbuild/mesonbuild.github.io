@@ -1,0 +1,238 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Wrap best practices and tips</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Wrap-best-practices-and-tips.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Wrap-best-practices-and-tips.md" data-hotdoc-role="main">
+<h1 id="wrap-best-practices-and-tips">Wrap best practices and tips</h1>
+<p>There are several things you need to take into consideration when writing a Meson build definition for a project. This is especially true when the project will be used as a subproject. This page lists a few things to consider when writing your definitions.</p>
+<h2 id="do-not-put-configh-in-external-search-path">Do not put config.h in external search path</h2>
+<p>Many projects use a <code>config.h</code> header file that they use for configuring their project internally. These files are never installed to the system header files so there are no inclusion collisions. This is not the case with subprojects, your project tree may have an arbitrary number of configuration files, so we need to ensure they don't clash.</p>
+<p>The basic problem is that the users of the subproject must be able to include subproject headers without seeing its <code>config.h</code> file. The most correct solution is to rename the <code>config.h</code> file into something unique, such as <code>foobar-config.h</code>. This is usually not feasible unless you are the maintainer of the subproject in question.</p>
+<p>The pragmatic solution is to put the config header in a directory that has no other header files and then hide that from everyone else. One way is to create a top level subdirectory called <code>internal</code> and use that to build your own sources, like this:</p>
+<pre><code class="language-meson">subdir('internal') # create config.h in this subdir
+internal_inc = include_directories('internal')
+shared_library('foo', 'foo.c', include_directories : internal_inc)
+</code></pre>
+<p>Many projects keep their <code>config.h</code> in the top level directory that has no other source files in it. In that case you don't need to move it but can just do this instead:</p>
+<pre><code class="language-meson">internal_inc = include_directories('.') # At top level meson.build
+</code></pre>
+<h2 id="make-libraries-buildable-both-as-static-and-shared">Make libraries buildable both as static and shared</h2>
+<p>Some platforms (e.g. iOS) requires linking everything in your main app statically. In other cases you might want shared libraries. They are also faster during development due to Meson's relinking optimization. However building both library types on all builds is slow and wasteful.</p>
+<p>Your project should provide a toggle specifying which type of library it should build. As an example if you have a Meson option called <code>shared_lib</code> then you could do this:</p>
+<pre><code class="language-meson">if get_option('shared_lib')
+  libtype = 'shared_library'
+else
+  libtype = 'static_library'
+endif
+
+mylib = build_target('foo', 'foo.c',
+  target_type : libtype)
+</code></pre>
+<h2 id="declare-generated-headers-explicitly">Declare generated headers explicitly</h2>
+<p>Meson's Ninja backend works differently from Make and other systems. Rather than processing things directory per directory, it looks at the entire build definition at once and runs the individual compile jobs in what might look to the outside as a random order.</p>
+<p>The reason for this is that this is much more efficient so your builds finish faster. The downside is that you have to be careful with your dependencies. The most common problem here is headers that are generated at compile time with e.g. code generators. If these headers are needed when building code that uses these libraries, the compile job might be run before the code generation step. The fix is to make the dependency explicit like this:</p>
+<pre><code class="language-meson">myheader = custom_target(...)
+mylibrary = shared_library(...)
+mydep = declare_dependency(link_with : mylibrary,
+  include_directories : include_directories(...),
+  sources : myheader)
+</code></pre>
+<p>And then you can use the dependency in the usual way:</p>
+<pre><code class="language-meson">executable('dep_using_exe', 'main.c',
+  dependencies : mydep)
+</code></pre>
+<p>Meson will ensure that the header file has been built before compiling <code>main.c</code>.</p>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Wrap-best-practices-and-tips.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

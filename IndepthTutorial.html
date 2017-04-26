@@ -1,0 +1,258 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>An in-depth tutorial</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="IndepthTutorial.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="IndepthTutorial.md" data-hotdoc-role="main">
+<h1 id="an-indepth-tutorial">An in-depth tutorial</h1>
+<p>In this tutorial we set up a project with multiple targets, unit tests and dependencies between targets. Our main product is a shared library called <em>foo</em> that is written in <code>C++11</code>. We are going to ignore the contents of the source files, as they are not really important from a build definition point of view. The library makes use of the <code>GLib</code> library so we need to detect and link it properly. We also make the resulting library installable.</p>
+<p>The source tree contains three subdirectories <code>src</code>, <code>include</code> and <code>test</code> that contain, respectively, the source code, headers and unit tests of our project.</p>
+<p>To start things up, here is the top level <code>meson.build</code> file.</p>
+<pre><code class="language-meson">project('c++ foolib', 'cpp',
+  version : '1.0.0',
+  license : 'MIT')
+add_global_arguments('-DSOME_TOKEN=value', language : 'cpp')
+glib_dep = dependency('glib-2.0')
+
+inc = include_directories('include')
+
+subdir('include')
+subdir('src')
+subdir('test')
+
+pkg_mod = import('pkgconfig')
+pkg_mod.generate(libraries : foolib,
+                 version : '1.0',
+                 name : 'libfoobar',
+                 filebase : 'foobar',
+                 description : 'A Library to barnicate your foos.')
+</code></pre>
+<p>The definition always starts with a call to the <code>project</code> function. In it you must specify the project's name and programming languages to use, in this case only <code>C++</code>. We also specify two additional arguments, the project's version and the license it is under. Our project is version <code>1.0.0</code> and is specified to be under the MIT license.</p>
+<p>Then we find GLib, which is an <em>external dependency</em>. The <code>dependency</code> function tells Meson to find the library (by default using <code>pkg-config</code>). If the library is not found, Meson will raise an error and stop processing the build definition.</p>
+<p>Then we add a global compiler argument <code>-DSOME_TOKEN=value</code>. This flag is used for <em>all</em> C++ source file compilations. It is not possible to unset it for some targets. The reason for this is that it is hard to keep track of what compiler flags are in use if global settings change per target.</p>
+<p>Since <code>include</code> directory contains the header files, we need a way to tell compilations to add that directory to the compiler command line. This is done with the <code>include_directories</code> command that takes a directory and returns an object representing this directory. It is stored in variable <code>inc</code> which makes it accessible later on.</p>
+<p>After this are three <code>subdir</code> commands. These instruct Meson to go to the specified subdirectory, open the <code>meson.build</code> file that's in there and execute it. The last few lines are a stanza to generate a <code>pkg-config</code> file. We'll skip that for now and come back to it at the end of this document.</p>
+<p>The first subdirectory we go into is <code>include</code>. In it we have a a header file for the library that we want to install. This requires one line.</p>
+<pre><code class="language-meson">install_headers('foolib.h')
+</code></pre>
+<p>This installs the given header file to the system's header directory. This is by default <code>/[install prefix]/include</code>, but it can be changed with a command line argument.</p>
+<p>The Meson definition of <code>src</code> subdir is simple.</p>
+<pre><code class="language-meson">foo_sources = ['source1.cpp', 'source2.cpp']
+foolib = shared_library('foo',
+                        foo_sources,
+                        include_directories : inc,
+                        dependencies : glib_dep,
+                        install : true)
+</code></pre>
+<p>Here we just tell Meson to build the library with the given sources. We also tell it to use the include directories we stored to variable <code>inc</code> earlier. Since this library uses GLib, we tell Meson to add all necessary compiler and linker flags with the <code>dependencies</code> keyword argument. Its value is <code>glib_dep</code> which we set at the top level <code>meson.build</code> file. The <code>install</code> argument tells Meson to install the result. As with the headers, the shared library is installed to the system's default location (usually <code>/[install prefix]/lib</code>) but is again overridable.</p>
+<p>The resulting library is stored in variable <code>foolib</code> just like the include directory was stored in the previous file.</p>
+<p>Once Meson has processed the <code>src</code> subdir it returns to the main Meson file and executes the next line that moves it into the <code>test</code> subdir. Its contents look like this.</p>
+<pre><code class="language-meson">testexe = executable('testexe', 'footest.cpp',
+                     include_directories : inc,
+                     link_with : foolib)
+test('foolib test', testexe)
+</code></pre>
+<p>First we build a test executable that has the same include directory as the main library and which also links against the freshly built shared library. Note that you don't need to specify <code>glib_dep</code> here just to be able to use the built library <code>foolib</code>. If the executable used GLib functionality itself, then we would of course need to add it as a keyword argument here.</p>
+<p>Finally we define a test with the name <code>foolib test</code>. It consists of running the binary we just built. If the executable exits with a zero return value, the test is considered passed. Nonzero return values mark the test as failed.</p>
+<p>At this point we can return to the pkg-config generator line. All shared libraries should provide a pkg-config file, which explains how that library is used. Meson provides this simple generator that should be sufficient for most simple projects. All you need to do is list a few basic pieces of information and Meson takes care of generating an appropriate file. More advanced users might want to create their own pkg-config files using Meson's <a href="Configuration.html">configuration file generator system</a>.</p>
+<p>With these four files we are done. To configure, build and run the test suite, we just need to execute the following commands (starting at source tree root directory).</p>
+<pre><code class="language-console">$ meson build &amp;&amp; cd build
+$ ninja
+$ ninja test
+</code></pre>
+<p>To then install the project you only need one command.</p>
+<pre><code class="language-console">$ ninja install
+</code></pre>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/IndepthTutorial.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

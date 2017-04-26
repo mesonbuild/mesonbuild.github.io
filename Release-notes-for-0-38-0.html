@@ -1,0 +1,250 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.38</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Release-notes-for-0-38-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Release-notes-for-0.38.0.md" data-hotdoc-role="main">
+<h1 id="uninstall-target">Uninstall target</h1>
+<p>Meson allows you to uninstall an install step by invoking the uninstall target. This will remove all files installed as part of install. Note that this does not restore the original files. This also does not undo changes done by custom install scripts (because they can do arbitrary install operations).</p>
+<h1 id="support-for-arbitrary-test-setups">Support for arbitrary test setups</h1>
+<p>Sometimes you need to run unit tests with special settings. For example under Valgrind. Usually this requires extra command line options for the tool. This is supported with the new <em>test setup</em> feature. For example to set up a test run with Valgrind, you'd write this in a <code>meson.build</code> file:</p>
+<pre><code class="language-meson">add_test_setup('valgrind',
+  exe_wrapper : [vg, '--error-exitcode=1', '--leak-check=full'],
+  timeout_multiplier : 100)
+</code></pre>
+<p>This tells Meson to run tests with Valgrind using the given options and multiplying the test timeout values by 100. To run this test setup simply issue the following command:</p>
+<pre><code class="language-console">$ mesontest --setup=valgrind
+</code></pre>
+<h1 id="intel-cc-compiler-support">Intel C/C++ compiler support</h1>
+<p>As usual, just set <code>CC=icc CXX=icpc</code> and Meson will use it as the C/C++ compiler. Currently only Linux is supported.</p>
+<h1 id="get-values-from-configuration-data-objects">Get values from configuration data objects</h1>
+<p>Now it is possible to query values stored in configuration data objects.</p>
+<pre><code class="language-meson">cdata.set('key', 'value')
+cdata.get('key') # returns 'value'
+cdata.get('nokey', 'default') # returns 'default'
+cdata.get('nokey') # halts with an error
+</code></pre>
+<h1 id="python-3-module-support">Python 3 module support</h1>
+<p>Building Python 3 extension modules has always been possible, but it is now even easier:</p>
+<pre><code class="language-meson">py3_mod = import('python3')
+pylib = py3_mod.extension_module('modname',
+  'modsource.c',
+  dependencies : py3_dep)
+</code></pre>
+<h1 id="default-options-to-subprojects">Default options to subprojects</h1>
+<p>Projects can specify overriding values for subprojects' <code>default_options</code> when invoking a subproject:</p>
+<pre><code class="language-meson">subproject('foo', default_options : ['optname=overridevalue'])
+dependency('some-dep', fallback : ['some_subproject', 'some_dep'], default_options : ['optname=overridevalue'])
+</code></pre>
+<p>The effect is the same as if the default options were written in the subproject's <code>project</code> call.</p>
+<h1 id="set-targets-to-be-built-or-not-by-default">Set targets to be built (or not) by default</h1>
+<p>Build targets got a new keyword <code>build_by_default</code> which tells whether the target should be built by default when running e.g. <code>ninja</code>. Custom targets are not built by default but other targets are. Any target that is tagged as installed or to be built always is also built by default, regardless of the value of this keyword.</p>
+<h1 id="add-option-to-mesonconf-to-wipe-cached-data">Add option to mesonconf to wipe cached data.</h1>
+<p>Meson caches the results of depencency lookups. Sometimes these may get out of sync with the system state. Mesonconf now has a <code>--clearcache</code> option to clear these values so they will be re-searched from the system upon next compile.</p>
+<h1 id="can-specify-file-permissions-and-owner-when-installing-data">Can specify file permissions and owner when installing data</h1>
+<p>The new <code>install_mode</code> keyword argument can be used to specify file permissions and uid/gid of files when doing the install. This allows you to, for example, install suid root scripts.</p>
+<h1 id="has_header-checks-are-now-faster">
+<code>has_header()</code> checks are now faster</h1>
+<p>When using compilers that implement the <a href="https://clang.llvm.org/docs/LanguageExtensions.html#include-file-checking-macros"><code>__has_include()</code> preprocessor macro</a>, the check is now ~40% faster.</p>
+<h1 id="array-indexing-now-supports-fallback-values">Array indexing now supports fallback values</h1>
+<p>The second argument to the array <a href="https://github.com/mesonbuild/meson/wiki/Reference-manual#array-object"><code>.get()</code></a> function is now returned if the specified index could not be found</p>
+<pre><code class="language-meson">array = [10, 11, 12, 13]
+array.get(0) # this will return `10`
+array.get(4) # this will give an error about invalid index
+array.get(4, 0) # this will return `0`
+</code></pre>
+<h1 id="silent-mode-for-mesontest">Silent mode for Mesontest</h1>
+<p>The Meson test executor got a new argument <code>-q</code> (and <code>--quiet</code>) that suppresses all output of successful tests. This makes interactive usage nicer because only errors are printed.</p>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Release-notes-for-0.38.0.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

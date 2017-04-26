@@ -1,0 +1,237 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Quick guide</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Quick-guide.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Quick-guide.md" data-hotdoc-role="main">
+<h1 id="using-meson">Using Meson</h1>
+<p>Meson has been designed to be as easy to use as possible. This page outlines the basic use cases. For more advanced cases refer to Meson's command line help which is accessible with the command <code>meson --help</code>.</p>
+<h2 id="requirements">Requirements</h2>
+<p>Meson has two main dependencies.</p>
+<ul>
+<li><a href="http://python.org">Python 3</a></li>
+<li><a href="https://github.com/ninja-build/ninja/">Ninja</a></li>
+</ul>
+<p>Ninja is only needed if you use the Ninja backend. Meson can also generate native VS and XCode project files.</p>
+<p>On Ubuntu these can be easily installed with the following command:</p>
+<pre><code class="language-console">$ sudo apt-get install python3 ninja-build
+</code></pre>
+<p>The best way to get Meson is to <code>pip install</code> it for your user</p>
+<pre><code class="language-console">$ pip3 install --user meson
+</code></pre>
+<p>You can also use Meson as packaged by your distro, but beware that due to our frequent release cycle and development speed this version might be out of date.</p>
+<p>Another option is to clone the git repository and run it directly from there.</p>
+<h2 id="compiling-a-meson-project">Compiling a Meson project</h2>
+<p>The most common use case of Meson is compiling code on a code base you are working on. The steps to take are very simple.</p>
+<pre><code class="language-console">$ cd /path/to/source/root
+$ meson build &amp;&amp; cd build
+$ ninja
+$ ninja test
+</code></pre>
+<p>The only thing to note is that you need to create a separate build directory. Meson will not allow you to build source code inside your source tree. All build artifacts are stored in the build directory. This allows you to have multiple build trees with different configurations at the same time. This way generated files are not added into revision control by accident.</p>
+<p>To recompile after code changes, just type <code>ninja</code>. The build command is always the same. You can do arbitrary changes to source code and build system files and Meson will detect those and will do the right thing. If you want to build optimized binaries, just use the argument <code>--buildtype=debugoptimized</code> when running Meson. It is recommended that you keep one build directory for unoptimized builds and one for optimized ones. To compile any given configuration, just go into the corresponding build directory and run <code>ninja</code>.</p>
+<p>Meson will automatically add compiler flags to enable debug information and compiler warnings (i.e. <code>-g</code> and <code>-Wall</code>). This means the user does not have to deal with them and can instead focus on coding.</p>
+<h2 id="using-meson-as-a-distro-packager">Using Meson as a distro packager</h2>
+<p>Distro packagers usually want total control on the build flags used. Meson supports this use case natively. The commands needed to build and install Meson projects are the following.</p>
+<pre><code class="language-console">$ cd /path/to/source/root
+$ CFLAGS=... CXXFLAGS=... LDFLAGS=.. meson --prefix /usr --buildtype=plain build
+$ ninja -v -C build
+$ ninja -C build test
+$ DESTDIR=/path/to/staging/root ninja -C build install
+</code></pre>
+<p>The command line switch <code>--buildtype=plain</code> tells Meson not to add its own flags to the command line. This gives the packager total control on used flags.</p>
+<p>This is very similar to other build systems. The only difference is that the <code>DESTDIR</code> variable is passed as an environment variable rather than as an argument to <code>ninja install</code>.</p>
+<p>As distro builds happen always from scratch, we recommend you to enable <a href="Unity-builds.html">unity builds</a> whenever possible on your packages because they are faster and produce better code.</p>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Quick-guide.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

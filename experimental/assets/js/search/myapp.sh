@@ -1,1 +1,0 @@
-urls_downloaded_cb({"urls": ["Creating-OSX-packages.html#creating-an-app-bundle", "Creating-Linux-binaries.html#final-steps"], "token": "myapp.sh"});

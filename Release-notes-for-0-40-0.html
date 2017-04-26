@@ -1,0 +1,255 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.40</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<title>The Meson® Build System</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.tml">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Release-notes-for-0-40-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Release-notes-for-0.40.0.md" data-hotdoc-role="main">
+<h1 id="new-features">New features</h1>
+<h2 id="outputs-of-generators-can-be-used-in-custom-targets-in-the-vs-backend">Outputs of generators can be used in custom targets in the VS backend</h2>
+<p>This has been possible with the Ninja backend for a long time but now the Visual Studio backend works too.</p>
+<h2 id="compute_int-method-in-the-compiler-objects">
+<code>compute_int</code> method in the compiler objects</h2>
+<p>This method can be used to evaluate the value of an expression. As an example:</p>
+<pre><code class="language-meson">cc = meson.get_compiler('c')
+two = cc.compute_int('1 + 1') # A very slow way of adding two numbers.
+</code></pre>
+<h2 id="visual-studio-2017-support">Visual Studio 2017 support</h2>
+<p>There is now a VS2017 backend (<code>--backend=vs2017</code>) as well as a generic VS backend (<code>--backend=vs</code>) that autodetects the currently active VS version.</p>
+<h2 id="automatic-initialization-of-subprojects-that-are-git-submodules">Automatic initialization of subprojects that are git submodules</h2>
+<p>If you have a directory inside your subprojects directory (usually <code>subprojects/</code>) that is a git submodule, meson will automatically initialize it if your build files refer to it. This will be done without needing a wrap file since git contains all the information needed.</p>
+<h2 id="no-download-mode-for-wraps">No download mode for wraps</h2>
+<p>Added a new option <code>wrap-mode</code> that can be toggled to prevent Meson from downloading dependency projects. Attempting to do so will cause an error. This is useful for distro packagers and other cases where you must explicitly enforce that nothing is downloaded from the net during configuration or build.</p>
+<h2 id="overriding-options-per-target">Overriding options per target</h2>
+<p>Build targets got a new keyword argument <code>override_options</code> that can be used to override system options. As an example if you have a target that you know can't be built with <code>-Werror</code> enabled you can override the value of the option like this:</p>
+<pre><code class="language-meson">executable('foo', 'foo.c', override_options : ['werror=false'])
+</code></pre>
+<p>Note that this does not affect project options, only those options that come from Meson (language standards, unity builds etc).</p>
+<h2 id="compiler-object-get-define">Compiler object get define</h2>
+<p>Compiler objects got a new method <code>get_define()</code> that returns the given preprocessor symbol as a string.</p>
+<pre><code class="language-meson">cc = meson.get_compiler('c')
+one = cc.get_define('__linux__') # returns '1' on Linux hosts
+</code></pre>
+<h2 id="cygwin-support">Cygwin support</h2>
+<p>Meson now works under Cygwin and we have added it to our CI test matrix.</p>
+<h2 id="multiple-install-directories">Multiple install directories</h2>
+<p>Custom targets can produce many output files. Previously it was only possible to install all of them in the same directory, but now you can install each output in its own directory like this:</p>
+<pre><code class="language-meson">custom_target('two_out',
+  output : ['diff.h', 'diff.sh'],
+  command : [creator, '@OUTDIR@'],
+  install : true,
+  install_dir : ['dir1', 'dir2'])
+</code></pre>
+<p>For backwards compatibility and for conciseness, if you only specify one directory all outputs will be installed into it.</p>
+<p>The same feature is also available for Vala build targets. For instance, to install a shared library built by valac, the generated header, and the generated vapi (respectively) into the default locations, you can do:</p>
+<pre><code class="language-meson">shared_library('valalib', 'mylib.vala',
+  install : true,
+  install_dir : [true, true, true])
+</code></pre>
+<p>To install any of the three in a custom directory, just pass it as a string instead of <code>true</code>. To not install it, pass <code>false</code>. You can also pass a single string (as before) and it will cause only the library to be installed, so this is a backwards-compatible change.</p>
+<h2 id="can-specify-method-of-obtaining-dependencies">Can specify method of obtaining dependencies</h2>
+<p>Some dependencies have many ways of being provided. As an example Qt can either be detected via <code>pkg-config</code> or <code>qmake</code>. Until now Meson has had a heuristic for selecting which method to choose but sometimes it does the wrong thing. This can now be overridden with the <code>method</code> keyword like this:</p>
+<pre><code class="language-meson">qt5_dep = dependency('qt5', modules : 'core', method : 'qmake')
+</code></pre>
+<h2 id="link-whole-contents-of-static-libraries">Link whole contents of static libraries</h2>
+<p>The default behaviour of static libraries is to discard all symbols that are not not directly referenced. This may lead to exported symbols being lost. Most compilers support "whole archive" linking that includes all symbols and code of a given static library. This is exposed with the <code>link_whole</code> keyword.</p>
+<pre><code class="language-meson">shared_library('foo', 'foo.c', link_whole : some_static_library)
+</code></pre>
+<p>Note that Visual Studio compilers only support this functionality on VS 2015 and newer.</p>
+<h2 id="unity-builds-only-for-subprojects">Unity builds only for subprojects</h2>
+<p>Up until now unity builds were either done for every target or none of them. Now unity builds can be specified to be enabled only for subprojects, which change seldom, and not for the master project, which changes a lot. This is enabled by setting the <code>unity</code> option to <code>subprojects</code>.</p>
+<h2 id="running-mesonintrospect-from-scripts">Running <code>mesonintrospect</code> from scripts</h2>
+<p>Meson now sets the <code>MESONINTROSPECT</code> environment variable in addition to <code>MESON_SOURCE_ROOT</code> and other variables when running scripts. It is guaranteed to point to the correct <code>mesonintrospect</code> script, which is important when running meson uninstalled from git or when your <code>PATH</code>s may not be set up correctly.</p>
+<p>Specifically, the following meson functions will set it: <code>meson.add_install_script()</code>, <code>meson.add_postconf_script()</code>, <code>run_command()</code>, <code>run_target()</code>.</p>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Release-notes-for-0.40.0.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>
