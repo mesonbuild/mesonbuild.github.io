@@ -31,10 +31,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -162,54 +162,52 @@ $('body').removeClass('no-script');
 <p>Meson has support for compiling Vala programs. A skeleton Vala file looks like this.</p>
 <pre><code class="language-meson">project('valaprog', ['vala', 'c'])
 
-glib = dependency('glib-2.0')
-gobject = dependency('gobject-2.0')
+glib_dep = dependency('glib-2.0')
+gobject_dep = dependency('gobject-2.0')
 
 executable('valaprog', 'prog.vala',
-           dependencies : [glib, gobject])
+           dependencies : [glib_dep, gobject_dep])
 </code></pre>
-<p>You must always specify <code>glib</code> and <code>gobject</code> as dependencies, because all Vala applications use them.</p>
+<p>You must always specify <code>glib-2.0</code> and <code>gobject-2.0</code> as dependencies, because all Vala applications use them.</p>
 <h2 id="using-a-custom-vapi">Using a custom VAPI</h2>
-<p>When dealing with libraries that are not providing Vala bindings, you can point --vapidir to a directory relative to meson.current_source_dir containing the binding and include a --pkg flag.</p>
-<pre><code class="language-meson">glib = dependency('glib-2.0')
-gobject = dependency('gobject-2.0')
-foo = dependency('foo')
+<p>When dealing with libraries that are not providing Vala bindings, a <code>--vapidir</code> flag can be added to extend the search path for the current project.</p>
+<pre><code class="language-meson">project('vala app', 'c', 'vala')
 
-executable('app',
-           dependencies: [glib, gobject, foo]
-           vala_args: ['--pkg=foo', '--vapidir=' + meson.current_source_dir()])
+add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], 
+                      language: 'vala')
+                      
+glib_dep = dependency('glib-2.0')
+gobject_dep = dependency('gobject-2.0')
+foo_dep = dependency('foo') # 'foo.vapi' will be resolved in './vapi/foo.vapi'
+
+executable('app', 'app.vala', dependencies: [glib_dep, gobject_dep, foo_dep])
+</code></pre>
+<h2 id="custom-output-names">Custom output names</h2>
+<p>If a library target is used, Meson automatically output the C header and the VAPI. They can be renamed by setting the <code>vala_header</code> and <code>vala_vapi</code> arguments respectively. In this case, the second and third elements of the <code>install_dir</code> array indicate the destination with <code>true</code> to indicate default directories.</p>
+<pre><code class="language-meson">foo_lib = library('foo', 'foo.vala', 
+                  vala_header: 'foo.h',
+                  vala_vapi: 'foo-1.0.vapi', 
+                  dependencies: [glib_dep, gobject_dep],
+                  install: true,
+                  install_dir: [true, true, true])
 </code></pre>
 <h2 id="gobject-introspection">GObject Introspection</h2>
-<p>To generate GObject Introspection metadata, the --gir flags has to be set explicitly in vala_args.</p>
-<pre><code class="language-meson">foo_lib = library('foo',
-                  dependencies: [glib, gobject],
-                  vala_args: ['--gir=Foo-1.0.gir'])
+<p>To generate GObject Introspection metadata, the <code>vala_gir</code> option has to be set with the desired name.</p>
+<p>The fourth element in the <code>install_dir</code> array indicate where the GIR file will be installed. The <code>true</code> value tells Meson to use the default directory (i.e. <code>share/gir-1.0</code>).</p>
+<pre><code class="language-meson">foo_lib = library('foo', 'foo.vala', 
+                  vala_gir: 'Foo-1.0.gir', 
+                  dependencies: [glib_dep, gobject_dep],
+                  install: true,
+                  install_dir: [true, true, true, true])
 </code></pre>
-<p>For the typelib, use a custom_target depending on the library:</p>
-<pre><code class="language-meson">    g_ir_compiler = find_program('g_ir_compiler')
-    custom_target('foo-typelib',
-                   command: [g_ir_compiler, '--output', '@OUTPUT@', meson.current_build_dir() + '/foo@sha/Foo-1.0.gir'],
-                   output: 'Foo-1.0.typelib',
-                   depends: foo_lib,
-                   install: true,
-                   install_dir: get_option('libdir') + '/girepository-1.0')
-</code></pre>
-<h2 id="installing-vapi-and-gir-files">Installing VAPI and GIR files</h2>
-<p>To install generated VAPI and GIR files, it is necessary to add a custom install script.</p>
-<pre><code class="language-meson">meson.add_install_script('install.sh')
-</code></pre>
-<pre><code class="language-bash">#!/bin/sh
-
-mkdir -p "${DESTDIR}${MESON_INSTALL_PREFIX}/share/vala/vapi"
-mkdir -p "${DESTDIR}${MESON_INSTALL_PREFIX}/share/gir-1.0"
-
-install -m 0644                                         \
-    "${MESON_BUILD_ROOT}/foo-1.0.vapi" \
-    $"{DESTDIR}${MESON_INSTALL_PREFIX}/share/vala/vapi"
-
-install -m 0644                            \
-    "${MESON_BUILD_ROOT}/foo@sha/Foo-1.0.gir" \
-    "${DESTDIR}${MESON_INSTALL_PREFIX}/share/gir-1.0"
+<p>For the typelib, use a custom target depending on the library:</p>
+<pre><code class="language-meson">g_ir_compiler = find_program('g-ir-compiler')
+custom_target('foo typelib', command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
+              input: join_paths(meson.current_build_dir(), 'Foo-1.0.gir'),
+              output: 'Foo-1.0.typelib',
+              depends: foo_lib,
+              install: true,
+              install_dir: join_paths(get_option('libdir'), 'girepository-1.0'))
 </code></pre>
 
 </div>
