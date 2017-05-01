@@ -31,10 +31,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -193,7 +193,7 @@ touch "${DESTDIR}/${MESON_INSTALL_PREFIX}/mydir/file.dat"
 </code></pre>
 <p>As you can see, Meson sets up some environment variables to help you write your script (<code>DESTDIR</code> is not set by Meson, it is inherited from the outside environment). In addition to the install prefix, Meson also sets the variables <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>.</p>
 <p>Telling Meson to run this script at install time is a one-liner.</p>
-<pre><code class="language-meson">meson.set_install_script('myscript.sh')
+<pre><code class="language-meson">meson.add_install_script('myscript.sh')
 </code></pre>
 <p>The argument is the name of the script file relative to the current subdirectory.</p>
 <h2 id="destdir-support">DESTDIR support</h2>

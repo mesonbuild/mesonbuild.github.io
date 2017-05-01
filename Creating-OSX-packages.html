@@ -31,10 +31,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -190,7 +190,7 @@ cd "${0%/*}"
 <p>and make sure that you specify <code>myapp.sh</code> as the executable to run in your <code>Info.plist</code>.</p>
 <p>If you are not using any external libraries, this is all you need to do. You now have a full app bundle in <code>/tmp/myapp.app</code> that you can use. Most applications use third party frameworks and libraries, though, so you need to add them to the bundle so it will work on other peoples' machines.</p>
 <p>As an example we are going to use the <a href="https://libsdl.org/">SDL2</a> framework. In order to bundle it in our app, we first specify an installer script to run.</p>
-<pre><code class="language-meson">meson.set_install_script('install_script.sh')
+<pre><code class="language-meson">meson.add_install_script('install_script.sh')
 </code></pre>
 <p>The install script does two things. First it copies the whole framework into our bundle.</p>
 <pre><code class="language-console">$ mkdir -p ${MESON_INSTALL_PREFIX}/Contents/Frameworks

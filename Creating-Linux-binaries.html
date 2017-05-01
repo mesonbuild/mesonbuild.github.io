@@ -31,10 +31,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -196,7 +196,7 @@ $ export PKG_CONFIG_PATH=${HOME}/devroot/lib/pkgconfig
 </code></pre>
 <p>The aim is to put the executable in <code>/tmp/myapp/bin</code> and shared libraries to <code>/tmp/myapp/lib</code>. The next thing you need is the embedder. It takes your dependencies (in this case only <code>libSDL2 2.0.so.0</code>) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of <code>ldd binary_file</code>. Be sure not to copy system libraries (<code>libc</code>, <code>libpthread</code>, <code>libm</code> etc). For an example, see the <a href="https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries">sample project</a>.</p>
 <p>Make the script run during install with this:</p>
-<pre><code class="language-meson">meson.set_install_script('linux_bundler.sh')
+<pre><code class="language-meson">meson.add_install_script('linux_bundler.sh')
 </code></pre>
 <h2 id="final-steps">Final steps</h2>
 <p>If you try to run the program now it will most likely fail to start or crashes. The reason for this is that the system does not know that the executable needs libraries from the <code>lib</code> directory. The solution for this is a simple wrapper script. Create a script called <code>myapp.sh</code> with the following content:</p>
