@@ -1,1 +1,1 @@
-urls_downloaded_cb({"urls": ["Creating-OSX-packages.html#creating-an-app-bundle"], "token": "myapp.app"});
+urls_downloaded_cb({"token": "myapp.app", "urls": ["Creating-OSX-packages.html#creating-an-app-bundle"]});

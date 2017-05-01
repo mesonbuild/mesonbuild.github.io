@@ -31,10 +31,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -168,7 +168,7 @@ $('body').removeClass('no-script');
 <pre><code class="language-meson">mycomp = find_program('mycompiler')
 </code></pre>
 <p>Custom targets can take zero or more input files and use them to generate one or more output files. Using a custom target, you can run this compiler at build time to generate the sources:</p>
-<pre><code class="language-meson">gen_src = custom_target('gen-output,
+<pre><code class="language-meson">gen_src = custom_target('gen-output',
                         input : ['somefile1.c', 'file2.c']
                         output : ['out.c', 'out.h']
                         command : [mycomp, '@INPUT@',

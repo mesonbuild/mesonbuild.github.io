@@ -31,10 +31,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 <h2 id="terminology">Terminology</h2>
 <p>Meson follows the overall structure of other popular build systems, such as CMake and GNU Autotools. This means that the build is divided into two discrete steps: <em>configure step</em> and <em>build step</em>. The first step inspects the system, checks for dependencies and does all other steps necessary to configure the build. It then generates the actual build system. The second step is simply executing this generated build system. The end result is a bunch of <em>build targets</em>, which are usually executables and shared and static libraries.</p>
 <p>The directory that contains the source code is called the <em>source directory</em>. Correspondingly the directory where the output is written is called the <em>build directory</em>. In other build systems it is common to have these two be the same directory. This is called an <em>in-source build</em>. The case where the build directory is separate is called an <em>out-of-source build</em>.</p>
-<p>What sets Meson apart from most build systems is that it enforces a separate build directory. All files created by the build system are put in the build directory. It is actually impossible to do an in-source build. For people used to building inside their source tree, this may seem like a needles complication. However there are several benefits to doing only out-of-source builds. These will be explained in the next chapter.</p>
+<p>What sets Meson apart from most build systems is that it enforces a separate build directory. All files created by the build system are put in the build directory. It is actually impossible to do an in-source build. For people used to building inside their source tree, this may seem like a needless complication. However there are several benefits to doing only out-of-source builds. These will be explained in the next chapter.</p>
 <p>When the source code is built, a set of <em>unit tests</em> is usually run. They ensure that the program is working as it should. If it does, the build result can be <em>installed</em> after which it is ready for use.</p>
 
 </div>

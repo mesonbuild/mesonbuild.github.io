@@ -1,1 +1,1 @@
-urls_downloaded_cb({"urls": ["Reference-manual.html#install_headers"], "token": "kola.h"});
+urls_downloaded_cb({"token": "kola.h", "urls": ["Reference-manual.html#install_headers"]});
