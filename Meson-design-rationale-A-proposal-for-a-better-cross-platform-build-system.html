@@ -31,10 +31,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -210,7 +210,7 @@ executable('program', sources : sourcelist)
 <p>In other build systems you have to manually add the compile and link flags from external dependencies to targets. In this system you just declare that extlibrary is mandatory and that the generated program uses that. The build system does all the plumbing for you.</p>
 <p>Here's a slightly more complicated definition. It should still be understandable.</p>
 <p><code>project('build library', 'c') foolib = shared_library('foobar', sources : 'foobar.c',\ install : true) exe = executable('testfoobar', 'tester.c', link : foolib) add_test('test library', exe)</code></p>
-<p>First we build a shared library named foobar. It is marked installable, so running <code>ninja install</code> installs it to the library directory (the system knows which one so the user does not have to care). Then we build a test executable which is linked against the library. It will no tbe installed, but instead it is added to the list of unit tests, which can be run with the command <code>ninja test</code>.</p>
+<p>First we build a shared library named foobar. It is marked installable, so running <code>ninja install</code> installs it to the library directory (the system knows which one so the user does not have to care). Then we build a test executable which is linked against the library. It will not be installed, but instead it is added to the list of unit tests, which can be run with the command <code>ninja test</code>.</p>
 <p>Above we mentioned precompiled headers as a feature not supported by other build systems. Here's how you would use them.</p>
 <pre><code>project('pch demo', 'cxx')
 executable('myapp', 'myapp.cpp', pch : 'pch/myapp.hh')
