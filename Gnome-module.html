@@ -164,7 +164,7 @@ $('body').removeClass('no-script');
 <h2 id="usage">Usage</h2>
 <p>To use this module, just do: <strong><code>gnome = import('gnome')</code></strong>. The following functions will then be available as methods on the object with the name <code>gnome</code>. You can, of course, replace the name <code>gnome</code> with anything else.</p>
 <h3 id="gnomecompile_resources">gnome.compile_resources()</h3>
-<p>This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the xml file containing the resource definitions. If the name is <code>foobar</code>, Meson will generate a header file called <code>foobar.h</code>, which you can then include in your sources. There are two keyword arguments.</p>
+<p>This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the xml file containing the resource definitions. If the name is <code>foobar</code>, Meson will generate a header file called <code>foobar.h</code>, which you can then include in your sources.</p>
 <ul>
 <li>
 <code>source_dir</code>: a list of subdirectories where the resource compiler should look up the files, relative to the location of the xml file</li>
@@ -172,9 +172,21 @@ $('body').removeClass('no-script');
 <code>c_name</code>: passed to the resource compiler as an argument after <code>--c-name</code>
 </li>
 <li>
+<code>dependencies</code>: extra targets to depend upon for building</li>
+<li>
+<code>export</code>: (<em>Added 0.37.0</em>) if true, export the symbols of the generated sources</li>
+<li>
+<code>gresource_bundle</code>: (<em>Added 0.37.0</em>) if true, output a <code>.gresource</code> file instead of source</li>
+<li>
+<code>install_header</code>: (<em>Added 0.37.0</em>) if true, install the header file</li>
+<li>
+<code>install</code>: (<em>Added 0.37.0</em>) if true, install the gresource file</li>
+<li>
+<code>install_dir</code>: (<em>Added 0.37.0</em>) location to install the header or bundle depending on previous options</li>
+<li>
 <code>extra_args</code>: extra command line arguments to pass to the resource compiler</li>
 </ul>
-<p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
+<p>Returns an array containing: <code>[c_source, header_file]</code> or <code>[gresource_bundle]</code></p>
 <h3 id="gnomegenerate_gir">gnome.generate_gir()</h3>
 <p>Generates GObject introspection data. Takes one positional argument, the build target you want to build gir data for. There are several keyword arguments. Many of these map directly to the <code>g-ir-scanner</code> tool so see its documentation for more information.</p>
 <ul>
