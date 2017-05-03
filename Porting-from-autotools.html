@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Porting from autotools</title>
+<title>Porting from Autotools</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -159,8 +159,8 @@ $('body').removeClass('no-script');
 	<div id="main">
 				
 <div id="page-description" data-hotdoc-source="Porting-from-autotools.md" data-hotdoc-role="main">
-<h1 id="porting-from-autotools">Porting from autotools</h1>
-<p>This page uses <a href="https://github.com/hughsie/appstream-glib/">appstream-glib</a> as an example project. Appstream-Glib contains some libraries, gobject-introspection, tests, man pages, i18n, bash-completion with optional flags to build/notbuild support for some things.</p>
+<h1 id="porting-from-autotools">Porting from Autotools</h1>
+<p>This page uses <a href="https://github.com/hughsie/appstream-glib/">AppStream-glib</a> as an example project. AppStream-Glib contains some libraries, GObject Introspection data, tests, man pages, i18n, bash-completion with optional flags to build/not build support for some things.</p>
 <p>Meson comes with a helper script <code>ac_converter</code> that you can use to convert the basic autoconf checks for your project.</p>
 <h2 id="configureac">Configure.ac</h2>
 <p>First let's look at <code>configure.ac</code> and write the same in <code>meson.build</code>.</p>
@@ -228,7 +228,7 @@ if gperf.found()
   conf.set('HAVE_GPERF', 1)
 endif
 </code></pre>
-<h3 id="finding-pkgconfig-modules">Finding pkgconfig modules</h3>
+<h3 id="finding-pkgconfig-modules">Finding pkg-config modules</h3>
 <p><code>configure.ac</code>:</p>
 <pre><code class="language-autoconf">PKG_CHECK_MODULES(SOUP, libsoup-2.4 &gt;= 2.24)
 </code></pre>

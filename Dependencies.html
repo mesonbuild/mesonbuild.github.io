@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -160,7 +160,7 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Dependencies.md" data-hotdoc-role="main">
 <h1 id="dependencies">Dependencies</h1>
-<p>Very few applications are fully self-contained, but rather they use external libraries and frameworks to do their work. Meson makes it very easy to find and use external dependencies. Here is how one would use the Zlib compression library.</p>
+<p>Very few applications are fully self-contained, but rather they use external libraries and frameworks to do their work. Meson makes it very easy to find and use external dependencies. Here is how one would use the zlib compression library.</p>
 <pre><code class="language-meson">zdep = dependency('zlib', version : '&gt;=1.2.8')
 exe = executable('zlibprog', 'prog.c', dependencies : zdep)
 </code></pre>

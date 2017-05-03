@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -167,11 +167,11 @@ $('body').removeClass('no-script');
 <p>or with an arbitrary wrapper executable:</p>
 <pre><code>mesontest --wrap='valgrind --tool=helgrind' a_test
 </code></pre>
-<p>or under gdb, 1000 times in a row. This is handy for tests that fail spuriously, as when the crash happens you are given the full GDB command line:</p>
+<p>or under <code>gdb</code>, 1000 times in a row. This is handy for tests that fail spuriously, as when the crash happens you are given the full GDB command line:</p>
 <pre><code>mesontest --repeat=1000 --gdb a_test
 </code></pre>
 <h2 id="mesonrewriter">Mesonrewriter</h2>
-<p>Mesonrewrite is an experimental tool to manipulate your build definitions programmatically. It is not installed by default yet but those interested can run it from the source repository.</p>
+<p>Mesonrewriter is an experimental tool to manipulate your build definitions programmatically. It is not installed by default yet but those interested can run it from the source repository.</p>
 <p>As an example, here is how you would add a source file to a build target:</p>
 <pre><code>mesonrewriter add --target=program --filename=new_source.c
 </code></pre>
@@ -183,21 +183,21 @@ $('body').removeClass('no-script');
 </ul>
 <h3 id="gtkdoc">gtkdoc</h3>
 <ul>
-<li>Allow passing a list of directories to <code>src_dir</code> kwarg</li>
-<li>Add <code>namespace</code> kwarg</li>
-<li>Add <code>mode</code> kwarg</li>
+<li>Allow passing a list of directories to <code>src_dir</code> keyword argument</li>
+<li>Add <code>namespace</code> keyword argument</li>
+<li>Add <code>mode</code> keyword argument</li>
 <li>Fix <code>gtkdoc-scangobj</code> finding local libraries</li>
 </ul>
 <h3 id="compile_resources">compile_resources</h3>
 <ul>
-<li>Add <code>gresource_bundle</code> kwarg to output <code>.gresource</code> files</li>
-<li>Add <code>export</code> and <code>install_header</code> kwargs</li>
+<li>Add <code>gresource_bundle</code> keyword argument to output <code>.gresource</code> files</li>
+<li>Add <code>export</code> and <code>install_header</code> keyword arguments</li>
 <li>Use depfile support available in GLib &gt;= 2.52.0</li>
 </ul>
 <h2 id="i18n-module">i18n module</h2>
 <ul>
 <li>Add <code>merge_file()</code> function for creating translated files</li>
-<li>Add <code>preset</code> kwarg to included common gettext flags</li>
+<li>Add <code>preset</code> keyword argument to included common gettext flags</li>
 <li>Read languages from <code>LINGUAS</code> file</li>
 </ul>
 <h2 id="llvm-ir-compilation">LLVM IR compilation</h2>
@@ -254,9 +254,9 @@ if cc.symbols_have_underscore_prefix()
     conf.set('SYMBOLS_HAVE_UNDERSCORE', true)
 endif
 </code></pre>
-<p>C symbol mangling is platform and architecture dependent, and a helper function is needed to detect it. Eg: Windows 32-bit prefixes underscore, but 64-bit does not. Linux does not prefix an underscore but OS X does.</p>
+<p>C symbol mangling is platform and architecture dependent, and a helper function is needed to detect it. For example, Windows 32-bit prefixes underscore, but 64-bit does not. Linux does not prefix an underscore but OS X does.</p>
 <h2 id="vala">Vala</h2>
-<p>Glib Resources compiled with <a href="Gnome-module.html#compile_resources"><code>gnome.compile_resources</code></a> that are added to the sources of a Vala build target will now cause the appropriate <code>--gresources</code> flag to be passed to the Vala compiler so you don't need to add that yourself to <code>vala_args:</code>.</p>
+<p>GLib Resources compiled with <a href="Gnome-module.html#compile_resources"><code>gnome.compile_resources</code></a> that are added to the sources of a Vala build target will now cause the appropriate <code>--gresources</code> flag to be passed to the Vala compiler so you don't need to add that yourself to <code>vala_args:</code>.</p>
 <h2 id="improvements-to-install-scripts">Improvements to install scripts</h2>
 <p>You can now pass arguments to install scripts added with <a href="Reference-manual.html#meson-object"><code>meson.add_install_script()</code></a>. All arguments after the script name will be passed to the script.</p>
 <p>The <code>MESON_INSTALL_DESTDIR_PREFIX</code> environment variable is now set when install scripts are called. This contains the values of the <code>DESTDIR</code> environment variable and the <code>prefix</code> option passed to Meson joined together. This is useful because both those are usually absolute paths, and joining absolute paths in a cross-platform way is tricky. <a href="https://docs.python.org/3/library/os.path.html#os.path.join"><code>os.path.join</code> in Python</a> will discard all previous path segments when it encounters an absolute path, and simply concatenating them will not work on Windows where absolute paths begin with the drive letter.</p>

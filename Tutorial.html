@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -177,7 +177,7 @@ executable('demo', 'main.c')
 <p>That is all. We are now ready to build our application. First we need to initialise the build by going into the source directory and issuing the following commands.</p>
 <pre><code class="language-console">$ meson builddir
 </code></pre>
-<p>We create a separate build directory to hold all of the compiler output. Meson is different from some other build systems in that it does not permit in-source builds. You must always create a separate build directory. Common convention is to put the default build directory in a subdirectory of your toplevel source directory.</p>
+<p>We create a separate build directory to hold all of the compiler output. Meson is different from some other build systems in that it does not permit in-source builds. You must always create a separate build directory. Common convention is to put the default build directory in a subdirectory of your top level source directory.</p>
 <p>When Meson is run it prints the following output.</p>
 <pre><code>The Meson build system
  version: 0.13.0-research
@@ -199,7 +199,7 @@ $ ninja
 <pre><code>Hello there.
 </code></pre>
 <h2 id="adding-dependencies">Adding dependencies</h2>
-<p>Just printing text is a bit old fashioned. Let's update our program to create a graphical window instead. We'll use the <a href="https://gtk.org">GTK+</a> widget toolkit. First we edit the main file to use Gtk. The new version looks like this.</p>
+<p>Just printing text is a bit old fashioned. Let's update our program to create a graphical window instead. We'll use the <a href="https://gtk.org">GTK+</a> widget toolkit. First we edit the main file to use GTK+. The new version looks like this.</p>
 <pre><code class="language-c">#include&lt;gtk/gtk.h&gt;
 
 int main(int argc, char **argv) {
@@ -212,7 +212,7 @@ int main(int argc, char **argv) {
   gtk_main();
 }
 </code></pre>
-<p>Then we edit the Meson file, instructing it to find and use the Gtk libraries.</p>
+<p>Then we edit the Meson file, instructing it to find and use the GTK+ libraries.</p>
 <pre><code class="language-meson">project('tutorial', 'c')
 gtkdep = dependency('gtk+-3.0')
 executable('demo', 'main.c', dependencies : gtkdep)
@@ -239,7 +239,7 @@ Creating build target "demo" with 1 files.
 <pre><code>$ ./demo
 </code></pre>
 <p>This creates the following GUI application.</p>
-<p><img src="images/gtksample.png" alt="Gtk sample application screenshot" id="gtk-sample-application-screenshot"></p>
+<p><img src="images/gtksample.png" alt="GTK+ sample application screenshot" id="gtk-sample-application-screenshot"></p>
 
 </div>
 

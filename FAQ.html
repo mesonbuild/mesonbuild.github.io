@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -172,7 +172,7 @@ $('body').removeClass('no-script');
 <p>Starting from version 0.29.0, Meson is available from the <a href="https://pypi.python.org/pypi/meson/">Python Package Index</a>, so installing it simply a matter of running this command:</p>
 <pre><code class="language-console">$ pip3 install &lt;your options here&gt; meson
 </code></pre>
-<p>If you don't have access to PyPi, that is not a problem either. Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain <code>meson</code>.</p>
+<p>If you don't have access to PyPI, that is not a problem either. Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain <code>meson</code>.</p>
 <pre><code class="language-console">$ /path/to/meson.py &lt;options&gt;
 </code></pre>
 <p>After this you don't have to care about invoking Meson any more. It remembers where it was originally invoked from and calls itself appropriately. As a user the only thing you need to do is to <code>cd</code> into your build directory and invoke <code>ninja</code>.</p>
@@ -213,12 +213,12 @@ subdir('tests') # test binaries would link against the library here
 <p>Just use Ninja, you'll be happier that way. I guarantee it.</p>
 <h2 id="why-is-meson-not-just-a-python-module-so-i-could-code-my-build-setup-in-python">Why is Meson not just a Python module so I could code my build setup in Python?</h2>
 <p>A related question to this is <em>Why is Meson's configuration language not Turing-complete?</em></p>
-<p>There are many good reasons for this, most of which are summarized on this web page: <a href="http://taint.org/2011/02/18/001527a.html">Against The Use Of Programming Languages in Configuration Files</a>.</p>
-<p>In addition to those reasons, not exposing Python or any other "real" programming language makes it possible to port Meson's implementation to a different language. This might become necessary if, for example, Python turns out to be a performance bottleneck. This is an actual problem that has caused complications for GNU Autotools and Scons.</p>
+<p>There are many good reasons for this, most of which are summarized on this web page: <a href="https://taint.org/2011/02/18/001527a.html">Against The Use Of Programming Languages in Configuration Files</a>.</p>
+<p>In addition to those reasons, not exposing Python or any other "real" programming language makes it possible to port Meson's implementation to a different language. This might become necessary if, for example, Python turns out to be a performance bottleneck. This is an actual problem that has caused complications for GNU Autotools and SCons.</p>
 <h2 id="how-do-i-do-the-equivalent-of-libtools-exportsymbol-and-exportregex">How do I do the equivalent of Libtools export-symbol and export-regex?</h2>
-<p>Either by using <a href="https://gcc.gnu.org/wiki/Visibility">gcc symbol visibility</a> or by writing a <a href="http://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_mono/ld.html">linker script</a>. This has the added benefit that your symbol definitions are in a standalone file instead of being buried inside your build definitions. An example can be found <a href="https://github.com/jpakkane/meson/tree/master/test%20cases/linuxlike/3%20linker%20script">here</a>.</p>
+<p>Either by using <a href="https://gcc.gnu.org/wiki/Visibility">GCC symbol visibility</a> or by writing a <a href="https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_mono/ld.html">linker script</a>. This has the added benefit that your symbol definitions are in a standalone file instead of being buried inside your build definitions. An example can be found <a href="https://github.com/jpakkane/meson/tree/master/test%20cases/linuxlike/3%20linker%20script">here</a>.</p>
 <h2 id="my-project-works-fine-on-linux-and-mingw-but-fails-with-msvc-due-to-a-missing-lib-file">My project works fine on Linux and MinGW but fails with MSVC due to a missing .lib file</h2>
-<p>With gcc, all symbols on shared libraries are exported automatically unless you specify otherwise. With MSVC no symbols are exported by default. If your shared library exports no symbols, MSVC will silently not produce an import library file leading to failures. The solution is to add symbol visibility definitions <a href="https://gcc.gnu.org/wiki/Visibility">as specified in GCC wiki</a>.</p>
+<p>With GCC, all symbols on shared libraries are exported automatically unless you specify otherwise. With MSVC no symbols are exported by default. If your shared library exports no symbols, MSVC will silently not produce an import library file leading to failures. The solution is to add symbol visibility definitions <a href="https://gcc.gnu.org/wiki/Visibility">as specified in GCC wiki</a>.</p>
 <h2 id="i-added-some-compiler-flags-and-now-the-build-fails-with-weird-errors-what-is-happening">I added some compiler flags and now the build fails with weird errors. What is happening?</h2>
 <p>You probably did the equivalent to this:</p>
 <pre><code class="language-meson">executable('foobar', ...
@@ -232,7 +232,7 @@ subdir('tests') # test binaries would link against the library here
 <p>You probably had a project that looked something like this:</p>
 <pre><code class="language-meson">project('foobar', 'cpp')
 </code></pre>
-<p>This defaults to <code>c++11</code> on Gcc compilers. Suppose you want to use <code>c++14</code> instead, so you change the definition to this:</p>
+<p>This defaults to <code>c++11</code> on GCC compilers. Suppose you want to use <code>c++14</code> instead, so you change the definition to this:</p>
 <pre><code class="language-meson">project('foobar', 'cpp', default_options : ['cpp_std=c++14'])
 </code></pre>
 <p>But when you recompile, it still uses <code>c++11</code>. The reason for this is that default options are only looked at when you are setting up a build directory for the very first time. After that the setting is considered to have a value and thus the default value is ignored. To change an existing build dir to <code>c++14</code>, either reconfigure your build dir with <code>mesonconf</code> or delete the build dir and recreate it from scratch.</p>

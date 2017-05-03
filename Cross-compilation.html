@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -173,7 +173,7 @@ let's first go over some nomenclature. The three most important definitions are 
 <p>The <code>tl/dr</code> summary is the following: if you are doing regular cross compilation, you only care about <em>build_machine</em> and <em>host_machine</em>. Just ignore <em>target_machine</em> altogether and you will be correct 99% of the time. If your needs are more complex or you are interested in the actual details, do read on.</p>
 <p>This might be easier to understand through examples. Let's start with the regular, not cross-compiling case. In these cases all of these three machines are the same. Simple so far.</p>
 <p>Let's next look at the most common cross-compilation setup. Let's suppose you are on a 64 bit OSX machine and you are cross compiling a binary that will run on a 32 bit ARM Linux board. In this case your <em>build machine</em> is 64 bit OSX and both your <em>host</em> and <em>target machines</em> are 32 bit ARM Linux. This should be quite understandable as well.</p>
-<p>It gets a bit trickier when we think about how the cross compiler was generated. It was built and it runs on a specific platform but the output it generates is for a different platfom. In this case <em>build</em> and <em>host machines</em> are the same, but <em>target machine</em> is different.</p>
+<p>It gets a bit trickier when we think about how the cross compiler was generated. It was built and it runs on a specific platform but the output it generates is for a different platform. In this case <em>build</em> and <em>host machines</em> are the same, but <em>target machine</em> is different.</p>
 <p>The most complicated case is when you cross-compile a cross compiler. As an example you can, on a Linux machine, generate a cross compiler that runs on Windows but produces binaries on MIPS Linux. In this case <em>build machine</em> is x86 Linux, <em>host machine</em> is x86 Windows and <em>target machine</em> is MIPS Linux. This setup is known as the <a href="https://en.wikipedia.org/wiki/Cross_compiler#Canadian_Cross">Canadian Cross</a>. As a side note, be careful when reading cross compilation articles on Wikipedia or the net in general. It is very common for them to get build, host and target mixed up, even in consecutive sentences, which can leave you puzzled until you figure it out.</p>
 <p>If you did not understand all of the details, don't worry. For most people it takes a while to wrap their head around these concepts. Don't panic, it might take a while to click, but you will get the hang of it eventually.</p>
 <h2 id="defining-the-environment">Defining the environment</h2>

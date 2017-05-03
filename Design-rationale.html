@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -164,8 +164,8 @@ $('body').removeClass('no-script');
 <p>The second most important tool, even more important than the compiler, is the build system.</p>
 <p>Those are pretty much universally despised.</p>
 <p>The most positive statement on build systems you can usually get (and it might require some coaxing) is something along the lines of <em>well, it's a terrible system, but all other options are even worse</em>. It is easy to see why this is the case. For starters, commonly used free build systems have obtuse syntaxes. They use for the most part global variables that are set in random locations so you can never really be sure what a given line of code does. They do strange and unpredictable things at every turn.</p>
-<p>Let's illustrate this with a simple example. Suppose we want to run a program built with GNU Autotools under gdb. The instinctive thing to do is to just run <code>gdb programname</code>. The problem is that this may or may not work. In some cases the executable file is a binary whereas at other times it is a wrapper shell script that invokes the real binary which resides in a hidden subdirectory. Gdb invocation fails if the binary is a script but succeeds if it is not. The user has to remember the type of each one of his executables (which is an implementation detail of the build system) just to be able to debug them. Several other such pain points can be found in <a href="http://voices.canonical.com/jussi.pakkanen/2011/09/13/autotools/">this blog post</a>.</p>
-<p>Given these idiosyncrasies it is no wonder that most people don't want to have anything to do with build systems. They'll just copypaste code that works (somewhat) in one place to another and hope for the best. They actively go out of their way not to understand the system because the mere thought of it is repulsive. Doing this also provides a kind of inverse job security. If you don't know tool X, there's less chance of finding yourself responsible for its use in your organisation. Instead you get to work on more enjoyable things.</p>
+<p>Let's illustrate this with a simple example. Suppose we want to run a program built with GNU Autotools under GDB. The instinctive thing to do is to just run <code>gdb programname</code>. The problem is that this may or may not work. In some cases the executable file is a binary whereas at other times it is a wrapper shell script that invokes the real binary which resides in a hidden subdirectory. GDB invocation fails if the binary is a script but succeeds if it is not. The user has to remember the type of each one of his executables (which is an implementation detail of the build system) just to be able to debug them. Several other such pain points can be found in <a href="http://voices.canonical.com/jussi.pakkanen/2011/09/13/autotools/">this blog post</a>.</p>
+<p>Given these idiosyncrasies it is no wonder that most people don't want to have anything to do with build systems. They'll just copy-paste code that works (somewhat) in one place to another and hope for the best. They actively go out of their way not to understand the system because the mere thought of it is repulsive. Doing this also provides a kind of inverse job security. If you don't know tool X, there's less chance of finding yourself responsible for its use in your organisation. Instead you get to work on more enjoyable things.</p>
 <p>This leads to a vicious circle. Since people avoid the tools and don't want to deal with them, very few work on improving them. The result is apathy and stagnation.</p>
 <h2 id="can-we-do-better">Can we do better?</h2>
 <p>At its core, building C and C++ code is not a terribly difficult task. In fact, writing a text editor is a lot more complicated and takes more effort. Yet we have lots of very high quality editors but only few build systems with questionable quality and usability.</p>
@@ -180,7 +180,7 @@ $('body').removeClass('no-script');
 <p>###4. Must have native support for platforms that are in common use###</p>
 <p>A lot of free software projects can be used on non-free platforms such as Windows or OSX. The system must provide native support for the tools of choice on those platforms. In practice this means native support for Visual Studio and XCode. Having said IDEs invoke external builder binaries does not count as native support.</p>
 <p>###5. Must not add complexity due to obsolete platforms###</p>
-<p>Work on this build system started during the Christmas holidays of 2012. This provides a natural hard cutoff line of 2012/12/24. Any platform, tool or library that was not in active use at that time is explicitly not supported. These include unixes such as IRIX, SunOS, OSF-1, Ubuntu versions older than 12/10, GCC versions older than 4.7 and so on. If these old versions happen to work, great. If they don't, not a single line of code will be added to the system to work around their bugs.</p>
+<p>Work on this build system started during the Christmas holidays of 2012. This provides a natural hard cutoff line of 2012/12/24. Any platform, tool or library that was not in active use at that time is explicitly not supported. These include Unixes such as IRIX, SunOS, OSF-1, Ubuntu versions older than 12/10, GCC versions older than 4.7 and so on. If these old versions happen to work, great. If they don't, not a single line of code will be added to the system to work around their bugs.</p>
 <p>###6. Must be fast###</p>
 <p>Running the configuration step on a moderate sized project must not take more than five seconds. Running the compile command on a fully up to date tree of 1000 source files must not take more than 0.1 seconds.</p>
 <p>###7. Must provide easy to use support for modern sw development features###</p>
@@ -191,7 +191,7 @@ $('body').removeClass('no-script');
 <p>Going over these requirements it becomes quite apparent that the only viable approach is roughly the same as taken by CMake: having a domain specific language to declare the build system. Out of this declaration a configuration is generated for the backend build system. This can be a Makefile, Visual Studio or XCode project or anything else.</p>
 <p>The difference between the proposed DSL and existing ones is that the new one is declarative. It also tries to work on a higher level of abstraction than existing systems. As an example, using external libraries in current build systems means manually extracting and passing around compiler flags and linker flags. In the proposed system the user just declares that a given build target uses a given external dependency. The build system then takes care of passing all flags and settings to their proper locations. This means that the user can focus on his own code rather than marshalling command line arguments from one place to another.</p>
 <p>A DSL is more work than the approach taken by SCons, which is to provide the system as a Python library. However it allows us to make the syntax more expressive and prevent certain types of bugs by e.g. making certain objects truly immutable. The end result is again the same: less work for the user.</p>
-<p>The backend for Unix requires a bit more thought. The default choice would be Make. However it is extremely slow. It is not uncommon on large code bases for Make to take several minutes just to determine that nothing needs to be done. Instead of Make we use <a href="http://martine.github.com/ninja/">Ninja</a>, which is extremely fast. The backend code is abstracted away from the core, so other backends can be added with relatively little effort.</p>
+<p>The backend for Unix requires a bit more thought. The default choice would be Make. However it is extremely slow. It is not uncommon on large code bases for Make to take several minutes just to determine that nothing needs to be done. Instead of Make we use <a href="https://ninja-build.org/">Ninja</a>, which is extremely fast. The backend code is abstracted away from the core, so other backends can be added with relatively little effort.</p>
 <h2 id="sample-code">Sample code</h2>
 <p>Enough design talk, let's get to the code. Before looking at the examples we would like to emphasize that this is not in any way the final code. It is proof of concept code that works in the system as it currently exists (February 2013), but may change at any time.</p>
 <p>Let's start simple. Here is the code to compile a single executable binary.</p>
@@ -204,7 +204,7 @@ executable('program', 'prog.c')
 sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
 executable('program', sources : sourcelist)
 </code></pre>
-<p>External depencencies are simple to use.</p>
+<p>External dependencies are simple to use.</p>
 <pre><code class="language-meson">project('external lib', 'c')
 libdep = find_dep('extlibrary', required : true)
 sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']

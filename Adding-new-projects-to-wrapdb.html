@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -162,7 +162,7 @@ $('body').removeClass('no-script');
 <h1 id="adding-new-projects-to-wrap">Adding new projects to wrap</h1>
 <p><strong>If you don't have permissions to do something on this page, please open issue against https://github.com/mesonbuild/wrapweb/issues to let us know that you want to start new project.</strong></p>
 <h2 id="overview">Overview</h2>
-<p>The wrap provider service is a simple web service that makes it easy to download build definitions for projects. It works in much the same way as Debian: we take the unaltered upstream source package and add a new build system to it as a patch. These build systems are stored as Git repositories on Github. They only contain build definition files. You may also think of them as an overlay to upstream source.</p>
+<p>The wrap provider service is a simple web service that makes it easy to download build definitions for projects. It works in much the same way as Debian: we take the unaltered upstream source package and add a new build system to it as a patch. These build systems are stored as Git repositories on GitHub. They only contain build definition files. You may also think of them as an overlay to upstream source.</p>
 <h2 id="creator-script">Creator script</h2>
 <p>The WrapDB repository has a <a href="https://github.com/mesonbuild/wrapweb/blob/master/tools/repoinit.py">helper script</a> to generate new repositories. The documentation below roughly explains what it does using plain shell commands.</p>
 <h2 id="choosing-the-repository-name">Choosing the repository name</h2>
@@ -184,11 +184,11 @@ git push --tags
 <pre><code>git checkout master
 git checkout -b 1.0.0
 git push origin 1.0.0
-(or from Github web page, remember to branch from master)
+(or from GitHub web page, remember to branch from master)
 </code></pre>
 <p>Branch names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
 <h2 id="adding-a-new-release-to-an-existing-branch">Adding a new release to an existing branch</h2>
-<p>Here is where the magic happens. Whenever a new commit is pushed into Github's project branch, a new wrap is generated with an incremented version number. All the old releases remain unaltered. New commits are always done via Github merge requests and must be reviewed by someone other than the submitter.</p>
+<p>Here is where the magic happens. Whenever a new commit is pushed into GitHub's project branch, a new wrap is generated with an incremented version number. All the old releases remain unaltered. New commits are always done via GitHub merge requests and must be reviewed by someone other than the submitter.</p>
 <p>Note that your Git repo must <em>not</em> contain the subdirectory of the source release. That gets added automatically by the service. You also must <em>not</em> commit any source code from the original tarball into the wrap repository.</p>
 <p>First you need to fork the repository to your own page. Then you can create the first Wrap commit that usually looks something like this.</p>
 <pre><code>tar xzf libfoo_1.0.0.tar.gz
@@ -203,7 +203,7 @@ git add upstream.wrap meson.build
 git commit -a -m 'Created wrap files for libfoo-1.0.0.'
 git push origin 1.0.0
 </code></pre>
-<p>Now you can file a merge request. Remember to file it against branch 1.0.0 rather than master. Github should do this automatically.</p>
+<p>Now you can file a merge request. Remember to file it against branch 1.0.0 rather than master. GitHub should do this automatically.</p>
 <h2 id="changes-to-original-source">Changes to original source</h2>
 <p>The point of a wrap is to provide the upstream project with as few changes as possible. Most projects should not contain anything more than a few Meson definition files. Sometimes it may be necessary to add a template header file or something similar. These should be held at a minimum.</p>
 <p>It should especially be noted that there must <strong>not</strong> be any patches to functionality. All such changes must be submitted to upstream. You may also host your own Git repo with the changes if you wish. The Wrap system has native support for Git subprojects.</p>

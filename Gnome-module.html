@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -165,10 +165,10 @@ $('body').removeClass('no-script');
 <h2 id="usage">Usage</h2>
 <p>To use this module, just do: <strong><code>gnome = import('gnome')</code></strong>. The following functions will then be available as methods on the object with the name <code>gnome</code>. You can, of course, replace the name <code>gnome</code> with anything else.</p>
 <h3 id="gnomecompile_resources">gnome.compile_resources()</h3>
-<p>This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the xml file containing the resource definitions. If the name is <code>foobar</code>, Meson will generate a header file called <code>foobar.h</code>, which you can then include in your sources.</p>
+<p>This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the XML file containing the resource definitions. If the name is <code>foobar</code>, Meson will generate a header file called <code>foobar.h</code>, which you can then include in your sources.</p>
 <ul>
 <li>
-<code>source_dir</code>: a list of subdirectories where the resource compiler should look up the files, relative to the location of the xml file</li>
+<code>source_dir</code>: a list of subdirectories where the resource compiler should look up the files, relative to the location of the XML file</li>
 <li>
 <code>c_name</code>: passed to the resource compiler as an argument after <code>--c-name</code>
 </li>
@@ -290,20 +290,20 @@ for installing schemas and is only useful when running the application locally f
 <p>Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are three keyword arguments. <code>interface_prefix</code> and <code>namespace</code> map to corresponding features of the compiler while <code>object_manager</code> (since 0.40.0), when set to true, generates object manager code.</p>
 <p>Returns an opaque object containing the source files. Add it to a top level target's source list.</p>
 <h3 id="gnomecompile_vapi">gnome.compile_vapi()</h3>
-<p>Creates a vapi file from gir. The first argument is the name of the library.</p>
+<p>Creates a VAPI file from gir. The first argument is the name of the library.</p>
 <ul>
 <li>
-<code>sources</code>: the gir source to generate the vapi from</li>
+<code>sources</code>: the gir source to generate the VAPI from</li>
 <li>
-<code>packages</code>: vapi packages that are depended upon</li>
+<code>packages</code>: VAPI packages that are depended upon</li>
 <li>
 <code>metadata_dirs</code>: extra directories to include for metadata files</li>
 <li>
 <code>gir_dirs</code>: extra directories to include for gir files</li>
 <li>
-<code>vapi_dirs</code>: extra directories to include for vapi files</li>
+<code>vapi_dirs</code>: extra directories to include for VAPI files</li>
 </ul>
-<p>Returns a custom dependency that can be included when building other vapi or vala binaries.</p>
+<p>Returns a custom dependency that can be included when building other VAPI or Vala binaries.</p>
 <p><em>Added 0.36.0</em></p>
 <h3 id="gnomeyelp">gnome.yelp()</h3>
 <p>Installs help documentation using Yelp. The first argument is the project id.</p>
@@ -324,7 +324,7 @@ for installing schemas and is only useful when running the application locally f
 <p>Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.</p>
 <ul>
 <li>
-<code>main_xml</code>: specifies the main xml file</li>
+<code>main_xml</code>: specifies the main XML file</li>
 <li>
 <code>main_sgml</code>: equal to <code>main_xml</code>
 </li>
@@ -351,7 +351,7 @@ for installing schemas and is only useful when running the application locally f
 <code>html_args</code> a list of arguments to pass to <code>gtkdoc-mkhtml</code>
 </li>
 <li>
-<code>html_assets</code>: a list of assets for the html pages</li>
+<code>html_assets</code>: a list of assets for the HTML pages</li>
 <li>
 <code>content_files</code>: a list of content files</li>
 </ul>

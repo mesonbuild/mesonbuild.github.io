@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -160,7 +160,7 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="RPM-module.md" data-hotdoc-role="main">
 <h1 id="rpm-module">RPM module</h1>
-<p>The RPM module can be used to create a sample rpm spec file for a Meson project. It autodetects installed files, dependencies and so on. Using it is very simple. At the very end of your Meson project (that is, the end of your toplevel <code>meson.build</code> file) add these two lines.</p>
+<p>The RPM module can be used to create a sample rpm spec file for a Meson project. It autodetects installed files, dependencies and so on. Using it is very simple. At the very end of your Meson project (that is, the end of your top level <code>meson.build</code> file) add these two lines.</p>
 <pre><code class="language-meson">rpm = import('rpm')
 rpm.generate_spec_template()
 </code></pre>

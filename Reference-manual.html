@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -266,13 +266,13 @@ endif
 <li>
 <code>depends</code> specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.</li>
 <li>
-<code>depend_files</code> files (<a href="Reference-manual.html#string-object"><code>string</code></a>, <a href="Reference-manual.html#files"><code>files()</code></a>, or <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>) that this target depends on but are not listed in the <code>command</code> kwarg. Useful for adding regen dependencies.</li>
+<code>depend_files</code> files (<a href="Reference-manual.html#string-object"><code>string</code></a>, <a href="Reference-manual.html#files"><code>files()</code></a>, or <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>) that this target depends on but are not listed in the <code>command</code> keyword argument. Useful for adding regen dependencies.</li>
 <li>
 <code>depfile</code> is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation</li>
 <li>
 <code>build_by_default</code> <em>(added 0.38.0)</em> causes, when set to true, to have this target be built by default, that is, when invoking plain <code>ninja</code>; the default value is false</li>
 </ul>
-<p>The list of strings passed to the <code>command</code> kwarg accept the following special string substitutions:</p>
+<p>The list of strings passed to the <code>command</code> keyword argument accept the following special string substitutions:</p>
 <ul>
 <li>
 <code>@INPUT@</code> the full path to the input passed to <code>input</code>. If more than one input is specified, all of them will be substituted as separate arguments only if the command uses <code>'@INPUT@'</code> as a standalone-argument. For instance, this would not work: <code>command : ['cp', './@INPUT@']</code>, but this would: <code>command : ['cp', '@INPUT@']</code>.</li>
@@ -308,7 +308,7 @@ endif
 <li>
 <code>link_args</code>, link arguments to use</li>
 <li>
-<code>version</code>, the version of this depency, such as <code>1.2.3</code>
+<code>version</code>, the version of this dependency, such as <code>1.2.3</code>
 </li>
 </ul>
 <h3 id="dependency">dependency()</h3>
@@ -321,7 +321,7 @@ endif
 <li>
 <code>required</code>, when set to false, Meson will proceed with the build even if the dependency is not found</li>
 <li>
-<code>version</code>, specifies the required version, a string containing a comparison operator followed by the version string, examples include <code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching. (<em>Added 0.37.0</em>) You can also specify multiple restrictions by passing a list to this kwarg, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.</li>
+<code>version</code>, specifies the required version, a string containing a comparison operator followed by the version string, examples include <code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching. (<em>Added 0.37.0</em>) You can also specify multiple restrictions by passing a list to this keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.</li>
 <li>
 <code>native</code> if set to <code>true</code>, causes Meson to find the dependency on the build machine system rather than the host system (i.e. where the cross compiled binary will run on), usually only needed if you build a tool to be used during compilation.</li>
 <li>
@@ -368,7 +368,7 @@ endif
 <li>
 <code>&lt;languagename&gt;_args</code> compiler flags to use for the given language; eg: <code>cpp_args</code> for C++</li>
 <li>
-<code>link_args</code> flags to use during linking. You can use unix-style flags here for all platforms.</li>
+<code>link_args</code> flags to use during linking. You can use UNIX-style flags here for all platforms.</li>
 <li>
 <code>link_depends</code> an extra file in the source tree that the link step depends on such as a symbol visibility map. The purpose is to automatically trigger a re-link (but not a re-compile) of the target when this file changes.</li>
 <li>
@@ -394,7 +394,7 @@ endif
 <li>
 <code>override_options</code> takes an array of strings in the same format as <code>project</code>'s <code>default_options</code> overriding the values of these options for this target only, since 0.40.0</li>
 </ul>
-<p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always flattened, which means you can freely nest and add lists while creating the final list. As a corollary, the best way to handle a 'disabled dependency' is by assigning an empty list <code>[]</code> to it and passing it like any other dependency to the <code>dependencies:</code> kwarg.</p>
+<p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always flattened, which means you can freely nest and add lists while creating the final list. As a corollary, the best way to handle a 'disabled dependency' is by assigning an empty list <code>[]</code> to it and passing it like any other dependency to the <code>dependencies:</code> keyword argument.</p>
 <p>The returned object also has methods that are documented in the <a href="Reference-manual.html#build-target-object">object methods section</a> below.</p>
 <h3 id="find_library">find_library()</h3>
 <p>This function is deprecated and in the 0.31.0 release it was moved to <a href="Reference-manual.html#compiler-object">the compiler object</a> as obtained from <code>meson.get_compiler(lang)</code>.</p>
@@ -402,7 +402,7 @@ endif
 <pre><code class="language-meson">    program find_program(program_name1, program_name2, ...)
 </code></pre>
 <p><code>program_name1</code> here is a string that can be an executable or script to be searched for in <code>PATH</code>, or a script in the current source directory.</p>
-<p>Meson will also autodetect scripts with a shebang line and run them with the executable/interpreter specified in it both on Windows (because the command invocator will reject the command otherwise) and UNIXes (if the script file does not have the executable bit set). Hence, you <em>must not</em> manually add the interpreter while using this script as part of a list of commands.</p>
+<p>Meson will also autodetect scripts with a shebang line and run them with the executable/interpreter specified in it both on Windows (because the command invocator will reject the command otherwise) and Unixes (if the script file does not have the executable bit set). Hence, you <em>must not</em> manually add the interpreter while using this script as part of a list of commands.</p>
 <p><code>program_name2</code> and later positional arguments are used as fallback strings to search for. This is meant to be used for cases where the program may have many alternative names, such as <code>foo</code> and <code>foo.py</code>. The function will check for the arguments one by one and the first one that is found is returned. Meson versions earlier than 0.37.0 only accept one argument.</p>
 <p>If none of the programs are found, Meson will abort. You can tell it not to by setting the keyword argument <code>required</code> to false, and then use the <code>.found()</code> method on the returned object to check whether it was found or not.</p>
 <p>The returned object also has methods that are documented in the <a href="Reference-manual.html#external-program-object">object methods section</a> below.</p>
@@ -430,15 +430,15 @@ endif
 <code>depfile</code> is a template string pointing to a dependency file that a generator can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation</li>
 </ul>
 <p>The returned object also has methods that are documented in the <a href="Reference-manual.html#generator-object">object methods section</a> below.</p>
-<p>The template strings passed to all the above kwargs accept the following special substitutions:</p>
+<p>The template strings passed to all the above keyword arguments accept the following special substitutions:</p>
 <ul>
 <li>
 <code>@PLAINNAME@</code>: the complete input file name, e.g: <code>foo.c</code> becomes <code>foo.c</code> (unchanged)</li>
 <li>
 <code>@BASENAME@</code>: the base of the input filename, e.g.: <code>foo.c.y</code> becomes <code>foo.c</code> (extension is removed)</li>
 </ul>
-<p>Each string passed to the <code>outputs</code> kwarg <em>must</em> be constructed using one or both of these two substitutions.</p>
-<p>In addition to the above substitutions, the <code>arguments</code> kwarg also accepts the following:</p>
+<p>Each string passed to the <code>outputs</code> keyword argument <em>must</em> be constructed using one or both of these two substitutions.</p>
+<p>In addition to the above substitutions, the <code>arguments</code> keyword argument also accepts the following:</p>
 <ul>
 <li>
 <code>@OUTPUT@</code>: the full path to the output file</li>
@@ -541,7 +541,7 @@ executable('some-tool', sources,
 <h3 id="jar">jar()</h3>
 <pre><code class="language-meson">   jar_object jar(name, list_of_sources, ...)
 </code></pre>
-<p>Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <code>main_class</code> which specifies the main class to execute when running the jar with <code>java -jar file.jar</code>.</p>
+<p>Build a jar from the specified Java source files. Keyword arguments are the same as <a href="Reference-manual.html#executable"><code>executable</code></a>'s, with the addition of <code>main_class</code> which specifies the main class to execute when running the jar with <code>java -jar file.jar</code>.</p>
 <h3 id="join_paths">join_paths()</h3>
 <pre><code class="language-meson">   string join_paths(string1, string2, ...)
 </code></pre>
@@ -610,7 +610,7 @@ executable('some-tool', sources,
 <li>
 <code>soversion</code> a string specifying the soversion of this shared library, such as <code>0</code>. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if <code>soversion</code> is <code>4</code>, a Windows DLL will be called <code>foo-4.dll</code> and one of the aliases of the Linux shared library would be <code>libfoo.so.4</code>. If this is not specified, the first part of <code>version</code> is used instead. For example, if <code>version</code> is <code>3.6.0</code> and <code>soversion</code> is not defined, it is set to <code>3</code>.</li>
 <li>
-<code>vs_module_defs</code> a string pointing to a file that contains Visual Studio symbol export definitions.</li>
+<code>vs_module_defs</code> a string pointing to a file or a File object that contains Visual Studio symbol export definitions.</li>
 </ul>
 <h3 id="shared_module">shared_module()</h3>
 <pre><code class="language-meson">    buildtarget shared_module(module_name, list_of_sources, ...)
@@ -673,7 +673,7 @@ executable('some-tool', sources,
 <li>
 <code>fallback</code> version number to use when no revision control information is present, such as when building from a release tarball</li>
 </ul>
-<p>Meson will read the contents of <code>input</code>, replace the string <code>@VCS_TAG@</code> with the detected revision number and write the result to <code>output</code>. This method returns an opaque <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> object that you should put in your main program. If you desire more specific behavior than what this command provides, you should use <code>custom_target</code>.</p>
+<p>Meson will read the contents of <code>input</code>, replace the string <code>@VCS_TAG@</code> with the detected revision number and write the result to <code>output</code>. This method returns an opaque <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> object that you should put in your main program. If you desire more specific behaviour than what this command provides, you should use <code>custom_target</code>.</p>
 <h2 id="builtin-objects">Built-in objects</h2>
 <p>These are built-in objects that are always available.</p>
 <h3 id="meson-object">
@@ -824,7 +824,7 @@ executable('some-tool', sources,
 <p>The following keyword arguments can be used:</p>
 <ul>
 <li>
-<p><code>name</code> the name to use for printing a message about the compiler check. Supported by the methods <code>compiles()</code>, <code>links()</code>, and <code>run()</code>. If this kwarg is not passed to those methods, no message will be printed about the check.</p>
+<p><code>name</code> the name to use for printing a message about the compiler check. Supported by the methods <code>compiles()</code>, <code>links()</code>, and <code>run()</code>. If this keyword argument is not passed to those methods, no message will be printed about the check.</p>
 </li>
 <li>
 <p><code>prefix</code> can be used to add #includes and other things that are required for the symbol to be declared. System definitions should be passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed on Linux, and it should be passed via <code>args</code> keyword argument, see below). Supported by the methods <code>sizeof</code>, <code>has_type</code>, <code>has_function</code>, <code>has_member</code>, <code>has_members</code>, <code>has_header_symbol</code>.</p>
@@ -836,7 +836,7 @@ executable('some-tool', sources,
 <p><code>args</code> can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path <code>-Isome/path/to/header</code> if a header is not in the default include path. In versions newer than 0.38.0 you should use the <code>include_directories</code> keyword described above. You may also want to pass a library name <code>-lfoo</code> for <code>has_function</code> to check for a function. Supported by all methods except <code>get_id</code>, <code>version</code>, and <code>find_library</code>.</p>
 </li>
 </ul>
-<p>Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables <code>C_INCLUDE_PATH</code> with gcc/clang and <code>INCLUDE</code> with msvc to expand the default include path, and <code>LIBRARY_PATH</code> with gcc/clang and <code>LIB</code> with msvc to expand the default library search path.</p>
+<p>Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables <code>C_INCLUDE_PATH</code> with GCC/Clang and <code>INCLUDE</code> with MSVC to expand the default include path, and <code>LIBRARY_PATH</code> with GCC/Clang and <code>LIB</code> with MSVC to expand the default library search path.</p>
 <p>However, with GCC, these variables will be ignored when cross-compiling. In that case you need to use a specs file. See: <a href="http://www.mingw.org/wiki/SpecsFileHOWTO">http://www.mingw.org/wiki/SpecsFileHOWTO</a></p>
 <h3 id="string-object">
 <code>string</code> object</h3>

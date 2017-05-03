@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -176,7 +176,7 @@ $('body').removeClass('no-script');
 <p>In order to make code completion work, you need the compiler flags for each compilation step. Meson does not provide this itself, but the Ninja tool Meson uses to build does provide it. To find out the compile steps necessary to build target foo, issue the following command.</p>
 <pre><code>ninja -t commands foo
 </code></pre>
-<p>Note that if the target has dependencies (such as generated sources), then the commands for those show up in this list as well, so you need to do some filtering. Alternatively you can grab every command invocation in the <a href="http://clang.llvm.org/docs/JSONCompilationDatabase.html">clang tools db</a> format that is written to a file called <code>compile_commands.json</code> in the build directory.</p>
+<p>Note that if the target has dependencies (such as generated sources), then the commands for those show up in this list as well, so you need to do some filtering. Alternatively you can grab every command invocation in the <a href="https://clang.llvm.org/docs/JSONCompilationDatabase.html">Clang tools db</a> format that is written to a file called <code>compile_commands.json</code> in the build directory.</p>
 <p>The next thing to display is the list of options that can be set. These include build type and so on. Here's how to extract them.</p>
 <pre><code>mesonintrospect.py --buildoptions
 </code></pre>

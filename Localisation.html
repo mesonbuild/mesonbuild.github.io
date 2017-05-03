@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -160,8 +160,8 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Localisation.md" data-hotdoc-role="main">
 <h1 id="localisation">Localisation</h1>
-<p>Localising your application with GNU Gettext takes a little effort but is quite straightforward. This documentation assumes that you have a <code>po</code> subdirectory at your project root directory that contains all the localisation info.</p>
-<p>The first thing you need is a file called <code>POTFILES</code>. It lists all the source files that Gettext should scan in order to find strings to translate. The syntax of the file is one line per source file and the line must contain the relative path from source root. A sample POTFILES might look like this.</p>
+<p>Localising your application with GNU gettext takes a little effort but is quite straightforward. This documentation assumes that you have a <code>po</code> subdirectory at your project root directory that contains all the localisation info.</p>
+<p>The first thing you need is a file called <code>POTFILES</code>. It lists all the source files that gettext should scan in order to find strings to translate. The syntax of the file is one line per source file and the line must contain the relative path from source root. A sample POTFILES might look like this.</p>
 <pre><code>src/file1.c
 src/file2.c
 src/subdir/file3.c
@@ -170,13 +170,13 @@ include/mything/somefile.h
 <p>We also need to define an array of strings containing all the locales we want to generate. This is done in the Meson file in the <code>po</code> subdirectory. Assuming we want to generate Finnish and German localisations, the definition would look like this.</p>
 <pre><code class="language-meson">langs = ['fi', 'de']
 </code></pre>
-<p>Then we need to generate the main pot file. Usually this is generated manually or exists already. If not, see later on how to generate it using Meson. The potfile can have any name but is usually the name of the Gettext package. Let's say the project is called <em>intltest</em>. In this case the corresponding pot file would be called <code>inltest.pot</code>.</p>
-<p>For each language listed in the array above we need a corresponding <code>.po</code> file. This has to be generated manually, see the Gettext manual for details. Once we have all this, we can define the localisation to Meson with these lines.</p>
+<p>Then we need to generate the main pot file. Usually this is generated manually or exists already. If not, see later on how to generate it using Meson. The potfile can have any name but is usually the name of the gettext package. Let's say the project is called <em>intltest</em>. In this case the corresponding pot file would be called <code>intltest.pot</code>.</p>
+<p>For each language listed in the array above we need a corresponding <code>.po</code> file. This has to be generated manually, see the gettext manual for details. Once we have all this, we can define the localisation to Meson with these lines.</p>
 <pre><code class="language-meson">i18n = import('i18n')
 langs = ['fi', 'de']
 i18n.gettext('intltest', languages : langs)
 </code></pre>
-<p>The first command imports the <code>i18n</code> module that provides Gettext features. The second line does the actual invocation. The first argument to the is the Gettext package name. This causes two things to happen. The first is that Meson will generate binary mo files and put them to their proper locations when doing an install. The second is that it creates a build rule to regenerate the main pot file. If you are using the Ninja backend, this is how you would invoke the rebuild.</p>
+<p>The first command imports the <code>i18n</code> module that provides gettext features. The second line does the actual invocation. The first argument to the is the gettext package name. This causes two things to happen. The first is that Meson will generate binary mo files and put them to their proper locations when doing an install. The second is that it creates a build rule to regenerate the main pot file. If you are using the Ninja backend, this is how you would invoke the rebuild.</p>
 <pre><code class="language-console">$ ninja intltest-pot
 </code></pre>
 <p>If the pot file does not yet exist, it will be created. It is recommended to inspect it manually afterwards and fill in e.g. proper copyright and contact information.</p>

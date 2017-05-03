@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 <pre><code class="language-meson">project('shared lib', 'c')
 shared_library('mylib', 'source.c')
 </code></pre>
-<p>In unix-like operating systems, shared libraries can be versioned. Meson supports this with keyword arguments.</p>
+<p>In Unix-like operating systems, shared libraries can be versioned. Meson supports this with keyword arguments.</p>
 <pre><code class="language-meson">project('shared lib', 'c')
 shared_library('mylib', 'source.c', version : '1.2.3', soversion : '0')
 </code></pre>

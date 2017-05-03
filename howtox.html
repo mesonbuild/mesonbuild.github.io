@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -170,7 +170,7 @@ $('body').removeClass('no-script');
         default_options : ['c_std=c11', 'cpp_std=c++11'])
 </code></pre>
 <h2 id="enable-threads">Enable threads</h2>
-<p>Lots of people seem to do this manually with <code>find_library('phtread')</code> or something similar. Do not do that. It is not portable. Instead do this.</p>
+<p>Lots of people seem to do this manually with <code>find_library('pthread')</code> or something similar. Do not do that. It is not portable. Instead do this.</p>
 <pre><code class="language-meson">thread_dep = dependency('threads')
 executable(..., dependencies : thread_dep)
 </code></pre>
@@ -214,12 +214,12 @@ $ ninja coverage-html (or coverage-xml)
 </code></pre>
 <p>The coverage report can be found in the meson-logs subdirectory.</p>
 <h2 id="add-some-optimization-to-debug-builds">Add some optimization to debug builds</h2>
-<p>By default the debug build does not use any optimizations. This is the desired approach most of the time. However some projects benefit from having some minor optimizations enabled. Gcc even has a specific compiler flag <code>-Og</code> for this. To enable its use, just issue the following command.</p>
+<p>By default the debug build does not use any optimizations. This is the desired approach most of the time. However some projects benefit from having some minor optimizations enabled. GCC even has a specific compiler flag <code>-Og</code> for this. To enable its use, just issue the following command.</p>
 <pre><code class="language-console">$ mesonconf -Dc_args=-Og
 </code></pre>
 <p>This causes all subsequent builds to use this command line argument.</p>
 <h2 id="use-address-sanitizer">Use address sanitizer</h2>
-<p>Clang comes with a selection of analysis tools such as the <a href="http://clang.llvm.org/docs/AddressSanitizer.html">address sanitizer</a>. Meson has native support for these with the <code>b_sanitize</code> option.</p>
+<p>Clang comes with a selection of analysis tools such as the <a href="https://clang.llvm.org/docs/AddressSanitizer.html">address sanitizer</a>. Meson has native support for these with the <code>b_sanitize</code> option.</p>
 <pre><code class="language-console">$ meson &lt;other options&gt; -Db_sanitize=address
 </code></pre>
 <p>After this you just compile your code and run the test suite. Address sanitizer will abort executables which have bugs so they show up as test failures.</p>
