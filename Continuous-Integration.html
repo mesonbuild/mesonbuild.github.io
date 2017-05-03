@@ -186,8 +186,8 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo FROM YOUR/REPO:yakkety &gt; Dockerfile; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo ADD . /root &gt;&gt; Dockerfile; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker build -t withgit .; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run withgit /bin/sh -c "cd /root &amp;&amp; TRAVIS=true CC=$CC CXX=$CXX meson build &amp;&amp; ninja -C build test"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson build &amp;&amp; ninja -C build test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run withgit /bin/sh -c "cd /root &amp;&amp; TRAVIS=true CC=$CC CXX=$CXX meson builddir &amp;&amp; ninja -C builddir test"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson builddir &amp;&amp; ninja -C builddir test; fi
 </code></pre>
 <h2 id="appveyor-for-windows">AppVeyor for Windows</h2>
 <p>For CI on Windows, <a href="https://www.appveyor.com/">AppVeyor</a> is probably your best bet. Here's a sample <code>yml</code> file for use with that.</p>
@@ -216,11 +216,11 @@ install:
 
 build_script:
   - cmd: echo Building on %arch% with %compiler%
-  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; &amp;&amp; python meson.py --backend=ninja build
-  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; &amp;&amp; ninja -C build
+  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; &amp;&amp; python meson.py --backend=ninja builddir
+  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; &amp;&amp; ninja -C builddir
 
 test_script:
-  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; &amp;&amp; ninja -C build test
+  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; &amp;&amp; ninja -C builddir test
 </code></pre>
 <h2 id="travis-without-docker">Travis without Docker</h2>
 <p>This setup is not recommended but included here for completeness</p>
@@ -241,9 +241,9 @@ install:
   - pip3 install meson
 
 script:
-  - meson build
-  - ninja -C build
-  - ninja -C build test
+  - meson builddir
+  - ninja -C builddir
+  - ninja -C builddir test
 </code></pre>
 
 </div>

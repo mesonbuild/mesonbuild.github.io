@@ -178,7 +178,7 @@ $('body').removeClass('no-script');
 <h2 id="compiling-a-meson-project">Compiling a Meson project</h2>
 <p>The most common use case of Meson is compiling code on a code base you are working on. The steps to take are very simple.</p>
 <pre><code class="language-console">$ cd /path/to/source/root
-$ meson build &amp;&amp; cd build
+$ meson builddir &amp;&amp; cd builddir
 $ ninja
 $ ninja test
 </code></pre>
@@ -188,10 +188,10 @@ $ ninja test
 <h2 id="using-meson-as-a-distro-packager">Using Meson as a distro packager</h2>
 <p>Distro packagers usually want total control on the build flags used. Meson supports this use case natively. The commands needed to build and install Meson projects are the following.</p>
 <pre><code class="language-console">$ cd /path/to/source/root
-$ CFLAGS=... CXXFLAGS=... LDFLAGS=.. meson --prefix /usr --buildtype=plain build
-$ ninja -v -C build
-$ ninja -C build test
-$ DESTDIR=/path/to/staging/root ninja -C build install
+$ CFLAGS=... CXXFLAGS=... LDFLAGS=.. meson --prefix /usr --buildtype=plain builddir
+$ ninja -v -C builddir
+$ ninja -C builddir test
+$ DESTDIR=/path/to/staging/root ninja -C builddir install
 </code></pre>
 <p>The command line switch <code>--buildtype=plain</code> tells Meson not to add its own flags to the command line. This gives the packager total control on used flags.</p>
 <p>This is very similar to other build systems. The only difference is that the <code>DESTDIR</code> variable is passed as an environment variable rather than as an argument to <code>ninja install</code>.</p>

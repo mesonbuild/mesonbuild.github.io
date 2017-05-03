@@ -174,21 +174,21 @@ int main(int argc, char **argv) {
 executable('demo', 'main.c')
 </code></pre>
 <p>That is all. We are now ready to build our application. First we need to initialise the build by going into the source directory and issuing the following commands.</p>
-<pre><code class="language-console">$ meson build
+<pre><code class="language-console">$ meson builddir
 </code></pre>
 <p>We create a separate build directory to hold all of the compiler output. Meson is different from some other build systems in that it does not permit in-source builds. You must always create a separate build directory. Common convention is to put the default build directory in a subdirectory of your toplevel source directory.</p>
 <p>When Meson is run it prints the following output.</p>
 <pre><code>The Meson build system
  version: 0.13.0-research
 Source dir: /home/jpakkane/mesontutorial
-Build dir: /home/jpakkane/mesontutorial/build
+Build dir: /home/jpakkane/mesontutorial/builddir
 Build type: native build
 Project name is "tutorial".
 Using native c compiler "ccache cc". (gcc 4.8.2)
 Creating build target "demo" with 1 files.
 </code></pre>
 <p>Now we are ready to build our code.</p>
-<pre><code>$ cd build
+<pre><code>$ cd builddir
 $ ninja
 </code></pre>
 <p>Once that is done we can run the resulting binary.</p>
@@ -224,7 +224,7 @@ executable('demo', 'main.c', dependencies : gtkdep)
 The Meson build system
  version: 0.13.0-research
 Source dir: /home/jpakkane/mesontutorial
-Build dir: /home/jpakkane/mesontutorial/build
+Build dir: /home/jpakkane/mesontutorial/builddir
 Build type: native build
 Project name is "tutorial".
 Using native c compiler "ccache cc". (gcc 4.8.2)

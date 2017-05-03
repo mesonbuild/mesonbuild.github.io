@@ -210,7 +210,7 @@ test('foolib test', testexe)
 <p>Finally we define a test with the name <code>foolib test</code>. It consists of running the binary we just built. If the executable exits with a zero return value, the test is considered passed. Nonzero return values mark the test as failed.</p>
 <p>At this point we can return to the pkg-config generator line. All shared libraries should provide a pkg-config file, which explains how that library is used. Meson provides this simple generator that should be sufficient for most simple projects. All you need to do is list a few basic pieces of information and Meson takes care of generating an appropriate file. More advanced users might want to create their own pkg-config files using Meson's <a href="Configuration.html">configuration file generator system</a>.</p>
 <p>With these four files we are done. To configure, build and run the test suite, we just need to execute the following commands (starting at source tree root directory).</p>
-<pre><code class="language-console">$ meson build &amp;&amp; cd build
+<pre><code class="language-console">$ meson builddir &amp;&amp; cd builddir
 $ ninja
 $ ninja test
 </code></pre>
