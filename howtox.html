@@ -175,7 +175,7 @@ $('body').removeClass('no-script');
 executable(..., dependencies : thread_dep)
 </code></pre>
 <h2 id="set-extra-compiler-and-linker-flags-from-the-outside-when-eg-building-distro-packages">Set extra compiler and linker flags from the outside (when e.g. building distro packages)</h2>
-<p>The behaviour is the same as with other build systems, with environment variables during first invocation.</p>
+<p>The behavior is the same as with other build systems, with environment variables during first invocation.</p>
 <pre><code class="language-console">$ CFLAGS=-fsomething LDFLAGS=-Wl,--linker-flag meson &lt;options&gt;
 </code></pre>
 <h2 id="use-an-argument-only-with-a-specific-compiler">Use an argument only with a specific compiler</h2>
@@ -204,7 +204,7 @@ configure_file(...)
 </h2>
 <p><code>configure_file</code> preserves metadata so if your template file has execute permissions, the generated file will have them too.</p>
 <h2 id="producing-a-coverage-report">Producing a coverage report</h2>
-<p>First initialise the build directory with this command.</p>
+<p>First initialize the build directory with this command.</p>
 <pre><code class="language-console">$ meson &lt;other flags&gt; -Db_coverage=true
 </code></pre>
 <p>Then issue the following commands.</p>

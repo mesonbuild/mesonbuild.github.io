@@ -206,7 +206,7 @@ one = cc.get_define('__linux__') # returns '1' on Linux hosts
 <pre><code class="language-meson">qt5_dep = dependency('qt5', modules : 'core', method : 'qmake')
 </code></pre>
 <h2 id="link-whole-contents-of-static-libraries">Link whole contents of static libraries</h2>
-<p>The default behaviour of static libraries is to discard all symbols that are not not directly referenced. This may lead to exported symbols being lost. Most compilers support "whole archive" linking that includes all symbols and code of a given static library. This is exposed with the <code>link_whole</code> keyword.</p>
+<p>The default behavior of static libraries is to discard all symbols that are not not directly referenced. This may lead to exported symbols being lost. Most compilers support "whole archive" linking that includes all symbols and code of a given static library. This is exposed with the <code>link_whole</code> keyword.</p>
 <pre><code class="language-meson">shared_library('foo', 'foo.c', link_whole : some_static_library)
 </code></pre>
 <p>Note that Visual Studio compilers only support this functionality on VS 2015 and newer.</p>
