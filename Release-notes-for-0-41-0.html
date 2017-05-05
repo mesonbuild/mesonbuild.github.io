@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -162,6 +162,11 @@ $('body').removeClass('no-script');
 <p><strong>Preliminary, 0.41.0 has not been released yet.</strong></p>
 <h1 id="new-features">New features</h1>
 <p>Add features here as code is merged to master.</p>
+<h2 id="dependency-handler-for-llvm">Dependency Handler for LLVM</h2>
+<p>Native support for linking against LLVM using the <code>dependency</code> function.</p>
+<h2 id="vcs_tag-keyword-fallback-is-is-now-optional">vcs_tag keyword fallback is is now optional</h2>
+<p>The <code>fallback</code> keyword in <code>vcs_tag</code> is now optional. If not given, its value
+defaults to the return value of <code>meson.project_version()</code>.</p>
 
 </div>
 

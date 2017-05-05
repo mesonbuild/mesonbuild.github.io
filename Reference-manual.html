@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -664,16 +664,20 @@ executable('some-tool', sources,
 <h3 id="vcs_tag">vcs_tag()</h3>
 <pre><code class="language-meson">    ctarget vcs_tag(...)
 </code></pre>
-<p>This command detects revision control commit information at build time and places it in the specified output file. This file is guaranteed to be up to date on every build. Keywords are similar to <code>custom_target</code> and all of them are mandatory.</p>
+<p>This command detects revision control commit information at build time and places it in the specified output file. This file is guaranteed to be up to date on every build. Keywords are similar to <code>custom_target</code>.</p>
 <ul>
 <li>
-<code>input</code> file to modify (e.g. <code>version.c.in</code>)</li>
+<code>input</code> file to modify (e.g. <code>version.c.in</code>) (required)</li>
 <li>
-<code>output</code> file to write the results to (e.g. <code>version.c</code>)</li>
+<code>output</code> file to write the results to (e.g. <code>version.c</code>) (required)</li>
 <li>
-<code>fallback</code> version number to use when no revision control information is present, such as when building from a release tarball</li>
+<code>fallback</code> version number to use when no revision control information is present, such as when building from a release tarball (defaults to <code>meson.project_version()</code>)</li>
+<li>
+<code>command</code> string list with the command to execute, see <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> for details on how this command must be specified</li>
+<li>
+<code>replace_string</code> string in the input file to substitute with the commit information (defaults to <code>@VCS_TAG@</code>)</li>
 </ul>
-<p>Meson will read the contents of <code>input</code>, replace the string <code>@VCS_TAG@</code> with the detected revision number and write the result to <code>output</code>. This method returns an opaque <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> object that you should put in your main program. If you desire more specific behavior than what this command provides, you should use <code>custom_target</code>.</p>
+<p>Meson will read the contents of <code>input</code>, substitute the <code>replace_string</code> with the detected revision number, and write the result to <code>output</code>. This method returns an opaque <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> object that can be used as source. If you desire more specific behavior than what this command provides, you should use <code>custom_target</code>.</p>
 <h2 id="builtin-objects">Built-in objects</h2>
 <p>These are built-in objects that are always available.</p>
 <h3 id="meson-object">

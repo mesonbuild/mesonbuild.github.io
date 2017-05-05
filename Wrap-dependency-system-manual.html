@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -203,11 +203,9 @@ revision=head
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>To use a subproject simply do this in your top level <code>meson.build</code>.</p>
 <pre><code class="language-meson">foobar_sp = subproject('foobar')
-
-Usually dependencies consist of some header files plus a library to link against. To do this you would declare this internal dependency like this:
-
-```meson
-foobar_dep = declare_dependency(link_with : mylib,
+</code></pre>
+<p>Usually dependencies consist of some header files plus a library to link against. To do this you would declare this internal dependency like this:</p>
+<pre><code class="language-meson">foobar_dep = declare_dependency(link_with : mylib,
   include_directories : myinc)
 </code></pre>
 <p>Then in your main project you would use them like this:</p>
