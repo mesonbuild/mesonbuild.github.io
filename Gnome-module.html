@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -289,7 +289,7 @@ for installing schemas and is only useful when running the application locally f
 <h3 id="gnomegdbus_codegen">gnome.gdbus_codegen()</h3>
 <p>Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are three keyword arguments. <code>interface_prefix</code> and <code>namespace</code> map to corresponding features of the compiler while <code>object_manager</code> (since 0.40.0), when set to true, generates object manager code.</p>
 <p>Returns an opaque object containing the source files. Add it to a top level target's source list.</p>
-<h3 id="gnomecompile_vapi">gnome.compile_vapi()</h3>
+<h3 id="gnomegenerate_vapi">gnome.generate_vapi()</h3>
 <p>Creates a VAPI file from gir. The first argument is the name of the library.</p>
 <ul>
 <li>
