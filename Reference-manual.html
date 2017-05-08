@@ -370,7 +370,7 @@ endif
 <li>
 <code>link_args</code> flags to use during linking. You can use UNIX-style flags here for all platforms.</li>
 <li>
-<code>link_depends</code> an extra file in the source tree that the link step depends on such as a symbol visibility map. The purpose is to automatically trigger a re-link (but not a re-compile) of the target when this file changes.</li>
+<code>link_depends</code>  strings, files, or custom targets the link step depends on such as a symbol visibility map. The purpose is to automatically trigger a re-link (but not a re-compile) of the target when this file changes.</li>
 <li>
 <code>include_directories</code> one or more objects created with the <code>include_directories</code> function</li>
 <li>
@@ -446,6 +446,8 @@ endif
 <code>@INPUT@</code>: the full path to the input file</li>
 <li>
 <code>@SOURCE_DIR@</code>: the full path to the root of the source tree</li>
+<li>
+<code>@CURRENT_SOURCE_DIR@</code>: this is the directory where the currently processed meson.build is located in</li>
 <li>
 <code>@BUILD_DIR@</code>: the full path to the root of the build dir where the output will be placed</li>
 </ul>
@@ -575,7 +577,10 @@ executable('some-tool', sources,
 <p><code>subproject_dir</code> specifies the top level directory name that holds Meson subprojects. This is only meant as a compatibility option for existing code bases that house their embedded source code in a custom directory. All new projects should not set this but instead use the default value. It should be noted that this keyword argument is ignored inside subprojects. There can be only one subproject dir and it is set in the top level Meson file.</p>
 </li>
 <li>
-<p><code>meson_version</code> takes a string describing which Meson version the project requires. Usually something like <code>&gt;0.28.0</code>. Similarly you can specify the license(s) the code is under with the <code>license</code> keyword argument. Usually this would be something like <code>license : 'GPL2+'</code>, but if the code has multiple licenses you can specify them as an array like this: <code>license : ['proprietary', 'GPL3']</code>. Note that the text is informal and is only written to the dependency manifest. Meson does not do any license validation, you are responsible for verifying that you abide by all licensing terms.</p>
+<p><code>meson_version</code> takes a string describing which Meson version the project requires. Usually something like <code>&gt;0.28.0</code>.</p>
+</li>
+<li>
+<p><code>license</code> takes a string or array of strings describing the license(s) the code is under. Usually this would be something like <code>license : 'GPL2+'</code>, but if the code has multiple licenses you can specify them as an array like this: <code>license : ['proprietary', 'GPL3']</code>. Note that the text is informal and is only written to the dependency manifest. Meson does not do any license validation, you are responsible for verifying that you abide by all licensing terms.</p>
 </li>
 <li>
 <p><code>default_options</code> takes an array of strings. The strings are in the form <code>key=value</code> and have the same format as options to <code>mesonconf</code>. For example to set the default project type you would set this: <code>default_options : ['buildtype=debugoptimized']</code>. Note that these settings are only used when running Meson for the first time. Global options such as <code>buildtype</code> can only be specified in the master project, settings in subprojects are ignored. Project specific options are used normally even in subprojects.</p>
