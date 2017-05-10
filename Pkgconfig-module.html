@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -189,6 +189,8 @@ $('body').removeClass('no-script');
 <li>
 <code>install_dir</code> the directory to install to, defaults to the value of option <code>libdir</code> followed by <code>/pkgconfig</code>
 </li>
+<li>
+<code>variables</code> a list of strings with custom variables to add to the generated file. The strings must be in the form <code>name=value</code> and may reference other pkgconfig variables, e.g. <code>datadir=${prefix}/share</code>. The names <code>prefix</code>, <code>libdir</code> and <code>installdir</code> are reserved and may not be used.</li>
 </ul>
 
 </div>

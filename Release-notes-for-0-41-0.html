@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -172,6 +172,17 @@ defaults to the return value of <code>meson.project_version()</code>.</p>
 ninja itself, providing better interoperability with custom commands. This
 support may not be perfect; please report any issues found with special
 characters to the issue tracker.</p>
+<h2 id="pkgconfig-support-for-custom-variables">Pkgconfig support for custom variables</h2>
+<p>The Pkgconfig module object can add arbitrary variables to the generated .pc
+file with the new <code>variables</code> keyword:</p>
+<pre><code class="language-meson">pkg.generate(libraries : libs,
+             subdirs : h,
+             version : '1.0',
+             name : 'libsimple',
+             filebase : 'simple',
+             description : 'A simple demo library.',
+             variables : ['datadir=${prefix}/data'])
+</code></pre>
 
 </div>
 
