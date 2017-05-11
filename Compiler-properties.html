@@ -258,12 +258,12 @@ int main(int argc, char **argv) {
 result = compiler.run(code, name : 'basic check')
 </code></pre>
 <p>The <code>result</code> variable encapsulates the state of the test, which can be extracted with the following methods. The <code>name</code> keyword argument works the same as with <code>compiles</code>.</p>
-<p>Method | Return value
--------|----------------
-compiled | <code>True</code> if compilation succeeded. If <code>false</code> then all other methods return undefined values.
-returncode | The return code of the application as an integer
-stdout | Program's standard out as text.
-stderr | Program's standard error as text.</p>
+<p>| Method     | Return value
+| ------     | ------------
+| compiled   | <code>True</code> if compilation succeeded. If <code>false</code> then all other methods return undefined values.
+| returncode | The return code of the application as an integer
+| stdout     | Program's standard out as text.
+| stderr     | Program's standard error as text.</p>
 <p>Here is an example usage:</p>
 <pre><code class="language-meson">if result.stdout().strip() == 'some_value'
   # do something
