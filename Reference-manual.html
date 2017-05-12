@@ -250,7 +250,7 @@ endif
 <p>Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.</p>
 <ul>
 <li>
-<code>input</code> list of source files</li>
+<code>input</code> list of source files. As of 0.41.0 the list will be flattened.</li>
 <li>
 <code>output</code> list of output files</li>
 <li>
@@ -360,9 +360,9 @@ endif
 <p>Executable supports the following keyword arguments. Note that just like the positional arguments above, these keyword arguments can also be passed to <a href="Reference-manual.html#library">shared and static libraries</a>.</p>
 <ul>
 <li>
-<code>link_with</code>, one or more shared or static libraries (built by this project) that this target should be linked with</li>
+<code>link_with</code>, one or more shared or static libraries (built by this project) that this target should be linked with, If passed a list this list will be flattened as of 0.41.0.</li>
 <li>
-<code>link_whole</code> links all contents of the given static libraries whether they are used by not, equivalent to the <code>-Wl,--whole-archive</code> argument flag of GCC, available since 0.40.0</li>
+<code>link_whole</code> links all contents of the given static libraries whether they are used by not, equivalent to the <code>-Wl,--whole-archive</code> argument flag of GCC, available since 0.40.0. As of 0.41.0 if passed a list that list will be flattened.</li>
 <li>
 <code>&lt;languagename&gt;_pch</code> precompiled header file to use for the given language</li>
 <li>
@@ -625,7 +625,7 @@ executable('some-tool', sources,
 <li>
 <code>soversion</code> a string specifying the soversion of this shared library, such as <code>0</code>. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if <code>soversion</code> is <code>4</code>, a Windows DLL will be called <code>foo-4.dll</code> and one of the aliases of the Linux shared library would be <code>libfoo.so.4</code>. If this is not specified, the first part of <code>version</code> is used instead. For example, if <code>version</code> is <code>3.6.0</code> and <code>soversion</code> is not defined, it is set to <code>3</code>.</li>
 <li>
-<code>vs_module_defs</code> a string pointing to a file or a File object that contains Visual Studio symbol export definitions.</li>
+<code>vs_module_defs</code> a string pointing to a file or a File object that is a Microsoft module definition file for controlling symbol exports, etc., on platforms where that is possible (e.g. Windows).</li>
 </ul>
 <h3 id="shared_module">shared_module()</h3>
 <pre><code class="language-meson">    buildtarget shared_module(module_name, list_of_sources, ...)

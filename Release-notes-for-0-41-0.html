@@ -183,6 +183,16 @@ file with the new <code>variables</code> keyword:</p>
              description : 'A simple demo library.',
              variables : ['datadir=${prefix}/data'])
 </code></pre>
+<h2 id="a-target-for-creating-tarballs">A target for creating tarballs</h2>
+<p>Creating distribution tarballs is simple:</p>
+<pre><code>ninja dist
+</code></pre>
+<p>This will create a <code>.tar.xz</code> archive of the source code including
+submodules without any revision control information. This command also
+verifies that the resulting archive can be built, tested and
+installed. This is roughly equivalent to the <code>distcheck</code> target in
+other build systems. Currently this only works for projects using Git
+and only with the Ninja backend.</p>
 
 </div>
 
