@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -193,6 +193,8 @@ verifies that the resulting archive can be built, tested and
 installed. This is roughly equivalent to the <code>distcheck</code> target in
 other build systems. Currently this only works for projects using Git
 and only with the Ninja backend.</p>
+<h2 id="support-for-passing-arguments-to-rust-compiler">Support for passing arguments to Rust compiler</h2>
+<p>Targets for building rust now take a <code>rust_args</code> keyword.</p>
 
 </div>
 

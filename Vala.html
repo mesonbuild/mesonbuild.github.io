@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -183,8 +183,22 @@ foo_dep = dependency('foo') # 'foo.vapi' will be resolved in './vapi/foo.vapi'
 
 executable('app', 'app.vala', dependencies: [glib_dep, gobject_dep, foo_dep])
 </code></pre>
+<p>In this case, make sure that the VAPI name corresponds to the pkg-config file.</p>
+<p>If no pkg-config file is provided, you must use <code>find_library</code>. Using<code>declare_dependency</code> is cleaner because it does not require passing both dependency objects to the target.</p>
+<pre><code class="language-meson">foo_lib = meson.get_compiler('c').find_library('foo') # assuming libfoo.so is installed
+foo_vapi = meson.get_compiler('vala').find_library('foo', dirs: join_paths(meson.current_source_dir(), 'vapi')
+foo_dep = declare_dependency(dependencies: [foo_lib, foo_vapi])
+
+executable('app', 'app.vala', dependencies: [glib_dep, gobject_dep, foo_dep])
+</code></pre>
+<h2 id="vapi-without-pkgconfig-file">VAPI without pkg-config file</h2>
+<p>Some Vala bindings do not need a corresponding pkg-config file and <code>dependency</code> is unsuitable for resolving them. It's necessary to use <code>find_library</code> in this case.</p>
+<pre><code class="language-meson">posix_dep = meson.get_compiler('vala').find_library('posix')
+
+executable('app', 'app.vala', dependencies: [glib_dep, gobject_dep, posix_dep])
+</code></pre>
 <h2 id="custom-output-names">Custom output names</h2>
-<p>If a library target is used, Meson automatically output the C header and the VAPI. They can be renamed by setting the <code>vala_header</code> and <code>vala_vapi</code> arguments respectively. In this case, the second and third elements of the <code>install_dir</code> array indicate the destination with <code>true</code> to indicate default directories.</p>
+<p>If a library target is used, Meson automatically outputs the C header and the VAPI. They can be renamed by setting the <code>vala_header</code> and <code>vala_vapi</code> arguments respectively. In this case, the second and third elements of the <code>install_dir</code> array indicate the destination with <code>true</code> to indicate default directories (i.e. <code>include</code> and <code>share/vala/vapi</code>).</p>
 <pre><code class="language-meson">foo_lib = library('foo', 'foo.vala', 
                   vala_header: 'foo.h',
                   vala_vapi: 'foo-1.0.vapi', 
