@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -161,7 +161,7 @@ $('body').removeClass('no-script');
 <div id="page-description" data-hotdoc-source="Overview.md" data-hotdoc-role="main">
 <h1 id="overview">Overview</h1>
 <p>Meson is a build system that is designed to be as user-friendly as possible without sacrificing performance. The main tool for this is a custom language that the user uses to describe the structure of his build. The main design goals of this language has been simplicity, clarity and conciseness. Much inspiration was drawn from the Python programming language, which is considered very readable, even to people who have not programmed in Python before.</p>
-<p>Another main idea has been to provide first class support for modern programming tools and best practices. These include features as varied as unit testing, code coverage reporting, precompiled headers and the like. All of these features should be immediately available to any project using Meson. The user should not need to hunt for third party macros or write shell scripts to get these features. They just just work out of the box.</p>
+<p>Another main idea has been to provide first class support for modern programming tools and best practices. These include features as varied as unit testing, code coverage reporting, precompiled headers and the like. All of these features should be immediately available to any project using Meson. The user should not need to hunt for third party macros or write shell scripts to get these features. They should just work out of the box.</p>
 <p>This power should not come at the expense of limited usability. Many software builds require unorthodox steps. A common example is that you first need to build a custom tool and then use that tool to generate more source code to build. This functionality needs to be supported and be as easy to use as other parts of the system.</p>
 <h2 id="terminology">Terminology</h2>
 <p>Meson follows the overall structure of other popular build systems, such as CMake and GNU Autotools. This means that the build is divided into two discrete steps: <em>configure step</em> and <em>build step</em>. The first step inspects the system, checks for dependencies and does all other steps necessary to configure the build. It then generates the actual build system. The second step is simply executing this generated build system. The end result is a bunch of <em>build targets</em>, which are usually executables and shared and static libraries.</p>
