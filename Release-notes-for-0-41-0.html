@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -195,6 +195,10 @@ other build systems. Currently this only works for projects using Git
 and only with the Ninja backend.</p>
 <h2 id="support-for-passing-arguments-to-rust-compiler">Support for passing arguments to Rust compiler</h2>
 <p>Targets for building rust now take a <code>rust_args</code> keyword.</p>
+<h2 id="code-coverage-export-for-tests">Code coverage export for tests</h2>
+<p>Code coverage can be generated for tests by passing the <code>--cov</code> argument to
+the <code>run_tests.py</code> test runner. Note, since multiple processes are used,
+coverage must be combined before producing a report (<code>coverage3 combine</code>.)</p>
 
 </div>
 

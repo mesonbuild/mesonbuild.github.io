@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -626,7 +626,7 @@ executable('some-tool', sources,
 <li>
 <code>soversion</code> a string specifying the soversion of this shared library, such as <code>0</code>. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if <code>soversion</code> is <code>4</code>, a Windows DLL will be called <code>foo-4.dll</code> and one of the aliases of the Linux shared library would be <code>libfoo.so.4</code>. If this is not specified, the first part of <code>version</code> is used instead. For example, if <code>version</code> is <code>3.6.0</code> and <code>soversion</code> is not defined, it is set to <code>3</code>.</li>
 <li>
-<code>vs_module_defs</code> a string pointing to a file or a File object that is a Microsoft module definition file for controlling symbol exports, etc., on platforms where that is possible (e.g. Windows).</li>
+<code>vs_module_defs</code> a string, a File object, or Custom Target for a Microsoft module definition file for controlling symbol exports, etc., on platforms where that is possible (e.g. Windows).</li>
 </ul>
 <h3 id="shared_module">shared_module()</h3>
 <pre><code class="language-meson">    buildtarget shared_module(module_name, list_of_sources, ...)

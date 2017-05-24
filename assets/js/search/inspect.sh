@@ -1,1 +1,1 @@
-urls_downloaded_cb({"urls": ["Run-targets.html#run-targets"], "token": "inspect.sh"});
+urls_downloaded_cb({"token": "inspect.sh", "urls": ["Run-targets.html#run-targets"]});
