@@ -235,7 +235,7 @@ endif
 <li>
 <code>input</code> the input file name. If it's not specified in configuration mode, all the variables in the <code>configuration:</code> object (see above) are written to the <code>output:</code> file.</li>
 <li>
-<code>output</code> the output file name. In configuration mode, the permissions of the input file (if it is specified) are copied to the output file.</li>
+<code>output</code> the output file name (since v0.41.0, may contain <code>@PLAINNAME@</code> or <code>@BASENAME@</code> substitutions). In configuration mode, the permissions of the input file (if it is specified) are copied to the output file.</li>
 <li>
 <code>configuration</code> as explained above, this is where you pass the configuration data object as returned by <code>configuration_data()</code>
 </li>
@@ -467,7 +467,7 @@ endif
 <h3 id="get_option">get_option()</h3>
 <pre><code class="language-meson">    value get_option(option_name)
 </code></pre>
-<p>Obtains the value of the [project build option](Build options) specified in the positional argument.</p>
+<p>Obtains the value of the <a href="Build-options.html">project build option</a> specified in the positional argument.</p>
 <h3 id="get_variable">get_variable()</h3>
 <pre><code class="language-meson">    value get_variable(variable_name, fallback)
 </code></pre>
