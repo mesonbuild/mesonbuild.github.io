@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -205,6 +205,21 @@ packages out of the box.</p>
 <h2 id="extended-template-substitution-in-configure_file">Extended template substitution in configure_file</h2>
 <p>The output argument of <code>configure_file()</code> is parsed for @BASENAME@ and
 @PLAINNAME@ substitutions.</p>
+<h2 id="crossconfig-property-for-overriding-whether-an-exe-wrapper-is-needed">Cross-config property for overriding whether an exe wrapper is needed</h2>
+<p>The new <code>needs_exe_wrapper</code> property allows overriding auto-detection for
+cases where <code>build_machine</code> appears to be compatible with <code>host_machine</code>,
+but actually isn't. For example when:</p>
+<ul>
+<li>
+<code>build_machine</code> is macOS and <code>host_machine</code> is the iOS Simulator</li>
+<li>the <code>build_machine</code>'s libc is glibc but the <code>host_machine</code> libc is uClibc</li>
+<li>code relies on kernel features not available on the <code>build_machine</code>
+</li>
+</ul>
+<h2 id="support-for-capturing-stdout-of-a-command-in-configure_file">Support for capturing stdout of a command in configure_file</h2>
+<p><code>configure_file()</code> now supports a new keyword - <code>capture</code>. When this argument
+is set to true, Meson captures <code>stdout</code> of the <code>command</code> and writes it to
+the target file specified as <code>output</code>.</p>
 
 </div>
 

@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -241,6 +241,8 @@ endif
 </li>
 <li>
 <code>command</code> as explained above, if specified, Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation</li>
+<li>
+<code>capture</code> when this argument is set to true, Meson captures <code>stdout</code> of the <code>command</code> and writes it to the target file specified as <code>output</code>. Available since v0.41.0.</li>
 <li>
 <code>install_dir</code> the subdirectory to install the generated file to (e.g. <code>share/myproject</code>), if omitted the file is not installed.</li>
 </ul>

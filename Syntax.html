@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -363,6 +363,8 @@ some_other_function()
 <pre><code class="language-meson">test_data_dir = 'data'
 subdir('tests')
 </code></pre>
+<h2 id="userdefined-functions-and-methods">User-defined functions and methods</h2>
+<p>Meson does not currently support user-defined functions or methods. The addition of user-defined functions would make Meson Turing-complete which would make it harder to reason about and more difficult to integrate with tools like IDEs. More details about this are <a href="FAQ.html#why-is-meson-not-just-a-python-module-so-i-could-code-my-build-setup-in-python">in the FAQ</a>. If because of this limitation you find yourself copying and pasting code a lot you may be able to use a <a href="Syntax.html#foreach-statements"><code>foreach</code> loop instead</a>.</p>
 
 </div>
 
