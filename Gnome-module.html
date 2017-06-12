@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -302,6 +302,10 @@ for installing schemas and is only useful when running the application locally f
 <code>gir_dirs</code>: extra directories to include for gir files</li>
 <li>
 <code>vapi_dirs</code>: extra directories to include for VAPI files</li>
+<li>
+<code>install</code>: if true, install the VAPI file</li>
+<li>
+<code>install_dir</code>: location to install the VAPI file (defaults to datadir/vala/vapi)</li>
 </ul>
 <p>Returns a custom dependency that can be included when building other VAPI or Vala binaries.</p>
 <p><em>Added 0.36.0</em></p>
