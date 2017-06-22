@@ -566,12 +566,14 @@ executable('some-tool', sources,
 <pre><code class="language-meson">    buildtarget library(library_name, list_of_sources, ...)
 </code></pre>
 <p>Builds a library that is either static or shared depending on the value of <code>default_library</code> user option. You should use this instead of <a href="Reference-manual.html#shared_library"><code>shared_library</code></a> or <a href="Reference-manual.html#static_library"><code>static_library</code></a> most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.</p>
-<p>The keyword arguments for this are the same as for <a href="Reference-manual.html#executable"><code>executable</code></a> with the following addition:</p>
+<p>The keyword arguments for this are the same as for <a href="Reference-manual.html#executable"><code>executable</code></a> with the following additions:</p>
 <ul>
 <li>
 <code>name_prefix</code> the string that will be used as the suffix for the target by overriding the default (only used for libraries). By default this is <code>lib</code> on all platforms and compilers except with MSVC where it is omitted.</li>
+<li>
+<code>rust_crate_type</code> specifies the crate type for Rust libraries. Defaults to <code>dylib</code> for shared libraries and <code>rlib</code> for static libraries.</li>
 </ul>
-<p><code>static_library</code> and <code>shared_library</code> also accept this keyword argument.</p>
+<p><code>static_library</code> and <code>shared_library</code> also accept these keyword arguments.</p>
 <h3 id="message">message()</h3>
 <pre><code class="language-meson">    void message(text)
 </code></pre>

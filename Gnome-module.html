@@ -318,11 +318,11 @@ for installing schemas and is only useful when running the application locally f
 <li>
 <code>media</code>: list of media such as images</li>
 <li>
-<code>symlink_media</code>: if media should be symlinked (requires newish yelp) defaults to <code>false</code>
-</li>
+<code>symlink_media</code>: if media should be symlinked not copied (defaults to <code>true</code> since 0.42.0)</li>
 <li>
 <code>languages</code>: list of languages for translations</li>
 </ul>
+<p>Note that very old versions of yelp may not support symlinked media; At least 3.10 should work.</p>
 <p><em>Added 0.36.0</em></p>
 <h3 id="gnomegtkdoc">gnome.gtkdoc()</h3>
 <p>Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.</p>

@@ -163,7 +163,7 @@ $('body').removeClass('no-script');
 <h2 id="dependency-handler-for-llvm">Dependency Handler for LLVM</h2>
 <p>Native support for linking against LLVM using the <code>dependency</code> function.</p>
 <h2 id="vcs_tag-keyword-fallback-is-is-now-optional">vcs_tag keyword fallback is is now optional</h2>
-<p>The <code>fallback</code> keyword in <code>vcs_tag</code> is now optional. If not given, its value
+<p>The <code>fallback</code> keyword in <code>vcs_tag()</code> is now optional. If not given, its value
 defaults to the return value of <code>meson.project_version()</code>.</p>
 <h2 id="better-quoting-of-special-characters-in-ninja-command-invocations">Better quoting of special characters in ninja command invocations</h2>
 <p>The ninja backend now quotes special characters that may be interpreted by
@@ -196,7 +196,7 @@ and only with the Ninja backend.</p>
 <h2 id="code-coverage-export-for-tests">Code coverage export for tests</h2>
 <p>Code coverage can be generated for tests by passing the <code>--cov</code> argument to
 the <code>run_tests.py</code> test runner. Note, since multiple processes are used,
-coverage must be combined before producing a report (<code>coverage3 combine</code>.)</p>
+coverage must be combined before producing a report (<code>coverage3 combine</code>).</p>
 <h2 id="reproducible-builds">Reproducible builds</h2>
 <p>All known issues have been fixed and Meson can now build reproducible Debian
 packages out of the box.</p>
