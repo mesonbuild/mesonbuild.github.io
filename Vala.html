@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -160,8 +160,8 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Vala.md" data-hotdoc-role="main">
 <h1 id="compiling-vala-applications">Compiling Vala applications</h1>
-<p>Meson has support for compiling Vala programs. A skeleton Vala file looks like this.</p>
-<pre><code class="language-meson">project('valaprog', ['vala', 'c'])
+<p>Meson has support for compiling Vala and Genie programs. A skeleton <code>meson.build</code> file for Vala looks like this:</p>
+<pre><code class="language-meson">project('valaprog', 'vala', 'c')
 
 glib_dep = dependency('glib-2.0')
 gobject_dep = dependency('gobject-2.0')

@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -164,6 +164,13 @@ $('body').removeClass('no-script');
 <h2 id="distribution-tarballs-from-mercurial-repositories">Distribution tarballs from Mercurial repositories</h2>
 <p>Creating distribution tarballs can now be made out of projects based on
 Mercurial. As before, this remains possible only with the Ninja backend.</p>
+<h2 id="keyword-argument-verification">Keyword argument verification</h2>
+<p>Meson will now check the keyword arguments used when calling any function
+and print a warning if any of the keyword arguments is not known. In the
+future this will become a hard error.</p>
+<h2 id="add-support-for-genie-to-vala-compiler">Add support for Genie to Vala compiler</h2>
+<p>The Vala compiler has an alternative syntax, Genie, that uses the <code>.gs</code>
+file extension. Meson now recognises and uses Genie files.</p>
 
 </div>
 
