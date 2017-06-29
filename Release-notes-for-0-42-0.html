@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -171,6 +171,17 @@ future this will become a hard error.</p>
 <h2 id="add-support-for-genie-to-vala-compiler">Add support for Genie to Vala compiler</h2>
 <p>The Vala compiler has an alternative syntax, Genie, that uses the <code>.gs</code>
 file extension. Meson now recognises and uses Genie files.</p>
+<h2 id="pkgconfig-support-for-additional-cflags">Pkgconfig support for additional cflags</h2>
+<p>The Pkgconfig module object can add arbitrary extra cflags to the Cflags
+value in the .pc file, using the "extra_cflags" keyword:</p>
+<pre><code class="language-meson">pkg.generate(libraries : libs,
+             subdirs : h,
+             version : '1.0',
+             name : 'libsimple',
+             filebase : 'simple',
+             description : 'A simple demo library.',
+             extra_cflags : '-Dfoo' )
+</code></pre>
 
 </div>
 
