@@ -169,7 +169,14 @@ $('body').removeClass('no-script');
 </code></pre>
 <p>In Meson, precompiled header files are always per-target. That is, the given precompiled header is used when compiling every single file in the target. Due to limitations of the underlying compilers, this header file must not be in the same subdirectory as any of the source files. It is strongly recommended that you create a subdirectory called <code>pch</code> in the target directory and put the header files (and nothing else) there.</p>
 <h2 id="toggling-the-usage-of-precompiled-headers">Toggling the usage of precompiled headers</h2>
-<p>If you wish to compile your project without precompiled headers, you can configure it by running Meson with the <code>--disable-pch</code> flag. You can also toggle the use of pch in a configured build directory with the GUI tool. You don't have to do any changes to the source code. Typically this is done to test whether your project compiles cleanly without pch (that is, checking that its #includes are in order) and working around compiler bugs.</p>
+<p>If you wish to compile your project without precompiled headers, you
+can change the value of the pch option by passing <code>-Db_pch=false</code>
+argument to Meson at configure time or later with <code>mesonconf</code>. You can
+also toggle the use of pch in a configured build directory with the
+GUI tool. You don't have to do any changes to the source
+code. Typically this is done to test whether your project compiles
+cleanly without pch (that is, checking that its #includes are in
+order) and working around compiler bugs.</p>
 <h2 id="using-precompiled-headers-with-gcc-and-derivatives">Using precompiled headers with GCC and derivatives</h2>
 <p>Once you have a file to precompile, you can enable the use of pch for a give target with a <em>pch</em> keyword argument. As an example, here's how you would use it with a C binary.</p>
 <pre><code class="language-meson">executable('myexe', sources : sourcelist, c_pch : 'pch/myexe_pch.h')

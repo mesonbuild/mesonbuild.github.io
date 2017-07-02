@@ -182,6 +182,12 @@ value in the .pc file, using the "extra_cflags" keyword:</p>
              description : 'A simple demo library.',
              extra_cflags : '-Dfoo' )
 </code></pre>
+<h2 id="allow-crate-type-configuration-for-rust-compiler">Allow crate type configuration for Rust compiler</h2>
+<p>Rust targets now take an optional <code>rust_crate_type</code> keyword, allowing
+you to set the crate type of the resulting artifact. Valid crate types
+are <code>dylib</code> or <code>cdylib</code> for shared libraries, and <code>rlib</code> or
+<code>staticlib</code> for static libraries. For more, see
+Rust's <a href="https://doc.rust-lang.org/reference/linkage.html">linkage reference</a>.</p>
 
 </div>
 
