@@ -1,1 +1,1 @@
-urls_downloaded_cb({"urls": ["Porting-from-autotools.html#gsettings"], "token": "meson_post_install.py"});
+urls_downloaded_cb({"token": "meson_post_install.py", "urls": ["Porting-from-autotools.html#gsettings"]});
