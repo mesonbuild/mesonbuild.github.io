@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -325,7 +325,7 @@ for installing schemas and is only useful when running the application locally f
 <p>Note that very old versions of yelp may not support symlinked media; At least 3.10 should work.</p>
 <p><em>Added 0.36.0</em></p>
 <h3 id="gnomegtkdoc">gnome.gtkdoc()</h3>
-<p>Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.</p>
+<p>Compiles and installs gtkdoc documentation into <code>prefix/share/gtk-doc/html</code>. Takes one positional argument: The name of the module.</p>
 <ul>
 <li>
 <code>main_xml</code>: specifies the main XML file</li>
@@ -339,7 +339,7 @@ for installing schemas and is only useful when running the application locally f
 <li>
 <code>install</code>: if true, installs the generated docs</li>
 <li>
-<code>install_dir</code>: the directory to install the generated docs</li>
+<code>install_dir</code>: the directory to install the generated docs relative to the gtk-doc html dir or an absolute path (default: module name)</li>
 <li>
 <code>scan_args</code>: a list of arguments to pass to <code>gtkdoc-scan</code>
 </li>

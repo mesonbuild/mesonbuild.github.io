@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -198,7 +198,7 @@ exe = executable('prog', 'prog.c', include_directories : i, link_with : l,
 <pre><code class="language-meson">proj_dep = declare_dependency(...)
 </code></pre>
 <p>Then you can use the subproject in the master project like this:</p>
-<pre><code class="language-meson">sp_dep = dependency('subproj_pkgconfig_name', fallback : ['subproj_name', 'proj_dep']
+<pre><code class="language-meson">sp_dep = dependency('subproj_pkgconfig_name', fallback : ['subproj_name', 'proj_dep'])
 </code></pre>
 <p>This uses the system dependency when available and the self built version if not. If you want to always use the subproject, that is also possible, just use <code>subproject</code> and <code>get_variable</code> as discussed above to get the dependency object.</p>
 <h1 id="obtaining-subprojects">Obtaining subprojects</h1>
