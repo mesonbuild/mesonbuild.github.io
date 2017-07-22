@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -195,6 +195,22 @@ Rust's <a href="https://doc.rust-lang.org/reference/linkage.html">linkage refere
 <h2 id="simultaneous-use-of-address-and-undefined-behavior-sanitizers">Simultaneous use of Address- and Undefined Behavior Sanitizers</h2>
 <p>Both the address- and undefined behavior sanitizers can now be used
 simultaneously by passing <code>-Db_sanitize=address,undefined</code> to Meson.</p>
+<h2 id="unstable-simd-module">Unstable SIMD module</h2>
+<p>A new experimental module to compile code with many different SIMD
+instruction sets and selecting the best one at runtime. This module
+is unstable, meaning its API is subject to change in later releases.
+It might also be removed altogether.</p>
+<h2 id="import-libraries-for-executables-on-windows">Import libraries for executables on Windows</h2>
+<p>The new keyword <code>implib</code> to <code>executable()</code> allows generation of an import
+library for the executable.</p>
+<h2 id="added-build_rpath-keyword-argument">Added build_rpath keyword argument</h2>
+<p>You can specify <code>build_rpath : '/foo/bar'</code> in build targets and the
+given path will get added to the target's rpath in the build tree. It
+is removed during the install step.</p>
+<p>Meson will print a warning when the user tries to add an rpath linker
+flag manually, e.g. via <code>link_args</code> to a target. This is not
+recommended because having multiple rpath causes them to stomp on each
+other. This warning will become a hard error in some future release.</p>
 
 </div>
 

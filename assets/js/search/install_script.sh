@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "install_script.sh", "urls": ["Creating-OSX-packages.html#putting-it-all-together"]});
+urls_downloaded_cb({"urls": ["Creating-OSX-packages.html#putting-it-all-together"], "token": "install_script.sh"});

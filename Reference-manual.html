@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -387,6 +387,8 @@ endif
 <li>
 <code>install_rpath</code> a string to set the target's rpath to after install (but <em>not</em> before that)</li>
 <li>
+<code>build_rpath</code> a string to add to target's rpath definition in the build dir, but which will be removed on install</li>
+<li>
 <code>install_dir</code> override install directory for this file. The value is relative to the <code>prefix</code> specified. F.ex, if you want to install plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') + '/projectname-1.0'</code>.</li>
 <li>
 <code>objects</code> list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, <strong>never</strong> use this for object files that you build yourself.</li>
@@ -396,6 +398,8 @@ endif
 <code>build_by_default</code> causes, when set to true, to have this target be built by default, that is, when invoking plain <code>ninja</code>, the default value is true for all built target types, since 0.38.0</li>
 <li>
 <code>override_options</code> takes an array of strings in the same format as <code>project</code>'s <code>default_options</code> overriding the values of these options for this target only, since 0.40.0</li>
+<li>
+<code>implib</code> when set to true, an import library is generated for the executable (the name of the import library is based on <em>exe_name</em>).  Alternatively, when set to a string, that gives the base name for the import library.  The import library is used when the returned build target object appears in <code>link_with:</code> elsewhere.  Only has any effect on platforms where that is meaningful (e.g. Windows).  Since 0.42.0</li>
 </ul>
 <p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always flattened, which means you can freely nest and add lists while creating the final list. As a corollary, the best way to handle a 'disabled dependency' is by assigning an empty list <code>[]</code> to it and passing it like any other dependency to the <code>dependencies:</code> keyword argument.</p>
 <p>The returned object also has methods that are documented in the <a href="Reference-manual.html#build-target-object">object methods section</a> below.</p>
@@ -662,10 +666,11 @@ executable('some-tool', sources,
 <li>
 <code>default_options</code>, <em>(added 0.37.0)</em> an array of default option values that override those set in the project's <code>default_options</code> invocation (like <code>default_options</code> in <code>project</code>, they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)</li>
 </ul>
+<p>Note that you can use the returned <a href="Reference-manual.html#subproject-object">subproject object</a> to access any variable in the subproject. However, if you want to use a dependency object from inside a subproject, an easier way is to use the <code>fallback:</code> keyword argument to <a href="Reference-manual.html#dependency"><code>dependency()</code></a>.</p>
 <h3 id="test">test()</h3>
 <pre><code class="language-meson">    void test(name, executable, ...)
 </code></pre>
-<p>Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.</p>
+<p>Defines a unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.</p>
 <ul>
 <li>
 <code>args</code> arguments to pass to the executable</li>
@@ -708,7 +713,7 @@ executable('some-tool', sources,
 <p><code>get_compiler(language)</code> returns <a href="Reference-manual.html#compiler-object">an object describing a compiler</a>, takes one positional argument which is the language to use. It also accepts one keyword argument, <code>native</code> which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler). If <code>native</code> is omitted, Meson returns the "cross" compiler if we're currently cross-compiling and the "native" compiler if we're not.</p>
 </li>
 <li>
-<p><code>backend()</code> <em>(added 0.37.0)</em> returns a string representing the current backend: <code>ninja</code>, <code>vs2010</code>, <code>vs2015</code>, or <code>xcode</code>.</p>
+<p><code>backend()</code> <em>(added 0.37.0)</em> returns a string representing the current backend: <code>ninja</code>, <code>vs2010</code>, <code>vs2015</code>, <code>vs2017</code>, or <code>xcode</code>.</p>
 </li>
 <li>
 <p><code>is_cross_build()</code> returns <code>true</code> if the current build is a <a href="Cross-compilation.html">cross build</a> and <code>false</code> otherwise.</p>
@@ -767,11 +772,11 @@ executable('some-tool', sources,
 <li>
 <code>cpu()</code> returns a more specific CPU name, such as <code>i686</code>, <code>amd64</code>, etc.</li>
 <li>
-<code>system()</code> returns the operating system name, such as <code>windows</code> (all versions of Windows), <code>linux</code> (all Linux distros), <code>darwin</code> (all versions of OS X), etc.</li>
+<code>system()</code> returns the operating system name, such as <code>windows</code> (all versions of Windows), <code>linux</code> (all Linux distros), <code>darwin</code> (all versions of OS X/macOS), <code>cygwin</code> (for Cygwin), and <code>bsd</code> (all *BSD OSes).</li>
 <li>
 <code>endian()</code> returns <code>big</code> on big-endian systems and <code>little</code> on little-endian systems.</li>
 </ul>
-<p>Currently, these values are populated using the <a href="https://docs.python.org/3.4/library/platform.html#platform.system"><code>platform.system()</code></a> and <a href="https://docs.python.org/3.4/library/platform.html#platform.machine"><code>platform.machine()</code></a>. If you think the returned values for any of these are incorrect for your system or CPU, please file <a href="https://github.com/mesonbuild/meson/issues/new">a bug report</a>.</p>
+<p>Currently, these values are populated using <a href="https://docs.python.org/3.4/library/platform.html#platform.system"><code>platform.system()</code></a> and <a href="https://docs.python.org/3.4/library/platform.html#platform.machine"><code>platform.machine()</code></a>. If you think the returned values for any of these are incorrect for your system or CPU, or if your OS is not in the above list, please file <a href="https://github.com/mesonbuild/meson/issues/new">a bug report</a> with details and we'll look into it.</p>
 <h3 id="host_machine-object">
 <code>host_machine</code> object</h3>
 <p>Provides information about the host machine — the machine on which the compiled binary will run. See <a href="Cross-compilation.html">Cross-compilation</a>.</p>
@@ -789,7 +794,7 @@ executable('some-tool', sources,
 <p>This object is returned by <a href="Reference-manual.html#meson-object"><code>meson.get_compiler(lang)</code></a>. It represents a compiler for a given language and allows you to query its properties. It has the following methods:</p>
 <ul>
 <li>
-<code>get_id()</code> returns a string identifying the compiler (e.g. <code>'gcc'</code>).</li>
+<code>get_id()</code> returns a string identifying the compiler. For example, <code>gcc</code>, <code>msvc</code>, <a href="Compiler-properties.html#compiler-id">and more</a>.</li>
 <li>
 <code>version()</code> returns the compiler's version number as a string.</li>
 <li>
