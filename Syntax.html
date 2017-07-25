@@ -282,9 +282,20 @@ is_new = version.version_compare('&gt;=2.0')
 <p>Arrays are delimited by brackets. An array can contain an arbitrary number of objects of any type.</p>
 <pre><code class="language-meson">my_array = [1, 2, 'string', some_obj]
 </code></pre>
-<p>You can add additional items to an array like this:</p>
-<pre><code class="language-meson">my_array += [ 'foo', 3, 4, another_obj ]
+<p>Accessing elements of an array can be done via array indexing:</p>
+<pre><code class="language-meson">my_array = [1, 2, 'string', some_obj]
+second_element = my_array[1]
+last_element = my_array[-1]
 </code></pre>
+<p>You can add more items to an array like this:</p>
+<pre><code class="language-meson">my_array += ['foo', 3, 4, another_obj]
+</code></pre>
+<p>When adding a single item, you do not need to enclose it in an array:</p>
+<pre><code class="language-meson">my_array += ['something']
+# This also works
+my_array += 'else'
+</code></pre>
+<p>Note appending to an array will always create a new array object and assign it to <code>my_array</code> instead of modifying the original since all objects in Meson are immutable.</p>
 <h4 id="array-methods">Array methods</h4>
 <p>The following methods are defined for all arrays:</p>
 <ul>
@@ -293,7 +304,7 @@ is_new = version.version_compare('&gt;=2.0')
 <li>
 <code>contains</code>, returns <code>true</code> if the array contains the object given as argument, <code>false</code> otherwise</li>
 <li>
-<code>get</code>, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error</li>
+<code>get</code>, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error. Provided for backwards-compatibility, it is identical to array indexing.</li>
 </ul>
 <h2 id="function-calls">Function calls</h2>
 <p>Meson provides a set of usable functions. The most common use case is creating build objects.</p>
