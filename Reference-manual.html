@@ -317,7 +317,7 @@ endif
 <h3 id="dependency">dependency()</h3>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
 </code></pre>
-<p>Finds an external dependency with the given name with <code>pkg-config</code> if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.</p>
+<p>Finds an external dependency (usually a library installed on your system) with the given name with <code>pkg-config</code> if possible and with <a href="Dependencies.html">library-specific fallback detection logic</a> otherwise. This function supports the following keyword arguments:</p>
 <ul>
 <li>
 <code>modules</code> specifies submodules to use for dependencies such as Qt5 or Boost.</li>
@@ -335,6 +335,8 @@ endif
 <code>default_options</code> <em>(added 0.37.0)</em> an array of option values that override those set in the project's <code>default_options</code> invocation (like <code>default_options</code> in <a href="Reference-manual.html#project"><code>project()</code></a>, they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)</li>
 <li>
 <code>method</code> defines the way the dependency is detected, the default is <code>auto</code> but can be overridden to be e.g. <code>qmake</code> for Qt development, and different dependencies support different values for this (though <code>auto</code> will work on all of them)</li>
+<li>
+<code>language</code> <em>(added 0.42.0)</em> defines what language-specific dependency to find if it's available for multiple languages.</li>
 </ul>
 <p>The returned object also has methods that are documented in the <a href="Reference-manual.html#dependency-object">object methods section</a> below.</p>
 <h3 id="error">error()</h3>
@@ -400,6 +402,8 @@ endif
 <code>override_options</code> takes an array of strings in the same format as <code>project</code>'s <code>default_options</code> overriding the values of these options for this target only, since 0.40.0</li>
 <li>
 <code>implib</code> when set to true, an import library is generated for the executable (the name of the import library is based on <em>exe_name</em>).  Alternatively, when set to a string, that gives the base name for the import library.  The import library is used when the returned build target object appears in <code>link_with:</code> elsewhere.  Only has any effect on platforms where that is meaningful (e.g. Windows).  Since 0.42.0</li>
+<li>
+<code>implicit_include_directories</code> is a boolean telling whether Meson adds the current source and build directories to the include path, defaults to <code>true</code>, since 0.42.0</li>
 </ul>
 <p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always flattened, which means you can freely nest and add lists while creating the final list. As a corollary, the best way to handle a 'disabled dependency' is by assigning an empty list <code>[]</code> to it and passing it like any other dependency to the <code>dependencies:</code> keyword argument.</p>
 <p>The returned object also has methods that are documented in the <a href="Reference-manual.html#build-target-object">object methods section</a> below.</p>
@@ -550,9 +554,20 @@ executable('some-tool', sources,
 </code></pre>
 <p>Installs the specified man files from the source tree into system's man directory during the install step. This directory can be overridden by specifying it with the <code>install_dir</code> keyword argument. All man pages are compressed during installation and installed with a <code>.gz</code> suffix.</p>
 <h3 id="install_subdir">install_subdir()</h3>
-<pre><code class="language-meson">    void install_subdir(subdir_name)
+<pre><code class="language-meson">    void install_subdir(subdir_name, install_dir : ..., exclude_files : ..., exclude_directories : ...)
 </code></pre>
 <p>Installs the entire given subdirectory and its contents from the source tree to the location specified by the keyword argument <code>install_dir</code>. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use <code>install_subdir</code> to install into two overlapping directories (such as <code>foo</code> and <code>foo/bar</code>) because if you do the behavior is undefined.</p>
+<p>The following keyword arguments are supported:</p>
+<ul>
+<li>
+<code>install_dir</code>: the location to place the installed subdirectory.</li>
+<li>
+<code>exclude_files</code>: a list of file names that should not be installed.
+Names are interpreted as paths relative to the <code>subdir_name</code> location.</li>
+<li>
+<code>exclude_directories</code>: a list of directory names that should not be installed.
+Names are interpreted as paths relative to the <code>subdir_name</code> location.</li>
+</ul>
 <h3 id="is_variable">is_variable()</h3>
 <pre><code class="language-meson">    bool is_variable(varname)
 </code></pre>

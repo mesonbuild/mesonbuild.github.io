@@ -240,7 +240,7 @@ subdir('tests') # test binaries would link against the library here
 <p>It does not. In order for Meson to download anything from the net while building, two conditions must be met.</p>
 <p>First of all there needs to be a <code>.wrap</code> file with a download URL in the <code>subprojects</code> directory. If one does not exist, Meson will not download anything.</p>
 <p>The second requirement is that there needs to be an explicit subproject invocation in your <code>meson.build</code> files. Either <code>subproject('foobar')</code> or <code>dependency('foobar', fallback : ['foobar', 'foo_dep'])</code>. If these declarations either are not in any build file or they are not called (due to e.g. <code>if/else</code>) then nothing is downloaded.</p>
-<p>If this is not sufficient for you, starting from release 0.40.0 Meson has a option called <code>wrap-mode</code>, which can be used to disable wrap downloads altogether.</p>
+<p>If this is not sufficient for you, starting from release 0.40.0 Meson has a option called <code>wrap-mode</code> which can be used to disable wrap downloads altogether with <code>--wrap-mode=nodownload</code>. You can also disable dependency fallbacks altogether with <code>--wrap-mode=nofallback</code>, which also implies the <code>nodownload</code> option.</p>
 
 </div>
 

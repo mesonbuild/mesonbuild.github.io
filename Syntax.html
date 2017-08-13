@@ -194,6 +194,12 @@ num = var1.to_int()
 <pre><code class="language-meson">single quote = 'contains a \' character'
 </code></pre>
 <p>Similarly <code>\n</code> gets converted to a newline and <code>\\\\</code> to a single backslash.</p>
+<h4 id="string-concatenation">String concatenation</h4>
+<p>Strings can be concatenated to form a new string using the <code>+</code> symbol.</p>
+<pre><code class="language-meson">str1 = 'abc'
+str2 = 'xyz'
+combined = str1 + '_' + str2 # combined is now abc_xyz
+</code></pre>
 <h4 id="strings-running-over-multiple-lines">Strings running over multiple lines</h4>
 <p>Strings running over multiple lines can be declared with three single quotes, like this:</p>
 <pre><code class="language-meson">multiline_string = '''#include &lt;foo.h&gt;

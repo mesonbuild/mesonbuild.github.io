@@ -211,6 +211,43 @@ is removed during the install step.</p>
 flag manually, e.g. via <code>link_args</code> to a target. This is not
 recommended because having multiple rpath causes them to stomp on each
 other. This warning will become a hard error in some future release.</p>
+<h2 id="vulkan-dependency-module">Vulkan dependency module</h2>
+<p>Vulkan can now be used as native dependency. The dependency module
+will detect the VULKAN_SDK environment variable or otherwise try to
+receive the vulkan library and header via pkgconfig or from the
+system.</p>
+<h2 id="limiting-the-maximum-number-of-linker-processes">Limiting the maximum number of linker processes</h2>
+<p>With the Ninja backend it is now possible to limit the maximum number of
+concurrent linker processes. This is usually only needed for projects
+that have many large link steps that cause the system to run out of
+memory if they are run in parallel. This limit can be set with the
+new <code>backend_max_links</code> option.</p>
+<h2 id="disable-implicit-include-directories">Disable implicit include directories</h2>
+<p>By default Meson adds the current source and build directories to the
+header search path. On some rare occasions this is not desired. Setting
+the <code>implicit_include_directories</code> keyword argument to <code>false</code> these
+directories are not used.</p>
+<h2 id="support-for-mpi-dependency">Support for MPI dependency</h2>
+<p>MPI is now supported as a dependency. Because dependencies are
+language-specific, you must specify the requested language with the
+<code>language</code> keyword, i.e., <code>dependency('mpi', language='c')</code> will
+request the C MPI headers and libraries. See <a href="Dependencies.html#mpi">the MPI
+dependency</a> for more information.</p>
+<h2 id="allow-excluding-files-or-directories-from-install_subdir">Allow excluding files or directories from <code>install_subdir</code>
+</h2>
+<p>The <a href="Reference-manual.html#install_subdir"><code>install_subdir</code></a> command
+accepts the new <code>exclude_files</code> and <code>exclude_directories</code> keyword
+arguments that allow specified files or directories to be excluded
+from the installed subdirectory.</p>
+<h2 id="make-all-meson-functionality-invokable-via-the-main-executable">Make all Meson functionality invokable via the main executable</h2>
+<p>Previously Meson had multiple executables such as <code>mesonintrospect</code>
+and <code>mesontest</code>. They are now invokable via the main Meson executable
+like this:</p>
+<pre><code>meson configure &lt;arguments&gt; # equivalent to mesonconf &lt;options&gt;
+meson test &lt;arguments&gt; # equivalent to mesontest &lt;arguments&gt;
+</code></pre>
+<p>The old commands are still available but they are deprecated
+and will be removed in some future release.</p>
 
 </div>
 
