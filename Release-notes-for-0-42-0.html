@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Release 0.42</title>
+<title>New features</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -159,7 +159,9 @@ $('body').removeClass('no-script');
 	<div id="main">
 				
 <div id="page-description" data-hotdoc-source="Release-notes-for-0.42.0.md" data-hotdoc-role="main">
-<p><strong>Preliminary, 0.42.0 has not been released yet.</strong></p>
+<hr>
+<p>title: Release 0.42
+short-description: Release notes for 0.42</p>
 <h1 id="new-features">New features</h1>
 <h2 id="distribution-tarballs-from-mercurial-repositories">Distribution tarballs from Mercurial repositories</h2>
 <p>Creating distribution tarballs can now be made out of projects based on
@@ -248,6 +250,16 @@ meson test &lt;arguments&gt; # equivalent to mesontest &lt;arguments&gt;
 </code></pre>
 <p>The old commands are still available but they are deprecated
 and will be removed in some future release.</p>
+<h2 id="pcap-dependency-detector">Pcap dependency detector</h2>
+<p>Meson will automatically obtain dependency information for pcap
+using the <code>pcap-config</code> tool. It is used like any other dependency:</p>
+<pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
+</code></pre>
+<h2 id="gnome-module-mkenums_simple-addition">GNOME module mkenums_simple() addition</h2>
+<p>Most libraries and applications use the same standard templates for
+glib-mkenums. There is now a new <code>mkenums_simple()</code> convenience method
+that passes those default templates to glib-mkenums and allows some tweaks
+such as optional function decorators or leading underscores.</p>
 
 </div>
 

@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -223,6 +223,12 @@ q5exe = executable('qt5test',
   dependencies: qt5widgets)
 </code></pre>
 <p>Here we have an UI file created with Qt Designer and one source and header file each that require preprocessing with the <code>moc</code> tool. We also define a resource file to be compiled with <code>rcc</code>. We just have to tell Meson which files are which and it will take care of invoking all the necessary tools in the correct order, which is done with the <code>preprocess</code> method of the <code>qt5</code> module. Its output is simply put in the list of sources for the target. The <code>modules</code> keyword of <code>dependency</code> works just like it does with Boost. It tells which subparts of Qt the program uses.</p>
+<h2 id="pcap">Pcap</h2>
+<p>The pcap library does not ship with pkg-config at the time or writing
+but instead it has its own <code>pcap-config</code> util. Meson will use it
+automatically:</p>
+<pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
+</code></pre>
 <h2 id="declaring-your-own">Declaring your own</h2>
 <p>You can declare your own dependency objects that can be used interchangeably with dependency objects obtained from the system. The syntax is straightforward:</p>
 <pre><code class="language-meson">my_inc = include_directories(...)
