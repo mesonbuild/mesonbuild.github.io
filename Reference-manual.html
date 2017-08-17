@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -950,20 +950,30 @@ Names are interpreted as paths relative to the <code>subdir_name</code> location
 </ul>
 <h3 id="configuration-data-object">
 <code>configuration</code> data object</h3>
-<p>This object is returned by <a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> and encapsulates configuration values to be used for generating configuration files. A more in-depth description can be found in the <a href="Configuration.html">the configuration wiki page</a> It has three methods:</p>
+<p>This object is returned by
+<a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> and encapsulates
+configuration values to be used for generating configuration files. A
+more in-depth description can be found in the <a href="Configuration.html">the configuration wiki
+page</a> It has three methods:</p>
 <ul>
+<li>
+<code>get(varname, default_value)</code> returns the value of <code>varname</code>, if the value has not been set returns <code>default_value</code> if it is defined <em>(added 0.38.0)</em> and errors out if not</li>
+<li>
+<code>has(varname)</code>, returns <code>true</code> if the specified variable is set</li>
+<li>
+<code>merge_from(other)</code> takes as argument a different configuration data object and copies all entries from that object to the current object</li>
 <li>
 <code>set(varname, value)</code>, sets a variable to a given value</li>
 <li>
 <code>set10(varname, boolean_value)</code> is the same as above but the value is either <code>true</code> or <code>false</code> and will be written as 1 or 0, respectively</li>
 <li>
 <code>set_quoted(varname, value)</code> is same as <code>set</code> but quotes the value in double quotes (<code>"</code>)</li>
-<li>
-<code>has(varname)</code>, returns <code>true</code> if the specified variable is set</li>
-<li>
-<code>get(varname, default_value)</code> returns the value of <code>varname</code>, if the value has not been set returns <code>default_value</code> if it is defined <em>(added 0.38.0)</em> and errors out if not</li>
 </ul>
-<p>They all take the <code>description</code> keyword that will be written in the result file. The replacement assumes a file with C syntax. If your generated file is source code in some other language, you probably don't want to add a description field because it most likely will cause a syntax error.</p>
+<p>They all take the <code>description</code> keyword that will be written in the
+result file. The replacement assumes a file with C syntax. If your
+generated file is source code in some other language, you probably
+don't want to add a description field because it most likely will
+cause a syntax error.</p>
 <h3 id="custom-target-object">
 <code>custom target</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> and contains a target with the following methods:</p>
