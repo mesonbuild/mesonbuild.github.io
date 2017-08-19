@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -198,6 +198,34 @@ mydep = declare_dependency(link_with : mylibrary,
   dependencies : mydep)
 </code></pre>
 <p>Meson will ensure that the header file has been built before compiling <code>main.c</code>.</p>
+<h2 id="avoid-exposing-compilable-source-files-in-declare_dependency">Avoid exposing compilable source files in declare_dependency</h2>
+<p>The main use for the <code>sources</code> argument in <code>declare_dependency</code> is to construct the correct dependency graph for the backends, as demonstrated in the previous section. It is extremely important to note that it should <em>not</em> be used to directly expose compilable sources (<code>.c</code>, <code>.cpp</code>, etc.) of dependencies, and should rather only be used for header/config files. The following example will illustrate what can go wrong if you accidentally expose compilable source files.</p>
+<p>So you've read about unity builds and how Meson natively supports them. You decide to expose the sources of dependencies in order to have unity builds that include their dependencies. For your support library you do</p>
+<pre><code class="language-meson">my_support_sources = files(...)
+
+mysupportlib = shared_library(
+  ...
+  sources : my_support_sources,
+  ...)
+mysupportlib_dep = declare_dependency(
+  ...
+  link_with : mylibrary,
+  sources : my_support_sources,
+  ...)
+</code></pre>
+<p>And for your main project you do:</p>
+<pre><code class="language-meson">mylibrary = shared_library(
+  ...
+  dependencies : mysupportlib_dep,
+  ...)
+myexe = executable(
+  ...
+  link_with : mylibrary,
+  dependencies : mysupportlib_dep,
+  ...)
+</code></pre>
+<p>This is extremely dangerous. When building, <code>mylibrary</code> will build and link the support sources <code>my_support_sources</code> into the resulting shared library. Then, for <code>myexe</code>, these same support sources will be compiled again, will be linked into the resulting executable, in addition to them being already present in <code>mylibrary</code>. This can quickly run afoul of the <a href="https://en.wikipedia.org/wiki/One_Definition_Rule">One Definition Rule (ODR)</a> in C++, as you have more than one definition of a symbol, yielding undefined behavior. While C does not have a strict ODR rule, there is no language in the standard which guarantees such behavior to work. Violations of the ODR can lead to weird idiosyncratic failures such as segfaults. In the overwhelming number of cases, exposing library sources via the <code>sources</code> argument in <code>declare_dependency</code> is thus incorrect. If you wish to get full cross-library performance, consider building <code>mysupportlib</code> as a static library instead and employing LTO.</p>
+<p>There are exceptions to this rule. If there are some natural constraints on how your library is to be used, you can expose sources. For instance, the WrapDB module for GoogleTest directly exposes the sources of GTest and GMock. This is valid, as GTest and GMock will only ever be used in <em>terminal</em> link targets. A terminal target is the final target in a dependency link chain, for instance <code>myexe</code> in the last example, whereas <code>mylibrary</code> is an intermediate link target. For most libraries this rule is not applicable though, as you cannot in general control how others consume your library, and as such should not expose sources.</p>
 
 </div>
 
