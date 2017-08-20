@@ -162,18 +162,36 @@ $('body').removeClass('no-script');
 <h1 id="i18n-module">I18n module</h1>
 <p>This module provides internationalisation and localisation functionality.</p>
 <h2 id="usage">Usage</h2>
-<p>To use this module, just do: <strong><code>i18n = import('i18n')</code></strong>. The following functions will then be available as methods on the object with the name <code>i18n</code>. You can, of course, replace the name <code>i18n</code> with anything else.</p>
+<p>To use this module, just do: <strong><code>i18n = import('i18n')</code></strong>. The
+following functions will then be available as methods on the object
+with the name <code>i18n</code>. You can, of course, replace the name <code>i18n</code> with
+anything else.</p>
 <h3 id="i18ngettext">i18n.gettext()</h3>
-<p>Sets up gettext localisation so that translations are built and placed into their proper locations during install. Takes one positional argument which is the name of the gettext module.</p>
+<p>Sets up gettext localisation so that translations are built and placed
+into their proper locations during install. Takes one positional
+argument which is the name of the gettext module.</p>
 <ul>
 <li>
-<code>languages</code>: list of languages that are to be generated. As of 0.37.0 this is optional and the <a href="https://www.gnu.org/software/gettext/manual/html_node/po_002fLINGUAS.html">LINGUAS</a> file is read.</li>
+<p><code>args</code>: list of extra arguments to pass to <code>xgettext</code> when
+generating the pot file</p>
+</li>
 <li>
-<code>data_dirs</code>: (<em>Added 0.36.0</em>) list of directories to be set for <code>GETTEXTDATADIRS</code> env var (Requires gettext 0.19.8+), used for local its files</li>
+<p><code>data_dirs</code>: (<em>Added 0.36.0</em>) list of directories to be set for
+<code>GETTEXTDATADIRS</code> env var (Requires gettext 0.19.8+), used for local
+its files</p>
+</li>
 <li>
-<code>preset</code>: (<em>Added 0.37.0</em>) name of a preset list of arguments, current option is <code>'glib'</code>, see <a href="https://github.com/mesonbuild/meson/blob/master/mesonbuild/modules/i18n.py">source</a> for for their value</li>
+<p><code>languages</code>: list of languages that are to be generated. As of
+0.37.0 this is optional and the
+<a href="https://www.gnu.org/software/gettext/manual/html_node/po_002fLINGUAS.html">LINGUAS</a>
+file is read.</p>
+</li>
 <li>
-<code>args</code>: list of extra arguments to pass to <code>xgettext</code> when generating the pot file</li>
+<p><code>preset</code>: (<em>Added 0.37.0</em>) name of a preset list of arguments,
+current option is <code>'glib'</code>, see
+<a href="https://github.com/mesonbuild/meson/blob/master/mesonbuild/modules/i18n.py">source</a>
+for for their value</p>
+</li>
 </ul>
 <p>This function also defines targets for maintainers to use:
 <strong>Note</strong>: These output to the source directory</p>
@@ -186,12 +204,15 @@ $('body').removeClass('no-script');
 <code>&lt;project_id&gt;-gmo</code>: builds the translations without installing</li>
 </ul>
 <h3 id="i18nmerge_file">i18n.merge_file()</h3>
-<p>This merges translations into a text file using <code>msgfmt</code>. See <a href="https://github.com/mesonbuild/meson/wiki/Reference%20manual#custom_target">custom_target</a> for normal keywords. In addition it accepts these keywords:</p>
+<p>This merges translations into a text file using <code>msgfmt</code>. See
+<a href="https://github.com/mesonbuild/meson/wiki/Reference%20manual#custom_target">custom_target</a>
+for normal keywords. In addition it accepts these keywords:</p>
 <ul>
 <li>
-<code>po_dir</code>: directory containing translations, relative to current directory</li>
+<code>data_dirs</code>: (<em>Added 0.41.0</em>) list of directories for its files (See
+also <code>i18n.gettext()</code>)</li>
 <li>
-<code>data_dirs</code>: (<em>Added 0.41.0</em>) list of directories for its files (See also <code>i18n.gettext()</code>)</li>
+<code>po_dir</code>: directory containing translations, relative to current directory</li>
 <li>
 <code>type</code>: type of file, valid options are <code>'xml'</code> (default) and <code>'desktop'</code>
 </li>

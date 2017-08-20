@@ -160,39 +160,57 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Pkgconfig-module.md" data-hotdoc-role="main">
 <h1 id="pkgconfig-module">Pkgconfig module</h1>
-<p>This module is a simple generator for <a href="https://pkg-config.freedesktop.org/">pkg-config</a> files.</p>
+<p>This module is a simple generator for
+<a href="https://pkg-config.freedesktop.org/">pkg-config</a> files.</p>
 <h2 id="usage">Usage</h2>
-<p>To use this module, just do: <strong><code>pkg = import('pkgconfig')</code></strong>. The following function will then be available as <code>pkg.generate()</code>. You can, of course, replace the name <code>pkg</code> with anything else.</p>
+<p>To use this module, just do: <strong><code>pkg = import('pkgconfig')</code></strong>. The
+following function will then be available as <code>pkg.generate()</code>. You
+can, of course, replace the name <code>pkg</code> with anything else.</p>
 <h3 id="pkggenerate">pkg.generate()</h3>
-<p>The generated file's properties are specified with the following keyword arguments.</p>
+<p>The generated file's properties are specified with the following
+keyword arguments.</p>
 <ul>
-<li>
-<code>libraries</code> a list of built libraries (usually results of shared_library) that the user needs to link against</li>
-<li>
-<code>version</code> a string describing the version of this library</li>
-<li>
-<code>name</code> the name of this library</li>
 <li>
 <code>description</code> a string describing the library</li>
 <li>
-<code>filebase</code>, the base name to use for the pkg-config file, as an example the value of <code>libfoo</code> would produce a pkg-config file called <code>libfoo.pc</code>
+<code>extra_cflags</code> a list of extra compiler flags to be added to the
+<code>Cflags</code> field after the header search path</li>
+<li>
+<code>filebase</code>, the base name to use for the pkg-config file, as an
+example the value of <code>libfoo</code> would produce a pkg-config file called
+<code>libfoo.pc</code>
 </li>
 <li>
-<code>subdirs</code> which subdirs of <code>include</code> should be added to the header search path, for example if you install headers into <code>${PREFIX}/include/foobar-1</code>, the correct value for this argument would be <code>foobar-1</code>
+<code>install_dir</code> the directory to install to, defaults to the value of
+option <code>libdir</code> followed by <code>/pkgconfig</code>
+</li>
+<li>
+<code>libraries</code> a list of built libraries (usually results of
+shared_library) that the user needs to link against</li>
+<li>
+<code>libraries_private</code> list of strings to put in the
+<code>Libraries.private</code> field</li>
+<li>
+<code>name</code> the name of this library</li>
+<li>
+<code>subdirs</code> which subdirs of <code>include</code> should be added to the header
+search path, for example if you install headers into
+<code>${PREFIX}/include/foobar-1</code>, the correct value for this argument
+would be <code>foobar-1</code>
 </li>
 <li>
 <code>requires</code> list of strings to put in the <code>Requires</code> field</li>
 <li>
-<code>requires_private</code> list of strings to put in the <code>Requires.private</code> field</li>
+<code>requires_private</code> list of strings to put in the <code>Requires.private</code>
+field</li>
 <li>
-<code>libraries_private</code> list of strings to put in the <code>Libraries.private</code> field</li>
+<code>variables</code> a list of strings with custom variables to add to the
+generated file. The strings must be in the form <code>name=value</code> and may
+reference other pkgconfig variables,
+e.g. <code>datadir=${prefix}/share</code>. The names <code>prefix</code>, <code>libdir</code> and
+<code>installdir</code> are reserved and may not be used.</li>
 <li>
-<code>install_dir</code> the directory to install to, defaults to the value of option <code>libdir</code> followed by <code>/pkgconfig</code>
-</li>
-<li>
-<code>extra_cflags</code> a list of extra compiler flags to be added to the <code>Cflags</code> field after the header search path</li>
-<li>
-<code>variables</code> a list of strings with custom variables to add to the generated file. The strings must be in the form <code>name=value</code> and may reference other pkgconfig variables, e.g. <code>datadir=${prefix}/share</code>. The names <code>prefix</code>, <code>libdir</code> and <code>installdir</code> are reserved and may not be used.</li>
+<code>version</code> a string describing the version of this library</li>
 </ul>
 
 </div>

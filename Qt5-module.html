@@ -160,16 +160,23 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Qt5-module.md" data-hotdoc-role="main">
 <h1 id="qt5-module">Qt5 module</h1>
-<p>The Qt5 module provides tools to automatically deal with the various tools and steps required for Qt. The module has one method.</p>
+<p>The Qt5 module provides tools to automatically deal with the various
+tools and steps required for Qt. The module has one method.</p>
 <h2 id="preprocess">preprocess</h2>
-<p>This method takes four keyword arguments, <code>moc_headers</code>, <code>moc_sources</code>, <code>ui_files</code> and <code>qresources</code> which define the files that require preprocessing with <code>moc</code>, <code>uic</code> and <code>rcc</code>. It returns an opaque object that should be passed to a main build target. A simple example would look like this:</p>
+<p>This method takes four keyword arguments, <code>moc_headers</code>,
+<code>moc_sources</code>, <code>ui_files</code> and <code>qresources</code> which define the files that
+require preprocessing with <code>moc</code>, <code>uic</code> and <code>rcc</code>. It returns an
+opaque object that should be passed to a main build target. A simple
+example would look like this:</p>
 <pre><code class="language-meson">qt5 = import('qt5')
 qt5_dep = dependency('qt5', modules: ['Core', 'Gui'])
 moc_files = qt5.preprocess(moc_headers : 'myclass.h')
 executable('myprog', 'main.cpp', 'myclass.cpp', moc_files,
            dependencies : qt5_dep)
 </code></pre>
-<p>The 'modules' argument is used to include Qt modules in the project.  See the Qt documentation for the <a href="http://doc.qt.io/qt-5/qtmodules.html">list of modules</a>.</p>
+<p>The 'modules' argument is used to include Qt modules in the project.
+See the Qt documentation for the <a href="http://doc.qt.io/qt-5/qtmodules.html">list of
+modules</a>.</p>
 
 </div>
 

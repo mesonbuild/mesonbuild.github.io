@@ -160,118 +160,176 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Gnome-module.md" data-hotdoc-role="main">
 <h1 id="gnome-module">GNOME module</h1>
-<p>This module provides helper tools for build operations needed when building Gnome/GLib programs.</p>
-<p><strong>Note</strong>: the compilation commands here might not work properly when you change the source files. This is a bug in the respective compilers which do not expose the required dependency information. This has been reported upstream in <a href="https://bugzilla.gnome.org/show_bug.cgi?id=745754">this bug</a>. Until this is fixed you need to be careful when changing your source files.</p>
+<p>This module provides helper tools for build operations needed when
+building Gnome/GLib programs.</p>
+<p><strong>Note</strong>: the compilation commands here might not work properly when
+you change the source files. This is a bug in the respective
+compilers which do not expose the required dependency
+information. This has been reported upstream in <a href="https://bugzilla.gnome.org/show_bug.cgi?id=745754">this bug</a>. Until
+this is fixed you need to be careful when changing your source
+files.</p>
 <h2 id="usage">Usage</h2>
-<p>To use this module, just do: <strong><code>gnome = import('gnome')</code></strong>. The following functions will then be available as methods on the object with the name <code>gnome</code>. You can, of course, replace the name <code>gnome</code> with anything else.</p>
+<p>To use this module, just do: <strong><code>gnome = import('gnome')</code></strong>. The
+following functions will then be available as methods on the object
+with the name <code>gnome</code>. You can, of course, replace the name <code>gnome</code>
+with anything else.</p>
 <h3 id="gnomecompile_resources">gnome.compile_resources()</h3>
-<p>This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the XML file containing the resource definitions. If the name is <code>foobar</code>, Meson will generate a header file called <code>foobar.h</code>, which you can then include in your sources.</p>
+<p>This function compiles resources specified in an XML file into code
+that can be embedded inside the main binary. Similar a build target it
+takes two positional arguments. The first one is the name of the
+resource and the second is the XML file containing the resource
+definitions. If the name is <code>foobar</code>, Meson will generate a header
+file called <code>foobar.h</code>, which you can then include in your sources.</p>
 <ul>
 <li>
-<code>source_dir</code>: a list of subdirectories where the resource compiler should look up the files, relative to the location of the XML file</li>
-<li>
-<code>c_name</code>: passed to the resource compiler as an argument after <code>--c-name</code>
+<p><code>c_name</code>: passed to the resource compiler as an argument after
+<code>--c-name</code></p>
 </li>
 <li>
-<code>dependencies</code>: extra targets to depend upon for building</li>
+<p><code>dependencies</code>: extra targets to depend upon for building</p>
+</li>
 <li>
-<code>export</code>: (<em>Added 0.37.0</em>) if true, export the symbols of the generated sources</li>
+<p><code>export</code>: (<em>Added 0.37.0</em>) if true, export the symbols of the
+generated sources</p>
+</li>
 <li>
-<code>gresource_bundle</code>: (<em>Added 0.37.0</em>) if true, output a <code>.gresource</code> file instead of source</li>
+<p><code>extra_args</code>: extra command line arguments to pass to the resource</p>
+</li>
 <li>
-<code>install_header</code>: (<em>Added 0.37.0</em>) if true, install the header file</li>
+<p><code>gresource_bundle</code>: (<em>Added 0.37.0</em>) if true, output a <code>.gresource</code>
+file instead of source</p>
+</li>
 <li>
-<code>install</code>: (<em>Added 0.37.0</em>) if true, install the gresource file</li>
+<p><code>install</code>: (<em>Added 0.37.0</em>) if true, install the gresource file</p>
+</li>
 <li>
-<code>install_dir</code>: (<em>Added 0.37.0</em>) location to install the header or bundle depending on previous options</li>
+<p><code>install_dir</code>: (<em>Added 0.37.0</em>) location to install the header or
+bundle depending on previous options</p>
+</li>
 <li>
-<code>extra_args</code>: extra command line arguments to pass to the resource compiler</li>
+<p><code>install_header</code>: (<em>Added 0.37.0</em>) if true, install the header file</p>
+</li>
+<li>
+<p><code>source_dir</code>: a list of subdirectories where the resource compiler
+should look up the files, relative to the location of the XML file</p>
+<p>compiler</p>
+</li>
 </ul>
-<p>Returns an array containing: <code>[c_source, header_file]</code> or <code>[gresource_bundle]</code></p>
+<p>Returns an array containing: <code>[c_source, header_file]</code> or
+<code>[gresource_bundle]</code></p>
 <h3 id="gnomegenerate_gir">gnome.generate_gir()</h3>
-<p>Generates GObject introspection data. Takes one positional argument, the build target you want to build gir data for. There are several keyword arguments. Many of these map directly to the <code>g-ir-scanner</code> tool so see its documentation for more information.</p>
+<p>Generates GObject introspection data. Takes one positional argument,
+the build target you want to build gir data for. There are several
+keyword arguments. Many of these map directly to the <code>g-ir-scanner</code>
+tool so see its documentation for more information.</p>
 <ul>
 <li>
-<code>sources</code>: the list of sources to be scanned for gir data</li>
-<li>
-<code>nsversion</code>: namespace version</li>
-<li>
-<code>namespace</code>: the namespace for this gir object which determines output files</li>
-<li>
-<code>symbol_prefix</code>: the symbol prefix for the gir object, e.g. <code>gtk</code>
+<p><code>dependencies</code>: deps to use during introspection scanning</p>
 </li>
 <li>
-<code>identifier_prefix</code>: the identifier prefix for the gir object, e.g. <code>Gtk</code>
+<p><code>extra_args</code>: command line arguments to pass to gir compiler</p>
 </li>
 <li>
-<code>export_packages</code>: extra packages the gir file exports</li>
+<p><code>export_packages</code>: extra packages the gir file exports</p>
+</li>
 <li>
-<code>includes</code>: list of gir names to be included, can also be a GirTarget</li>
+<p><code>sources</code>: the list of sources to be scanned for gir data</p>
+</li>
 <li>
-<code>dependencies</code>: deps to use during introspection scanning</li>
+<p><code>nsversion</code>: namespace version</p>
+</li>
 <li>
-<code>link_with</code>: list of libraries to link with</li>
+<p><code>namespace</code>: the namespace for this gir object which determines
+output files</p>
+</li>
 <li>
-<code>include_directories</code>: extra include paths to look for gir files</li>
+<p><code>identifier_prefix</code>: the identifier prefix for the gir object,
+e.g. <code>Gtk</code></p>
+</li>
 <li>
-<code>install</code>: if true, install the generated files</li>
+<p><code>includes</code>: list of gir names to be included, can also be a GirTarget</p>
+</li>
 <li>
-<code>install_dir_gir</code>: (<em>Added 0.35.0</em>) which directory to install the gir file into</li>
+<p><code>include_directories</code>: extra include paths to look for gir files</p>
+</li>
 <li>
-<code>install_dir_typelib</code>: (<em>Added 0.35.0</em>) which directory to install the typelib file into</li>
+<p><code>install</code>: if true, install the generated files</p>
+</li>
 <li>
-<code>extra_args</code>: command line arguments to pass to gir compiler</li>
+<p><code>install_dir_gir</code>: (<em>Added 0.35.0</em>) which directory to install the
+gir file into</p>
+</li>
+<li>
+<p><code>install_dir_typelib</code>: (<em>Added 0.35.0</em>) which directory to install
+the typelib file into</p>
+</li>
+<li>
+<p><code>link_with</code>: list of libraries to link with</p>
+</li>
+<li>
+<p><code>symbol_prefix</code>: the symbol prefix for the gir object, e.g. <code>gtk</code></p>
+</li>
 </ul>
 <p>Returns an array of two elements which are: <code>[gir_target, typelib_target]</code></p>
 <h3 id="gnomegenmarshal">gnome.genmarshal()</h3>
-<p>Generates a marshal file using the <code>glib-genmarshal</code> tool. The first argument is the basename of
-the output files.</p>
+<p>Generates a marshal file using the <code>glib-genmarshal</code> tool. The first
+argument is the basename of the output files.</p>
 <ul>
 <li>
-<code>sources</code>: the list of sources to use as inputs</li>
-<li>
-<code>prefix</code>: the prefix to use for symbols</li>
+<code>extra_args</code>: (<em>Added 0.42.0</em>) additional command line arguments to
+pass</li>
 <li>
 <code>install_header</code>: if true, install the generated header</li>
 <li>
 <code>install_dir</code>: directory to install header to</li>
 <li>
-<code>stdinc</code>: if true, include the standard marshallers from glib</li>
+<code>nostdinc</code>: if true, don't include the standard marshallers from
+glib</li>
 <li>
-<code>nostdinc</code>: if true, don't include the standard marshallers from glib</li>
+<code>internal</code>: if true, mark generated sources as internal to
+<code>glib-genmarshal</code> (<em>Requires GLib 2.54</em>)</li>
 <li>
-<code>internal</code>: if true, mark generated sources as internal</li>
+<code>prefix</code>: the prefix to use for symbols</li>
 <li>
 <code>skip_source</code>: if true, skip source location comments</li>
 <li>
-<code>valist_marshallers</code>: if true, generate va_list marshallers</li>
+<code>stdinc</code>: if true, include the standard marshallers from glib</li>
 <li>
-<code>extra_args</code>: (<em>Added 0.42.0</em>) additional command line arguments to pass
-to <code>glib-genmarshal</code> (<em>Requires GLib 2.54</em>)</li>
+<code>sources</code>: the list of sources to use as inputs</li>
+<li>
+<code>valist_marshallers</code>: if true, generate va_list marshallers</li>
 </ul>
 <p><em>Added 0.35.0</em></p>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
 <h3 id="gnomemkenums">gnome.mkenums()</h3>
-<p>Generates enum files for GObject using the <code>glib-mkenums</code> tool. The first argument is the base name of the output files.</p>
-<p>This method is essentially a wrapper around the <code>glib-mkenums</code> tool's command line API. It is the most featureful method for enum creation.</p>
-<p>Typically you either provide template files or you specify the various template sections manually as strings.</p>
-<p>Most libraries and applications will be using the same standard template with only minor tweaks, in which case the <code>gnome.mkenums_simple()</code> convenience method can be used instead.</p>
-<p>Note that if you <code>#include</code> the generated header in any of the sources for a build target, you must add the generated header to the build target's list of sources to codify the dependency. This is true for all generated sources, not just <code>mkenums</code>.</p>
+<p>Generates enum files for GObject using the <code>glib-mkenums</code> tool. The
+first argument is the base name of the output files.</p>
+<p>This method is essentially a wrapper around the <code>glib-mkenums</code> tool's
+command line API. It is the most featureful method for enum creation.</p>
+<p>Typically you either provide template files or you specify the various
+template sections manually as strings.</p>
+<p>Most libraries and applications will be using the same standard
+template with only minor tweaks, in which case the
+<code>gnome.mkenums_simple()</code> convenience method can be used instead.</p>
+<p>Note that if you <code>#include</code> the generated header in any of the sources
+for a build target, you must add the generated header to the build
+target's list of sources to codify the dependency. This is true for
+all generated sources, not just <code>mkenums</code>.</p>
 <ul>
-<li>
-<code>sources</code>: the list of sources to make enums with</li>
 <li>
 <code>c_template</code>: template to use for generating the source</li>
 <li>
+<code>comments</code>: comment passed to the command</li>
+<li>
 <code>h_template</code>: template to use for generating the header</li>
+<li>
+<code>identifier_prefix</code>: prefix to use for the identifiers</li>
 <li>
 <code>install_header</code>: if true, install the generated header</li>
 <li>
 <code>install_dir</code>: directory to install the header</li>
 <li>
-<code>comments</code>: comment passed to the command</li>
-<li>
-<code>identifier_prefix</code>: prefix to use for the identifiers</li>
+<code>sources</code>: the list of sources to make enums with</li>
 <li>
 <code>symbol_prefix</code>: prefix to use for the symbols</li>
 <li>
@@ -290,16 +348,30 @@ to <code>glib-genmarshal</code> (<em>Requires GLib 2.54</em>)</li>
 <p><em>Added 0.35.0</em></p>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
 <h3 id="gnomemkenums_simple">gnome.mkenums_simple()</h3>
-<p>Generates enum <code>.c</code> and <code>.h</code> files for GObject using the <code>glib-mkenums</code> tool
-with the standard template used by most GObject-based C libraries. The first
-argument is the base name of the output files.</p>
-<p>Note that if you <code>#include</code> the generated header in any of the sources for a
-build target, you must add the generated header to the build target's list of
-sources to codify the dependency. This is true for all generated sources, not
-just <code>mkenums_simple</code>.</p>
+<p>Generates enum <code>.c</code> and <code>.h</code> files for GObject using the
+<code>glib-mkenums</code> tool with the standard template used by most
+GObject-based C libraries. The first argument is the base name of the
+output files.</p>
+<p>Note that if you <code>#include</code> the generated header in any of the sources
+for a build target, you must add the generated header to the build
+target's list of sources to codify the dependency. This is true for
+all generated sources, not just <code>mkenums_simple</code>.</p>
 <ul>
 <li>
-<code>sources</code>: the list of sources to make enums with</li>
+<code>body_prefix</code>: additional prefix at the top of the body file,
+e.g. for extra includes</li>
+<li>
+<code>decorator</code>: optional decorator for the function declarations,
+e.g. <code>GTK_AVAILABLE</code> or <code>GST_EXPORT</code>
+</li>
+<li>
+<code>function_prefix</code>: additional prefix for function names, e.g. in
+case you want to add a leading underscore to functions used only
+internally</li>
+<li>
+<code>header_prefix</code>: additional prefix at the top of the header file,
+e.g. for extra includes (which may be needed if you specify a
+decorator for the function declarations)</li>
 <li>
 <code>install_header</code>: if true, install the generated header</li>
 <li>
@@ -307,16 +379,9 @@ just <code>mkenums_simple</code>.</p>
 <li>
 <code>identifier_prefix</code>: prefix to use for the identifiers</li>
 <li>
+<code>sources</code>: the list of sources to make enums with</li>
+<li>
 <code>symbol_prefix</code>: prefix to use for the symbols</li>
-<li>
-<code>header_prefix</code>: additional prefix at the top of the header file, e.g. for extra includes (which may be needed if you specify a decorator for the function declarations)</li>
-<li>
-<code>decorator</code>: optional decorator for the function declarations, e.g. <code>GTK_AVAILABLE</code> or <code>GST_EXPORT</code>
-</li>
-<li>
-<code>function_prefix</code>: additional prefix for function names, e.g. in case you want to add a leading underscore to functions used only internally</li>
-<li>
-<code>body_prefix</code>: additional prefix at the top of the body file, e.g. for extra includes</li>
 </ul>
 <p>Example:</p>
 <pre><code class="language-meson">gnome = import('gnome')
@@ -336,62 +401,92 @@ mylib = library('my', my_sources, enums,
 <p><em>Added 0.42.0</em></p>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
 <h3 id="gnomecompile_schemas">gnome.compile_schemas()</h3>
-<p>When called, this method will compile the gschemas in the current directory. Note that this is not
-for installing schemas and is only useful when running the application locally for example during tests.</p>
+<p>When called, this method will compile the gschemas in the current
+directory. Note that this is not for installing schemas and is only
+useful when running the application locally for example during tests.</p>
 <h3 id="gnomegdbus_codegen">gnome.gdbus_codegen()</h3>
-<p>Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are three keyword arguments. <code>interface_prefix</code> and <code>namespace</code> map to corresponding features of the compiler while <code>object_manager</code> (since 0.40.0), when set to true, generates object manager code.</p>
-<p>Returns an opaque object containing the source files. Add it to a top level target's source list.</p>
+<p>Compiles the given XML schema into gdbus source code. Takes two
+positional arguments, the first one specifies the name of the source
+files and the second specifies the XML file name. There are three
+keyword arguments. <code>interface_prefix</code> and <code>namespace</code> map to
+corresponding features of the compiler while <code>object_manager</code> (since
+0.40.0), when set to true, generates object manager code.</p>
+<p>Returns an opaque object containing the source files. Add it to a top
+level target's source list.</p>
 <h3 id="gnomegenerate_vapi">gnome.generate_vapi()</h3>
-<p>Creates a VAPI file from gir. The first argument is the name of the library.</p>
+<p>Creates a VAPI file from gir. The first argument is the name of the
+library.</p>
 <ul>
 <li>
-<code>sources</code>: the gir source to generate the VAPI from</li>
-<li>
-<code>packages</code>: VAPI packages that are depended upon</li>
-<li>
-<code>metadata_dirs</code>: extra directories to include for metadata files</li>
-<li>
 <code>gir_dirs</code>: extra directories to include for gir files</li>
-<li>
-<code>vapi_dirs</code>: extra directories to include for VAPI files</li>
 <li>
 <code>install</code>: if true, install the VAPI file</li>
 <li>
 <code>install_dir</code>: location to install the VAPI file (defaults to datadir/vala/vapi)</li>
+<li>
+<code>metadata_dirs</code>: extra directories to include for metadata files</li>
+<li>
+<code>packages</code>: VAPI packages that are depended upon</li>
+<li>
+<code>sources</code>: the gir source to generate the VAPI from</li>
+<li>
+<code>vapi_dirs</code>: extra directories to include for VAPI files</li>
 </ul>
-<p>Returns a custom dependency that can be included when building other VAPI or Vala binaries.</p>
+<p>Returns a custom dependency that can be included when building other
+VAPI or Vala binaries.</p>
 <p><em>Added 0.36.0</em></p>
 <h3 id="gnomeyelp">gnome.yelp()</h3>
-<p>Installs help documentation using Yelp. The first argument is the project id.</p>
-<p>This also creates two targets for translations <code>help-$project-update-po</code> and <code>help-$project-pot</code>.</p>
+<p>Installs help documentation using Yelp. The first argument is the
+project id.</p>
+<p>This also creates two targets for translations
+<code>help-$project-update-po</code> and <code>help-$project-pot</code>.</p>
 <ul>
 <li>
-<code>sources</code>: list of pages</li>
+<code>languages</code>: list of languages for translations</li>
 <li>
 <code>media</code>: list of media such as images</li>
 <li>
-<code>symlink_media</code>: if media should be symlinked not copied (defaults to <code>true</code> since 0.42.0)</li>
+<code>sources</code>: list of pages</li>
 <li>
-<code>languages</code>: list of languages for translations</li>
+<code>symlink_media</code>: if media should be symlinked not copied (defaults to <code>true</code> since 0.42.0)</li>
 </ul>
-<p>Note that very old versions of yelp may not support symlinked media; At least 3.10 should work.</p>
+<p>Note that very old versions of yelp may not support symlinked media;
+At least 3.10 should work.</p>
 <p><em>Added 0.36.0</em></p>
 <h3 id="gnomegtkdoc">gnome.gtkdoc()</h3>
-<p>Compiles and installs gtkdoc documentation into <code>prefix/share/gtk-doc/html</code>. Takes one positional argument: The name of the module.</p>
+<p>Compiles and installs gtkdoc documentation into
+<code>prefix/share/gtk-doc/html</code>. Takes one positional argument: The name
+of the module.</p>
 <ul>
+<li>
+<code>content_files</code>: a list of content files</li>
+<li>
+<code>dependencies</code>: a list of dependencies</li>
+<li>
+<code>fixxref_args</code>: a list of arguments to pass to <code>gtkdoc-fixxref</code>
+</li>
+<li>
+<code>gobject_typesfile</code>: a list of type files</li>
+<li>
+<code>ignore_headers</code>: a list of header files to ignore</li>
+<li>
+<code>html_assets</code>: a list of assets for the HTML pages</li>
+<li>
+<code>html_args</code> a list of arguments to pass to <code>gtkdoc-mkhtml</code>
+</li>
+<li>
+<code>install</code>: if true, installs the generated docs</li>
+<li>
+<code>install_dir</code>: the directory to install the generated docs relative
+to the gtk-doc html dir or an absolute path (default: module name)</li>
 <li>
 <code>main_xml</code>: specifies the main XML file</li>
 <li>
 <code>main_sgml</code>: equal to <code>main_xml</code>
 </li>
 <li>
-<code>src_dir</code>: include_directories to include</li>
-<li>
-<code>dependencies</code>: a list of dependencies</li>
-<li>
-<code>install</code>: if true, installs the generated docs</li>
-<li>
-<code>install_dir</code>: the directory to install the generated docs relative to the gtk-doc html dir or an absolute path (default: module name)</li>
+<code>mkdb_args</code>: a list of arguments to pass to <code>gtkdoc-mkdb</code>
+</li>
 <li>
 <code>scan_args</code>: a list of arguments to pass to <code>gtkdoc-scan</code>
 </li>
@@ -399,26 +494,15 @@ for installing schemas and is only useful when running the application locally f
 <code>scanobjs_args</code>: a list of arguments to pass to <code>gtkdoc-scangobj</code>
 </li>
 <li>
-<code>gobject_typesfile</code>: a list of type files</li>
-<li>
-<code>fixxref_args</code>: a list of arguments to pass to <code>gtkdoc-fixxref</code>
-</li>
-<li>
-<code>html_args</code> a list of arguments to pass to <code>gtkdoc-mkhtml</code>
-</li>
-<li>
-<code>html_assets</code>: a list of assets for the HTML pages</li>
-<li>
-<code>content_files</code>: a list of content files</li>
-<li>
-<code>mkdb_args</code>: a list of arguments to pass to <code>gtkdoc-mkdb</code>
-</li>
-<li>
-<code>ignore_headers</code>: a list of header files to ignore</li>
+<code>src_dir</code>: include_directories to include</li>
 </ul>
-<p>This creates a <code>$module-doc</code> target that can be ran to build docs and normally these are only built on install.</p>
+<p>This creates a <code>$module-doc</code> target that can be ran to build docs and
+normally these are only built on install.</p>
 <h3 id="gnomegtkdoc_html_dir">gnome.gtkdoc_html_dir()</h3>
-<p>Takes as argument a module name and returns the path where that module's HTML files will be installed. Usually used with <code>install_data</code> to install extra files, such as images, to the output directory.</p>
+<p>Takes as argument a module name and returns the path where that
+module's HTML files will be installed. Usually used with
+<code>install_data</code> to install extra files, such as images, to the output
+directory.</p>
 
 </div>
 
