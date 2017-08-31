@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,9 +159,16 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Configuring-a-build-directory.md" data-hotdoc-role="main">
 <h1 id="configuring-a-build-directory">Configuring a build directory</h1>
-<p>Often you want to change the settings of your build after it has been generated. For example you might want to change from a debug build into a release build, set custom compiler flags, change the build options provided in your <code>meson_options.txt</code> file and so on.</p>
-<p>The main tool for this is the <code>mesonconf</code> script. You may also use the <code>mesongui</code> graphical application if you want. However this document describes the use of the command line client.</p>
-<p>You invoke <code>mesonconf</code> by giving it the location of your build dir. If omitted, the current working directory is used instead. Here's a sample output for a simple project.</p>
+<p>Often you want to change the settings of your build after it has been
+generated. For example you might want to change from a debug build
+into a release build, set custom compiler flags, change the build
+options provided in your <code>meson_options.txt</code> file and so on.</p>
+<p>The main tool for this is the <code>mesonconf</code> script. You may also use the
+<code>mesongui</code> graphical application if you want. However this document
+describes the use of the command line client.</p>
+<p>You invoke <code>mesonconf</code> by giving it the location of your build dir. If
+omitted, the current working directory is used instead. Here's a
+sample output for a simple project.</p>
 <pre><code>Core properties
 
 Source dir /home/jpakkane/clangdemo/2_address
@@ -196,10 +202,16 @@ localedir     Locale file directory share/locale
 
 This project does not have any options
 </code></pre>
-<p>These are all the options available for the current project arranged into related groups. The first column in every field is the name of the option. To set an option you use the <code>-D</code> option. For example, changing the installation prefix from <code>/usr/local</code> to <code>/tmp/testroot</code> you would issue the following command.</p>
+<p>These are all the options available for the current project arranged
+into related groups. The first column in every field is the name of
+the option. To set an option you use the <code>-D</code> option. For example,
+changing the installation prefix from <code>/usr/local</code> to <code>/tmp/testroot</code>
+you would issue the following command.</p>
 <pre><code>mesonconf -Dprefix=/tmp/testroot
 </code></pre>
-<p>Then you would run your build command (usually <code>ninja</code>), which would cause Meson to detect that the build setup has changed and do all the work required to bring your build tree up to date.</p>
+<p>Then you would run your build command (usually <code>ninja</code>), which would
+cause Meson to detect that the build setup has changed and do all the
+work required to bring your build tree up to date.</p>
 
 </div>
 

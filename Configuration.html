@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,7 +159,11 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Configuration.md" data-hotdoc-role="main">
 <h1 id="configuration">Configuration</h1>
-<p>If there are multiple configuration options, passing them through compiler flags becomes very burdensome. It also makes the configuration settings hard to inspect. To make things easier, Meson supports the generation of configure files. This feature is similar to one found in other build systems such as CMake.</p>
+<p>If there are multiple configuration options, passing them through
+compiler flags becomes very burdensome. It also makes the
+configuration settings hard to inspect. To make things easier, Meson
+supports the generation of configure files. This feature is similar to
+one found in other build systems such as CMake.</p>
 <p>Suppose we have the following Meson snippet:</p>
 <pre><code class="language-meson">conf_data = configuration_data()
 conf_data.set('version', '1.2.3')
@@ -171,11 +174,18 @@ configure_file(input : 'config.h.in',
 <p>and that the contents of <code>config.h.in</code> are</p>
 <pre><code class="language-c">#define VERSION_STR "@version@"
 </code></pre>
-<p>Meson will then create a file called <code>config.h</code> in the corresponding build directory whose contents are the following.</p>
+<p>Meson will then create a file called <code>config.h</code> in the corresponding
+build directory whose contents are the following.</p>
 <pre><code class="language-c">#define VERSION_STR "1.2.3"
 </code></pre>
-<p>More specifically, Meson will find all strings of the type <code>@varname@</code> and replace them with respective values set in <code>conf_data</code>. You can use a single <code>configuration_data</code> object as many times as you like, but it becomes immutable after the first use. That is, after it has been used once the <code>set</code> function becomes unusable and trying to call it causes an error.</p>
-<p>For more complex configuration file generation Meson provides a second form. To use it, put a line like this in your configuration file.</p>
+<p>More specifically, Meson will find all strings of the type <code>@varname@</code>
+and replace them with respective values set in <code>conf_data</code>. You can
+use a single <code>configuration_data</code> object as many times as you like,
+but it becomes immutable after being passed to the <code>configure_file</code>
+function. That is, after it has been used once to generate output the
+<code>set</code> function becomes unusable and trying to call it causes an error.</p>
+<p>For more complex configuration file generation Meson provides a second
+form. To use it, put a line like this in your configuration file.</p>
 <pre><code>#mesondefine TOKEN
 </code></pre>
 <p>The replacement that happens depends on what the value and type of TOKEN is:</p>
@@ -184,14 +194,18 @@ configure_file(input : 'config.h.in',
 #define TOKEN 4   // If TOKEN is set to an integer or string value.
 /* undef TOKEN */ // If TOKEN has not been set to any value.
 </code></pre>
-<p>Note that if you want to define a C string, you need to do the quoting yourself like this:</p>
+<p>Note that if you want to define a C string, you need to do the quoting
+yourself like this:</p>
 <pre><code class="language-meson">conf.set('TOKEN', '"value"')
 </code></pre>
-<p>Since this is such a common operation, Meson provides a convenience method:</p>
+<p>Since this is such a common operation, Meson provides a convenience
+method:</p>
 <pre><code class="language-meson">plain_var = 'value'
 conf.set_quoted('TOKEN', plain_var) # becomes #define TOKEN "value"
 </code></pre>
-<p>Often you have a boolean value in Meson but need to define the C/C++ token as 0 or 1. Meson provides a convenience function for this use case.</p>
+<p>Often you have a boolean value in Meson but need to define the C/C++
+token as 0 or 1. Meson provides a convenience function for this use
+case.</p>
 <pre><code class="language-meson">conf.set10(token, boolean_value)
 # The line above is equivalent to this:
 if boolean_value
@@ -201,7 +215,9 @@ else
 endif
 </code></pre>
 <h2 id="configuring-without-an-input-file">Configuring without an input file</h2>
-<p>If the input file is not defined then Meson will generate a header file all the entries in the configuration data object. The replacements are the same as when generating <code>#mesondefine</code> entries:</p>
+<p>If the input file is not defined then Meson will generate a header
+file all the entries in the configuration data object. The
+replacements are the same as when generating <code>#mesondefine</code> entries:</p>
 <pre><code class="language-meson">cdata.set('FOO', '"string"') =&gt; #define FOO "string"
 cdata.set('FOO', 'a_token')  =&gt; #define FOO a_token
 cdata.set('FOO', true)       =&gt; #define FOO
@@ -209,12 +225,40 @@ cdata.set('FOO', false)      =&gt; #undef FOO
 cdata.set('FOO', 1)          =&gt; #define FOO 1
 cdata.set('FOO', 0)          =&gt; #define FOO 0
 </code></pre>
-<p>In this mode, you can also specify a comment which will be placed before the value so that your generated files are self-documenting.</p>
+<p>In this mode, you can also specify a comment which will be placed
+before the value so that your generated files are self-documenting.</p>
 <pre><code class="language-meson">cdata.set('BAR', true, description : 'Set BAR if it is available')
 </code></pre>
 <p>Will produce:</p>
 <pre><code class="language-c">/* Set BAR if it is available */
 #define BAR
+</code></pre>
+<h1 id="a-full-example">A full example</h1>
+<p>Generating and using a configuration file requires the following steps:</p>
+<ul>
+<li>generate the file</li>
+<li>create an include directory object for the directory that holds the file</li>
+<li>use it in a target</li>
+</ul>
+<p>We are going to use the traditional approach of generating a header
+file in the top directory. The common name is <code>config.h</code> but we're
+going to use an unique name. This avoids the problem of accidentally
+including the wrong header file when building a project with many
+subprojects.</p>
+<p>At the top level we generate the file:</p>
+<pre><code class="language-meson">configure_file(input : 'projconfig.h.in',
+  output : 'projconfig.h',
+  configuration : cdata_object)
+</code></pre>
+<p>Immediately afterwards we generate the include object.</p>
+<pre><code class="language-meson">configuration_inc = include_directories('.')
+</code></pre>
+<p>Finally we specify this in a target that can be in any subdirectory.</p>
+<pre><code class="language-meson">executable(..., include_directories : configuration_inc)
+</code></pre>
+<p>Now any source file in this target can include the configuration
+header like this:</p>
+<pre><code class="language-c">#include&lt;projconfig.h&gt;
 </code></pre>
 
 </div>

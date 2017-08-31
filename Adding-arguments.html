@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,19 +159,36 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Adding-arguments.md" data-hotdoc-role="main">
 <h1 id="adding-arguments">Adding arguments</h1>
-<p>Often you need to specify extra compiler arguments. Meson provides two different ways to achieve this: global arguments and per-target arguments.</p>
+<p>Often you need to specify extra compiler arguments. Meson provides two
+different ways to achieve this: global arguments and per-target
+arguments.</p>
 <h2 id="global-arguments">Global arguments</h2>
-<p>Global compiler arguments are set with the following command. As an example you could do this.</p>
+<p>Global compiler arguments are set with the following command. As an
+example you could do this.</p>
 <pre><code class="language-meson">add_global_arguments('-DFOO=bar', language : 'c')
 </code></pre>
-<p>This makes Meson add the define to all C compilations. Usually you would use this setting for flags for global settings. Note that for setting the C/C++ language standard (the <code>-std=c99</code> argument in GCC), you would probably want to use a default option of the <code>project()</code> function. For details see the <a href="Reference-manual.html">reference manual</a>.</p>
-<p>Global arguments have certain limitations. They all have to be defined before any build targets are specified. This ensures that the global flags are the same for every single source file built in the entire project with one exception. Compilation tests that are run as part of your project configuration do not use these flags. The reason for that is that you may need to run a test compile with and without a given flag to determine your build setup. For this reason tests do not use these global arguments.</p>
-<p>You should set only the most essential flags with this setting, you should <em>not</em> set debug or optimization flags. Instead they should be specified by selecting an appropriate build type.</p>
+<p>This makes Meson add the define to all C compilations. Usually you
+would use this setting for flags for global settings. Note that for
+setting the C/C++ language standard (the <code>-std=c99</code> argument in GCC),
+you would probably want to use a default option of the <code>project()</code>
+function. For details see the <a href="Reference-manual.html">reference manual</a>.</p>
+<p>Global arguments have certain limitations. They all have to be defined
+before any build targets are specified. This ensures that the global
+flags are the same for every single source file built in the entire
+project with one exception. Compilation tests that are run as part of
+your project configuration do not use these flags. The reason for that
+is that you may need to run a test compile with and without a given
+flag to determine your build setup. For this reason tests do not use
+these global arguments.</p>
+<p>You should set only the most essential flags with this setting, you
+should <em>not</em> set debug or optimization flags. Instead they should be
+specified by selecting an appropriate build type.</p>
 <h2 id="per-target-arguments">Per target arguments</h2>
 <p>Per target arguments are just as simple to define.</p>
 <pre><code class="language-meson">executable('prog', 'prog.cc', cpp_args : '-DCPPTHING')
 </code></pre>
-<p>Here we create a C++ executable with an extra argument that is used during compilation but not for linking.</p>
+<p>Here we create a C++ executable with an extra argument that is used
+during compilation but not for linking.</p>
 <p>Specifying extra linker arguments is done in the same way:</p>
 <pre><code class="language-meson">executable('prog', 'prog.cc', link_args : '-Wl,--linker-option')
 </code></pre>

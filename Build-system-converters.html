@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,11 +159,25 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Build-system-converters.md" data-hotdoc-role="main">
 <h1 id="build-system-converters">Build system converters</h1>
-<p>Moving from one build system into another includes a fair bit of work. To make things easier, Meson provides scripts to convert other build systems into Meson. At the time of writing, scripts for CMake and autotools exist. It can be found in the <code>tools</code> subdirectory in Meson's source tree.</p>
-<p>The scripts do not try to do a perfect conversion. This would be extremely difficult because the data models of other build systems are very different. The goal of the converter script is to convert as much of the low level drudgery as possible. Using the scripts is straightforward. We'll use the CMake one as an example but the Autotools one works exactly the same way.</p>
+<p>Moving from one build system into another includes a fair bit of
+work. To make things easier, Meson provides scripts to convert other
+build systems into Meson. At the time of writing, scripts for CMake
+and autotools exist. It can be found in the <code>tools</code> subdirectory in
+Meson's source tree.</p>
+<p>The scripts do not try to do a perfect conversion. This would be
+extremely difficult because the data models of other build systems are
+very different. The goal of the converter script is to convert as much
+of the low level drudgery as possible. Using the scripts is
+straightforward. We'll use the CMake one as an example but the
+Autotools one works exactly the same way.</p>
 <pre><code>cmake2meson.py path/to/CMake/project/root
 </code></pre>
-<p>This command generates a skeleton Meson project definition that tries to mirror CMake's setup as close as possible. Once this is done, you need to go through these files manually and finalize the conversion. To make this task as simple as possible, the converter script will transfer all comments from the CMake definition into Meson definition.</p>
+<p>This command generates a skeleton Meson project definition that tries
+to mirror CMake's setup as close as possible. Once this is done, you
+need to go through these files manually and finalize the
+conversion. To make this task as simple as possible, the converter
+script will transfer all comments from the CMake definition into Meson
+definition.</p>
 
 </div>
 

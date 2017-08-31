@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,14 +159,31 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Precompiled-headers.md" data-hotdoc-role="main">
 <h1 id="precompiled-headers">Precompiled headers</h1>
-<p>Parsing header files of system libraries is surprisingly expensive. A typical source file has less than one thousand lines of code. In contrast the headers of large libraries can be tens of thousands of lines. This is especially problematic with C++, where header-only libraries are common and they may contain extremely complex code. This makes them slow to compile.</p>
-<p>Precompiled headers are a tool to mitigate this issue. Basically what they do is parse the headers and then serialize the compiler's internal state to disk. The downside of precompiled headers is that they are tricky to set up. Meson has native support for precompiled headers, but using them takes a little work.</p>
-<p>A precompiled header file is relatively simple. It is a header file that contains <code>#include</code> directives for the system headers to precompile. Here is a C++ example.</p>
+<p>Parsing header files of system libraries is surprisingly expensive. A
+typical source file has less than one thousand lines of code. In
+contrast the headers of large libraries can be tens of thousands of
+lines. This is especially problematic with C++, where header-only
+libraries are common and they may contain extremely complex code. This
+makes them slow to compile.</p>
+<p>Precompiled headers are a tool to mitigate this issue. Basically what
+they do is parse the headers and then serialize the compiler's
+internal state to disk. The downside of precompiled headers is that
+they are tricky to set up. Meson has native support for precompiled
+headers, but using them takes a little work.</p>
+<p>A precompiled header file is relatively simple. It is a header file
+that contains <code>#include</code> directives for the system headers to
+precompile. Here is a C++ example.</p>
 <pre><code class="language-cpp">    #include&lt;vector&gt;
     #include&lt;string&gt;
     #include&lt;map&gt;
 </code></pre>
-<p>In Meson, precompiled header files are always per-target. That is, the given precompiled header is used when compiling every single file in the target. Due to limitations of the underlying compilers, this header file must not be in the same subdirectory as any of the source files. It is strongly recommended that you create a subdirectory called <code>pch</code> in the target directory and put the header files (and nothing else) there.</p>
+<p>In Meson, precompiled header files are always per-target. That is, the
+given precompiled header is used when compiling every single file in
+the target. Due to limitations of the underlying compilers, this
+header file must not be in the same subdirectory as any of the source
+files. It is strongly recommended that you create a subdirectory
+called <code>pch</code> in the target directory and put the header files (and
+nothing else) there.</p>
 <h2 id="toggling-the-usage-of-precompiled-headers">Toggling the usage of precompiled headers</h2>
 <p>If you wish to compile your project without precompiled headers, you
 can change the value of the pch option by passing <code>-Db_pch=false</code>
@@ -178,16 +194,28 @@ code. Typically this is done to test whether your project compiles
 cleanly without pch (that is, checking that its #includes are in
 order) and working around compiler bugs.</p>
 <h2 id="using-precompiled-headers-with-gcc-and-derivatives">Using precompiled headers with GCC and derivatives</h2>
-<p>Once you have a file to precompile, you can enable the use of pch for a give target with a <em>pch</em> keyword argument. As an example, here's how you would use it with a C binary.</p>
+<p>Once you have a file to precompile, you can enable the use of pch for
+a give target with a <em>pch</em> keyword argument. As an example, here's how
+you would use it with a C binary.</p>
 <pre><code class="language-meson">executable('myexe', sources : sourcelist, c_pch : 'pch/myexe_pch.h')
 </code></pre>
-<p>You should note that your source files must <em>not</em> include the file <code>myexe_pch.h</code> and you must <em>not</em> add the pch subdirectory to your search path. Meson will make the compiler include the pch with compiler options. If you want to disable pch (because of, say, compiler bugs), it can be done entirely on the build system side with no changes to source code.</p>
-<p>You can use precompiled headers on any build target. If your target has multiple languages, you can specify multiple pch files like this.</p>
+<p>You should note that your source files must <em>not</em> include the file
+<code>myexe_pch.h</code> and you must <em>not</em> add the pch subdirectory to your
+search path. Meson will make the compiler include the pch with
+compiler options. If you want to disable pch (because of, say,
+compiler bugs), it can be done entirely on the build system side with
+no changes to source code.</p>
+<p>You can use precompiled headers on any build target. If your target
+has multiple languages, you can specify multiple pch files like this.</p>
 <pre><code class="language-meson">executable('multilang', sources : srclist,
            c_pch : 'pch/c_pch.h', cpp_pch : 'pch/cpp_pch.h'])
 </code></pre>
 <h2 id="using-precompiled-headers-with-msvc">Using precompiled headers with MSVC</h2>
-<p>MSVC is a bit trickier, because in addition to the header file, it also requires a corresponding source file. If your header is called <code>foo_pch.h</code>, the corresponding source file is usually called <code>foo_pch.cpp</code> and it resides in the same <code>pch</code> subdirectory as the header. Its contents are this:</p>
+<p>MSVC is a bit trickier, because in addition to the header file, it
+also requires a corresponding source file. If your header is called
+<code>foo_pch.h</code>, the corresponding source file is usually called
+<code>foo_pch.cpp</code> and it resides in the same <code>pch</code> subdirectory as the
+header. Its contents are this:</p>
 <pre><code class="language-cpp">#if !defined(_MSC_VER)
 #error "This file is only for use with MSVC."
 #endif
@@ -198,8 +226,11 @@ order) and working around compiler bugs.</p>
 <pre><code class="language-meson">executable('myexe', sources : srclist,
            cpp_pch : ['pch/foo_pch.h', 'pch/foo_pch.cpp'])
 </code></pre>
-<p>This form will work with both GCC and msvc, because Meson knows that GCC does not need a <code>.cpp</code> file and thus just ignores it.</p>
-<p>It should be noted that due to implementation details of the MSVC compiler, having precompiled headers for multiple languages in the same target is not guaranteed to work.</p>
+<p>This form will work with both GCC and msvc, because Meson knows that
+GCC does not need a <code>.cpp</code> file and thus just ignores it.</p>
+<p>It should be noted that due to implementation details of the MSVC
+compiler, having precompiled headers for multiple languages in the
+same target is not guaranteed to work.</p>
 
 </div>
 

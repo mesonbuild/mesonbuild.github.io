@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,20 +159,37 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Build-options.md" data-hotdoc-role="main">
 <h1 id="build-options">Build options</h1>
-<p>Most non-trivial builds require user-settable options. As an example a program may have two different data backends that are selectable at build time. Meson provides for this by having a option definition file. Its name is <code>meson_options.txt</code> and it is placed at the root of your source tree.</p>
+<p>Most non-trivial builds require user-settable options. As an example a
+program may have two different data backends that are selectable at
+build time. Meson provides for this by having a option definition
+file. Its name is <code>meson_options.txt</code> and it is placed at the root of
+your source tree.</p>
 <p>Here is a simple option file.</p>
 <pre><code class="language-meson">option('someoption', type : 'string', value : 'optval', description : 'An option')
 option('other_one', type : 'boolean', value : false)
 option('combo_opt', type : 'combo', choices : ['one', 'two', 'three'], value : 'three')
 </code></pre>
-<p>This demonstrates the three basic option types and their usage. String option is just a free form string and a boolean option is, unsurprisingly, true or false. The combo option can have any value from the strings listed in argument <code>choices</code>. If <code>value</code> is not set, it defaults to empty string for strings, <code>true</code> for booleans or the first element in a combo. You can specify <code>description</code>, which is a free form piece of text describing the option. It defaults to option name.</p>
+<p>This demonstrates the three basic option types and their usage. String
+option is just a free form string and a boolean option is,
+unsurprisingly, true or false. The combo option can have any value
+from the strings listed in argument <code>choices</code>. If <code>value</code> is not set,
+it defaults to empty string for strings, <code>true</code> for booleans or the
+first element in a combo. You can specify <code>description</code>, which is a
+free form piece of text describing the option. It defaults to option
+name.</p>
 <p>These options are accessed in Meson code with the <code>get_option</code> function.</p>
 <pre><code class="language-meson">optval = get_option('opt_name')
 </code></pre>
-<p>This function also allows you to query the value of Meson's built-in project options. For example, to get the installation prefix you would issue the following command:</p>
+<p>This function also allows you to query the value of Meson's built-in
+project options. For example, to get the installation prefix you would
+issue the following command:</p>
 <pre><code class="language-meson">prefix = get_option('prefix')
 </code></pre>
-<p>It should be noted that you can not set option values in your Meson scripts. They have to be set externally with the <code>mesonconf</code> command line tool. Running <code>mesonconf</code> without arguments in a build dir shows you all options you can set. To change their values use the <code>-D</code> option:</p>
+<p>It should be noted that you can not set option values in your Meson
+scripts. They have to be set externally with the <code>mesonconf</code> command
+line tool. Running <code>mesonconf</code> without arguments in a build dir shows
+you all options you can set. To change their values use the <code>-D</code>
+option:</p>
 <pre><code class="language-console">$ mesonconf -Doption=newvalue
 </code></pre>
 

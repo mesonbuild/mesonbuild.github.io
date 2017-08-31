@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,12 +159,27 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Creating-releases.md" data-hotdoc-role="main">
 <h1 id="creating-releases">Creating releases</h1>
-<p>In addition to development, almost all projects provide periodical source releases. These are standalone packages (usually either in tar or zip format) of the source code. They do not contain any revision control metadata, only the source code.</p>
-<p>Meson provides a simple way of generating these. It consists of a single command:</p>
+<p>In addition to development, almost all projects provide periodical
+source releases. These are standalone packages (usually either in tar
+or zip format) of the source code. They do not contain any revision
+control metadata, only the source code.</p>
+<p>Meson provides a simple way of generating these. It consists of a
+single command:</p>
 <pre><code>ninja dist
 </code></pre>
-<p>This creates a file called <code>projectname-version.tar.xz</code> in the build tree subdirectory <code>meson-dist</code>. This archive contains the full contents of the latest commit in revision control including all the submodules. All revision control metadata is removed. Meson then takes this archive and tests that it works by doing a full compile + test + install cycle. If all these pass, Meson will then create a SHA-256 checksum file next to the archive.</p>
-<p><strong>Note</strong>: Meson behaviour is different from Autotools. The Autotools "dist" target packages up the current source tree. Meson packages the latest revision control commit. The reason for this is that it prevents developers from doing accidental releases where the distributed archive does not match any commit in revision control (especially the one tagged for the release).</p>
+<p>This creates a file called <code>projectname-version.tar.xz</code> in the build
+tree subdirectory <code>meson-dist</code>. This archive contains the full
+contents of the latest commit in revision control including all the
+submodules. All revision control metadata is removed. Meson then takes
+this archive and tests that it works by doing a full compile + test +
+install cycle. If all these pass, Meson will then create a SHA-256
+checksum file next to the archive.</p>
+<p><strong>Note</strong>: Meson behaviour is different from Autotools. The Autotools
+"dist" target packages up the current source tree. Meson packages
+the latest revision control commit. The reason for this is that it
+prevents developers from doing accidental releases where the
+distributed archive does not match any commit in revision control
+(especially the one tagged for the release).</p>
 
 </div>
 

@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,7 +159,8 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="External-commands.md" data-hotdoc-role="main">
 <h1 id="external-commands">External commands</h1>
-<p>As a part of the software configuration, you may want to get extra data by running external commands. The basic syntax is the following.</p>
+<p>As a part of the software configuration, you may want to get extra
+data by running external commands. The basic syntax is the following.</p>
 <pre><code class="language-meson">r = run_command('command', 'arg1', 'arg2', 'arg3')
 if r.returncode() != 0
   # it failed
@@ -168,8 +168,21 @@ endif
 output = r.stdout().strip()
 errortxt = r.stderr().strip()
 </code></pre>
-<p>The <code>run_command</code> function returns an object that can be queried for return value and text written to stdout and stderr. The <code>strip</code> method call is used to strip trailing and leading whitespace from strings. Usually output from command line programs ends in a newline, which is unwanted in string variables. The first argument can be either a string or an executable you have detected earlier with <code>find_program</code>.</p>
-<p>Note that you can not pass your command line as a single string. That is, calling <code>run_command('do_something foo bar')</code> will not work. You must either split up the string into separate arguments or pass the split command as an array. It should also be noted that Meson will not pass the command to the shell, so any command lines that try to use things such as environment variables, backticks or pipelines will not work. If you require shell semantics, write your command into a script file and call that with <code>run_command</code>.</p>
+<p>The <code>run_command</code> function returns an object that can be queried for
+return value and text written to stdout and stderr. The <code>strip</code> method
+call is used to strip trailing and leading whitespace from
+strings. Usually output from command line programs ends in a newline,
+which is unwanted in string variables. The first argument can be
+either a string or an executable you have detected earlier with
+<code>find_program</code>.</p>
+<p>Note that you can not pass your command line as a single string. That
+is, calling <code>run_command('do_something foo bar')</code> will not work. You
+must either split up the string into separate arguments or pass the
+split command as an array. It should also be noted that Meson will not
+pass the command to the shell, so any command lines that try to use
+things such as environment variables, backticks or pipelines will not
+work. If you require shell semantics, write your command into a script
+file and call that with <code>run_command</code>.</p>
 
 </div>
 

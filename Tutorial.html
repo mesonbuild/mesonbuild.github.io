@@ -32,12 +32,11 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
-<title>The Meson® Build System</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 
@@ -160,9 +159,14 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Tutorial.md" data-hotdoc-role="main">
 <h1 id="tutorial">Tutorial</h1>
-<p>This page shows from the ground up how to create a Meson build definition for a simple project. Then we expand it to use external dependencies to show how easily they can be integrated into your project.</p>
+<p>This page shows from the ground up how to create a Meson build
+definition for a simple project. Then we expand it to use external
+dependencies to show how easily they can be integrated into your
+project.</p>
 <h2 id="the-humble-beginning">The humble beginning</h2>
-<p>Let's start with the most basic of programs, the classic hello example. First we create a file <code>main.c</code> which holds the source. It looks like this.</p>
+<p>Let's start with the most basic of programs, the classic hello
+example. First we create a file <code>main.c</code> which holds the source. It
+looks like this.</p>
 <pre><code class="language-c">#include&lt;stdio.h&gt;
 
 int main(int argc, char **argv) {
@@ -170,14 +174,21 @@ int main(int argc, char **argv) {
   return 0;
 }
 </code></pre>
-<p>Then we create a Meson build description and put it in a file called <code>meson.build</code> in the same directory. Its contents are the following.</p>
+<p>Then we create a Meson build description and put it in a file called
+<code>meson.build</code> in the same directory. Its contents are the following.</p>
 <pre><code class="language-meson">project('tutorial', 'c')
 executable('demo', 'main.c')
 </code></pre>
-<p>That is all. We are now ready to build our application. First we need to initialize the build by going into the source directory and issuing the following commands.</p>
+<p>That is all. We are now ready to build our application. First we need
+to initialize the build by going into the source directory and issuing
+the following commands.</p>
 <pre><code class="language-console">$ meson builddir
 </code></pre>
-<p>We create a separate build directory to hold all of the compiler output. Meson is different from some other build systems in that it does not permit in-source builds. You must always create a separate build directory. Common convention is to put the default build directory in a subdirectory of your top level source directory.</p>
+<p>We create a separate build directory to hold all of the compiler
+output. Meson is different from some other build systems in that it
+does not permit in-source builds. You must always create a separate
+build directory. Common convention is to put the default build
+directory in a subdirectory of your top level source directory.</p>
 <p>When Meson is run it prints the following output.</p>
 <pre><code>The Meson build system
  version: 0.13.0-research
@@ -199,7 +210,10 @@ $ ninja
 <pre><code>Hello there.
 </code></pre>
 <h2 id="adding-dependencies">Adding dependencies</h2>
-<p>Just printing text is a bit old fashioned. Let's update our program to create a graphical window instead. We'll use the <a href="https://gtk.org">GTK+</a> widget toolkit. First we edit the main file to use GTK+. The new version looks like this.</p>
+<p>Just printing text is a bit old fashioned. Let's update our program to
+create a graphical window instead. We'll use the
+<a href="https://gtk.org">GTK+</a> widget toolkit. First we edit the main file to
+use GTK+. The new version looks like this.</p>
 <pre><code class="language-c">#include&lt;gtk/gtk.h&gt;
 
 int main(int argc, char **argv) {
@@ -212,15 +226,23 @@ int main(int argc, char **argv) {
   gtk_main();
 }
 </code></pre>
-<p>Then we edit the Meson file, instructing it to find and use the GTK+ libraries.</p>
+<p>Then we edit the Meson file, instructing it to find and use the GTK+
+libraries.</p>
 <pre><code class="language-meson">project('tutorial', 'c')
 gtkdep = dependency('gtk+-3.0')
 executable('demo', 'main.c', dependencies : gtkdep)
 </code></pre>
-<p>Now we are ready to build. The thing to notice is that we do <em>not</em> need to recreate our build directory, run any sort of magical commands or the like. Instead we just type the exact same command as if we were rebuilding our code without any build system changes.</p>
+<p>Now we are ready to build. The thing to notice is that we do <em>not</em>
+need to recreate our build directory, run any sort of magical commands
+or the like. Instead we just type the exact same command as if we were
+rebuilding our code without any build system changes.</p>
 <pre><code>$ ninja
 </code></pre>
-<p>Once you have set up your build directory the first time, you don't ever need to run the <code>meson</code> command again. You always just run <code>ninja</code>. Meson will automatically detect when you have done changes to build definitions and will take care of everything so users don't have to care. In this case the following output is produced.</p>
+<p>Once you have set up your build directory the first time, you don't
+ever need to run the <code>meson</code> command again. You always just run
+<code>ninja</code>. Meson will automatically detect when you have done changes to
+build definitions and will take care of everything so users don't have
+to care. In this case the following output is produced.</p>
 <pre><code>[1/1] Regenerating build files
 The Meson build system
  version: 0.13.0-research
@@ -235,7 +257,8 @@ Creating build target "demo" with 1 files.
 [1/2] Compiling c object demo.dir/main.c.o
 [2/2] Linking target demo
 </code></pre>
-<p>Note how Meson noticed that the build definition has changed and reran itself automatically. The program is now ready to be run:</p>
+<p>Note how Meson noticed that the build definition has changed and reran
+itself automatically. The program is now ready to be run:</p>
 <pre><code>$ ./demo
 </code></pre>
 <p>This creates the following GUI application.</p>
