@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -596,11 +596,19 @@ first one that is found is returned. Meson versions earlier than
 <p>Keyword arguments are the following:</p>
 <ul>
 <li>
-<code>required</code> By default, <code>required</code> is set to <code>true</code> and Meson will
+<p><code>required</code> By default, <code>required</code> is set to <code>true</code> and Meson will
 abort if no program can be found. If <code>required</code> is set to <code>false</code>,
 Meson continue even if none of the programs can be found. You can
 then use the <code>.found()</code> method on the returned object to check
-whether it was found or not.</li>
+whether it was found or not.</p>
+</li>
+<li>
+<p><code>native</code> defines how this executable should be searched. By default
+it is set to <code>false</code>, which causes Meson to first look for the
+executable in the cross file (when cross building) and if it is not
+defined there, then from the system. If set to <code>true</code>, the cross
+file is ignored and the program is only searched from the system.</p>
+</li>
 </ul>
 <p>Meson will also autodetect scripts with a shebang line and run them
 with the executable/interpreter specified in it both on Windows
@@ -1299,6 +1307,13 @@ the positional argument, you can specify external dependencies to
 use with <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
+<p><code>compiles(code)</code> returns true if the code fragment given in the
+positional argument compiles, you can specify external dependencies
+to use with <code>dependencies</code> keyword argument, <code>code</code> can be either a
+string containing source code or a <code>file</code> object pointing to the
+source code.</p>
+</li>
+<li>
 <p><code>compute_int(expr, ...')</code> computes the value of the given expression
 (as an example <code>1 + 2</code>). When cross compiling this is evaluated with
 an iterative algorithm, you can specify keyword arguments <code>low</code>
@@ -1330,11 +1345,9 @@ value as a string or empty string if it is not defined.</p>
 <code>gcc</code>, <code>msvc</code>, <a href="Compiler-properties.html#compiler-id">and more</a>.</p>
 </li>
 <li>
-<p><code>compiles(code)</code> returns true if the code fragment given in the
-positional argument compiles, you can specify external dependencies
-to use with <code>dependencies</code> keyword argument, <code>code</code> can be either a
-string containing source code or a <code>file</code> object pointing to the
-source code.</p>
+<p><code>get_supported_arguments(list_of_string)</code> returns an array
+containing only the arguments supported by the compiler, as if
+<code>has_argument</code> were called on them individually.</p>
 </li>
 <li>
 <p><code>has_argument(argument_name)</code> returns true if the compiler accepts
