@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -1214,11 +1214,12 @@ are absolute paths, and many path-joining functions such as
 <a href="https://docs.python.org/3/library/os.path.html#os.path.join"><code>os.path.join</code> in
 Python</a>
 special-case absolute paths.</p>
-<p><code>MESONINTROSPECT</code> contains the path to the <code>mesonintrospect</code>
-executable that corresponds to the <code>meson</code> executable that was used
-to configure the build. (This might be a different path then the
-first <code>mesonintrospect</code> executable found in <code>PATH</code>.) It can be used
-to query build configuration.</p>
+<p><code>MESONINTROSPECT</code> contains the path to the introspect command that
+corresponds to the <code>meson</code> executable that was used to configure the
+build. (This might be a different path then the first executable
+found in <code>PATH</code>.) It can be used to query build configuration. Note
+that the value may contain many parts, i.e. it may be <code>python3 /path/to/meson.py introspect</code>. The user is responsible for splitting
+the string to an array if needed.</p>
 </li>
 <li>
 <p><code>source_root()</code> returns a string with the absolute path to the

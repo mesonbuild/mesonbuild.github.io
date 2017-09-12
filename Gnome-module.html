@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -417,6 +417,8 @@ files and the second specifies the XML file name.</p>
 <li>
 <code>annotations</code>: <em>(Added 0.43.0)</em> list of lists of 3 strings for the annotation for <code>'ELEMENT', 'KEY', 'VALUE'</code>
 </li>
+<li>
+<code>docbook</code>: <em>(Added 0.43.0)</em> prefix to generate <code>'PREFIX'-NAME.xml</code> docbooks</li>
 </ul>
 <p>Returns an opaque object containing the source files. Add it to a top
 level target's source list.</p>
@@ -429,7 +431,8 @@ gdbus_src = gnome.gdbus_codegen('example-interface', 'com.example.Sample.xml',
   namespace : 'Sample',
   annotations : [
     ['com.example.Hello()', 'org.freedesktop.DBus.Deprecated', 'true']
-  ]
+  ],
+  docbook : 'example-interface-doc'
 )
 </code></pre>
 <h3 id="gnomegenerate_vapi">gnome.generate_vapi()</h3>

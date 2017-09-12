@@ -1,1 +1,1 @@
-urls_downloaded_cb({"urls": ["Running-Meson.html#running-meson"], "token": "meson.py"});
+urls_downloaded_cb({"urls": ["Running-Meson.html#running-meson", "Reference-manual.html#meson-object"], "token": "meson.py"});
