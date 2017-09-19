@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -178,78 +178,9 @@ know the operating system your code will run on, issue this command:</p>
 </code></pre>
 <h1 id="compiler-id">Compiler id</h1>
 <p>The compiler object has a method called <code>get_id</code>, which returns a
-lower case string describing the "family" of the compiler. It has one
-of the following values.</p>
-<table>
-<thead>
-<tr>
-<th> Value</th>
-<th> Compiler family</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> gcc</td>
-<td> The GNU Compiler Collection</td>
-</tr>
-<tr>
-<td> clang</td>
-<td> The Clang compiler</td>
-</tr>
-<tr>
-<td> msvc</td>
-<td> Microsoft Visual Studio</td>
-</tr>
-<tr>
-<td> intel</td>
-<td> Intel compiler</td>
-</tr>
-<tr>
-<td> llvm</td>
-<td> LLVM-based compiler (Swift, D)</td>
-</tr>
-<tr>
-<td> mono</td>
-<td> Xamarin C# compiler</td>
-</tr>
-<tr>
-<td> dmd</td>
-<td> D lang reference compiler</td>
-</tr>
-<tr>
-<td> rustc</td>
-<td> Rust compiler</td>
-</tr>
-<tr>
-<td> valac</td>
-<td> Vala compiler</td>
-</tr>
-<tr>
-<td> pathscale</td>
-<td> The Pathscale Fortran compiler</td>
-</tr>
-<tr>
-<td> pgi</td>
-<td> The Portland Fortran compiler</td>
-</tr>
-<tr>
-<td> sun</td>
-<td> Sun Fortran compiler</td>
-</tr>
-<tr>
-<td> g95</td>
-<td> The G95 Fortran compiler</td>
-</tr>
-<tr>
-<td> open64</td>
-<td> The Open64 Fortran Compiler</td>
-</tr>
-<tr>
-<td> nagfor</td>
-<td> The NAG Fortran compiler</td>
-</tr>
-</tbody>
-</table>
+lower case string describing the "family" of the compiler. See
+<a href="Reference-tables.html">reference tables</a> for a list of supported
+compiler ids.</p>
 <h1 id="does-code-compile">Does code compile?</h1>
 <p>Sometimes the only way to test the system is to try to compile some
 sample code and see if it works. This is a two-phase operation. First
@@ -295,12 +226,32 @@ result = compiler.run(code, name : 'basic check')
 <p>The <code>result</code> variable encapsulates the state of the test, which can be
 extracted with the following methods. The <code>name</code> keyword argument
 works the same as with <code>compiles</code>.</p>
-<p>| Method     | Return value
-| ------     | ------------
-| compiled   | <code>True</code> if compilation succeeded. If <code>false</code> then all other methods return undefined values.
-| returncode | The return code of the application as an integer
-| stdout     | Program's standard out as text.
-| stderr     | Program's standard error as text.</p>
+<table>
+<thead>
+<tr>
+<th> Method</th>
+<th> Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> compiled</td>
+<td> <code>True</code> if compilation succeeded. If <code>false</code> then all other methods return undefined values.</td>
+</tr>
+<tr>
+<td> returncode</td>
+<td> The return code of the application as an integer</td>
+</tr>
+<tr>
+<td> stdout</td>
+<td> Program's standard out as text.</td>
+</tr>
+<tr>
+<td> stderr</td>
+<td> Program's standard error as text.</td>
+</tr>
+</tbody>
+</table>
 <p>Here is an example usage:</p>
 <pre><code class="language-meson">if result.stdout().strip() == 'some_value'
   # do something

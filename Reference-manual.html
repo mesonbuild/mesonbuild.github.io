@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -568,6 +568,13 @@ target by overriding the default. By default on Windows this is
 <code>override_options</code> takes an array of strings in the same format as
 <code>project</code>'s <code>default_options</code> overriding the values of these options
 for this target only, since 0.40.0</li>
+<li>
+<code>d_import_dirs</code> list of directories to look in for string imports used
+in the D programmling language</li>
+<li>
+<code>d_unittest</code>, when set to true, the D modules are compiled in debug mode</li>
+<li>
+<code>d_module_versions</code> list of module versions set when compiling D sources</li>
 </ul>
 <p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always
 flattened, which means you can freely nest and add lists while
@@ -882,7 +889,7 @@ static libraries.</li>
 <p>The first argument to this function must be a string defining the name
 of this project. It is followed by programming languages that the
 project uses. Supported values for languages are <code>c</code>, <code>cpp</code> (for
-<code>C++</code>), <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>) and
+<code>C++</code>), <code>d</code>, <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>) and
 <code>vala</code>. In versions before <code>0.40.0</code> you must have at least one
 language listed.</p>
 <p>The project name can be any string you want, it's not used for
