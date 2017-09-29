@@ -186,12 +186,14 @@ issue the following command:</p>
 <pre><code class="language-meson">prefix = get_option('prefix')
 </code></pre>
 <p>It should be noted that you can not set option values in your Meson
-scripts. They have to be set externally with the <code>mesonconf</code> command
-line tool. Running <code>mesonconf</code> without arguments in a build dir shows
-you all options you can set. To change their values use the <code>-D</code>
+scripts. They have to be set externally with the <code>meson configure</code> command
+line tool. Running <code>meson configure</code> without arguments in a build dir shows
+you all options you can set.</p>
+<p>To change their values use the <code>-D</code>
 option:</p>
-<pre><code class="language-console">$ mesonconf -Doption=newvalue
+<pre><code class="language-console">$ meson configure -Doption=newvalue
 </code></pre>
+<p><strong>NOTE:</strong> If you cannot call <code>meson configure</code> you likely have a old version of Meson. In that case you can call <code>mesonconf</code> instead, but that is deprecated in newer versions</p>
 
 </div>
 

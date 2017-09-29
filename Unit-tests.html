@@ -185,31 +185,32 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 <h2 id="skipped-tests">Skipped tests</h2>
 <p>Sometimes a test can only determine at runtime that it can not be run. The GNU standard approach in this case is to exit the program with error code 77. Meson will detect this and report these tests as skipped rather than failed. This behavior was added in version 0.37.0.</p>
 <h2 id="testing-tool">Testing tool</h2>
-<p>In version 0.37.0 a new tool called <code>mesontest</code> was added. The goal of this tool is to provide a simple way to run tests in a variety of different ways. The tool is designed to be run in the build directory.</p>
+<p>The goal of the meson test tool is to provide a simple way to run tests in a variety of different ways. The tool is designed to be run in the build directory.</p>
 <p>The simplest thing to do is just to run all tests, which is equivalent to running <code>ninja test</code>.</p>
-<pre><code class="language-console">$ mesontest
+<pre><code class="language-console">$ meson test
 </code></pre>
 <p>You can also run only a single test by giving its name:</p>
-<pre><code class="language-console">$ mesontest testname
+<pre><code class="language-console">$ meson test testname
 </code></pre>
 <p>Sometimes you need to run the tests multiple times, which is done like this:</p>
-<pre><code class="language-console">$ mesontest --repeat=10
+<pre><code class="language-console">$ meson test --repeat=10
 </code></pre>
 <p>Invoking tests via a helper executable such as Valgrind can be done with the <code>--wrap</code> argument</p>
-<pre><code class="language-console">$ mesontest --wrap=valgrind testname
+<pre><code class="language-console">$ meson test --wrap=valgrind testname
 </code></pre>
 <p>Arguments to the wrapper binary can be given like this:</p>
-<pre><code class="language-console">$ mesontest --wrap='valgrind --tool=helgrind' testname
+<pre><code class="language-console">$ meson test --wrap='valgrind --tool=helgrind' testname
 </code></pre>
 <p>Meson also supports running the tests under GDB. Just doing this:</p>
-<pre><code class="language-console">$ mesontest --gdb testname
+<pre><code class="language-console">$ meson test --gdb testname
 </code></pre>
 <p>Mesontest will launch <code>gdb</code> all set up to run the test. Just type <code>run</code> in the GDB command prompt to start the program.</p>
 <p>The second use case is a test that segfaults only rarely. In this case you can invoke the following command:</p>
-<pre><code class="language-console">$ mesontest --gdb --repeat=10000 testname
+<pre><code class="language-console">$ meson test --gdb --repeat=10000 testname
 </code></pre>
 <p>This runs the test up to 10 000 times under GDB automatically. If the program crashes, GDB will halt and the user can debug the application. Note that testing timeouts are disabled in this case so mesontest will not kill <code>gdb</code> while the developer is still debugging it. The downside is that if the test binary freezes, the test runner will wait forever.</p>
 <p>For further information see the command line help of Mesontest by running <code>mesontest -h</code>.</p>
+<p><strong>NOTE:</strong> If <code>meson test</code> does not work for you, you likely have a old version of Meson. In that case you should call <code>mesontest</code> instead. If <code>mesontest</code> doesn't work either you have a very old version prior to 0.37.0 and should upgrade.</p>
 
 </div>
 
