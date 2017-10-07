@@ -32,10 +32,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -234,7 +234,7 @@ subdir('tests') # test binaries would link against the library here
 <p>This defaults to <code>c++11</code> on GCC compilers. Suppose you want to use <code>c++14</code> instead, so you change the definition to this:</p>
 <pre><code class="language-meson">project('foobar', 'cpp', default_options : ['cpp_std=c++14'])
 </code></pre>
-<p>But when you recompile, it still uses <code>c++11</code>. The reason for this is that default options are only looked at when you are setting up a build directory for the very first time. After that the setting is considered to have a value and thus the default value is ignored. To change an existing build dir to <code>c++14</code>, either reconfigure your build dir with <code>mesonconf</code> or delete the build dir and recreate it from scratch.</p>
+<p>But when you recompile, it still uses <code>c++11</code>. The reason for this is that default options are only looked at when you are setting up a build directory for the very first time. After that the setting is considered to have a value and thus the default value is ignored. To change an existing build dir to <code>c++14</code>, either reconfigure your build dir with <code>meson configure</code> or delete the build dir and recreate it from scratch.</p>
 <h2 id="does-wrap-download-sources-behind-my-back">Does wrap download sources behind my back?</h2>
 <p>It does not. In order for Meson to download anything from the net while building, two conditions must be met.</p>
 <p>First of all there needs to be a <code>.wrap</code> file with a download URL in the <code>subprojects</code> directory. If one does not exist, Meson will not download anything.</p>
