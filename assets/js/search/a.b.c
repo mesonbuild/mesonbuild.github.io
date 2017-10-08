@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "a.b.c", "urls": ["Reference-manual.html#string-object"]});
+urls_downloaded_cb({"urls": ["Reference-manual.html#string-object"], "token": "a.b.c"});
