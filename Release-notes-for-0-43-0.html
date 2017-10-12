@@ -169,12 +169,12 @@ found.</p>
 <h1 id="generator-learned-capture">Generator learned capture</h1>
 <p>Generators can now be configured to capture the standard output. See
 <code>test cases/common/98 gen extra/meson.build</code> for an example.</p>
-<h1 id="can-index-customtaget-objects">Can index CustomTaget objects</h1>
+<h1 id="can-index-customtarget-objects">Can index CustomTarget objects</h1>
 <p>The <code>CustomTarget</code> object can now be indexed like an array. The resulting
 object can be used as a source file for other Targets, this will create a
 dependency on the original <code>CustomTarget</code>, but will only insert the generated
 file corresponding to the index value of the <code>CustomTarget</code>'s <code>output</code> keyword.</p>
-<pre><code>c = CustomTarget(
+<pre><code class="language-meson">c = custom_target(
   ...
   output : ['out.h', 'out.c'],
 )
@@ -193,19 +193,19 @@ exec = executable(
 <p>The cross file can now be used for overriding the result of
 <code>find_program</code>. As an example if you want to find the <code>objdump</code>
 command and have the following definition in your cross file:</p>
-<pre><code>[binaries]
+<pre><code class="language-ini">[binaries]
 ...
 objdump = '/usr/bin/arm-linux-gnueabihf-objdump-6'
 </code></pre>
 <p>Then issuing the command <code>find_program('objdump')</code> will return the
 version specified in the cross file. If you need the build machine's
 objdump, you can specify the <code>native</code> keyword like this:</p>
-<pre><code>native_objdump = find_program('objdump', native : true)
+<pre><code class="language-meson">native_objdump = find_program('objdump', native : true)
 </code></pre>
 <h1 id="easier-handling-of-supported-compiler-arguments">Easier handling of supported compiler arguments</h1>
 <p>A common pattern for handling multiple desired compiler arguments, was to
 test their presence and add them to an array one-by-one, e.g.:</p>
-<pre><code>warning_flags_maybe = [
+<pre><code class="language-meson">warning_flags_maybe = [
   '-Wsomething',
   '-Wanother-thing',
   '-Wno-the-other-thing',
@@ -220,11 +220,11 @@ cc.add_project_argument(warning_flags)
 </code></pre>
 <p>A helper has been added for the foreach/has_argument pattern, so you can
 now simply do:</p>
-<pre><code>warning_flags = [ ... ]
+<pre><code class="language-meson">warning_flags = [ ... ]
 flags = cc.get_supported_flags(warning_flags)
 </code></pre>
 <h1 id="better-support-for-shared-libraries-in-nonsystem-paths">Better support for shared libraries in non-system paths</h1>
-<p>Meson has had support for prebuilt object files and static libraries.
+<p>Meson has support for prebuilt object files and static libraries.
 This release adds feature parity to shared libraries that are either
 in non-standard system paths or shipped as part of your project. On
 systems that support rpath, Meson automatically adds rpath entries
@@ -232,7 +232,7 @@ to built targets using manually found external libraries.</p>
 <p>This means that e.g. supporting prebuilt libraries shipped with your
 source or provided by subprojects or wrap definitions by writing a
 build file like this:</p>
-<pre><code>project('myprebuiltlibrary', 'c')
+<pre><code class="language-meson">project('myprebuiltlibrary', 'c')
 
 cc = meson.get_compiler('c')
 prebuilt = cc.find_library('mylib', dirs : meson.current_source_dir())
