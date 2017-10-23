@@ -209,34 +209,34 @@ what would it take to build a "good" build system. What kind of syntax
 would suit this problem? What sort of problems would this application
 need to solve? What sort of solutions would be the most appropriate?</p>
 <p>To get things started, here is a list of requirements any modern cross-platform build system needs to provide.</p>
-<p>###1. Must be simple to use###</p>
+<h3 id="1-must-be-simple-to-use">1. Must be simple to use</h3>
 <p>One of the great virtues of Python is the fact that it is very
 readable. It is easy to see what a given block of code does. It is
 concise, clear and easy to understand. The proposed build system must
 be syntactically and semantically clean. Side effects, global state
 and interrelations must be kept at a minimum or, if possible,
 eliminated entirely.</p>
-<p>###2. Must do the right thing by default###</p>
+<h3 id="2-must-do-the-right-thing-by-default">2. Must do the right thing by default</h3>
 <p>Most builds are done by developers working on the code. Therefore the
 defaults must be tailored towards that use case. As an example the
 system shall build objects without optimization and with debug
 information. It shall make binaries that can be run directly from the
 build directory without linker tricks, shell scripts or magic
 environment variables.</p>
-<p>###3. Must enforce established best practices###</p>
+<h3 id="3-must-enforce-established-best-practices">3. Must enforce established best practices</h3>
 <p>There really is no reason to compile source code without the
 equivalent of <code>-Wall</code>. So enable it by default. A different kind of
 best practice is the total separation of source and build
 directories. All build artifacts must be stored in the build
 directory. Writing stray files in the source directory is not
 permitted under any circumstances.</p>
-<p>###4. Must have native support for platforms that are in common use###</p>
+<h3 id="4-must-have-native-support-for-platforms-that-are-in-common-use">4. Must have native support for platforms that are in common use</h3>
 <p>A lot of free software projects can be used on non-free platforms such
 as Windows or OSX. The system must provide native support for the
 tools of choice on those platforms. In practice this means native
 support for Visual Studio and XCode. Having said IDEs invoke external
 builder binaries does not count as native support.</p>
-<p>###5. Must not add complexity due to obsolete platforms###</p>
+<h3 id="5-must-not-add-complexity-due-to-obsolete-platforms">5. Must not add complexity due to obsolete platforms</h3>
 <p>Work on this build system started during the Christmas holidays of</p>
 <ol start="2012">
 <li>This provides a natural hard cutoff line of 2012/12/24. Any
@@ -247,16 +247,16 @@ and so on. If these old versions happen to work, great. If they don't,
 not a single line of code will be added to the system to work around
 their bugs.</li>
 </ol>
-<p>###6. Must be fast###</p>
+<h3 id="6-must-be-fast">6. Must be fast</h3>
 <p>Running the configuration step on a moderate sized project must not
 take more than five seconds. Running the compile command on a fully up
 to date tree of 1000 source files must not take more than 0.1 seconds.</p>
-<p>###7. Must provide easy to use support for modern sw development features###</p>
+<h3 id="7-must-provide-easy-to-use-support-for-modern-sw-development-features">7. Must provide easy to use support for modern sw development features</h3>
 <p>An example is precompiled headers. Currently no free software build
 system provides native support for them. Other examples could include
 easy integration of Valgrind and unit tests, test coverage reporting
 and so on.</p>
-<p>###8. Must allow override of default values###</p>
+<h3 id="8-must-allow-override-of-default-values">8. Must allow override of default values</h3>
 <p>Sometimes you just have to compile files with only given compiler
 flags and no others, or install files in weird places. The system must
 allow the user to do this if he really wants to.</p>

@@ -319,7 +319,7 @@ objects such as <a href="Reference-manual.html#find_program"><code>find_program(
 <a href="Reference-manual.html#executable"><code>executable()</code></a>, <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>,
 <a href="Reference-manual.html#files"><code>files()</code></a>, <a href="Reference-manual.html#custom_target"><code>custom_target()</code></a>, etc.
 Meson will automatically insert the appropriate dependencies on
-targets and files listed in this keyword argument.<br>
+targets and files listed in this keyword argument.
 Note: always specify commands in array form <code>['commandname', '-arg1', '-arg2']</code> rather than as a string <code>'commandname -arg1 -arg2'</code> as the latter will <em>not</em> work.</li>
 <li>
 <code>depend_files</code> files (<a href="Reference-manual.html#string-object"><code>string</code></a>,
@@ -922,7 +922,7 @@ Library</em>.</p>
 <li>
 <code>default_options</code> takes an array of strings. The strings are in the
 form <code>key=value</code> and have the same format as options to
-<code>mesonconf</code>. For example to set the default project type you would
+<code>meson configure</code>. For example to set the default project type you would
 set this: <code>default_options : ['buildtype=debugoptimized']</code>. Note
 that these settings are only used when running Meson for the first
 time. Global options such as <code>buildtype</code> can only be specified in
@@ -1527,7 +1527,7 @@ array</p>
 specified as the argument</p>
 </li>
 <li>
-<p><code>strip()</code> removes whitespace at the beginning and end of the string<br>
+<p><code>strip()</code> removes whitespace at the beginning and end of the string
 <em>(added 0.43.0)</em> optionally can take one positional string argument,
 and all characters in that string will be stripped</p>
 </li>
@@ -1615,7 +1615,7 @@ files with custom flags. To use the object file(s) in another build
 target, use the <code>objects:</code> keyword argument.</p>
 </li>
 <li>
-<p><code>full_path()</code> returns a full path pointing to the result target file.<br>
+<p><code>full_path()</code> returns a full path pointing to the result target file.
 NOTE: In most cases using the object itself will do the same job as
 this and will also allow Meson to setup inter-target dependencies
 correctly. Please file a bug if that doesn't work for you.</p>
@@ -1672,7 +1672,7 @@ cause a syntax error.</p>
 contains a target with the following methods:</p>
 <ul>
 <li>
-<p><code>full_path()</code> returns a full path pointing to the result target file<br>
+<p><code>full_path()</code> returns a full path pointing to the result target file
 NOTE: In most cases using the object itself will do the same job as
 this and will also allow Meson to setup inter-target dependencies
 correctly. Please file a bug if that doesn't work for you.</p>

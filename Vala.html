@@ -173,9 +173,9 @@ executable('valaprog', 'prog.vala',
 <p>When dealing with libraries that are not providing Vala bindings, a <code>--vapidir</code> flag can be added to extend the search path for the current project.</p>
 <pre><code class="language-meson">project('vala app', 'c', 'vala')
 
-add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], 
+add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')],
                       language: 'vala')
-                      
+
 glib_dep = dependency('glib-2.0')
 gobject_dep = dependency('gobject-2.0')
 foo_dep = dependency('foo') # 'foo.vapi' will be resolved in './vapi/foo.vapi'
@@ -198,9 +198,9 @@ executable('app', 'app.vala', dependencies: [glib_dep, gobject_dep, posix_dep])
 </code></pre>
 <h2 id="custom-output-names">Custom output names</h2>
 <p>If a library target is used, Meson automatically outputs the C header and the VAPI. They can be renamed by setting the <code>vala_header</code> and <code>vala_vapi</code> arguments respectively. In this case, the second and third elements of the <code>install_dir</code> array indicate the destination with <code>true</code> to indicate default directories (i.e. <code>include</code> and <code>share/vala/vapi</code>).</p>
-<pre><code class="language-meson">foo_lib = library('foo', 'foo.vala', 
+<pre><code class="language-meson">foo_lib = library('foo', 'foo.vala',
                   vala_header: 'foo.h',
-                  vala_vapi: 'foo-1.0.vapi', 
+                  vala_vapi: 'foo-1.0.vapi',
                   dependencies: [glib_dep, gobject_dep],
                   install: true,
                   install_dir: [true, true, true])
@@ -208,8 +208,8 @@ executable('app', 'app.vala', dependencies: [glib_dep, gobject_dep, posix_dep])
 <h2 id="gobject-introspection">GObject Introspection</h2>
 <p>To generate GObject Introspection metadata, the <code>vala_gir</code> option has to be set with the desired name.</p>
 <p>The fourth element in the <code>install_dir</code> array indicate where the GIR file will be installed. The <code>true</code> value tells Meson to use the default directory (i.e. <code>share/gir-1.0</code>).</p>
-<pre><code class="language-meson">foo_lib = library('foo', 'foo.vala', 
-                  vala_gir: 'Foo-1.0.gir', 
+<pre><code class="language-meson">foo_lib = library('foo', 'foo.vala',
+                  vala_gir: 'Foo-1.0.gir',
                   dependencies: [glib_dep, gobject_dep],
                   install: true,
                   install_dir: [true, true, true, true])

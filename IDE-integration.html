@@ -179,7 +179,7 @@ $('body').removeClass('no-script');
 <p>The next thing to display is the list of options that can be set. These include build type and so on. Here's how to extract them.</p>
 <pre><code>mesonintrospect.py --buildoptions
 </code></pre>
-<p>To set the options, use the <code>mesonconf.py</code> binary.</p>
+<p>To set the options, use the <code>meson configure</code> command.</p>
 <p>Compilation and unit tests are done as usual by running the <code>ninja</code> and <code>ninja test</code> commands. A JSON formatted result log can be found in <code>workspace/project/builddir/meson-logs/testlog.json</code>.</p>
 <p>When these tests fail, the user probably wants to run the failing test in a debugger. To make this as integrated as possible, extract the test test setups with this command.</p>
 <pre><code>mesonintrospect.py --tests

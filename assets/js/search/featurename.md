@@ -1,1 +1,1 @@
-urls_downloaded_cb({"urls": ["Release-notes-for-0-44-0.html#new-features"], "token": "featurename.md"});
+urls_downloaded_cb({"token": "featurename.md", "urls": ["Release-notes-for-0-44-0.html#new-features"]});
