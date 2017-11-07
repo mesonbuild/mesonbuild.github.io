@@ -226,9 +226,9 @@ the following:</p>
 <li>
 <code>timeout_multiplier</code> a number to multiply the test timeout with</li>
 </ul>
-<p>To use the test setup, run <code>mesontest --setup=*name*</code> inside the build dir.</p>
+<p>To use the test setup, run <code>meson test --setup=*name*</code> inside the build dir.</p>
 <p>Note that all these options are also available while running the
-<code>mesontest</code> script for running tests instead of <code>ninja test</code> or
+<code>meson test</code> script for running tests instead of <code>ninja test</code> or
 <code>msbuild RUN_TESTS.vcxproj</code>, etc depending on the backend.</p>
 <h3 id="benchmark">benchmark()</h3>
 <pre><code class="language-meson">    void benchmark(name, executable, ...)
@@ -902,6 +902,10 @@ static libraries.</li>
 <pre><code class="language-meson">    void message(text)
 </code></pre>
 <p>This function prints its argument to stdout.</p>
+<h3 id="warning">warning()</h3>
+<pre><code class="language-meson">    void warning(text)
+</code></pre>
+<p>This function prints its argument to stdout prefixed with WARNING:.</p>
 <h3 id="project">project()</h3>
 <pre><code class="language-meson">    void project(project_name, list_of_languages, ...)
 </code></pre>
@@ -1118,7 +1122,7 @@ for the test</p>
 </li>
 </ul>
 <p>Defined tests can be run in a backend-agnostic way by calling
-<code>mesontest</code> inside the build dir, or by using backend-specific
+<code>meson test</code> inside the build dir, or by using backend-specific
 commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
 <h3 id="vcs_tag">vcs_tag()</h3>
 <pre><code class="language-meson">    customtarget vcs_tag(...)

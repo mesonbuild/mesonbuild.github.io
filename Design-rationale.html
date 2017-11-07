@@ -237,16 +237,14 @@ tools of choice on those platforms. In practice this means native
 support for Visual Studio and XCode. Having said IDEs invoke external
 builder binaries does not count as native support.</p>
 <h3 id="5-must-not-add-complexity-due-to-obsolete-platforms">5. Must not add complexity due to obsolete platforms</h3>
-<p>Work on this build system started during the Christmas holidays of</p>
-<ol start="2012">
-<li>This provides a natural hard cutoff line of 2012/12/24. Any
+<p>Work on this build system started during the Christmas holidays of 2012.
+This provides a natural hard cutoff line of 2012/12/24. Any
 platform, tool or library that was not in active use at that time is
 explicitly not supported. These include Unixes such as IRIX, SunOS,
 OSF-1, Ubuntu versions older than 12/10, GCC versions older than 4.7
 and so on. If these old versions happen to work, great. If they don't,
 not a single line of code will be added to the system to work around
-their bugs.</li>
-</ol>
+their bugs.</p>
 <h3 id="6-must-be-fast">6. Must be fast</h3>
 <p>Running the configuration step on a moderate sized project must not
 take more than five seconds. Running the compile command on a fully up

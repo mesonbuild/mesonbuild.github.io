@@ -273,6 +273,12 @@ but instead it has its own <code>cups-config</code> util. Meson will use it
 automatically:</p>
 <pre><code class="language-meson">cups_dep = dependency('cups', version : '&gt;=1.4')
 </code></pre>
+<h2 id="libwmf">LibWMF</h2>
+<p>The libwmf library does not ship with pkg-config at the time or writing
+but instead it has its own <code>libwmf-config</code> util. Meson will use it
+automatically:</p>
+<pre><code class="language-meson">libwmf_dep = dependency('libwmf', version : '&gt;=0.2.8')
+</code></pre>
 <h2 id="declaring-your-own">Declaring your own</h2>
 <p>You can declare your own dependency objects that can be used
 interchangeably with dependency objects obtained from the system. The

@@ -187,7 +187,7 @@ else
   l = sp.get_variable('l')
 endif
 exe = executable('prog', 'prog.c', include_directories : i, link_with : l,
-                 deps : dep, install : true)
+                 dependencies : dep, install : true)
 </code></pre>
 <p>With this setup the system dependency is used when it is available, otherwise we fall back on the bundled version.</p>
 <p>It should be noted that this only works for subprojects that are built with Meson. It can not be used with any other build system. The reason is the simple fact that there is no possible way to do this reliably with mixed build systems.</p>
