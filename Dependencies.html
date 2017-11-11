@@ -189,7 +189,41 @@ whether the actual dependency was found or not. Meson will ignore
 non-found dependencies.</p>
 <p>The dependency detector works with all libraries that provide a
 <code>pkg-config</code> file. Unfortunately several packages don't provide
-pkg-config files. Meson has autodetection support for some of these.</p>
+pkg-config files. Meson has autodetection support for some of these,
+and they are described later on this page.</p>
+<h1 id="declaring-your-own">Declaring your own</h1>
+<p>You can declare your own dependency objects that can be used
+interchangeably with dependency objects obtained from the system. The
+syntax is straightforward:</p>
+<pre><code class="language-meson">my_inc = include_directories(...)
+my_lib = static_library(...)
+my_dep = declare_dependency(link_with : my_lib,
+  include_directories : my_inc)
+</code></pre>
+<p>This declares a dependency that adds the given include directories and
+static library to any target you use it in.</p>
+<h1 id="building-dependencies-as-subprojects">Building dependencies as subprojects</h1>
+<p>Many platforms do not provide a system package manager. On these
+systems dependencies must be compiled from source. Meson's subprojects
+make it simple to use system dependencies when they are available and
+to build dependencies manually when they are not.</p>
+<p>To make this work, the dependency must have Meson build definitions
+and it must declare its own dependency like this:</p>
+<pre><code>foo_dep = declare_dependency(...)
+</code></pre>
+<p>Then any project that wants to use it can write out the following
+declaration in their main <code>meson.build</code> file.</p>
+<pre><code>foo_dep = dependency('foo', fallback : ['foo', 'foo_dep'])
+</code></pre>
+<p>What this declaration means is that first Meson tries to look up the
+dependency from the system (such as by using pkg-config). If it is not
+available, then it builds subproject named <code>foo</code> and from that
+extracts a variable <code>foo_dep</code>. That means that the return value of
+this function is either an external or an internal dependency
+object. Since they can be used interchangeably, the rest of the build
+definitions do not need to care which one it is. Meson will take care
+of all the work behind the scenes to make this work.</p>
+<h1 id="dependencies-with-custom-lookup-functionality">Dependencies with custom lookup functionality</h1>
 <h2 id="boost">Boost</h2>
 <p>Boost is not a single dependency but rather a group of different
 libraries. To use Boost headers-only libraries, simply add Boost as a
@@ -279,17 +313,6 @@ but instead it has its own <code>libwmf-config</code> util. Meson will use it
 automatically:</p>
 <pre><code class="language-meson">libwmf_dep = dependency('libwmf', version : '&gt;=0.2.8')
 </code></pre>
-<h2 id="declaring-your-own">Declaring your own</h2>
-<p>You can declare your own dependency objects that can be used
-interchangeably with dependency objects obtained from the system. The
-syntax is straightforward:</p>
-<pre><code class="language-meson">my_inc = include_directories(...)
-my_lib = static_library(...)
-my_dep = declare_dependency(link_with : my_lib,
-  include_directories : my_inc)
-</code></pre>
-<p>This declares a dependency that adds the given include directories and
-static library to any target you use it in.</p>
 
 </div>
 

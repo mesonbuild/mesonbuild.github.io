@@ -159,15 +159,31 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Syntax.md" data-hotdoc-role="main">
 <h1 id="syntax">Syntax</h1>
-<p>The syntax of Meson's specification language has been kept as simple as possible. It is <em>strongly typed</em> so no object is ever converted to another under the covers. Variables have no visible type which makes Meson <em>dynamically typed</em> (also known as <em>duck typed</em>).</p>
-<p>The main building blocks of the language are <em>variables</em>, <em>numbers</em>, <em>booleans</em>, <em>strings</em>, <em>arrays</em>, <em>function calls</em>, <em>method calls</em>, <em>if statements</em> and <em>includes</em>.</p>
-<p>Usually one Meson statement takes just one line. There is no way to have multiple statements on one line as in e.g. <em>C</em>. Function and method calls' argument lists can be split over multiple lines. Meson will autodetect this case and do the right thing. In other cases you can get multi-line statements by ending the line with a <code>\</code>. Apart from line ending whitespace has no syntactic meaning.</p>
+<p>The syntax of Meson's specification language has been kept as simple
+as possible. It is <em>strongly typed</em> so no object is ever converted to
+another under the covers. Variables have no visible type which makes
+Meson <em>dynamically typed</em> (also known as <em>duck typed</em>).</p>
+<p>The main building blocks of the language are <em>variables</em>, <em>numbers</em>,
+<em>booleans</em>, <em>strings</em>, <em>arrays</em>, <em>function calls</em>, <em>method calls</em>, <em>if
+statements</em> and <em>includes</em>.</p>
+<p>Usually one Meson statement takes just one line. There is no way to
+have multiple statements on one line as in e.g. <em>C</em>. Function and
+method calls' argument lists can be split over multiple lines. Meson
+will autodetect this case and do the right thing. In other cases you
+can get multi-line statements by ending the line with a <code>\</code>. Apart
+from line ending whitespace has no syntactic meaning.</p>
 <h2 id="variables">Variables</h2>
-<p>Variables in Meson work just like in other high level programming languages. A variable can contain a value of any type, such as an integer or a string. Variables don't need to be predeclared, you can just assign to them and they appear. Here's how you would assign values to two different variables.</p>
+<p>Variables in Meson work just like in other high level programming
+languages. A variable can contain a value of any type, such as an
+integer or a string. Variables don't need to be predeclared, you can
+just assign to them and they appear. Here's how you would assign
+values to two different variables.</p>
 <pre><code class="language-meson">var1 = 'hello'
 var2 = 102
 </code></pre>
-<p>One important difference in how variables work in Meson is that all variables are immutable. This is different from, for example, how Python works.</p>
+<p>One important difference in how variables work in Meson is that all
+objects are immutable. This is different from, for example, how Python
+works.</p>
 <pre><code class="language-meson">var1 = [1, 2, 3]
 var2 = var1
 var2 += [4]
@@ -175,7 +191,8 @@ var2 += [4]
 # var1 is still [1, 2, 3]
 </code></pre>
 <h2 id="numbers">Numbers</h2>
-<p>Meson supports only integer numbers. They are declared simply by writing them out. Basic arithmetic operations are supported.</p>
+<p>Meson supports only integer numbers. They are declared simply by
+writing them out. Basic arithmetic operations are supported.</p>
 <pre><code class="language-meson">x = 1 + 2
 y = 3 * 4
 d = 5 % 3 # Yields 2.
@@ -189,10 +206,12 @@ num = string_var.to_int()
 <pre><code class="language-meson">truth = true
 </code></pre>
 <h2 id="strings">Strings</h2>
-<p>Strings in Meson are declared with single quotes. To enter a literal single quote do it like this:</p>
+<p>Strings in Meson are declared with single quotes. To enter a literal
+single quote do it like this:</p>
 <pre><code class="language-meson">single quote = 'contains a \' character'
 </code></pre>
-<p>Similarly <code>\n</code> gets converted to a newline and <code>\\\\</code> to a single backslash.</p>
+<p>Similarly <code>\n</code> gets converted to a newline and <code>\\\\</code> to a single
+backslash.</p>
 <h4 id="string-concatenation">String concatenation</h4>
 <p>Strings can be concatenated to form a new string using the <code>+</code> symbol.</p>
 <pre><code class="language-meson">str1 = 'abc'
@@ -200,22 +219,26 @@ str2 = 'xyz'
 combined = str1 + '_' + str2 # combined is now abc_xyz
 </code></pre>
 <h4 id="strings-running-over-multiple-lines">Strings running over multiple lines</h4>
-<p>Strings running over multiple lines can be declared with three single quotes, like this:</p>
+<p>Strings running over multiple lines can be declared with three single
+quotes, like this:</p>
 <pre><code class="language-meson">multiline_string = '''#include &lt;foo.h&gt;
 int main (int argc, char ** argv) {
   return FOO_SUCCESS;
 }'''
 </code></pre>
-<p>This can also be combined with the string formatting functionality described below.</p>
+<p>This can also be combined with the string formatting functionality
+described below.</p>
 <h4 id="string-formatting">String formatting</h4>
 <p>Strings can be built using the string formatting functionality.</p>
 <pre><code class="language-meson">template = 'string: @0@, number: @1@, bool: @2@'
 res = template.format('text', 1, true)
 # res now has value 'string: text, number: 1, bool: true'
 </code></pre>
-<p>As can be seen, the formatting works by replacing placeholders of type <code>@number@</code> with the corresponding argument.</p>
+<p>As can be seen, the formatting works by replacing placeholders of type
+<code>@number@</code> with the corresponding argument.</p>
 <h4 id="string-methods">String methods</h4>
-<p>Strings also support a number of other methods that return transformed copies.</p>
+<p>Strings also support a number of other methods that return transformed
+copies.</p>
 <p><strong>.strip()</strong></p>
 <pre><code class="language-meson"># Similar to the Python str.strip(). Removes leading/ending spaces and newlines
 define = ' -Dsomedefine '
@@ -300,7 +323,9 @@ last_element = my_array[-1]
 # This also works
 my_array += 'else'
 </code></pre>
-<p>Note appending to an array will always create a new array object and assign it to <code>my_array</code> instead of modifying the original since all objects in Meson are immutable.</p>
+<p>Note appending to an array will always create a new array object and
+assign it to <code>my_array</code> instead of modifying the original since all
+objects in Meson are immutable.</p>
 <h4 id="array-methods">Array methods</h4>
 <p>The following methods are defined for all arrays:</p>
 <ul>
@@ -312,11 +337,13 @@ my_array += 'else'
 <code>get</code>, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error. Provided for backwards-compatibility, it is identical to array indexing.</li>
 </ul>
 <h2 id="function-calls">Function calls</h2>
-<p>Meson provides a set of usable functions. The most common use case is creating build objects.</p>
+<p>Meson provides a set of usable functions. The most common use case is
+creating build objects.</p>
 <pre><code class="language-meson">executable('progname', 'prog.c')
 </code></pre>
 <h2 id="method-calls">Method calls</h2>
-<p>Objects can have methods, which are called with the dot operator. The exact methods it provides depends on the object.</p>
+<p>Objects can have methods, which are called with the dot operator. The
+exact methods it provides depends on the object.</p>
 <pre><code class="language-meson">myobj = some_function()
 myobj.do_something('now')
 </code></pre>
@@ -338,7 +365,9 @@ if opt == 'foo'
 endif
 </code></pre>
 <h2 id="foreach-statements">Foreach statements</h2>
-<p>To do an operation on all elements of an array, use the <code>foreach</code> command. As an example, here's how you would define two executables with corresponding tests.</p>
+<p>To do an operation on all elements of an array, use the <code>foreach</code>
+command. As an example, here's how you would define two executables
+with corresponding tests.</p>
 <pre><code class="language-meson">progs = [['prog1', ['prog1.c', 'foo.c']],
          ['prog2', ['prog2.c', 'bar.c']]]
 
@@ -347,7 +376,9 @@ foreach p : progs
   test(p[0], exe)
 endforeach
 </code></pre>
-<p>Note that Meson variables are immutable. Trying to assign a new value to <code>progs</code> inside a foreach loop will not affect foreach's control flow.</p>
+<p>Note that Meson variables are immutable. Trying to assign a new value
+to <code>progs</code> inside a foreach loop will not affect foreach's control
+flow.</p>
 <h2 id="logical-operations">Logical operations</h2>
 <p>Meson has the standard range of logical operations.</p>
 <pre><code class="language-meson">if a and b
@@ -373,14 +404,30 @@ some_other_function()
 <p>The ternary operator works just like in other languages.</p>
 <pre><code class="language-meson">x = condition ? true_value : false_value
 </code></pre>
-<p>The only exception is that nested ternary operators are forbidden to improve legibility. If your branching needs are more complex than this you need to write an <code>if/else</code> construct.</p>
+<p>The only exception is that nested ternary operators are forbidden to
+improve legibility. If your branching needs are more complex than this
+you need to write an <code>if/else</code> construct.</p>
 <h2 id="includes">Includes</h2>
-<p>Most source trees have multiple subdirectories to process. These can be handled by Meson's <code>subdir</code> command. It changes to the given subdirectory and executes the contents of <code>meson.build</code> in that subdirectory. All state (variables etc) are passed to and from the subdirectory. The effect is roughly the same as if the contents of the subdirectory's Meson file would have been written where the include command is.</p>
+<p>Most source trees have multiple subdirectories to process. These can
+be handled by Meson's <code>subdir</code> command. It changes to the given
+subdirectory and executes the contents of <code>meson.build</code> in that
+subdirectory. All state (variables etc) are passed to and from the
+subdirectory. The effect is roughly the same as if the contents of the
+subdirectory's Meson file would have been written where the include
+command is.</p>
 <pre><code class="language-meson">test_data_dir = 'data'
 subdir('tests')
 </code></pre>
 <h2 id="userdefined-functions-and-methods">User-defined functions and methods</h2>
-<p>Meson does not currently support user-defined functions or methods. The addition of user-defined functions would make Meson Turing-complete which would make it harder to reason about and more difficult to integrate with tools like IDEs. More details about this are <a href="FAQ.html#why-is-meson-not-just-a-python-module-so-i-could-code-my-build-setup-in-python">in the FAQ</a>. If because of this limitation you find yourself copying and pasting code a lot you may be able to use a <a href="Syntax.html#foreach-statements"><code>foreach</code> loop instead</a>.</p>
+<p>Meson does not currently support user-defined functions or
+methods. The addition of user-defined functions would make Meson
+Turing-complete which would make it harder to reason about and more
+difficult to integrate with tools like IDEs. More details about this
+are <a href="FAQ.html#why-is-meson-not-just-a-python-module-so-i-could-code-my-build-setup-in-python">in the
+FAQ</a>. If
+because of this limitation you find yourself copying and pasting code
+a lot you may be able to use a <a href="Syntax.html#foreach-statements"><code>foreach</code> loop
+instead</a>.</p>
 
 </div>
 
