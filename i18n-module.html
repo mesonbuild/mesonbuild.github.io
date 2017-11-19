@@ -171,29 +171,24 @@ into their proper locations during install. Takes one positional
 argument which is the name of the gettext module.</p>
 <ul>
 <li>
-<p><code>args</code>: list of extra arguments to pass to <code>xgettext</code> when
-generating the pot file</p>
-</li>
+<code>args</code>: list of extra arguments to pass to <code>xgettext</code> when
+generating the pot file</li>
 <li>
-<p><code>data_dirs</code>: (<em>Added 0.36.0</em>) list of directories to be set for
+<code>data_dirs</code>: (<em>Added 0.36.0</em>) list of directories to be set for
 <code>GETTEXTDATADIRS</code> env var (Requires gettext 0.19.8+), used for local
-its files</p>
-</li>
+its files</li>
 <li>
-<p><code>languages</code>: list of languages that are to be generated. As of
+<code>languages</code>: list of languages that are to be generated. As of
 0.37.0 this is optional and the
 <a href="https://www.gnu.org/software/gettext/manual/html_node/po_002fLINGUAS.html">LINGUAS</a>
-file is read.</p>
-</li>
+file is read.</li>
 <li>
-<p><code>preset</code>: (<em>Added 0.37.0</em>) name of a preset list of arguments,
+<code>preset</code>: (<em>Added 0.37.0</em>) name of a preset list of arguments,
 current option is <code>'glib'</code>, see
 <a href="https://github.com/mesonbuild/meson/blob/master/mesonbuild/modules/i18n.py">source</a>
-for for their value</p>
-</li>
+for for their value</li>
 <li>
-<p><code>install</code>: (<em>Added 0.43.0</em>) if false, do not install the built translations.</p>
-</li>
+<code>install</code>: (<em>Added 0.43.0</em>) if false, do not install the built translations.</li>
 </ul>
 <p>This function also defines targets for maintainers to use:
 <strong>Note</strong>: These output to the source directory</p>
