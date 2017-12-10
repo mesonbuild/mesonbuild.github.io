@@ -159,14 +159,98 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Release-notes-for-0.44.0.md" data-hotdoc-role="main">
 <h1 id="new-features">New features</h1>
-<p>This page is a placeholder for the eventual release notes.</p>
-<p>Notable new features should come with release note updates. This is
-done by creating a file snippet called <code>snippets/featurename.md</code> and
-whose contents should look like this:</p>
-<pre><code># Feature name
-
-A short description explaining the new feature and how it should be used.
+<h2 id="added-warning-function">Added warning function</h2>
+<p>This function prints its argument to the console prefixed by "WARNING:" in
+yellow color. A simple example:</p>
+<p>warning('foo is deprecated, please use bar instead')</p>
+<h2 id="adds-support-for-additional-qt5module-keyword-moc_extra_arguments">Adds support for additional Qt5-Module keyword <code>moc_extra_arguments</code>
+</h2>
+<p>When <code>moc</code>-ing sources, the <code>moc</code> tool does not know about any
+preprocessor macros. The generated code might not match the input
+files when the linking with the moc input sources happens.</p>
+<p>This amendment allows to specify a a list of additional arguments
+passed to the <code>moc</code> tool. They are called <code>moc_extra_arguments</code>.</p>
+<h2 id="prefixdependent-defaults-for-sysconfdir-localstatedir-and-sharedstatedir">Prefix-dependent defaults for sysconfdir, localstatedir and sharedstatedir</h2>
+<p>These options now default in a way consistent with
+<a href="http://refspecs.linuxfoundation.org/fhs.shtml">FHS</a> and common usage.</p>
+<p>If prefix is <code>/usr</code>, default sysconfdir to <code>/etc</code>, localstatedir to <code>/var</code> and
+sharedstatedir to <code>/var/lib</code>.</p>
+<p>If prefix is <code>/usr/local</code> (the default), default localstatedir to <code>/var/local</code>
+and sharedstatedir to <code>/var/local/lib</code>.</p>
+<h2 id="an-array-type-for-user-options">An array type for user options</h2>
+<p>Previously to have an option that took more than one value a string
+value would have to be created and split, but validating this was
+difficult. A new array type has been added to the meson_options.txt
+for this case. It works like a 'combo', but allows more than one
+option to be passed. The values can optionally be validated against a
+list of valid values. When used on the command line (with -D), values
+are passed as a comma separated list.</p>
+<pre><code class="language-meson">option('array_opt', type : 'array', choices : ['one', 'two', 'three'], value : ['one'])
 </code></pre>
+<p>These can be overwritten on the command line,</p>
+<pre><code class="language-meson">meson _build -Darray_opt=two,three
+</code></pre>
+<h2 id="llvm-dependency-supports-both-dynamic-and-static-linking">LLVM dependency supports both dynamic and static linking</h2>
+<p>The LLVM dependency has been improved to consistently use dynamic linking.
+Previously recent version (&gt;= 3.9) would link dynamically while older versions
+would link statically.</p>
+<p>Now LLVM also accepts the <code>static</code> keyword to enable statically linking to LLVM
+modules instead of dynamically linking.</p>
+<h2 id="added-if_found-to-subdir">Added <code>if_found</code> to subdir</h2>
+<p>Added a new keyword argument to the <code>subdir</code> command. It is given a
+list of dependency objects and the function will only recurse in the
+subdirectory if they are all found. Typical usage goes like this.</p>
+<pre><code>d1 = dependency('foo') # This is found
+d2 = dependency('bar') # This is not found
+
+subdir('somedir', if_found : [d1, d2])
+</code></pre>
+<p>In this case the subdirectory would not be entered since <code>d2</code> could
+not be found.</p>
+<h2 id="get_unquoted-method-for-the-configuration-data-object">
+<code>get_unquoted()</code> method for the <code>configuration</code> data object</h2>
+<p>New convenience method that allows reusing a variable value
+defined quoted. Useful in C for config.h strings for example.</p>
+<h2 id="added-disabler-object">Added disabler object</h2>
+<p>A disabler object is a new kind of object that has very specific
+semantics. If it is used as part of any other operation such as an
+argument to a function call, logical operations etc, it will cause the
+operation to not be evaluated. Instead the return value of said
+operation will also be the disabler object.</p>
+<p>For example if you have an setup like this:</p>
+<pre><code class="language-meson">dep = dependency('foo')
+lib = shared_library('mylib', 'mylib.c',
+  dependencies : dep)
+exe = executable('mytest', 'mytest.c',
+  link_with : lib)
+test('mytest', exe)
+</code></pre>
+<p>If you replace the dependency with a disabler object like this:</p>
+<pre><code class="language-meson">dep = disabler()
+lib = shared_library('mylib', 'mylib.c',
+  dependencies : dep)
+exe = executable('mytest', 'mytest.c',
+  link_with : lib)
+test('mytest', exe)
+</code></pre>
+<p>Then the shared library, executable and unit test are not
+created. This is a handy mechanism to cut down on the number of <code>if</code>
+statements.</p>
+<h2 id="configtool-based-dependencies-gained-a-method-to-get-arbitrary-options">Config-Tool based dependencies gained a method to get arbitrary options</h2>
+<p>A number of dependencies (CUPS, LLVM, pcap, WxWidgets, GnuStep) use a config
+tool instead of pkg-config. As of this version they now have a
+<code>get_configtool_variable</code> method, which is analogous to the
+<code>get_pkgconfig_variable</code> for pkg config.</p>
+<pre><code class="language-meson">dep_llvm = dependency('LLVM')
+llvm_inc_dir = dep_llvm.get_configtool_variable('includedir')
+</code></pre>
+<h2 id="embedded-python-in-windows-msi-packages">Embedded Python in Windows MSI packages</h2>
+<p>Meson now ships an internal version of Python in the MSI installer packages.
+This means that it can run Python scripts that are part of your build
+transparently. That is, if you do the following:</p>
+<pre><code>myprog = find_program('myscript.py')
+</code></pre>
+<p>Then Meson will run the script with its internal Python version if necessary.</p>
 
 </div>
 

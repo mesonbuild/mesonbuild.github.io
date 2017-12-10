@@ -295,23 +295,37 @@ the necessary tools in the correct order, which is done with the
 the list of sources for the target. The <code>modules</code> keyword of
 <code>dependency</code> works just like it does with Boost. It tells which
 subparts of Qt the program uses.</p>
-<h2 id="pcap">Pcap</h2>
-<p>The pcap library does not ship with pkg-config at the time or writing
-but instead it has its own <code>pcap-config</code> util. Meson will use it
-automatically:</p>
+<h2 id="dependencies-using-config-tools">Dependencies using config tools</h2>
+<p>CUPS, LLVM, PCAP, WxWidgets, libwmf, and GnuStep either do not provide
+pkg-config modules or additionally can be detected via a config tool
+(cups-config, llvm-config, etc). Meson has native support for these tools, and
+then can be found like other dependencies:</p>
 <pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
+cups_dep = dependency('cups', version : '&gt;=1.4')
+llvm_dep = dependency('llvm', version : '&gt;=4.0')
 </code></pre>
-<h2 id="cups">CUPS</h2>
-<p>The cups library does not ship with pkg-config at the time or writing
-but instead it has its own <code>cups-config</code> util. Meson will use it
-automatically:</p>
-<pre><code class="language-meson">cups_dep = dependency('cups', version : '&gt;=1.4')
+<p>Some of these tools (like wmf and cups) provide both pkg-config and config
+tools support. You can force one or another via the method keyword:</p>
+<pre><code class="language-meson">wmf_dep = dependency('wmf', method : 'config-tool')
 </code></pre>
-<h2 id="libwmf">LibWMF</h2>
-<p>The libwmf library does not ship with pkg-config at the time or writing
-but instead it has its own <code>libwmf-config</code> util. Meson will use it
-automatically:</p>
-<pre><code class="language-meson">libwmf_dep = dependency('libwmf', version : '&gt;=0.2.8')
+<h2 id="llvm">LLVM</h2>
+<p>Meson has native support for LLVM going back to version LLVM version 3.5.
+It supports a few additional features compared to other config-tool based
+dependencies.</p>
+<p>As of 0.44.0 Meson supports the <code>static</code> keyword argument for LLVM. Before this
+LLVM &gt;= 3.9 would always dynamically link, while older versions would
+statically link, due to a quirk in <code>llvm-config</code>.</p>
+<h3 id="modules-aka-components">Modules, a.k.a. Components</h3>
+<p>Meson wraps LLVM's concept of components in it's own modules concept.
+When you need specific components you add them as modules as meson will do the
+right thing:</p>
+<pre><code class="language-meson">llvm_dep = dependency('llvm', version : '&gt;= 4.0', modules : ['amdgpu'])
+</code></pre>
+<p>As of 0.44.0 it can also take optional modules (these will affect the arguments
+generated for a static link):</p>
+<pre><code class="language-meson">llvm_dep = dependency(
+  'llvm', version : '&gt;= 4.0', modules : ['amdgpu'], optional_modules : ['inteljitevents'],
+)
 </code></pre>
 
 </div>

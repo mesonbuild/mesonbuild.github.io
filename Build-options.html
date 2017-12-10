@@ -168,16 +168,31 @@ your source tree.</p>
 <pre><code class="language-meson">option('someoption', type : 'string', value : 'optval', description : 'An option')
 option('other_one', type : 'boolean', value : false)
 option('combo_opt', type : 'combo', choices : ['one', 'two', 'three'], value : 'three')
+option('free_array_opt', type : 'array', value : ['one', 'two'])
+option('array_opt', type : 'array', choices : ['one', 'two', 'three'], value : ['one', 'two'])
 </code></pre>
-<p>This demonstrates the three basic option types and their usage. String
-option is just a free form string and a boolean option is,
-unsurprisingly, true or false. The combo option can have any value
-from the strings listed in argument <code>choices</code>. If <code>value</code> is not set,
-it defaults to empty string for strings, <code>true</code> for booleans or the
-first element in a combo. You can specify <code>description</code>, which is a
-free form piece of text describing the option. It defaults to option
-name.</p>
-<p>These options are accessed in Meson code with the <code>get_option</code> function.</p>
+<p>All types allow a <code>description</code> value to be set describing the option,
+if no option is set then the name of the option will be used instead.</p>
+<h3 id="strings">Strings</h3>
+<p>The string type is a free form string. If the default value is not set
+then an empty string will be used as the default.</p>
+<h3 id="booleans">Booleans</h3>
+<p>Booleans may have values of either <code>true</code> or <code>false</code>. If no default
+value is supplied then <code>true</code> will be used as the default.</p>
+<h3 id="combos">Combos</h3>
+<p>A combo allows any one of the values in the <code>choices</code> parameter to be
+selected.  If no default value is set then the first value will be the
+default.</p>
+<h3 id="arrays">Arrays</h3>
+<p>Arrays represent an array of strings. By default the array can contain
+arbitrary strings. To limit the possible values that can used set the
+<code>choices</code> parameter. Meson will then only allow the value array to
+contain strings that are in the given list. The array may be
+empty. The <code>value</code> parameter specifies the default value of the option
+and if it is unset then the values of <code>choices</code> will be used as the
+default.</p>
+<p>This type is new in version 0.44.0</p>
+<h2 id="using-build-options">Using build options</h2>
 <pre><code class="language-meson">optval = get_option('opt_name')
 </code></pre>
 <p>This function also allows you to query the value of Meson's built-in
@@ -186,14 +201,28 @@ issue the following command:</p>
 <pre><code class="language-meson">prefix = get_option('prefix')
 </code></pre>
 <p>It should be noted that you can not set option values in your Meson
-scripts. They have to be set externally with the <code>meson configure</code> command
-line tool. Running <code>meson configure</code> without arguments in a build dir shows
-you all options you can set.</p>
+scripts. They have to be set externally with the <code>meson configure</code>
+command line tool. Running <code>meson configure</code> without arguments in a
+build dir shows you all options you can set.</p>
 <p>To change their values use the <code>-D</code>
 option:</p>
 <pre><code class="language-console">$ meson configure -Doption=newvalue
 </code></pre>
-<p><strong>NOTE:</strong> If you cannot call <code>meson configure</code> you likely have a old version of Meson. In that case you can call <code>mesonconf</code> instead, but that is deprecated in newer versions</p>
+<p>Setting the value of arrays is a bit special. If you only pass a
+single string, then it is considered to have all values separated by
+commas. Thus invoking the following command:</p>
+<pre><code class="language-console">$ meson configure -Darray_opt=foo,bar
+</code></pre>
+<p>would set the value to an array of two elements, <code>foo</code> and <code>bar</code>.</p>
+<p>If you need to have commas in your string values, then you need to
+pass the value with proper shell quoting like this:</p>
+<pre><code class="language-console">$ meson configure "-Doption=['a,b', 'c,d']"
+</code></pre>
+<p>The inner values must always be single quotes and the outer ones
+double quotes.</p>
+<p><strong>NOTE:</strong> If you cannot call <code>meson configure</code> you likely have a old
+version of Meson. In that case you can call <code>mesonconf</code> instead, but
+that is deprecated in newer versions</p>
 
 </div>
 

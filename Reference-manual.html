@@ -452,8 +452,16 @@ comparison operator followed by the version string, examples include
 You can also specify multiple restrictions by passing a list to this
 keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.</li>
 </ul>
+<p>If dependency_name is '', the dependency is always not found.  So with
+<code>required: false</code>, this always returns a dependency object for which the
+<code>found()</code> method returns <code>false</code>, and which can be passed like any other
+dependency to the <code>dependencies:</code> keyword argument of a <code>build_target</code>.  This
+can be used to implement a dependency which is sometimes not required e.g. in
+some branches of a conditional.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#dependency-object">object methods section</a> below.</p>
+<h3 id="disabler">disabler()</h3>
+<p>Returns a <a href="(#disabler-object)">disabler object</a>. Added in 0.44.0.</p>
 <h3 id="error">error()</h3>
 <pre><code class="language-meson">    void error(message)
 </code></pre>
@@ -583,10 +591,7 @@ in the D programming language</li>
 </ul>
 <p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always
 flattened, which means you can freely nest and add lists while
-creating the final list. As a corollary, the best way to handle a
-'disabled dependency' is by assigning an empty list <code>[]</code> to it and
-passing it like any other dependency to the <code>dependencies:</code> keyword
-argument.</p>
+creating the final list.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#build-target-object">object methods section</a> below.</p>
 <h3 id="find_library">find_library()</h3>
@@ -831,11 +836,7 @@ installed with a <code>.gz</code> suffix.</p>
 </code></pre>
 <p>Installs the entire given subdirectory and its contents from the
 source tree to the location specified by the keyword argument
-<code>install_dir</code>. Note that due to implementation issues this command
-deletes the entire target dir before copying the files, so you should
-never use <code>install_subdir</code> to install into two overlapping directories
-(such as <code>foo</code> and <code>foo/bar</code>) because if you do the behavior is
-undefined.</p>
+<code>install_dir</code>.</p>
 <p>The following keyword arguments are supported:</p>
 <ul>
 <li>
@@ -906,6 +907,7 @@ static libraries.</li>
 <pre><code class="language-meson">    void warning(text)
 </code></pre>
 <p>This function prints its argument to stdout prefixed with WARNING:.</p>
+<p><em>Added 0.44.0</em></p>
 <h3 id="project">project()</h3>
 <pre><code class="language-meson">    void project(project_name, list_of_languages, ...)
 </code></pre>
@@ -1050,7 +1052,7 @@ option has no effect on Windows and OS X since it doesn't make
 sense on Windows and PIC cannot be disabled on OS X.</li>
 </ul>
 <h3 id="subdir">subdir()</h3>
-<pre><code class="language-meson">    void subdir(dir_name)
+<pre><code class="language-meson">    void subdir(dir_name, ...)
 </code></pre>
 <p>Enters the specified subdirectory and executes the <code>meson.build</code> file
 in it. Once that is done, it returns and execution continues on the
@@ -1060,6 +1062,14 @@ current build file and in all subsequent build files executed with
 <code>subdir()</code>.</p>
 <p>Note that this means that each <code>meson.build</code> file in a source tree can
 and must only be executed once.</p>
+<p>This function has one keyword argument.</p>
+<ul>
+<li>
+<code>if_found</code> takes one or several dependency objects and will only
+recurse in the subdir if they all return <code>true</code> when queried with
+<code>.found()</code>
+</li>
+</ul>
 <h3 id="subproject">subproject()</h3>
 <pre><code class="language-meson">    subproject_object subproject(subproject_name, ...)
 </code></pre>
@@ -1648,7 +1658,7 @@ value has not been set returns <code>default_value</code> if it is defined
 <p><code>get_unquoted(varname, default_value)</code> returns the value of <code>varname</code>
 but without surrounding double quotes (<code>"</code>). If the value has not been
 set returns <code>default_value</code> if it is defined and errors out if not.
-Available since 0.43.0</p>
+Available since 0.44.0</p>
 </li>
 <li>
 <p><code>has(varname)</code>, returns <code>true</code> if the specified variable is set</p>
@@ -1708,6 +1718,11 @@ pkg-config variable specified, or, if invoked on a non pkg-config
 dependency, error out</p>
 </li>
 <li>
+<p><code>get_configtool_variable(varname)</code> (<em>Added 0.44.0</em>) will get the
+command line argument from the config tool (with <code>--</code> prepended), or,
+if invoked on a non config-tool dependency, error out.</p>
+</li>
+<li>
 <p><code>type_name()</code> which returns a string describing the type of the
 dependency, the most common values are <code>internal</code> for deps created
 with <code>declare_dependencies</code> and <code>pkgconfig</code> for system dependencies
@@ -1715,6 +1730,18 @@ obtained with Pkg-config.</p>
 </li>
 <li>
 <p><code>version()</code> is the version number as a string, for example <code>1.2.8</code></p>
+</li>
+</ul>
+<h3 id="disabler-object">
+<code>disabler</code> object</h3>
+<p>A disabler object is an object that behaves in much the same way as
+NaN numbers do in floating point math. That is when used in any
+statement (function call, logical op, etc) they will cause the
+statement evaluation to immediately short circuit to return a disabler
+object. A disabler object has one method:</p>
+<ul>
+<li>
+<code>found()</code>, always returns <code>false</code>
 </li>
 </ul>
 <h3 id="external-program-object">
