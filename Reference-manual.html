@@ -461,7 +461,7 @@ some branches of a conditional.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#dependency-object">object methods section</a> below.</p>
 <h3 id="disabler">disabler()</h3>
-<p>Returns a <a href="(#disabler-object)">disabler object</a>. Added in 0.44.0.</p>
+<p>Returns a <a href="Reference-manual.html#disabler-object">disabler object</a>. Added in 0.44.0.</p>
 <h3 id="error">error()</h3>
 <pre><code class="language-meson">    void error(message)
 </code></pre>
@@ -1715,7 +1715,9 @@ an external dependency with the following methods:</p>
 <li>
 <p><code>get_pkgconfig_variable(varname)</code> (<em>Added 0.36.0</em>) will get the
 pkg-config variable specified, or, if invoked on a non pkg-config
-dependency, error out</p>
+dependency, error out. (<em>Added 0.44.0</em>) You can also redefine a
+variable by passing a list to the <code>define_variable</code> parameter
+that can affect the retrieved variable: <code>['prefix', '/'])</code>.</p>
 </li>
 <li>
 <p><code>get_configtool_variable(varname)</code> (<em>Added 0.44.0</em>) will get the

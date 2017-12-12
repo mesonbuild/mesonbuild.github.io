@@ -188,7 +188,8 @@ been found:</p>
 return a disabler. For example assuming that <code>d</code> contains a disabler
 object then</p>
 <pre><code class="language-meson">d2 = some_func(d) # value of d2 will be disabler
-d3 = true or d2   # value of d3 will be disabler
+d3 = true or d2   # value of d3 will be true because of short-circuiting
+d4 = false or d2  # value of d4 will be disabler
 if d              # neither branch is evaluated
 </code></pre>
 <p>Thus to disable every target that depends on the dependency given

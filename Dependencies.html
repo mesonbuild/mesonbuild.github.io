@@ -187,6 +187,15 @@ endif
 <p>You can pass the <code>opt_dep</code> variable to target construction functions
 whether the actual dependency was found or not. Meson will ignore
 non-found dependencies.</p>
+<p>Meson also allows to get variables that are defined in the
+<code>pkg-config</code> file. This can be done by using the
+<code>get_pkgconfig_variable</code> function.</p>
+<pre><code class="language-meson">zdep_prefix = zdep.get_pkgconfig_variable('prefix')
+</code></pre>
+<p>These variables can also be redefined by passing the <code>define_variable</code>
+parameter, which might be useful in certain situations:</p>
+<pre><code class="language-meson">zdep_prefix = zdep.get_pkgconfig_variable('libdir', define_variable: ['prefix', '/tmp'])
+</code></pre>
 <p>The dependency detector works with all libraries that provide a
 <code>pkg-config</code> file. Unfortunately several packages don't provide
 pkg-config files. Meson has autodetection support for some of these,
