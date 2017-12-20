@@ -387,6 +387,16 @@ mylib = library('my', my_sources, enums,
 <p>When called, this method will compile the gschemas in the current
 directory. Note that this is not for installing schemas and is only
 useful when running the application locally for example during tests.</p>
+<ul>
+<li>
+<code>build_by_default</code>: causes, when set to true, to have this target be
+built by default, that is, when invoking plain <code>ninja</code>, the default
+value is true for all built target types</li>
+<li>
+<code>depend_files</code>: files (<a href="Gnome-module.html#string-object"><code>string</code></a>,
+<a href="Gnome-module.html#files"><code>files()</code></a>, or <a href="Gnome-module.html#configure_file"><code>configure_file()</code></a>) of
+schema source XML files that should trigger a re-compile if changed.</li>
+</ul>
 <h3 id="gnomegdbus_codegen">gnome.gdbus_codegen()</h3>
 <p>Compiles the given XML schema into gdbus source code. Takes two
 positional arguments, the first one specifies the name of the source
