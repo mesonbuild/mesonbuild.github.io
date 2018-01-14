@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>The Meson Build system</title>
+<title>Project templates</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
@@ -146,7 +146,7 @@ $('body').removeClass('no-script');
 </nav>
 
 <main>
-<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="index.html" class="page_container" id="page-wrapper">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Project-templates.html" class="page_container" id="page-wrapper">
 <script src="assets/js/utils.js"></script>
 
 <div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
@@ -157,141 +157,30 @@ $('body').removeClass('no-script');
 <div id="body">
 	<div id="main">
 				
-<div id="page-description" data-hotdoc-source="index.md" data-hotdoc-role="main">
-<h1 id="the-meson-build-system">The Meson Build system</h1>
-<h2 id="overview">Overview</h2>
-<p>Meson is an open source build system meant to be both extremely fast,
-and, even more importantly, as user friendly as possible.</p>
-<p>The main design point of Meson is that every moment a developer spends
-writing or debugging build definitions is a second wasted. So is every
-second spent waiting for the build system to actually start compiling
-code.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>multiplatform support for Linux, macOS, Windows, GCC, Clang, Visual Studio and others</li>
-<li>supported languages include C, C++, D, Fortran, Java, Rust</li>
-<li>build definitions in a very readable and user friendly non-Turing complete DSL</li>
-<li>cross compilation for many operating systems as well as bare metal</li>
-<li>optimized for extremely fast full and incremental builds without sacrificing correctness</li>
-<li>built-in multiplatform dependency provider that works together with distro packages</li>
-<li>fun!</li>
-</ul>
-<h2 id="community">Community</h2>
-<p>There are two main methods of connecting with other Meson
-developers. The first one is the mailing list, which is hosted at
-<a href="https://groups.google.com/forum/#!forum/mesonbuild">Google Groups</a>.</p>
-<p>The second way is via IRC. The channel to use is <code>#mesonbuild</code> at
-<a href="https://freenode.net/">Freenode</a>.</p>
-<h2 id="development">Development</h2>
-<p>All development on Meson is done on the <a href="https://github.com/mesonbuild/meson">GitHub
-project</a>. Instructions for
-contributing can be found on the <a href="Contributing.html">contribution page</a>.</p>
-<p>You do not need to sign a CLA to contribute to Meson.</p>
+<div id="page-description" data-hotdoc-source="Project-templates.md" data-hotdoc-role="main">
+<h1 id="project-templates">Project templates</h1>
+<p>To make it easier for new developers to start working, Meson ships a
+tool to generate the basic setup of different kinds of projects. This
+functionality can be accessed with the <code>meson init</code> command. A typical
+project setup would go like this:</p>
+<pre><code class="language-console">$ mkdir project_name
+$ cd project_name
+$ meson init --language=c --name=myproject --version=0.1
+</code></pre>
+<p>This would create the build definitions for a helloworld type
+project. The result can be compiled as usual. For example compiling it
+with Ninja could be done like this:</p>
+<pre><code>$ meson builddir
+$ ninja -C builddir
+</code></pre>
+<p>The generator has many different projects and settings. They can all
+be listed by invoking the command <code>meson test --help</code>.</p>
+<p>This feature is available since Meson version 0.45.0.</p>
 
 </div>
 
 
-		<div class="hide-if-js">
-
-<div id="subpages">
-	<h4>Subpages</h4>
-	<div class="container-fluid">
-		<div class="row">
-						<div class="col-sm-12 col-md-4">
-				<a href="Getting-meson.html">Getting meson</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Quick-guide.html">Quick guide</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Guide to get started using meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Tutorial.html">Tutorial</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Simplest tutorial</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Manual.html">Manual</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>User manual for Meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Reference-manual.html">Reference manual</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Reference-tables.html">Reference tables</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="FAQ.html">FAQ</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Reproducible-builds.html">Reproducible builds</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="howtox.html">How do I do X in Meson?</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Wrap-dependency-system-manual.html">Wrap dependency system manual</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Release-notes.html">Release notes</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Additional.html">Additional documentation</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Misc documentation</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Contributing.html">Contributing to Meson</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Contributing to Meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="legal.html">Legal information</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Videos.html">Videos</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Videos about Meson</p>
-							</div>
-					</div>
-	</div>
-</div>
-
-</div>
+		
 	</div>
 	<div id="search_results">
 		<p>The results of the search are</p>
@@ -312,7 +201,7 @@ contributing can be found on the <a href="Contributing.html">contribution page</
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/index.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Project-templates.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">

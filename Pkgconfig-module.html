@@ -185,10 +185,17 @@ option <code>libdir</code> followed by <code>/pkgconfig</code>
 </li>
 <li>
 <code>libraries</code> a list of built libraries (usually results of
-shared_library) that the user needs to link against</li>
+shared_library) that the user needs to link against. Arbitraty strings can
+also be provided and they will be added into the <code>Libs</code> field. Since 0.45.0
+dependencies of built libraries will be automatically added to <code>Libs.private</code>
+field. If a dependency is provided by pkg-config then it will be added in
+<code>Requires.private</code> instead. Other type of dependency objects can also be passed
+and will result in their <code>link_args</code> and <code>compile_args</code> to be added to <code>Libs</code>
+and <code>Cflags</code> fields.</li>
 <li>
-<code>libraries_private</code> list of strings to put in the
-<code>Libraries.private</code> field</li>
+<code>libraries_private</code> list of built libraries or strings to put in the
+<code>Libs.private</code> field. Since 0.45.0 it can also contain dependency objects,
+their <code>link_args</code> will be added to <code>Libs.private</code>.</li>
 <li>
 <code>name</code> the name of this library</li>
 <li>

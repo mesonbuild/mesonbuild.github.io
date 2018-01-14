@@ -200,7 +200,7 @@ modules instead of dynamically linking.</p>
 <p>Added a new keyword argument to the <code>subdir</code> command. It is given a
 list of dependency objects and the function will only recurse in the
 subdirectory if they are all found. Typical usage goes like this.</p>
-<pre><code>d1 = dependency('foo') # This is found
+<pre><code class="language-meson">d1 = dependency('foo') # This is found
 d2 = dependency('bar') # This is not found
 
 subdir('somedir', if_found : [d1, d2])
@@ -248,7 +248,7 @@ llvm_inc_dir = dep_llvm.get_configtool_variable('includedir')
 <p>Meson now ships an internal version of Python in the MSI installer packages.
 This means that it can run Python scripts that are part of your build
 transparently. That is, if you do the following:</p>
-<pre><code>myprog = find_program('myscript.py')
+<pre><code class="language-meson">myprog = find_program('myscript.py')
 </code></pre>
 <p>Then Meson will run the script with its internal Python version if necessary.</p>
 

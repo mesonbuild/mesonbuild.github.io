@@ -534,7 +534,7 @@ flags here for all platforms.</li>
 <li>
 <code>link_depends</code> strings, files, or custom targets the link step
 depends on such as a symbol visibility map. The purpose is to
-automaticallytrigger a re-link (but not a re-compile) of the target
+automatically trigger a re-link (but not a re-compile) of the target
 when this file changes.</li>
 <li>
 <code>link_whole</code> links all contents of the given static libraries
@@ -546,13 +546,19 @@ whether they are used by not, equivalent to the
 project) that this target should be linked with, If passed a list
 this list will be flattened as of 0.41.0.</li>
 <li>
+<code>export_dynamic</code> when set to true causes the target's symbols to be
+dynamically exported, allowing modules built using the
+<a href="Reference-manual.html#shared_module"><code>shared_module</code></a> function to refer to functions,
+variables and other symbols defined in the executable itself. Implies
+the <code>implib</code> argument.  Since 0.44.0</li>
+<li>
 <code>implib</code> when set to true, an import library is generated for the
 executable (the name of the import library is based on <em>exe_name</em>).
 Alternatively, when set to a string, that gives the base name for
 the import library.  The import library is used when the returned
 build target object appears in <code>link_with:</code> elsewhere.  Only has any
-effect on platforms where that is meaningful (e.g. Windows).  Since
-0.42.0</li>
+effect on platforms where that is meaningful (e.g. Windows). Implies
+the <code>export_dynamic</code> argument.  Since 0.42.0</li>
 <li>
 <code>implicit_include_directories</code> is a boolean telling whether Meson
 adds the current source and build directories to the include path,
@@ -620,7 +626,7 @@ then use the <code>.found()</code> method on the returned object to check
 whether it was found or not.</p>
 </li>
 <li>
-<p><code>native</code> defines how this executable should be searched. By default
+<p><code>native</code> <em>(since 0.43)</em> defines how this executable should be searched. By default
 it is set to <code>false</code>, which causes Meson to first look for the
 executable in the cross file (when cross building) and if it is not
 defined there, then from the system. If set to <code>true</code>, the cross
@@ -725,6 +731,10 @@ installed, and so on, use a <a href="Reference-manual.html#custom_target"><code>
 <pre><code class="language-meson">    value get_option(option_name)
 </code></pre>
 <p>Obtains the value of the <a href="Build-options.html">project build option</a> specified in the positional argument.</p>
+<p>Note that the value returned for built-in options that end in <code>dir</code> such as
+<code>bindir</code> and <code>libdir</code> is always a path relative to (and inside) the <code>prefix</code>.
+The only exceptions are: <code>sysconfdir</code>, <code>localstatedir</code>, and <code>sharedstatedir</code>
+which will return the value passed during configuration as-is.</p>
 <h3 id="get_variable">get_variable()</h3>
 <pre><code class="language-meson">    value get_variable(variable_name, fallback)
 </code></pre>
@@ -1037,6 +1047,10 @@ arguments are the same as for <a href="Reference-manual.html#library"><code>libr
 <p>This is useful for building modules that will be <code>dlopen()</code>ed and
 hence may contain undefined symbols that will be provided by the
 library that is loading it.</p>
+<p>If you want the shared module to be able to refer to functions and
+variables defined in the <a href="Reference-manual.html#executable"><code>executable</code></a> it is loaded by,
+you will need to set the <code>export_dynamic</code> argument of the executable to
+<code>true</code>.</p>
 <p><em>Added 0.37.0</em></p>
 <h3 id="static_library">static_library()</h3>
 <pre><code class="language-meson">    buildtarget static_library(library_name, list_of_sources, ...)
@@ -1799,11 +1813,16 @@ generator that is used to transform files from one type to another by
 an executable (e.g. <code>idl</code> files into source code and headers).</p>
 <ul>
 <li>
-<code>process(list_of_files)</code> takes a list of files, causes them to be
-processed and returns an object containing the result which can
+<code>process(list_of_files, ...)</code> takes a list of files, causes them to
+be processed and returns an object containing the result which can
 then, for example, be passed into a build target definition. The
 keyword argument <code>extra_args</code>, if specified, will be used to replace
-an entry <code>@EXTRA_ARGS@</code> in the argument list.</li>
+an entry <code>@EXTRA_ARGS@</code> in the argument list. The keyword argument
+<code>preserve_path_from</code>, if given, specifies that the output files need
+to maintain their directory structure inside the target temporary
+directory. The most common value for this is
+<code>meson.current_source_dir()</code>. With this value when a file called
+<code>subdir/one.input</code> is processed it generates a file <code>&lt;target private directory&gt;/subdir/one.out</code> as opposed to <code>&lt;target private directory&gt;/one.out</code>.</li>
 </ul>
 <h3 id="subproject-object">
 <code>subproject</code> object</h3>
