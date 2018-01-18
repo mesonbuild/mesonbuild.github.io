@@ -258,6 +258,12 @@ project. With Meson you don't have to care about the details, just
 pass <code>gtest</code> or <code>gmock</code> to <code>dependency</code> and it will do everything for
 you. If you want to use GMock, it is recommended to use GTest as well,
 as getting it to work standalone is tricky.</p>
+<p>You can set the <code>main</code> keyword argument to <code>true</code> to use the <code>main()</code>
+function provided by GTest:</p>
+<pre><code>gtest_dep = dependency('gtest', main : true, required : false)
+e = executable('testprog', 'test.cc', dependencies : gtest_dep)
+test('gtest test', e)
+</code></pre>
 <h2 id="mpi">MPI</h2>
 <p>MPI is supported for C, C++ and Fortran. Because dependencies are
 language-specific, you must specify the requested language using the
