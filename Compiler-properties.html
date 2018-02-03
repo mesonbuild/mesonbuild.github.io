@@ -292,7 +292,8 @@ endif
 </code></pre>
 <h1 id="does-a-structure-contain-a-member">Does a structure contain a member?</h1>
 <p>Some platforms have different standard structures. Here's how one
-would check if a struct called <code>mystruct</code> from header <code>myheader.h&lt;/hh&gt; contains a member called</code>some_member`.</p>
+would check if a struct called <code>mystruct</code> from header <code>myheader.h</code>
+contains a member called <code>some_member</code>.</p>
 <pre><code class="language-meson">if compiler.has_member('struct mystruct', 'some_member', prefix : '#include&lt;myheader.h&gt;')
   # member exists, do whatever is required
 endif

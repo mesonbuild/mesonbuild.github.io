@@ -953,7 +953,8 @@ license(s) the code is under. Usually this would be something like
 specify them as an array like this: <code>license : ['proprietary', 'GPL3']</code>. Note that the text is informal and is only written to
 the dependency manifest. Meson does not do any license validation,
 you are responsible for verifying that you abide by all licensing
-terms.</p>
+terms. You can access the value in your Meson build files with
+<code>meson.project_license()</code>.</p>
 </li>
 <li>
 <p><code>meson_version</code> takes a string describing which Meson version the
@@ -1283,6 +1284,9 @@ constructing paths manually with <code>meson.source_root()</code>.</p>
 </li>
 <li>
 <p><code>project_version()</code> returns the version string specified in <code>project</code> function call.</p>
+</li>
+<li>
+<p><code>project_license()</code> returns the array of licenses specified in <code>project</code> function call.</p>
 </li>
 <li>
 <p><code>project_name()</code> returns the project name specified in the <code>project</code> function call.</p>
