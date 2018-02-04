@@ -986,12 +986,15 @@ Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>,
 directory, build directory and subdirectory the target was defined in,
 respectively.</p>
 <h3 id="run_target">run_target</h3>
-<pre><code class="language-meson">    buildtarget run_target(target_name, ...)
+<pre><code class="language-meson">runtarget run_target(target_name, ...)
 </code></pre>
 <p>This function creates a new top-level target that runs a specified
 command with the specified arguments. Like all top-level targets, this
 integrates with the selected backend. For instance, with Ninja you can
-run it as <code>ninja target_name</code>.</p>
+run it as <code>ninja target_name</code>. Note that a run target produces no
+output as far as Meson is concerned. It is only meant for tasks such
+as running a code formatter or flashing an external device's firmware
+with a built file.</p>
 <p>The script is run from an <em>unspecified</em> directory, and Meson will set
 three environment variables <code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code>
 and <code>MESON_SUBDIR</code> that specify the source directory, build directory
