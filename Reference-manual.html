@@ -550,7 +550,7 @@ this list will be flattened as of 0.41.0.</li>
 dynamically exported, allowing modules built using the
 <a href="Reference-manual.html#shared_module"><code>shared_module</code></a> function to refer to functions,
 variables and other symbols defined in the executable itself. Implies
-the <code>implib</code> argument.  Since 0.44.0</li>
+the <code>implib</code> argument.  Since 0.45.0</li>
 <li>
 <code>implib</code> when set to true, an import library is generated for the
 executable (the name of the import library is based on <em>exe_name</em>).
@@ -842,7 +842,7 @@ overridden by specifying it with the <code>install_dir</code> keyword
 argument. All man pages are compressed during installation and
 installed with a <code>.gz</code> suffix.</p>
 <h3 id="install_subdir">install_subdir()</h3>
-<pre><code class="language-meson">    void install_subdir(subdir_name, install_dir : ..., exclude_files : ..., exclude_directories : ...)
+<pre><code class="language-meson">    void install_subdir(subdir_name, install_dir : ..., exclude_files : ..., exclude_directories : ..., strip_directory : ...)
 </code></pre>
 <p>Installs the entire given subdirectory and its contents from the
 source tree to the location specified by the keyword argument
@@ -857,7 +857,39 @@ Names are interpreted as paths relative to the <code>subdir_name</code> location
 Names are interpreted as paths relative to the <code>subdir_name</code> location.</li>
 <li>
 <code>install_dir</code>: the location to place the installed subdirectory.</li>
+<li>
+<code>strip_directory</code>: install directory contents. <code>strip_directory=false</code> by default.
+If <code>strip_directory=false</code> only last component of source path is used.
+Since 0.45.0</li>
 </ul>
+<p>For a given directory <code>foo</code>:</p>
+<pre><code class="language-text">foo/
+  bar/
+    file1
+  file2
+</code></pre>
+<p><code>install_subdir('foo', install_dir : 'share', strip_directory : false)</code> creates</p>
+<pre><code class="language-text">share/
+  foo/
+    bar/
+      file1
+    file2
+</code></pre>
+<p><code>install_subdir('foo', install_dir : 'share', strip_directory : true)</code> creates</p>
+<pre><code class="language-text">share/
+  bar/
+    file1
+  file2
+</code></pre>
+<p><code>install_subdir('foo/bar', install_dir : 'share', strip_directory : false)</code> creates</p>
+<pre><code class="language-text">share/
+  bar/
+    file1
+</code></pre>
+<p><code>install_subdir('foo/bar', install_dir : 'share', strip_directory : true)</code> creates</p>
+<pre><code class="language-text">share/
+  file1
+</code></pre>
 <h3 id="is_variable">is_variable()</h3>
 <pre><code class="language-meson">    bool is_variable(varname)
 </code></pre>
@@ -1738,7 +1770,9 @@ an external dependency with the following methods:</p>
 pkg-config variable specified, or, if invoked on a non pkg-config
 dependency, error out. (<em>Added 0.44.0</em>) You can also redefine a
 variable by passing a list to the <code>define_variable</code> parameter
-that can affect the retrieved variable: <code>['prefix', '/'])</code>.</p>
+that can affect the retrieved variable: <code>['prefix', '/'])</code>.
+(<em>Added 0.45.0</em>) A warning is issued if the variable is not defined,
+unless a <code>default</code> parameter is specified.</p>
 </li>
 <li>
 <p><code>get_configtool_variable(varname)</code> (<em>Added 0.44.0</em>) will get the

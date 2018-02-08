@@ -168,6 +168,7 @@ your source tree.</p>
 <pre><code class="language-meson">option('someoption', type : 'string', value : 'optval', description : 'An option')
 option('other_one', type : 'boolean', value : false)
 option('combo_opt', type : 'combo', choices : ['one', 'two', 'three'], value : 'three')
+option('integer_opt', type : 'integer', min : 0, max : 5, value : 3)
 option('free_array_opt', type : 'array', value : ['one', 'two'])
 option('array_opt', type : 'array', choices : ['one', 'two', 'three'], value : ['one', 'two'])
 </code></pre>
@@ -183,6 +184,10 @@ value is supplied then <code>true</code> will be used as the default.</p>
 <p>A combo allows any one of the values in the <code>choices</code> parameter to be
 selected.  If no default value is set then the first value will be the
 default.</p>
+<h2 id="integers">Integers</h2>
+<p>An integer option contains a single integer with optional upper and
+lower values that are specified with the <code>min</code> and <code>max</code> keyword
+arguments. Available since Meson version 0.45.0.</p>
 <h3 id="arrays">Arrays</h3>
 <p>Arrays represent an array of strings. By default the array can contain
 arbitrary strings. To limit the possible values that can used set the
@@ -223,6 +228,19 @@ double quotes.</p>
 <p><strong>NOTE:</strong> If you cannot call <code>meson configure</code> you likely have a old
 version of Meson. In that case you can call <code>mesonconf</code> instead, but
 that is deprecated in newer versions</p>
+<h2 id="yielding-to-superproject-option">Yielding to superproject option</h2>
+<p>Suppose you have a master project and a subproject. In some cases it
+might be useful to have an option that has the same value in both of
+them. This can be achieved with the <code>yield</code> keyword. Suppose you have
+an option definition like this:</p>
+<pre><code class="language-meson">option('some_option', type : 'string', value : 'value', yield : true)
+</code></pre>
+<p>If you build this project on its own, this option behaves like
+usual. However if you build this project as a subproject of another
+project which also has an option called <code>some_option</code>, then calling
+<code>get_option</code> returns the value of the superproject. If the value of
+<code>yield</code> is <code>false</code>, <code>get_option</code> returns the value of the subproject's
+option.</p>
 
 </div>
 
