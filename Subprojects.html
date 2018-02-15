@@ -170,7 +170,7 @@ allows you to take any other Meson project and make it a part of your
 build without (in the best case) any changes to its Meson setup. It
 becomes a transparent part of the project. The basic idiom goes
 something like this.</p>
-<pre><code class="language-meson">dep = dependency('foo', fallback : [subproject_name, variable_name]
+<pre><code class="language-meson">dep = dependency('foo', fallback : [subproject_name, variable_name])
 </code></pre>
 <p>As an example, suppose we have a simple project that provides a shared
 library. It would be set up like this.</p>
@@ -186,7 +186,7 @@ directory. Then we create a subdirectory called <code>simple</code> and put the
 subproject in that directory. Now the subproject can be used like
 this.</p>
 <pre><code class="language-meson">project('master', 'c')
-dep = dependency('simple', fallback : ['simple', 'simple_dep']
+dep = dependency('simple', fallback : ['simple', 'simple_dep'])
 exe = executable('prog', 'prog.c',
                  dependencies : dep, install : true)
 </code></pre>

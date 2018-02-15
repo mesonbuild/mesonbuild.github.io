@@ -218,11 +218,11 @@ make it simple to use system dependencies when they are available and
 to build dependencies manually when they are not.</p>
 <p>To make this work, the dependency must have Meson build definitions
 and it must declare its own dependency like this:</p>
-<pre><code>foo_dep = declare_dependency(...)
+<pre><code class="language-meson">    foo_dep = declare_dependency(...)
 </code></pre>
 <p>Then any project that wants to use it can write out the following
 declaration in their main <code>meson.build</code> file.</p>
-<pre><code>foo_dep = dependency('foo', fallback : ['foo', 'foo_dep'])
+<pre><code class="language-meson">    foo_dep = dependency('foo', fallback : ['foo', 'foo_dep'])
 </code></pre>
 <p>What this declaration means is that first Meson tries to look up the
 dependency from the system (such as by using pkg-config). If it is not

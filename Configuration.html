@@ -196,38 +196,38 @@ form. To use it, put a line like this in your configuration file.</p>
 </code></pre>
 <p>Note that if you want to define a C string, you need to do the quoting
 yourself like this:</p>
-<pre><code class="language-meson">conf.set('TOKEN', '"value"')
+<pre><code class="language-meson">conf_data.set('TOKEN', '"value"')
 </code></pre>
 <p>Since this is such a common operation, Meson provides a convenience
 method:</p>
 <pre><code class="language-meson">plain_var = 'value'
-conf.set_quoted('TOKEN', plain_var) # becomes #define TOKEN "value"
+conf_data.set_quoted('TOKEN', plain_var) # becomes #define TOKEN "value"
 </code></pre>
 <p>Often you have a boolean value in Meson but need to define the C/C++
 token as 0 or 1. Meson provides a convenience function for this use
 case.</p>
-<pre><code class="language-meson">conf.set10(token, boolean_value)
+<pre><code class="language-meson">conf_data.set10(token, boolean_value)
 # The line above is equivalent to this:
 if boolean_value
-  conf.set(token, 1)
+  conf_data.set(token, 1)
 else
-  conf.set(token, 0)
+  conf_data.set(token, 0)
 endif
 </code></pre>
 <h2 id="configuring-without-an-input-file">Configuring without an input file</h2>
 <p>If the input file is not defined then Meson will generate a header
 file all the entries in the configuration data object. The
 replacements are the same as when generating <code>#mesondefine</code> entries:</p>
-<pre><code class="language-meson">cdata.set('FOO', '"string"') =&gt; #define FOO "string"
-cdata.set('FOO', 'a_token')  =&gt; #define FOO a_token
-cdata.set('FOO', true)       =&gt; #define FOO
-cdata.set('FOO', false)      =&gt; #undef FOO
-cdata.set('FOO', 1)          =&gt; #define FOO 1
-cdata.set('FOO', 0)          =&gt; #define FOO 0
+<pre><code class="language-meson">conf_data.set('FOO', '"string"') =&gt; #define FOO "string"
+conf_data.set('FOO', 'a_token')  =&gt; #define FOO a_token
+conf_data.set('FOO', true)       =&gt; #define FOO
+conf_data.set('FOO', false)      =&gt; #undef FOO
+conf_data.set('FOO', 1)          =&gt; #define FOO 1
+conf_data.set('FOO', 0)          =&gt; #define FOO 0
 </code></pre>
 <p>In this mode, you can also specify a comment which will be placed
 before the value so that your generated files are self-documenting.</p>
-<pre><code class="language-meson">cdata.set('BAR', true, description : 'Set BAR if it is available')
+<pre><code class="language-meson">conf_data.set('BAR', true, description : 'Set BAR if it is available')
 </code></pre>
 <p>Will produce:</p>
 <pre><code class="language-c">/* Set BAR if it is available */
@@ -246,9 +246,11 @@ going to use an unique name. This avoids the problem of accidentally
 including the wrong header file when building a project with many
 subprojects.</p>
 <p>At the top level we generate the file:</p>
-<pre><code class="language-meson">configure_file(input : 'projconfig.h.in',
+<pre><code class="language-meson">conf_data = configuration_data()
+# Set data
+configure_file(input : 'projconfig.h.in',
   output : 'projconfig.h',
-  configuration : cdata_object)
+  configuration : conf_data)
 </code></pre>
 <p>Immediately afterwards we generate the include object.</p>
 <pre><code class="language-meson">configuration_inc = include_directories('.')

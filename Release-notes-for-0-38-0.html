@@ -201,7 +201,7 @@ dependency('some-dep', fallback : ['some_subproject', 'some_dep'], default_optio
 <code>has_header()</code> checks are now faster</h1>
 <p>When using compilers that implement the <a href="https://clang.llvm.org/docs/LanguageExtensions.html#include-file-checking-macros"><code>__has_include()</code> preprocessor macro</a>, the check is now ~40% faster.</p>
 <h1 id="array-indexing-now-supports-fallback-values">Array indexing now supports fallback values</h1>
-<p>The second argument to the array <a href="https://github.com/mesonbuild/meson/wiki/Reference-manual#array-object"><code>.get()</code></a> function is now returned if the specified index could not be found</p>
+<p>The second argument to the array <a href="Reference-manual.html#array-object"><code>.get()</code></a> function is now returned if the specified index could not be found</p>
 <pre><code class="language-meson">array = [10, 11, 12, 13]
 array.get(0) # this will return `10`
 array.get(4) # this will give an error about invalid index

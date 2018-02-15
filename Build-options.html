@@ -168,7 +168,7 @@ your source tree.</p>
 <pre><code class="language-meson">option('someoption', type : 'string', value : 'optval', description : 'An option')
 option('other_one', type : 'boolean', value : false)
 option('combo_opt', type : 'combo', choices : ['one', 'two', 'three'], value : 'three')
-option('integer_opt', type : 'integer', min : 0, max : 5, value : 3)
+option('integer_opt', type : 'integer', min : 0, max : 5, value : 3) # Since 0.45.0
 option('free_array_opt', type : 'array', value : ['one', 'two'])
 option('array_opt', type : 'array', choices : ['one', 'two', 'three'], value : ['one', 'two'])
 </code></pre>
@@ -187,7 +187,8 @@ default.</p>
 <h2 id="integers">Integers</h2>
 <p>An integer option contains a single integer with optional upper and
 lower values that are specified with the <code>min</code> and <code>max</code> keyword
-arguments. Available since Meson version 0.45.0.</p>
+arguments.</p>
+<p>This type is available since Meson version 0.45.0.</p>
 <h3 id="arrays">Arrays</h3>
 <p>Arrays represent an array of strings. By default the array can contain
 arbitrary strings. To limit the possible values that can used set the
@@ -196,7 +197,7 @@ contain strings that are in the given list. The array may be
 empty. The <code>value</code> parameter specifies the default value of the option
 and if it is unset then the values of <code>choices</code> will be used as the
 default.</p>
-<p>This type is new in version 0.44.0</p>
+<p>This type is available since version 0.44.0</p>
 <h2 id="using-build-options">Using build options</h2>
 <pre><code class="language-meson">optval = get_option('opt_name')
 </code></pre>

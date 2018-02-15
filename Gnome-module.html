@@ -207,6 +207,22 @@ should look up the files, relative to the location of the XML file</li>
 </ul>
 <p>Returns an array containing: <code>[c_source, header_file]</code> or
 <code>[gresource_bundle]</code></p>
+<p>Example:</p>
+<pre><code class="language-meson">gnome = import('gnome')
+
+asresources = gnome.compile_resources(
+    'as-resources', 'data/asresources.gresource.xml',
+    source_dir: 'data',
+    c_name: 'as'
+)
+
+executable(
+    meson.project_name(),
+    asresources,
+    dependencies: my_deps,
+    install: true
+)
+</code></pre>
 <h3 id="gnomegenerate_gir">gnome.generate_gir()</h3>
 <p>Generates GObject introspection data. Takes one positional argument,
 the build target you want to build gir data for. There are several
