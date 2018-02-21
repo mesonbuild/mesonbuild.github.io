@@ -171,6 +171,9 @@ may have a different name on different operating systems. Returns an
 conventions of the target platform. All positional and keyword
 arguments are the same as for
 <a href="Reference-manual.html#shared_module">shared_module</a>.</p>
+<p><code>extension_module</code> does not add any dependencies to the library so user may
+need to add <code>dependencies : dependency('python3')</code>, see
+<a href="Dependencies.html#Python3">Python3 dependency</a>.</p>
 <p><em>Added 0.38.0</em></p>
 <h2 id="language_version">language_version</h2>
 <p>Returns a string with the Python language version such as <code>3.5</code>.</p>

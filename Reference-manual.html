@@ -1241,7 +1241,18 @@ current backend: <code>ninja</code>, <code>vs2010</code>, <code>vs2015</code>, <
 </li>
 <li>
 <p><code>build_root()</code> returns a string with the absolute path to the build
-root directory.</p>
+root directory. Note: this function will return the build root of
+the parent project if called from a subproject, which is usually
+not what you want. Try using <code>current_build_dir()</code>.</p>
+</li>
+<li>
+<p><code>source_root()</code> returns a string with the absolute path to the
+source root directory. Note: you should use the <code>files()</code> function
+to refer to files in the root source directory instead of
+constructing paths manually with <code>meson.source_root()</code>. This
+function will return the source root of the parent project if called
+from a subproject, which is usually not what you want. Try using
+<code>current_source_dir()</code>.</p>
 </li>
 <li>
 <p><code>current_build_dir()</code> returns a string with the absolute path to the
@@ -1310,12 +1321,6 @@ build. (This might be a different path then the first executable
 found in <code>PATH</code>.) It can be used to query build configuration. Note
 that the value may contain many parts, i.e. it may be <code>python3 /path/to/meson.py introspect</code>. The user is responsible for splitting
 the string to an array if needed.</p>
-</li>
-<li>
-<p><code>source_root()</code> returns a string with the absolute path to the
-source root directory. Note: you should use the <code>files()</code> function
-to refer to files in the root source directory instead of
-constructing paths manually with <code>meson.source_root()</code>.</p>
 </li>
 <li>
 <p><code>project_version()</code> returns the version string specified in <code>project</code> function call.</p>
@@ -1838,7 +1843,7 @@ writes to the beginning of the variable</p>
 <li>
 <p><code>set(varname, value)</code> sets environment variable in the first
 argument to the value in the second argument, e.g.
-<code>env.set('FOO', 'BAR') sets envvar</code>FOO<code>to value</code>BAR`</p>
+<code>env.set('FOO', 'BAR')</code> sets envvar <code>FOO</code> to value <code>BAR</code></p>
 </li>
 </ul>
 <h3 id="external-library-object">

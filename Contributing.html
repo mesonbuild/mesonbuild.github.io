@@ -204,6 +204,24 @@ found in the command line or that the generated pkg-config files
 actually work should be done with a unit test.</p>
 <p>Projects needed by unit tests are in the <code>test cases/unit</code>
 subdirectory. They are not run as part of <code>./run_project_tests.py</code>.</p>
+<h3 id="skipping-integration-tests">Skipping integration tests</h3>
+<p>Meson uses several continuous integration testing systems that have slightly
+different interface. To promote consistent naming policy, use:</p>
+<ul>
+<li>
+<code>[skip ci]</code> in the commit title if you want to disable all integration tests</li>
+<li>
+<code>[skip appveyor]</code> in the commit title if you want to disable Windows-only tests</li>
+</ul>
+<p>Continuous integration systems currently used:</p>
+<ul>
+<li>
+<a href="https://docs.travis-ci.com/user/customizing-the-build/#Skipping-a-build">Travis-CI</a>
+allows <code>[skip ci]</code> anywhere in the commit messages.</li>
+<li>
+<a href="https://www.appveyor.com/docs/how-to/filtering-commits/#skip-directive-in-commit-message">AppVeyor</a>
+requires <code>[skip ci]</code> or <code>[skip appveyor]</code> in the commit title.</li>
+</ul>
 <h2 id="documentation">Documentation</h2>
 <p>The <code>docs</code> directory contains the full documentation that will be used
 to generate <a href="http://mesonbuild.com">the Meson web site</a>. Every change
@@ -214,6 +232,10 @@ changes might need changes in other documentation, too.</p>
 notes. These features should be written in standalone files in the
 <code>docs/markdown/snippets</code> directory. The release manager will combine
 them into one page when doing the release.</p>
+<p><a href="Contributing.html#skipping-integration-tests">Integration tests should be disabled</a> for
+documentation-only commits by putting <code>[skip ci]</code> into commit title.
+Reviewers should ask contributors to put <code>[skip ci]</code> into the title because
+tests are run again after merge for <code>master</code>.</p>
 <h2 id="python-coding-style">Python Coding style</h2>
 <p>Meson follows the basic Python coding style. Additional rules are the
 following:</p>

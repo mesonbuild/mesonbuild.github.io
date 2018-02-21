@@ -226,6 +226,10 @@ pass the value with proper shell quoting like this:</p>
 </code></pre>
 <p>The inner values must always be single quotes and the outer ones
 double quotes.</p>
+<p>To change values in subprojects prepend the name of the subproject and
+a colon:</p>
+<pre><code class="language-console">$ meson configure -Dsubproject:option=newvalue
+</code></pre>
 <p><strong>NOTE:</strong> If you cannot call <code>meson configure</code> you likely have a old
 version of Meson. In that case you can call <code>mesonconf</code> instead, but
 that is deprecated in newer versions</p>

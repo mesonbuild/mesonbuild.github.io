@@ -342,6 +342,20 @@ generated for a static link):</p>
   'llvm', version : '&gt;= 4.0', modules : ['amdgpu'], optional_modules : ['inteljitevents'],
 )
 </code></pre>
+<h2 id="python3">Python3</h2>
+<p>Python3 is handled specially by meson:</p>
+<ol>
+<li>Meson tries to use <code>pkg-config</code>.</li>
+<li>If <code>pkg-config</code> fails meson uses fallback:
+<ul>
+<li>On Windows fallback is current <code>python3</code> interpreter.</li>
+<li>On OSX fallback is framework dependency from <code>/Library/Frameworks</code>.</li>
+</ul>
+</li>
+</ol>
+<p>Note that <code>python3</code> found by this dependency might differ from the one used in
+<code>python3</code> module because modules uses current interpreter but dependency tries
+<code>pkg-config</code> first.</p>
 
 </div>
 
