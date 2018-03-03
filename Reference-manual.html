@@ -702,7 +702,7 @@ the following special substitutions:</p>
 <li>
 <code>@BASENAME@</code>: the base of the input filename, e.g.: <code>foo.c.y</code> becomes <code>foo.c</code> (extension is removed)</li>
 </ul>
-<p>Each string passed to the <code>outputs</code> keyword argument <em>must</em> be
+<p>Each string passed to the <code>output</code> keyword argument <em>must</em> be
 constructed using one or both of these two substitutions.</p>
 <p>In addition to the above substitutions, the <code>arguments</code> keyword
 argument also accepts the following:</p>
@@ -764,6 +764,9 @@ automatically.</p>
 <p>Note that this function call itself does not add the directories into
 the search path, since there is no global search path. For something
 like that, see <a href="Reference-manual.html#add_project_arguments"><code>add_project_arguments()</code></a>.</p>
+<p>See also <code>implicit_include_directories</code> parameter of
+<a href="Reference-manual.html#executable">executable()</a>, which adds current source and build directories
+to include path.</p>
 <p>Each directory given is converted to two include paths: one that is
 relative to the source root and one relative to the build root.</p>
 <p>For example, with the following source tree layout in
@@ -802,6 +805,7 @@ arguments. The following keyword arguments are supported:</p>
 <p><code>install_dir</code> the absolute or relative path to the installation
 directory. If this is a relative path, it is assumed to be relative
 to the prefix.</p>
+<p>If omitted, the directory defaults to <code>{datadir}/{projectname}</code> <em>(added 0.45.0)</em>.</p>
 </li>
 <li>
 <p><code>install_mode</code> specify the file mode in symbolic format and
@@ -1148,6 +1152,7 @@ object</a> to access any variable in the
 subproject. However, if you want to use a dependency object from
 inside a subproject, an easier way is to use the <code>fallback:</code> keyword
 argument to <a href="Reference-manual.html#dependency"><code>dependency()</code></a>.</p>
+<p><a href="Subprojects.html">See additional documentation</a>.</p>
 <h3 id="test">test()</h3>
 <pre><code class="language-meson">    void test(name, executable, ...)
 </code></pre>
@@ -1878,7 +1883,7 @@ opaque object representing it.</p>
 <li>
 <code>get_variable(name)</code> fetches the specified variable from inside the
 subproject. This is useful to, for instance, get a <a href="Reference-manual.html#declare_dependency">declared
-dependency</a> from the subproject.</li>
+dependency</a> from the <a href="Subprojects.html">subproject</a>.</li>
 </ul>
 <h3 id="run-result-object">
 <code>run result</code> object</h3>
