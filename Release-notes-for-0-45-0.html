@@ -202,82 +202,62 @@ them. This can now be achieved like this:</p>
 generated = gen.process('com/mesonbuild/one.proto',
   'com/mesonbuild/two.proto',
   preserve_path_from : meson.current_source_dir())
-
-This would cause the following files to be generated inside the target
-private directory:
-
-    com/mesonbuild/one.pb.h
-    com/mesonbuild/one.pb.cc
-    com/mesonbuild/two.pb.h
-    com/mesonbuild/two.pb.cc
-
-## Hexadecimal string literals
-
-Hexadecimal integer literals can now be used in build and option files.
-
-    int_255 = 0xFF
-
-## b_ndebug : if-release
-
-The value `if-release` can be given for the `b_ndebug` project option.
-
-This will make the `NDEBUG` pre-compiler macro to be defined for release
-type builds as if the `b_ndebug` project option had had the value `true`
-defined for it.
-
-## `install_data()` defaults to `{datadir}/{projectname}`
-
-If `install_data()` is not given an `install_dir` keyword argument, the
-target directory defaults to `{datadir}/{projectname}` (e.g.
-`/usr/share/myproj`).
-
-## install_subdir() supports strip_directory
-
-If strip_directory=true install_subdir() installs directory contents
-instead of directory itself, stripping basename of the source directory.
-
-## Integer options
-
-There is a new integer option type with optional minimum and maximum
-values. It can be specified like this in the `meson_options.txt` file:
-
-    option('integer_option', type : 'integer', min : 0, max : 5, value : 3)
-
-## New method meson.project_license()
-
-The `meson` builtin object now has a `project_license()` method that returns a
-list of all licenses for the project.
-
-## Rust cross-compilation
-
-Cross-compilation is now supported for Rust targets. Like other
-cross-compilers, the Rust binary must be specified in your cross
-file. It should specify a `--target` (as installed by `rustup target`)
-and a custom linker pointing to your C cross-compiler. For example:
-
 </code></pre>
-<p>[binaries]
+<p>This would cause the following files to be generated inside the target
+private directory:</p>
+<pre><code>com/mesonbuild/one.pb.h
+com/mesonbuild/one.pb.cc
+com/mesonbuild/two.pb.h
+com/mesonbuild/two.pb.cc
+</code></pre>
+<h2 id="hexadecimal-string-literals">Hexadecimal string literals</h2>
+<p>Hexadecimal integer literals can now be used in build and option files.</p>
+<pre><code>int_255 = 0xFF
+</code></pre>
+<h2 id="b_ndebug-ifrelease">b_ndebug : if-release</h2>
+<p>The value <code>if-release</code> can be given for the <code>b_ndebug</code> project option.</p>
+<p>This will make the <code>NDEBUG</code> pre-compiler macro to be defined for release
+type builds as if the <code>b_ndebug</code> project option had had the value <code>true</code>
+defined for it.</p>
+<h2 id="install_data-defaults-to-datadirprojectname">
+<code>install_data()</code> defaults to <code>{datadir}/{projectname}</code>
+</h2>
+<p>If <code>install_data()</code> is not given an <code>install_dir</code> keyword argument, the
+target directory defaults to <code>{datadir}/{projectname}</code> (e.g.
+<code>/usr/share/myproj</code>).</p>
+<h2 id="install_subdir-supports-strip_directory">install_subdir() supports strip_directory</h2>
+<p>If strip_directory=true install_subdir() installs directory contents
+instead of directory itself, stripping basename of the source directory.</p>
+<h2 id="integer-options">Integer options</h2>
+<p>There is a new integer option type with optional minimum and maximum
+values. It can be specified like this in the <code>meson_options.txt</code> file:</p>
+<pre><code>option('integer_option', type : 'integer', min : 0, max : 5, value : 3)
+</code></pre>
+<h2 id="new-method-mesonproject_license">New method meson.project_license()</h2>
+<p>The <code>meson</code> builtin object now has a <code>project_license()</code> method that returns a
+list of all licenses for the project.</p>
+<h2 id="rust-crosscompilation">Rust cross-compilation</h2>
+<p>Cross-compilation is now supported for Rust targets. Like other
+cross-compilers, the Rust binary must be specified in your cross
+file. It should specify a <code>--target</code> (as installed by <code>rustup target</code>)
+and a custom linker pointing to your C cross-compiler. For example:</p>
+<pre><code>[binaries]
 c = '/usr/bin/arm-linux-gnueabihf-gcc-7'
 rust = [
-'rustc',
-'--target', 'arm-unknown-linux-gnueabihf',
-'-C', 'linker=/usr/bin/arm-linux-gnueabihf-gcc-7',
-]</p>
-<pre><code>
-## Rust compiler-private library disambiguation
-
-When building a Rust target with Rust library dependencies, an
-`--extern` argument is now specified to avoid ambiguity between the
-dependency library, and any crates of the same name in `rustc`'s
-private sysroot.
-
-## Project templates
-
-Meson ships with predefined project templates. To start a new project from
-scratch, simply go to an empty directory and type:
-
-```meson
-meson init --name=myproject --type=executable --language=c
+    'rustc',
+    '--target', 'arm-unknown-linux-gnueabihf',
+    '-C', 'linker=/usr/bin/arm-linux-gnueabihf-gcc-7',
+]
+</code></pre>
+<h2 id="rust-compilerprivate-library-disambiguation">Rust compiler-private library disambiguation</h2>
+<p>When building a Rust target with Rust library dependencies, an
+<code>--extern</code> argument is now specified to avoid ambiguity between the
+dependency library, and any crates of the same name in <code>rustc</code>'s
+private sysroot.</p>
+<h2 id="project-templates">Project templates</h2>
+<p>Meson ships with predefined project templates. To start a new project from
+scratch, simply go to an empty directory and type:</p>
+<pre><code class="language-meson">meson init --name=myproject --type=executable --language=c
 </code></pre>
 <h2 id="improve-test-setup-selection">Improve test setup selection</h2>
 <p>Test setups are now identified (also) by the project they belong to and it
