@@ -311,8 +311,8 @@ the list of sources for the target. The <code>modules</code> keyword of
 <code>dependency</code> works just like it does with Boost. It tells which
 subparts of Qt the program uses.</p>
 <h2 id="dependencies-using-config-tools">Dependencies using config tools</h2>
-<p>CUPS, LLVM, PCAP, WxWidgets, libwmf, and GnuStep either do not provide
-pkg-config modules or additionally can be detected via a config tool
+<p>CUPS, LLVM, PCAP, <a href="Dependencies.html#wxwidgets">WxWidgets</a>, libwmf, and GnuStep either do not
+provide pkg-config modules or additionally can be detected via a config tool
 (cups-config, llvm-config, etc). Meson has native support for these tools, and
 then can be found like other dependencies:</p>
 <pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
@@ -322,6 +322,29 @@ llvm_dep = dependency('llvm', version : '&gt;=4.0')
 <p>Some of these tools (like wmf and cups) provide both pkg-config and config
 tools support. You can force one or another via the method keyword:</p>
 <pre><code class="language-meson">wmf_dep = dependency('wmf', method : 'config-tool')
+</code></pre>
+<h2 id="wxwidgets">WxWidgets</h2>
+<p>Similar to <a href="Dependencies.html#boost">Boost</a>, WxWidgets is not a single library but rather
+a collection of modules. WxWidgets is supported via <code>wx-config</code>.
+Meson substitutes <code>modules</code> to <code>wx-config</code> invocation, it generates</p>
+<ul>
+<li>
+<code>compile_args</code> using <code>wx-config --cxxflags $modules...</code>
+</li>
+<li>
+<code>link_args</code> using <code>wx-config --libs $modules...</code>
+</li>
+</ul>
+<h3 id="example">Example</h3>
+<pre><code class="language-meson">wx_dep = dependency(
+  'wxwidgets', version : '&gt;=3.0.0', modules : ['std', 'stc'],
+)
+</code></pre>
+<pre><code class="language-shell"># compile_args:
+$ wx-config --cxxflags std stc
+
+# link_args:
+$ wx-config --libs std stc
 </code></pre>
 <h2 id="llvm">LLVM</h2>
 <p>Meson has native support for LLVM going back to version LLVM version 3.5.

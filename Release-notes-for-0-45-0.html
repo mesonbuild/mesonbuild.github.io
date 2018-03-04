@@ -159,14 +159,156 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Release-notes-for-0.45.0.md" data-hotdoc-role="main">
 <h1 id="new-features">New features</h1>
-<p>This page is a placeholder for the eventual release notes.</p>
-<p>Notable new features should come with release note updates. This is
-done by creating a file snippet called <code>snippets/featurename.md</code> and
-whose contents should look like this:</p>
-<pre><code>## Feature name
-
-A short description explaining the new feature and how it should be used.
+<h2 id="configtool-based-dependencies-can-be-specified-in-a-cross-file">Config-Tool based dependencies can be specified in a cross file</h2>
+<p>Tools like LLVM and pcap use a config tool for dependencies, this is a script
+or binary that is run to get configuration information (cflags, ldflags, etc)
+from.</p>
+<p>These binaries may now be specified in the <code>binaries</code> section of a cross file.</p>
+<pre><code class="language-dosini">[binaries]
+cc = ...
+llvm-config = '/usr/bin/llvm-config32'
 </code></pre>
+<h2 id="visual-studio-c-compiler-support">Visual Studio C# compiler support</h2>
+<p>In addition to the Mono C# compiler we also support Visual Studio's C#
+compiler. Currently this is only supported on the Ninja backend.</p>
+<h2 id="removed-two-deprecated-features">Removed two deprecated features</h2>
+<p>The standalone <code>find_library</code> function has been a no-op for a long
+time. Starting with this version it becomes a hard error.</p>
+<p>There used to be a keywordless version of <code>run_target</code> which looked
+like this:</p>
+<pre><code>run_target('targetname', 'command', 'arg1', 'arg2')
+</code></pre>
+<p>This is now an error. The correct format for this is now:</p>
+<pre><code>run_target('targetname',
+  command : ['command', 'arg1', 'arg2'])
+</code></pre>
+<h2 id="experimental-fpga-support">Experimental FPGA support</h2>
+<p>This version adds support for generating, analysing and uploading FPGA
+programs using the <a href="http://www.clifford.at/icestorm/">IceStorm
+toolchain</a>. This support is
+experimental and is currently limited to the <code>iCE 40</code> series of FPGA
+chips.</p>
+<p>FPGA generation integrates with other parts of Meson seamlessly. As an
+example, <a href="https://github.com/jpakkane/lm32">here</a> is an example
+project that compiles a simple firmware into Verilog and combines that
+with an lm32 softcore processor.</p>
+<h2 id="generator-outputs-can-preserve-directory-structure">Generator outputs can preserve directory structure</h2>
+<p>Normally when generating files with a generator, Meson flattens the
+input files so they all go in the same directory. Some code
+generators, such as Protocol Buffers, require that the generated files
+have the same directory layout as the input files used to generate
+them. This can now be achieved like this:</p>
+<pre><code class="language-meson">g = generator(...) # Compiles protobuf sources
+generated = gen.process('com/mesonbuild/one.proto',
+  'com/mesonbuild/two.proto',
+  preserve_path_from : meson.current_source_dir())
+
+This would cause the following files to be generated inside the target
+private directory:
+
+    com/mesonbuild/one.pb.h
+    com/mesonbuild/one.pb.cc
+    com/mesonbuild/two.pb.h
+    com/mesonbuild/two.pb.cc
+
+## Hexadecimal string literals
+
+Hexadecimal integer literals can now be used in build and option files.
+
+    int_255 = 0xFF
+
+## b_ndebug : if-release
+
+The value `if-release` can be given for the `b_ndebug` project option.
+
+This will make the `NDEBUG` pre-compiler macro to be defined for release
+type builds as if the `b_ndebug` project option had had the value `true`
+defined for it.
+
+## `install_data()` defaults to `{datadir}/{projectname}`
+
+If `install_data()` is not given an `install_dir` keyword argument, the
+target directory defaults to `{datadir}/{projectname}` (e.g.
+`/usr/share/myproj`).
+
+## install_subdir() supports strip_directory
+
+If strip_directory=true install_subdir() installs directory contents
+instead of directory itself, stripping basename of the source directory.
+
+## Integer options
+
+There is a new integer option type with optional minimum and maximum
+values. It can be specified like this in the `meson_options.txt` file:
+
+    option('integer_option', type : 'integer', min : 0, max : 5, value : 3)
+
+## New method meson.project_license()
+
+The `meson` builtin object now has a `project_license()` method that returns a
+list of all licenses for the project.
+
+## Rust cross-compilation
+
+Cross-compilation is now supported for Rust targets. Like other
+cross-compilers, the Rust binary must be specified in your cross
+file. It should specify a `--target` (as installed by `rustup target`)
+and a custom linker pointing to your C cross-compiler. For example:
+
+</code></pre>
+<p>[binaries]
+c = '/usr/bin/arm-linux-gnueabihf-gcc-7'
+rust = [
+'rustc',
+'--target', 'arm-unknown-linux-gnueabihf',
+'-C', 'linker=/usr/bin/arm-linux-gnueabihf-gcc-7',
+]</p>
+<pre><code>
+## Rust compiler-private library disambiguation
+
+When building a Rust target with Rust library dependencies, an
+`--extern` argument is now specified to avoid ambiguity between the
+dependency library, and any crates of the same name in `rustc`'s
+private sysroot.
+
+## Project templates
+
+Meson ships with predefined project templates. To start a new project from
+scratch, simply go to an empty directory and type:
+
+```meson
+meson init --name=myproject --type=executable --language=c
+</code></pre>
+<h2 id="improve-test-setup-selection">Improve test setup selection</h2>
+<p>Test setups are now identified (also) by the project they belong to and it
+is possible to select the used test setup from a specific project. E.g.
+to use a test setup <code>some_setup</code> from project <code>some_project</code> for all
+executed tests one can use</p>
+<pre><code>meson test --setup some_project:some_setup
+</code></pre>
+<p>Should one rather want test setups to be used from the same project as
+where the current test itself has been defined, one can use just</p>
+<pre><code>meson test --setup some_setup
+</code></pre>
+<p>In the latter case every (sub)project must have a test setup <code>some_setup</code>
+defined in it.</p>
+<h2 id="can-use-custom-targets-as-windows-resource-files">Can use custom targets as Windows resource files</h2>
+<p>The <code>compile_resources()</code> function of the <code>windows</code> module can now be used on custom targets as well as regular files.</p>
+<h1 id="can-promote-dependencies-with-wrap-command">Can promote dependencies with wrap command</h1>
+<p>The <code>promote</code> command makes it easy to copy nested dependencies to the top level.</p>
+<pre><code>meson wrap promote scommon
+</code></pre>
+<p>This will search the project tree for a subproject called <code>scommon</code> and copy it to the top level.</p>
+<p>If there are many embedded subprojects with the same name, you have to specify which one to promote manually like this:</p>
+<pre><code>meson wrap promote subprojects/s1/subprojects/scommon
+</code></pre>
+<h2 id="yielding-subproject-option-to-superproject">Yielding subproject option to superproject</h2>
+<p>Normally project options are specific to the current project. However
+sometimes you want to have an option whose value is the same over all
+projects. This can be achieved with the new <code>yield</code> keyword for
+options. When set to <code>true</code>, getting the value of this option in
+<code>meson.build</code> files gets the value from the option with the same name
+in the master project (if such an option exists).</p>
 
 </div>
 
