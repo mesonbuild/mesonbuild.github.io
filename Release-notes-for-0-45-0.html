@@ -159,11 +159,14 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="Release-notes-for-0.45.0.md" data-hotdoc-role="main">
 <h1 id="new-features">New features</h1>
+<h2 id="python-minimum-version-is-now-35">Python minimum version is now 3.5</h2>
+<p>Meson will from this version on require Python version 3.5 or newer.</p>
 <h2 id="configtool-based-dependencies-can-be-specified-in-a-cross-file">Config-Tool based dependencies can be specified in a cross file</h2>
-<p>Tools like LLVM and pcap use a config tool for dependencies, this is a script
-or binary that is run to get configuration information (cflags, ldflags, etc)
-from.</p>
-<p>These binaries may now be specified in the <code>binaries</code> section of a cross file.</p>
+<p>Tools like LLVM and pcap use a config tool for dependencies, this is a
+script or binary that is run to get configuration information (cflags,
+ldflags, etc) from.</p>
+<p>These binaries may now be specified in the <code>binaries</code> section of a
+cross file.</p>
 <pre><code class="language-dosini">[binaries]
 cc = ...
 llvm-config = '/usr/bin/llvm-config32'
@@ -234,8 +237,8 @@ values. It can be specified like this in the <code>meson_options.txt</code> file
 <pre><code>option('integer_option', type : 'integer', min : 0, max : 5, value : 3)
 </code></pre>
 <h2 id="new-method-mesonproject_license">New method meson.project_license()</h2>
-<p>The <code>meson</code> builtin object now has a <code>project_license()</code> method that returns a
-list of all licenses for the project.</p>
+<p>The <code>meson</code> builtin object now has a <code>project_license()</code> method that
+returns a list of all licenses for the project.</p>
 <h2 id="rust-crosscompilation">Rust cross-compilation</h2>
 <p>Cross-compilation is now supported for Rust targets. Like other
 cross-compilers, the Rust binary must be specified in your cross
@@ -260,10 +263,10 @@ scratch, simply go to an empty directory and type:</p>
 <pre><code class="language-meson">meson init --name=myproject --type=executable --language=c
 </code></pre>
 <h2 id="improve-test-setup-selection">Improve test setup selection</h2>
-<p>Test setups are now identified (also) by the project they belong to and it
-is possible to select the used test setup from a specific project. E.g.
-to use a test setup <code>some_setup</code> from project <code>some_project</code> for all
-executed tests one can use</p>
+<p>Test setups are now identified (also) by the project they belong to
+and it is possible to select the used test setup from a specific
+project. E.g.  to use a test setup <code>some_setup</code> from project
+<code>some_project</code> for all executed tests one can use</p>
 <pre><code>meson test --setup some_project:some_setup
 </code></pre>
 <p>Should one rather want test setups to be used from the same project as
@@ -278,8 +281,10 @@ defined in it.</p>
 <p>The <code>promote</code> command makes it easy to copy nested dependencies to the top level.</p>
 <pre><code>meson wrap promote scommon
 </code></pre>
-<p>This will search the project tree for a subproject called <code>scommon</code> and copy it to the top level.</p>
-<p>If there are many embedded subprojects with the same name, you have to specify which one to promote manually like this:</p>
+<p>This will search the project tree for a subproject called <code>scommon</code>
+and copy it to the top level.</p>
+<p>If there are many embedded subprojects with the same name, you have to
+specify which one to promote manually like this:</p>
 <pre><code>meson wrap promote subprojects/s1/subprojects/scommon
 </code></pre>
 <h2 id="yielding-subproject-option-to-superproject">Yielding subproject option to superproject</h2>
