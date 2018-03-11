@@ -395,6 +395,9 @@ keyword arguments.</p>
 <li>
 <code>link_with</code>, libraries to link against</li>
 <li>
+<code>link_whole</code>, libraries to link fully, same as <a href="Reference-manual.html#executable"><code>executable</code></a>
+Since 0.46.0</li>
+<li>
 <code>sources</code>, sources to add to targets (or generated header files
 that should be built before sources including them are built)</li>
 <li>
@@ -571,7 +574,7 @@ defaults to <code>true</code>, since 0.42.0</li>
 <li>
 <code>install_dir</code> override install directory for this file. The value is
 relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') + '/projectname-1.0'</code>.</li>
+plugins into a subdir, you'd use something like this: <code>install_dir : join_paths(get_option('libdir'), 'projectname-1.0'</code>).</li>
 <li>
 <code>install_rpath</code> a string to set the target's rpath to after install
 (but <em>not</em> before that)</li>
@@ -732,9 +735,12 @@ installed, and so on, use a <a href="Reference-manual.html#custom_target"><code>
 </code></pre>
 <p>Obtains the value of the <a href="Build-options.html">project build option</a> specified in the positional argument.</p>
 <p>Note that the value returned for built-in options that end in <code>dir</code> such as
-<code>bindir</code> and <code>libdir</code> is always a path relative to (and inside) the <code>prefix</code>.
-The only exceptions are: <code>sysconfdir</code>, <code>localstatedir</code>, and <code>sharedstatedir</code>
-which will return the value passed during configuration as-is.</p>
+<code>bindir</code> and <code>libdir</code> is always a path relative to (and inside) the <code>prefix</code>.</p>
+<p>The only exceptions are: <code>sysconfdir</code>, <code>localstatedir</code>, and <code>sharedstatedir</code>
+which will return the value passed during configuration as-is, which may be
+absolute, or relative to <code>prefix</code>.  <a href="Installing.html"><code>install_dir</code> arguments</a>
+handles that as expected, but if you need the absolute path to one of these
+e.g. to use in a define etc., you should use <code>join_paths(get_option('prefix'), get_option('localstatedir')))</code></p>
 <h3 id="get_variable">get_variable()</h3>
 <pre><code class="language-meson">    value get_variable(variable_name, fallback)
 </code></pre>
@@ -1014,9 +1020,12 @@ with <code>meson.project_version()</code>.</p>
 <h3 id="run_command">run_command()</h3>
 <pre><code class="language-meson">    runresult run_command(command, list_of_args)
 </code></pre>
-<p>Runs the command specified in positional arguments. Returns <a href="Reference-manual.html#run-result-object">an opaque
-object</a> containing the result of the
-invocation. The script is run from an <em>unspecified</em> directory, and
+<p>Runs the command specified in positional arguments.
+<code>command</code> can be a string, or the output of <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
+<a href="Reference-manual.html#files"><code>files()</code></a> or <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>, or
+<a href="Reference-manual.html#compiler-object">a compiler object</a>.</p>
+<p>Returns <a href="Reference-manual.html#run-result-object">an opaque object</a> containing the result of the
+invocation. The command is run from an <em>unspecified</em> directory, and
 Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code> and <code>MESON_SUBDIR</code> that specify the source
 directory, build directory and subdirectory the target was defined in,
@@ -1214,10 +1223,16 @@ commit information (defaults to <code>@VCS_TAG@</code>)</li>
 </ul>
 <p>Meson will read the contents of <code>input</code>, substitute the
 <code>replace_string</code> with the detected revision number, and write the
-result to <code>output</code>. This method returns an opaque
-<a href="Reference-manual.html#custom_target"><code>custom_target</code></a> object that can be used as
-source. If you desire more specific behavior than what this command
-provides, you should use <code>custom_target</code>.</p>
+result to <code>output</code>. This method returns a
+<a href="Reference-manual.html#custom_target"><code>custom_target</code></a> object that (as usual) should be
+used to signal dependencies if other targets use the file outputted
+by this.</p>
+<p>For example, if you generate a header with this and want to use that in
+a build target, you must add the return value to the sources of that
+build target. Without that, Meson will not know the order in which to
+build the targets.</p>
+<p>If you desire more specific behavior than what this command provides,
+you should use <code>custom_target</code>.</p>
 <h2 id="builtin-objects">Built-in objects</h2>
 <p>These are built-in objects that are always available.</p>
 <h3 id="meson-object">

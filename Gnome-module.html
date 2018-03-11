@@ -302,7 +302,9 @@ glib</li>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
 <h3 id="gnomemkenums">gnome.mkenums()</h3>
 <p>Generates enum files for GObject using the <code>glib-mkenums</code> tool. The
-first argument is the base name of the output files.</p>
+first argument is the base name of the output files, unless <code>c_template</code>
+and <code>h_template</code> are specified. In this case, the output files will be
+the base name of the values passed as templates.</p>
 <p>This method is essentially a wrapper around the <code>glib-mkenums</code> tool's
 command line API. It is the most featureful method for enum creation.</p>
 <p>Typically you either provide template files or you specify the various
