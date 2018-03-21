@@ -284,7 +284,8 @@ mode, all the variables in the <code>configuration:</code> object (see above)
 are written to the <code>output:</code> file.</li>
 <li>
 <code>install_dir</code> the subdirectory to install the generated file to
-(e.g. <code>share/myproject</code>), if omitted the file is not installed.</li>
+(e.g. <code>share/myproject</code>), if omitted or given the value of empty
+string, the file is not installed.</li>
 <li>
 <code>output</code> the output file name (since v0.41.0, may contain
 <code>@PLAINNAME@</code> or <code>@BASENAME@</code> substitutions). In configuration mode,
@@ -823,6 +824,15 @@ example:</p>
 </li>
 </ul>
 <p>To leave any of these three as the default, specify <code>false</code>.</p>
+<ul>
+<li>
+<code>rename</code> if specified renames each source file into corresponding file
+from <code>rename</code> list. Nested paths are allowed and they are joined with
+<code>install_dir</code>. Length of <code>rename</code> list must be equal to the number of sources.
+<em>(added 0.46.0)</em>
+</li>
+</ul>
+<p>See <a href="Installing.html">Installing</a> for more examples.</p>
 <h3 id="install_headers">install_headers()</h3>
 <pre><code class="language-meson">    void install_headers(list_of_headers, ...)
 </code></pre>
@@ -1030,6 +1040,7 @@ Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code> and <code>MESON_SUBDIR</code> that specify the source
 directory, build directory and subdirectory the target was defined in,
 respectively.</p>
+<p>See also <a href="External-commands.html">External commands</a>.</p>
 <h3 id="run_target">run_target</h3>
 <pre><code class="language-meson">runtarget run_target(target_name, ...)
 </code></pre>
