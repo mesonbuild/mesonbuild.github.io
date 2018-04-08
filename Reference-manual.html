@@ -237,6 +237,22 @@ the following:</p>
 run. The behavior of this function is identical to <code>test</code> with the
 exception that there is no <code>is_parallel</code> keyword, because benchmarks
 are never run in parallel.</p>
+<h3 id="both_libraries">both_libraries()</h3>
+<pre><code class="language-meson">    buildtarget both_libraries(library_name, list_of_sources, ...)
+</code></pre>
+<p>Builds both a static and shared library with the given sources. Positional and
+keyword arguments are otherwise the same as for <a href="Reference-manual.html#library"><code>library</code></a>. Source
+files will be compiled only once and object files will be reused to build both
+shared and static libraries, unless <code>b_staticpic</code> user option or <code>pic</code> argument
+are set to false in which case sources will be compiled twice.</p>
+<p>The returned <a href="Reference-manual.html#build-target-object">buildtarget</a> always represents the shared
+library. In addition it supports the following extra methods:</p>
+<ul>
+<li>
+<code>get_shared_lib()</code> returns the shared library build target</li>
+<li>
+<code>get_static_lib()</code> returns the static library build target</li>
+</ul>
 <h3 id="build_target">build_target()</h3>
 <p>Creates a build target whose type can be set dynamically with the
 <code>target_type</code> keyword argument. This declaration:</p>
@@ -277,7 +293,13 @@ of the <code>command</code> and writes it to the target file specified as
 <li>
 <code>command</code> as explained above, if specified, Meson does not create
 the file itself but rather runs the specified command, which allows
-you to do fully custom file generation</li>
+you to do fully custom file generation.</li>
+<li>
+<code>format</code> <em>(added 0.46.0)</em> the format of defines. It defaults to <code>meson</code>, and so substitutes
+<code>#mesondefine</code> statements and variables surrounded by <code>@</code> characters, you can also use <code>cmake</code>
+to replace <code>#cmakedefine</code> statements and variables with the <code>${variable}</code> syntax. Finally you can use
+<code>cmake@</code> in which case substitutions will apply on <code>#cmakedefine</code> statements and variables with
+the <code>@variable@</code> syntax.</li>
 <li>
 <code>input</code> the input file name. If it's not specified in configuration
 mode, all the variables in the <code>configuration:</code> object (see above)
@@ -494,9 +516,8 @@ can be of the following types:</p>
 <p>These input files can be sources, objects, libraries, or any other
 file. Meson will automatically categorize them based on the extension
 and use them accordingly. For instance, sources (<code>.c</code>, <code>.cpp</code>,
-<code>.vala</code>, <code>.rs</code>, etc) will be compiled, objects (<code>.o</code>, <code>.obj</code>) and
-libraries (<code>.so</code>, <code>.dll</code>, etc) will be linked, and all other files
-(headers, unknown extensions, etc) will be ignored.</p>
+<code>.vala</code>, <code>.rs</code>, etc) will be compiled and objects (<code>.o</code>, <code>.obj</code>) and
+libraries (<code>.so</code>, <code>.dll</code>, etc) will be linked.</p>
 <p>With the Ninja backend, Meson will create a build-time <a href="https://ninja-build.org/manual.html#ref_dependencies">order-only
 dependency</a> on
 all generated input files, including unknown files. For all input
@@ -932,10 +953,11 @@ dropped. That means that <code>join_paths('foo', '/bar')</code> returns <code>/b
 <h3 id="library">library()</h3>
 <pre><code class="language-meson">    buildtarget library(library_name, list_of_sources, ...)
 </code></pre>
-<p>Builds a library that is either static or shared depending on the
-value of <code>default_library</code> user option. You should use this instead of
-<a href="Reference-manual.html#shared_library"><code>shared_library</code></a> or
-<a href="Reference-manual.html#static_library"><code>static_library</code></a> most of the time. This allows you
+<p>Builds a library that is either static, shared or both depending on the value of
+<code>default_library</code> user option. You should use this instead of
+<a href="Reference-manual.html#shared_library"><code>shared_library</code></a>,
+<a href="Reference-manual.html#static_library"><code>static_library</code></a> or
+<a href="Reference-manual.html#both_libraries"><code>both_libraries</code></a> most of the time. This allows you
 to toggle your entire project (including subprojects) from shared to
 static with only one option.</p>
 <p>The keyword arguments for this are the same as for <a href="Reference-manual.html#executable"><code>executable</code></a> with the following additions:</p>
@@ -960,7 +982,8 @@ potential name clash with shared libraries which also generate
 libraries. Defaults to <code>dylib</code> for shared libraries and <code>rlib</code> for
 static libraries.</li>
 </ul>
-<p><code>static_library</code> and <code>shared_library</code> also accept these keyword arguments.</p>
+<p><code>static_library</code>, <code>shared_library</code> and <code>both_libraries</code> also accept these keyword
+arguments.</p>
 <h3 id="message">message()</h3>
 <pre><code class="language-meson">    void message(text)
 </code></pre>
@@ -1144,6 +1167,25 @@ recurse in the subdir if they all return <code>true</code> when queried with
 <code>.found()</code>
 </li>
 </ul>
+<h3 id="subdir_done">subdir_done()</h3>
+<pre><code class="language-meson">    subdir_done()
+</code></pre>
+<p>Stops further interpretation of the meson script file from the point of
+the invocation. All steps executed up to this point are valid and will
+be executed by meson. This means that all targets defined before the call
+of <code>subdir_done</code> will be build.</p>
+<p>If the current script was called by <code>subdir</code> the execution returns to the
+calling directory and continues as if the script had reached the end.
+If the current script is the top level script meson configures the project
+as defined up to this point.</p>
+<p>Example:</p>
+<pre><code class="language-meson">project('example exit', 'cpp')
+executable('exe1', 'exe1.cpp')
+subdir_done()
+executable('exe2', 'exe2.cpp')
+</code></pre>
+<p>The executable <code>exe1</code> will be build, while the executable <code>exe2</code> is not
+build.</p>
 <h3 id="subproject">subproject()</h3>
 <pre><code class="language-meson">    subproject_object subproject(subproject_name, ...)
 </code></pre>
@@ -1176,9 +1218,16 @@ argument to <a href="Reference-manual.html#dependency"><code>dependency()</code>
 <h3 id="test">test()</h3>
 <pre><code class="language-meson">    void test(name, executable, ...)
 </code></pre>
-<p>Defines a unit test. Takes two positional arguments, the first is the
-name of this test and the second is the executable to run. Keyword
-arguments are the following.</p>
+<p>Defines a test to run with the test harness. Takes two positional arguments,
+the first is the name of the test and the second is the executable to run.
+The executable can be an <a href="Reference-manual.html#build-target-object">executable build target object</a>
+returned by <a href="Reference-manual.html#executable"><code>executable()</code></a> or an
+<a href="Reference-manual.html#external-program-object">external program object</a> returned by
+<a href="Reference-manual.html#find_program"><code>find_program()</code></a>. The executable's exit code is used by the
+test harness to record the outcome of the test, for example exit code zero
+indicates success. For more on the Meson test harness protocol read
+<a href="Unit-tests.html">Unit Tests</a>.</p>
+<p>Keyword arguments are the following:</p>
 <ul>
 <li>
 <p><code>args</code> arguments to pass to the executable</p>
@@ -1703,7 +1752,8 @@ statement</a>.</p>
 <h3 id="build-target-object">
 <code>build target</code> object</h3>
 <p>A build target is either an <a href="Reference-manual.html#executable">executable</a>,
-<a href="Reference-manual.html#shared_library">shared</a>, <a href="Reference-manual.html#static_library">static library</a> or
+<a href="Reference-manual.html#shared_library">shared library</a>, <a href="Reference-manual.html#static_library">static library</a>,
+<a href="Reference-manual.html#both_libraries">both shared and static library</a> or
 <a href="Reference-manual.html#shared_module">shared module</a>.</p>
 <ul>
 <li>

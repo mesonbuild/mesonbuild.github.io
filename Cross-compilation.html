@@ -165,20 +165,26 @@ nomenclature. The three most important definitions are traditionally
 called <em>build</em>, <em>host</em> and <em>target</em>. This is confusing because those
 terms are used for quite many different things. To simplify the issue,
 we are going to call these the <em>build machine</em>, <em>host machine</em> and
-<em>target machine</em>. Their definitions are the following</p>
+<em>target machine</em>. Their definitions are the following:</p>
 <ul>
 <li>
-<em>build machine</em> is the computer that is doing the actual compiling</li>
+<em>build machine</em> is the computer that is doing the actual compiling.</li>
 <li>
-<em>host machine</em> is the machine on which the compiled binary will run</li>
+<em>host machine</em> is the machine on which the compiled binary will run.</li>
 <li>
-<em>target machine</em> is the machine on which the compiled binary's output will run (this is only meaningful for programs such as compilers that, when run, produce object code for a different CPU than what the program is being run on)</li>
+<em>target machine</em> is the machine on which the compiled binary's
+output will run, <em>only meaningful</em> if the program produces
+machine-specific output.</li>
 </ul>
 <p>The <code>tl/dr</code> summary is the following: if you are doing regular cross
-compilation, you only care about <em>build_machine</em> and
-<em>host_machine</em>. Just ignore <em>target_machine</em> altogether and you will
-be correct 99% of the time. If your needs are more complex or you are
-interested in the actual details, do read on.</p>
+compilation, you only care about <code>build_machine</code> and
+<code>host_machine</code>. Just ignore <code>target_machine</code> altogether and you will
+be correct 99% of the time. Only compilers and similar tools care
+about the target machine. In fact, for so-called "multi-target" tools
+the target machine need not be fixed at build-time like the others but
+chosen at runtime, so <code>target_machine</code> <em>still</em> doesn't matter. If your
+needs are more complex or you are interested in the actual details, do
+read on.</p>
 <p>This might be easier to understand through examples. Let's start with
 the regular, not cross-compiling case. In these cases all of these
 three machines are the same. Simple so far.</p>
@@ -203,6 +209,19 @@ a side note, be careful when reading cross compilation articles on
 Wikipedia or the net in general. It is very common for them to get
 build, host and target mixed up, even in consecutive sentences, which
 can leave you puzzled until you figure it out.</p>
+<p>A lot of confusion stems from the fact that when you cross-compile
+something, the 3 systems (<em>build</em>, <em>host</em>, and <em>target</em>) used when
+building the cross compiler don't align with the ones used when
+building something with that newly-built cross compiler. To take our
+Canadian Cross scenario from above (for full generality), since its
+<em>host machine</em> is x86 Windows, the <em>build machine</em> of anything we
+build with it is <em>x86 Windows</em>. And since its <em>target machine</em> is MIPS
+Linux, the <em>host machine</em> of anything we build with it is <em>MIPS
+Linux</em>. Only the <em>target machine</em> of whatever we build with it can be
+freely chosen by us, say if we want to build another cross compiler
+that runs on MIPS Linux and targets Aarch64 iOS. As this example
+hopefully makes clear to you, the platforms are shifted over to the
+left by one position.</p>
 <p>If you did not understand all of the details, don't worry. For most
 people it takes a while to wrap their head around these
 concepts. Don't panic, it might take a while to click, but you will
@@ -229,8 +248,9 @@ application with qemu or a hardware simulator. If you have this kind
 of a wrapper, these lines are all you need to write. Meson will
 automatically use the given wrapper when it needs to run host
 binaries. This happens e.g. when running the project's test suite.</p>
-<p>The next section lists properties of the cross compiler and thus of
-the target system. It looks like this:</p>
+<p>The next section lists properties of the cross compiler and its target
+system, and thus properties of host system of what we're building. It
+looks like this:</p>
 <pre><code class="language-ini">[properties]
 sizeof_int = 4
 sizeof_wchar_t = 4

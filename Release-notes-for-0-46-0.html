@@ -167,6 +167,11 @@ whose contents should look like this:</p>
 
 A short description explaining the new feature and how it should be used.
 </code></pre>
+<h2 id="allow-early-return-from-a-script">Allow early return from a script</h2>
+<p>Added the function <code>subdir_done()</code>. Its invocation exits the current script at
+the point of invocation. All previously invoked build targets and commands are
+build/executed. All following ones are ignored. If the current script was
+invoked via <code>subdir()</code> the parent script continues normally.</p>
 
 </div>
 

@@ -224,6 +224,17 @@ e.g. <code>datadir=${prefix}/share</code>. The names <code>prefix</code>, <code>
 <code>d_module_versions</code> a list of module version flags used when compiling
 D sources referred to by this pkg-config file</li>
 </ul>
+<p>Since 0.46 a <code>StaticLibrary</code> or <code>SharedLibrary</code> object can optionally be passed
+as first positional argument. If one is provided a default value will be
+provided for all required fields of the pc file:</p>
+<ul>
+<li>
+<code>install_dir</code> is set to <code>pkgconfig</code> folder in the same location than the provided library.</li>
+<li>
+<code>description</code> is set to the project's name followed by the library's name.</li>
+<li>
+<code>name</code> is set to the library's name.</li>
+</ul>
 
 </div>
 

@@ -355,7 +355,7 @@ only the current and old value, but also all the times the user has
 changed the value and from which value to which other value. Since
 people don't remember their own actions that far back, toggling
 between states based on long history would be confusing.</p>
-<p>Because of this we do the simple an understandable thing: default
+<p>Because of this we do the simple and understandable thing: default
 values are only defaults and will never affect the value of an option
 once set.</p>
 <h2 id="does-wrap-download-sources-behind-my-back">Does wrap download sources behind my back?</h2>
@@ -374,6 +374,11 @@ has a option called <code>wrap-mode</code> which can be used to disable wrap
 downloads altogether with <code>--wrap-mode=nodownload</code>. You can also
 disable dependency fallbacks altogether with <code>--wrap-mode=nofallback</code>,
 which also implies the <code>nodownload</code> option.</p>
+<p>If on the other hand, you want meson to always use the fallback
+for dependencies, even when an external dependency exists and could
+satisfy the version requirements, for example in order to make
+sure your project builds when fallbacks are used, you can use
+<code>--wrap-mode=forcefallback</code> since 0.46.0.</p>
 
 </div>
 

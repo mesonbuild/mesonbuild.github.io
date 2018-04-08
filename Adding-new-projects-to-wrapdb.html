@@ -187,11 +187,10 @@ named plain <code>ogg</code>.</p>
 <p>Each project gets its own repo. It is initialized like this:</p>
 <pre><code>git init
 git add readme.txt
-git commit -a -m 'Start of project foobar.'
-git tag commit_zero -a -m 'A tag that helps get revision ids for releases.'
+git add LICENSE.build
+git commit -a -m 'Create project foobar'
 git remote add origin &lt;repo url&gt;
 git push -u origin master
-git push --tags
 </code></pre>
 <p>Note that this is the <em>only</em> commit that will ever be made to master branch. All other commits are done to branches.</p>
 <p>Repo names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
