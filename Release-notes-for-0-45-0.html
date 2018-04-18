@@ -96,6 +96,9 @@ $('body').removeClass('no-script');
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
 			</li>
 					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
 				<a href="Python-3-module.html">Python 3</a>
 			</li>
 					<li>
@@ -167,7 +170,7 @@ script or binary that is run to get configuration information (cflags,
 ldflags, etc) from.</p>
 <p>These binaries may now be specified in the <code>binaries</code> section of a
 cross file.</p>
-<pre><code class="language-dosini">[binaries]
+<pre><code class="language-ini">[binaries]
 cc = ...
 llvm-config = '/usr/bin/llvm-config32'
 </code></pre>
@@ -179,10 +182,10 @@ compiler. Currently this is only supported on the Ninja backend.</p>
 time. Starting with this version it becomes a hard error.</p>
 <p>There used to be a keywordless version of <code>run_target</code> which looked
 like this:</p>
-<pre><code>run_target('targetname', 'command', 'arg1', 'arg2')
+<pre><code class="language-meson">run_target('targetname', 'command', 'arg1', 'arg2')
 </code></pre>
 <p>This is now an error. The correct format for this is now:</p>
-<pre><code>run_target('targetname',
+<pre><code class="language-meson">run_target('targetname',
   command : ['command', 'arg1', 'arg2'])
 </code></pre>
 <h2 id="experimental-fpga-support">Experimental FPGA support</h2>
@@ -215,7 +218,7 @@ com/mesonbuild/two.pb.cc
 </code></pre>
 <h2 id="hexadecimal-string-literals">Hexadecimal string literals</h2>
 <p>Hexadecimal integer literals can now be used in build and option files.</p>
-<pre><code>int_255 = 0xFF
+<pre><code class="language-meson">int_255 = 0xFF
 </code></pre>
 <h2 id="b_ndebug-ifrelease">b_ndebug : if-release</h2>
 <p>The value <code>if-release</code> can be given for the <code>b_ndebug</code> project option.</p>
@@ -234,7 +237,7 @@ instead of directory itself, stripping basename of the source directory.</p>
 <h2 id="integer-options">Integer options</h2>
 <p>There is a new integer option type with optional minimum and maximum
 values. It can be specified like this in the <code>meson_options.txt</code> file:</p>
-<pre><code>option('integer_option', type : 'integer', min : 0, max : 5, value : 3)
+<pre><code class="language-meson">option('integer_option', type : 'integer', min : 0, max : 5, value : 3)
 </code></pre>
 <h2 id="new-method-mesonproject_license">New method meson.project_license()</h2>
 <p>The <code>meson</code> builtin object now has a <code>project_license()</code> method that
@@ -244,7 +247,7 @@ returns a list of all licenses for the project.</p>
 cross-compilers, the Rust binary must be specified in your cross
 file. It should specify a <code>--target</code> (as installed by <code>rustup target</code>)
 and a custom linker pointing to your C cross-compiler. For example:</p>
-<pre><code>[binaries]
+<pre><code class="language-ini">[binaries]
 c = '/usr/bin/arm-linux-gnueabihf-gcc-7'
 rust = [
     'rustc',
@@ -260,7 +263,7 @@ private sysroot.</p>
 <h2 id="project-templates">Project templates</h2>
 <p>Meson ships with predefined project templates. To start a new project from
 scratch, simply go to an empty directory and type:</p>
-<pre><code class="language-meson">meson init --name=myproject --type=executable --language=c
+<pre><code>meson init --name=myproject --type=executable --language=c
 </code></pre>
 <h2 id="improve-test-setup-selection">Improve test setup selection</h2>
 <p>Test setups are now identified (also) by the project they belong to

@@ -1,0 +1,337 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Python module</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Python-module.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Python-module.md" data-hotdoc-role="main">
+<h1 id="python-module">Python module</h1>
+<p>This module provides support for finding and building extensions against
+python installations, be they python 2 or 3.</p>
+<p><em>Added 0.46.0</em></p>
+<h2 id="functions">Functions</h2>
+<h3 id="find_installation"><code>find_installation()</code></h3>
+<pre><code class="language-meson">pymod.find_installation(name_or_path, ...)
+</code></pre>
+<p>Find a python installation matching <code>name_or_path</code>.</p>
+<p>That argument is optional, if not provided then the returned python
+installation will be the one used to run meson.</p>
+<p>If provided, it can be:</p>
+<ul>
+<li>
+<p>A simple name, eg <code>python-2.7</code>, meson will look for an external program
+named that way, using <a href="Reference-manual.html#find_program">find_program</a></p>
+</li>
+<li>
+<p>A path, eg <code>/usr/local/bin/python3.4m</code></p>
+</li>
+<li>
+<p>One of <code>python2</code> or <code>python3</code>: in either case, the module will try some
+alternative names: <code>py -2</code> or <code>py -3</code> on Windows, and <code>python</code> everywhere.
+In the latter case, it will check whether the version provided by the
+sysconfig module matches the required major version</p>
+</li>
+</ul>
+<p>Keyword arguments are the following:</p>
+<ul>
+<li>
+<code>required</code>: by default, <code>required</code> is set to <code>true</code> and Meson will
+abort if no python installation can be found. If <code>required</code> is set to <code>false</code>,
+Meson will continue even if no python installation was found. You can
+then use the <code>.found()</code> method on the returned object to check
+whether it was found or not.</li>
+</ul>
+<p><strong>Returns</strong>: a <a href="Python-module.html#python_installation-object">python installation</a></p>
+<h2 id="python_installation-object">
+<code>python_installation</code> object</h2>
+<p>The <code>python_installation</code> object is an <a href="Reference-manual.html#external-program-object">external program</a>, with several
+added methods.</p>
+<h3 id="methods">Methods</h3>
+<h4 id="extension_module"><code>extension_module()</code></h4>
+<pre><code class="language-meson">shared_module py_installation.extension_module(module_name, list_of_sources, ...)
+</code></pre>
+<p>Create a <code>shared_module</code> target that is named according to the naming
+conventions of the target platform.</p>
+<p>All positional and keyword arguments are the same as for <a href="Reference-manual.html#shared_module">shared_module</a>,
+excluding <code>name_suffix</code> and <code>name_prefix</code>, and with the addition of the following:</p>
+<ul>
+<li>
+<code>subdir</code>: By default, meson will install the extension module in
+the relevant top-level location for the python installation, eg
+<code>/usr/lib/site-packages</code>. When subdir is passed to this method,
+it will be appended to that location. This keyword argument is
+mutually exclusive with <code>install_dir</code>
+</li>
+</ul>
+<p><code>extension_module</code> does not add any dependencies to the library so user may
+need to add <code>dependencies : py_installation.dependency()</code>, see <a href="Python-module.html#dependency">dependency()</a>.</p>
+<p><strong>Returns</strong>: a <a href="Reference-manual.html#build-target-object">buildtarget object</a></p>
+<h4 id="dependency"><code>dependency()</code></h4>
+<pre><code class="language-meson">python_dependency py_installation.dependency(...)
+</code></pre>
+<p>This method accepts the same arguments as the standard <a href="Reference-manual.html#dependency">dependency</a> function.</p>
+<p><strong>Returns</strong>: a <a href="Python-module.html#python_dependency-object">python dependency</a></p>
+<h4 id="install_sources"><code>install_sources()</code></h4>
+<pre><code class="language-meson">void py_installation.install_sources(list_of_files, ...)
+</code></pre>
+<p>Install actual python sources (<code>.py</code>).</p>
+<p>All positional and keyword arguments are the same as for <a href="Reference-manual.html#install-data">install_data</a>,
+with the addition of the following:</p>
+<ul>
+<li>
+<p><code>pure</code>: On some platforms, architecture independent files are expected
+to be placed in a separate directory. However, if the python sources
+should be installed alongside an extension module built with this
+module, this keyword argument can be used to override that behaviour.
+Defaults to <code>true</code></p>
+</li>
+<li>
+<p><code>subdir</code>: See documentation for the argument of the same name to
+<a href="Python-module.html#extension_module">extension_module()</a></p>
+</li>
+</ul>
+<h4 id="get_install_dir"><code>get_install_dir()</code></h4>
+<pre><code class="language-meson">string py_installation.get_install_dir(...)
+</code></pre>
+<p>Retrieve the directory <a href="Python-module.html#install_sources">install_sources()</a> will install to.</p>
+<p>It can be useful in cases where <code>install_sources</code> cannot be used directly,
+for example when using <a href="Reference-manual.html#configure-file">configure_file</a>.</p>
+<p>This function accepts no arguments, its keyword arguments are the same
+as <a href="Python-module.html#install_sources">install_sources()</a>.</p>
+<p><strong>Returns</strong>: A string</p>
+<h4 id="language_version"><code>language_version()</code></h4>
+<pre><code class="language-meson">string py_installation.language_version()
+</code></pre>
+<p>Get the major.minor python version, eg <code>2.7</code>.</p>
+<p>The version is obtained through the <code>sysconfig</code> module.</p>
+<p>This function expects no arguments or keyword arguments.</p>
+<p><strong>Returns</strong>: A string</p>
+<h4 id="get_path"><code>get_path()</code></h4>
+<pre><code class="language-meson">string py_installation.get_path(path_name)
+</code></pre>
+<p>Get a path as defined by the <code>sysconfig</code> module.</p>
+<p>For example:</p>
+<pre><code class="language-meson">purelib = py_installation.get_path('purelib')
+</code></pre>
+<p>This function accepts a single argument, <code>path_name</code>, which is expected to
+be a non-empty string.</p>
+<p><strong>Returns</strong>: A string</p>
+<h4 id="get_variable"><code>get_variable()</code></h4>
+<pre><code class="language-meson">string py_installation.get_variable(variable_name)
+</code></pre>
+<p>Get a variable as defined by the <code>sysconfig</code> module.</p>
+<p>For example:</p>
+<pre><code class="language-meson">py_bindir = py_installation.get_variable('BINDIR')
+</code></pre>
+<p>This function accepts a single argument, <code>variable_name</code>, which is expected to
+be a non-empty string.</p>
+<p><strong>Returns</strong>: A string</p>
+<h2 id="python_dependency-object">
+<code>python_dependency</code> object</h2>
+<p>This <a href="Reference-manual.html#dependency-object">dependency object</a> subclass will try various methods to obtain the
+compiler and linker arguments, starting with pkg-config then potentially
+using information obtained from python's <code>sysconfig</code> module.</p>
+<p>It exposes the same methods as its parent class.</p>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+<div class="copyrights-description">
+		<p>
+				Authored by
+					       	Mathieu Duponchelle 				(<a href="mailto:mathieu@centricular.com">mathieu@centricular.com</a>)
+			</p>
+	</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Python-module.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

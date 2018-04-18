@@ -96,6 +96,9 @@ $('body').removeClass('no-script');
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
 			</li>
 					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
 				<a href="Python-3-module.html">Python 3</a>
 			</li>
 					<li>
@@ -192,6 +195,10 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 <p>You can also run only a single test by giving its name:</p>
 <pre><code class="language-console">$ meson test testname
 </code></pre>
+<p>Tests belonging to a suite <code>suite</code> can be run as follows</p>
+<pre><code class="language-console">$ meson test --suite (sub)project_name:suite
+</code></pre>
+<p>Since version <em>0.46</em>, <code>(sub)project_name</code> can be omitted if it is the top-level project.</p>
 <p>Sometimes you need to run the tests multiple times, which is done like this:</p>
 <pre><code class="language-console">$ meson test --repeat=10
 </code></pre>

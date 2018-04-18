@@ -96,6 +96,9 @@ $('body').removeClass('no-script');
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
 			</li>
 					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
 				<a href="Python-3-module.html">Python 3</a>
 			</li>
 					<li>
@@ -1246,6 +1249,13 @@ running at the same time as this test</p>
 executable returns a non-zero return value (i.e. reports an error)</p>
 </li>
 <li>
+<p><code>suite</code> <code>'label'</code> (or list of labels <code>['label1', 'label2']</code>)
+attached to this test. The suite name is qualified by a (sub)project
+name resulting in <code>(sub)project_name:label</code>. In the case of a list
+of strings, the suite names will be <code>(sub)project_name:label1</code>,
+<code>(sub)project_name:label2</code>, etc.</p>
+</li>
+<li>
 <p><code>timeout</code> the amount of seconds the test is allowed to run, a test
 that exceeds its time limit is always considered failed, defaults to
 30 seconds</p>
@@ -1253,6 +1263,14 @@ that exceeds its time limit is always considered failed, defaults to
 <li>
 <p><code>workdir</code> absolute path that will be used as the working directory
 for the test</p>
+</li>
+<li>
+<p><code>depends</code> specifies that this test depends on the specified
+target(s), even though it does not take any of them as a command
+line argument. This is meant for cases where test finds those
+targets internally, e.g. plugins or globbing. Those targets are built
+before test is executed even if they have <code>build_by_default : false</code>.
+Since 0.46.0</p>
 </li>
 </ul>
 <p>Defined tests can be run in a backend-agnostic way by calling
@@ -1403,6 +1421,14 @@ that the value may contain many parts, i.e. it may be <code>python3 /path/to/mes
 the string to an array if needed.</p>
 </li>
 <li>
+<p><code>override_find_program(progname, program)</code> <a href="Release-notes-for-0-46-0.html#Can-override-find_program"><em>(Added
+0.46.0)</em></a>
+specifies that whenever <code>find_program</code> is used to find a program
+named <code>progname</code>, Meson should not not look it up on the system but
+instead return <code>program</code>, which may either be the result of
+<code>find_program</code> or <code>configure_file</code>.</p>
+</li>
+<li>
 <p><code>project_version()</code> returns the version string specified in <code>project</code> function call.</p>
 </li>
 <li>
@@ -1513,7 +1539,12 @@ argument, which can be either a string or a list of strings.</p>
 <li>
 <p><code>first_supported_argument(list_of_strings)</code>, given a list of
 strings, returns the first argument that passes the <code>has_argument</code>
-test above or an empty array if none pass.</p>
+test or an empty array if none pass.</p>
+</li>
+<li>
+<p><code>first_supported_link_argument(list_of_strings)</code> <em>(added 0.46.0)</em>, given a
+list of strings, returns the first argument that passes the
+<code>has_link_argument</code> test or an empty array if none pass.</p>
 </li>
 <li>
 <p><code>get_define(definename)</code> returns the given preprocessor symbol's
@@ -1529,11 +1560,21 @@ an array containing only the arguments supported by the compiler,
 as if <code>has_argument</code> were called on them individually.</p>
 </li>
 <li>
+<p><code>get_supported_link_arguments(list_of_string)</code> <em>(added 0.46.0)</em> returns
+an array containing only the arguments supported by the linker,
+as if <code>has_link_argument</code> were called on them individually.</p>
+</li>
+<li>
 <p><code>has_argument(argument_name)</code> returns true if the compiler accepts
 the specified command line argument, that is, can compile code
-without erroring out or printing a warning about an unknown flag,
-you can specify external dependencies to use with <code>dependencies</code>
-keyword argument.</p>
+without erroring out or printing a warning about an unknown flag.</p>
+</li>
+<li>
+<p><code>has_link_argument(argument_name)</code> <em>(added 0.46.0)</em> returns true if the linker
+accepts the specified command line argument, that is, can compile and link
+code without erroring out or printing a warning about an unknown flag. Link
+arguments will be passed to the compiler, so should usually have the <code>-Wl,</code>
+prefix. On VisualStudio a <code>/link</code> argument will be prepended.</p>
 </li>
 <li>
 <p><code>has_function(funcname)</code> returns true if the given function is
@@ -1573,6 +1614,11 @@ external dependencies to use with <code>dependencies</code> keyword argument.</p
 <p><code>has_multi_arguments(arg1, arg2, arg3, ...)</code> is the same as
 <code>has_argument</code> but takes multiple arguments and uses them all in a
 single compiler invocation, available since 0.37.0.</p>
+</li>
+<li>
+<p><code>has_multi_link_arguments(arg1, arg2, arg3, ...)</code> <em>(added 0.46.0)</em> is the same
+as <code>has_link_argument</code> but takes multiple arguments and uses them all in a
+single compiler invocation.</p>
 </li>
 <li>
 <p><code>has_type(typename)</code> returns true if the specified token is a type,
@@ -1873,6 +1919,28 @@ obtained with Pkg-config.</p>
 </li>
 <li>
 <p><code>version()</code> is the version number as a string, for example <code>1.2.8</code></p>
+</li>
+<li>
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (*added 0.46.0) returns a new dependency
+object with the same name, version, found status, type name, and methods as
+the object that called it. This new object will only inherit other
+attributes from its parent as controlled by keyword arguments.</p>
+<p>If the parent has any dependencies, those will be applied to the new
+partial dependency with the same rules. So , given:</p>
+<pre><code class="language-meson">dep1 = declare_dependency(compiler_args : '-Werror=foo', link_with : 'libfoo')
+dep2 = declare_dependency(compiler_args : '-Werror=bar', dependencies : dep1)
+dep3 = dep2.partial_dependency(compile_args : true)
+</code></pre>
+<p>dep3 will add <code>['-Werror=foo', '-Werror=bar']</code> to the compiler args of
+any target it is added to, but libfoo will not be added to the link_args.</p>
+<p>The following arguments will add the following attributes:</p>
+<ul>
+<li>compile_args: any arguments passed to the compiler</li>
+<li>link_args: any arguments passed to the linker</li>
+<li>links: anything passed via link_with or link_whole</li>
+<li>includes: any include_directories</li>
+<li>sources: any compiled or static sources the dependency has</li>
+</ul>
 </li>
 </ul>
 <h3 id="disabler-object">

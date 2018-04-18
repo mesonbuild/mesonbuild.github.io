@@ -96,6 +96,9 @@ $('body').removeClass('no-script');
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
 			</li>
 					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
 				<a href="Python-3-module.html">Python 3</a>
 			</li>
 					<li>
@@ -284,12 +287,24 @@ not be determined.</p>
 <h1 id="does-a-function-exist">Does a function exist?</h1>
 <p>Just having a header doesn't say anything about its
 contents. Sometimes you need to explicitly check if some function
-exists. This is how we would check whether the function <code>somefunc</code>
-exists in header <code>someheader.h</code></p>
-<pre><code class="language-meson">if compiler.has_function('somefunc', prefix : '#include&lt;someheader.h&gt;')
+exists. This is how we would check whether the function <code>open_memstream</code>
+exists in header <code>stdio.h</code></p>
+<pre><code class="language-meson">if compiler.has_function('open_memstream', prefix : '#include &lt;stdio.h&gt;')
   # function exists, do whatever is required.
 endif
 </code></pre>
+<p>Note that, on macOS programs can be compiled targeting older macOS
+versions than the one that the program is compiled on. It can't be
+assumed that the OS version that is compiled on matches the OS
+version that the binary will run on.</p>
+<p>Therefore when detecting function availability with <code>has_function</code>, it
+is important to specify the correct header in the prefix argument.</p>
+<p>In the example above, the function <code>open_memstream</code> is detected, which
+was introduced in macOS 10.13. When the user builds on macOS 10.13, but
+targeting macOS 10.11 (<code>-mmacosx-version-min=10.11</code>), this will correctly
+report the function as missing. Without the header however, it would lack
+the necessary availability information and incorrectly report the function
+as available.</p>
 <h1 id="does-a-structure-contain-a-member">Does a structure contain a member?</h1>
 <p>Some platforms have different standard structures. Here's how one
 would check if a struct called <code>mystruct</code> from header <code>myheader.h</code>

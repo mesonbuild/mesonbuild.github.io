@@ -96,6 +96,9 @@ $('body').removeClass('no-script');
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
 			</li>
 					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
 				<a href="Python-3-module.html">Python 3</a>
 			</li>
 					<li>
@@ -213,8 +216,38 @@ num = string_var.to_int()
 single quote do it like this:</p>
 <pre><code class="language-meson">single quote = 'contains a \' character'
 </code></pre>
-<p>Similarly <code>\n</code> gets converted to a newline and <code>\\</code> to a single
-backslash.</p>
+<p>The full list of escape sequences is:</p>
+<ul>
+<li>
+<code>\\</code> Backslash</li>
+<li>
+<code>\'</code> Single quote</li>
+<li>
+<code>\a</code> Bell</li>
+<li>
+<code>\b</code> Backspace</li>
+<li>
+<code>\f</code> Formfeed</li>
+<li>
+<code>\n</code> Newline</li>
+<li>
+<code>\r</code> Carriage Return</li>
+<li>
+<code>\t</code> Horizontal Tab</li>
+<li>
+<code>\v</code> Vertical Tab</li>
+<li>
+<code>\ooo</code> Character with octal value ooo</li>
+<li>
+<code>\xhh</code> Character with hex value hh</li>
+<li>
+<code>\uxxxx</code> Character with 16-bit hex value xxxx</li>
+<li>
+<code>\Uxxxxxxxx</code> Character with 32-bit hex value xxxxxxxx</li>
+<li>
+<code>\N{name}</code> Character named name in Unicode database</li>
+</ul>
+<p>As in python and C, up to three octal digits are accepted in <code>\ooo</code>.</p>
 <h4 id="string-concatenation">String concatenation</h4>
 <p>Strings can be concatenated to form a new string using the <code>+</code> symbol.</p>
 <pre><code class="language-meson">str1 = 'abc'
