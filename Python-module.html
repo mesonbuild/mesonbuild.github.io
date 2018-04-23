@@ -263,25 +263,41 @@ as <a href="Python-module.html#install_sources">install_sources()</a>.</p>
 <p>This function expects no arguments or keyword arguments.</p>
 <p><strong>Returns</strong>: A string</p>
 <h4 id="get_path"><code>get_path()</code></h4>
-<pre><code class="language-meson">string py_installation.get_path(path_name)
+<pre><code class="language-meson">string py_installation.get_path(path_name, fallback)
 </code></pre>
 <p>Get a path as defined by the <code>sysconfig</code> module.</p>
 <p>For example:</p>
 <pre><code class="language-meson">purelib = py_installation.get_path('purelib')
 </code></pre>
-<p>This function accepts a single argument, <code>path_name</code>, which is expected to
-be a non-empty string.</p>
+<p>This function requires at least one argument, <code>path_name</code>,
+which is expected to be a non-empty string.</p>
+<p>If <code>fallback</code> is specified, it will be returned if no path
+with the given name exists. Otherwise, attempting to read
+a non-existing path will cause a fatal error.</p>
 <p><strong>Returns</strong>: A string</p>
+<h4 id="has_path"><code>has_path()</code></h4>
+<pre><code class="language-meson">    bool py_installation.has_path(path_name)
+</code></pre>
+<p><strong>Returns</strong>: true if a path named <code>path_name</code> can be retrieved with
+<a href="Python-module.html#get_path">get_path()</a>, false otherwise.</p>
 <h4 id="get_variable"><code>get_variable()</code></h4>
-<pre><code class="language-meson">string py_installation.get_variable(variable_name)
+<pre><code class="language-meson">string py_installation.get_variable(variable_name, fallback)
 </code></pre>
 <p>Get a variable as defined by the <code>sysconfig</code> module.</p>
 <p>For example:</p>
-<pre><code class="language-meson">py_bindir = py_installation.get_variable('BINDIR')
+<pre><code class="language-meson">py_bindir = py_installation.get_variable('BINDIR', '')
 </code></pre>
-<p>This function accepts a single argument, <code>variable_name</code>, which is expected to
-be a non-empty string.</p>
+<p>This function requires at least one argument, <code>variable_name</code>,
+which is expected to be a non-empty string.</p>
+<p>If <code>fallback</code> is specified, it will be returned if no variable
+with the given name exists. Otherwise, attempting to read
+a non-existing variable will cause a fatal error.</p>
 <p><strong>Returns</strong>: A string</p>
+<h4 id="has_variable"><code>has_variable()</code></h4>
+<pre><code class="language-meson">    bool py_installation.has_variable(variable_name)
+</code></pre>
+<p><strong>Returns</strong>: true if a variable named <code>variable_name</code> can be retrieved with
+<a href="Python-module.html#get_variable">get_variable()</a>, false otherwise.</p>
 <h2 id="python_dependency-object">
 <code>python_dependency</code> object</h2>
 <p>This <a href="Reference-manual.html#dependency-object">dependency object</a> subclass will try various methods to obtain the
