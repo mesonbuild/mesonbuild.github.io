@@ -311,7 +311,8 @@ but, in is not strictly compatible with gcc as of current version.</p>
 <li>some backend messages are produced in ru_RU.KOI8-R even if LANG=C;</li>
 <li>its preprocessor treats some characters differently.</li>
 </ul>
-<p>So every noted difference is properly handled now in meson.## String escape character sequence update</p>
+<p>So every noted difference is properly handled now in meson.</p>
+<h2 id="string-escape-character-sequence-update">String escape character sequence update</h2>
 <p>Single-quoted strings in meson have been taught the same set of escape
 sequences as in Python. It is therefore now possible to use arbitrary bytes in
 strings, like for example <code>NUL</code> (<code>\0</code>) and other ASCII control characters. See
@@ -322,8 +323,9 @@ the new rules will be interpreted as an escape sequence instead of the literal
 characters. Previously only the following escape sequences were supported in
 single-quote strings: <code>\'</code>, <code>\\</code> and <code>\n</code>.</p>
 <p>Note that the behaviour of triple-quoted (multiline) strings has not changed.
-They behave like raw strings and do not support any escape sequences.
-A new wrap mode was added, <code>--wrap-mode=forcefallback</code>. When this is set,
+They behave like raw strings and do not support any escape sequences.</p>
+<h2 id="new-forcefallback-wrap-mode">New <code>forcefallback</code> wrap mode</h2>
+<p>A new wrap mode was added, <code>--wrap-mode=forcefallback</code>. When this is set,
 dependencies for which a fallback was provided will always use it, even
 if an external dependency exists and satisfies the version requirements.</p>
 <h2 id="relaxing-of-target-name-requirements">Relaxing of target name requirements</h2>
