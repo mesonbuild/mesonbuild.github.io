@@ -178,7 +178,7 @@ The default extension of the output is .axf.
 The environment path should be set properly for the ARM compiler executables.
 The '--cpu' option with the appropriate target type should be mentioned
 in the cross file as shown in the snippet below.</p>
-<pre><code>[properties]
+<pre><code class="language-ini">[properties]
 c_args      = ['--cpu=Cortex-M0plus']
 cpp_args    = ['--cpu=Cortex-M0plus']
 
@@ -187,23 +187,24 @@ cpp_args    = ['--cpu=Cortex-M0plus']
 <p>A new function <code>both_libraries()</code> has been added to build both shared and static
 libraries at the same time. Source files will be compiled only once and object
 files will be reused to build both shared and static libraries, unless
-<code>b_staticpic</code> user option or <code>pic</code> argument are set to false in which case
-sources will be compiled twice.</p>
+<code>b_staticpic</code> user option or <code>pic:</code> keyword argument are set to false in which
+case sources will be compiled twice.</p>
 <p>The returned <code>buildtarget</code> object always represents the shared library.</p>
 <h2 id="compiler-object-can-now-be-passed-to-run_command">Compiler object can now be passed to run_command()</h2>
 <p>This can be used to run the current compiler with the specified arguments
 to obtain additional information from it.
 One of the use cases is to get the location of development files for the
 GCC plugins:</p>
-<pre><code>cc = meson.get_compiler('c')
+<pre><code class="language-meson">cc = meson.get_compiler('c')
 result = run_command(cc, '-print-file-name=plugin')
 plugin_dev_path = result.stdout().strip()
 </code></pre>
-<h2 id="declare_dependency-supports-link_whole">declare_dependency() supports link_whole</h2>
-<p><code>declare_dependency()</code> supports <code>link_whole</code> parameter.
-<code>link_whole</code> propagates to build target that uses dependency.</p>
+<h2 id="declare_dependency-now-supports-link_whole">declare_dependency() now supports <code>link_whole:</code>
+</h2>
+<p><code>declare_dependency()</code> now supports the <code>link_whole:</code> keyword argument which
+transparently works for build targets which use that dependency.</p>
 <h2 id="old-command-names-are-now-errors">Old command names are now errors</h2>
-<p>Old executable names <code>mesonintrospect</code>, <code>mesonconf</code>, <code>mesonrewriter</code>
+<p>The old executable names <code>mesonintrospect</code>, <code>mesonconf</code>, <code>mesonrewriter</code>
 and <code>mesontest</code> have been deprecated for a long time. Starting from
 this version they no longer do anything but instead always error
 out. All functionality is available as subcommands in the main <code>meson</code>
@@ -214,15 +215,15 @@ binary.</p>
 form like <code>meson configure</code> has. <code>meson configure</code> also accepts the <code>--prefix</code>
 form, like <code>meson</code> has.</p>
 <h2 id="recursively-extract-objects">Recursively extract objects</h2>
-<p><code>recursive</code> keyword argument has been added to <code>extract_all_objects</code>. When set
-to <code>true</code> it will also return objects passed to the <code>objects</code> argument of this
+<p>The <code>recursive:</code> keyword argument has been added to <code>extract_all_objects()</code>. When set
+to <code>true</code> it will also return objects passed to the <code>objects:</code> argument of this
 target. By default only objects built for this target are returned to maintain
 backward compatibility with previous versions. The default will eventually be
 changed to <code>true</code> in a future version.</p>
 <pre><code class="language-meson">lib1 = static_library('a', 'source.c', objects : 'prebuilt.o')
 lib2 = static_library('b', objects : lib1.extract_all_objects(recursive : true))
 </code></pre>
-<h2 id="can-override-find_program">Can override find_program</h2>
+<h2 id="can-override-find_program">Can override find_program()</h2>
 <p>It is now possible to override the result of <code>find_program</code> to point
 to a custom program you want. The overriding is global and applies to
 every subproject from there on. Here is how you would use it.</p>
@@ -245,9 +246,9 @@ a program in the same way as above:</p>
                              configuration : cdata)
 meson.override_find_program('mycodegen', prog_script)
 </code></pre>
-<h2 id="has_link_argument-and-friends">has_link_argument() and friends</h2>
-<p>A new set of methods has been added on compiler objects to test if the linker
-supports given arguments.</p>
+<h2 id="new-functions-has_link_argument-and-friends">New functions: has_link_argument() and friends</h2>
+<p>A new set of methods has been added to <a href="Reference-manual.html#compiler-object">compiler objects</a>
+to test if the linker supports given arguments.</p>
 <ul>
 <li><code>has_link_argument()</code></li>
 <li><code>has_multi_link_arguments()</code></li>
@@ -273,9 +274,10 @@ code builds with those dependencies.</p>
 meson.build for them with the dependencies of sdl2 and gl and
 immediately try to build it, overwriting any previous meson.build and
 build directory.</p>
-<h2 id="install_data-supports-rename">install_data() supports rename</h2>
-<p><code>rename</code> parameter is used to change names of the installed files.
-In order to install</p>
+<h2 id="install_data-supports-rename">install_data() supports <code>rename:</code>
+</h2>
+<p>The <code>rename:</code> keyword argument is used to change names of the installed
+files. Here's how you install and rename the following files:</p>
 <ul>
 <li>
 <code>file1.txt</code> into <code>share/myapp/dir1/data.txt</code>
@@ -344,8 +346,7 @@ specific compiler for the checks.</p>
 <p>It is now possible to use only part of a dependency in a target. This allows,
 for example, to only use headers with convenience libraries to avoid linking
 to the same library multiple times.</p>
-<pre><code class="language-meson">
-dep = dependency('xcb')
+<pre><code class="language-meson">dep = dependency('xcb')
 
 helper = static_library(
   'helper',
@@ -368,8 +369,9 @@ with dependencies could only be used in a dependencies with <code>static: true</
 <code>Requires</code> and <code>Libs</code> for build static libraries passed via the <code>libraries</code> keyword
 argument.</p>
 <p>Projects that install both a static and a shared version of a library should use
-the result of <code>both_libraries</code> to the pkg config file generator or use
-configure_file for more complicated setups.</p>
+the result of <a href="Reference-manual.html#both_libraries"><code>both_libraries()</code></a> to the
+pkg-config file generator or use <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>
+for more complicated setups.</p>
 <h2 id="improvements-to-pkgconfig-module">Improvements to pkgconfig module</h2>
 <p>A <code>StaticLibrary</code> or <code>SharedLibrary</code> object can optionally be passed
 as first positional argument of the <code>generate()</code> method. If one is provided a
@@ -386,17 +388,17 @@ default value will be provided for all required fields of the pc file:</p>
 <pre><code>pkgconfig.generate(mylib)
 </code></pre>
 <h2 id="pkgconfiggenerate-requires-parameters-nonstring-arguments">pkgconfig.generate() requires parameters non-string arguments</h2>
-<p><code>pkgconfig.generate()</code> <code>requires</code> and <code>requires_private</code> parameters
-accept pkgconfig-dependencies and libraries that pkgconfig-files were
+<p><code>pkgconfig.generate()</code> <code>requires:</code> and <code>requires_private:</code> keyword arguments
+now accept pkgconfig-dependencies and libraries that pkgconfig-files were
 generated for.</p>
 <h2 id="generic-python-module">Generic python module</h2>
-<p>This is a revamped and generic (python 2 and 3) version of the python3
-module. With this new interface, projects can now fully specify the version
-of python they want to build against / install sources to, and can do so
-against multiple major or minor versions in parallel.</p>
-<h2 id="test-now-supports-depends-keyword-parameter">test now supports depends keyword parameter</h2>
-<p>Build targets and custom targets can be listed in depends argument of test
-function. These targets will be built before test is run even if they have
+<p>Meson now has is a revamped and generic (python 2 and 3) version of the python3
+module. With <a href="Python-module.html">this new interface</a>, projects can now fully
+specify the version of python they want to build against / install sources to,
+and can do so against multiple major or minor versions in parallel.</p>
+<h2 id="test-now-supports-the-depends-keyword-argument">test() now supports the <code>depends:</code> keyword argument</h2>
+<p>Build targets and custom targets can be listed in the <code>depends:</code> keyword argument
+of test function. These targets will be built before test is run even if they have
 <code>build_by_default : false</code>.</p>
 
 </div>

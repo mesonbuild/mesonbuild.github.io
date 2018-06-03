@@ -214,6 +214,35 @@ with mixed build systems.</p>
 in the top level <code>subprojects</code> directory. Recursive use of subprojects
 is not allowed, though, so you can't have subproject <code>a</code> that uses
 subproject <code>b</code> and have <code>b</code> also use <code>a</code>.</p>
+<h1 id="commandline-options">Command-line options</h1>
+<p>The usage of subprojects can be controlled by users and distros with
+the following command-line options:</p>
+<ul>
+<li>
+<p><strong>--wrap-mode=nodownload</strong></p>
+<p>Meson will not use the network to download any subprojects or
+fetch any wrap information. Only pre-existing sources will be used.
+This is useful (mostly for distros) when you want to only use the
+sources provided by a software release, and want to manually handle
+or provide missing dependencies.</p>
+</li>
+<li>
+<p><strong>--wrap-mode=nofallback</strong></p>
+<p>Meson will not use subproject fallbacks for any dependency
+declarations in the build files, and will only look for them in the
+system. Note that this does not apply to unconditional subproject()
+calls, and those are meant to be used for sources that cannot be
+provided by the system, such as copylibs.</p>
+</li>
+<li>
+<p><strong>--wrap-mode=forcefallback</strong></p>
+<p>Meson will not look at the system for any dependencies which have
+subproject fallbacks available, and will <em>only</em> use subprojects for
+them. This is useful when you want to test your fallback setup, or
+want to specifically build against the library sources provided by
+your subprojects.</p>
+</li>
+</ul>
 <h1 id="obtaining-subprojects">Obtaining subprojects</h1>
 <p>Meson ships with a dependency system to automatically obtain
 dependency subprojects. It is documented in the <a href="Wrap-dependency-system-manual.html">Wrap dependency

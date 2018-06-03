@@ -277,7 +277,7 @@ finally use it in a call to <code>configure_file</code>.</p>
 <h3 id="configure_file">configure_file()</h3>
 <pre><code class="language-meson">    generated_file = configure_file(...)
 </code></pre>
-<p>This function can run in two modes depending on the keyword arguments
+<p>This function can run in three modes depending on the keyword arguments
 passed to it.</p>
 <p>When a <a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> object is passed
 to the <code>configuration:</code> keyword argument, it takes a template file as
@@ -287,6 +287,9 @@ configuration file documentation</a>.</p>
 <p>When a list of strings is passed to the <code>command:</code> keyword argument,
 it takes any source or configured file as the <code>input:</code> and assumes
 that the <code>output:</code> is produced when the specified command is run.</p>
+<p>Since <em>0.47.0</em>, when the <code>copy:</code> keyword argument is set to <code>true</code>,
+this function will copy the file provided in <code>input:</code> to a file in the
+build directory with the name <code>output:</code> in the current directory.</p>
 <p>These are all the supported keyword arguments:</p>
 <ul>
 <li>
@@ -297,6 +300,9 @@ of the <code>command</code> and writes it to the target file specified as
 <code>command</code> as explained above, if specified, Meson does not create
 the file itself but rather runs the specified command, which allows
 you to do fully custom file generation.</li>
+<li>
+<code>copy</code> <em>(added 0.47.0)</em> as explained above, if specified Meson only
+copies the file from input to output.</li>
 <li>
 <code>format</code> <em>(added 0.46.0)</em> the format of defines. It defaults to <code>meson</code>, and so substitutes
 <code>#mesondefine</code> statements and variables surrounded by <code>@</code> characters, you can also use <code>cmake</code>
@@ -312,10 +318,18 @@ are written to the <code>output:</code> file.</li>
 (e.g. <code>share/myproject</code>), if omitted or given the value of empty
 string, the file is not installed.</li>
 <li>
+<code>install_mode</code> <em>(added 0.47.0)</em> specify the file mode in symbolic format
+and optionally the owner/uid and group/gid for the installed files.</li>
+<li>
 <code>output</code> the output file name (since v0.41.0, may contain
 <code>@PLAINNAME@</code> or <code>@BASENAME@</code> substitutions). In configuration mode,
 the permissions of the input file (if it is specified) are copied to
 the output file.</li>
+<li>
+<code>output_format</code> <em>(added 0.47.0)</em> the format of the output to generate when no input
+was specified. It defaults to <code>c</code>, in which case preprocessor directives
+will be prefixed with <code>#</code>, you can also use <code>nasm</code>, in which case the
+prefix will be <code>%</code>.</li>
 </ul>
 <h3 id="custom_target">custom_target()</h3>
 <pre><code class="language-meson">    customtarget custom_target(*name*, ...)
@@ -370,6 +384,9 @@ in any one of these files triggers a recompilation</li>
 <code>install</code> when true, this target is installed during the install step</li>
 <li>
 <code>install_dir</code> directory to install to</li>
+<li>
+<code>install_mode</code> <em>(added 0.47.0)</em> the file mode and optionally the
+owner/uid and group/gid</li>
 <li>
 <code>output</code> list of output files</li>
 </ul>
@@ -434,8 +451,9 @@ that should be built before sources including them are built)</li>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
 </code></pre>
 <p>Finds an external dependency (usually a library installed on your
-system) with the given name with <code>pkg-config</code> if possible and with
-<a href="Dependencies.html">library-specific fallback detection logic</a>
+system) with the given name with <code>pkg-config</code> if possible, as a
+framework (OSX only), and with
+<a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection logic</a>
 otherwise. This function supports the following keyword arguments:</p>
 <ul>
 <li>
@@ -460,9 +478,6 @@ dependency to find if it's available for multiple languages.</li>
 and different dependencies support different values for this (though
 <code>auto</code> will work on all of them)</li>
 <li>
-<code>modules</code> specifies submodules to use for dependencies such as Qt5
-or Boost.</li>
-<li>
 <code>native</code> if set to <code>true</code>, causes Meson to find the dependency on
 the build machine system rather than the host system (i.e. where the
 cross compiled binary will run on), usually only needed if you build
@@ -480,8 +495,12 @@ comparison operator followed by the version string, examples include
 <code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching. (<em>Added 0.37.0</em>)
 You can also specify multiple restrictions by passing a list to this
 keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.</li>
+<li>other
+<a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific</a>
+keywords may also be accepted (e.g. <code>modules</code> specifies submodules to use for
+dependencies such as Qt5 or Boost. )</li>
 </ul>
-<p>If dependency_name is '', the dependency is always not found.  So with
+<p>If dependency_name is <code>''</code>, the dependency is always not found.  So with
 <code>required: false</code>, this always returns a dependency object for which the
 <code>found()</code> method returns <code>false</code>, and which can be passed like any other
 dependency to the <code>dependencies:</code> keyword argument of a <code>build_target</code>.  This
@@ -601,6 +620,9 @@ defaults to <code>true</code>, since 0.42.0</li>
 relative to the <code>prefix</code> specified. F.ex, if you want to install
 plugins into a subdir, you'd use something like this: <code>install_dir : join_paths(get_option('libdir'), 'projectname-1.0'</code>).</li>
 <li>
+<code>install_mode</code> <em>(added 0.47.0)</em> specify the file mode in symbolic format
+and optionally the owner/uid and group/gid for the installed files.</li>
+<li>
 <code>install_rpath</code> a string to set the target's rpath to after install
 (but <em>not</em> before that)</li>
 <li>
@@ -610,7 +632,8 @@ target, <strong>never</strong> use this for object files that you build yourself
 <li>
 <code>name_suffix</code> the string that will be used as the extension for the
 target by overriding the default. By default on Windows this is
-<code>exe</code> and on other platforms it is omitted.</li>
+<code>exe</code> and on other platforms it is omitted. Set this to <code>[]</code>, or omit
+the keyword argument for the default behaviour.</li>
 <li>
 <code>override_options</code> takes an array of strings in the same format as
 <code>project</code>'s <code>default_options</code> overriding the values of these options
@@ -877,6 +900,10 @@ headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
 <p>This will install <code>common.h</code> and <code>kola.h</code> into <code>/{prefix}/cust/myproj</code>:</p>
 <pre><code class="language-meson">install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 </code></pre>
+<p>The <code>install_mode</code> argument can be used to specify the file mode in symbolic
+format and optionally the owner/uid and group/gid for the installed files.
+An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.
+<em>(Added 0.47.0)</em>.</p>
 <h3 id="install_man">install_man()</h3>
 <pre><code class="language-meson">    void install_man(list_of_manpages, ...)
 </code></pre>
@@ -885,6 +912,10 @@ man directory during the install step. This directory can be
 overridden by specifying it with the <code>install_dir</code> keyword
 argument. All man pages are compressed during installation and
 installed with a <code>.gz</code> suffix.</p>
+<p>The <code>install_mode</code> argument can be used to specify the file mode in symbolic
+format and optionally the owner/uid and group/gid for the installed files.
+An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.
+<em>(Added 0.47.0)</em>.</p>
 <h3 id="install_subdir">install_subdir()</h3>
 <pre><code class="language-meson">    void install_subdir(subdir_name, install_dir : ..., exclude_files : ..., exclude_directories : ..., strip_directory : ...)
 </code></pre>
@@ -901,6 +932,10 @@ Names are interpreted as paths relative to the <code>subdir_name</code> location
 Names are interpreted as paths relative to the <code>subdir_name</code> location.</li>
 <li>
 <code>install_dir</code>: the location to place the installed subdirectory.</li>
+<li>
+<code>install_mode</code>: the file mode in symbolic format and optionally
+the owner/uid and group/gid for the installed files. <em>(Added 0.47.0)</em>
+</li>
 <li>
 <code>strip_directory</code>: install directory contents. <code>strip_directory=false</code> by default.
 If <code>strip_directory=false</code> only last component of source path is used.
@@ -987,6 +1022,7 @@ static libraries.</li>
 </ul>
 <p><code>static_library</code>, <code>shared_library</code> and <code>both_libraries</code> also accept these keyword
 arguments.</p>
+<p>Note: You can set <code>name_prefix</code> and <code>name_suffix</code> to <code>[]</code>, or omit them for the default behaviour for each platform.</p>
 <h3 id="message">message()</h3>
 <pre><code class="language-meson">    void message(text)
 </code></pre>
@@ -1054,7 +1090,7 @@ with <code>meson.project_version()</code>.</p>
 </li>
 </ul>
 <h3 id="run_command">run_command()</h3>
-<pre><code class="language-meson">    runresult run_command(command, list_of_args)
+<pre><code class="language-meson">    runresult run_command(command, list_of_args, ...)
 </code></pre>
 <p>Runs the command specified in positional arguments.
 <code>command</code> can be a string, or the output of <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
@@ -1066,6 +1102,14 @@ Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code> and <code>MESON_SUBDIR</code> that specify the source
 directory, build directory and subdirectory the target was defined in,
 respectively.</p>
+<p>This function has one keyword argument.</p>
+<ul>
+<li>
+<code>check</code> takes a boolean. If <code>true</code>, the exit status code of the command will
+be checked, and the configuration will fail if it is non-zero. The default is
+<code>false</code>.
+Since 0.47.0</li>
+</ul>
 <p>See also <a href="External-commands.html">External commands</a>.</p>
 <h3 id="run_target">run_target</h3>
 <pre><code class="language-meson">runtarget run_target(target_name, ...)
@@ -1421,7 +1465,7 @@ that the value may contain many parts, i.e. it may be <code>python3 /path/to/mes
 the string to an array if needed.</p>
 </li>
 <li>
-<p><code>override_find_program(progname, program)</code> <a href="Release-notes-for-0-46-0.html#Can-override-find_program"><em>(Added
+<p><code>override_find_program(progname, program)</code> <a href="Release-notes-for-0-46-0.html#can-override-find_program"><em>(Added
 0.46.0)</em></a>
 specifies that whenever <code>find_program</code> is used to find a program
 named <code>progname</code>, Meson should not not look it up on the system but
@@ -1449,19 +1493,17 @@ doing the actual compilation. See
 methods:</p>
 <ul>
 <li>
-<p><code>cpu_family()</code> returns the CPU family name. Guaranteed to return
-<code>x86</code> for 32-bit userland on x86 CPUs, <code>x86_64</code> for 64-bit userland
-on x86 CPUs, <code>arm</code> for 32-bit userland on all ARM CPUs, etc.</p>
+<p><code>cpu_family()</code> returns the CPU family name. <a href="Reference-tables.html#cpu-families">This table</a>
+contains all known CPU families. These are guaranteed to continue working.</p>
 </li>
 <li>
 <p><code>cpu()</code> returns a more specific CPU name, such as <code>i686</code>, <code>amd64</code>,
 etc.</p>
 </li>
 <li>
-<p><code>system()</code> returns the operating system name, such as <code>windows</code> (all
-versions of Windows), <code>linux</code> (all Linux distros), <code>darwin</code> (all
-versions of OS X/macOS), <code>cygwin</code> (for Cygwin), and <code>bsd</code> (all *BSD
-OSes).</p>
+<p><code>system()</code> returns the operating system name.
+<a href="Reference-tables.html#operating-system-names">This table</a> Lists all of the
+currently known Operating System names, these are guaranteed to continue working.</p>
 </li>
 <li>
 <p><code>endian()</code> returns <code>big</code> on big-endian systems and <code>little</code> on
@@ -1473,7 +1515,7 @@ little-endian systems.</p>
 and
 <a href="https://docs.python.org/3.4/library/platform.html#platform.machine"><code>platform.machine()</code></a>. If
 you think the returned values for any of these are incorrect for your
-system or CPU, or if your OS is not in the above list, please file <a href="https://github.com/mesonbuild/meson/issues/new">a
+system or CPU, or if your OS is not in the linked table, please file <a href="https://github.com/mesonbuild/meson/issues/new">a
 bug report</a> with
 details and we'll look into it.</p>
 <h3 id="host_machine-object">
@@ -1552,7 +1594,7 @@ value as a string or empty string if it is not defined.</p>
 </li>
 <li>
 <p><code>get_id()</code> returns a string identifying the compiler. For example,
-<code>gcc</code>, <code>msvc</code>, <a href="Compiler-properties.html#compiler-id">and more</a>.</p>
+<code>gcc</code>, <code>msvc</code>, <a href="Reference-tables.html#compiler-ids">and more</a>.</p>
 </li>
 <li>
 <p><code>get_supported_arguments(list_of_string)</code> <em>(added 0.43.0)</em> returns
@@ -1583,8 +1625,19 @@ provided by the standard library or a library passed in with the
 <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
-<p><code>has_header</code> returns true if the specified header can be included,
-you can specify external dependencies to use with <code>dependencies</code>
+<p><code>check_header</code> returns true if the specified header is <em>usable</em> with
+the specified prefix, dependencies, and arguments.
+You can specify external dependencies to use with <code>dependencies</code>
+keyword argument and extra code to put above the header test with
+the <code>prefix</code> keyword. In order to look for headers in a specific
+directory you can use <code>args : '-I/extra/include/dir</code>, but this
+should only be used in exceptional cases for includes that can't be
+detected via pkg-config and passed via <code>dependencies</code>.</p>
+</li>
+<li>
+<p><code>has_header</code> returns true if the specified header <em>exists</em>, and is
+faster than <code>check_header()</code> since it only does a pre-processor check.
+You can specify external dependencies to use with <code>dependencies</code>
 keyword argument and extra code to put above the header test with
 the <code>prefix</code> keyword. In order to look for headers in a specific
 directory you can use <code>args : '-I/extra/include/dir</code>, but this
@@ -1683,9 +1736,14 @@ passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
 some symbols to be exposed on Linux, and it should be passed via
 <code>args</code> keyword argument, see below). Supported by the methods
 <code>sizeof</code>, <code>has_type</code>, <code>has_function</code>, <code>has_member</code>, <code>has_members</code>,
-<code>has_header_symbol</code>.</p>
+<code>check_header</code>, <code>has_header</code>, <code>has_header_symbol</code>.</p>
 </li>
 </ul>
+<p><strong>Note:</strong> These compiler checks do not use compiler arguments added with
+<code>add_*_arguments()</code>, via <code>-Dlang_args</code> on the command-line, or through
+<code>CFLAGS</code>/<code>LDFLAGS</code>, etc in the environment. Hence, you can trust that
+the tests will be fully self-contained, and won't fail because of custom
+flags added by other parts of the build file or by users.</p>
 <p>Note that if you have a single prefix with all your dependencies, you
 might find it easier to append to the environment variables
 <code>C_INCLUDE_PATH</code> with GCC/Clang and <code>INCLUDE</code> with MSVC to expand the
@@ -1793,6 +1851,24 @@ not specified, causes a fatal error</p>
 </ul>
 <p>You can also iterate over arrays with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
 statement</a>.</p>
+<h3 id="dictionary-object">
+<code>dictionary</code> object</h3>
+<p>The following methods are defined for all <a href="Syntax.html#dictionaries">dictionaries</a>:</p>
+<ul>
+<li>
+<p><code>has_key(key)</code> returns <code>true</code> if the dictionary contains the key
+given as argument, <code>false</code> otherwise</p>
+</li>
+<li>
+<p><code>get(key, fallback)</code>, returns the value for the key given as first argument
+if it is present in the dictionary, or the optional fallback value given
+as the second argument. If a single argument was given and the key was not
+found, causes a fatal error</p>
+</li>
+</ul>
+<p>You can also iterate over dictionaries with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
+statement</a>.</p>
+<p>Dictionaries are available since 0.47.0.</p>
 <h2 id="returned-objects">Returned objects</h2>
 <p>These are objects returned by the <a href="Reference-manual.html#functions">functions listed above</a>.</p>
 <h3 id="build-target-object">
@@ -1969,9 +2045,9 @@ and has the following methods:</p>
 <p><code>found()</code> which returns whether the executable was found</p>
 </li>
 <li>
-<p><code>path()</code> which returns an array pointing to the executable (this is
-an array as opposed to a string because the program might be
-<code>['python', 'foo.py']</code>, for example)</p>
+<p><code>path()</code> which returns a string pointing to the script or executable<br>
+<strong>NOTE:</strong> You should not need to use this method. Passing the object
+itself should work in all cases. F.ex.: <code>run_command(obj, arg1, arg2)</code></p>
 </li>
 </ul>
 <h3 id="environment-object">

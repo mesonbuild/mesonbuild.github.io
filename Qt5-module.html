@@ -188,6 +188,13 @@ tools and steps required for Qt. The module has two methods.</p>
 <li>
 <code>build_by_default</code> when set to true, to have this target be built by default, that is, when invoking plain ninja; the default value is false (optional).</li>
 </ul>
+<h2 id="dependencies">Dependencies</h2>
+<p>See <a href="Dependencies.html#qt4-qt5">Qt dependencies</a></p>
+<p>The 'modules' argument is used to include Qt modules in the project.
+See the Qt documentation for the <a href="http://doc.qt.io/qt-5/qtmodules.html">list of modules</a>.</p>
+<p>The 'private_headers' argument allows usage of Qt's modules private headers.
+(since v0.47.0)</p>
+<h2 id="example">Example</h2>
 <p>A simple example would look like this:</p>
 <pre><code class="language-meson">qt5 = import('qt5')
 qt5_dep = dependency('qt5', modules: ['Core', 'Gui'])
@@ -200,8 +207,6 @@ executable('myprog', 'main.cpp', 'myclass.cpp', moc_files,
            include_directories: inc,
            dependencies : qt5_dep)
 </code></pre>
-<p>The 'modules' argument is used to include Qt modules in the project.
-See the Qt documentation for the <a href="http://doc.qt.io/qt-5/qtmodules.html">list of modules</a>.</p>
 
 </div>
 

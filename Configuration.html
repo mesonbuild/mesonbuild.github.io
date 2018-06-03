@@ -186,7 +186,8 @@ and replace them with respective values set in <code>conf_data</code>. You can
 use a single <code>configuration_data</code> object as many times as you like,
 but it becomes immutable after being passed to the <code>configure_file</code>
 function. That is, after it has been used once to generate output the
-<code>set</code> function becomes unusable and trying to call it causes an error.</p>
+<code>set</code> function becomes unusable and trying to call it causes an error.
+Copy of immutable <code>configuration_data</code> is still immutable.</p>
 <p>For more complex configuration file generation Meson provides a second
 form. To use it, put a line like this in your configuration file.</p>
 <pre><code>#mesondefine TOKEN

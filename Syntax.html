@@ -203,6 +203,10 @@ d = 5 % 3 # Yields 2.
 <p>Hexadecimal literals are supported since version 0.45.0:</p>
 <pre><code class="language-meson">int_255 = 0xFF
 </code></pre>
+<p>Octal and binary literals are supported since version 0.47.0:</p>
+<pre><code class="language-meson">int_493 = 0o755
+int_1365 = 0b10101010101
+</code></pre>
 <p>Strings can be converted to a number like this:</p>
 <pre><code class="language-meson">string_var = '42'
 num = string_var.to_int()
@@ -373,6 +377,20 @@ objects in Meson are immutable.</p>
 <li>
 <code>get</code>, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error. Provided for backwards-compatibility, it is identical to array indexing.</li>
 </ul>
+<h2 id="dictionaries">Dictionaries</h2>
+<p>Dictionaries are delimited by curly braces. A dictionary can contain an
+arbitrary number of key value pairs. Keys are required to be literal
+strings, values can be objects of any type.</p>
+<pre><code class="language-meson">my_dict = {'foo': 42, 'bar': 'baz'}
+</code></pre>
+<p>Keys must be unique:</p>
+<pre><code class="language-meson"># This will fail
+my_dict = {'foo': 42, 'foo': 43}
+</code></pre>
+<p>Dictionaries are immutable.</p>
+<p>Dictionaries are available since 0.47.0.</p>
+<p>Visit the <a href="Reference-manual.html#dictionary-object">Reference Manual</a> to read
+about the methods exposed by dictionaries.</p>
 <h2 id="function-calls">Function calls</h2>
 <p>Meson provides a set of usable functions. The most common use case is
 creating build objects.</p>
@@ -402,9 +420,16 @@ if opt == 'foo'
 endif
 </code></pre>
 <h2 id="foreach-statements">Foreach statements</h2>
-<p>To do an operation on all elements of an array, use the <code>foreach</code>
-command. As an example, here's how you would define two executables
-with corresponding tests.</p>
+<p>To do an operation on all elements of an iterable, use the <code>foreach</code>
+command.</p>
+<blockquote>
+<p>Note that Meson variables are immutable. Trying to assign a new value
+to the iterated object inside a foreach loop will not affect foreach's
+control flow.</p>
+</blockquote>
+<h3 id="foreach-with-an-array">Foreach with an array</h3>
+<p>Here's an example of how you could define two executables
+with corresponding tests using arrays and foreach.</p>
 <pre><code class="language-meson">progs = [['prog1', ['prog1.c', 'foo.c']],
          ['prog2', ['prog2.c', 'bar.c']]]
 
@@ -413,9 +438,28 @@ foreach p : progs
   test(p[0], exe)
 endforeach
 </code></pre>
-<p>Note that Meson variables are immutable. Trying to assign a new value
-to <code>progs</code> inside a foreach loop will not affect foreach's control
-flow.</p>
+<h3 id="foreach-with-a-dictionary">Foreach with a dictionary</h3>
+<p>Here's an example of you could iterate a set of components that
+should be compiled in according to some configuration. This uses
+a <a href="Syntax.html#dictionaries">dictionary</a>, which is available since 0.47.0.</p>
+<pre><code class="language-meson">components = {
+  'foo': ['foo.c'],
+  'bar': ['bar.c'],
+  'baz:' ['baz.c'],
+}
+
+# compute a configuration based on system dependencies, custom logic
+conf = configuration_data()
+conf.set('USE_FOO', 1)
+
+# Determine the sources to compile
+sources_to_compile = []
+foreach name, sources : components
+  if conf.get('USE_@0@'.format(name.to_upper()), 0) == 1
+    sources_to_compile += sources
+  endif
+endforeach
+</code></pre>
 <h2 id="logical-operations">Logical operations</h2>
 <p>Meson has the standard range of logical operations.</p>
 <pre><code class="language-meson">if a and b
