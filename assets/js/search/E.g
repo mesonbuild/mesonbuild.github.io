@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "E.g", "urls": ["Release-notes-for-0-45-0.html#improve-test-setup-selection"]});
+urls_downloaded_cb({"token": "E.g", "urls": ["Release-notes-for-0-45-0.html#improve-test-setup-selection", "Reference-manual.html#compiler-object"]});

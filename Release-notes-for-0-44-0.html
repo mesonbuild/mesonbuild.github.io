@@ -254,6 +254,10 @@ transparently. That is, if you do the following:</p>
 <pre><code class="language-meson">myprog = find_program('myscript.py')
 </code></pre>
 <p>Then Meson will run the script with its internal Python version if necessary.</p>
+<h2 id="libwmf-dependency-now-supports-libwmfconfig">Libwmf dependency now supports libwmf-config</h2>
+<p>Earlier, <code>dependency('libwmf')</code> could only detect the library with pkg-config
+files. Now, if pkg-config files are not found, Meson will look for
+<code>libwmf-config</code> and if it's found, will use that to find the library.</p>
 
 </div>
 

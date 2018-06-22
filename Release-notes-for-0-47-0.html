@@ -175,6 +175,10 @@ A short description explaining the new feature and how it should be used.
 the point of invocation. All previously invoked build targets and commands are
 build/executed. All following ones are ignored. If the current script was
 invoked via <code>subdir()</code> the parent script continues normally.</p>
+<h2 id="concatenate-string-literals-returned-from-get_define">Concatenate string literals returned from get_define</h2>
+<p>After obtaining the value of a preprocessor symbol consecutive string literals
+are merged into a single string literal.
+For example a preprocessor symbol's value <code>"ab" "cd"</code> is returned as <code>"abcd"</code>.</p>
 
 </div>
 

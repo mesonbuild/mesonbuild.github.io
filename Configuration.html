@@ -237,6 +237,12 @@ before the value so that your generated files are self-documenting.</p>
 <pre><code class="language-c">/* Set BAR if it is available */
 #define BAR
 </code></pre>
+<h2 id="dealing-with-file-encodings">Dealing with file encodings</h2>
+<p>The default meson file encoding to configure files is utf-8. If you need to
+configure a file that is not utf-8 encoded the encoding keyword will allow
+you to specify which file encoding to use. It is however strongly advised to
+convert your non utf-8 file to utf-8 whenever possible. Supported file
+encodings are those of python3, see <a href="https://docs.python.org/3/library/codecs.html#standard-encodings">standard-encodings</a>.</p>
 <h1 id="a-full-example">A full example</h1>
 <p>Generating and using a configuration file requires the following steps:</p>
 <ul>

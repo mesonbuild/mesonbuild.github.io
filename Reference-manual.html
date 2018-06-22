@@ -201,7 +201,8 @@ endif
 <p>Takes one keyword argument, <code>required</code>. It defaults to <code>true</code>, which
 means that if any of the languages specified is not found, Meson will
 halt. Returns true if all languages specified were found and false
-otherwise.</p>
+otherwise. Since <em>0.47.0</em>  the value of a <a href="Build-options.html#features"><code>feature</code></a>
+option can also be passed to the <code>required</code> keyword argument.</p>
 <h3 id="add_project_arguments">add_project_arguments()</h3>
 <pre><code class="language-meson">  void add_project_arguments(arg1, arg2, ...)
 </code></pre>
@@ -330,6 +331,10 @@ the output file.</li>
 was specified. It defaults to <code>c</code>, in which case preprocessor directives
 will be prefixed with <code>#</code>, you can also use <code>nasm</code>, in which case the
 prefix will be <code>%</code>.</li>
+<li>
+<code>encoding</code> <em>(added v0.47.0)</em> set the file encoding for the input and output file,
+defaults to utf-8. The supported encodings are those of python3, see
+<a href="https://docs.python.org/3/library/codecs.html#standard-encodings">standard-encodings</a>.</li>
 </ul>
 <h3 id="custom_target">custom_target()</h3>
 <pre><code class="language-meson">    customtarget custom_target(*name*, ...)
@@ -343,9 +348,12 @@ following.</p>
 have this target be built by default, that is, when invoking plain
 <code>ninja</code>; the default value is false</li>
 <li>
-<code>build_always</code> if <code>true</code> this target is always considered out of
+<code>build_always</code> (deprecated) if <code>true</code> this target is always considered out of
 date and is rebuilt every time, useful for things such as build
-timestamps or revision control tags</li>
+timestamps or revision control tags.</li>
+<li>
+<code>build_always_stale</code> if <code>true</code> the target is always considered out of date.
+The associated command is run even if the outputs are up to date.</li>
 <li>
 <code>capture</code>, there are some compilers that can't be told to write
 their output to a file but instead write it to standard output. When
@@ -413,7 +421,13 @@ than one outputs are specified, the behavior is the same as
 <li>
 <code>@DEPFILE@</code> the full path to the dependency file passed to <code>depfile</code>
 </li>
+<li>
+<code>@PLAINNAME@</code>: the input filename, without a path</li>
+<li>
+<code>@BASENAME@</code>: the input filename, with extension removed</li>
 </ul>
+<p>The <code>depfile</code> keyword argument also accepts the <code>@BASENAME@</code> and <code>@PLAINNAME@</code>
+substitutions. <em>(since 0.47)</em></p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#custom-target-object">object methods section</a> below.</p>
 <h3 id="declare_dependency">declare_dependency()</h3>
@@ -475,8 +489,8 @@ dependency to find if it's available for multiple languages.</li>
 <li>
 <code>method</code> defines the way the dependency is detected, the default is
 <code>auto</code> but can be overridden to be e.g. <code>qmake</code> for Qt development,
-and different dependencies support different values for this (though
-<code>auto</code> will work on all of them)</li>
+and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">different dependencies support different values</a>
+for this (though <code>auto</code> will work on all of them)</li>
 <li>
 <code>native</code> if set to <code>true</code>, causes Meson to find the dependency on
 the build machine system rather than the host system (i.e. where the
@@ -484,7 +498,8 @@ cross compiled binary will run on), usually only needed if you build
 a tool to be used during compilation.</li>
 <li>
 <code>required</code>, when set to false, Meson will proceed with the build
-even if the dependency is not found</li>
+even if the dependency is not found. Since <em>0.47.0</em> the value of a
+<a href="Build-options.html#features"><code>feature</code></a> option can also be passed.</li>
 <li>
 <code>static</code> tells the dependency provider to try to get static
 libraries instead of dynamic ones (note that this is not supported
@@ -674,7 +689,9 @@ first one that is found is returned. Meson versions earlier than
 abort if no program can be found. If <code>required</code> is set to <code>false</code>,
 Meson continue even if none of the programs can be found. You can
 then use the <code>.found()</code> method on the returned object to check
-whether it was found or not.</p>
+whether it was found or not. Since <em>0.47.0</em>  the value of a
+<a href="Build-options.html#features"><code>feature</code></a> option can also be passed to the
+<code>required</code> keyword argument.</p>
 </li>
 <li>
 <p><code>native</code> <em>(since 0.43)</em> defines how this executable should be searched. By default
@@ -789,6 +806,8 @@ which will return the value passed during configuration as-is, which may be
 absolute, or relative to <code>prefix</code>.  <a href="Installing.html"><code>install_dir</code> arguments</a>
 handles that as expected, but if you need the absolute path to one of these
 e.g. to use in a define etc., you should use <code>join_paths(get_option('prefix'), get_option('localstatedir')))</code></p>
+<p>For options of type <code>feature</code> a special object is returned instead of a string.
+See <a href="Build-options.html#features"><code>feature</code> options</a> documentation for more details.</p>
 <h3 id="get_variable">get_variable()</h3>
 <pre><code class="language-meson">    value get_variable(variable_name, fallback)
 </code></pre>
@@ -1181,6 +1200,9 @@ library that is loading it.</p>
 variables defined in the <a href="Reference-manual.html#executable"><code>executable</code></a> it is loaded by,
 you will need to set the <code>export_dynamic</code> argument of the executable to
 <code>true</code>.</p>
+<p><strong>Note:</strong> Linking to a shared module is not supported on some platforms, notably
+OSX.  Consider using a <a href="Reference-manual.html#shared_library"><code>shared_library</code></a> instead, if you need
+to both <code>dlopen()</code> and link with a library.</p>
 <p><em>Added 0.37.0</em></p>
 <h3 id="static_library">static_library()</h3>
 <pre><code class="language-meson">    buildtarget static_library(library_name, list_of_sources, ...)
@@ -1576,7 +1598,9 @@ value of <code>dependency</code>. If the keyword argument <code>required</code> 
 Meson will proceed even if the library is not found. By default the
 library is searched for in the system library directory
 (e.g. /usr/lib). This can be overridden with the <code>dirs</code> keyword
-argument, which can be either a string or a list of strings.</p>
+argument, which can be either a string or a list of strings.
+Since <em>0.47.0</em>  the value of a <a href="Build-options.html#features"><code>feature</code></a> option
+can also be passed to the <code>required</code> keyword argument.</p>
 </li>
 <li>
 <p><code>first_supported_argument(list_of_strings)</code>, given a list of
@@ -1590,7 +1614,9 @@ list of strings, returns the first argument that passes the
 </li>
 <li>
 <p><code>get_define(definename)</code> returns the given preprocessor symbol's
-value as a string or empty string if it is not defined.</p>
+value as a string or empty string if it is not defined.
+Starting with 0.47.0, this method will concatenate string literals as
+the compiler would. E.g. <code>"a" "b"</code> will become <code>"ab"</code>.</p>
 </li>
 <li>
 <p><code>get_id()</code> returns a string identifying the compiler. For example,
@@ -2058,23 +2084,25 @@ during tests. It should be passed as the <code>env</code> keyword argument to
 tests. It has the following methods.</p>
 <ul>
 <li>
-<p><code>append(varname, value)</code> appends the given value to the old value of
-the environment variable, e.g.  <code>env.append('FOO', 'BAR', separator : ';')</code> produces <code>BOB;BAR</code> if <code>FOO</code> had the value <code>BOB</code> and plain
-<code>BAR</code> if the value was not defined. If the separator is not
-specified explicitly, the default path separator for the host
-operating system will be used, i.e. ';' for Windows and ':' for
-UNIX/POSIX systems.</p>
+<p><code>append(varname, value1, value2, ...)</code> appends the given values to the old
+value of the environment variable, e.g.  <code>env.append('FOO', 'BAR', 'BAZ', separator : ';')</code> produces <code>BOB;BAR;BAZ</code> if <code>FOO</code> had the value <code>BOB</code> and
+plain <code>BAR;BAZ</code> if the value was not defined. If the separator is not
+specified explicitly, the default path separator for the host operating
+system will be used, i.e. ';' for Windows and ':' for UNIX/POSIX systems.</p>
 </li>
 <li>
-<p><code>prepend(varname, value)</code> is the same as <code>append</code> except that it
+<p><code>prepend(varname, value1, value2, ...)</code> is the same as <code>append</code> except that it
 writes to the beginning of the variable</p>
 </li>
 <li>
-<p><code>set(varname, value)</code> sets environment variable in the first
-argument to the value in the second argument, e.g.
-<code>env.set('FOO', 'BAR')</code> sets envvar <code>FOO</code> to value <code>BAR</code></p>
+<p><code>set(varname, value1, value2)</code> sets the environment variable specified in the
+first argument to the values in the second argument joined by the separator,
+e.g.  <code>env.set('FOO', 'BAR'),</code> sets envvar <code>FOO</code> to value <code>BAR</code>. See
+<code>append()</code> above for how separators work.</p>
 </li>
 </ul>
+<p><strong>Note:</strong> All these methods overwrite the previously-defined value(s) if called
+twice with the same <code>varname</code>.</p>
 <h3 id="external-library-object">
 <code>external library</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#find_library"><code>find_library()</code></a> and

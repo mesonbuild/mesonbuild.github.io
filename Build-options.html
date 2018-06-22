@@ -174,7 +174,9 @@ option('combo_opt', type : 'combo', choices : ['one', 'two', 'three'], value : '
 option('integer_opt', type : 'integer', min : 0, max : 5, value : 3) # Since 0.45.0
 option('free_array_opt', type : 'array', value : ['one', 'two'])
 option('array_opt', type : 'array', choices : ['one', 'two', 'three'], value : ['one', 'two'])
+option('some_feature', type : 'feature', value : 'enabled')
 </code></pre>
+<h2 id="build-option-types">Build option types</h2>
 <p>All types allow a <code>description</code> value to be set describing the option,
 if no option is set then the name of the option will be used instead.</p>
 <h3 id="strings">Strings</h3>
@@ -187,7 +189,7 @@ value is supplied then <code>true</code> will be used as the default.</p>
 <p>A combo allows any one of the values in the <code>choices</code> parameter to be
 selected.  If no default value is set then the first value will be the
 default.</p>
-<h2 id="integers">Integers</h2>
+<h3 id="integers">Integers</h3>
 <p>An integer option contains a single integer with optional upper and
 lower values that are specified with the <code>min</code> and <code>max</code> keyword
 arguments.</p>
@@ -201,6 +203,39 @@ empty. The <code>value</code> parameter specifies the default value of the optio
 and if it is unset then the values of <code>choices</code> will be used as the
 default.</p>
 <p>This type is available since version 0.44.0</p>
+<h3 id="features">Features</h3>
+<p>A <code>feature</code> option has three states: <code>enabled</code>, <code>disabled</code> or <code>auto</code>. It is intended
+to be passed as value for the <code>required</code> keyword argument of most functions.
+Currently supported in
+<a href="Reference-manual.html#dependency"><code>dependency()</code></a>,
+<a href="Reference-manual.html#compiler-object"><code>find_library()</code></a>,
+<a href="Reference-manual.html#find_program"><code>find_program()</code></a> and
+<a href="Reference-manual.html#add_languages"><code>add_languages()</code></a> functions.</p>
+<ul>
+<li>
+<code>enabled</code> is the same as passing <code>required : true</code>.</li>
+<li>
+<code>auto</code> is the same as passing <code>required : false</code>.</li>
+<li>
+<code>disabled</code> do not look for the dependency and always return 'not-found'.</li>
+</ul>
+<p>When getting the value of this type of option using <code>get_option()</code>, a special
+object is returned instead of the string representation of the option's value.
+That object has three methods returning boolean and taking no argument:
+<code>enabled()</code>, <code>disabled()</code>, and <code>auto()</code>.</p>
+<pre><code class="language-meson">d = dependency('foo', required : get_option('myfeature'))
+if d.found()
+  app = executable('myapp', 'main.c', dependencies : [d])
+endif
+</code></pre>
+<p>If the value of a <code>feature</code> option is set to <code>auto</code>, that value is overriden by
+the global <code>auto_features</code> option (which defaults to <code>auto</code>). This is intended
+to be used by packagers who want to have full control on which dependencies are
+required and which are disabled, and not rely on build-deps being installed
+(at the right version) to get a feature enabled. They could set
+<code>auto_features=enabled</code> to enable all features and disable explicitly only the
+few they don't want, if any.</p>
+<p>This type is available since version 0.47.0</p>
 <h2 id="using-build-options">Using build options</h2>
 <pre><code class="language-meson">optval = get_option('opt_name')
 </code></pre>
@@ -249,6 +284,20 @@ project which also has an option called <code>some_option</code>, then calling
 <code>get_option</code> returns the value of the superproject. If the value of
 <code>yield</code> is <code>false</code>, <code>get_option</code> returns the value of the subproject's
 option.</p>
+<h2 id="builtin-build-options">Built-in build options</h2>
+<p>There are a number of built-in options. To get the current list execute <code>meson configure</code> in the build directory.</p>
+<h3 id="visual-studio">Visual Studio</h3>
+<h4 id="startup-project">Startup project</h4>
+<p>The backend_startup_project option can be set to define the default project
+that will be executed with the "Start debugging F5" action in visual studio.
+It should be the same name as an executable target name.</p>
+<pre><code class="language-meson">project('my_project', 'c', default_options: ['backend_startup_project=my_exe'])
+executable('my_exe', ...)
+</code></pre>
+<h3 id="ninja">Ninja</h3>
+<h4 id="max-links">Max links</h4>
+<p>The backend_max_links can be set to limit the number of processes that ninja
+will use to link.</p>
 
 </div>
 

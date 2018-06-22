@@ -236,10 +236,33 @@ object. Since they can be used interchangeably, the rest of the build
 definitions do not need to care which one it is. Meson will take care
 of all the work behind the scenes to make this work.</p>
 <h1 id="dependencies-with-custom-lookup-functionality">Dependencies with custom lookup functionality</h1>
+<p>Some dependencies have specific detection logic.</p>
+<p>Generic dependency names are case-sensitive<sup><a href="Dependencies.html#footnote1">1</a></sup>, but these
+dependency names are matched case-insensitively.  The recommended style is to
+write them in all lower-case.</p>
+<p>In some cases, more than one detection method exists, and the <code>method</code> keyword
+may be used to select a detection method to use.  The <code>auto</code> method uses any
+checking mechanisms in whatever order meson thinks is best.</p>
+<p>e.g. libwmf and CUPS provide both pkg-config and config-tool support. You can
+force one or another via the <code>method</code> keyword:</p>
+<pre><code class="language-meson">cups_dep = dependency('cups', method : 'pkg-config')
+wmf_dep = dependency('libwmf', method : 'config-tool')
+</code></pre>
+<h2 id="dependencies-using-config-tools">Dependencies using config tools</h2>
+<p><a href="Dependencies.html#cups">CUPS</a>, <a href="Dependencies.html#llvm">LLVM</a>, <a href="Dependencies.html#pcap">pcap</a>, <a href="Dependencies.html#wxwidgets">WxWidgets</a>,
+<a href="Dependencies.html#libwmf">libwmf</a>, and GnuStep either do not provide pkg-config modules or
+additionally can be detected via a config tool (cups-config, llvm-config,
+etc). Meson has native support for these tools, and they can be found like other
+dependencies:</p>
+<pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
+cups_dep = dependency('cups', version : '&gt;=1.4')
+llvm_dep = dependency('llvm', version : '&gt;=4.0')
+</code></pre>
 <h2 id="appleframeworks">AppleFrameworks</h2>
 <p>Use the <code>modules</code> keyword to list frameworks required, e.g.</p>
 <pre><code class="language-meson">dep = find_dep('appleframeworks', modules : 'foundation')
 </code></pre>
+<p>These dependencies can never be found for non-OSX hosts.</p>
 <h2 id="boost">Boost</h2>
 <p>Boost is not a single dependency but rather a group of different
 libraries. To use Boost headers-only libraries, simply add Boost as a
@@ -259,8 +282,11 @@ can set the BOOST_ROOT, BOOST_INCLUDEDIR, and/or BOOST_LIBRARYDIR
 environment variables.</p>
 <p>You can set the argument <code>threading</code> to <code>single</code> to use boost libraries that
 have been compiled for single-threaded use instead.</p>
+<h2 id="cups">CUPS</h2>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>pkg-config</code> or <code>extraframework</code>.</p>
 <h2 id="gl">GL</h2>
 <p>This finds the OpenGL library in a way appropriate to the platform.</p>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <h2 id="gtest-and-gmock">GTest and GMock</h2>
 <p>GTest and GMock come as sources that must be compiled as part of your
 project. With Meson you don't have to care about the details, just
@@ -273,7 +299,30 @@ function provided by GTest:</p>
 e = executable('testprog', 'test.cc', dependencies : gtest_dep)
 test('gtest test', e)
 </code></pre>
+<h2 id="libwmf">libwmf</h2>
+<p><em>(added 0.44.0)</em></p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
+<h2 id="llvm">LLVM</h2>
+<p>Meson has native support for LLVM going back to version LLVM version 3.5.
+It supports a few additional features compared to other config-tool based
+dependencies.</p>
+<p>As of 0.44.0 Meson supports the <code>static</code> keyword argument for LLVM. Before this
+LLVM &gt;= 3.9 would always dynamically link, while older versions would
+statically link, due to a quirk in <code>llvm-config</code>.</p>
+<h3 id="modules-aka-components">Modules, a.k.a. Components</h3>
+<p>Meson wraps LLVM's concept of components in it's own modules concept.
+When you need specific components you add them as modules as meson will do the
+right thing:</p>
+<pre><code class="language-meson">llvm_dep = dependency('llvm', version : '&gt;= 4.0', modules : ['amdgpu'])
+</code></pre>
+<p>As of 0.44.0 it can also take optional modules (these will affect the arguments
+generated for a static link):</p>
+<pre><code class="language-meson">llvm_dep = dependency(
+  'llvm', version : '&gt;= 4.0', modules : ['amdgpu'], optional_modules : ['inteljitevents'],
+)
+</code></pre>
 <h2 id="mpi">MPI</h2>
+<p><em>(added 0.42.0)</em></p>
 <p>MPI is supported for C, C++ and Fortran. Because dependencies are
 language-specific, you must specify the requested language using the
 <code>language</code> keyword argument, i.e.,</p>
@@ -292,9 +341,28 @@ are not in your path, they can be specified by setting the standard
 environment variables <code>MPICC</code>, <code>MPICXX</code>, <code>MPIFC</code>, <code>MPIF90</code>, or
 <code>MPIF77</code>, during configuration.</p>
 <h2 id="openmp">OpenMP</h2>
+<p><em>(added 0.46.0)</em></p>
 <p>This dependency selects the appropriate compiler flags and/or libraries to use
 for OpenMP support.</p>
 <p>The <code>language</code> keyword may used.</p>
+<h2 id="pcap">pcap</h2>
+<p><em>(added 0.42.0)</em></p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
+<h2 id="python3">Python3</h2>
+<p>Python3 is handled specially by meson:</p>
+<ol>
+<li>Meson tries to use <code>pkg-config</code>.</li>
+<li>If <code>pkg-config</code> fails meson uses a fallback:
+<ul>
+<li>On Windows the fallback is the current <code>python3</code> interpreter.</li>
+<li>On OSX the fallback is a framework dependency from <code>/Library/Frameworks</code>.</li>
+</ul>
+</li>
+</ol>
+<p>Note that <code>python3</code> found by this dependency might differ from the one used in
+<code>python3</code> module because modules uses the current interpreter, but dependency tries
+<code>pkg-config</code> first.</p>
+<p><code>method</code> may be <code>auto</code>, <code>extraframework</code>, <code>pkg-config</code> or <code>sysconfig</code></p>
 <h2 id="qt4-qt5">Qt4 &amp; Qt5</h2>
 <p>Meson has native Qt support. Its usage is best demonstrated with an
 example.</p>
@@ -327,9 +395,11 @@ subparts of Qt the program uses.</p>
 include path of the given module(s) to the compiler flags.  (since v0.47.0)</p>
 <p><strong>Note</strong> using private headers in your project is a bad idea, do so at your own
 risk.</p>
+<p><code>method</code> may be <code>auto</code>, <code>pkgconfig</code> or <code>qmake</code>.</p>
 <h2 id="sdl2">SDL2</h2>
 <p>SDL2 can be located using <code>pkg-confg</code>, the <code>sdl2-config</code> config tool, or as an
 OSX framework.</p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>extraframework</code> or <code>pkg-config</code>.</p>
 <h2 id="threads">Threads</h2>
 <p>This dependency selects the appropriate compiler flags and/or libraries to use
 for thread support.</p>
@@ -338,20 +408,9 @@ for thread support.</p>
 <p>Meson will find valgrind using <code>pkg-config</code>, but only uses the compilation flags
 and avoids trying to link with it's non-PIC static libs.</p>
 <h2 id="vulkan">Vulkan</h2>
+<p><em>(added 0.42.0)</em></p>
 <p>Vulkan can be located using <code>pkg-config</code>, or the <code>VULKAN_SDK</code> environment variable.</p>
-<h2 id="dependencies-using-config-tools">Dependencies using config tools</h2>
-<p>CUPS, LLVM, PCAP, <a href="Dependencies.html#wxwidgets">WxWidgets</a>, libwmf, and GnuStep either do not
-provide pkg-config modules or additionally can be detected via a config tool
-(cups-config, llvm-config, etc). Meson has native support for these tools, and
-they can be found like other dependencies:</p>
-<pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
-cups_dep = dependency('cups', version : '&gt;=1.4')
-llvm_dep = dependency('llvm', version : '&gt;=4.0')
-</code></pre>
-<p>Some of these tools (like wmf and cups) provide both pkg-config and config
-tools support. You can force one or another via the method keyword:</p>
-<pre><code class="language-meson">wmf_dep = dependency('wmf', method : 'config-tool')
-</code></pre>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <h2 id="wxwidgets">WxWidgets</h2>
 <p>Similar to <a href="Dependencies.html#boost">Boost</a>, WxWidgets is not a single library but rather
 a collection of modules. WxWidgets is supported via <code>wx-config</code>.
@@ -375,39 +434,9 @@ $ wx-config --cxxflags std stc
 # link_args:
 $ wx-config --libs std stc
 </code></pre>
-<h2 id="llvm">LLVM</h2>
-<p>Meson has native support for LLVM going back to version LLVM version 3.5.
-It supports a few additional features compared to other config-tool based
-dependencies.</p>
-<p>As of 0.44.0 Meson supports the <code>static</code> keyword argument for LLVM. Before this
-LLVM &gt;= 3.9 would always dynamically link, while older versions would
-statically link, due to a quirk in <code>llvm-config</code>.</p>
-<h3 id="modules-aka-components">Modules, a.k.a. Components</h3>
-<p>Meson wraps LLVM's concept of components in it's own modules concept.
-When you need specific components you add them as modules as meson will do the
-right thing:</p>
-<pre><code class="language-meson">llvm_dep = dependency('llvm', version : '&gt;= 4.0', modules : ['amdgpu'])
-</code></pre>
-<p>As of 0.44.0 it can also take optional modules (these will affect the arguments
-generated for a static link):</p>
-<pre><code class="language-meson">llvm_dep = dependency(
-  'llvm', version : '&gt;= 4.0', modules : ['amdgpu'], optional_modules : ['inteljitevents'],
-)
-</code></pre>
-<h2 id="python3">Python3</h2>
-<p>Python3 is handled specially by meson:</p>
-<ol>
-<li>Meson tries to use <code>pkg-config</code>.</li>
-<li>If <code>pkg-config</code> fails meson uses a fallback:
-<ul>
-<li>On Windows the fallback is the current <code>python3</code> interpreter.</li>
-<li>On OSX the fallback is a framework dependency from <code>/Library/Frameworks</code>.</li>
-</ul>
-</li>
-</ol>
-<p>Note that <code>python3</code> found by this dependency might differ from the one used in
-<code>python3</code> module because modules uses the current interpreter, but dependency tries
-<code>pkg-config</code> first.</p>
+<hr>
+<a name="footnote1">1</a>: They may appear to be case-insensitive, if the
+    underlying file system happens to be case-insensitive.
 
 </div>
 
