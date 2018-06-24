@@ -162,11 +162,25 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="howtox.md" data-hotdoc-role="main">
 <h1 id="how-do-i-do-x-in-meson">How do I do X in Meson?</h1>
-<p>This page lists code snippets for common tasks. These are written mostly using the C compiler, but the same approach should work on almost all other compilers.</p>
+<p>This page lists code snippets for common tasks. These are written
+mostly using the C compiler, but the same approach should work on
+almost all other compilers.</p>
 <h2 id="set-compiler">Set compiler</h2>
 <p>When first running Meson, set it in an environment variable.</p>
 <pre><code class="language-console">$ CC=mycc meson &lt;options&gt;
 </code></pre>
+<p>Note that environment variables like <code>CC</code> <em>always</em> refer to the native
+compiler. That is, the compiler used to compile programs that run on
+the current machine. The compiler used in cross compilation is set
+with the cross file.</p>
+<p>This behaviour is different from e.g. Autotools, where cross
+compilation is done by setting <code>CC</code> to point to the cross compiler
+(such as <code>/usr/bin/arm-linux-gnueabihf-gcc</code>). The reason for this is
+that Meson supports natively the case where you compile helper tools
+(such as code generators) and use the results during the
+build. Because of this Meson needs to know both the native and the
+cross compiler. The former is set via the environment variables and
+the latter via the cross file only.</p>
 <h2 id="set-default-cc-language-version">Set default C/C++ language version</h2>
 <pre><code class="language-meson">project('myproj', 'c', 'cpp',
         default_options : ['c_std=c11', 'cpp_std=c++11'])
@@ -175,7 +189,9 @@ $('body').removeClass('no-script');
 <pre><code class="language-meson">executable(..., override_options : ['c_std=c11'])
 </code></pre>
 <h2 id="enable-threads">Enable threads</h2>
-<p>Lots of people seem to do this manually with <code>find_library('pthread')</code> or something similar. Do not do that. It is not portable. Instead do this.</p>
+<p>Lots of people seem to do this manually with <code>find_library('pthread')</code>
+or something similar. Do not do that. It is not portable. Instead do
+this.</p>
 <pre><code class="language-meson">thread_dep = dependency('threads')
 executable(..., dependencies : thread_dep)
 </code></pre>
@@ -207,7 +223,8 @@ configure_file(...)
 </code></pre>
 <h2 id="generate-a-runnable-script-with-configure_file">Generate a runnable script with <code>configure_file</code>
 </h2>
-<p><code>configure_file</code> preserves metadata so if your template file has execute permissions, the generated file will have them too.</p>
+<p><code>configure_file</code> preserves metadata so if your template file has
+execute permissions, the generated file will have them too.</p>
 <h2 id="producing-a-coverage-report">Producing a coverage report</h2>
 <p>First initialize the build directory with this command.</p>
 <pre><code class="language-console">$ meson &lt;other flags&gt; -Db_coverage=true
@@ -219,35 +236,50 @@ $ ninja coverage-html (or coverage-xml)
 </code></pre>
 <p>The coverage report can be found in the meson-logs subdirectory.</p>
 <h2 id="add-some-optimization-to-debug-builds">Add some optimization to debug builds</h2>
-<p>By default the debug build does not use any optimizations. This is the desired approach most of the time. However some projects benefit from having some minor optimizations enabled. GCC even has a specific compiler flag <code>-Og</code> for this. To enable its use, just issue the following command.</p>
+<p>By default the debug build does not use any optimizations. This is the
+desired approach most of the time. However some projects benefit from
+having some minor optimizations enabled. GCC even has a specific
+compiler flag <code>-Og</code> for this. To enable its use, just issue the
+following command.</p>
 <pre><code class="language-console">$ meson configure -Dc_args=-Og
 </code></pre>
 <p>This causes all subsequent builds to use this command line argument.</p>
 <h2 id="use-address-sanitizer">Use address sanitizer</h2>
-<p>Clang comes with a selection of analysis tools such as the <a href="https://clang.llvm.org/docs/AddressSanitizer.html">address sanitizer</a>. Meson has native support for these with the <code>b_sanitize</code> option.</p>
+<p>Clang comes with a selection of analysis tools such as the <a href="https://clang.llvm.org/docs/AddressSanitizer.html">address
+sanitizer</a>. Meson
+has native support for these with the <code>b_sanitize</code> option.</p>
 <pre><code class="language-console">$ meson &lt;other options&gt; -Db_sanitize=address
 </code></pre>
-<p>After this you just compile your code and run the test suite. Address sanitizer will abort executables which have bugs so they show up as test failures.</p>
+<p>After this you just compile your code and run the test suite. Address
+sanitizer will abort executables which have bugs so they show up as
+test failures.</p>
 <h2 id="use-clang-static-analyzer">Use Clang static analyzer</h2>
 <p>Install scan-build and configure your project. Then do this:</p>
 <pre><code class="language-console">$ ninja scan-build
 </code></pre>
-<p>You can use the <code>SCANBUILD</code> environment variable to choose the scan-build executable.</p>
+<p>You can use the <code>SCANBUILD</code> environment variable to choose the
+scan-build executable.</p>
 <pre><code class="language-console">$ SCANBUILD=&lt;your exe&gt; ninja scan-build
 </code></pre>
 <h2 id="use-profile-guided-optimization">Use profile guided optimization</h2>
-<p>Using profile guided optimization with GCC is a two phase operation. First we set up the project with profile measurements enabled and compile it.</p>
+<p>Using profile guided optimization with GCC is a two phase
+operation. First we set up the project with profile measurements
+enabled and compile it.</p>
 <pre><code class="language-console">$ meson  &lt;Meson options, such as --buildtype=debugoptimized&gt; -Db_pgo=generate
 $ ninja -C builddir
 </code></pre>
-<p>Then we need to run the program with some representative input. This step depends on your project.</p>
-<p>Once that is done we change the compiler flags to use the generated information and rebuild.</p>
+<p>Then we need to run the program with some representative input. This
+step depends on your project.</p>
+<p>Once that is done we change the compiler flags to use the generated
+information and rebuild.</p>
 <pre><code class="language-console">$ meson configure -Db_pgo=use
 $ ninja
 </code></pre>
 <p>After these steps the resulting binary is fully optimized.</p>
 <h2 id="add-math-library-lm-portably">Add math library (<code>-lm</code>) portably</h2>
-<p>Some platforms (e.g. Linux) have a standalone math library. Other platforms (pretty much everyone else) do not. How to specify that <code>m</code> is used only when needed?</p>
+<p>Some platforms (e.g. Linux) have a standalone math library. Other
+platforms (pretty much everyone else) do not. How to specify that <code>m</code>
+is used only when needed?</p>
 <pre><code class="language-meson">cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required : false)
 executable(..., dependencies : m_dep)
