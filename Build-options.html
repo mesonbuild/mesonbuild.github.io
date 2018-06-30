@@ -202,6 +202,8 @@ contain strings that are in the given list. The array may be
 empty. The <code>value</code> parameter specifies the default value of the option
 and if it is unset then the values of <code>choices</code> will be used as the
 default.</p>
+<p>As of 0.47.0 -Dopt= and -Dopt=[] both pass an empty list, before this -Dopt=
+would pass a list with an empty string.</p>
 <p>This type is available since version 0.44.0</p>
 <h3 id="features">Features</h3>
 <p>A <code>feature</code> option has three states: <code>enabled</code>, <code>disabled</code> or <code>auto</code>. It is intended

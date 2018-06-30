@@ -349,10 +349,11 @@ have this target be built by default, that is, when invoking plain
 <code>ninja</code>; the default value is false</li>
 <li>
 <code>build_always</code> (deprecated) if <code>true</code> this target is always considered out of
-date and is rebuilt every time, useful for things such as build
-timestamps or revision control tags.</li>
+date and is rebuilt every time.  Equivalent to setting both
+<code>build_always_stale</code> and <code>build_by_default</code> to true.</li>
 <li>
 <code>build_always_stale</code> if <code>true</code> the target is always considered out of date.
+Useful for things such as build timestamps or revision control tags.
 The associated command is run even if the outputs are up to date.</li>
 <li>
 <code>capture</code>, there are some compilers that can't be told to write

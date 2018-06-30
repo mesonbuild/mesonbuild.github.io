@@ -172,6 +172,14 @@ to Meson.</p>
 Github</a>. This causes them
 to be run through the CI system. All submissions must pass a full CI
 test run before they are even considered for submission.</p>
+<h2 id="keeping-pull-requests-up-to-date">Keeping pull requests up to date</h2>
+<p>It is possible that while your pull request is being reviewed, other
+changes are committed to master that cause merge conflicts that must
+be resolved. The basic rule for this is very simple: keep your pull
+request up to date using rebase <em>only</em>.</p>
+<p>Do not merge head back to your branch. Any merge commits in your pull
+request make it not acceptable for merging into master and you must
+remove them.</p>
 <h2 id="acceptance-and-merging">Acceptance and merging</h2>
 <p>The kind of review and acceptance any merge proposal gets depends on
 the changes it contains. All pull requests must be reviewed and
@@ -212,6 +220,38 @@ require the approval of the project lead.</p>
 </ul>
 </li>
 </ul>
+<h2 id="strategy-for-merging-pull-requests-to-trunk">Strategy for merging pull requests to trunk</h2>
+<p>Meson's merge strategy should fullfill the following guidelines:</p>
+<ul>
+<li>
+<p>preserve as much history as possible</p>
+</li>
+<li>
+<p>have as little junk in the repo as possible</p>
+</li>
+<li>
+<p>everything in the "master lineage" should always pass all tests</p>
+</li>
+</ul>
+<p>These goals are slightly contradictory so the correct thing to do
+often requires some judgement on part of the person doing the
+merge. Github provides three different merge options, The rules of
+thumb for choosing between them goes like this:</p>
+<ul>
+<li>
+<p>single commit pull requests should always be rebased</p>
+</li>
+<li>
+<p>a pull request with one commit and one "fixup" commit (such as
+testing something to see if it passes CI) should be squashed</p>
+</li>
+<li>
+<p>large branches with many commits should be merged with a merge
+commit, especially if one of the commits does not pass all tests
+(which happens in e.g. large and difficult refactorings)</p>
+</li>
+</ul>
+<p>If in doubt, ask for guidance on IRC.</p>
 <h2 id="tests">Tests</h2>
 <p>All new features must come with automatic tests that thoroughly prove
 that the feature is working as expected. Similarly bug fixes must come
