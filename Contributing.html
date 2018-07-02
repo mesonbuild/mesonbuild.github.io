@@ -180,6 +180,19 @@ request up to date using rebase <em>only</em>.</p>
 <p>Do not merge head back to your branch. Any merge commits in your pull
 request make it not acceptable for merging into master and you must
 remove them.</p>
+<h2 id="special-procedure-for-new-features">Special procedure for new features</h2>
+<p>Every new feature requires some extra steps, namely:</p>
+<ul>
+<li>Must include a project test under <code>test cases/</code>, or if that's not
+possible or if the test requires a special environment, it must go
+into <code>run_unittests.py</code>.</li>
+<li>Must be registered with the <a href="Release-notes-for-0-47-0.html#Feature_detection_based_on_meson_version_in_project">FeatureChecks framework</a>
+that will warn the user if they try to use a new feature while
+targetting an older meson version.</li>
+<li>Needs a release note snippet inside <code>docs/markdown/snippets/</code> with
+a heading and a brief paragraph explaining what the feature does
+with an example.</li>
+</ul>
 <h2 id="acceptance-and-merging">Acceptance and merging</h2>
 <p>The kind of review and acceptance any merge proposal gets depends on
 the changes it contains. All pull requests must be reviewed and

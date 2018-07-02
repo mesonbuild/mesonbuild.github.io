@@ -244,11 +244,12 @@ are never run in parallel.</p>
 <h3 id="both_libraries">both_libraries()</h3>
 <pre><code class="language-meson">    buildtarget both_libraries(library_name, list_of_sources, ...)
 </code></pre>
-<p>Builds both a static and shared library with the given sources. Positional and
-keyword arguments are otherwise the same as for <a href="Reference-manual.html#library"><code>library</code></a>. Source
-files will be compiled only once and object files will be reused to build both
-shared and static libraries, unless <code>b_staticpic</code> user option or <code>pic</code> argument
-are set to false in which case sources will be compiled twice.</p>
+<p>Builds both a static and shared library with the given
+sources. Positional and keyword arguments are otherwise the same as
+for <a href="Reference-manual.html#library"><code>library</code></a>. Source files will be compiled only once and
+object files will be reused to build both shared and static libraries,
+unless <code>b_staticpic</code> user option or <code>pic</code> argument are set to false in
+which case sources will be compiled twice.</p>
 <p>The returned <a href="Reference-manual.html#build-target-object">buildtarget</a> always represents the shared
 library. In addition it supports the following extra methods:</p>
 <ul>
@@ -799,16 +800,20 @@ installed, and so on, use a <a href="Reference-manual.html#custom_target"><code>
 <h3 id="get_option">get_option()</h3>
 <pre><code class="language-meson">    value get_option(option_name)
 </code></pre>
-<p>Obtains the value of the <a href="Build-options.html">project build option</a> specified in the positional argument.</p>
-<p>Note that the value returned for built-in options that end in <code>dir</code> such as
-<code>bindir</code> and <code>libdir</code> is always a path relative to (and inside) the <code>prefix</code>.</p>
-<p>The only exceptions are: <code>sysconfdir</code>, <code>localstatedir</code>, and <code>sharedstatedir</code>
-which will return the value passed during configuration as-is, which may be
-absolute, or relative to <code>prefix</code>.  <a href="Installing.html"><code>install_dir</code> arguments</a>
-handles that as expected, but if you need the absolute path to one of these
-e.g. to use in a define etc., you should use <code>join_paths(get_option('prefix'), get_option('localstatedir')))</code></p>
-<p>For options of type <code>feature</code> a special object is returned instead of a string.
-See <a href="Build-options.html#features"><code>feature</code> options</a> documentation for more details.</p>
+<p>Obtains the value of the <a href="Build-options.html">project build option</a>
+specified in the positional argument.</p>
+<p>Note that the value returned for built-in options that end in <code>dir</code>
+such as <code>bindir</code> and <code>libdir</code> is always a path relative to (and
+inside) the <code>prefix</code>.</p>
+<p>The only exceptions are: <code>sysconfdir</code>, <code>localstatedir</code>, and
+<code>sharedstatedir</code> which will return the value passed during
+configuration as-is, which may be absolute, or relative to <code>prefix</code>.
+<a href="Installing.html"><code>install_dir</code> arguments</a> handles that as expected, but
+if you need the absolute path to one of these e.g. to use in a define
+etc., you should use <code>join_paths(get_option('prefix'), get_option('localstatedir')))</code></p>
+<p>For options of type <code>feature</code> a special object is returned instead of
+a string.  See <a href="Build-options.html#features"><code>feature</code> options</a>
+documentation for more details.</p>
 <h3 id="get_variable">get_variable()</h3>
 <pre><code class="language-meson">    value get_variable(variable_name, fallback)
 </code></pre>
@@ -839,8 +844,8 @@ automatically.</p>
 the search path, since there is no global search path. For something
 like that, see <a href="Reference-manual.html#add_project_arguments"><code>add_project_arguments()</code></a>.</p>
 <p>See also <code>implicit_include_directories</code> parameter of
-<a href="Reference-manual.html#executable">executable()</a>, which adds current source and build directories
-to include path.</p>
+<a href="Reference-manual.html#executable">executable()</a>, which adds current source and build
+directories to include path.</p>
 <p>Each directory given is converted to two include paths: one that is
 relative to the source root and one relative to the build root.</p>
 <p>For example, with the following source tree layout in
@@ -867,8 +872,13 @@ executable('some-tool', sources,
 
 ...
 </code></pre>
-<p>If the build tree is <code>/tmp/build-tree</code>, the following include paths will be added to the <code>executable()</code> call: <code>-I/tmp/build-tree/include -I/home/user/project.git/include</code>.</p>
-<p>This function has one keyword argument <code>is_system</code> which, if set, flags the specified directories as system directories. This means that they will be used with the <code>-isystem</code> compiler argument rather than <code>-I</code> on compilers that support this flag (in practice everything except Visual Studio).</p>
+<p>If the build tree is <code>/tmp/build-tree</code>, the following include paths
+will be added to the <code>executable()</code> call: <code>-I/tmp/build-tree/include -I/home/user/project.git/include</code>.</p>
+<p>This function has one keyword argument <code>is_system</code> which, if set,
+flags the specified directories as system directories. This means that
+they will be used with the <code>-isystem</code> compiler argument rather than
+<code>-I</code> on compilers that support this flag (in practice everything
+except Visual Studio).</p>
 <h3 id="install_data">install_data()</h3>
 <pre><code class="language-meson">    void install_data(list_of_files, ...)
 </code></pre>
@@ -893,10 +903,10 @@ example:</p>
 <p>To leave any of these three as the default, specify <code>false</code>.</p>
 <ul>
 <li>
-<code>rename</code> if specified renames each source file into corresponding file
-from <code>rename</code> list. Nested paths are allowed and they are joined with
-<code>install_dir</code>. Length of <code>rename</code> list must be equal to the number of sources.
-<em>(added 0.46.0)</em>
+<code>rename</code> if specified renames each source file into corresponding
+file from <code>rename</code> list. Nested paths are allowed and they are
+joined with <code>install_dir</code>. Length of <code>rename</code> list must be equal to
+the number of sources.  <em>(added 0.46.0)</em>
 </li>
 </ul>
 <p>See <a href="Installing.html">Installing</a> for more examples.</p>
@@ -1040,9 +1050,10 @@ potential name clash with shared libraries which also generate
 libraries. Defaults to <code>dylib</code> for shared libraries and <code>rlib</code> for
 static libraries.</li>
 </ul>
-<p><code>static_library</code>, <code>shared_library</code> and <code>both_libraries</code> also accept these keyword
-arguments.</p>
-<p>Note: You can set <code>name_prefix</code> and <code>name_suffix</code> to <code>[]</code>, or omit them for the default behaviour for each platform.</p>
+<p><code>static_library</code>, <code>shared_library</code> and <code>both_libraries</code> also accept
+these keyword arguments.</p>
+<p>Note: You can set <code>name_prefix</code> and <code>name_suffix</code> to <code>[]</code>, or omit
+them for the default behaviour for each platform.</p>
 <h3 id="message">message()</h3>
 <pre><code class="language-meson">    void message(text)
 </code></pre>
@@ -1112,13 +1123,13 @@ with <code>meson.project_version()</code>.</p>
 <h3 id="run_command">run_command()</h3>
 <pre><code class="language-meson">    runresult run_command(command, list_of_args, ...)
 </code></pre>
-<p>Runs the command specified in positional arguments.
-<code>command</code> can be a string, or the output of <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
-<a href="Reference-manual.html#files"><code>files()</code></a> or <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>, or
-<a href="Reference-manual.html#compiler-object">a compiler object</a>.</p>
-<p>Returns <a href="Reference-manual.html#run-result-object">an opaque object</a> containing the result of the
-invocation. The command is run from an <em>unspecified</em> directory, and
-Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>,
+<p>Runs the command specified in positional arguments.  <code>command</code> can be
+a string, or the output of <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
+<a href="Reference-manual.html#files"><code>files()</code></a> or <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>, or <a href="Reference-manual.html#compiler-object">a
+compiler object</a>.</p>
+<p>Returns <a href="Reference-manual.html#run-result-object">an opaque object</a> containing the result
+of the invocation. The command is run from an <em>unspecified</em> directory,
+and Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code> and <code>MESON_SUBDIR</code> that specify the source
 directory, build directory and subdirectory the target was defined in,
 respectively.</p>
@@ -1141,7 +1152,7 @@ run it as <code>ninja target_name</code>. Note that a run target produces no
 output as far as Meson is concerned. It is only meant for tasks such
 as running a code formatter or flashing an external device's firmware
 with a built file.</p>
-<p>The script is run from an <em>unspecified</em> directory, and Meson will set
+<p>The command is run from an <em>unspecified</em> directory, and Meson will set
 three environment variables <code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code>
 and <code>MESON_SUBDIR</code> that specify the source directory, build directory
 and subdirectory the target was defined in, respectively.</p>
@@ -1201,9 +1212,10 @@ library that is loading it.</p>
 variables defined in the <a href="Reference-manual.html#executable"><code>executable</code></a> it is loaded by,
 you will need to set the <code>export_dynamic</code> argument of the executable to
 <code>true</code>.</p>
-<p><strong>Note:</strong> Linking to a shared module is not supported on some platforms, notably
-OSX.  Consider using a <a href="Reference-manual.html#shared_library"><code>shared_library</code></a> instead, if you need
-to both <code>dlopen()</code> and link with a library.</p>
+<p><strong>Note:</strong> Linking to a shared module is not supported on some
+platforms, notably OSX.  Consider using a
+<a href="Reference-manual.html#shared_library"><code>shared_library</code></a> instead, if you need to both
+<code>dlopen()</code> and link with a library.</p>
 <p><em>Added 0.37.0</em></p>
 <h3 id="static_library">static_library()</h3>
 <pre><code class="language-meson">    buildtarget static_library(library_name, list_of_sources, ...)
@@ -1288,15 +1300,16 @@ argument to <a href="Reference-manual.html#dependency"><code>dependency()</code>
 <h3 id="test">test()</h3>
 <pre><code class="language-meson">    void test(name, executable, ...)
 </code></pre>
-<p>Defines a test to run with the test harness. Takes two positional arguments,
-the first is the name of the test and the second is the executable to run.
-The executable can be an <a href="Reference-manual.html#build-target-object">executable build target object</a>
-returned by <a href="Reference-manual.html#executable"><code>executable()</code></a> or an
-<a href="Reference-manual.html#external-program-object">external program object</a> returned by
-<a href="Reference-manual.html#find_program"><code>find_program()</code></a>. The executable's exit code is used by the
-test harness to record the outcome of the test, for example exit code zero
-indicates success. For more on the Meson test harness protocol read
-<a href="Unit-tests.html">Unit Tests</a>.</p>
+<p>Defines a test to run with the test harness. Takes two positional
+arguments, the first is the name of the test and the second is the
+executable to run.  The executable can be an <a href="Reference-manual.html#build-target-object">executable build target
+object</a> returned by
+<a href="Reference-manual.html#executable"><code>executable()</code></a> or an <a href="Reference-manual.html#external-program-object">external program
+object</a> returned by
+<a href="Reference-manual.html#find_program"><code>find_program()</code></a>. The executable's exit code is used
+by the test harness to record the outcome of the test, for example
+exit code zero indicates success. For more on the Meson test harness
+protocol read <a href="Unit-tests.html">Unit Tests</a>.</p>
 <p>Keyword arguments are the following:</p>
 <ul>
 <li>
@@ -1496,13 +1509,16 @@ instead return <code>program</code>, which may either be the result of
 <code>find_program</code> or <code>configure_file</code>.</p>
 </li>
 <li>
-<p><code>project_version()</code> returns the version string specified in <code>project</code> function call.</p>
+<p><code>project_version()</code> returns the version string specified in
+<code>project</code> function call.</p>
 </li>
 <li>
-<p><code>project_license()</code> returns the array of licenses specified in <code>project</code> function call.</p>
+<p><code>project_license()</code> returns the array of licenses specified in
+<code>project</code> function call.</p>
 </li>
 <li>
-<p><code>project_name()</code> returns the project name specified in the <code>project</code> function call.</p>
+<p><code>project_name()</code> returns the project name specified in the <code>project</code>
+function call.</p>
 </li>
 <li>
 <p><code>version()</code> return a string with the version of Meson.</p>
@@ -1516,17 +1532,19 @@ doing the actual compilation. See
 methods:</p>
 <ul>
 <li>
-<p><code>cpu_family()</code> returns the CPU family name. <a href="Reference-tables.html#cpu-families">This table</a>
-contains all known CPU families. These are guaranteed to continue working.</p>
+<p><code>cpu_family()</code> returns the CPU family name. <a href="Reference-tables.html#cpu-families">This
+table</a> contains all known CPU
+families. These are guaranteed to continue working.</p>
 </li>
 <li>
 <p><code>cpu()</code> returns a more specific CPU name, such as <code>i686</code>, <code>amd64</code>,
 etc.</p>
 </li>
 <li>
-<p><code>system()</code> returns the operating system name.
-<a href="Reference-tables.html#operating-system-names">This table</a> Lists all of the
-currently known Operating System names, these are guaranteed to continue working.</p>
+<p><code>system()</code> returns the operating system name.  <a href="Reference-tables.html#operating-system-names">This
+table</a> Lists all of
+the currently known Operating System names, these are guaranteed to
+continue working.</p>
 </li>
 <li>
 <p><code>endian()</code> returns <code>big</code> on big-endian systems and <code>little</code> on
@@ -1538,8 +1556,8 @@ little-endian systems.</p>
 and
 <a href="https://docs.python.org/3.4/library/platform.html#platform.machine"><code>platform.machine()</code></a>. If
 you think the returned values for any of these are incorrect for your
-system or CPU, or if your OS is not in the linked table, please file <a href="https://github.com/mesonbuild/meson/issues/new">a
-bug report</a> with
+system or CPU, or if your OS is not in the linked table, please file
+<a href="https://github.com/mesonbuild/meson/issues/new">a bug report</a> with
 details and we'll look into it.</p>
 <h3 id="host_machine-object">
 <code>host_machine</code> object</h3>
@@ -1599,9 +1617,9 @@ value of <code>dependency</code>. If the keyword argument <code>required</code> 
 Meson will proceed even if the library is not found. By default the
 library is searched for in the system library directory
 (e.g. /usr/lib). This can be overridden with the <code>dirs</code> keyword
-argument, which can be either a string or a list of strings.
-Since <em>0.47.0</em>  the value of a <a href="Build-options.html#features"><code>feature</code></a> option
-can also be passed to the <code>required</code> keyword argument.</p>
+argument, which can be either a string or a list of strings.  Since
+<em>0.47.0</em> the value of a <a href="Build-options.html#features"><code>feature</code></a>
+option can also be passed to the <code>required</code> keyword argument.</p>
 </li>
 <li>
 <p><code>first_supported_argument(list_of_strings)</code>, given a list of
@@ -1609,8 +1627,8 @@ strings, returns the first argument that passes the <code>has_argument</code>
 test or an empty array if none pass.</p>
 </li>
 <li>
-<p><code>first_supported_link_argument(list_of_strings)</code> <em>(added 0.46.0)</em>, given a
-list of strings, returns the first argument that passes the
+<p><code>first_supported_link_argument(list_of_strings)</code> <em>(added 0.46.0)</em>,
+given a list of strings, returns the first argument that passes the
 <code>has_link_argument</code> test or an empty array if none pass.</p>
 </li>
 <li>
@@ -1639,11 +1657,12 @@ the specified command line argument, that is, can compile code
 without erroring out or printing a warning about an unknown flag.</p>
 </li>
 <li>
-<p><code>has_link_argument(argument_name)</code> <em>(added 0.46.0)</em> returns true if the linker
-accepts the specified command line argument, that is, can compile and link
-code without erroring out or printing a warning about an unknown flag. Link
-arguments will be passed to the compiler, so should usually have the <code>-Wl,</code>
-prefix. On VisualStudio a <code>/link</code> argument will be prepended.</p>
+<p><code>has_link_argument(argument_name)</code> <em>(added 0.46.0)</em> returns true if
+the linker accepts the specified command line argument, that is, can
+compile and link code without erroring out or printing a warning
+about an unknown flag. Link arguments will be passed to the
+compiler, so should usually have the <code>-Wl,</code> prefix. On VisualStudio
+a <code>/link</code> argument will be prepended.</p>
 </li>
 <li>
 <p><code>has_function(funcname)</code> returns true if the given function is
@@ -1696,9 +1715,9 @@ external dependencies to use with <code>dependencies</code> keyword argument.</p
 single compiler invocation, available since 0.37.0.</p>
 </li>
 <li>
-<p><code>has_multi_link_arguments(arg1, arg2, arg3, ...)</code> <em>(added 0.46.0)</em> is the same
-as <code>has_link_argument</code> but takes multiple arguments and uses them all in a
-single compiler invocation.</p>
+<p><code>has_multi_link_arguments(arg1, arg2, arg3, ...)</code> <em>(added 0.46.0)</em>
+is the same as <code>has_link_argument</code> but takes multiple arguments and
+uses them all in a single compiler invocation.</p>
 </li>
 <li>
 <p><code>has_type(typename)</code> returns true if the specified token is a type,
@@ -1887,10 +1906,10 @@ statement</a>.</p>
 given as argument, <code>false</code> otherwise</p>
 </li>
 <li>
-<p><code>get(key, fallback)</code>, returns the value for the key given as first argument
-if it is present in the dictionary, or the optional fallback value given
-as the second argument. If a single argument was given and the key was not
-found, causes a fatal error</p>
+<p><code>get(key, fallback)</code>, returns the value for the key given as first
+argument if it is present in the dictionary, or the optional
+fallback value given as the second argument. If a single argument
+was given and the key was not found, causes a fatal error</p>
 </li>
 </ul>
 <p>You can also iterate over dictionaries with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
@@ -1908,10 +1927,11 @@ statement</a>.</p>
 <li>
 <p><code>extract_all_objects()</code> is same as <code>extract_objects</code> but returns all
 object files generated by this target. Since 0.46.0 keyword argument
-<code>recursive</code> must be set to <code>true</code> to also return objects passed to the
-<code>object</code> argument of this target. By default only objects built for this
-target are returned to maintain backward compatibility with previous versions.
-The default will eventually be changed to <code>true</code> in a future version.</p>
+<code>recursive</code> must be set to <code>true</code> to also return objects passed to
+the <code>object</code> argument of this target. By default only objects built
+for this target are returned to maintain backward compatibility with
+previous versions.  The default will eventually be changed to <code>true</code>
+in a future version.</p>
 </li>
 <li>
 <p><code>extract_objects()</code> returns an opaque value representing the
@@ -1990,10 +2010,11 @@ this and will also allow Meson to setup inter-target dependencies
 correctly. Please file a bug if that doesn't work for you.</p>
 </li>
 <li>
-<p><code>[index]</code> returns an opaque object that references this target, and can be
-used as a source in other targets. When it is used as such it will make that
-target depend on this custom target, but the only source added will be the
-one that corresponds to the index of the custom target's output argument.</p>
+<p><code>[index]</code> returns an opaque object that references this target, and
+can be used as a source in other targets. When it is used as such it
+will make that target depend on this custom target, but the only
+source added will be the one that corresponds to the index of the
+custom target's output argument.</p>
 </li>
 </ul>
 <h3 id="dependency-object">
@@ -2028,18 +2049,20 @@ obtained with Pkg-config.</p>
 <p><code>version()</code> is the version number as a string, for example <code>1.2.8</code></p>
 </li>
 <li>
-<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (*added 0.46.0) returns a new dependency
-object with the same name, version, found status, type name, and methods as
-the object that called it. This new object will only inherit other
-attributes from its parent as controlled by keyword arguments.</p>
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (*added 0.46.0) returns
+a new dependency object with the same name, version, found status,
+type name, and methods as the object that called it. This new
+object will only inherit other attributes from its parent as
+controlled by keyword arguments.</p>
 <p>If the parent has any dependencies, those will be applied to the new
 partial dependency with the same rules. So , given:</p>
 <pre><code class="language-meson">dep1 = declare_dependency(compiler_args : '-Werror=foo', link_with : 'libfoo')
 dep2 = declare_dependency(compiler_args : '-Werror=bar', dependencies : dep1)
 dep3 = dep2.partial_dependency(compile_args : true)
 </code></pre>
-<p>dep3 will add <code>['-Werror=foo', '-Werror=bar']</code> to the compiler args of
-any target it is added to, but libfoo will not be added to the link_args.</p>
+<p>dep3 will add <code>['-Werror=foo', '-Werror=bar']</code> to the compiler args
+of any target it is added to, but libfoo will not be added to the
+link_args.</p>
 <p>The following arguments will add the following attributes:</p>
 <ul>
 <li>compile_args: any arguments passed to the compiler</li>
@@ -2072,7 +2095,7 @@ and has the following methods:</p>
 <p><code>found()</code> which returns whether the executable was found</p>
 </li>
 <li>
-<p><code>path()</code> which returns a string pointing to the script or executable<br>
+<p><code>path()</code> which returns a string pointing to the script or executable
 <strong>NOTE:</strong> You should not need to use this method. Passing the object
 itself should work in all cases. F.ex.: <code>run_command(obj, arg1, arg2)</code></p>
 </li>
@@ -2085,25 +2108,26 @@ during tests. It should be passed as the <code>env</code> keyword argument to
 tests. It has the following methods.</p>
 <ul>
 <li>
-<p><code>append(varname, value1, value2, ...)</code> appends the given values to the old
-value of the environment variable, e.g.  <code>env.append('FOO', 'BAR', 'BAZ', separator : ';')</code> produces <code>BOB;BAR;BAZ</code> if <code>FOO</code> had the value <code>BOB</code> and
-plain <code>BAR;BAZ</code> if the value was not defined. If the separator is not
-specified explicitly, the default path separator for the host operating
-system will be used, i.e. ';' for Windows and ':' for UNIX/POSIX systems.</p>
+<p><code>append(varname, value1, value2, ...)</code> appends the given values to
+the old value of the environment variable, e.g.  <code>env.append('FOO', 'BAR', 'BAZ', separator : ';')</code> produces <code>BOB;BAR;BAZ</code> if <code>FOO</code> had
+the value <code>BOB</code> and plain <code>BAR;BAZ</code> if the value was not defined. If
+the separator is not specified explicitly, the default path
+separator for the host operating system will be used, i.e. ';' for
+Windows and ':' for UNIX/POSIX systems.</p>
 </li>
 <li>
 <p><code>prepend(varname, value1, value2, ...)</code> is the same as <code>append</code> except that it
 writes to the beginning of the variable</p>
 </li>
 <li>
-<p><code>set(varname, value1, value2)</code> sets the environment variable specified in the
-first argument to the values in the second argument joined by the separator,
-e.g.  <code>env.set('FOO', 'BAR'),</code> sets envvar <code>FOO</code> to value <code>BAR</code>. See
-<code>append()</code> above for how separators work.</p>
+<p><code>set(varname, value1, value2)</code> sets the environment variable
+specified in the first argument to the values in the second argument
+joined by the separator, e.g.  <code>env.set('FOO', 'BAR'),</code> sets envvar
+<code>FOO</code> to value <code>BAR</code>. See <code>append()</code> above for how separators work.</p>
 </li>
 </ul>
-<p><strong>Note:</strong> All these methods overwrite the previously-defined value(s) if called
-twice with the same <code>varname</code>.</p>
+<p><strong>Note:</strong> All these methods overwrite the previously-defined value(s)
+if called twice with the same <code>varname</code>.</p>
 <h3 id="external-library-object">
 <code>external library</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#find_library"><code>find_library()</code></a> and
