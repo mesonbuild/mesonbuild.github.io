@@ -376,6 +376,12 @@ to <code>false</code>.</p>
 the <code>depend_files:</code> and <code>depends:</code> keywords.</p>
 <p>When using binutils's <code>windres</code>, dependencies on files <code>#include</code>'d by the
 preprocessor are now automatically tracked.</p>
+<h2 id="polkit-support-for-privileged-installation">Polkit support for privileged installation</h2>
+<p>When running <code>install</code>, if installation fails with a permission error and
+<code>pkexec</code> is available, Meson will attempt to use it to spawn a permission
+dialog for privileged installation and retry the installation.</p>
+<p>If <code>pkexec</code> is not available, the old behaviour is retained and you will need
+to explicitly run the install step with <code>sudo</code>.</p>
 
 </div>
 
