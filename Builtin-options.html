@@ -1,0 +1,521 @@
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Built-in options</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Builtin-options.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				
+<div id="page-description" data-hotdoc-source="Builtin-options.md" data-hotdoc-role="main">
+<h1 id="builtin-options">Built-in options</h1>
+<p>Meson provides two kinds of options: <a href="Build-options.html">build options provided by the
+build files</a> and built-in options that are either
+universal options, base options, compiler options.</p>
+<h2 id="universal-options">Universal options</h2>
+<p>A list of these options can be found by running <code>meson --help</code>. All
+these can be set by passing to <code>meson</code> (aka <code>meson setup</code>) in any of
+these ways: <code>--option=value</code>, <code>--option value</code>, <code>-Doption=value</code>.</p>
+<p>They can also be edited after setup using <code>meson configure</code>.</p>
+<p>Installation options are all relative to the prefix, except:</p>
+<ul>
+<li>When the prefix is <code>/usr</code>: <code>sysconfdir</code> defaults to <code>/etc</code>, <code>localstatedir</code> defaults to <code>/var</code>, and <code>sharedstatedir</code> defaults to <code>/var/lib</code>
+</li>
+<li>When the prefix is <code>/usr/local</code>: <code>localstatedir</code> defaults to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/var/local/lib</code>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th> Option</th>
+<th> Default value</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> prefix</td>
+<td> see below</td>
+<td> Installation prefix</td>
+</tr>
+<tr>
+<td> libdir</td>
+<td> see below</td>
+<td> Library directory</td>
+</tr>
+<tr>
+<td> libexecdir</td>
+<td> libexec</td>
+<td> Library executable directory</td>
+</tr>
+<tr>
+<td> bindir</td>
+<td> bin</td>
+<td> Executable directory</td>
+</tr>
+<tr>
+<td> sbindir</td>
+<td> sbin</td>
+<td> System executable directory</td>
+</tr>
+<tr>
+<td> includedir</td>
+<td> include</td>
+<td> Header file directory</td>
+</tr>
+<tr>
+<td> datadir</td>
+<td> share</td>
+<td> Data file directory</td>
+</tr>
+<tr>
+<td> mandir</td>
+<td> share/man</td>
+<td> Manual page directory</td>
+</tr>
+<tr>
+<td> infodir</td>
+<td> share/info</td>
+<td> Info page directory</td>
+</tr>
+<tr>
+<td> localedir</td>
+<td> share/locale</td>
+<td> Locale data directory</td>
+</tr>
+<tr>
+<td> sysconfdir</td>
+<td> etc</td>
+<td> Sysconf data directory</td>
+</tr>
+<tr>
+<td> localstatedir</td>
+<td> var</td>
+<td> Localstate data directory</td>
+</tr>
+<tr>
+<td> sharedstatedir</td>
+<td> com</td>
+<td> Architecture-independent data directory</td>
+</tr>
+<tr>
+<td> werror</td>
+<td> false</td>
+<td> Treat warnings as erros</td>
+</tr>
+<tr>
+<td> warnlevel {1, 2, 3}</td>
+<td> 1</td>
+<td> Set the warning level. From 1 = lowest to 3 = highest</td>
+</tr>
+<tr>
+<td> layout {mirror,flat}</td>
+<td> mirror</td>
+<td> Build directory layout.</td>
+</tr>
+<tr>
+<td> default-library {shared, static, both}</td>
+<td> shared</td>
+<td> Default library type.</td>
+</tr>
+<tr>
+<td> backend {ninja, vs,<br>vs2010, vs2015, vs2017, xcode}</td>
+<td></td>
+<td> Backend to use (default: ninja).</td>
+</tr>
+<tr>
+<td> stdsplit</td>
+<td></td>
+<td> Split stdout and stderr in test logs.</td>
+</tr>
+<tr>
+<td> errorlogs</td>
+<td></td>
+<td> Whether to print the logs from failing tests.</td>
+</tr>
+<tr>
+<td> cross-file CROSS_FILE</td>
+<td></td>
+<td> File describing cross compilation environment.</td>
+</tr>
+<tr>
+<td> wrap-mode {default, nofallback, nodownload, forcefallback}</td>
+<td></td>
+<td> Special wrap mode to use</td>
+</tr>
+</tbody>
+</table>
+<p><code>prefix</code> defaults to <code>C:/</code> on Windows, and <code>/usr/local/</code> otherwise. You should always
+override this value.</p>
+<p><code>libdir</code> is automatically detected based on your platform, but the
+implementation is <a href="https://github.com/mesonbuild/meson/issues/2038">currently buggy</a>
+on Linux platforms.</p>
+<p>There are various other options to set, for instance the backend to use and
+the path to the cross-file while cross compiling, which won't be repeated here.
+Please see the output of <code>meson --help</code>.</p>
+<h2 id="base-options">Base options</h2>
+<p>These are set in the same way as universal options, but cannot be shown in the
+output of <code>meson --help</code> because they depend on both the current platform and
+the compiler that will be selected. The only way to see them is to setup
+a builddir and then run <code>meson configure</code> on it with no options.</p>
+<p>The following options are available. Note that they may not be available on all
+platforms or with all compilers:</p>
+<table>
+<thead>
+<tr>
+<th> Option</th>
+<th> Default value</th>
+<th> Possible values</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> b_asneeded</td>
+<td> true</td>
+<td> true, false</td>
+<td> Use -Wl,--as-needed when linking</td>
+</tr>
+<tr>
+<td> b_bitcode</td>
+<td> false</td>
+<td> true, false</td>
+<td> Embed Apple bitcode, see below</td>
+</tr>
+<tr>
+<td> b_colorout</td>
+<td> always</td>
+<td> auto, always, never</td>
+<td> Use colored output</td>
+</tr>
+<tr>
+<td> b_coverage</td>
+<td> false</td>
+<td> true, false</td>
+<td> Enable coverage tracking</td>
+</tr>
+<tr>
+<td> b_lundef</td>
+<td> true</td>
+<td> true, false</td>
+<td> Don't allow undefined symbols when linking</td>
+</tr>
+<tr>
+<td> b_lto</td>
+<td> false</td>
+<td> true, false</td>
+<td> Use link time optimization</td>
+</tr>
+<tr>
+<td> b_ndebug</td>
+<td> false</td>
+<td> true, false, if-release</td>
+<td> Disable asserts</td>
+</tr>
+<tr>
+<td> b_pch</td>
+<td> true</td>
+<td> true, false</td>
+<td> Use precompiled headers</td>
+</tr>
+<tr>
+<td> b_pgo</td>
+<td> off</td>
+<td> off, generate, use</td>
+<td> Use profile guided optimization</td>
+</tr>
+<tr>
+<td> b_sanitize</td>
+<td> none</td>
+<td> see below</td>
+<td> Code sanitizer to use</td>
+</tr>
+<tr>
+<td> b_staticpic</td>
+<td> true</td>
+<td> true, false</td>
+<td> Build static libraries as position independent</td>
+</tr>
+</tbody>
+</table>
+<p>The value of <code>b_sanitize</code> can be one of: <code>none</code>, <code>address</code>, <code>thread</code>,
+<code>undefined</code>, <code>memory</code>, <code>address,undefined</code>.</p>
+<h3 id="notes-about-apple-bitcode-support">Notes about Apple Bitcode support</h3>
+<p><code>b_bitcode</code> will pass <code>-fembed-bitcode</code> while compiling and will pass
+<code>-Wl,-bitcode_bundle</code> while linking. These options are incompatible with
+<code>b_asneeded</code>, so that option will be silently disabled.</p>
+<p><a href="Builtin-options.html#Reference-manual.md#shared_module">Shared modules</a> will not have bitcode
+embedded because <code>-Wl,-bitcode_bundle</code> is incompatible with both <code>-bundle</code> and
+<code>-Wl,-undefined,dynamic_lookup</code> which are necessary for shared modules to work.</p>
+<h2 id="compiler-options">Compiler options</h2>
+<p>Same caveats as base options above.</p>
+<p>The following options are available. Note that both the options themselves and
+the possible values they can take will depend on the target platform or
+compiler being used:</p>
+<table>
+<thead>
+<tr>
+<th> Option</th>
+<th> Default value</th>
+<th> Possible values</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> c_args</td>
+<td></td>
+<td> free-form comma-separated list</td>
+<td> C compile arguments to use</td>
+</tr>
+<tr>
+<td> c_link_args</td>
+<td></td>
+<td> free-form comma-separated list</td>
+<td> C link arguments to use</td>
+</tr>
+<tr>
+<td> c_std</td>
+<td> none</td>
+<td> none, c89, c99, c11, gnu89, gnu99, gnu11</td>
+<td> C language standard to use</td>
+</tr>
+<tr>
+<td> c_winlibs</td>
+<td> see below</td>
+<td> free-form comma-separated list</td>
+<td> Standard Windows libs to link against</td>
+</tr>
+<tr>
+<td> cpp_args</td>
+<td></td>
+<td> free-form comma-separated list</td>
+<td> C++ compile arguments to use</td>
+</tr>
+<tr>
+<td> cpp_link_args</td>
+<td></td>
+<td> free-form comma-separated list</td>
+<td> C++ link arguments to use</td>
+</tr>
+<tr>
+<td> cpp_std</td>
+<td> none</td>
+<td> none, c++98, c++03, c++11, c++14, c++17, <br>c++1z, gnu++03, gnu++11, gnu++14, gnu++17, gnu++1z</td>
+<td> C++ language standard to use</td>
+</tr>
+<tr>
+<td> cpp_debugstl</td>
+<td> false</td>
+<td> true, false</td>
+<td> C++ STL debug mode</td>
+</tr>
+<tr>
+<td> cpp_eh</td>
+<td> sc</td>
+<td> none, a, s, sc</td>
+<td> C++ exception handling type</td>
+</tr>
+<tr>
+<td> cpp_winlibs</td>
+<td> see below</td>
+<td> free-form comma-separated list</td>
+<td> Standard Windows libs to link against</td>
+</tr>
+</tbody>
+</table>
+<p>The default values of <code>c_winlibs</code> and <code>cpp_winlibs</code> are in compiler-specific
+argument forms, but the libraries are: kernel32, user32, gdi32, winspool,
+shell32, ole32, oleaut32, uuid, comdlg32, advapi32</p>
+
+</div>
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		
+
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Builtin-options.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+</body>
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</html>

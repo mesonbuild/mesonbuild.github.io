@@ -1406,6 +1406,24 @@ will have the environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code>, <code>MESON_INSTALL_PREFIX</code>,
 <code>MESON_INSTALL_DESTDIR_PREFIX</code>, and <code>MESONINTROSPECT</code> set. All
 additional arguments are passed as parameters.</p>
+<p>Meson uses the <code>DESTDIR</code> environment variable as set by the
+inherited environment to determine the (temporary) installation
+location for files. Your install script must be aware of this while
+manipulating and installing files. The correct way to handle this is
+with the <code>MESON_INSTALL_DESTDIR_PREFIX</code> variable which is always set
+and contains <code>DESTDIR</code> (if set) and <code>prefix</code> joined together. This
+is useful because both are usually absolute paths and there are
+platform-specific edge-cases in joining two absolute paths.</p>
+<p>In case it is needed, <code>MESON_INSTALL_PREFIX</code> is also always set and
+has the value of the <code>prefix</code> option passed to Meson.</p>
+<p><code>MESONINTROSPECT</code> contains the path to the introspect command that
+corresponds to the <code>meson</code> executable that was used to configure the
+build. (This might be a different path then the first executable
+found in <code>PATH</code>.) It can be used to query build configuration. Note
+that the value will contain many parts, f.ex., it may be <code>python3 /path/to/meson.py introspect</code>. The user is responsible for splitting
+the string to an array if needed by splitting lexically like a UNIX
+shell would. If your script uses Python, <code>shlex.split()</code> is the
+easiest correct way to do this.</p>
 </li>
 <li>
 <p><code>add_postconf_script(script_name, arg1, arg2, ...)</code> will run the
@@ -1482,23 +1500,6 @@ built as a subproject of some other project and <code>false</code> otherwise.</p
 <p><code>is_unity()</code> returns <code>true</code> when doing a <a href="Unity-builds.html">unity
 build</a> (multiple sources are combined before
 compilation to reduce build time) and <code>false</code> otherwise.</p>
-<p>To determine the installation location, the script should use the
-<code>DESTDIR</code>, <code>MESON_INSTALL_PREFIX</code>, <code>MESON_INSTALL_DESTDIR_PREFIX</code>
-variables. <code>DESTDIR</code> will be set only if it is inherited from the
-outside environment. <code>MESON_INSTALL_PREFIX</code> is always set and has
-the value of the <code>prefix</code> option passed to
-Meson. <code>MESON_INSTALL_DESTDIR_PREFIX</code> is always set and contains
-<code>DESTDIR</code> and <code>prefix</code> joined together. This is useful because both
-are absolute paths, and many path-joining functions such as
-<a href="https://docs.python.org/3/library/os.path.html#os.path.join"><code>os.path.join</code> in
-Python</a>
-special-case absolute paths.</p>
-<p><code>MESONINTROSPECT</code> contains the path to the introspect command that
-corresponds to the <code>meson</code> executable that was used to configure the
-build. (This might be a different path then the first executable
-found in <code>PATH</code>.) It can be used to query build configuration. Note
-that the value may contain many parts, i.e. it may be <code>python3 /path/to/meson.py introspect</code>. The user is responsible for splitting
-the string to an array if needed.</p>
 </li>
 <li>
 <p><code>override_find_program(progname, program)</code> <a href="Release-notes-for-0-46-0.html#can-override-find_program"><em>(Added
@@ -2042,14 +2043,14 @@ if invoked on a non config-tool dependency, error out.</p>
 <li>
 <p><code>type_name()</code> which returns a string describing the type of the
 dependency, the most common values are <code>internal</code> for deps created
-with <code>declare_dependencies</code> and <code>pkgconfig</code> for system dependencies
+with <code>declare_dependency()</code> and <code>pkgconfig</code> for system dependencies
 obtained with Pkg-config.</p>
 </li>
 <li>
 <p><code>version()</code> is the version number as a string, for example <code>1.2.8</code></p>
 </li>
 <li>
-<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (*added 0.46.0) returns
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (<em>added 0.46.0</em>) returns
 a new dependency object with the same name, version, found status,
 type name, and methods as the object that called it. This new
 object will only inherit other attributes from its parent as
@@ -2132,8 +2133,23 @@ if called twice with the same <code>varname</code>.</p>
 <code>external library</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#find_library"><code>find_library()</code></a> and
 contains an external (i.e. not built as part of this project)
-library. This object has only one method, <code>found</code>, which returns
-whether the library was found.</p>
+library. This object has the following methods:</p>
+<ul>
+<li>
+<p><code>found</code> which returns whether the library was found.</p>
+</li>
+<li>
+<p><code>type_name()</code> (<em>added 0.48.0</em>) which returns a string describing
+the type of the dependency, which will be <code>library</code> in this case.</p>
+</li>
+<li>
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (<em>added 0.46.0</em>) returns
+a new dependency object with the same name, version, found status,
+type name, and methods as the object that called it. This new
+object will only inherit other attributes from its parent as
+controlled by keyword arguments.</p>
+</li>
+</ul>
 <h3 id="generator-object">
 <code>generator</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#generator"><code>generator()</code></a> and contains a

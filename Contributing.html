@@ -317,6 +317,9 @@ allows <code>[skip ci]</code> anywhere in the commit messages.</li>
 <li>
 <a href="https://www.appveyor.com/docs/how-to/filtering-commits/#skip-directive-in-commit-message">AppVeyor</a>
 requires <code>[skip ci]</code> or <code>[skip appveyor]</code> in the commit title.</li>
+<li>
+<a href="https://sider.review">Sider</a>
+runs Flake8 (see below)</li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <p>The <code>docs</code> directory contains the full documentation that will be used
@@ -348,6 +351,10 @@ the project are contained in setup.cfg.</p>
 <pre><code class="language-console">$ python3 -m pip install flake8
 $ cd meson
 $ flake8
+</code></pre>
+<p>To run it automatically before committing:</p>
+<pre><code class="language-console">$ flake8 --install-hook=git
+$ git config --bool flake8.strict true
 </code></pre>
 <h2 id="cc-coding-style">C/C++ coding style</h2>
 <p>Meson has a bunch of test code in several languages. The rules for

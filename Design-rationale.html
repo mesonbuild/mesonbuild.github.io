@@ -307,13 +307,13 @@ flags and so on.</p>
 the function call can become unwieldy. That is why the system supports
 keyword arguments. They look like this.</p>
 <pre><code class="language-meson">project('compile several', 'c')
-sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
+sourcelist = ['main.c', 'file1.c', 'file2.c', 'file3.c']
 executable('program', sources : sourcelist)
 </code></pre>
 <p>External dependencies are simple to use.</p>
 <pre><code class="language-meson">project('external lib', 'c')
 libdep = find_dep('extlibrary', required : true)
-sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
+sourcelist = ['main.c', 'file1.c', 'file2.c', 'file3.c']
 executable('program', sources : sourcelist, dep : libdep)
 </code></pre>
 <p>In other build systems you have to manually add the compile and link

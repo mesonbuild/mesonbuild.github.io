@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "f.ex", "urls": ["Reference-manual.html#external-program-object"]});
+urls_downloaded_cb({"token": "f.ex", "urls": ["Reference-manual.html#meson-object", "Reference-manual.html#external-program-object"]});
