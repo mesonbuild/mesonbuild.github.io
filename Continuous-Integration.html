@@ -235,7 +235,34 @@ test_script:
   - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; &amp;&amp; ninja -C builddir test
 </code></pre>
 <h2 id="travis-without-docker">Travis without Docker</h2>
-<p>This setup is not recommended but included here for completeness</p>
+<p>You can cheat your way around docker by using <strong>python</strong> as language and setting your compiler in the build <strong>matrix</strong>. This example just uses <strong>linux</strong> and <strong>c</strong> but can be easily adapted to <strong>c++</strong> and <strong>osx</strong>.</p>
+<pre><code class="language-yaml">sudo: false
+
+os: linux
+dist: trusty
+
+language: python
+
+python: 3.6
+
+matrix:
+  include:
+    - env: CC=gcc
+    - env: CC=clang
+
+install:
+  - export NINJA_LATEST=$(curl -s https://api.github.com/repos/ninja-build/ninja/releases/latest | grep browser_download_url | cut -d '"' -f 4 | grep ninja-linux.zip)
+  - wget "$NINJA_LATEST"
+  - unzip -q ninja-linux.zip -d build
+  - export PATH="$PWD/build:$PATH"
+  - pip install meson
+
+script:
+  - meson builddir
+  - ninja -C builddir
+  - ninja -C builddir test
+</code></pre>
+<p>This setup uses the <strong>beta</strong> group. It is not recommended but included here for completeness:</p>
 <pre><code class="language-yaml">sudo: false
 language: cpp
 group: beta
