@@ -235,6 +235,28 @@ this function is either an external or an internal dependency
 object. Since they can be used interchangeably, the rest of the build
 definitions do not need to care which one it is. Meson will take care
 of all the work behind the scenes to make this work.</p>
+<h1 id="dependency-method">Dependency method</h1>
+<p>You can use the keyword <code>method</code> to let meson know what method to use
+when searching for the dependency. The default value is <code>auto</code>.
+Aditional dependencies methods are <code>pkg-config</code>, <code>config-tool</code>,
+<code>system</code>, <code>sysconfig</code>, <code>qmake</code>, <code>extraframework</code> and <code>dub</code>.</p>
+<pre><code class="language-meson">cups_dep = dependency('cups', method : 'pkg-config')
+</code></pre>
+<h3 id="some-notes-on-dub">Some notes on Dub</h3>
+<p>Please understand that meson is only able to find dependencies that
+exist in the local Dub repository. You need to manually fetch and
+build the target dependencies.</p>
+<p>For <code>urld</code>.</p>
+<pre><code>dub fetch urld
+dub build urld
+</code></pre>
+<p>Other thing you need to keep in mind is that both meson and Dub need
+to be using the same compiler. This can be achieved using Dub's
+<code>-compiler</code> argument and/or manually setting the <code>DC</code> environment
+variable when running meson.</p>
+<pre><code>dub build urld --compiler=dmd
+DC="dmd" meson builddir
+</code></pre>
 <h1 id="dependencies-with-custom-lookup-functionality">Dependencies with custom lookup functionality</h1>
 <p>Some dependencies have specific detection logic.</p>
 <p>Generic dependency names are case-sensitive<sup><a href="Dependencies.html#footnote1">1</a></sup>, but these

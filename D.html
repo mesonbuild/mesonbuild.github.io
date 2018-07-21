@@ -162,22 +162,27 @@ $('body').removeClass('no-script');
 				
 <div id="page-description" data-hotdoc-source="D.md" data-hotdoc-role="main">
 <h1 id="compiling-d-applications">Compiling D applications</h1>
-<p>Meson has support for compiling D programs. A minimal <code>meson.build</code> file for D looks like this:</p>
+<p>Meson has support for compiling D programs. A minimal <code>meson.build</code>
+file for D looks like this:</p>
 <pre><code class="language-meson">project('myapp', 'd')
 
 executable('myapp', 'app.d')
 </code></pre>
 <h2 id="compiling-different-versions">Compiling different versions</h2>
-<p>If you are using the <a href="https://dlang.org/spec/version.html">version()</a> feature for conditional compilation, you can use it using the <code>d_module_versions</code>
-target property:</p>
+<p>If you are using the <a href="https://dlang.org/spec/version.html">version()</a> feature for conditional compilation,
+you can use it using the <code>d_module_versions</code> target property:</p>
 <pre><code class="language-meson">project('myapp', 'd')
 executable('myapp', 'app.d', d_module_versions: ['Demo', 'FeatureA'])
 </code></pre>
 <h2 id="using-embedded-unittests">Using embedded unittests</h2>
-<p>If you are using embedded <a href="https://dlang.org/spec/unittest.html">unittest functions</a>, your source code needs to be compiled twice, once in regular
-mode, and once with unittests active. This is done by setting the <code>d_unittest</code> target property to <code>true</code>.
-Meson will only ever pass the respective compiler's <code>-unittest</code> flag, and never have the compiler generate an empty main function.
-If you need that feature in a portable way, create an empty <code>main()</code> function for unittests yourself, since the GNU D compiler
+<p>If you are using embedded <a href="https://dlang.org/spec/unittest.html">unittest functions</a>, your source code needs
+to be compiled twice, once in regular
+mode, and once with unittests active. This is done by setting the
+<code>d_unittest</code> target property to <code>true</code>.
+Meson will only ever pass the respective compiler's <code>-unittest</code> flag,
+and never have the compiler generate an empty main function.
+If you need that feature in a portable way, create an empty <code>main()</code>
+function for unittests yourself, since the GNU D compiler
 does not have this feature.</p>
 <p>This is an example for using D unittests with Meson:</p>
 <pre><code class="language-meson">project('myapp_tested', 'd')
@@ -189,8 +194,10 @@ test_exe = executable('myapp_test', myapp_src, d_unittest: true)
 test('myapptest', test_exe)
 </code></pre>
 <h1 id="compiling-d-libraries-and-installing-them">Compiling D libraries and installing them</h1>
-<p>Building D libraries is a straightforward process, not different from how C libraries are built in Meson. You should generate a pkg-config file
-and install it, in order to make other software on the system find the dependency once it is installed.</p>
+<p>Building D libraries is a straightforward process, not different from
+how C libraries are built in Meson. You should generate a pkg-config
+file and install it, in order to make other software on the system
+find the dependency once it is installed.</p>
 <p>This is an example on how to build a D shared library:</p>
 <pre><code class="language-meson">project('mylib', 'd', version: '1.2.0')
 
@@ -214,19 +221,32 @@ pkgc.generate(name: 'mylib',
 )
 install_subdir('src/mylib/', install_dir: 'include/d/mylib/')
 </code></pre>
-<p>It is important to make the D sources install in a subdirectory in the include path, in this case <code>/usr/include/d/mylib/mylib</code>.
-All D compilers include the <code>/usr/include/d</code> directory by default, and if your library would be installed into <code>/usr/include/d/mylib</code>, there
-is a high chance that, when you compile your project again on a machine where you installed it, the compiler will prefer the old installed include over
-the new version in the source tree, leading to very confusing errors.</p>
-<p>This is an example of how to use the D library we just built and installed in an application:</p>
+<p>It is important to make the D sources install in a subdirectory in the
+include path, in this case <code>/usr/include/d/mylib/mylib</code>.
+All D compilers include the <code>/usr/include/d</code> directory by default, and
+if your library would be installed into <code>/usr/include/d/mylib</code>, there
+is a high chance that, when you compile your project again on a
+machine where you installed it, the compiler will prefer the old
+installed include over the new version in the source tree, leading to
+very confusing errors.</p>
+<p>This is an example of how to use the D library we just built and
+installed in an application:</p>
 <pre><code class="language-meson">project('myapp', 'd')
 
 mylib_dep = dependency('mylib', version: '&gt;= 1.2.0')
 myapp_src = ['app.d', 'alpha.d', 'beta.d']
 executable('myapp', myapp_src, dependencies: [mylib_dep])
 </code></pre>
-<p>Please keep in mind that the library and executable would both need to be built with the exact same D compiler and D compiler version. The D ABI is not
-stable across compilers and their versions, and mixing compilers will lead to problems.</p>
+<p>Please keep in mind that the library and executable would both need to
+be built with the exact same D compiler and D compiler version. The D
+ABI is not stable across compilers and their versions, and mixing
+compilers will lead to problems.</p>
+<h1 id="integrating-with-dub">Integrating with DUB</h1>
+<p>DUB is a fully integrated build system for D, but it is also a way to
+provide dependencies. Adding dependencies from the <a href="https://code.dlang.org/">D package registry</a>
+is pretty straight forward. You can find how to do this in
+<a href="Dependencies.html#Dub">Dependencies</a>. You can also automatically
+generate a <code>dub.json</code> file as explained in <a href="Dlang-module.html#generatedubfile">Dlang</a>.</p>
 
 </div>
 
