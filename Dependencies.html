@@ -202,7 +202,8 @@ parameter, which might be useful in certain situations:</p>
 <p>The dependency detector works with all libraries that provide a
 <code>pkg-config</code> file. Unfortunately several packages don't provide
 pkg-config files. Meson has autodetection support for some of these,
-and they are described <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">later in this page</a>.</p>
+and they are described <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">later in this
+page</a>.</p>
 <h1 id="declaring-your-own">Declaring your own</h1>
 <p>You can declare your own dependency objects that can be used
 interchangeably with dependency objects obtained from the system. The
@@ -259,9 +260,9 @@ DC="dmd" meson builddir
 </code></pre>
 <h1 id="dependencies-with-custom-lookup-functionality">Dependencies with custom lookup functionality</h1>
 <p>Some dependencies have specific detection logic.</p>
-<p>Generic dependency names are case-sensitive<sup><a href="Dependencies.html#footnote1">1</a></sup>, but these
-dependency names are matched case-insensitively.  The recommended style is to
-write them in all lower-case.</p>
+<p>Generic dependency names are case-sensitive<sup><a href="Dependencies.html#footnote1">1</a></sup>,
+but these dependency names are matched case-insensitively.  The
+recommended style is to write them in all lower-case.</p>
 <p>In some cases, more than one detection method exists, and the <code>method</code> keyword
 may be used to select a detection method to use.  The <code>auto</code> method uses any
 checking mechanisms in whatever order meson thinks is best.</p>
@@ -272,17 +273,17 @@ wmf_dep = dependency('libwmf', method : 'config-tool')
 </code></pre>
 <h2 id="dependencies-using-config-tools">Dependencies using config tools</h2>
 <p><a href="Dependencies.html#cups">CUPS</a>, <a href="Dependencies.html#llvm">LLVM</a>, <a href="Dependencies.html#pcap">pcap</a>, <a href="Dependencies.html#wxwidgets">WxWidgets</a>,
-<a href="Dependencies.html#libwmf">libwmf</a>, and GnuStep either do not provide pkg-config modules or
-additionally can be detected via a config tool (cups-config, llvm-config,
-etc). Meson has native support for these tools, and they can be found like other
-dependencies:</p>
+<a href="Dependencies.html#libwmf">libwmf</a>, and GnuStep either do not provide pkg-config
+modules or additionally can be detected via a config tool
+(cups-config, llvm-config, etc). Meson has native support for these
+tools, and they can be found like other dependencies:</p>
 <pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
 cups_dep = dependency('cups', version : '&gt;=1.4')
 llvm_dep = dependency('llvm', version : '&gt;=4.0')
 </code></pre>
 <h2 id="appleframeworks">AppleFrameworks</h2>
 <p>Use the <code>modules</code> keyword to list frameworks required, e.g.</p>
-<pre><code class="language-meson">dep = find_dep('appleframeworks', modules : 'foundation')
+<pre><code class="language-meson">dep = dependency('appleframeworks', modules : 'foundation')
 </code></pre>
 <p>These dependencies can never be found for non-OSX hosts.</p>
 <h2 id="boost">Boost</h2>
@@ -292,8 +293,8 @@ dependency.</p>
 <pre><code class="language-meson">boost_dep = dependency('boost')
 exe = executable('myprog', 'file.cc', dependencies : boost_dep)
 </code></pre>
-<p>To link against boost with Meson, simply list which libraries you would like to
-use.</p>
+<p>To link against boost with Meson, simply list which libraries you
+would like to use.</p>
 <pre><code class="language-meson">boost_dep = dependency('boost', modules : ['thread', 'utility'])
 exe = executable('myprog', 'file.cc', dependencies : boost_dep)
 </code></pre>
@@ -302,8 +303,8 @@ use those to link against your targets.</p>
 <p>If your boost headers or libraries are in non-standard locations you
 can set the BOOST_ROOT, BOOST_INCLUDEDIR, and/or BOOST_LIBRARYDIR
 environment variables.</p>
-<p>You can set the argument <code>threading</code> to <code>single</code> to use boost libraries that
-have been compiled for single-threaded use instead.</p>
+<p>You can set the argument <code>threading</code> to <code>single</code> to use boost
+libraries that have been compiled for single-threaded use instead.</p>
 <h2 id="cups">CUPS</h2>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>pkg-config</code> or <code>extraframework</code>.</p>
 <h2 id="gl">GL</h2>
@@ -328,13 +329,13 @@ test('gtest test', e)
 <p>Meson has native support for LLVM going back to version LLVM version 3.5.
 It supports a few additional features compared to other config-tool based
 dependencies.</p>
-<p>As of 0.44.0 Meson supports the <code>static</code> keyword argument for LLVM. Before this
-LLVM &gt;= 3.9 would always dynamically link, while older versions would
-statically link, due to a quirk in <code>llvm-config</code>.</p>
+<p>As of 0.44.0 Meson supports the <code>static</code> keyword argument for
+LLVM. Before this LLVM &gt;= 3.9 would always dynamically link, while
+older versions would statically link, due to a quirk in <code>llvm-config</code>.</p>
 <h3 id="modules-aka-components">Modules, a.k.a. Components</h3>
 <p>Meson wraps LLVM's concept of components in it's own modules concept.
-When you need specific components you add them as modules as meson will do the
-right thing:</p>
+When you need specific components you add them as modules as meson
+will do the right thing:</p>
 <pre><code class="language-meson">llvm_dep = dependency('llvm', version : '&gt;= 4.0', modules : ['amdgpu'])
 </code></pre>
 <p>As of 0.44.0 it can also take optional modules (these will affect the arguments

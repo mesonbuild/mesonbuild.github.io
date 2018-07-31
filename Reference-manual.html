@@ -363,6 +363,13 @@ this argument is set to true, Meson captures <code>stdout</code> and writes it
 to the target file. Note that your command argument list may not
 contain <code>@OUTPUT@</code> when capture mode is active.</li>
 <li>
+<code>console</code> keyword argument conflicts with <code>capture</code>, and is meant
+for commands that are resource-intensive and take a long time to
+finish. With the Ninja backend, setting this will add this target
+to <a href="https://ninja-build.org/manual.html#_the_literal_console_literal_pool">Ninja's <code>console</code> pool</a>,
+which has special properties such as not buffering stdout and
+serializing all targets in this pool.</li>
+<li>
 <code>command</code> command to run to create outputs from inputs. The command
 may be strings or the return value of functions that return file-like
 objects such as <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
