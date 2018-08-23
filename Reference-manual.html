@@ -169,13 +169,26 @@ afterwards</a>.</p>
 <h3 id="add_global_arguments">add_global_arguments()</h3>
 <pre><code class="language-meson">  void add_global_arguments(arg1, arg2, ...)
 </code></pre>
-<p>Adds the positional arguments to the compiler command line for the
-language specified in <code>language</code> keyword argument. If a list of
-languages is given, the arguments are added to each of the
-corresponding compiler command lines. Note that there is no way to
-remove an argument set in this way. If you have an argument that is
-only used in a subset of targets, you have to specify it in per-target
-flags.</p>
+<p>Adds the positional arguments to the compiler command line. This
+function has two keyword arguments:</p>
+<ul>
+<li>
+<p><code>language</code> specifies the language(s) that the arguments should be
+applied to. If a list of languages is given, the arguments are added
+to each of the corresponding compiler command lines. Note that there
+is no way to remove an argument set in this way. If you have an
+argument that is only used in a subset of targets, you have to specify
+it in per-target flags.</p>
+</li>
+<li>
+<p><code>native</code> is a boolean specifying whether the arguments should be
+applied to the native or cross compilation. If <code>true</code> the arguments
+will only be used for native compilations. If <code>false</code> the arguments
+will only be used in cross compilations. If omitted, the flags are
+added to native compilations if compiling natively and cross
+compilations (only) when cross compiling. Available since 0.48.0</p>
+</li>
+</ul>
 <p>The arguments are used in all compiler invocations with the exception
 of compile tests, because you might need to run a compile test with
 and without the argument in question. For this reason only the
@@ -201,8 +214,9 @@ endif
 <p>Takes one keyword argument, <code>required</code>. It defaults to <code>true</code>, which
 means that if any of the languages specified is not found, Meson will
 halt. Returns true if all languages specified were found and false
-otherwise. Since <em>0.47.0</em>  the value of a <a href="Build-options.html#features"><code>feature</code></a>
-option can also be passed to the <code>required</code> keyword argument.</p>
+otherwise. Since <em>0.47.0</em> the value of a
+<a href="Build-options.html#features"><code>feature</code></a> option can also be passed to
+the <code>required</code> keyword argument.</p>
 <h3 id="add_project_arguments">add_project_arguments()</h3>
 <pre><code class="language-meson">  void add_project_arguments(arg1, arg2, ...)
 </code></pre>
@@ -663,6 +677,14 @@ the keyword argument for the default behaviour.</li>
 <code>project</code>'s <code>default_options</code> overriding the values of these options
 for this target only, since 0.40.0</li>
 <li>
+<code>gnu_symbol_visibility</code> specifies how symbols should be exported, see
+e.g <a href="https://gcc.gnu.org/wiki/Visibility">the GCC Wiki</a> for more
+information. This value can either be an empty string or one of
+<code>default</code>, <code>internal</code>, <code>hidden</code>, <code>protected</code> or <code>inlineshidden</code>, which
+is the same as <code>hidden</code> but also includes things like C++ implicit
+constructors as specified in the GCC manual. Ignored on compilers that
+do not support GNU visibility arguments. Available since 0.48.0.</li>
+<li>
 <code>d_import_dirs</code> list of directories to look in for string imports used
 in the D programming language</li>
 <li>
@@ -1028,14 +1050,15 @@ dropped. That means that <code>join_paths('foo', '/bar')</code> returns <code>/b
 <h3 id="library">library()</h3>
 <pre><code class="language-meson">    buildtarget library(library_name, list_of_sources, ...)
 </code></pre>
-<p>Builds a library that is either static, shared or both depending on the value of
-<code>default_library</code> user option. You should use this instead of
-<a href="Reference-manual.html#shared_library"><code>shared_library</code></a>,
+<p>Builds a library that is either static, shared or both depending on
+the value of <code>default_library</code> user option. You should use this
+instead of <a href="Reference-manual.html#shared_library"><code>shared_library</code></a>,
 <a href="Reference-manual.html#static_library"><code>static_library</code></a> or
 <a href="Reference-manual.html#both_libraries"><code>both_libraries</code></a> most of the time. This allows you
 to toggle your entire project (including subprojects) from shared to
 static with only one option.</p>
-<p>The keyword arguments for this are the same as for <a href="Reference-manual.html#executable"><code>executable</code></a> with the following additions:</p>
+<p>The keyword arguments for this are the same as for
+<a href="Reference-manual.html#executable"><code>executable</code></a> with the following additions:</p>
 <ul>
 <li>
 <code>name_prefix</code> the string that will be used as the prefix for the
@@ -1923,6 +1946,8 @@ was given and the key was not found, causes a fatal error</p>
 <p>You can also iterate over dictionaries with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
 statement</a>.</p>
 <p>Dictionaries are available since 0.47.0.</p>
+<p>Since 0.48.0 dictionaries can be added (e.g. <code>d1 = d2 + d3</code> and <code>d1 += d2</code>).
+Values from the second dictionary overrides values from the first.</p>
 <h2 id="returned-objects">Returned objects</h2>
 <p>These are objects returned by the <a href="Reference-manual.html#functions">functions listed above</a>.</p>
 <h3 id="build-target-object">

@@ -227,10 +227,12 @@ executable(
 )
 </code></pre>
 <h3 id="gnomegenerate_gir">gnome.generate_gir()</h3>
-<p>Generates GObject introspection data. Takes one positional argument,
-the build target you want to build gir data for. There are several
-keyword arguments. Many of these map directly to the <code>g-ir-scanner</code>
-tool so see its documentation for more information.</p>
+<p>Generates GObject introspection data.</p>
+<p>Takes one or more positional arguments:</p>
+<p>Either one or more library objects you want to build gir data for, or a single
+executable object.</p>
+<p>There are several keyword arguments. Many of these map directly to the
+<code>g-ir-scanner</code> tool so see its documentation for more information.</p>
 <ul>
 <li>
 <code>dependencies</code>: deps to use during introspection scanning</li>
