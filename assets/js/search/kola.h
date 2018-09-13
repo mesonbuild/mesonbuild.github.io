@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "kola.h", "urls": ["Reference-manual.html#install_headers"]});
+urls_downloaded_cb({"token": "kola.h", "urls": [{"url": "Reference-manual.html#page-description", "context": {"gi-language": ["default"]}}]});

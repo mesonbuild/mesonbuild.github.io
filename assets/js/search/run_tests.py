@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "run_tests.py", "urls": ["Release-notes-for-0-41-0.html#page-description", "Contributing.html#tests"]});
+urls_downloaded_cb({"token": "run_tests.py", "urls": [{"url": "Release-notes-for-0-41-0.html#page-description", "context": {"gi-language": ["default"]}}, {"url": "Contributing.html#page-description", "context": {"gi-language": ["default"]}}]});

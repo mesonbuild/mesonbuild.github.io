@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "makefile", "urls": ["Porting-from-autotools.html#ac_subst", "Design-rationale.html#overview-of-the-solution"]});
+urls_downloaded_cb({"token": "makefile", "urls": [{"url": "Design-rationale.html#page-description", "context": {"gi-language": ["default"]}}, {"url": "Porting-from-autotools.html#page-description", "context": {"gi-language": ["default"]}}]});

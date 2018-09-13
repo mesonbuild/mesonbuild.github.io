@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -11,6 +12,7 @@
 <title>The Meson Build system</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
@@ -18,6 +20,7 @@
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/typeahead.jquery.min.js"></script>
 <script src="assets/js/search.js"></script>
@@ -62,7 +65,7 @@ $('body').removeClass('no-script');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+			<form class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
 				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
@@ -75,7 +78,7 @@ $('body').removeClass('no-script');
 				<span class="glyphicon glyphicon-menu-left"></span>
 			</a>
 			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
-				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+				<img src="assets/images/meson_logo.png" alt="Home">
 			</a>
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-wrapper">
@@ -112,6 +115,9 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -159,9 +165,8 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				
-<div id="page-description" data-hotdoc-source="index.md" data-hotdoc-role="main">
-<h1 id="the-meson-build-system">The Meson Build system</h1>
+				    <div id="page-description" data-hotdoc-source="index.md" data-hotdoc-role="main">
+        <h1 id="the-meson-build-system">The Meson Build system</h1>
 <h2 id="overview">Overview</h2>
 <p>Meson is an open source build system meant to be both extremely fast,
 and, even more importantly, as user friendly as possible.</p>
@@ -198,129 +203,106 @@ project</a>. Instructions for
 contributing can be found on the <a href="Contributing.html">contribution page</a>.</p>
 <p>You do not need to sign a CLA to contribute to Meson.</p>
 
-</div>
+    </div>
+        
+
+
 
 
 		<div class="hide-if-js">
 
 <div id="subpages">
-	<h4>Subpages</h4>
-	<div class="container-fluid">
-		<div class="row">
-						<div class="col-sm-12 col-md-4">
-				<a href="Getting-meson.html">Getting meson</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Quick-guide.html">Quick guide</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Guide to get started using meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Tutorial.html">Tutorial</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Simplest tutorial</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Manual.html">Manual</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>User manual for Meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Reference-manual.html">Reference manual</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Reference-tables.html">Reference tables</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Style-guide.html">Style recommendations</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Style recommendations for Meson files</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="FAQ.html">FAQ</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Reproducible-builds.html">Reproducible builds</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="howtox.html">How do I do X in Meson?</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Wrap-dependency-system-manual.html">Wrap dependency system manual</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Release-notes.html">Release notes</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Additional.html">Additional documentation</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Misc documentation</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Contributing.html">Contributing to Meson</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Contributing to Meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="legal.html">Legal information</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Videos.html">Videos</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Videos about Meson</p>
-							</div>
-					</div>
+	<p><b>Subpages:</b></p>
+			<p>
+		<a href="Getting-meson.html">Getting meson</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Quick-guide.html">Quick guide</a>
+		–
+					Guide to get started using meson
+				</p>
+			<p>
+		<a href="Tutorial.html">Tutorial</a>
+		–
+					Simplest tutorial
+				</p>
+			<p>
+		<a href="Manual.html">Manual</a>
+		–
+					User manual for Meson
+				</p>
+			<p>
+		<a href="Reference-manual.html">Reference manual</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Reference-tables.html">Reference tables</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Style-guide.html">Style recommendations</a>
+		–
+					Style recommendations for Meson files
+				</p>
+			<p>
+		<a href="FAQ.html">FAQ</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Reproducible-builds.html">Reproducible builds</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="howtox.html">How do I do X in Meson?</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Wrap-dependency-system-manual.html">Wrap dependency system manual</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Release-notes.html">Release notes</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Additional.html">Additional documentation</a>
+		–
+					Misc documentation
+				</p>
+			<p>
+		<a href="Contributing.html">Contributing to Meson</a>
+		–
+					Contributing to Meson
+				</p>
+			<p>
+		<a href="legal.html">Legal information</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Videos.html">Videos</a>
+		–
+					Videos about Meson
+				</p>
 	</div>
-</div>
 
 </div>
 	</div>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
+	<hr>
 	<div id="footer">
-		
-
-<hr>
-
-<div class="license-description">
-    Website licensing information are available on the <a href="legal.html">Legal</a> page.
-</div>
-
+		    
 
 	</div>
 </div>
@@ -338,7 +320,7 @@ contributing can be found on the <a href="Contributing.html">contribution page</
 </div>
 </main>
 
-</body>
 
 <script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
 </html>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -11,6 +12,7 @@
 <title>Reference tables</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
@@ -18,6 +20,7 @@
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/typeahead.jquery.min.js"></script>
 <script src="assets/js/search.js"></script>
@@ -62,7 +65,7 @@ $('body').removeClass('no-script');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+			<form class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
 				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
@@ -75,7 +78,7 @@ $('body').removeClass('no-script');
 				<span class="glyphicon glyphicon-menu-left"></span>
 			</a>
 			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
-				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+				<img src="assets/images/meson_logo.png" alt="Home">
 			</a>
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-wrapper">
@@ -112,6 +115,9 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -159,9 +165,8 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				
-<div id="page-description" data-hotdoc-source="Reference-tables.md" data-hotdoc-role="main">
-<h1 id="reference-tables">Reference tables</h1>
+				    <div id="page-description" data-hotdoc-source="Reference-tables.md" data-hotdoc-role="main">
+        <h1 id="reference-tables">Reference tables</h1>
 <h2 id="compiler-ids">Compiler ids</h2>
 <p>These are return values of the <code>get_id</code> method in a compiler object.</p>
 <table>
@@ -271,6 +276,10 @@ $('body').removeClass('no-script');
 <td> MESON_SUBDIR</td>
 <td> Current subdirectory, only set for <code>run_command</code>
 </td>
+</tr>
+<tr>
+<td> MESON_DIST_ROOT</td>
+<td> Points to the root of the staging directory, only set when running <code>dist</code> scripts</td>
 </tr>
 </tbody>
 </table>
@@ -452,7 +461,156 @@ future releases.</p>
 </tr>
 </tbody>
 </table>
-</div>
+<h2 id="function-attributes">Function Attributes</h2>
+<p>These are the parameters names that are supported using
+<code>compiler.has_function_attribute()</code> or
+<code>compiler.get_supported_function_attributes()</code></p>
+<h3 id="gcc-attribute">GCC <strong>attribute</strong>
+</h3>
+<p>These values are supported using the GCC style <code>__attribute__</code> annotations,
+which are supported by GCC, Clang, and other compilers.</p>
+<table>
+<thead>
+<tr>
+<th> Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> alias</td>
+</tr>
+<tr>
+<td> aligned</td>
+</tr>
+<tr>
+<td> alloc_size</td>
+</tr>
+<tr>
+<td> always_inline</td>
+</tr>
+<tr>
+<td> artificial</td>
+</tr>
+<tr>
+<td> cold</td>
+</tr>
+<tr>
+<td> const</td>
+</tr>
+<tr>
+<td> constructor</td>
+</tr>
+<tr>
+<td> constructor_priority</td>
+</tr>
+<tr>
+<td> deprecated</td>
+</tr>
+<tr>
+<td> destructor</td>
+</tr>
+<tr>
+<td> error</td>
+</tr>
+<tr>
+<td> externally_visible</td>
+</tr>
+<tr>
+<td> fallthrough</td>
+</tr>
+<tr>
+<td> flatten</td>
+</tr>
+<tr>
+<td> format</td>
+</tr>
+<tr>
+<td> format_arg</td>
+</tr>
+<tr>
+<td> gnu_inline</td>
+</tr>
+<tr>
+<td> hot</td>
+</tr>
+<tr>
+<td> ifunc</td>
+</tr>
+<tr>
+<td> malloc</td>
+</tr>
+<tr>
+<td> noclone</td>
+</tr>
+<tr>
+<td> noinline</td>
+</tr>
+<tr>
+<td> nonnull</td>
+</tr>
+<tr>
+<td> noreturn</td>
+</tr>
+<tr>
+<td> nothrow</td>
+</tr>
+<tr>
+<td> optimize</td>
+</tr>
+<tr>
+<td> packed</td>
+</tr>
+<tr>
+<td> pure</td>
+</tr>
+<tr>
+<td> returns_nonnull</td>
+</tr>
+<tr>
+<td> unused</td>
+</tr>
+<tr>
+<td> used</td>
+</tr>
+<tr>
+<td> visibility</td>
+</tr>
+<tr>
+<td> warning</td>
+</tr>
+<tr>
+<td> warn_unused_result</td>
+</tr>
+<tr>
+<td> weak</td>
+</tr>
+<tr>
+<td> weakreaf</td>
+</tr>
+</tbody>
+</table>
+<h3 id="msvc-__declspec">MSVC __declspec</h3>
+<p>These values are supported using the MSVC style <code>__declspec</code> annotation,
+which are supported by MSVC, GCC, Clang, and other compilers.</p>
+<table>
+<thead>
+<tr>
+<th> Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> dllexport</td>
+</tr>
+<tr>
+<td> dllimport</td>
+</tr>
+</tbody>
+</table>
+    </div>
+        
+
+
 
 
 		
@@ -460,15 +618,9 @@ future releases.</p>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
+	<hr>
 	<div id="footer">
-		
-
-<hr>
-
-<div class="license-description">
-    Website licensing information are available on the <a href="legal.html">Legal</a> page.
-</div>
-
+		    
 
 	</div>
 </div>
@@ -486,7 +638,7 @@ future releases.</p>
 </div>
 </main>
 
-</body>
 
 <script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
 </html>

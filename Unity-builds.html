@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -11,6 +12,7 @@
 <title>Unity builds</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
@@ -18,6 +20,7 @@
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/typeahead.jquery.min.js"></script>
 <script src="assets/js/search.js"></script>
@@ -62,7 +65,7 @@ $('body').removeClass('no-script');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+			<form class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
 				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
@@ -75,7 +78,7 @@ $('body').removeClass('no-script');
 				<span class="glyphicon glyphicon-menu-left"></span>
 			</a>
 			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
-				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+				<img src="assets/images/meson_logo.png" alt="Home">
 			</a>
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-wrapper">
@@ -112,6 +115,9 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -159,9 +165,8 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				
-<div id="page-description" data-hotdoc-source="Unity-builds.md" data-hotdoc-role="main">
-<h1 id="unity-builds">Unity builds</h1>
+				    <div id="page-description" data-hotdoc-source="Unity-builds.md" data-hotdoc-role="main">
+        <h1 id="unity-builds">Unity builds</h1>
 <p>Unity builds are a technique for cutting down build times. The way it works is relatively straightforward. Suppose we have source files <code>src1.c</code>, <code>src2.c</code> and <code>src3.c</code>. Normally we would run the compiler three times, once for each file. In a unity build we instead compile all these sources in a single unit. The simplest approach is to create a new source file that looks like this.</p>
 <pre><code class="language-c">#include&lt;src1.c&gt;
 #include&lt;src2.c&gt;
@@ -171,7 +176,10 @@ $('body').removeClass('no-script');
 <p>The downside is that incremental builds are as slow as full rebuilds (because that is what they are). Unity compiles also use more memory, which may become an issue in certain scenarios. There may also be some bugs in the source that need to be fixed before Unity compiles work. As an example, if both <code>src1.c</code> and <code>src2.c</code> contain a static function or variable of the same name, there will be a clash.</p>
 <p>Meson has built-in support for unity builds. To enable them, just pass <code>--unity on</code> on the command line or enable unity builds with the GUI. No code changes are necessary apart from the potential clash issue discussed above. Meson will automatically generate all the necessary inclusion files for you.</p>
 
-</div>
+    </div>
+        
+
+
 
 
 		
@@ -179,15 +187,9 @@ $('body').removeClass('no-script');
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
+	<hr>
 	<div id="footer">
-		
-
-<hr>
-
-<div class="license-description">
-    Website licensing information are available on the <a href="legal.html">Legal</a> page.
-</div>
-
+		    
 
 	</div>
 </div>
@@ -205,7 +207,7 @@ $('body').removeClass('no-script');
 </div>
 </main>
 
-</body>
 
 <script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
 </html>

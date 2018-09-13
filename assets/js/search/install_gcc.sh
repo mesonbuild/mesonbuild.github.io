@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "install_gcc.sh", "urls": ["Creating-Linux-binaries.html#installing-system-and-gcc"]});
+urls_downloaded_cb({"token": "install_gcc.sh", "urls": [{"url": "Creating-Linux-binaries.html#page-description", "context": {"gi-language": ["default"]}}]});

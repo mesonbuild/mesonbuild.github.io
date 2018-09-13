@@ -10,13 +10,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-@for key, value in meta:
+@for key, value in meta.items():
 <meta data-hd-key="@str(key)" data-hd-value="@str(value)" />
 @end
 
 <title>@page.get_title()</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css"/>
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css"/>
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css"/>
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css" />
 
@@ -26,6 +27,7 @@
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/typeahead.jquery.min.js"></script>
 <script src="assets/js/search.js"></script>
@@ -71,7 +73,7 @@ data-hotdoc-meta-@key="@str(value)"\
 </div>
 </main>
 
-</body>
 
 <script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
 </html>

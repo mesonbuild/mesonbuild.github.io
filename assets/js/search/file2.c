@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "file2.c", "urls": ["Generating-sources.html#using-custom_target"]});
+urls_downloaded_cb({"token": "file2.c", "urls": [{"url": "Generating-sources.html#page-description", "context": {"gi-language": ["default"]}}]});

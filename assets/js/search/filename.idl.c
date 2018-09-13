@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "filename.idl.c", "urls": ["Generating-sources.html#using-generator"]});
+urls_downloaded_cb({"token": "filename.idl.c", "urls": [{"url": "Generating-sources.html#page-description", "context": {"gi-language": ["default"]}}]});

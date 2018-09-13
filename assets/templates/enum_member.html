@@ -1,16 +1,14 @@
 @require(link, detail, value)
 
-<div class="row">
-	<div class="col-sm-12 col-md-2">
-		<p>
-		<a id="@link.id_"></a>
-		@link.title
-		</p>
+<div class="symbol-detail" data-hotdoc-id="@link.id_">
+	<div>
+		<i><em><code>@link.title</code></em></i>
+		(<span class="value">@value</span>)
+		–
 	</div>
-	<div class="col-sm-12 col-md-8 member-description">
+	@if detail:
 		@detail
-	</div>
-	<div class="col-sm-12 col-md-2 member-value">
-		<span class="value">Value: @value</span>
-	</div>
+	@else:
+		<i>No description available</i>
+	@end
 </div>

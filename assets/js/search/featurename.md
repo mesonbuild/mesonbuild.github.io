@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "featurename.md", "urls": ["Release-notes-for-0-48-0.html#new-features"]});
+urls_downloaded_cb({"token": "featurename.md", "urls": [{"url": "Release-notes-for-0-48-0.html#page-description", "context": {"gi-language": ["default"]}}]});

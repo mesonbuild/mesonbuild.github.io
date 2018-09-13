@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "foo.cpp", "urls": ["Reference-manual.html#files"]});
+urls_downloaded_cb({"token": "foo.cpp", "urls": [{"url": "Reference-manual.html#page-description", "context": {"gi-language": ["default"]}}]});

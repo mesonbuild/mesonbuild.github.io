@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "foobar.h", "urls": ["Gnome-module.html#gnomecompile_resources"]});
+urls_downloaded_cb({"token": "foobar.h", "urls": [{"url": "Gnome-module.html#page-description", "context": {"gi-language": ["default"]}}]});

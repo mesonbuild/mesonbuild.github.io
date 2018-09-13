@@ -5,23 +5,18 @@
 @end
 
 <div id="subpages">
-	<h4>Subpages</h4>
-	<div class="container-fluid">
-		<div class="row">
-			@for link, subpage in subpages.items():
-			<div class="col-sm-12 col-md-4">
-				<a href="@link">@subpage.get_title()!e</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-				@if subpage.short_description:
-				<p>@subpage.short_description</p>
-				@else:
-				<p>No summary available</p>
-				@end
-			</div>
-			@end
-		</div>
-	</div>
+	<p><b>Subpages:</b></p>
+	@for link, subpage in subpages.items():
+		<p>
+		<a href="@link">@subpage.get_title()!e</a>
+		–
+		@if subpage.short_description:
+			@subpage.short_description
+		@else:
+			<i><em>No description available</em></i>
+		@end
+		</p>
+	@end
 </div>
 
 @if not page.render_subpages:

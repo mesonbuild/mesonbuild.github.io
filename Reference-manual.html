@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -11,6 +12,7 @@
 <title>Reference manual</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
@@ -18,6 +20,7 @@
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/typeahead.jquery.min.js"></script>
 <script src="assets/js/search.js"></script>
@@ -62,7 +65,7 @@ $('body').removeClass('no-script');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+			<form class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
 				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
@@ -75,7 +78,7 @@ $('body').removeClass('no-script');
 				<span class="glyphicon glyphicon-menu-left"></span>
 			</a>
 			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
-				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+				<img src="assets/images/meson_logo.png" alt="Home">
 			</a>
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-wrapper">
@@ -112,6 +115,9 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -159,9 +165,8 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				
-<div id="page-description" data-hotdoc-source="Reference-manual.md" data-hotdoc-role="main">
-<h1 id="reference-manual">Reference manual</h1>
+				    <div id="page-description" data-hotdoc-source="Reference-manual.md" data-hotdoc-role="main">
+        <h1 id="reference-manual">Reference manual</h1>
 <h2 id="functions">Functions</h2>
 <p>The following functions are available in build files. Click on each to
 see the description and usage. The objects returned by them are <a href="Reference-manual.html#returned-objects">list
@@ -272,6 +277,7 @@ library. In addition it supports the following extra methods:</p>
 <li>
 <code>get_static_lib()</code> returns the static library build target</li>
 </ul>
+<p><em>Added 0.46.0</em></p>
 <h3 id="build_target">build_target()</h3>
 <p>Creates a build target whose type can be set dynamically with the
 <code>target_type</code> keyword argument. This declaration:</p>
@@ -504,8 +510,11 @@ arguments override any default options in build files)</li>
 dependency is not found in the system. The value is an array
 <code>['subproj_name', 'subproj_dep']</code> where the first value is the name
 of the subproject and the second is the variable name in that
-subproject that contains the value of
-<a href="Reference-manual.html#declare_dependency"><code>declare_dependency</code></a>.</li>
+subproject that contains a dependency object such as the return
+value of <a href="Reference-manual.html#declare_dependency"><code>declare_dependency</code></a> or
+<a href="Reference-manual.html#dependency"><code>dependency()</code></a>, etc. Note that this means the
+fallback dependency may be a not-found dependency, in which
+case the value of the <code>required:</code> kwarg will be obeyed.</li>
 <li>
 <code>language</code> <em>(added 0.42.0)</em> defines what language-specific
 dependency to find if it's available for multiple languages.</li>
@@ -528,11 +537,12 @@ even if the dependency is not found. Since <em>0.47.0</em> the value of a
 libraries instead of dynamic ones (note that this is not supported
 by all dependency backends)</li>
 <li>
-<code>version</code>, specifies the required version, a string containing a
+<code>version</code> specifies the required version, a string containing a
 comparison operator followed by the version string, examples include
 <code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching. (<em>Added 0.37.0</em>)
 You can also specify multiple restrictions by passing a list to this
-keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.</li>
+keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.
+These requirements are never met if the version is unknown.</li>
 <li>other
 <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific</a>
 keywords may also be accepted (e.g. <code>modules</code> specifies submodules to use for
@@ -1217,14 +1227,22 @@ soversion (or equivalent) in the filename. For example, if
 <code>soversion</code> is <code>4</code>, a Windows DLL will be called <code>foo-4.dll</code> and one
 of the aliases of the Linux shared library would be
 <code>libfoo.so.4</code>. If this is not specified, the first part of <code>version</code>
-is used instead. For example, if <code>version</code> is <code>3.6.0</code> and
+is used instead (see below). For example, if <code>version</code> is <code>3.6.0</code> and
 <code>soversion</code> is not defined, it is set to <code>3</code>.</li>
 <li>
 <code>version</code> a string specifying the version of this shared library,
 such as <code>1.1.0</code>. On Linux and OS X, this is used to set the shared
 library version in the filename, such as <code>libfoo.so.1.1.0</code> and
 <code>libfoo.1.1.0.dylib</code>. If this is not specified, <code>soversion</code> is used
-instead (see below).</li>
+instead (see above).</li>
+<li>
+<code>darwin_versions</code> <em>(added 0.48)</em> an integer, string, or a list of
+versions to use for setting dylib <code>compatibility version</code> and
+<code>current version</code> on macOS. If a list is specified, it must be
+either zero, one, or two elements. If only one element is specified
+or if it's not a list, the specified value will be used for setting
+both compatibility version and current version. If unspecified, the
+<code>soversion</code> will be used as per the aforementioned rules.</li>
 <li>
 <code>vs_module_defs</code> a string, a File object, or Custom Target for a
 Microsoft module definition file for controlling symbol exports,
@@ -1430,6 +1448,16 @@ system. This object is always mapped in the <code>meson</code> variable. It has
 the following methods.</p>
 <ul>
 <li>
+<p><code>add_dist_script</code> causes the script given as argument to run during
+<code>dist</code> operation after the distribution source has been generated
+but before it is archived. Note that this runs the script file that
+is in the <em>staging</em> directory, not the one in the source
+directory. If the script file can not be found in the staging
+directory, it is a hard error. This command can only invoked from
+the main project, calling it from a subproject is a hard
+error. Available since 0.48.0.</p>
+</li>
+<li>
 <p><code>add_install_script(script_name, arg1, arg2, ...)</code> causes the script
 given as an argument to be run during the install step, this script
 will have the environment variables <code>MESON_SOURCE_ROOT</code>,
@@ -1537,7 +1565,8 @@ compilation to reduce build time) and <code>false</code> otherwise.</p>
 specifies that whenever <code>find_program</code> is used to find a program
 named <code>progname</code>, Meson should not not look it up on the system but
 instead return <code>program</code>, which may either be the result of
-<code>find_program</code> or <code>configure_file</code>.</p>
+<code>find_program</code>, <code>configure_file</code> or <code>executable</code>.</p>
+<p>If <code>program</code> is an <code>executable</code>, it cannot be used during configure.</p>
 </li>
 <li>
 <p><code>project_version()</code> returns the version string specified in
@@ -1782,6 +1811,20 @@ dependencies to use with <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
 <p><code>version()</code> returns the compiler's version number as a string.</p>
+</li>
+<li>
+<p><code>has_function_attribute(name)</code> <em>(added in 0.48.0)</em> returns <code>true</code> if the
+compiler supports the GNU style (<code>__attribute__(...)</code>) <code>name</code>. This is
+preferable to manual compile checks as it may be optimized for compilers that
+do not support such attributes.
+<a href="Reference-tables.html#gcc-attribute-support">This table</a> Lists all of the
+supported attributes.</p>
+</li>
+<li>
+<p><code>get_supported_function_attributes(list_of_names)</code> *(added in 0.48.0)
+returns an array containing any names that are supported GCC style
+attributes. Equivalent to <code>has_function_attribute</code> was called on each of them
+individually.</p>
 </li>
 </ul>
 <p>The following keyword arguments can be used:</p>
@@ -2079,7 +2122,9 @@ with <code>declare_dependency()</code> and <code>pkgconfig</code> for system dep
 obtained with Pkg-config.</p>
 </li>
 <li>
-<p><code>version()</code> is the version number as a string, for example <code>1.2.8</code></p>
+<p><code>version()</code> is the version number as a string, for example <code>1.2.8</code>.
+<code>unknown</code> if the dependency provider doesn't support determining the
+version.</p>
 </li>
 <li>
 <p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (<em>added 0.46.0</em>) returns
@@ -2227,7 +2272,10 @@ and the other methods return unspecified data</li>
 <code>stdout()</code> the standard out produced when the command was run</li>
 </ul>
 
-</div>
+    </div>
+        
+
+
 
 
 		
@@ -2235,15 +2283,9 @@ and the other methods return unspecified data</li>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
+	<hr>
 	<div id="footer">
-		
-
-<hr>
-
-<div class="license-description">
-    Website licensing information are available on the <a href="legal.html">Legal</a> page.
-</div>
-
+		    
 
 	</div>
 </div>
@@ -2261,7 +2303,7 @@ and the other methods return unspecified data</li>
 </div>
 </main>
 
-</body>
 
 <script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
 </html>

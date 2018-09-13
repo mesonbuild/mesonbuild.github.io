@@ -14,12 +14,12 @@
 			page = project.tree.get_pages()[cpage_name]
 
 		prefix = project.extensions[page.extension_name].formatter.get_output_folder(page)
-		page_link = page.link.get_link(project.app.link_resolver)
+		page_link, attrs = page.link.get_link(project.app.link_resolver)
+
+		unique_ref = '%s-%s-%s' % (page.extension_name, page.project_name, page_link)
 
 		if prefix:
 			page_link = "%s/%s" % (prefix, page_link)
-
-		unique_ref = '%s-%s-%s' % (page.extension_name, page.project_name, page.link.get_link(project.app.link_resolver))
 
 		name = parent_name + '-' + str(level)
 		actual_level = name.count('-')

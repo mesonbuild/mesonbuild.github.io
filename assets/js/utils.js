@@ -49,6 +49,16 @@ Function.prototype.memoize = function(){
 
 var utils = utils || {};
 
+utils.parseQueryString = (function (query_string) {
+  var queries = query_string.split('&');
+  var res = {};
+  for (var i = 0; i < queries.length; i++) {
+    var query = queries[i].split('=');
+    res[query[0]] = query[1];
+  }
+  return res;
+});
+
 utils.parseUri = (function (str) {
 	var pattern = RegExp("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
 	var matches = str.match(pattern);
@@ -57,7 +67,7 @@ utils.parseUri = (function (str) {
 		scheme: matches[2],
 		authority: matches[4],
 		path: matches[5],
-		query: matches[7],
+		queries: utils.parseQueryString(matches[7] || ''),
 		fragment: matches[9]
 	};
 });
@@ -83,14 +93,34 @@ utils.uri_is_in_this_page = (function(uri) {
 	return utils.uri_is_in_page(utils.parseUri(window.location.href), uri);
 });
 
+utils.getLanguageCookie = (function () {
+    var name =  "gi-language=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "c";
+});
+
+utils.setLanguageCookie = (function (language) {
+    document.cookie = "gi-language=" + language + "; path=/";
+});
+
 utils.HDContext = (class {
 	constructor(href) {
+    var gi_languages_json = $('#page-wrapper').attr('data-hotdoc-meta-gi-languages');
 		this.project_url_path;
 		this.parsedUri = utils.parseUri(href);
 		this.extension = $('#page-wrapper').attr('data-extension');
 		this.hd_basename = $('#page-wrapper').attr('data-hotdoc-ref');
 		this.project_name = $('#page-wrapper').attr('data-hotdoc-project');
-		this.in_toplevel = $('#page-wrapper').attr('data-hotdoc-in-toplevel');
+    this.in_toplevel = $('#page-wrapper').attr('data-hotdoc-in-toplevel');
 		if (this.parsedUri.file == '') {
 			this.parsedUri.file = 'index.html';
 			this.parsedUri.path += 'index.html';
@@ -101,13 +131,18 @@ utils.HDContext = (class {
 			this.project_url_path = ''
 		else
 			this.project_url_path = this.project_name + '/';
-		if (this.extension == 'gi-extension') {
-			this.gi_language = $('#page-wrapper').attr('data-hotdoc-meta-gi-language');
-			this.gi_languages = $('#page-wrapper').attr('data-hotdoc-meta-gi-languages').split(',');
-			this.rel_path = this.project_url_path + this.gi_language + '/' + this.hd_basename;
-		} else {
-			this.rel_path = this.project_url_path + this.hd_basename;
-		}
+
+		this.in_toplevel = $('#page-wrapper').attr('data-hotdoc-in-toplevel');
+
+    if (gi_languages_json) {
+      this.gi_languages = JSON.parse(gi_languages_json.replace(/'/g, '"'));
+      this.gi_language = this.parsedUri.queries['gi-language'] || utils.getLanguageCookie() || 'c';
+      utils.setLanguageCookie(this.gi_language);
+    } else {
+      this.gi_languages = [];
+    }
+
+		this.rel_path = this.project_url_path + this.hd_basename;
 		this.hd_root = this.hd_root.replace(new RegExp(this.rel_path + "$"),'');
 	}
 });

@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "build_osx_installer.sh", "urls": ["Creating-OSX-packages.html#putting-it-all-together"]});
+urls_downloaded_cb({"token": "build_osx_installer.sh", "urls": [{"url": "Creating-OSX-packages.html#page-description", "context": {"gi-language": ["default"]}}]});

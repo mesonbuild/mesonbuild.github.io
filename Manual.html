@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -11,6 +12,7 @@
 <title>Manual</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
@@ -18,6 +20,7 @@
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/typeahead.jquery.min.js"></script>
 <script src="assets/js/search.js"></script>
@@ -62,7 +65,7 @@ $('body').removeClass('no-script');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<form action="" class="navbar-form pull-right" id="navbar-search-form">
+			<form class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
 				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
@@ -75,7 +78,7 @@ $('body').removeClass('no-script');
 				<span class="glyphicon glyphicon-menu-left"></span>
 			</a>
 			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
-				<img src="assets/images/meson_logo.png" alt="Home" id="home">
+				<img src="assets/images/meson_logo.png" alt="Home">
 			</a>
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-wrapper">
@@ -112,6 +115,9 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -159,264 +165,218 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				
-<div id="page-description" data-hotdoc-source="Manual.md" data-hotdoc-role="main">
-<h1 id="manual">Manual</h1>
+				    <div id="page-description" data-hotdoc-source="Manual.md" data-hotdoc-role="main">
+        <h1 id="manual">Manual</h1>
 <p>This is the user manual for Meson. It currently tracks the state of
 Git head. If you are using an older version, some of the information
 here might not work for you.</p>
 
-</div>
+    </div>
+        
+
+
 
 
 		<div id="subpages">
-	<h4>Subpages</h4>
-	<div class="container-fluid">
-		<div class="row">
-						<div class="col-sm-12 col-md-4">
-				<a href="Overview.html">Overview</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Overview of the Meson build system</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Running-Meson.html">Running Meson</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Building a project with Meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Builtin-options.html">Built-in options</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Built-in options to configure project properties</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Using-with-Visual-Studio.html">Using with Visual Studio</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>How to use meson in Visual Studio</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Meson-sample.html">Meson sample</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Simple project step by step explanation</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Syntax.html">Syntax</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Syntax and structure of Meson files</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Build-targets.html">Build targets</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Definition of build targets</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Include-directories.html">Include directories</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Instructions on handling include directories</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Installing.html">Installing</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Installing targets</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Adding-arguments.html">Adding arguments</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Adding compiler arguments</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Configuration.html">Configuration</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Build-time configuration options</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Compiler-properties.html">Compiler properties</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>No summary available</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Dependencies.html">Dependencies</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Dependencies for external libraries and frameworks</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Threads.html">Threads</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Enabling thread support</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="External-commands.html">External commands</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Running external commands</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Precompiled-headers.html">Precompiled headers</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Using precompiled headers to reduce compilation time</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Unity-builds.html">Unity builds</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Unity builds are a technique for reducing build times</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Feature-autodetection.html">Feature autodetection</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Auto-detection of features like ccache and code coverage</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Generating-sources.html">Generating sources</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Generation of source files before compilation</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Unit-tests.html">Unit tests</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Meson's own unit-test system</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Cross-compilation.html">Cross compilation</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Setting up cross-compilation</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Localisation.html">Localisation</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Localization with GNU Gettext</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Build-options.html">Build options</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Build options to configure project properties</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Subprojects.html">Subprojects</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Using meson projects as subprojects within other meson projects</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Disabler.html">Disabling parts of the build</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Disabling options</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Modules.html">Modules</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Meson modules for common build operations</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Java.html">Java</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Compiling Java programs</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Vala.html">Vala</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Compiling Vala and Genie programs</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="D.html">D</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Compiling D sources</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="IDE-integration.html">IDE integration</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Meson's API to integrate Meson support into an IDE</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Custom-build-targets.html">Custom build targets</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Build targets for custom languages or corner-cases</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Build-system-converters.html">Build system converters</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Converting other build systems to Meson</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Configuring-a-build-directory.html">Configuring a build directory</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Configuring a pre-generated build directory</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Run-targets.html">Run targets</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Targets to run external commands</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Creating-releases.html">Creating releases</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Creating releases</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Creating-OSX-packages.html">Creating OSX packages</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Tools to create OS X packages</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Creating-Linux-binaries.html">Creating Linux binaries</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Creating universal Linux binaries</p>
-							</div>
-						<div class="col-sm-12 col-md-4">
-				<a href="Project-templates.html">Project templates</a>
-			</div>
-			<div class="col-sm-12 col-md-8 subpage-description">
-								<p>Project templates</p>
-							</div>
-					</div>
+	<p><b>Subpages:</b></p>
+			<p>
+		<a href="Overview.html">Overview</a>
+		–
+					Overview of the Meson build system
+				</p>
+			<p>
+		<a href="Running-Meson.html">Running Meson</a>
+		–
+					Building a project with Meson
+				</p>
+			<p>
+		<a href="Builtin-options.html">Built-in options</a>
+		–
+					Built-in options to configure project properties
+				</p>
+			<p>
+		<a href="Using-with-Visual-Studio.html">Using with Visual Studio</a>
+		–
+					How to use meson in Visual Studio
+				</p>
+			<p>
+		<a href="Meson-sample.html">Meson sample</a>
+		–
+					Simple project step by step explanation
+				</p>
+			<p>
+		<a href="Syntax.html">Syntax</a>
+		–
+					Syntax and structure of Meson files
+				</p>
+			<p>
+		<a href="Build-targets.html">Build targets</a>
+		–
+					Definition of build targets
+				</p>
+			<p>
+		<a href="Include-directories.html">Include directories</a>
+		–
+					Instructions on handling include directories
+				</p>
+			<p>
+		<a href="Installing.html">Installing</a>
+		–
+					Installing targets
+				</p>
+			<p>
+		<a href="Adding-arguments.html">Adding arguments</a>
+		–
+					Adding compiler arguments
+				</p>
+			<p>
+		<a href="Configuration.html">Configuration</a>
+		–
+					Build-time configuration options
+				</p>
+			<p>
+		<a href="Compiler-properties.html">Compiler properties</a>
+		–
+					<i><em>No description available</em></i>
+				</p>
+			<p>
+		<a href="Dependencies.html">Dependencies</a>
+		–
+					Dependencies for external libraries and frameworks
+				</p>
+			<p>
+		<a href="Threads.html">Threads</a>
+		–
+					Enabling thread support
+				</p>
+			<p>
+		<a href="External-commands.html">External commands</a>
+		–
+					Running external commands
+				</p>
+			<p>
+		<a href="Precompiled-headers.html">Precompiled headers</a>
+		–
+					Using precompiled headers to reduce compilation time
+				</p>
+			<p>
+		<a href="Unity-builds.html">Unity builds</a>
+		–
+					Unity builds are a technique for reducing build times
+				</p>
+			<p>
+		<a href="Feature-autodetection.html">Feature autodetection</a>
+		–
+					Auto-detection of features like ccache and code coverage
+				</p>
+			<p>
+		<a href="Generating-sources.html">Generating sources</a>
+		–
+					Generation of source files before compilation
+				</p>
+			<p>
+		<a href="Unit-tests.html">Unit tests</a>
+		–
+					Meson's own unit-test system
+				</p>
+			<p>
+		<a href="Cross-compilation.html">Cross compilation</a>
+		–
+					Setting up cross-compilation
+				</p>
+			<p>
+		<a href="Localisation.html">Localisation</a>
+		–
+					Localization with GNU Gettext
+				</p>
+			<p>
+		<a href="Build-options.html">Build options</a>
+		–
+					Build options to configure project properties
+				</p>
+			<p>
+		<a href="Subprojects.html">Subprojects</a>
+		–
+					Using meson projects as subprojects within other meson projects
+				</p>
+			<p>
+		<a href="Disabler.html">Disabling parts of the build</a>
+		–
+					Disabling options
+				</p>
+			<p>
+		<a href="Modules.html">Modules</a>
+		–
+					Meson modules for common build operations
+				</p>
+			<p>
+		<a href="Java.html">Java</a>
+		–
+					Compiling Java programs
+				</p>
+			<p>
+		<a href="Vala.html">Vala</a>
+		–
+					Compiling Vala and Genie programs
+				</p>
+			<p>
+		<a href="D.html">D</a>
+		–
+					Compiling D sources
+				</p>
+			<p>
+		<a href="IDE-integration.html">IDE integration</a>
+		–
+					Meson's API to integrate Meson support into an IDE
+				</p>
+			<p>
+		<a href="Custom-build-targets.html">Custom build targets</a>
+		–
+					Build targets for custom languages or corner-cases
+				</p>
+			<p>
+		<a href="Build-system-converters.html">Build system converters</a>
+		–
+					Converting other build systems to Meson
+				</p>
+			<p>
+		<a href="Configuring-a-build-directory.html">Configuring a build directory</a>
+		–
+					Configuring a pre-generated build directory
+				</p>
+			<p>
+		<a href="Run-targets.html">Run targets</a>
+		–
+					Targets to run external commands
+				</p>
+			<p>
+		<a href="Creating-releases.html">Creating releases</a>
+		–
+					Creating releases
+				</p>
+			<p>
+		<a href="Creating-OSX-packages.html">Creating OSX packages</a>
+		–
+					Tools to create OS X packages
+				</p>
+			<p>
+		<a href="Creating-Linux-binaries.html">Creating Linux binaries</a>
+		–
+					Creating universal Linux binaries
+				</p>
+			<p>
+		<a href="Project-templates.html">Project templates</a>
+		–
+					Project templates
+				</p>
 	</div>
-</div>
 	</div>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
+	<hr>
 	<div id="footer">
-		
-
-<hr>
-
-<div class="license-description">
-    Website licensing information are available on the <a href="legal.html">Legal</a> page.
-</div>
-
+		    
 
 	</div>
 </div>
@@ -434,7 +394,7 @@ here might not work for you.</p>
 </div>
 </main>
 
-</body>
 
 <script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
 </html>

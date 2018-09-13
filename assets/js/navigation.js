@@ -5,10 +5,7 @@ function unfold_current_page(base_name) {
 	panels_to_unfold.addClass("panel-body-current").parent().addClass('sidenav-panel-current');
 	this_panel.addClass("panel-body-current").parent().addClass('sidenav-panel-current');
 
-	if (utils.hd_context.gi_language != undefined)
-		$(this_panel_body).attr("href", utils.hd_context.gi_language + "/" +  utils.hd_context.hd_basename + "#");
-	else
-		$(this_panel_body).attr("href", utils.hd_context.hd_basename + "#");
+	$(this_panel_body).attr("href", utils.hd_context.hd_basename + "#");
 
 	panels_to_unfold.collapse("show");
 	this_panel.collapse("show");
@@ -32,11 +29,6 @@ function sitemap_downloaded_cb(html_sitemap) {
 }
 
 $(document).ready(function() {
-	$('#sidenav a').click(function(e) {
-		scroll_if_anchor ($(this).attr("href"));
-		e.stopPropagation();
-	});
-
 	setupFilters();
 
 	$("#toc-wrapper").mCustomScrollbar({"scrollInertia": 0,

@@ -1,12 +1,10 @@
 @require(parameters)
 
 @if parameters:
-	<div class="parameter_container">
-		<h4>Parameters</h4>
-		<div class="container-fluid">
-			@for parameter in parameters:
-				@parameter
-			@end
-		</div>
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+		@for parameter in parameters:
+			@parameter
+		@end
 	</div>
 @end
