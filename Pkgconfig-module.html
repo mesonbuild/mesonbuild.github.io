@@ -183,8 +183,8 @@ keyword arguments.</p>
 <code>extra_cflags</code> a list of extra compiler flags to be added to the
 <code>Cflags</code> field after the header search path</li>
 <li>
-<code>filebase</code>, the base name to use for the pkg-config file, as an
-example the value of <code>libfoo</code> would produce a pkg-config file called
+<code>filebase</code> the base name to use for the pkg-config file; as an
+example, the value of <code>libfoo</code> would produce a pkg-config file called
 <code>libfoo.pc</code>
 </li>
 <li>
@@ -193,7 +193,7 @@ option <code>libdir</code> followed by <code>/pkgconfig</code>
 </li>
 <li>
 <code>libraries</code> a list of built libraries (usually results of
-shared_library) that the user needs to link against. Arbitraty strings can
+shared_library) that the user needs to link against. Arbitrary strings can
 also be provided and they will be added into the <code>Libs</code> field. Since 0.45.0
 dependencies of built libraries will be automatically added to <code>Libs.private</code>
 field. If a dependency is provided by pkg-config then it will be added in

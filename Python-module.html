@@ -200,7 +200,9 @@ sysconfig module matches the required major version</p>
 abort if no python installation can be found. If <code>required</code> is set to <code>false</code>,
 Meson will continue even if no python installation was found. You can
 then use the <code>.found()</code> method on the returned object to check
-whether it was found or not.</li>
+whether it was found or not. Since <em>0.48.0</em>  the value of a
+<a href="Build-options.html#features"><code>feature</code></a> option can also be passed to the
+<code>required</code> keyword argument.</li>
 </ul>
 <p><strong>Returns</strong>: a <a href="Python-module.html#python_installation-object">python installation</a></p>
 <h2 id="python_installation-object">

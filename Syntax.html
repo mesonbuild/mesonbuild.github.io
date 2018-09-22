@@ -420,10 +420,27 @@ else
 endif
 
 opt = get_option('someoption')
-if opt == 'foo'
+if opt != 'foo'
   do_something()
 endif
 </code></pre>
+<h2 id="logical-operations">Logical operations</h2>
+<p>Meson has the standard range of logical operations which can be used in
+<code>if</code> statements.</p>
+<pre><code class="language-meson">if a and b
+  # do something
+endif
+if c or d
+  # do something
+endif
+if not e
+  # do something
+endif
+if not (f or g)
+  # do something
+endif
+</code></pre>
+<p>Logical operations work only on boolean values.</p>
 <h2 id="foreach-statements">Foreach statements</h2>
 <p>To do an operation on all elements of an iterable, use the <code>foreach</code>
 command.</p>
@@ -465,22 +482,6 @@ foreach name, sources : components
   endif
 endforeach
 </code></pre>
-<h2 id="logical-operations">Logical operations</h2>
-<p>Meson has the standard range of logical operations.</p>
-<pre><code class="language-meson">if a and b
-  # do something
-endif
-if c or d
-  # do something
-endif
-if not e
-  # do something
-endif
-if not (f or g)
-  # do something
-endif
-</code></pre>
-<p>Logical operations work only on boolean values.</p>
 <h2 id="comments">Comments</h2>
 <p>A comment starts with the <code>#</code> character and extends until the end of the line.</p>
 <pre><code class="language-meson">some_function() # This is a comment

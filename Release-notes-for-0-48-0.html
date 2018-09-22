@@ -167,13 +167,225 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-source="Release-notes-for-0.48.0.md" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
-<p>This page is a placeholder for the eventual release notes.</p>
-<p>Notable new features should come with release note updates. This is
-done by creating a file snippet called <code>snippets/featurename.md</code> and
-whose contents should look like this:</p>
-<pre><code>## Feature name
+<h2 id="toggles-for-build-type-optimization-and-vcrt-type">Toggles for build type, optimization and vcrt type</h2>
+<p>Since the very beginning Meson has provided different project types to
+use, such as <em>debug</em> and <em>minsize</em>. There is also a <em>plain</em> type that
+adds nothing by default but instead makes it the user's responsibility
+to add everything by hand. This works but is a bit tedious.</p>
+<p>In this release we have added new new options to manually toggle
+e.g. optimization levels and debug info so those can be changed
+independently of other options. For example by default the debug
+buildtype has no optmization enabled at all. If you wish to use GCC's
+<code>-Og</code> instead, you could set it with the following command:</p>
+<pre><code>meson configure -Doptimization=g
+</code></pre>
+<p>Similarly we have added a toggle option to select the version of
+Visual Studio C runtime to use. By default it uses the debug runtime
+DLL debug builds and release DLL for release builds but this can be
+manually changed with the new base option <code>b_vscrt</code>.</p>
+<h2 id="meson-warns-if-two-calls-to-configure_file-write-to-the-same-file">Meson warns if two calls to configure_file() write to the same file</h2>
+<p>If two calls to <a href="Release-notes-for-0-48-0.html#Reference-manual.md#configure_file"><code>configure_file()</code></a>
+write to the same file Meson will print a <code>WARNING:</code> message during
+configuration. For example:</p>
+<pre><code class="language-meson">project('configure_file', 'cpp')
 
-A short description explaining the new feature and how it should be used.
+configure_file(
+      input: 'a.in',
+      output: 'out',
+      command: ['./foo.sh']
+    )
+configure_file(
+  input: 'a.in',
+  output: 'out',
+  command: ['./foo.sh']
+)
+
+</code></pre>
+<p>This will output:</p>
+<pre><code>The Meson build system
+Version: 0.47.0.dev1
+Source dir: /path/to/srctree
+Build dir: /path/to/buildtree
+Build type: native build
+Project name: configure_file
+Project version: undefined
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Configuring out with command
+WARNING: Output file out for configure_file overwritten. First time written in line 3 now in line 8
+Configuring out with command
+Build targets in project: 0
+Found ninja-1.8.2 at /usr/bin/ninja
+</code></pre>
+<h2 id="new-kwarg-console-for-custom_target">New kwarg <code>console</code> for <code>custom_target()</code>
+</h2>
+<p>This keyword argument conflicts with <code>capture</code>, and is meant for
+commands that are resource-intensive and take a long time to
+finish. With the Ninja backend, setting this will add this target to
+<a href="https://ninja-build.org/manual.html#_the_literal_console_literal_pool">Ninja's <code>console</code>
+pool</a>,
+which has special properties such as not buffering stdout and
+serializing all targets in this pool.</p>
+<p>The primary use-case for this is to be able to run external commands
+that take a long time to exeute. Without setting this, the user does
+not receive any feedback about what the program is doing.</p>
+<h2 id="dependencyversion-now-applies-to-all-dependency-types">
+<code>dependency(version:)</code> now applies to all dependency types</h2>
+<p>Previously, version constraints were only enforced for dependencies found using
+the pkg-config dependency provider.  These constraints now apply to dependencies
+found using any dependency provider.</p>
+<p>Some combinations of dependency, host and method do not currently support
+discovery of the version.  In these cases, the dependency will not be found if a
+version constraint is applied, otherwise the <code>version()</code> method for the
+dependency object will return <code>'unknown'</code>.</p>
+<p>(If discovering the version in one of these combinations is important to you,
+and a method exists to determine the version in that case, please file an issue
+with as much information as possible.)</p>
+<h2 id="python3-module-is-deprecated">python3 module is deprecated</h2>
+<p>A generic module <code>python</code> has been added in Meson <code>0.46.0</code> and has a superset of
+the features implemented by the previous <code>python3</code> module.</p>
+<p>In most cases, it is a simple matter of renaming:</p>
+<pre><code class="language-meson">py3mod = import('python3')
+python = py3mod.find_python()
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-meson">pymod = import('python')
+python = pymod.find_installation()
+</code></pre>
+<h2 id="dictionary-addition">Dictionary addition</h2>
+<p>Dictionaries can now be added, values from the second dictionary overrides values
+from the first</p>
+<pre><code class="language-meson">d1 = {'a' : 'b'}
+d3 = d1 + {'a' : 'c'}
+d3 += {'d' : 'e'}
+</code></pre>
+<h2 id="dist-scripts">Dist scripts</h2>
+<p>You can now specify scripts that are run as part of the <code>dist</code>
+target. An example usage would go like this:</p>
+<pre><code class="language-meson">project('foo', 'c')
+
+# other stuff here
+
+meson.add_dist_script('dist_cleanup.py')
+</code></pre>
+<h2 id="fatal-warnings">Fatal warnings</h2>
+<p>A new command line option has been added: <code>--fatal-meson-warnings</code>. When enabled, any
+warning message printed by Meson will be fatal and raise an exception. It is
+intended to be used by developers and CIs to easily catch deprecation warnings,
+or any other potential issues.</p>
+<h2 id="helper-methods-added-for-checking-gnu-style-attributes-attribute">Helper methods added for checking GNU style attributes: <strong>attribute</strong>(...)</h2>
+<p>A set of new helpers have been added to the C and C++ compiler objects for
+checking GNU style function attributes. These are not just simpler to use, they
+may be optimized to return fast on compilers that don't support these
+attributes. Currently this is true for MSVC.</p>
+<pre><code class="language-meson">cc = meson.get_compiler('c')
+if cc.has_function_attribute('aligned')
+   add_project_arguments('-DHAVE_ALIGNED', language : 'c')
+endif
+</code></pre>
+<p>Would replace code like:</p>
+<pre><code class="language-meson">if cc.compiles('''into foo(void) __attribute__((aligned(32)))''')
+   add_project_arguments('-DHAVE_ALIGNED', language : 'c')
+endif
+</code></pre>
+<p>Additionally, a multi argument version has been added:</p>
+<pre><code class="language-meson">foreach s : cc.get_supported_function_attributes(['hidden', 'alias'])
+   add_project_arguments('-DHAVE_@0@'.format(s.to_upper()), language : 'c')
+endforeach
+</code></pre>
+<h2 id="gnomegenerate_gir-now-optionally-accepts-multiple-libraries">gnome.generate_gir() now optionally accepts multiple libraries</h2>
+<p>The GNOME module can now generate a single gir for multiple libraries, which
+is something <code>g-ir-scanner</code> supported, but had not been exposed yet.</p>
+<p>gnome.generate_gir() will now accept multiple positional arguments, if none
+of these arguments are an <code>Executable</code> instance.</p>
+<h2 id="hotdoc-module">Hotdoc module</h2>
+<p>A new module has been written to ease generation of
+<a href="https://hotdoc.github.io/">hotdoc</a> based documentation. It supports
+complex use cases such as hotdoc subprojects (to create documentation
+portals) and makes it straight forward to leverage full capabilities
+of hotdoc.</p>
+<p>Simple usage:</p>
+<pre><code class="language-meson">hotdoc = import('hotdoc')
+
+hotdoc.generate_doc(
+  'foobar',
+  c_smart_index: true,
+  project_version: '0.1',
+  sitemap: 'sitemap.txt',
+  index: 'index.md',
+  c_sources: ['path/to/file.c'],
+  languages: ['c'],
+  install: true,
+)
+</code></pre>
+<h2 id="i18nmerge_file-now-fully-supports-variable-substitutions-defined-in-custom_target">i18n.merge_file() now fully supports variable substitutions defined in custom_target()</h2>
+<p>Filename substitutions like @BASENAME@ and @PLAINNAME@ were previously
+accepted but the name of the build target wasn't altered leading to
+colliding target names when using the substitution twice.
+i18n.merge_file() now behaves as custom_target() in this regard.</p>
+<h2 id="projects-args-can-be-set-separately-for-cross-and-native-builds-potentially-breaking-change">Projects args can be set separately for cross and native builds (potentially breaking change)</h2>
+<p>It has been a longstanding bug (or let's call it a "delayed bug fix")
+that if yo do this:</p>
+<pre><code class="language-meson">add_project_arguments('-DFOO', language : 'c')
+</code></pre>
+<p>Then the flag is used both in native and cross compilations. This is
+very confusing and almost never what you want. To fix this a new
+keyword <code>native</code> has been added to all functions that add arguments,
+namely <code>add_global_arguments</code>, <code>add_global_link_arguments</code>,
+<code>add_project_arguments</code> and <code>add_project_link_arguments</code> that behaves
+like the following:</p>
+<pre><code>## Added to native builds when compiling natively and to cross
+## compilations when doing cross compiles.
+add_project_arguments(...)
+
+## Added only to native compilations, not used in cross compilations.
+add_project_arguments(..., native : true)
+
+## Added only to cross compilations, not used in native compilations.
+add_project_arguments(..., native : false)
+</code></pre>
+<p>Also remember that cross compilation is a property of each
+target. There can be target that are compiled with the native compiler
+and some which are compiled with the cross compiler.</p>
+<p>Unfortunately this change is backwards incompatible and may cause some
+projects to fail building. However this should be very rare in practice.</p>
+<h2 id="more-flexible-override_find_program">More flexible <code>override_find_program()</code>.</h2>
+<p>It is now possible to pass an <code>executable</code> to
+<code>override_find_program()</code> if the overridden program is not used during
+configure.</p>
+<p>This is particularly useful for fallback dependencies like Protobuf
+that also provide a tool like protoc.</p>
+<h2 id="shared_library-now-supports-setting-dylib-compatibility-and-current-version">
+<code>shared_library()</code> now supports setting dylib compatibility and current version</h2>
+<p>Now, by default <code>shared_library()</code> sets <code>-compatibility_version</code> and
+<code>-current_version</code> of a macOS dylib using the <code>soversion</code>.</p>
+<p>This can be overriden by using the <code>darwin_versions:</code> kwarg to
+<a href="Reference-manual.html#shared_library"><code>shared_library()</code></a>. As usual, you can
+also pass this kwarg to <code>library()</code> or <code>build_target()</code> and it will be used in
+the appropriate circumstances.</p>
+<h2 id="version-comparison">Version comparison</h2>
+<p><code>dependency(version:)</code> and other version constraints now handle versions
+containing non-numeric characters better, comparing versions using the rpmvercmp
+algorithm (as using the <code>pkg-config</code> autoconf macro <code>PKG_CHECK_MODULES</code> does).</p>
+<p>This is a breaking change for exact comparison constraints which rely on the
+previous comparison behaviour of extending the compared versions with <code>'0'</code>
+elements, up to the same length of <code>'.'</code>-separated elements.</p>
+<p>For example, a version of <code>'0.11.0'</code> would previously match a version constraint
+of <code>'==0.11'</code>, but no longer does, being instead considered strictly greater.</p>
+<p>Instead, use a version constraint which exactly compares with the precise
+version required, e.g. <code>'==0.11.0'</code>.</p>
+<h2 id="keyword-argument-for-gnu-symbol-visibility">Keyword argument for GNU symbol visibility</h2>
+<p>Build targets got a new keyword, <code>gnu_symbol_visibility</code> that controls
+how symbols are exported from shared libraries. This is most commonly
+used to hide implementation symbols like this:</p>
+<pre><code class="language-meson">shared_library('mylib', ...
+  gnu_symbol_visibility: 'hidden')
+</code></pre>
+<p>In this case only symbols explicitly marked as visible in the source
+files get exported.</p>
+<h2 id="git-wraps-can-now-clone-submodules-automatically">Git wraps can now clone submodules automatically</h2>
+<p>To enable this, the following needs to be added to the <code>.wrap</code> file:</p>
+<pre><code class="language-ini">clone-recursive=true
 </code></pre>
 
     </div>

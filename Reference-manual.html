@@ -1143,7 +1143,7 @@ terms. You can access the value in your Meson build files with
 </li>
 <li>
 <p><code>meson_version</code> takes a string describing which Meson version the
-project requires. Usually something like <code>&gt;0.28.0</code>.</p>
+project requires. Usually something like <code>&gt;=0.28.0</code>.</p>
 </li>
 <li>
 <p><code>subproject_dir</code> specifies the top level directory name that holds
@@ -1213,6 +1213,8 @@ script does file globbing internally)</li>
 </code></pre>
 <p>Assigns a value to the given variable name. Calling
 <code>set_variable('foo', bar)</code> is equivalent to <code>foo = bar</code>.</p>
+<p><strong>Note:</strong> Prior to v0.46.1, the <code>value</code> parameter could not be an
+array type, due to flattening of the function parameters.</p>
 <h3 id="shared_library">shared_library()</h3>
 <pre><code class="language-meson">    buildtarget shared_library(library_name, list_of_sources, ...)
 </code></pre>

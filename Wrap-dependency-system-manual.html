@@ -252,6 +252,10 @@ these cases you can specify the upload URL by adding the following at
 the end of your wrap file:</p>
 <pre><code class="language-ini">push-url=git@git.example.com:projects/someproject.git # Supported since version 0.37.0
 </code></pre>
+<p>If the git repo contains submodules, you can tell Meson to clone them
+automatically by adding the following <em>(since 0.48.0)</em>:</p>
+<pre><code class="language-ini">clone-recursive=true
+</code></pre>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>To use a subproject simply do this in your top level <code>meson.build</code>.</p>
 <pre><code class="language-meson">foobar_sp = subproject('foobar')
