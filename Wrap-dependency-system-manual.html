@@ -235,9 +235,9 @@ packaged files. Sometimes you want to check code out directly from
 Git. Meson supports this natively. All you need to do is to write a
 slightly different wrap file.</p>
 <pre><code class="language-ini">[wrap-git]
-directory=samplesubproject
-url=https://github.com/jpakkane/samplesubproject.git
-revision=head
+directory = samplesubproject
+url = https://github.com/jpakkane/samplesubproject.git
+revision = head
 </code></pre>
 <p>The format is straightforward. The only thing to note is the revision
 element that can have one of two values. The first is <code>head</code> which
@@ -250,25 +250,25 @@ use. The git repo must contain all necessary Meson build definitions.</p>
 you want to do commits to subprojects and push them upstream. For
 these cases you can specify the upload URL by adding the following at
 the end of your wrap file:</p>
-<pre><code class="language-ini">push-url=git@git.example.com:projects/someproject.git # Supported since version 0.37.0
+<pre><code class="language-ini">push-url = git@git.example.com:projects/someproject.git # Supported since version 0.37.0
 </code></pre>
 <p>If the git repo contains submodules, you can tell Meson to clone them
 automatically by adding the following <em>(since 0.48.0)</em>:</p>
-<pre><code class="language-ini">clone-recursive=true
+<pre><code class="language-ini">clone-recursive = true
 </code></pre>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>To use a subproject simply do this in your top level <code>meson.build</code>.</p>
-<pre><code class="language-meson">foobar_sp = subproject('foobar')
+<pre><code class="language-meson">foobar_proj = subproject('foobar')
 </code></pre>
 <p>Usually dependencies consist of some header files plus a library to
-link against. To do this you would declare this internal dependency
-like this:</p>
+link against. To do this in a project so it can be used as a subproject you
+would declare this internal dependency like this:</p>
 <pre><code class="language-meson">foobar_dep = declare_dependency(link_with : mylib,
   include_directories : myinc)
 </code></pre>
 <p>Then in your main project you would use them like this:</p>
 <pre><code class="language-meson">executable('toplevel_exe', 'prog.c',
-  dependencies : foobar_sp.get_variable('foobar_dep'))
+  dependencies : foobar_proj.get_variable('foobar_dep'))
 </code></pre>
 <p>Note that the subproject object is <em>not</em> used as the dependency, but
 rather you need to get the declared dependency from it with
@@ -285,10 +285,10 @@ available.</p>
 <pre><code class="language-meson">foobar_dep = dependency('foobar', required : false)
 
 if not foobar_dep.found()
-  foobar_subproj = subproject('foobar')
+  foobar_proj = subproject('foobar')
   # the subproject defines an internal dependency with
   # the command declare_dependency().
-  foobar_dep = foobar_subproj.get_variable('foobar_dep')
+  foobar_dep = foobar_proj.get_variable('foobar_dep')
 endif
 
 executable('toplevel_exe', 'prog.c',

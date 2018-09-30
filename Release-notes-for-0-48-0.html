@@ -183,7 +183,7 @@ buildtype has no optmization enabled at all. If you wish to use GCC's
 Visual Studio C runtime to use. By default it uses the debug runtime
 DLL debug builds and release DLL for release builds but this can be
 manually changed with the new base option <code>b_vscrt</code>.</p>
-<h2 id="meson-warns-if-two-calls-to-configure_file-write-to-the-same-file">Meson warns if two calls to configure_file() write to the same file</h2>
+<h2 id="meson-warns-if-two-calls-to-configure_file-write-to-the-same-file">Meson warns if two calls to <code>configure_file()</code> write to the same file</h2>
 <p>If two calls to <a href="Release-notes-for-0-48-0.html#Reference-manual.md#configure_file"><code>configure_file()</code></a>
 write to the same file Meson will print a <code>WARNING:</code> message during
 configuration. For example:</p>
@@ -273,7 +273,8 @@ meson.add_dist_script('dist_cleanup.py')
 warning message printed by Meson will be fatal and raise an exception. It is
 intended to be used by developers and CIs to easily catch deprecation warnings,
 or any other potential issues.</p>
-<h2 id="helper-methods-added-for-checking-gnu-style-attributes-attribute">Helper methods added for checking GNU style attributes: <strong>attribute</strong>(...)</h2>
+<h2 id="helper-methods-added-for-checking-gnu-style-attributes-__attribute__">Helper methods added for checking GNU style attributes: <code>__attribute__(...)</code>
+</h2>
 <p>A set of new helpers have been added to the C and C++ compiler objects for
 checking GNU style function attributes. These are not just simpler to use, they
 may be optimized to return fast on compilers that don't support these
@@ -293,7 +294,8 @@ endif
    add_project_arguments('-DHAVE_@0@'.format(s.to_upper()), language : 'c')
 endforeach
 </code></pre>
-<h2 id="gnomegenerate_gir-now-optionally-accepts-multiple-libraries">gnome.generate_gir() now optionally accepts multiple libraries</h2>
+<h2 id="gnomegenerate_gir-now-optionally-accepts-multiple-libraries">
+<code>gnome.generate_gir()</code> now optionally accepts multiple libraries</h2>
 <p>The GNOME module can now generate a single gir for multiple libraries, which
 is something <code>g-ir-scanner</code> supported, but had not been exposed yet.</p>
 <p>gnome.generate_gir() will now accept multiple positional arguments, if none
@@ -318,7 +320,9 @@ hotdoc.generate_doc(
   install: true,
 )
 </code></pre>
-<h2 id="i18nmerge_file-now-fully-supports-variable-substitutions-defined-in-custom_target">i18n.merge_file() now fully supports variable substitutions defined in custom_target()</h2>
+<h2 id="i18nmerge_file-now-fully-supports-variable-substitutions-defined-in-custom_target">
+<code>i18n.merge_file()</code> now fully supports variable substitutions defined in <code>custom_target()</code>
+</h2>
 <p>Filename substitutions like @BASENAME@ and @PLAINNAME@ were previously
 accepted but the name of the build target wasn't altered leading to
 colliding target names when using the substitution twice.
