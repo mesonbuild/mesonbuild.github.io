@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -175,6 +175,10 @@ whose contents should look like this:</p>
 
 A short description explaining the new feature and how it should be used.
 </code></pre>
+<h2 id="libgcrypt-dependency-now-supports-libgcryptconfig">Libgcrypt dependency now supports libgcrypt-config</h2>
+<p>Earlier, <code>dependency('libgcrypt')</code> could only detect the library with pkg-config
+files. Now, if pkg-config files are not found, Meson will look for
+<code>libgcrypt-config</code> and if it's found, will use that to find the library.</p>
 
     </div>
         

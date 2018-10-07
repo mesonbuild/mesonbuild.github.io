@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -173,11 +173,15 @@ file for D looks like this:</p>
 
 executable('myapp', 'app.d')
 </code></pre>
-<h2 id="compiling-different-versions">Compiling different versions</h2>
-<p>If you are using the <a href="https://dlang.org/spec/version.html">version()</a> feature for conditional compilation,
+<h2 id="conditional-compilation"><a href="https://dlang.org/spec/version.html">Conditional compilation</a></h2>
+<p>If you are using the <a href="https://dlang.org/spec/version.html#version-specification">version()</a> feature for conditional compilation,
 you can use it using the <code>d_module_versions</code> target property:</p>
 <pre><code class="language-meson">project('myapp', 'd')
 executable('myapp', 'app.d', d_module_versions: ['Demo', 'FeatureA'])
+</code></pre>
+<p>For debugging, <a href="https://dlang.org/spec/version.html#debug">debug()</a> conditions are compiled automatically in debug builds, and extra identifiers can be added with the <code>d_debug</code> argument:</p>
+<pre><code class="language-meson">project('myapp', 'd')
+executable('myapp', 'app.d', d_debug: [3, 'DebugFeatureA'])
 </code></pre>
 <h2 id="using-embedded-unittests">Using embedded unittests</h2>
 <p>If you are using embedded <a href="https://dlang.org/spec/unittest.html">unittest functions</a>, your source code needs

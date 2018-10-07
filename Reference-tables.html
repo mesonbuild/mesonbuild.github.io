@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -367,6 +367,10 @@ set in the cross file.</p>
 </table>
 <p>Any cpu family not listed in the above list is not guaranteed to
 remain stable in future releases.</p>
+<p>Those porting from autotools should note that meson does not add
+endianness to the name of the cpu_family. For example, autotools
+will call little endian PPC64 "ppc64le", meson will not, you must
+also check the <code>.endian()</code> value of the machine for this information.</p>
 <h2 id="operating-system-names">Operating system names</h2>
 <p>These are provided by the <code>.system()</code> method call.</p>
 <table>
