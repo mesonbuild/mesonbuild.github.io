@@ -291,11 +291,14 @@ library. In addition it supports the following extra methods:</p>
 <a href="Reference-manual.html#library"><code>library</code></a> has methods that are documented in the <a href="Reference-manual.html#build-target-object">object
 methods section</a> below.</p>
 <h3 id="configuration_data">configuration_data()</h3>
-<pre><code class="language-meson">    configuration_data_object = configuration_data()
+<pre><code class="language-meson">    configuration_data_object = configuration_data(...)
 </code></pre>
 <p>Creates an empty configuration object. You should add your
 configuration with <a href="Reference-manual.html#configuration-data-object">its method calls</a> and
 finally use it in a call to <code>configure_file</code>.</p>
+<p>Since <em>0.49.0</em> takes an optional dictionary as first argument. If provided, each
+key/value pair is added into the <code>configuration_data</code> as if <code>set()</code> method was
+called for each of them.</p>
 <h3 id="configure_file">configure_file()</h3>
 <pre><code class="language-meson">    generated_file = configure_file(...)
 </code></pre>
@@ -305,7 +308,8 @@ passed to it.</p>
 to the <code>configuration:</code> keyword argument, it takes a template file as
 the <code>input:</code> (optional) and produces the <code>output:</code> (required) by
 substituting values from the configuration data as detailed in <a href="Configuration.html">the
-configuration file documentation</a>.</p>
+configuration file documentation</a>. Since <em>0.49.0</em> a dictionary
+can be passed instead of a <a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> object.</p>
 <p>When a list of strings is passed to the <code>command:</code> keyword argument,
 it takes any source or configured file as the <code>input:</code> and assumes
 that the <code>output:</code> is produced when the specified command is run.</p>

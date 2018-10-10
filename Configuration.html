@@ -248,6 +248,34 @@ configure a file that is not utf-8 encoded the encoding keyword will allow
 you to specify which file encoding to use. It is however strongly advised to
 convert your non utf-8 file to utf-8 whenever possible. Supported file
 encodings are those of python3, see <a href="https://docs.python.org/3/library/codecs.html#standard-encodings">standard-encodings</a>.</p>
+<h2 id="using-dictionaries">Using dictionaries</h2>
+<p>Since <em>0.49.0</em> <code>configuration_data()</code> takes an optional dictionary as first
+argument. If provided, each key/value pair is added into the
+<code>configuration_data</code> as if <code>set()</code> method was called for each of them.
+<code>configure_file()</code>'s <code>configuration</code> kwarg also accepts a dictionary instead of
+a configuration_data object.</p>
+<p>Example:</p>
+<pre><code class="language-meson">cdata = configuration_data({
+  'STRING' : '"foo"',
+  'INT' : 42,
+  'DEFINED' : true,
+  'UNDEFINED' : false,
+})
+
+configure_file(output : 'config1.h',
+  configuration : cdata,
+)
+
+configure_file(output : 'config2.h',
+  configuration : {
+    'STRING' : '"foo"',
+    'INT' : 42,
+    'DEFINED' : true,
+    'UNDEFINED' : false,
+  }
+)
+
+</code></pre>
 <h1 id="a-full-example">A full example</h1>
 <p>Generating and using a configuration file requires the following steps:</p>
 <ul>
