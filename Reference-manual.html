@@ -253,6 +253,10 @@ the following:</p>
 <p>Note that all these options are also available while running the
 <code>meson test</code> script for running tests instead of <code>ninja test</code> or
 <code>msbuild RUN_TESTS.vcxproj</code>, etc depending on the backend.</p>
+<h3 id="assert">assert()</h3>
+<pre><code class="language-meson">    void assert(*condition*, *message*)
+</code></pre>
+<p>Abort with an error message if <code>condition</code> evaluates to <code>false</code>.</p>
 <h3 id="benchmark">benchmark()</h3>
 <pre><code class="language-meson">    void benchmark(name, executable, ...)
 </code></pre>

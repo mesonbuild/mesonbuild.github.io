@@ -191,6 +191,13 @@ these global arguments.</p>
 <p>You should set only the most essential flags with this setting, you
 should <em>not</em> set debug or optimization flags. Instead they should be
 specified by selecting an appropriate build type.</p>
+<h2 id="project-arguments">Project arguments</h2>
+<p>Project arguments work similar to global arguments except that they
+are valid only within the current subproject. The usage is simple:</p>
+<pre><code class="language-meson">add_project_arguments('-DMYPROJ=projname', language : 'c')
+</code></pre>
+<p>This would add the compiler flags to all C sources in the current
+project.</p>
 <h2 id="per-target-arguments">Per target arguments</h2>
 <p>Per target arguments are just as simple to define.</p>
 <pre><code class="language-meson">executable('prog', 'prog.cc', cpp_args : '-DCPPTHING')
