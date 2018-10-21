@@ -190,10 +190,9 @@ syntax.</p>
 The environment path should be set properly for the ARM compiler executables.
 The <code>--target</code>, <code>-mcpu</code> options with the appropriate values should be mentioned
 in the cross file as shown in the snippet below.</p>
-<pre><code>[properties]
+<pre><code class="language-ini">[properties]
 c_args      = ['--target=arm-arm-none-eabi', '-mcpu=cortex-m0plus']
 cpp_args    = ['--target=arm-arm-none-eabi', '-mcpu=cortex-m0plus']
-
 </code></pre>
 <p>Note:</p>
 <ul>
@@ -248,7 +247,7 @@ a different encoding.</p>
 <p>When called without an input file, <code>configure_file</code> generates a
 C header file by default. A keyword argument was added to allow
 specifying the output format, for example for use with nasm or yasm:</p>
-<pre><code>conf = configuration_data()
+<pre><code class="language-meson">conf = configuration_data()
 conf.set('FOO', 1)
 
 configure_file('config.asm',

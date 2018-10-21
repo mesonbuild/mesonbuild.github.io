@@ -190,16 +190,15 @@ configuration. For example:</p>
 <pre><code class="language-meson">project('configure_file', 'cpp')
 
 configure_file(
-      input: 'a.in',
-      output: 'out',
-      command: ['./foo.sh']
-    )
+  input: 'a.in',
+  output: 'out',
+  command: ['./foo.sh']
+)
 configure_file(
   input: 'a.in',
   output: 'out',
   command: ['./foo.sh']
 )
-
 </code></pre>
 <p>This will output:</p>
 <pre><code>The Meson build system
@@ -338,14 +337,14 @@ keyword <code>native</code> has been added to all functions that add arguments,
 namely <code>add_global_arguments</code>, <code>add_global_link_arguments</code>,
 <code>add_project_arguments</code> and <code>add_project_link_arguments</code> that behaves
 like the following:</p>
-<pre><code>## Added to native builds when compiling natively and to cross
-## compilations when doing cross compiles.
+<pre><code class="language-meson"># Added to native builds when compiling natively and to cross
+# compilations when doing cross compiles.
 add_project_arguments(...)
 
-## Added only to native compilations, not used in cross compilations.
+# Added only to native compilations, not used in cross compilations.
 add_project_arguments(..., native : true)
 
-## Added only to cross compilations, not used in native compilations.
+# Added only to cross compilations, not used in native compilations.
 add_project_arguments(..., native : false)
 </code></pre>
 <p>Also remember that cross compilation is a property of each

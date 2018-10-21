@@ -203,6 +203,10 @@ source_hash = 5ebeea0dfb75d090ea0e7ff84799b2a7a1550db3fe61eb5f6f61c2e971e57663
 <p>If you then use this subproject in your build, Meson will
 automatically download and extract it during build. This makes
 subproject embedding extremely easy.</p>
+<p>Since <em>0.49.0</em> if <code>source_filename</code> is found in project's
+<code>subprojects/packagecache</code> directory, it will be used instead of downloading the
+source, even if <code>wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
+be checked.</p>
 <p>Unfortunately most software projects in the world do not build with
 Meson. Because of this Meson allows you to specify a patch URL. This
 works in much the same way as Debian's distro patches. That is, they
@@ -229,6 +233,10 @@ it inside your own source tree, especially if it contains hundreds of
 thousands of lines of code. Once you have a working build definition,
 just zip up the Meson build files (and others you have changed) and
 put them somewhere where you can download them.</p>
+<p>Since <em>0.49.0</em> if <code>patch_filename</code> is found in project's
+<code>subprojects/packagecache</code> directory, it will be used instead of downloading the
+patch, even if <code>wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
+be checked.</p>
 <h2 id="branching-subprojects-directly-from-git">Branching subprojects directly from git</h2>
 <p>The above mentioned scheme assumes that your subproject is working off
 packaged files. Sometimes you want to check code out directly from
