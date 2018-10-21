@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -189,10 +189,21 @@ with Meson can detect that it is built as a subproject and build
 itself in a way that makes it easy to use (usually this means as a
 static library).</p>
 <p>To use this kind of a project as a dependency you could just copy and
-extract it inside your project's <code>subprojects</code> directory. However
-there is a simpler way. You can specify a Wrap file that tells Meson
-how to download it for you. An example wrap file would look like this
-and should be put in <code>subprojects/foobar.wrap</code>:</p>
+extract it inside your project's <code>subprojects</code> directory.</p>
+<p>However there is a simpler way. You can specify a Wrap file that tells Meson
+how to download it for you. If you then use this subproject in your build,
+Meson will automatically download and extract it during build. This makes
+subproject embedding extremely easy.</p>
+<p>All wrap files must have a name of <code>&lt;project_name&gt;.wrap</code> form and be in <code>subprojects</code> dir.</p>
+<p>Currently Meson has three kinds of wraps:</p>
+<ul>
+<li>wrap-file</li>
+<li>wrap-file with Meson build patch</li>
+<li>wrap-git</li>
+</ul>
+<h2 id="wrapfile">wrap-file</h2>
+<p>An example wrap file for <code>libfoobar</code> would have a name <code>libfoobar.wrap</code>
+and would look like this:</p>
 <pre><code class="language-ini">[wrap-file]
 directory = libfoobar-1.0
 
@@ -200,19 +211,18 @@ source_url = https://example.com/foobar-1.0.tar.gz
 source_filename = foobar-1.0.tar.gz
 source_hash = 5ebeea0dfb75d090ea0e7ff84799b2a7a1550db3fe61eb5f6f61c2e971e57663
 </code></pre>
-<p>If you then use this subproject in your build, Meson will
-automatically download and extract it during build. This makes
-subproject embedding extremely easy.</p>
+<p><code>source_hash</code> is <em>sha256sum</em> of <code>source_filename</code>.</p>
 <p>Since <em>0.49.0</em> if <code>source_filename</code> is found in project's
 <code>subprojects/packagecache</code> directory, it will be used instead of downloading the
-source, even if <code>wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
+source, even if <code>--wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
 be checked.</p>
+<h2 id="wrapfile-with-meson-build-patch">wrap-file with Meson build patch</h2>
 <p>Unfortunately most software projects in the world do not build with
 Meson. Because of this Meson allows you to specify a patch URL. This
 works in much the same way as Debian's distro patches. That is, they
 are downloaded and automatically applied to the subproject. These
-files contain a Meson build definition for the given subproject. A
-wrap file with an additional patch URL would look like this.</p>
+files contain a Meson build definition for the given subproject.</p>
+<p>A wrap file with an additional patch URL would look like this:</p>
 <pre><code class="language-ini">[wrap-file]
 directory = libfoobar-1.0
 
@@ -235,9 +245,10 @@ just zip up the Meson build files (and others you have changed) and
 put them somewhere where you can download them.</p>
 <p>Since <em>0.49.0</em> if <code>patch_filename</code> is found in project's
 <code>subprojects/packagecache</code> directory, it will be used instead of downloading the
-patch, even if <code>wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
+patch, even if <code>--wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
 be checked.</p>
-<h2 id="branching-subprojects-directly-from-git">Branching subprojects directly from git</h2>
+<h2 id="wrapgit">wrap-git</h2>
+<p>This type of wrap allows branching subprojects directly from git.</p>
 <p>The above mentioned scheme assumes that your subproject is working off
 packaged files. Sometimes you want to check code out directly from
 Git. Meson supports this natively. All you need to do is to write a
@@ -265,61 +276,13 @@ automatically by adding the following <em>(since 0.48.0)</em>:</p>
 <pre><code class="language-ini">clone-recursive = true
 </code></pre>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
-<p>To use a subproject simply do this in your top level <code>meson.build</code>.</p>
-<pre><code class="language-meson">foobar_proj = subproject('foobar')
-</code></pre>
-<p>Usually dependencies consist of some header files plus a library to
-link against. To do this in a project so it can be used as a subproject you
-would declare this internal dependency like this:</p>
-<pre><code class="language-meson">foobar_dep = declare_dependency(link_with : mylib,
-  include_directories : myinc)
-</code></pre>
-<p>Then in your main project you would use them like this:</p>
-<pre><code class="language-meson">executable('toplevel_exe', 'prog.c',
-  dependencies : foobar_proj.get_variable('foobar_dep'))
-</code></pre>
-<p>Note that the subproject object is <em>not</em> used as the dependency, but
-rather you need to get the declared dependency from it with
-<code>get_variable</code> because a subproject may have multiple declared
-dependencies.</p>
-<h2 id="toggling-between-distro-packages-and-embedded-source">Toggling between distro packages and embedded source</h2>
-<p>When building distro packages it is very important that you do not
-embed any sources. Some distros have a rule forbidding embedded
-dependencies so your project must be buildable without them or
-otherwise the packager will hate you.</p>
-<p>Doing this with Meson and Wrap is simple. Here's how you would use
-distro packages and fall back to embedding if the dependency is not
-available.</p>
-<pre><code class="language-meson">foobar_dep = dependency('foobar', required : false)
-
-if not foobar_dep.found()
-  foobar_proj = subproject('foobar')
-  # the subproject defines an internal dependency with
-  # the command declare_dependency().
-  foobar_dep = foobar_proj.get_variable('foobar_dep')
-endif
-
-executable('toplevel_exe', 'prog.c',
-  dependencies : foobar_dep)
-</code></pre>
-<p>Because this is such a common operation, Meson provides a shortcut for
-this use case.</p>
-<pre><code class="language-meson">foobar_dep = dependency('foobar', fallback : ['foobar', 'foobar_dep'])
-</code></pre>
-<p>The <code>fallback</code> keyword argument takes two items, the name of the
-subproject and the name of the variable that holds the dependency. If
-you need to do something more complicated, such as extract several
-different variables, then you need to do it yourself with the manual
-method described above.</p>
-<p>With this setup when foobar is provided by the system, we use it. When
-that is not the case we use the embedded version. Note that
-<code>foobar_dep</code> can point to an external or an internal dependency but
-you don't have to worry about their differences. Meson will take care
-of the details for you.</p>
+<p>Wraps provide a convenient way of obtaining a project into your subproject directory.
+Then you use it as a regular subproject (see <a href="Subprojects.html">subprojects</a>).</p>
 <h2 id="getting-wraps">Getting wraps</h2>
-<p>Usually you don't want to write your wraps by hand. There is an online
-repository called <a href="Using-the-WrapDB.html">WrapDB</a> that provides many
-dependencies ready to use.</p>
+<p>Usually you don't want to write your wraps by hand.</p>
+<p>There is an online repository called <a href="https://wrapdb.mesonbuild.com">WrapDB</a> that provides
+many dependencies ready to use. You can read more about WrapDB <a href="Using-the-WrapDB.html">here</a>.</p>
+<p>There is also a Meson subcommand to get and manage wraps (see <a href="Using-wraptool.html">using wraptool</a>).</p>
 
     </div>
         
@@ -330,7 +293,7 @@ dependencies ready to use.</p>
 		<div id="subpages">
 	<p><b>Subpages:</b></p>
 			<p>
-		<a href="Adding-new-projects-to-wrapdb.html">Adding new projects to wrap</a>
+		<a href="Adding-new-projects-to-wrapdb.html">Adding new projects to WrapDB</a>
 		–
 					<i><em>No description available</em></i>
 				</p>
