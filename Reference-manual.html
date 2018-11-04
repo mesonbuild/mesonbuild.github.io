@@ -1073,13 +1073,19 @@ are the same as <a href="Reference-manual.html#executable"><code>executable</cod
 <code>main_class</code> which specifies the main class to execute when running
 the jar with <code>java -jar file.jar</code>.</p>
 <h3 id="join_paths">join_paths()</h3>
-<pre><code class="language-meson">   string join_paths(string1, string2, ...)
+<pre><code class="language-meson">string join_paths(string1, string2, ...)
 </code></pre>
 <p>Joins the given strings into a file system path segment. For example
 <code>join_paths('foo', 'bar')</code> results in <code>foo/bar</code>. If any one of the
 individual segments is an absolute path, all segments before it are
 dropped. That means that <code>join_paths('foo', '/bar')</code> returns <code>/bar</code>.</p>
 <p><em>Added 0.36.0</em></p>
+<p>Since 0.49.0 using the<code>/</code> operator on strings is equivalent to calling
+<code>join_paths</code>.</p>
+<pre><code class="language-meson"># res1 and res2 will have identical values
+res1 = join_paths(foo, bar)
+res2 = foo / bar
+</code></pre>
 <h3 id="library">library()</h3>
 <pre><code class="language-meson">    buildtarget library(library_name, list_of_sources, ...)
 </code></pre>
@@ -1732,6 +1738,14 @@ the compiler would. E.g. <code>"a" "b"</code> will become <code>"ab"</code>.</p>
 <li>
 <p><code>get_id()</code> returns a string identifying the compiler. For example,
 <code>gcc</code>, <code>msvc</code>, <a href="Reference-tables.html#compiler-ids">and more</a>.</p>
+</li>
+<li>
+<p><code>get_argument_syntax()</code> <em>(new in 0.49.0)</em> returns a string identifying the type
+of arguments the compiler takes. Can be one of <code>gcc</code>, <code>msvc</code>, or an undefined
+string value. This method is useful for identifying compilers that are not
+gcc or msvc, but use the same argument syntax as one of those two compilers
+such as clang or icc, especially when they use different syntax on different
+operating systems.</p>
 </li>
 <li>
 <p><code>get_supported_arguments(list_of_string)</code> <em>(added 0.43.0)</em> returns

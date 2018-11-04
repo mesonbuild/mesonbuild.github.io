@@ -186,9 +186,15 @@ know the operating system your code will run on, issue this command:</p>
 </code></pre>
 <h1 id="compiler-id">Compiler id</h1>
 <p>The compiler object has a method called <code>get_id</code>, which returns a
-lower case string describing the "family" of the compiler. See
-<a href="Reference-tables.html">reference tables</a> for a list of supported
-compiler ids.</p>
+lower case string describing the "family" of the compiler.</p>
+<p>The compiler object also has a method <code>get_argument_syntax</code> which
+returns a lower case string of <code>gcc</code>, <code>msvc</code>, or another undefined string
+value; identifying whether the compiler arguments use the same syntax as
+either <code>gcc</code> or <code>msvc</code>, or that its arguments are not like either. This should
+only be used to select the syntax of the arguments, such as those to test
+with <code>has_argument</code>.</p>
+<p>See <a href="Reference-tables.html#compiler-ids">reference tables</a> for a list of supported compiler
+ids and their argument type.</p>
 <h1 id="does-code-compile">Does code compile?</h1>
 <p>Sometimes the only way to test the system is to try to compile some
 sample code and see if it works. This is a two-phase operation. First
