@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -178,7 +178,7 @@ can, of course, replace the name <code>pkg</code> with anything else.</p>
 keyword arguments.</p>
 <ul>
 <li>
-<code>description</code> a string describing the library</li>
+<code>description</code> a string describing the library, used to set the <code>Description:</code> field</li>
 <li>
 <code>extra_cflags</code> a list of extra compiler flags to be added to the
 <code>Cflags</code> field after the header search path</li>
@@ -205,7 +205,7 @@ and <code>Cflags</code> fields.</li>
 <code>Libs.private</code> field. Since 0.45.0 it can also contain dependency objects,
 their <code>link_args</code> will be added to <code>Libs.private</code>.</li>
 <li>
-<code>name</code> the name of this library</li>
+<code>name</code> the name of this library, used to set the <code>Name:</code> field</li>
 <li>
 <code>subdirs</code> which subdirs of <code>include</code> should be added to the header
 search path, for example if you install headers into
@@ -227,7 +227,8 @@ reference other pkgconfig variables,
 e.g. <code>datadir=${prefix}/share</code>. The names <code>prefix</code>, <code>libdir</code> and
 <code>installdir</code> are reserved and may not be used.</li>
 <li>
-<code>version</code> a string describing the version of this library</li>
+<code>version</code> a string describing the version of this library, used to set the
+<code>Version:</code> field. Defaults to the project version if unspecified.</li>
 <li>
 <code>d_module_versions</code> a list of module version flags used when compiling
 D sources referred to by this pkg-config file</li>
