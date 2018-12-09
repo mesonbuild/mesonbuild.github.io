@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -262,6 +262,18 @@ is how you would use Meson to generate a Visual studio solution.</p>
 <p>You can then open the generated solution with Visual Studio and
 compile it in the usual way. A list of backends can be obtained with
 <code>meson --help</code>.</p>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Sometimes you want to add extra compiler flags, this can be done by
+passing them in environment variables when calling meson. See <a href="Reference-tables.html#compiler-and-linker-flag-envrionment-variables">the
+reference
+tables</a>
+for a list of all the environment variables. Be aware however these
+environment variables are only used for the native compiler and will
+not affect the compiler used for cross-compiling, where the flags
+specified in the cross file will be used.</p>
+<p>Furthermore it is possible to stop meson from adding flags itself by
+using the <code>--buildtype=plain</code> option, in this case you must provide
+the full compiler and linker arguments needed.</p>
 <h1 id="building-the-source">Building the source</h1>
 <p>If you are not using an IDE, Meson uses the <a href="https://ninja-build.org/">Ninja build
 system</a> to actually build the code. To start
@@ -320,7 +332,6 @@ meson.build file, and 2 for internal errors.</p>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 

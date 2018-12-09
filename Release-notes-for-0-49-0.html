@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -166,19 +166,242 @@ $('body').removeClass('no-script');
 <div id="body">
 	<div id="main">
 				    <div id="page-description" data-hotdoc-source="Release-notes-for-0.49.0.md" data-hotdoc-role="main">
-        <h1 id="new-features">New features</h1>
-<p>This page is a placeholder for the eventual release notes.</p>
-<p>Notable new features should come with release note updates. This is
-done by creating a file snippet called <code>snippets/featurename.md</code> and
-whose contents should look like this:</p>
-<pre><code>## Feature name
-
-A short description explaining the new feature and how it should be used.
-</code></pre>
-<h2 id="libgcrypt-dependency-now-supports-libgcryptconfig">Libgcrypt dependency now supports libgcrypt-config</h2>
+        <h2 id="libgcrypt-dependency-now-supports-libgcryptconfig">Libgcrypt dependency now supports libgcrypt-config</h2>
 <p>Earlier, <code>dependency('libgcrypt')</code> could only detect the library with pkg-config
 files. Now, if pkg-config files are not found, Meson will look for
 <code>libgcrypt-config</code> and if it's found, will use that to find the library.</p>
+<h2 id="new-section-key-for-the-buildoptions-introspection">New <code>section</code> key for the buildoptions introspection</h2>
+<p>Meson now has a new <code>section</code> key in each build option. This allows
+IDEs to group these options similar to <code>meson configure</code>.</p>
+<p>The possible values for <code>section</code> are:</p>
+<ul>
+<li>core</li>
+<li>backend</li>
+<li>base</li>
+<li>compiler</li>
+<li>directory</li>
+<li>user</li>
+<li>test</li>
+</ul>
+<h2 id="ccrx-compiler-for-c-and-cpp">CC-RX compiler for C and CPP</h2>
+<p>Cross-compilation is now supported for Renesas RX targets with the
+CC-RX compiler.</p>
+<p>The environment path should be set properly for the CC-RX compiler
+executables.  The <code>-cpu</code> option with the appropriate value should be
+mentioned in the cross-file as shown in the snippet below.</p>
+<pre><code class="language-ini">[properties]
+c_args      = ['-cpu=rx600']
+cpp_args    = ['-cpu=rx600']
+</code></pre>
+<p>The default extension of the executable output is <code>.abs</code>.  Other
+target specific arguments to the compiler and linker will need to be
+added explicitly from the
+cross-file(<code>c_args</code>/<code>c_link_args</code>/<code>cpp_args</code>/<code>cpp_link_args</code>) or some
+other way.  Refer to the CC-RX User's manual for additional compiler
+and linker options.## CMake <code>find_package</code> dependency backend</p>
+<p>Meson can now use the CMake <code>find_package</code> ecosystem to
+detect dependencies. Both the old-style <code>&lt;NAME&gt;_LIBRARIES</code>
+variables as well as imported targets are supported. Meson
+can automatically guess the correct CMake target in most
+cases but it is also possible to manually specify a target
+with the <code>modules</code> property.</p>
+<pre><code class="language-meson"># Implicitly uses CMake as a fallback and guesses a target
+dep1 = dependency('KF5TextEditor')
+
+# Manually specify one or more CMake targets to use
+dep2 = dependency('ZLIB', method : 'cmake', modules : ['ZLIB::ZLIB'])
+</code></pre>
+<p>CMake is automatically used after <code>pkg-config</code> fails when
+no <code>method</code> (or <code>auto</code>) was provided in the dependency options.</p>
+<h2 id="new-compiler-method-get_argument_syntax">New compiler method <code>get_argument_syntax</code>
+</h2>
+<p>The compiler object now has <code>get_argument_syntax</code> method, which returns a
+string value of <code>gcc</code>, <code>msvc</code>, or an undefined value string value. This can be
+used to determine if a compiler uses gcc syntax (<code>-Wfoo</code>), msvc syntax
+(<code>/w1234</code>), or some other kind of arguments.</p>
+<pre><code class="language-meson">cc = meson.get_compiler('c')
+
+if cc.get_argument_syntax() == 'msvc'
+  if cc.has_argument('/w1235')
+    add_project_arguments('/w1235', language : ['c'])
+  endif
+elif cc.get_argument_syntax() == 'gcc'
+  if cc.has_argument('-Wfoo')
+    add_project_arguments('-Wfoo', language : ['c'])
+  endif
+elif cc.get_id() == 'some other compiler'
+  add_project_arguments('--error-on-foo', language : ['c'])
+endif
+</code></pre>
+<h2 id="return-disabler-instead-of-notfound-object">Return <code>Disabler()</code> instead of not-found object</h2>
+<p>Functions such as <code>dependency()</code>, <code>find_library()</code>, <code>find_program()</code>, and
+<code>python.find_installation()</code> have a new keyword argument: <code>disabler</code>. When set
+to <code>true</code> those functions return <code>Disabler()</code> objects instead of not-found
+objects.</p>
+<h2 id="introspect-projectinfo-can-now-be-used-without-configured-build-directory">
+<code>introspect --projectinfo</code> can now be used without configured build directory</h2>
+<p>This allows IDE integration to get information about the project before the user has configured a build directory.</p>
+<p>Before you could use <code>meson.py introspect --projectinfo build-directory</code>.
+Now you also can use <code>meson.py introspect --projectinfo project-dir/meson.build</code>.</p>
+<p>The output is similiar to the output with a build directory but additionally also includes information from <code>introspect --buildsystem-files</code>.</p>
+<p>For example <code>meson.py introspect --projectinfo test\ cases/common/47\ subproject\ options/meson.build</code>
+This outputs (pretty printed for readability):</p>
+<pre><code>{
+    "buildsystem_files": [
+        "meson_options.txt",
+        "meson.build"
+    ],
+    "name": "suboptions",
+    "version": null,
+    "descriptive_name": "suboptions",
+    "subprojects": [
+        {
+            "buildsystem_files": [
+                "subprojects/subproject/meson_options.txt",
+                "subprojects/subproject/meson.build"
+            ],
+            "name": "subproject",
+            "version": "undefined",
+            "descriptive_name": "subproject"
+        }
+    ]
+}
+</code></pre>
+<p>Both usages now include a new <code>descriptive_name</code> property which always
+shows the name set in the project.</p>
+<h2 id="can-specify-keyword-arguments-with-a-dictionary">Can specify keyword arguments with a dictionary</h2>
+<p>You can now specify keyword arguments for any function and method call
+with the <code>kwargs</code> keyword argument. This is perhaps best described
+with an example:</p>
+<pre><code class="language-meson">options = {'include_directories': include_directories('inc')}
+
+...
+
+executable(...
+  kwargs: options)
+</code></pre>
+<p>The above code is identical to this:</p>
+<pre><code class="language-meson">executable(...
+  include_directories: include_directories('inc'))
+</code></pre>
+<p>That is, Meson will expand the dictionary given to <code>kwargs</code> as if the
+entries in it had been given as keyword arguments directly.</p>
+<p>Note that any individual argument can be specified either directly or
+with the <code>kwarg</code> dict but not both. If a key is specified twice, it
+is a hard error.</p>
+<h2 id="manpages-are-no-longer-compressed-implicitly">Manpages are no longer compressed implicitly</h2>
+<p>Earlier, the <code>install_man</code> command has automatically compressed installed
+manpages into <code>.gz</code> format. This collided with manpage compression hooks
+already used by various distributions. Now, manpages are installed uncompressed
+and distributors are expected to handle compressing them according to their own
+compression preferences.</p>
+<h2 id="native-config-files">Native config files</h2>
+<p>Native files are the counterpart to cross files, and allow specifying
+information about the build machine, both when cross compiling and when not.</p>
+<p>Currently the native files only allow specifying the names of binaries, similar
+to the cross file, for example:</p>
+<pre><code class="language-ini">[binaries]
+llvm-config = "/opt/llvm-custom/bin/llvm-config"
+</code></pre>
+<p>Will override the llvm-config used for <em>native</em> binaries. Targets for the host
+machine will continue to use the cross file.</p>
+<h2 id="foreach-break-and-continue">Foreach <code>break</code> and <code>continue</code>
+</h2>
+<p><code>break</code> and <code>continue</code> keywords can be used inside foreach loops.</p>
+<pre><code class="language-meson">items = ['a', 'continue', 'b', 'break', 'c']
+result = []
+foreach i : items
+  if i == 'continue'
+    continue
+  elif i == 'break'
+    break
+  endif
+  result += i
+endforeach
+# result is ['a', 'b']
+</code></pre>
+<p>You can check if an array contains an element like this:</p>
+<pre><code class="language-meson">my_array = [1, 2]
+if 1 in my_array
+# This condition is true
+endif
+if 1 not in my_array
+# This condition is false
+endif
+</code></pre>
+<p>You can check if a dictionary contains a key like this:</p>
+<pre><code class="language-meson">my_dict = {'foo': 42, 'foo': 43}
+if 'foo' in my_dict
+# This condition is true
+endif
+if 42 in my_dict
+# This condition is false
+endif
+if 'foo' not in my_dict
+# This condition is false
+endif
+</code></pre>
+<h2 id="joining-paths-with-">Joining paths with /</h2>
+<p>Joining two paths has traditionally been done with the <code>join_paths</code> function.</p>
+<pre><code class="language-meson">joined = join_paths('foo', 'bar')
+</code></pre>
+<p>Now you can use the simpler notation using the <code>/</code> operator.</p>
+<pre><code class="language-meson">joined = 'foo' / 'bar'
+</code></pre>
+<p>This only works for strings.</p>
+<h2 id="positionindependent-executables">Position-independent executables</h2>
+<p>When <code>b_pie</code> option, or <code>executable()</code>'s <code>pie</code> keyword argument is set to
+<code>true</code>, position-independent executables are built. All their objects are built
+with <code>-fPIE</code> and the executable is linked with <code>-pie</code>. Any static library they
+link must be built with <code>pic</code> set to <code>true</code> (see <code>b_staticpic</code> option).</p>
+<h2 id="deprecation-warning-in-pkgconfig-generator">Deprecation warning in pkg-config generator</h2>
+<p>All libraries passed to the <code>libraries</code> keyword argument of the <code>generate()</code>
+method used to be associated with that generated pkg-config file. That means
+that any subsequent call to <code>generate()</code> where those libraries appear would add
+the filebase of the <code>generate()</code> that first contained them into <code>Requires:</code> or
+<code>Requires.private:</code> field instead of adding an <code>-l</code> to <code>Libs:</code> or <code>Libs.private:</code>.</p>
+<p>This behaviour is now deprecated. The library that should be associated with
+the generated pkg-config file should be passed as first positional argument
+instead of in the <code>libraries</code> keyword argument. The previous behaviour is
+maintained but prints a deprecation warning and support for this will be removed
+in a future Meson release. If you can not create the needed pkg-config file
+without this warning, please file an issue with as much details as possible
+about the situation.</p>
+<p>For example this sample will write <code>Requires: liba</code> into <code>libb.pc</code> but print a
+deprecation warning:</p>
+<pre><code class="language-meson">liba = library(...)
+pkg.generate(libraries : liba)
+
+libb = library(...)
+pkg.generate(libraries : [liba, libb])
+</code></pre>
+<p>It can be fixed by passing <code>liba</code> as first positional argument::</p>
+<pre><code class="language-meson">liba = library(...)
+pkg.generate(liba)
+
+libb = library(...)
+pkg.generate(libb, libraries : [liba])
+</code></pre>
+<h2 id="subprojects-download-checkout-update-commandline">Subprojects download, checkout, update command-line</h2>
+<p>New command-line tool has been added to manage subprojects:</p>
+<ul>
+<li>
+<code>meson subprojects download</code> to download all subprojects that have a wrap file.</li>
+<li>
+<code>meson subprojects update</code> to update all subprojects to latest version.</li>
+<li>
+<code>meson subprojects checkout</code> to checkout or create a branch in all git subprojects.</li>
+</ul>
+<h2 id="new-keyword-argument-is_default-to-add_test_setup">New keyword argument <code>is_default</code> to <code>add_test_setup()</code>
+</h2>
+<p>The keyword argument <code>is_default</code> may be used to set whether the test
+setup should be used by default whenever <code>meson test</code> is run without
+the <code>--setup</code> option.</p>
+<pre><code class="language-meson">add_test_setup('default', is_default: true, env: 'G_SLICE=debug-blocks')
+add_test_setup('valgrind', env: 'G_SLICE=always-malloc', ...)
+test('mytest', exe)
+</code></pre>
+<p>For the example above, running <code>meson test</code> and <code>meson test --setup=default</code> is now equivalent.</p>
 
     </div>
         
@@ -191,7 +414,6 @@ files. Now, if pkg-config files are not found, Meson will look for
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 

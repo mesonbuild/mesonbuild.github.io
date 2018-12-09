@@ -6,16 +6,34 @@
 
 <div id="subpages">
 	<p><b>Subpages:</b></p>
-	@for link, subpage in subpages.items():
-		<p>
-		<a href="@link">@subpage.get_title()!e</a>
-		–
-		@if subpage.short_description:
-			@subpage.short_description
-		@else:
-			<i><em>No description available</em></i>
+	<div class="thumb-subpages">
+		@for link, subpage in subpages.items():
+		\
+			@if subpage.thumbnail:
+				<div class="thumb-subpage">
+					<a href="@link">
+						<img src="@subpage.thumbnail"/>
+					</a>
+					<p>
+						<a href="@link">@subpage.get_title()!e</a>
+						@if subpage.short_description:
+							– @subpage.short_description
+						@end
+					</p>
+				</div>
+			@end
 		@end
-		</p>
+	</div>
+	@for link, subpage in subpages.items():
+	\
+		@if not subpage.thumbnail:
+			<p>
+			<a href="@link">@subpage.get_title()!e</a>
+			@if subpage.short_description:
+				– @subpage.short_description
+			@end
+			</p>
+		@endif
 	@end
 </div>
 

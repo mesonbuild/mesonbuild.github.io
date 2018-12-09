@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -271,9 +271,9 @@ int main (int argc, char ** argv) {
   return FOO_SUCCESS;
 }'''
 </code></pre>
-<p>These are raw strings that do not support the escape sequences listed above.
-These strings can also be combined with the string formatting functionality
-described below.</p>
+<p>These are raw strings that do not support the escape sequences listed
+above.  These strings can also be combined with the string formatting
+functionality described below.</p>
 <h4 id="string-formatting">String formatting</h4>
 <p>Strings can be built using the string formatting functionality.</p>
 <pre><code class="language-meson">template = 'string: @0@, number: @1@, bool: @2@'
@@ -422,6 +422,32 @@ endif
 creating build objects.</p>
 <pre><code class="language-meson">executable('progname', 'prog.c')
 </code></pre>
+<p>Most functions take only few positional arguments but several keyword
+arguments, which are specified like this:</p>
+<pre><code class="language-meson">executable('progname',
+  sources: 'prog.c',
+  c_args: '-DFOO=1')
+</code></pre>
+<p>Starting with version 0.49.0 keyword arguments can be specified
+dynamically. This is done by passing dictionary representing the
+keywords to set in the <code>kwargs</code> keyword. The previous example would be
+specified like this:</p>
+<pre><code class="language-meson">d = {'sources': 'prog.c',
+  'c_args': '-DFOO=1'}
+
+executable('progname',
+  kwargs: d)
+</code></pre>
+<p>A single function can take keyword argumets both directly in the
+function call and indirectly via the <code>kwargs</code> keyword argument. The
+only limitation is that it is a hard error to pass any particular key
+both as a direct and indirect argument.</p>
+<pre><code class="language-meson">d = {'c_args': '-DFOO'}
+executable('progname', 'prog.c',
+  c_args: '-DBAZ=1',
+  kwargs: d) # This is an error!
+</code></pre>
+<p>Attempting to do this causes Meson to immediately exit with an error.</p>
 <h2 id="method-calls">Method calls</h2>
 <p>Objects can have methods, which are called with the dot operator. The
 exact methods it provides depends on the object.</p>
@@ -563,7 +589,6 @@ instead</a>.</p>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 

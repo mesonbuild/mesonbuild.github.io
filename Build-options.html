@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -177,10 +177,11 @@ your source tree.</p>
 option('other_one', type : 'boolean', value : false)
 option('combo_opt', type : 'combo', choices : ['one', 'two', 'three'], value : 'three')
 option('integer_opt', type : 'integer', min : 0, max : 5, value : 3) # Since 0.45.0
-option('free_array_opt', type : 'array', value : ['one', 'two'])
+option('free_array_opt', type : 'array', value : ['one', 'two'])  # Since 0.44.0
 option('array_opt', type : 'array', choices : ['one', 'two', 'three'], value : ['one', 'two'])
-option('some_feature', type : 'feature', value : 'enabled')
+option('some_feature', type : 'feature', value : 'enabled')  # Since 0.47.0
 </code></pre>
+<p>For built-in options, see <a href="https://mesonbuild.com/Builtin-options.html">Built-in options</a>.</p>
 <h2 id="build-option-types">Build option types</h2>
 <p>All types allow a <code>description</code> value to be set describing the option,
 if no description is set then the name of the option will be used instead.</p>
@@ -292,7 +293,7 @@ project which also has an option called <code>some_option</code>, then calling
 <code>yield</code> is <code>false</code>, <code>get_option</code> returns the value of the subproject's
 option.</p>
 <h2 id="builtin-build-options">Built-in build options</h2>
-<p>There are a number of built-in options. To get the current list execute <code>meson configure</code> in the build directory.</p>
+<p>There are a number of <a href="https://mesonbuild.com/Builtin-options.html">built-in options</a>. To get the current list execute <code>meson configure</code> in the build directory.</p>
 <h3 id="visual-studio">Visual Studio</h3>
 <h4 id="startup-project">Startup project</h4>
 <p>The backend_startup_project option can be set to define the default project
@@ -317,7 +318,6 @@ will use to link.</p>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 

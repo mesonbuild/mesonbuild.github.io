@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -170,9 +170,11 @@ $('body').removeClass('no-script');
 <p>This module is a simple generator for
 <a href="https://pkg-config.freedesktop.org/">pkg-config</a> files.</p>
 <h2 id="usage">Usage</h2>
-<p>To use this module, just do: <strong><code>pkg = import('pkgconfig')</code></strong>. The
-following function will then be available as <code>pkg.generate()</code>. You
-can, of course, replace the name <code>pkg</code> with anything else.</p>
+<pre><code class="language-meson">pkg = import('pkgconfig')
+bar_dep = dependency('bar')
+lib = library('foo', dependencies : [bar])
+pkg.generate(lib)
+</code></pre>
 <h3 id="pkggenerate">pkg.generate()</h3>
 <p>The generated file's properties are specified with the following
 keyword arguments.</p>
@@ -195,15 +197,14 @@ option <code>libdir</code> followed by <code>/pkgconfig</code>
 <code>libraries</code> a list of built libraries (usually results of
 shared_library) that the user needs to link against. Arbitrary strings can
 also be provided and they will be added into the <code>Libs</code> field. Since 0.45.0
-dependencies of built libraries will be automatically added to <code>Libs.private</code>
-field. If a dependency is provided by pkg-config then it will be added in
-<code>Requires.private</code> instead. Other type of dependency objects can also be passed
-and will result in their <code>link_args</code> and <code>compile_args</code> to be added to <code>Libs</code>
-and <code>Cflags</code> fields.</li>
+dependencies of built libraries will be automatically added, see the
+<a href="Pkgconfig-module.html#Implicit_dependencies">Implicit dependencies</a> section below for the exact
+rules.</li>
 <li>
 <code>libraries_private</code> list of built libraries or strings to put in the
-<code>Libs.private</code> field. Since 0.45.0 it can also contain dependency objects,
-their <code>link_args</code> will be added to <code>Libs.private</code>.</li>
+<code>Libs.private</code> field. Since 0.45.0 dependencies of built libraries will be
+automatically added, see the <a href="Pkgconfig-module.html#Implicit_dependencies">Implicit dependencies</a>
+section below for the exact rules.</li>
 <li>
 <code>name</code> the name of this library, used to set the <code>Name:</code> field</li>
 <li>
@@ -244,6 +245,40 @@ provided for all required fields of the pc file:</p>
 <li>
 <code>name</code> is set to the library's name.</li>
 </ul>
+<h3 id="implicit-dependencies">Implicit dependencies</h3>
+<p>The exact rules followed to find dependencies that are implicitly added into the
+pkg-config file have evolved over time. Here are the rules as of Meson <em>0.49.0</em>,
+previous versions might have slightly different behaviour.</p>
+<ul>
+<li>Not found libraries or dependencies are ignored.</li>
+<li>Libraries and dependencies are private by default (i.e. added into
+<code>Requires.private:</code> or <code>Libs.private:</code>) unless they are explicitly added in
+<code>libraries</code> or <code>requires</code> keyword arguments, or is the main library (first
+positional argument).</li>
+<li>Libraries and dependencies will be de-duplicated, if they are added in both
+public and private (e.g <code>Requires:</code> and <code>Requires.private:</code>) it will be removed
+from the private list.</li>
+<li>Shared libraries (i.e. <code>shared_library()</code> and <strong>NOT</strong> <code>library()</code>) add only
+<code>-lfoo</code> into <code>Libs:</code> or <code>Libs.private:</code> but their dependencies are not pulled.
+This is because dependencies are only needed for static link.</li>
+<li>Other libraries (i.e. <code>static_library()</code> or <code>library()</code>) add <code>-lfoo</code> into <code>Libs:</code>
+or <code>Libs.private:</code> and recursively add their dependencies into <code>Libs.private:</code> or
+<code>Requires.private:</code>.</li>
+<li>Dependencies provided by pkg-config are added into <code>Requires:</code> or
+<code>Requires.private:</code>. If a version was specified when declaring that dependency
+it will be written into the generated file too.</li>
+<li>The thread dependency (i.e. <code>dependency('thread')</code>) adds <code>-pthread</code> into
+<code>Libs:</code> or <code>Libs.private:</code>.</li>
+<li>Internal dependencies (i.e.
+<code>declare_dependency(compiler_args : '-DFOO', link_args : '-Wl,something', link_with : foo)</code>)
+add <code>compiler_args</code> into <code>Cflags:</code> if public, <code>link_args</code> and <code>link_with</code> into
+<code>Libs:</code> if public or <code>Libs.private:</code> if private.</li>
+<li>Other dependency types add their compiler arguments into <code>Cflags:</code> if public,
+and linker arguments into <code>Libs:</code> if public or <code>Libs.private:</code> if private.</li>
+<li>Once a pkg-config file is generated for a library using <code>pkg.generate(mylib)</code>,
+any subsequent call to <code>pkg.generate()</code> where mylib appears, will generate a
+<code>Requires:</code> or <code>Requires.private</code> instead of a <code>Libs:</code> or <code>Libs.private:</code>.</li>
+</ul>
 
     </div>
         
@@ -256,7 +291,6 @@ provided for all required fields of the pc file:</p>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 

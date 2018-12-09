@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -307,24 +307,23 @@ actually work should be done with a unit test.</p>
 subdirectory. They are not run as part of <code>./run_project_tests.py</code>.</p>
 <h3 id="skipping-integration-tests">Skipping integration tests</h3>
 <p>Meson uses several continuous integration testing systems that have slightly
-different interface. To promote consistent naming policy, use:</p>
-<ul>
-<li>
-<code>[skip ci]</code> in the commit title if you want to disable all integration tests</li>
-<li>
-<code>[skip appveyor]</code> in the commit title if you want to disable Windows-only tests</li>
-</ul>
+different interfaces for indicating a commit should be skipped.</p>
 <p>Continuous integration systems currently used:</p>
 <ul>
 <li>
-<a href="https://docs.travis-ci.com/user/customizing-the-build/#Skipping-a-build">Travis-CI</a>
+<a href="https://docs.travis-ci.com/user/customizing-the-build#skipping-a-build">Travis-CI</a>
 allows <code>[skip ci]</code> anywhere in the commit messages.</li>
 <li>
-<a href="https://www.appveyor.com/docs/how-to/filtering-commits/#skip-directive-in-commit-message">AppVeyor</a>
-requires <code>[skip ci]</code> or <code>[skip appveyor]</code> in the commit title.</li>
+<a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/scripts/git-commands?view=vsts&amp;tabs=yaml#how-do-i-avoid-triggering-a-ci-build-when-the-script-pushes">Azure Pipelines</a>
+allows <code>***NO_CI***</code> in the commit message.</li>
 <li>
 <a href="https://sider.review">Sider</a>
-runs Flake8 (see below)</li>
+runs Flake8 (<a href="Contributing.html#python-coding-style">see below</a>)</li>
+</ul>
+<p>To promote consistent naming policy, use:</p>
+<ul>
+<li>
+<code>[skip ci]</code> in the commit title if you want to disable all integration tests</li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <p>The <code>docs</code> directory contains the full documentation that will be used
@@ -429,7 +428,6 @@ line switches.</p>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 

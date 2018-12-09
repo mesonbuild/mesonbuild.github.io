@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -184,10 +184,40 @@ $('body').removeClass('no-script');
 <pre><code>ninja -t commands foo
 </code></pre>
 <p>Note that if the target has dependencies (such as generated sources), then the commands for those show up in this list as well, so you need to do some filtering. Alternatively you can grab every command invocation in the <a href="https://clang.llvm.org/docs/JSONCompilationDatabase.html">Clang tools db</a> format that is written to a file called <code>compile_commands.json</code> in the build directory.</p>
+<h2 id="build-options">Build Options</h2>
 <p>The next thing to display is the list of options that can be set. These include build type and so on. Here's how to extract them.</p>
 <pre><code>meson introspect --buildoptions
 </code></pre>
+<p>This command returns a list of all supported buildoptions with the format:</p>
+<pre><code class="language-json">{
+    "name": "name of the option",
+    "description": "the description",
+    "type": "type ID",
+    "value": "value depends on type",
+    "section": "section ID"
+}
+</code></pre>
+<p>The supported types are:</p>
+<ul>
+<li>string</li>
+<li>boolean</li>
+<li>combo</li>
+<li>integer</li>
+<li>array</li>
+</ul>
+<p>For the type <code>combo</code> the key <code>choices</code> is also present. Here all valid values for the option are stored.</p>
+<p>The possible values for <code>section</code> are:</p>
+<ul>
+<li>core</li>
+<li>backend</li>
+<li>base</li>
+<li>compiler</li>
+<li>directory</li>
+<li>user</li>
+<li>test</li>
+</ul>
 <p>To set the options, use the <code>meson configure</code> command.</p>
+<h2 id="tests">Tests</h2>
 <p>Compilation and unit tests are done as usual by running the <code>ninja</code> and <code>ninja test</code> commands. A JSON formatted result log can be found in <code>workspace/project/builddir/meson-logs/testlog.json</code>.</p>
 <p>When these tests fail, the user probably wants to run the failing test in a debugger. To make this as integrated as possible, extract the test test setups with this command.</p>
 <pre><code>meson introspect --tests
@@ -213,7 +243,6 @@ $('body').removeClass('no-script');
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 

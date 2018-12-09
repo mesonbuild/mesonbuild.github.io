@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="assets/css/prism.css" type="text/css">
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -506,10 +506,10 @@ that should be built before sources including them are built)</li>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
 </code></pre>
 <p>Finds an external dependency (usually a library installed on your
-system) with the given name with <code>pkg-config</code> if possible, as a
-framework (OSX only), and with
+system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#CMake">with CMake</a>
+if <code>pkg-config</code> fails. Additionally, frameworks (OSX only) and
 <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection logic</a>
-otherwise. This function supports the following keyword arguments:</p>
+are also supported. This function supports the following keyword arguments:</p>
 <ul>
 <li>
 <code>default_options</code> <em>(added 0.37.0)</em> an array of default option values
@@ -551,7 +551,7 @@ by all dependency backends)</li>
 <li>
 <code>version</code> specifies the required version, a string containing a
 comparison operator followed by the version string, examples include
-<code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching. (<em>Added 0.37.0</em>)
+<code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching. <em>(Added 0.37.0)</em>
 You can also specify multiple restrictions by passing a list to this
 keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.
 These requirements are never met if the version is unknown.</li>
@@ -570,7 +570,9 @@ dependencies such as Qt5 or Boost. )</li>
 <code>found()</code> method returns <code>false</code>, and which can be passed like any other
 dependency to the <code>dependencies:</code> keyword argument of a <code>build_target</code>.  This
 can be used to implement a dependency which is sometimes not required e.g. in
-some branches of a conditional.</p>
+some branches of a conditional, or with a <code>fallback:</code> kwarg, can be used to
+declare an optional dependency that only looks in the specified subproject,
+and only if that's allowed by <code>--wrap-mode</code>.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#dependency-object">object methods section</a> below.</p>
 <h3 id="disabler">disabler()</h3>
@@ -750,7 +752,7 @@ first one that is found is returned. Meson versions earlier than
 <p><code>required</code> By default, <code>required</code> is set to <code>true</code> and Meson will
 abort if no program can be found. If <code>required</code> is set to <code>false</code>,
 Meson continue even if none of the programs can be found. You can
-then use the <code>.found()</code> method on the returned object to check
+then use the <code>.found()</code> method on the <a href="Reference-manual.html#external-program-object">returned object</a> to check
 whether it was found or not. Since <em>0.47.0</em>  the value of a
 <a href="Build-options.html#features"><code>feature</code></a> option can also be passed to the
 <code>required</code> keyword argument.</p>
@@ -855,7 +857,7 @@ argument also accepts the following:</p>
 <li>
 <code>@BUILD_DIR@</code>: the full path to the root of the build dir where the output will be placed</li>
 </ul>
-<p>NOTE: Generators should only be used for outputs that will <strong><em>only</em></strong>
+<p>NOTE: Generators should only be used for outputs that will <em><strong>only</strong></em>
 be used as inputs for a <a href="Reference-manual.html#build_target">build target</a> or a <a href="Reference-manual.html#custom_target">custom
 target</a>. When you use the processed output of a
 generator in multiple targets, the generator will be run multiple
@@ -1154,16 +1156,15 @@ Library</em>.</p>
 <p>Project supports the following keyword arguments.</p>
 <ul>
 <li>
-<code>default_options</code> takes an array of strings. The strings are in the
+<p><code>default_options</code> takes an array of strings. The strings are in the
 form <code>key=value</code> and have the same format as options to
 <code>meson configure</code>. For example to set the default project type you would
 set this: <code>default_options : ['buildtype=debugoptimized']</code>. Note
 that these settings are only used when running Meson for the first
 time. Global options such as <code>buildtype</code> can only be specified in
 the master project, settings in subprojects are ignored. Project
-specific options are used normally even in subprojects.</li>
-</ul>
-<ul>
+specific options are used normally even in subprojects.</p>
+</li>
 <li>
 <p><code>license</code> takes a string or array of strings describing the
 license(s) the code is under. Usually this would be something like
@@ -1308,7 +1309,7 @@ arguments are otherwise the same as for <a href="Reference-manual.html#library">
 has one argument the others don't have:</p>
 <ul>
 <li>
-<code>pic</code>, (<em>Added 0.36.0</em>) builds the library as positional
+<code>pic</code>, <em>(Added 0.36.0)</em> builds the library as positional
 independent code (so it can be linked into a shared library). This
 option has no effect on Windows and OS X since it doesn't make
 sense on Windows and PIC cannot be disabled on OS X.</li>
@@ -1373,6 +1374,13 @@ any default options in build files)</li>
 <code>dependency</code>. It specifies what version the subproject should be,
 as an example <code>&gt;=1.0.1</code>
 </li>
+<li>
+<code>required</code> <em>(added 0.48.0)</em> By default, <code>required</code> is <code>true</code> and
+Meson will abort if the subproject could not be setup. You can set
+this to <code>false</code> and then use the <code>.found()</code> method on the <a href="Reference-manual.html#subproject-object">returned
+object</a>. You may also pass the value of a
+<a href="Build-options.html#features"><code>feature</code></a> option, same as
+<a href="Reference-manual.html#dependency"><code>dependency()</code></a>.</li>
 </ul>
 <p>Note that you can use the returned <a href="Reference-manual.html#subproject-object">subproject
 object</a> to access any variable in the
@@ -1871,7 +1879,7 @@ do not support such attributes.
 supported attributes.</p>
 </li>
 <li>
-<p><code>get_supported_function_attributes(list_of_names)</code> *(added in 0.48.0)
+<p><code>get_supported_function_attributes(list_of_names)</code> <em>(added in 0.48.0)</em>
 returns an array containing any names that are supported GCC style
 attributes. Equivalent to <code>has_function_attribute</code> was called on each of them
 individually.</p>
@@ -2156,16 +2164,16 @@ an external dependency with the following methods:</p>
 <p><code>found()</code> which returns whether the dependency was found</p>
 </li>
 <li>
-<p><code>get_pkgconfig_variable(varname)</code> (<em>Added 0.36.0</em>) will get the
+<p><code>get_pkgconfig_variable(varname)</code> <em>(Added 0.36.0)</em> will get the
 pkg-config variable specified, or, if invoked on a non pkg-config
-dependency, error out. (<em>Added 0.44.0</em>) You can also redefine a
+dependency, error out. <em>(Added 0.44.0)</em> You can also redefine a
 variable by passing a list to the <code>define_variable</code> parameter
 that can affect the retrieved variable: <code>['prefix', '/'])</code>.
-(<em>Added 0.45.0</em>) A warning is issued if the variable is not defined,
+<em>(Added 0.45.0)</em> A warning is issued if the variable is not defined,
 unless a <code>default</code> parameter is specified.</p>
 </li>
 <li>
-<p><code>get_configtool_variable(varname)</code> (<em>Added 0.44.0</em>) will get the
+<p><code>get_configtool_variable(varname)</code> <em>(Added 0.44.0)</em> will get the
 command line argument from the config tool (with <code>--</code> prepended), or,
 if invoked on a non config-tool dependency, error out.</p>
 </li>
@@ -2181,7 +2189,7 @@ obtained with Pkg-config.</p>
 version.</p>
 </li>
 <li>
-<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (<em>added 0.46.0</em>) returns
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> <em>(Added 0.46.0)</em> returns
 a new dependency object with the same name, version, found status,
 type name, and methods as the object that called it. This new
 object will only inherit other attributes from its parent as
@@ -2267,14 +2275,14 @@ contains an external (i.e. not built as part of this project)
 library. This object has the following methods:</p>
 <ul>
 <li>
-<p><code>found</code> which returns whether the library was found.</p>
+<p><code>found()</code> which returns whether the library was found.</p>
 </li>
 <li>
-<p><code>type_name()</code> (<em>added 0.48.0</em>) which returns a string describing
+<p><code>type_name()</code> <em>(added 0.48.0)</em> which returns a string describing
 the type of the dependency, which will be <code>library</code> in this case.</p>
 </li>
 <li>
-<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> (<em>added 0.46.0</em>) returns
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> <em>(Added 0.46.0)</em> returns
 a new dependency object with the same name, version, found status,
 type name, and methods as the object that called it. This new
 object will only inherit other attributes from its parent as
@@ -2305,9 +2313,14 @@ directory. The most common value for this is
 opaque object representing it.</p>
 <ul>
 <li>
-<code>get_variable(name)</code> fetches the specified variable from inside the
+<p><code>found()</code> <em>(added 0.48.0)</em> which returns whether the subproject was
+successfully setup</p>
+</li>
+<li>
+<p><code>get_variable(name)</code> fetches the specified variable from inside the
 subproject. This is useful to, for instance, get a <a href="Reference-manual.html#declare_dependency">declared
-dependency</a> from the <a href="Subprojects.html">subproject</a>.</li>
+dependency</a> from the <a href="Subprojects.html">subproject</a>.</p>
+</li>
 </ul>
 <h3 id="run-result-object">
 <code>run result</code> object</h3>
@@ -2337,7 +2350,6 @@ and the other methods return unspecified data</li>
 	<div id="search_results">
 		<p>The results of the search are</p>
 	</div>
-	<hr>
 	<div id="footer">
 		    
 
