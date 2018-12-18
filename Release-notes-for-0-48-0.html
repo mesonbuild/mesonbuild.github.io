@@ -395,6 +395,24 @@ files get exported.</p>
 <p>This allows you to declare an optional subproject. You can now call <code>found()</code>
 on the return value of the <code>subproject()</code> call to see if the subproject is
 available before calling <code>get_variable()</code> to fetch information from it.</p>
+<h2 id="dependency-objects-now-support-the-name-method">
+<code>dependency()</code> objects now support the <code>.name()</code> method</h2>
+<p>You can now fetch the name of the dependency that was searched like so:</p>
+<pre><code class="language-meson">glib_dep = dependency('glib-2.0')
+...
+message("dependency name is " + glib_dep.name())
+# This outputs `dependency name is glib-2.0`
+
+qt_dep = dependency('qt5')
+...
+message("dependency name is " + qt_dep.name())
+# This outputs `dependency name is qt5`
+
+decl_dep = declare_dependency()
+...
+message("dependency name is " + decl_dep.name())
+# This outputs `dependency name is internal`
+</code></pre>
 
     </div>
         

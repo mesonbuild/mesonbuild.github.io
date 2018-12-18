@@ -385,7 +385,7 @@ have this target be built by default, that is, when invoking plain
 date and is rebuilt every time.  Equivalent to setting both
 <code>build_always_stale</code> and <code>build_by_default</code> to true.</li>
 <li>
-<code>build_always_stale</code> if <code>true</code> the target is always considered out of date.
+<code>build_always_stale</code> <em>(added 0.47)</em> if <code>true</code> the target is always considered out of date.
 Useful for things such as build timestamps or revision control tags.
 The associated command is run even if the outputs are up to date.</li>
 <li>
@@ -1014,6 +1014,7 @@ argument.</p>
 format and optionally the owner/uid and group/gid for the installed files.
 An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.
 <em>(Added 0.47.0)</em>.</p>
+<p>Since 0.49.0, <a href="https://mesonbuild.com/Release-notes-for-0-49-0.html#manpages-are-no-longer-compressed-implicitly">manpages are no longer compressed implicitly</a>.</p>
 <h3 id="install_subdir">install_subdir()</h3>
 <pre><code class="language-meson">    void install_subdir(subdir_name, install_dir : ..., exclude_files : ..., exclude_directories : ..., strip_directory : ...)
 </code></pre>
@@ -1085,6 +1086,8 @@ the jar with <code>java -jar file.jar</code>.</p>
 <code>join_paths('foo', 'bar')</code> results in <code>foo/bar</code>. If any one of the
 individual segments is an absolute path, all segments before it are
 dropped. That means that <code>join_paths('foo', '/bar')</code> returns <code>/bar</code>.</p>
+<p><strong>Warning</strong> Don't use <code>join_paths()</code> for sources in <a href="Reference-manual.html#library"><code>library</code></a> and
+<a href="Reference-manual.html#executable"><code>executable</code></a>, you should use <a href="Reference-manual.html#files"><code>files</code></a> instead.</p>
 <p><em>Added 0.36.0</em></p>
 <p>Since 0.49.0 using the<code>/</code> operator on strings is equivalent to calling
 <code>join_paths</code>.</p>
@@ -2162,6 +2165,11 @@ an external dependency with the following methods:</p>
 <ul>
 <li>
 <p><code>found()</code> which returns whether the dependency was found</p>
+</li>
+<li>
+<p><code>name()</code> <em>(Added 0.48.0)</em> returns the name of the dependency that was
+searched. Returns <code>internal</code> for dependencies created with
+<code>declare_dependency()</code>.</p>
 </li>
 <li>
 <p><code>get_pkgconfig_variable(varname)</code> <em>(Added 0.36.0)</em> will get the

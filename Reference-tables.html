@@ -374,6 +374,10 @@ set in the cross file.</p>
 <td> 64 bit RISC-V Open ISA</td>
 </tr>
 <tr>
+<td> rl78</td>
+<td> Renesas RL78</td>
+</tr>
+<tr>
 <td> rx</td>
 <td> Renesas RX 32 bit MCU</td>
 </tr>
@@ -510,14 +514,48 @@ future releases.</p>
 <h2 id="compiler-and-linker-flag-environment-variables">Compiler and linker flag environment variables</h2>
 <p>These environment variables will be used to modify the compiler and
 linker flags.</p>
-<p>| CFLAGS    | Flags for the C compiler                 |
-| CXXFLAGS  | Flags for the C++ compiler               |
-| OBJCFLAGS | Flags for the Objective C compiler       |
-| FFLAGS    | Flags for the Fortran compiler           |
-| DFLAGS    | Flags for the D compiler                 |
-| VALAFLAGS | Flags for the Vala compiler              |
-| RUSTFLAGS | Flags for the Rust compiler              |
-| LDFLAGS   | The linker flags, used for all languages |</p>
+<table>
+<thead>
+<tr>
+<th> Name</th>
+<th> Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> CFLAGS</td>
+<td> Flags for the C compiler</td>
+</tr>
+<tr>
+<td> CXXFLAGS</td>
+<td> Flags for the C++ compiler</td>
+</tr>
+<tr>
+<td> OBJCFLAGS</td>
+<td> Flags for the Objective C compiler</td>
+</tr>
+<tr>
+<td> FFLAGS</td>
+<td> Flags for the Fortran compiler</td>
+</tr>
+<tr>
+<td> DFLAGS</td>
+<td> Flags for the D compiler</td>
+</tr>
+<tr>
+<td> VALAFLAGS</td>
+<td> Flags for the Vala compiler</td>
+</tr>
+<tr>
+<td> RUSTFLAGS</td>
+<td> Flags for the Rust compiler</td>
+</tr>
+<tr>
+<td> LDFLAGS</td>
+<td> The linker flags, used for all languages</td>
+</tr>
+</tbody>
+</table>
 <h2 id="function-attributes">Function Attributes</h2>
 <p>These are the parameters names that are supported using
 <code>compiler.has_function_attribute()</code> or
