@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -167,28 +167,89 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-source="IDE-integration.md" data-hotdoc-role="main">
         <h1 id="ide-integration">IDE integration</h1>
-<p>Meson has exporters for Visual Studio and XCode, but writing a custom backend for every IDE out there is not a scalable approach. To solve this problem, Meson provides an API that makes it easy for any IDE or build tool to integrate Meson builds and provide an experience comparable to a solution native to the IDE.</p>
-<p>The basic tool for this is <code>meson introspect</code>.</p>
-<p>The first thing to do when setting up a Meson project in an IDE is to select the source and build directories. For this example we assume that the source resides in an Eclipse-like directory called <code>workspace/project</code> and the build tree is nested inside it as <code>workspace/project/build</code>. First we initialise Meson by running the following command in the source directory.</p>
+<p>Meson has exporters for Visual Studio and XCode, but writing a custom backend
+for every IDE out there is not a scalable approach. To solve this problem,
+Meson provides an API that makes it easy for any IDE or build tools to
+integrate Meson builds and provide an experience comparable to a solution
+native to the IDE.</p>
+<p>All the resources required for such a IDE integration can be found in
+the <code>meson-info</code> directory in the build directory.</p>
+<p>The first thing to do when setting up a Meson project in an IDE is to select
+the source and build directories. For this example we assume that the source
+resides in an Eclipse-like directory called <code>workspace/project</code> and the build
+tree is nested inside it as <code>workspace/project/build</code>. First, we initialize
+Meson by running the following command in the source directory.</p>
 <pre><code>meson builddir
 </code></pre>
-<p>For the remainder of the document we assume that all commands are executed inside the build directory unless otherwise specified.</p>
-<p>The first thing you probably want is to get a list of top level targets. For that we use the introspection tool. It comes with extensive command line help so we recommend using that in case problems appear.</p>
-<pre><code>meson introspect --targets
+<p>With this command meson will configure the project and also generate
+introspection information that is stored in <code>intro-*.json</code> files in the
+<code>meson-info</code> directory. The introspection dump will be automatically updated
+when meson is (re)configured, or the build options change. Thus, an IDE can
+watch for changes in this directory to know when something changed.</p>
+<p>The <code>meson-info</code> directory should contain the following files:</p>
+<p>File                            | Description
+------------------------------- | ---------------------------------------------------------------------
+<code>intro-benchmarks.json</code>         | Lists all benchmarks
+<code>intro-buildoptions.json</code>       | Contains a full list of meson configuration options for the project
+<code>intro-buildsystem_files.json</code>  | Full list of all meson build files
+<code>intro-dependencies.json</code>       | Lists all dependencies used in the project
+<code>intro-installed.json</code>          | Contains mapping of files to their installed location
+<code>intro-projectinfo.json</code>        | Stores basic information about the project (name, version, etc.)
+<code>intro-targets.json</code>            | Full list of all build targets
+<code>intro-tests.json</code>              | Lists all tests with instructions how to run them</p>
+<p>The content of the JSON files is further specified in the remainder of this document.</p>
+<h2 id="the-targets-section">The <code>targets</code> section</h2>
+<p>The most important file for an IDE is probably <code>intro-targets.json</code>. Here each
+target with its sources and compiler parameters is specified. The JSON format
+for one target is defined as follows:</p>
+<pre><code class="language-json">{
+    "name": "Name of the target",
+    "id": "The internal ID meson uses",
+    "type": "&lt;TYPE&gt;",
+    "filename": ["list", "of", "generated", "files"],
+    "build_by_default": true / false,
+    "target_sources": [],
+    "installed": true / false,
+}
 </code></pre>
-<p>The JSON formats will not be specified in this document. The easiest way of learning them is to look at sample output from the tool.</p>
-<p>Once you have a list of targets, you probably need the list of source files that comprise the target. To get this list for a target, say <code>exampletarget</code>, issue the following command.</p>
-<pre><code>meson introspect --target-files exampletarget
+<p>If the key <code>installed</code> is set to <code>true</code>, the key <code>install_filename</code> will also
+be present. It stores the installation location for each file in <code>filename</code>.
+If one file in <code>filename</code> is not installed, its corresponding install location
+is set to <code>null</code>.</p>
+<p>A target usually generates only one file. However, it is possible for custom
+targets to have multiple outputs.</p>
+<h3 id="target-sources">Target sources</h3>
+<p>The <code>intro-targets.json</code> file also stores a list of all source objects of the
+target in the <code>target_sources</code>. With this information, an IDE can provide code
+completion for all source files.</p>
+<pre><code class="language-json">{
+    "language": "language ID",
+    "compiler": ["The", "compiler", "command"],
+    "parameters": ["list", "of", "compiler", "parameters"],
+    "sources": ["list", "of", "all", "source", "files", "for", "this", "language"],
+    "generated_sources": ["list", "of", "all", "source", "files", "that", "where", "generated", "somewhere", "else"]
+}
 </code></pre>
-<p>In order to make code completion work, you need the compiler flags for each compilation step. Meson does not provide this itself, but the Ninja tool Meson uses to build does provide it. To find out the compile steps necessary to build target foo, issue the following command.</p>
-<pre><code>ninja -t commands foo
-</code></pre>
-<p>Note that if the target has dependencies (such as generated sources), then the commands for those show up in this list as well, so you need to do some filtering. Alternatively you can grab every command invocation in the <a href="https://clang.llvm.org/docs/JSONCompilationDatabase.html">Clang tools db</a> format that is written to a file called <code>compile_commands.json</code> in the build directory.</p>
+<p>It should be noted that the compiler parameters stored in the <code>parameters</code>
+differ from the actual parameters used to compile the file. This is because
+the parameters are optimized for the usage in an IDE to provide autocompletion
+support, etc. It is thus not recommended to use this introspection information
+for actual compilation.</p>
+<h3 id="possible-values-for-type">Possible values for <code>type</code>
+</h3>
+<p>The following table shows all valid types for a target.</p>
+<p>value of <code>type</code>  | Description
+---------------- | -------------------------------------------------------------------------------------------------
+<code>executable</code>     | This target will generate an executable file
+<code>static library</code> | Target for a static library
+<code>shared library</code> | Target for a shared library
+<code>shared module</code>  | A shared library that is meant to be used with dlopen rather than linking into something else
+<code>custom</code>         | A custom target
+<code>run</code>            | A Meson run target
+<code>jar</code>            | A Java JAR target</p>
 <h2 id="build-options">Build Options</h2>
-<p>The next thing to display is the list of options that can be set. These include build type and so on. Here's how to extract them.</p>
-<pre><code>meson introspect --buildoptions
-</code></pre>
-<p>This command returns a list of all supported buildoptions with the format:</p>
+<p>The list of all build options (build type, warning level, etc.) is stored in
+the <code>intro-buildoptions.json</code> file. Here is the JSON format for each option.</p>
 <pre><code class="language-json">{
     "name": "name of the option",
     "description": "the description",
@@ -205,7 +266,8 @@ $('body').removeClass('no-script');
 <li>integer</li>
 <li>array</li>
 </ul>
-<p>For the type <code>combo</code> the key <code>choices</code> is also present. Here all valid values for the option are stored.</p>
+<p>For the type <code>combo</code> the key <code>choices</code> is also present. Here all valid values
+for the option are stored.</p>
 <p>The possible values for <code>section</code> are:</p>
 <ul>
 <li>core</li>
@@ -217,12 +279,40 @@ $('body').removeClass('no-script');
 <li>test</li>
 </ul>
 <p>To set the options, use the <code>meson configure</code> command.</p>
+<p>Since Meson 0.50.0 it is also possible to get the default buildoptions
+without a build directory by providing the root <code>meson.build</code> instead of a
+build directory to <code>meson introspect --buildoptions</code>.</p>
+<p>Running <code>--buildoptions</code> without a build directory produces the same output as
+running it with a freshly configured build directory.</p>
+<p>However, this behavior is not guaranteed if subprojects are present. Due to
+internal limitations all subprojects are processed even if they are never used
+in a real meson run. Because of this options for the subprojects can differ.</p>
 <h2 id="tests">Tests</h2>
-<p>Compilation and unit tests are done as usual by running the <code>ninja</code> and <code>ninja test</code> commands. A JSON formatted result log can be found in <code>workspace/project/builddir/meson-logs/testlog.json</code>.</p>
-<p>When these tests fail, the user probably wants to run the failing test in a debugger. To make this as integrated as possible, extract the test test setups with this command.</p>
-<pre><code>meson introspect --tests
+<p>Compilation and unit tests are done as usual by running the <code>ninja</code> and
+<code>ninja test</code> commands. A JSON formatted result log can be found in
+<code>workspace/project/builddir/meson-logs/testlog.json</code>.</p>
+<p>When these tests fail, the user probably wants to run the failing test in a
+debugger. To make this as integrated as possible, extract the tests from the
+<code>intro-tests.json</code> and <code>intro-benchmarks.json</code> files. This provides you with
+all the information needed to run the test: what command to execute, command
+line arguments and environment variable settings.</p>
+<pre><code class="language-json">{
+    "name": "name of the test",
+    "workdir": "the working directory (can be null)",
+    "timeout": "the test timeout",
+    "suite": ["list", "of", "test", "suites"],
+    "is_parallel": true / false,
+    "cmd": ["command", "to", "run"],
+    "env": {
+        "VARIABLE1": "value 1",
+        "VARIABLE2": "value 2"
+    }
+}
 </code></pre>
-<p>This provides you with all the information needed to run the test: what command to execute, command line arguments and environment variable settings.</p>
+<h1 id="programmatic-interface">Programmatic interface</h1>
+<p>Meson also provides the <code>meson introspect</code> for project introspection via the
+command line. Use <code>meson introspect -h</code> to see all available options.</p>
+<p>This API can also work without a build directory for the <code>--projectinfo</code> command.</p>
 <h1 id="existing-integrations">Existing integrations</h1>
 <ul>
 <li><a href="https://wiki.gnome.org/Apps/Builder">Gnome Builder</a></li>

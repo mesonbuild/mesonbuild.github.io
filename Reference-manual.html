@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -487,7 +487,8 @@ keyword arguments.</p>
 <li>
 <code>dependencies</code>, other dependencies needed to use this dependency</li>
 <li>
-<code>include_directories</code>, the directories to add to header search path</li>
+<code>include_directories</code>, the directories to add to header search path,
+must be include_directories objects or, since 0.50.0, plain strings</li>
 <li>
 <code>link_args</code>, link arguments to use</li>
 <li>
@@ -540,6 +541,9 @@ for this (though <code>auto</code> will work on all of them)</li>
 the build machine system rather than the host system (i.e. where the
 cross compiled binary will run on), usually only needed if you build
 a tool to be used during compilation.</li>
+<li>
+<code>not_found_message</code> <em>(added 0.50.0)</em> is an optional string that will
+be printed as a <code>message()</code> if the dependency was not found.</li>
 <li>
 <code>required</code>, when set to false, Meson will proceed with the build
 even if the dependency is not found. Since <em>0.47.0</em> the value of a
@@ -679,7 +683,8 @@ adds the current source and build directories to the include path,
 defaults to <code>true</code>, since 0.42.0</li>
 <li>
 <code>include_directories</code> one or more objects created with the
-<code>include_directories</code> function</li>
+<code>include_directories</code> function, or, since 0.50.0, strings, which
+will be transparently expanded to include directory objects</li>
 <li>
 <code>install</code>, when set to true, this executable should be installed</li>
 <li>
@@ -1732,7 +1737,10 @@ argument, which can be either a string or a list of strings.  Since
 option can also be passed to the <code>required</code> keyword argument.
 <em>Since 0.49.0</em> if the keyword argument <code>disabler</code> is <code>true</code> and the
 dependency couldn't be found, return a <a href="Reference-manual.html#disabler-object">disabler object</a>
-instead of a not-found dependency.</p>
+instead of a not-found dependency. <em>Since 0.50.0</em> the <code>has_headers</code> keyword
+argument can be a list of header files that must be found as well, using
+<code>has_header()</code> method. All keyword arguments prefixed with <code>header_</code> will be
+passed down to <code>has_header()</code> method with the prefix removed.</p>
 </li>
 <li>
 <p><code>first_supported_argument(list_of_strings)</code>, given a list of
@@ -1799,7 +1807,9 @@ keyword argument and extra code to put above the header test with
 the <code>prefix</code> keyword. In order to look for headers in a specific
 directory you can use <code>args : '-I/extra/include/dir</code>, but this
 should only be used in exceptional cases for includes that can't be
-detected via pkg-config and passed via <code>dependencies</code>.</p>
+detected via pkg-config and passed via <code>dependencies</code>. Since <em>0.50.0</em> the
+<code>required</code> keyword argument can be used to abort if the header cannot be
+found.</p>
 </li>
 <li>
 <p><code>has_header</code> returns true if the specified header <em>exists</em>, and is
@@ -1809,14 +1819,17 @@ keyword argument and extra code to put above the header test with
 the <code>prefix</code> keyword. In order to look for headers in a specific
 directory you can use <code>args : '-I/extra/include/dir</code>, but this
 should only be used in exceptional cases for includes that can't be
-detected via pkg-config and passed via <code>dependencies</code>.</p>
+detected via pkg-config and passed via <code>dependencies</code>. Since <em>0.50.0</em> the
+<code>required</code> keyword argument can be used to abort if the header cannot be
+found.</p>
 </li>
 <li>
 <p><code>has_header_symbol(headername, symbolname)</code> allows one to detect
 whether a particular symbol (function, variable, #define, type
 definition, etc) is declared in the specified header, you can
 specify external dependencies to use with <code>dependencies</code> keyword
-argument.</p>
+argument. Since <em>0.50.0</em> the <code>required</code> keyword argument can be used to abort
+if the symbol cannot be found.</p>
 </li>
 <li>
 <p><code>has_member(typename, membername)</code> takes two arguments, type name

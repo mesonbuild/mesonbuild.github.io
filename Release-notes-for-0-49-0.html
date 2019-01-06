@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -297,8 +297,9 @@ already used by various distributions. Now, manpages are installed uncompressed
 and distributors are expected to handle compressing them according to their own
 compression preferences.</p>
 <h2 id="native-config-files">Native config files</h2>
-<p>Native files are the counterpart to cross files, and allow specifying
-information about the build machine, both when cross compiling and when not.</p>
+<p>Native files (<code>--native-file</code>) are the counterpart to cross files (<code>--cross-file</code>),
+and allow specifying information about the build machine, both when cross compiling
+and when not.</p>
 <p>Currently the native files only allow specifying the names of binaries, similar
 to the cross file, for example:</p>
 <pre><code class="language-ini">[binaries]

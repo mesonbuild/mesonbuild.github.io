@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -202,10 +202,8 @@ need the following two Meson definitions.</p>
 install_data('Info.plist', install_dir : 'Contents')
 </code></pre>
 <p>The format of <code>Info.plist</code> can be found in the link or the sample
-project linked above. Be careful, the sample code on the linked page
-is malformed, it is missing a less than character (&lt;) before
-<code>!DOCTYPE</code>. The simplest way to get an icon in the <code>icns</code> format is to
-save your image as a tiff an then use the <code>tiff2icns</code> helper
+project linked above. The simplest way to get an icon in the <code>icns</code>
+format is to save your image as a tiff an then use the <code>tiff2icns</code> helper
 application that comes with XCode.</p>
 <p>Some applications assume that the working directory of the app process
 is the same where the binary executable is. If this is the case for

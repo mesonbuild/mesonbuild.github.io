@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -175,6 +175,7 @@ universal options, base options, compiler options.</p>
 these can be set by passing to <code>meson</code> (aka <code>meson setup</code>) in any of
 these ways: <code>--option=value</code>, <code>--option value</code>, <code>-Doption=value</code>, or
 by setting them inside <code>default_options</code> of <code>project()</code> in your <code>meson.build</code>.</p>
+<p>For legacy reasons <code>--warnlevel</code> is the cli argument for the <code>warning_level</code> option.</p>
 <p>They can also be edited after setup using <code>meson configure</code>.</p>
 <p>Installation options are all relative to the prefix, except:</p>
 <ul>
@@ -263,7 +264,7 @@ by setting them inside <code>default_options</code> of <code>project()</code> in
 <td> Treat warnings as errors</td>
 </tr>
 <tr>
-<td> warnlevel {1, 2, 3}</td>
+<td> warning_level {1, 2, 3}</td>
 <td> 1</td>
 <td> Set the warning level. From 1 = lowest to 3 = highest</td>
 </tr>
