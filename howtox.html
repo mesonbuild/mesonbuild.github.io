@@ -201,7 +201,9 @@ this.</p>
 executable(..., dependencies : thread_dep)
 </code></pre>
 <h2 id="set-extra-compiler-and-linker-flags-from-the-outside-when-eg-building-distro-packages">Set extra compiler and linker flags from the outside (when e.g. building distro packages)</h2>
-<p>The behavior is the same as with other build systems, with environment variables during first invocation.</p>
+<p>The behavior is the same as with other build systems, with environment
+variables during first invocation. Do not use these when you need to rebuild
+the source</p>
 <pre><code class="language-console">$ CFLAGS=-fsomething LDFLAGS=-Wl,--linker-flag meson &lt;options&gt;
 </code></pre>
 <h2 id="use-an-argument-only-with-a-specific-compiler">Use an argument only with a specific compiler</h2>

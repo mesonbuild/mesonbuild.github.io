@@ -465,55 +465,71 @@ future releases.</p>
 <thead>
 <tr>
 <th> Language</th>
-<th> Parameter name</th>
+<th> compiler name</th>
+<th> linker name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td> C</td>
 <td> c_args</td>
+<td> c_link_args</td>
 </tr>
 <tr>
 <td> C++</td>
 <td> cpp_args</td>
+<td> cpp_link_args</td>
 </tr>
 <tr>
 <td> C#</td>
 <td> cs_args</td>
+<td> cs_link_args</td>
 </tr>
 <tr>
 <td> D</td>
 <td> d_args</td>
+<td> d_link_args</td>
 </tr>
 <tr>
 <td> Fortran</td>
 <td> fortran_args</td>
+<td> fortran_link_args</td>
 </tr>
 <tr>
 <td> Java</td>
 <td> java_args</td>
+<td> java_link_args</td>
 </tr>
 <tr>
 <td> Objective C</td>
 <td> objc_args</td>
+<td> objc_link_args</td>
 </tr>
 <tr>
 <td> Objective C++</td>
 <td> objcpp_args</td>
+<td> objcpp_link_args</td>
 </tr>
 <tr>
 <td> Rust</td>
 <td> rust_args</td>
+<td> rust_link_args</td>
 </tr>
 <tr>
 <td> Vala</td>
 <td> vala_args</td>
+<td> vala_link_args</td>
 </tr>
 </tbody>
 </table>
 <h2 id="compiler-and-linker-flag-environment-variables">Compiler and linker flag environment variables</h2>
 <p>These environment variables will be used to modify the compiler and
 linker flags.</p>
+<p>It is recommended that you <strong>do not use these</strong>. They are provided purely to
+for backwards compatibility with other build systems. There are many caveats to
+their use, especially when rebuilding the project. It is <strong>highly</strong> recommended
+that you use <a href="Reference-tables.html#language-arguments-parameters-names">the command line arguments</a>
+instead.</p>
 <table>
 <thead>
 <tr>

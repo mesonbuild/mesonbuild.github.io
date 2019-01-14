@@ -520,9 +520,9 @@ endif
         -DG_LOG_DOMAIN=\"As\"
 </code></pre>
 <p><code>meson.build</code>:</p>
-<pre><code class="language-meson">add_global_arguments('-DG_LOG_DOMAIN="As"', language : 'c')
-add_global_arguments('-DAS_COMPILATION', language : 'c')
-add_global_arguments('-DLOCALSTATEDIR="/var"', language : 'c')
+<pre><code class="language-meson">add_project_arguments('-DG_LOG_DOMAIN="As"', language : 'c')
+add_project_arguments('-DAS_COMPILATION', language : 'c')
+add_project_arguments('-DLOCALSTATEDIR="/var"', language : 'c')
 </code></pre>
 <h3 id="tests">Tests</h3>
 <p><code>Makefile.am</code>:</p>
