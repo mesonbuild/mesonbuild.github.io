@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -175,6 +175,13 @@ whose contents should look like this:</p>
 
 A short description explaining the new feature and how it should be used.
 </code></pre>
+<h2 id="custom_target-install-no-longer-overrides-build_by_default">custom_target: install no longer overrides build_by_default</h2>
+<p>Earlier, if <code>build_by_default</code> was set to false and <code>install</code> was set to true in
+a <code>custom_target</code>, <code>install</code> would override it and the <code>custom_target</code> would
+always be built by default.
+Now if <code>build_by_default</code> is explicitly set to false it will no longer be
+overridden. If <code>build_by_default</code> is not set, its default will still be
+determined by the value of <code>install</code> for greater backward compatibility.</p>
 
     </div>
         

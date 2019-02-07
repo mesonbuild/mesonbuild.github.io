@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>CMake module</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="CMake-module.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-source="CMake-module.md" data-hotdoc-role="main">
+        <h1 id="cmake-module">CMake module</h1>
+<p>This module provides helper tools for generating cmake package files.</p>
+<h2 id="usage">Usage</h2>
+<p>To use this module, just do: <strong><code>cmake = import('cmake')</code></strong>. The
+following functions will then be available as methods on the object
+with the name <code>cmake</code>. You can, of course, replace the name <code>cmake</code>
+with anything else.</p>
+<h3 id="cmakewrite_basic_package_version_file">cmake.write_basic_package_version_file()</h3>
+<p>This function is the equivalent of the corresponding <a href="https://cmake.org/cmake/help/v3.11/module/CMakePackageConfigHelpers.html#generating-a-package-version-file">CMake function</a>,
+it generates a <code>name</code> package version file.</p>
+<ul>
+<li>
+<code>name</code>: the name of the package.</li>
+<li>
+<code>version</code>: the version of the generated package file.</li>
+<li>
+<code>compatibility</code>: a string indicating the kind of compatibility, the accepted values are
+<code>AnyNewerVersion</code>, <code>SameMajorVersion</code>, <code>SameMinorVersion</code> or <code>ExactVersion</code>.
+It defaults to <code>AnyNewerVersion</code>. Depending on your cmake installation some kind of
+compatibility may not be available.</li>
+<li>
+<code>install_dir</code>: optional installation directory, it defaults to <code>$(libdir)/cmake/$(name)</code>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-meson">cmake = import('cmake')
+
+cmake.write_basic_package_version_file(name: 'myProject', version: '1.0.0')
+</code></pre>
+<h3 id="cmakeconfigure_package_config_file">cmake.configure_package_config_file()</h3>
+<p>This function is the equivalent of the corresponding <a href="https://cmake.org/cmake/help/v3.11/module/CMakePackageConfigHelpers.html#generating-a-package-configuration-file">CMake function</a>,
+it generates a <code>name</code> package configuration file from the <code>input</code> template file. Just like the cmake function
+in this file the <code>@PACKAGE_INIT@</code> statement will be replaced by the appropriate piece of cmake code.
+The equivalent <code>PATH_VARS</code> argument is given through the <code>configuration</code> parameter.</p>
+<ul>
+<li>
+<code>name</code>: the name of the package.</li>
+<li>
+<code>input</code>: the template file where that will be treated for variable substitutions contained in <code>configuration</code>.</li>
+<li>
+<code>install_dir</code>: optional installation directory, it defaults to <code>$(libdir)/cmake/$(name)</code>.</li>
+<li>
+<code>configuration</code>: a <code>configuration_data</code> object that will be used for variable substitution in the template file.</li>
+</ul>
+<p>Example:</p>
+<p>meson.build:</p>
+<pre><code class="language-meson">cmake = import('cmake')
+
+conf = configuration_data()
+conf.set_quoted('VAR', 'variable value')
+
+cmake.configure_package_config_file(
+    name: 'myProject',
+    input: 'myProject.cmake.in',
+    configuration: conf
+)
+</code></pre>
+<p>myProject.cmake.in:</p>
+<pre><code class="language-text">@PACKAGE_INIT@
+
+set(MYVAR VAR)
+</code></pre>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/CMake-module.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

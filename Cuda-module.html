@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Unstable CUDA Module</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Cuda-module.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-source="Cuda-module.md" data-hotdoc-role="main">
+        <h1 id="unstable-cuda-module">Unstable CUDA Module</h1>
+<p><em>Since: 0.50.0</em></p>
+<p>This module provides helper functionality related to the CUDA Toolkit and
+building code using it.</p>
+<p><strong>Note</strong>: this module is unstable. It is only provided as a technology preview.
+Its API may change in arbitrary ways between releases or it might be removed
+from Meson altogether.</p>
+<h2 id="importing-the-module">Importing the module</h2>
+<p>The module may be imported as follows:</p>
+<pre><code class="language-meson">cuda = import('unstable-cuda')
+</code></pre>
+<p>It offers several useful functions that are enumerated below.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="nvcc_arch_flags"><code>nvcc_arch_flags()</code></h3>
+<p><em>Since: 0.50.0</em></p>
+<pre><code class="language-meson">cuda.nvcc_arch_flags(nvcc_or_version, ...,
+                     detected: string_or_array)
+</code></pre>
+<p>Returns a list of <code>-gencode</code> flags that should be passed to <code>cuda_args:</code> in
+order to compile a "fat binary" for the architectures/compute capabilities
+enumerated in the positional argument(s). The flags shall be acceptable to
+the NVCC compiler object <code>nvcc_or_version</code>, or its version string.</p>
+<p>A set of architectures and/or compute capabilities may be specified by:</p>
+<ul>
+<li>The single positional argument <code>'All'</code>, <code>'Common'</code> or <code>'Auto'</code>
+</li>
+<li>As (an array of)
+<ul>
+<li>Architecture names (<code>'Kepler'</code>, <code>'Maxwell+Tegra'</code>, <code>'Turing'</code>) and/or</li>
+<li>Compute capabilities (<code>'3.0'</code>, <code>'3.5'</code>, <code>'5.3'</code>, <code>'7.5'</code>)</li>
+</ul>
+</li>
+</ul>
+<p>A suffix of <code>+PTX</code> requests PTX code generation for the given architecture.
+A compute capability given as <code>A.B(X.Y)</code> requests PTX generation for an older
+virtual architecture <code>X.Y</code> before binary generation for a newer architecture
+<code>A.B</code>.</p>
+<p>Multiple architectures and compute capabilities may be passed in using</p>
+<ul>
+<li>Multiple positional arguments</li>
+<li>Lists of strings</li>
+<li>Space (<code></code>), comma (<code>,</code>) or semicolon (<code>;</code>)-separated strings</li>
+</ul>
+<p>The single-word architectural sets <code>'All'</code>, <code>'Common'</code> or <code>'Auto'</code> cannot be
+mixed with architecture names or compute capabilities. Their interpretation is:</p>
+<table>
+<thead>
+<tr>
+<th> Name</th>
+<th> Compute Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>'All'</code>
+</td>
+<td> All CCs supported by given NVCC compiler.</td>
+</tr>
+<tr>
+<td> <code>'Common'</code>
+</td>
+<td> Relatively common CCs supported by given NVCC compiler. Generally excludes Tegra and Tesla devices.</td>
+</tr>
+<tr>
+<td> <code>'Auto'</code>
+</td>
+<td> The CCs provided by the <code>detected:</code> keyword, filtered for support by given NVCC compiler.</td>
+</tr>
+</tbody>
+</table>
+<p>The supported architecture names and their corresponding compute capabilities
+are:</p>
+<table>
+<thead>
+<tr>
+<th> Name</th>
+<th> Compute Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>'Fermi'</code>
+</td>
+<td> 2.0, 2.1(2.0)</td>
+</tr>
+<tr>
+<td> <code>'Kepler'</code>
+</td>
+<td> 3.0, 3.5</td>
+</tr>
+<tr>
+<td> <code>'Kepler+Tegra'</code>
+</td>
+<td> 3.2</td>
+</tr>
+<tr>
+<td> <code>'Kepler+Tesla'</code>
+</td>
+<td> 3.7</td>
+</tr>
+<tr>
+<td> <code>'Maxwell'</code>
+</td>
+<td> 5.0, 5.2</td>
+</tr>
+<tr>
+<td> <code>'Maxwell+Tegra'</code>
+</td>
+<td> 5.3</td>
+</tr>
+<tr>
+<td> <code>'Pascal'</code>
+</td>
+<td> 6.0, 6.1</td>
+</tr>
+<tr>
+<td> <code>'Pascal+Tegra'</code>
+</td>
+<td> 6.2</td>
+</tr>
+<tr>
+<td> <code>'Volta'</code>
+</td>
+<td> 7.0</td>
+</tr>
+<tr>
+<td> <code>'Volta+Tegra'</code>
+</td>
+<td> 7.2</td>
+</tr>
+<tr>
+<td> <code>'Turing'</code>
+</td>
+<td> 7.5</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<pre><code>cuda.nvcc_arch_flags('10.0', '3.0', '3.5', '5.0+PTX')
+cuda.nvcc_arch_flags('10.0', ['3.0', '3.5', '5.0+PTX'])
+cuda.nvcc_arch_flags('10.0', [['3.0', '3.5'], '5.0+PTX'])
+cuda.nvcc_arch_flags('10.0', '3.0 3.5 5.0+PTX')
+cuda.nvcc_arch_flags('10.0', '3.0,3.5,5.0+PTX')
+cuda.nvcc_arch_flags('10.0', '3.0;3.5;5.0+PTX')
+cuda.nvcc_arch_flags('10.0', 'Kepler 5.0+PTX')
+# Returns ['-gencode', 'arch=compute_30,code=sm_30',
+#          '-gencode', 'arch=compute_35,code=sm_35',
+#          '-gencode', 'arch=compute_50,code=sm_50',
+#          '-gencode', 'arch=compute_50,code=compute_50']
+
+cuda.nvcc_arch_flags('10.0', '3.5(3.0)')
+# Returns ['-gencode', 'arch=compute_30,code=sm_35']
+
+cuda.nvcc_arch_flags('8.0', 'Common')
+# Returns ['-gencode', 'arch=compute_30,code=sm_30',
+#          '-gencode', 'arch=compute_35,code=sm_35',
+#          '-gencode', 'arch=compute_50,code=sm_50',
+#          '-gencode', 'arch=compute_52,code=sm_52',
+#          '-gencode', 'arch=compute_60,code=sm_60',
+#          '-gencode', 'arch=compute_61,code=sm_61',
+#          '-gencode', 'arch=compute_61,code=compute_61']
+
+cuda.nvcc_arch_flags('9.2', 'Auto', detected: '6.0 6.0 6.0 6.0')
+cuda.nvcc_arch_flags('9.2', 'Auto', detected: ['6.0', '6.0', '6.0', '6.0'])
+# Returns ['-gencode', 'arch=compute_60,code=sm_60']
+
+cuda.nvcc_arch_flags(nvcc, 'All')
+# Returns ['-gencode', 'arch=compute_20,code=sm_20',
+#          '-gencode', 'arch=compute_20,code=sm_21',
+#          '-gencode', 'arch=compute_30,code=sm_30',
+#          '-gencode', 'arch=compute_32,code=sm_32',
+#          '-gencode', 'arch=compute_35,code=sm_35',
+#          '-gencode', 'arch=compute_37,code=sm_37',
+#          '-gencode', 'arch=compute_50,code=sm_50', # nvcc.version()  &lt;  7.0
+#          '-gencode', 'arch=compute_52,code=sm_52',
+#          '-gencode', 'arch=compute_53,code=sm_53', # nvcc.version() &gt;=  7.0
+#          '-gencode', 'arch=compute_60,code=sm_60',
+#          '-gencode', 'arch=compute_61,code=sm_61', # nvcc.version() &gt;=  8.0
+#          '-gencode', 'arch=compute_70,code=sm_70',
+#          '-gencode', 'arch=compute_72,code=sm_72', # nvcc.version() &gt;=  9.0
+#          '-gencode', 'arch=compute_75,code=sm_75'] # nvcc.version() &gt;= 10.0
+</code></pre>
+<p><em>Note:</em> This function is intended to closely replicate CMake's FindCUDA module
+function <code>CUDA_SELECT_NVCC_ARCH_FLAGS(out_variable, [list of CUDA compute architectures])</code></p>
+<h3 id="nvcc_arch_readable"><code>nvcc_arch_readable()</code></h3>
+<p><em>Since: 0.50.0</em></p>
+<pre><code class="language-meson">cuda.nvcc_arch_readable(nvcc_or_version, ...,
+                        detected: string_or_array)
+</code></pre>
+<p>Has precisely the same interface as <a href="Cuda-module.html#nvcc_arch_flags"><code>nvcc_arch_flags()</code></a>,
+but rather than returning a list of flags, it returns a "readable" list of
+architectures that will be compiled for. The output of this function is solely
+intended for informative message printing.</p>
+<pre><code>archs    = '3.0 3.5 5.0+PTX'
+readable = cuda.nvcc_arch_readable(nvcc, archs)
+message('Building for architectures ' + ' '.join(readable))
+</code></pre>
+<p>This will print</p>
+<pre><code>Message: Building for architectures sm30 sm35 sm50 compute50
+</code></pre>
+<p><em>Note:</em> This function is intended to closely replicate CMake's FindCUDA module function
+<code>CUDA_SELECT_NVCC_ARCH_FLAGS(out_variable, [list of CUDA compute architectures])</code></p>
+<h3 id="min_driver_version"><code>min_driver_version()</code></h3>
+<p><em>Since: 0.50.0</em></p>
+<pre><code class="language-meson">cuda.min_driver_version(nvcc_or_version)
+</code></pre>
+<p>Returns the minimum NVIDIA proprietary driver version required, on the host
+system, by kernels compiled with the given NVCC compiler or its version string.</p>
+<p>The output of this function is generally intended for informative message
+printing, but could be used for assertions or to conditionally enable
+features known to exist within the minimum NVIDIA driver required.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<div class="copyrights-description">
+		<p>
+				Authored by
+					       	Olexa Bilaniuk 			</p>
+	</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Cuda-module.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

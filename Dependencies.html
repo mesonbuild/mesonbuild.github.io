@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -270,6 +270,12 @@ a CMake target with the <code>modules</code> property if meson is unable to gues
 it automatically.</p>
 <pre><code class="language-meson">    cmake_dep = dependency('ZLIB', method : 'cmake', modules : ['ZLIB::ZLIB'])
 </code></pre>
+<p>It is also possible to reuse existing <code>Find&lt;name&gt;.cmake</code> files with the
+<code>cmake_module_path</code> property. Using this property is equivalent to setting the
+<code>CMAKE_MODULE_PATH</code> variable in CMake. The path(s) given to <code>cmake_module_path</code>
+should all be relative to the project source directory. Absolute paths
+should only be used if the CMake files are not stored in the project itself.</p>
+<p>Additional CMake parameters can be specified with the <code>cmake_args</code> property.</p>
 <h3 id="some-notes-on-dub">Some notes on Dub</h3>
 <p>Please understand that meson is only able to find dependencies that
 exist in the local Dub repository. You need to manually fetch and
@@ -350,6 +356,19 @@ function provided by GTest:</p>
 e = executable('testprog', 'test.cc', dependencies : gtest_dep)
 test('gtest test', e)
 </code></pre>
+<h2 id="hdf5">HDF5</h2>
+<p>HDF5 is supported for C, C++ and Fortran. Because dependencies are
+language-specific, you must specify the requested language using the
+<code>language</code> keyword argument, i.e.,</p>
+<ul>
+<li>
+<code>dependency('hdf5', language: 'c')</code> for the C HDF5 headers and libraries</li>
+<li>
+<code>dependency('hdf5', language: 'cpp')</code> for the C++ HDF5 headers and libraries</li>
+<li>
+<code>dependency('hdf5', language: 'fortran')</code> for the Fortran HDF5 headers and libraries</li>
+</ul>
+<p>Meson uses pkg-config to find HDF5. The standard low-level HDF5 function and the <code>HL</code> high-level HDF5 functions are linked for each language.</p>
 <h2 id="libwmf">libwmf</h2>
 <p><em>(added 0.44.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>

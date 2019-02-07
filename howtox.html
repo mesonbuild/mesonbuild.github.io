@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -295,6 +295,16 @@ executable(..., dependencies : m_dep)
 </h2>
 <pre><code class="language-meson">executable(..., install : true, install_dir : get_option('libexecdir'))
 </code></pre>
+<h2 id="use-existing-findnamecmake-files">Use existing <code>Find&lt;name&gt;.cmake</code> files</h2>
+<p>Meson can use the CMake <code>find_package()</code> ecosystem if CMake is installed.
+To find a dependency with custom <code>Find&lt;name&gt;.cmake</code>, set the <code>cmake_module_path</code>
+property to the path in your project where the CMake scripts are stored.</p>
+<p>Example for a <code>FindCmakeOnlyDep.cmake</code> in a <code>cmake</code> subdirectory:</p>
+<pre><code class="language-meson">cm_dep = dependency('CmakeOnlyDep', cmake_module_path : 'cmake')
+</code></pre>
+<p>The <code>cmake_module_path</code> property is only needed for custom CMake scripts. System
+wide CMake scripts are found automatically.</p>
+<p>More information can be found <a href="Dependencies.html#cmake">here</a></p>
 
     </div>
         
