@@ -194,6 +194,17 @@ cpp = '/usr/local/bin/clang++'
 rust = '/usr/local/bin/rust'
 llvm-config = '/usr/local/llvm-svn/bin/llvm-config'
 </code></pre>
+<h3 id="paths-and-directories">Paths and Directories</h3>
+<p>As of 0.50.0 paths and directories such as libdir can be defined in the native
+file in a paths section</p>
+<pre><code class="language-ini">[paths]
+libdir = 'mylibdir'
+prefix = '/my prefix'
+</code></pre>
+<p>These values will only be loaded when not cross compiling. Any arguments on the
+command line will override any options in the native file. For example, passing
+<code>--libdir=otherlibdir</code> would result in a prefix of <code>/my prefix</code> and a libdir of
+<code>otherlibdir</code>.</p>
 <h2 id="loading-multiple-native-files">Loading multiple native files</h2>
 <p>Unlike cross file, native files allow layering. More than one native file can be
 loaded, with values from a previous file being overridden by the next. The
