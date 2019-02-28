@@ -236,6 +236,14 @@ mixed with architecture names or compute capabilities. Their interpretation is:<
 </tr>
 </tbody>
 </table>
+<p>As a special case, when <code>nvcc_arch_flags()</code> is invoked with</p>
+<ul>
+<li>an NVCC <code>compiler</code> object <code>nvcc</code>,</li>
+<li>
+<code>'Auto'</code> mode and</li>
+<li>no <code>detected:</code> keyword,</li>
+</ul>
+<p>Meson uses <code>nvcc</code>'s architecture auto-detection results.</p>
 <p>The supported architecture names and their corresponding compute capabilities
 are:</p>
 <table>
@@ -292,7 +300,7 @@ are:</p>
 <td> 7.0</td>
 </tr>
 <tr>
-<td> <code>'Volta+Tegra'</code>
+<td> <code>'Xavier'</code>
 </td>
 <td> 7.2</td>
 </tr>

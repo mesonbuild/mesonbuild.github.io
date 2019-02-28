@@ -2103,11 +2103,13 @@ previous versions.  The default will eventually be changed to <code>true</code>
 in a future version.</p>
 </li>
 <li>
-<p><code>extract_objects()</code> returns an opaque value representing the
-generated object files of arguments, usually used to take single
-object files and link them to unit tests or to compile some source
-files with custom flags. To use the object file(s) in another build
-target, use the <code>objects:</code> keyword argument.</p>
+<p><code>extract_objects(source1, source2, ...)</code> takes as its arguments
+a number of source files as <a href="Reference-manual.html#string-object"><code>string</code></a> or
+<a href="Reference-manual.html#files"><code>files()</code></a> and returns an opaque value representing the
+object files generated for those source files. This is typically used
+to take single object files and link them to unit tests or to compile
+some source files with custom flags. To use the object file(s)
+in another build target, use the <code>objects:</code> keyword argument.</p>
 </li>
 <li>
 <p><code>full_path()</code> returns a full path pointing to the result target file.
@@ -2232,8 +2234,8 @@ object will only inherit other attributes from its parent as
 controlled by keyword arguments.</p>
 <p>If the parent has any dependencies, those will be applied to the new
 partial dependency with the same rules. So , given:</p>
-<pre><code class="language-meson">dep1 = declare_dependency(compiler_args : '-Werror=foo', link_with : 'libfoo')
-dep2 = declare_dependency(compiler_args : '-Werror=bar', dependencies : dep1)
+<pre><code class="language-meson">dep1 = declare_dependency(compile_args : '-Werror=foo', link_with : 'libfoo')
+dep2 = declare_dependency(compile_args : '-Werror=bar', dependencies : dep1)
 dep3 = dep2.partial_dependency(compile_args : true)
 </code></pre>
 <p>dep3 will add <code>['-Werror=foo', '-Werror=bar']</code> to the compiler args
@@ -2366,7 +2368,8 @@ sample piece of code with <a href="Reference-manual.html#compiler-object"><code>
 <ul>
 <li>
 <code>compiled()</code> if true, the compilation succeeded, if false it did not
-and the other methods return unspecified data</li>
+and the other methods return unspecified data. This is only available
+for <code>compiler.run()</code> results.</li>
 <li>
 <code>returncode()</code> the return code of executing the compiled binary</li>
 <li>
