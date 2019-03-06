@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -190,8 +190,11 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 <p>By default Meson uses as many concurrent processes as there are cores on the test machine. You can override this with the environment variable <code>MESON_TESTTHREADS</code> like this.</p>
 <pre><code class="language-console">$ MESON_TESTTHREADS=5 ninja test
 </code></pre>
-<h2 id="skipped-tests">Skipped tests</h2>
-<p>Sometimes a test can only determine at runtime that it can not be run. The GNU standard approach in this case is to exit the program with error code 77. Meson will detect this and report these tests as skipped rather than failed. This behavior was added in version 0.37.0.</p>
+<h2 id="skipped-tests-and-hard-errors">Skipped tests and hard errors</h2>
+<p>Sometimes a test can only determine at runtime that it can not be run.</p>
+<p>For the default <code>exitcode</code> testing protocol, the GNU standard approach in this case is to exit the program with error code 77. Meson will detect this and report these tests as skipped rather than failed. This behavior was added in version 0.37.0.</p>
+<p>For TAP-based tests, skipped tests should print a single line starting with <code>1..0 # SKIP</code>.</p>
+<p>In addition, sometimes a test fails set up so that it should fail even if it is marked as an expected failure. The GNU standard approach in this case is to exit the program with error code 99. Again, Meson will detect this and report these tests as <code>ERROR</code>, ignoring the setting of <code>should_fail</code>. This behavior was added in version 0.50.0.</p>
 <h2 id="testing-tool">Testing tool</h2>
 <p>The goal of the meson test tool is to provide a simple way to run tests in a variety of different ways. The tool is designed to be run in the build directory.</p>
 <p>The simplest thing to do is just to run all tests, which is equivalent to running <code>ninja test</code>.</p>

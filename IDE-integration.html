@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -207,6 +207,7 @@ for one target is defined as follows:</p>
     "id": "The internal ID meson uses",
     "type": "&lt;TYPE&gt;",
     "defined_in": "/Path/to/the/targets/meson.build",
+    "subproject": null,
     "filename": ["list", "of", "generated", "files"],
     "build_by_default": true / false,
     "target_sources": [],
@@ -217,6 +218,7 @@ for one target is defined as follows:</p>
 be present. It stores the installation location for each file in <code>filename</code>.
 If one file in <code>filename</code> is not installed, its corresponding install location
 is set to <code>null</code>.</p>
+<p>The <code>subproject' key specifies the name of the subproject this target was defined in, or</code>null` if the target was defined in the top level project.</p>
 <p>A target usually generates only one file. However, it is possible for custom
 targets to have multiple outputs.</p>
 <h3 id="target-sources">Target sources</h3>
@@ -248,6 +250,31 @@ for actual compilation.</p>
 <code>custom</code>         | A custom target
 <code>run</code>            | A Meson run target
 <code>jar</code>            | A Java JAR target</p>
+<h3 id="using-targets-without-a-build-directory">Using <code>--targets</code> without a build directory</h3>
+<p>It is also possible to get most targets without a build directory. This can be
+done by running <code>meson introspect --targets /path/to/meson.build</code>.</p>
+<p>The generated output is similar to running the introspection with a build
+directory or reading the <code>intro-targets.json</code>. However, there are some key
+differences:</p>
+<ul>
+<li>The paths in <code>filename</code> now are <em>relative</em> to the future build directory</li>
+<li>The <code>install_filename</code> key is completely missing</li>
+<li>There is only one entry in <code>target_sources</code>:
+<ul>
+<li>With the language set to <code>unknown</code>
+</li>
+<li>Empty lists for <code>compiler</code> and <code>parameters</code> and <code>generated_sources</code>
+</li>
+<li>The <code>sources</code> list <em>should</em> contain all sources of the target</li>
+</ul>
+</li>
+</ul>
+<p>There is no guarantee that the sources list in <code>target_sources</code> is correct.
+There might be differences, due to internal limitations. It is also not
+guaranteed that all targets will be listed in the output. It might even be
+possible that targets are listed, which won't exist when meson is run normally.
+This can happen if a target is defined inside an if statement.
+Use this feature with care.</p>
 <h2 id="build-options">Build Options</h2>
 <p>The list of all build options (build type, warning level, etc.) is stored in
 the <code>intro-buildoptions.json</code> file. Here is the JSON format for each option.</p>
@@ -288,6 +315,31 @@ running it with a freshly configured build directory.</p>
 <p>However, this behavior is not guaranteed if subprojects are present. Due to
 internal limitations all subprojects are processed even if they are never used
 in a real meson run. Because of this options for the subprojects can differ.</p>
+<h2 id="the-dependencies-section">The dependencies section</h2>
+<p>The list of all <em>found</em> dependencies can be acquired from
+<code>intro-dependencies.json</code>. Here, the name, compiler and linker arguments for
+a dependency are listed.</p>
+<h3 id="scanning-for-dependecie-with-scandependencies">Scanning for dependecie with <code>--scan-dependencies</code>
+</h3>
+<p>It is also possible to get most dependencies used without a build directory.
+This can be done by running <code>meson introspect --scan-dependencies /path/to/meson.build</code>.</p>
+<p>The output format is as follows:</p>
+<pre><code class="language-json">[
+  {
+    "name": "The name of the dependency",
+    "required": true,
+    "conditional": false,
+    "has_fallback": false
+  }
+]
+</code></pre>
+<p>The <code>required</code> keyword specifies whether the dependency is marked as required
+in the <code>meson.build</code> (all dependencies are required by default). The
+<code>conditional</code> key indicates whether the <code>dependency()</code> function was called
+inside a conditional block. In a real meson run these dependencies might not be
+used, thus they <em>may</em> not be required, even if the <code>required</code> key is set. The
+<code>has_fallback</code> key just indicates whether a fallback was directly set in the
+<code>dependency()</code> function.</p>
 <h2 id="tests">Tests</h2>
 <p>Compilation and unit tests are done as usual by running the <code>ninja</code> and
 <code>ninja test</code> commands. A JSON formatted result log can be found in

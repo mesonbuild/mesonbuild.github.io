@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -720,6 +720,44 @@ which are supported by MSVC, GCC, Clang, and other compilers.</p>
 </tr>
 <tr>
 <td> dllimport</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dependency-lookup-methods">Dependency lookup methods</h2>
+<p>These are the values that can be passed to <code>dependency</code> function's
+<code>method</code> keyword argument.</p>
+<table>
+<thead>
+<tr>
+<th> Name</th>
+<th> Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> auto</td>
+<td> Automatic method selection</td>
+</tr>
+<tr>
+<td> pkg-config</td>
+<td> Use Pkg-Config</td>
+</tr>
+<tr>
+<td> cmake</td>
+<td> Look up as a CMake module</td>
+</tr>
+<tr>
+<td> config-tool</td>
+<td> Use a custom dep tool such as <code>cups-config</code>
+</td>
+</tr>
+<tr>
+<td> system</td>
+<td> System provided (e.g. OpenGL)</td>
+</tr>
+<tr>
+<td> extraframework</td>
+<td> A macOS/iOS framework</td>
 </tr>
 </tbody>
 </table>

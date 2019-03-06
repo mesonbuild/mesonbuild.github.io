@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -188,6 +188,31 @@ the latter prevents using the project as a subproject.</p>
 much as possible. Keep them in the cross file instead. This adds
 portability, since all changes needed to compile to a different
 platform are isolated in one place.</p>
+<h1 id="sorting-source-paths">Sorting source paths</h1>
+<p>The source file arrays should all be sorted. This makes it easier to spot
+errors and often reduces merge conflicts. Furthermore, the paths should be
+sorted with a natural sorting algorithm, so that numbers are sorted in an
+intuitive way (<code>1, 2, 3, 10, 20</code> instead of <code>1, 10, 2, 20, 3</code>).</p>
+<p>Numbers should also be sorted before characters (<code>a111</code> before <code>ab0</code>).
+Furthermore, strings should be sorted case insensitive.</p>
+<p>Additionally, if a path contains a directory it should be sorted before
+normal files. This rule also applies recursively for subdirectories.</p>
+<p>The following example shows correct source list definition:</p>
+<pre><code class="language-meson">sources = files([
+  'aaa/a1.c',
+  'aaa/a2.c',
+  'bbb/subdir1/b1.c',
+  'bbb/subdir2/b2.c',
+  'bbb/subdir10/b3.c',
+  'bbb/subdir20/b4.c',
+  'bbb/b5.c',
+  'bbb/b6.c',
+  'f1.c',
+  'f2.c',
+  'f10.c,
+  'f20.c'
+])
+</code></pre>
 
     </div>
         

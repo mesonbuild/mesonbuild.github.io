@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -1420,10 +1420,7 @@ executable to run.  The executable can be an <a href="Reference-manual.html#buil
 object</a> returned by
 <a href="Reference-manual.html#executable"><code>executable()</code></a> or an <a href="Reference-manual.html#external-program-object">external program
 object</a> returned by
-<a href="Reference-manual.html#find_program"><code>find_program()</code></a>. The executable's exit code is used
-by the test harness to record the outcome of the test, for example
-exit code zero indicates success. For more on the Meson test harness
-protocol read <a href="Unit-tests.html">Unit Tests</a>.</p>
+<a href="Reference-manual.html#find_program"><code>find_program()</code></a>.</p>
 <p>Keyword arguments are the following:</p>
 <ul>
 <li>
@@ -1465,6 +1462,13 @@ line argument. This is meant for cases where test finds those
 targets internally, e.g. plugins or globbing. Those targets are built
 before test is executed even if they have <code>build_by_default : false</code>.
 Since 0.46.0</p>
+</li>
+<li>
+<p><code>protocol</code> specifies how the test results are parsed and can be one
+of <code>exitcode</code> (the executable's exit code is used by the test harness
+to record the outcome of the test) or <code>tap</code> (<a href="https://www.testanything.org/">Test Anything
+Protocol</a>). For more on the Meson test
+harness protocol read <a href="Unit-tests.html">Unit Tests</a>. Since 0.50.0</p>
 </li>
 </ul>
 <p>Defined tests can be run in a backend-agnostic way by calling
