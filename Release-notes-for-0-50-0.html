@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Release 0.50</title>
+<title>Release 0.50.0</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
@@ -167,21 +167,253 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-source="Release-notes-for-0.50.0.md" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
-<p>This page is a placeholder for the eventual release notes.</p>
-<p>Notable new features should come with release note updates. This is
-done by creating a file snippet called <code>snippets/featurename.md</code> and
-whose contents should look like this:</p>
-<pre><code>## Feature name
-
-A short description explaining the new feature and how it should be used.
+<h2 id="added-cmake_module_path-and-cmake_args-to-dependency">Added <code>cmake_module_path</code> and <code>cmake_args</code> to dependency</h2>
+<p>The CMake dependency backend can now make use of existing <code>Find&lt;name&gt;.cmake</code>
+files by setting the <code>CMAKE_MODULE_PATH</code> with the new <code>dependency()</code> property
+<code>cmake_module_path</code>. The paths given to <code>cmake_module_path</code> should be relative
+to the project source directory.</p>
+<p>Furthermore the property <code>cmake_args</code> was added to give CMake additional
+parameters.</p>
+<h2 id="added-pgi-compiler-support">Added PGI compiler support</h2>
+<p>Nvidia / PGI C, C++ and Fortran
+<a href="https://www.pgroup.com/products/community.htm">no-cost</a> compilers are
+now supported.  They have been tested on Linux so far.</p>
+<h2 id="fortran-coarray">Fortran Coarray</h2>
+<p>Fortran 2008 / 2018 coarray support was added via <code>dependency('coarray')</code></p>
+<h2 id="libdir-defaults-to-lib-when-cross-compiling">Libdir defaults to <code>lib</code> when cross compiling</h2>
+<p>Previously <code>libdir</code> defaulted to the value of the build machine such
+as <code>lib/x86_64-linux-gnu</code>, which is almost always incorrect when cross
+compiling. It now defaults to plain <code>lib</code> when cross compiling. Native
+builds remain unchanged and will point to the current system's library
+dir.</p>
+<h2 id="native-and-cross-file-paths-and-directories">Native and Cross File Paths and Directories</h2>
+<p>A new <code>[paths]</code> section has been added to native and cross files. This
+can be used to set paths such a prefix and libdir in a persistent way.</p>
+<h2 id="add-warning_level-0-option">Add warning_level 0 option</h2>
+<p>Adds support for a warning level 0 which does not enable any static
+analysis checks from the compiler</p>
+<h2 id="a-builtin-target-to-run-clangformat">A builtin target to run clang-format</h2>
+<p>If you have <code>clang-format</code> installed and there is a <code>.clang-format</code>
+file in the root of your master project, Meson will generate a run
+target called <code>clang-format</code> so you can reformat all files with one
+command:</p>
+<pre><code class="language-meson">ninja clang-format
 </code></pre>
-<h2 id="custom_target-install-no-longer-overrides-build_by_default">custom_target: install no longer overrides build_by_default</h2>
-<p>Earlier, if <code>build_by_default</code> was set to false and <code>install</code> was set to true in
-a <code>custom_target</code>, <code>install</code> would override it and the <code>custom_target</code> would
-always be built by default.
-Now if <code>build_by_default</code> is explicitly set to false it will no longer be
-overridden. If <code>build_by_default</code> is not set, its default will still be
-determined by the value of <code>install</code> for greater backward compatibility.</p>
+<h2 id="added-a-path-method-to-object-return-by-pythonfind_installation">Added a .path() method to object return by python.find_installation()</h2>
+<p><code>ExternalProgram</code> objects as well as the object returned by the
+<code>python3</code> module provide this method, but the new python module did
+not.</p>
+<h2 id="fix-ninja-console-log-from-generators-with-multiple-output-nodes">Fix ninja console log from generators with multiple output nodes</h2>
+<p>This resolves ticket #4760 where a generator w/ multiple output nodes
+printed an empty string to the console</p>
+<h2 id="introspect-buildoptions-can-now-be-used-without-configured-build-directory">
+<code>introspect --buildoptions</code> can now be used without configured build directory</h2>
+<p>It is now possible to run <code>meson introspect --buildoptions /path/to/meson.build</code>
+without a configured build directory.</p>
+<p>Running <code>--buildoptions</code> without a build directory produces the same
+output as running it with a freshly configured build directory.</p>
+<p>However, this behavior is not guaranteed if subprojects are
+present. Due to internal limitations all subprojects are processed
+even if they are never used in a real meson run.  Because of this
+options for the subprojects can differ.</p>
+<h2 id="include_directories-accepts-a-string">
+<code>include_directories</code> accepts a string</h2>
+<p>The <code>include_directories</code> keyword argument now accepts plain strings
+rather than an include directory object. Meson will transparently
+expand it so that a declaration like this:</p>
+<pre><code class="language-meson">executable(..., include_directories: 'foo')
+</code></pre>
+<p>Is equivalent to this:</p>
+<pre><code class="language-meson">foo_inc = include_directories('foo')
+executable(..., include_directories: inc)
+</code></pre>
+<h2 id="fortran-submodule-support">Fortran submodule support</h2>
+<p>Initial support for Fortran <code>submodule</code> was added, where the submodule is in
+the same or different file than the parent <code>module</code>.
+The submodule hierarchy specified in the source Fortran code <code>submodule</code>
+statements are used by Meson to resolve source file dependencies.
+For example:</p>
+<pre><code class="language-fortran">submodule (ancestor:parent) child
+</code></pre>
+<h2 id="add-subproject_dir-to-projectinfo-introspection-output">Add subproject_dir to --projectinfo introspection output</h2>
+<p>This allows applications interfacing with Meson (such as IDEs) to know about
+an overridden subproject directory.</p>
+<h2 id="find-library-with-its-headers">Find library with its headers</h2>
+<p>The <code>find_library()</code> method can now also verify if the library's headers are
+found in a single call, using the <code>has_header()</code> method internally.</p>
+<pre><code class="language-meson"># Aborts if the 'z' library is found but not its header file
+zlib = find_library('z', has_headers : 'zlib.h')
+# Returns not-found if the 'z' library is found but not its header file
+zlib = find_library('z', has_headers : 'zlib.h', required : false)
+</code></pre>
+<p>Any keyword argument with the <code>header_</code> prefix passed to <code>find_library()</code> will
+be passed to the <code>has_header()</code> method with the prefix removed.</p>
+<pre><code class="language-meson">libfoo = find_library('foo',
+  has_headers : ['foo.h', 'bar.h'],
+  header_prefix : '#include &lt;baz.h&gt;',
+  header_include_directories : include_directories('.'))
+</code></pre>
+<h2 id="netcdf">NetCDF</h2>
+<p>NetCDF support for C, C++ and Fortran is added via pkg-config.</p>
+<h2 id="added-the-flang-compiler">added the Flang compiler</h2>
+<p><a href="https://github.com/flang-compiler/flang/releases">Flang</a> Fortran
+compiler support was added.  As with other Fortran compilers, flang is
+specified using <code>FC=flang meson ..</code> or similar.</p>
+<h2 id="new-not_found_message-for-dependency">New <code>not_found_message</code> for dependency</h2>
+<p>You can now specify a <code>not_found_message</code> that will be printed if the
+specified dependency was not found. The point is to convert constructs
+that look like this:</p>
+<pre><code class="language-meson">d = dependency('something', required: false)
+if not d.found()
+  message('Will not be able to do something.')
+endif
+</code></pre>
+<p>Into this:</p>
+<pre><code class="language-meson">d = dependency('something',
+  required: false,
+  not_found_message: 'Will not be able to do something.')
+</code></pre>
+<p>Or constructs like this:</p>
+<pre><code class="language-meson">d = dependency('something', required: false)
+if not d.found()
+  error('Install something by doing XYZ.')
+endif
+</code></pre>
+<p>into this:</p>
+<pre><code class="language-meson">d = dependency('something',
+  not_found_message: 'Install something by doing XYZ.')
+</code></pre>
+<p>Which works, because the default value of <code>required</code> is <code>true</code>.</p>
+<h2 id="cuda-support">Cuda support</h2>
+<p>Compiling Cuda source code is now supported, though only with the
+Ninja backend. This has been tested only on Linux for now.</p>
+<p>Because NVidia's Cuda compiler does not produce <code>.d</code> dependency files,
+dependency tracking does not work.</p>
+<h2 id="run_command-accepts-env-kwarg">
+<code>run_command</code> accepts <code>env</code> kwarg</h2>
+<p>You can pass <a href="Reference-manual.html#environment-object"><code>environment</code></a>
+object to <a href="Reference-manual.html#run-command"><code>run_command</code></a>, just
+like to <code>test</code>:</p>
+<pre><code class="language-meson">env = environment()
+env.set('FOO', 'bar')
+run_command('command', 'arg1', 'arg2', env: env)
+</code></pre>
+<h2 id="extract_objects-accepts-file-arguments">
+<code>extract_objects</code> accepts <code>File</code> arguments</h2>
+<p>The <code>extract_objects</code> function now supports File objects to tell it
+what to extract. Previously, file paths could only be passed as strings.</p>
+<h2 id="changed-the-json-format-of-the-introspection">Changed the JSON format of the introspection</h2>
+<p>All paths used in the meson introspection JSON format are now absolute. This
+affects the <code>filename</code> key in the targets introspection and the output of
+<code>--buildsystem-files</code>.</p>
+<p>Furthermore, the <code>filename</code> and <code>install_filename</code> keys in the targets
+introspection are now lists of strings with identical length.</p>
+<p>The <code>--target-files</code> option is now deprecated, since the same information
+can be acquired from the <code>--tragets</code> introspection API.</p>
+<h2 id="meson-file-rewriter">Meson file rewriter</h2>
+<p>This release adds the functionality to perform some basic modification
+on the <code>meson.build</code> files from the command line. The currently
+supported operations are:</p>
+<ul>
+<li>For build targets:
+<ul>
+<li>Add/Remove source files</li>
+<li>Add/Remove targets</li>
+<li>Modify a select set of kwargs</li>
+<li>Print some JSON information</li>
+</ul>
+</li>
+<li>For dependencies:
+<ul>
+<li>Modify a select set of kwargs</li>
+</ul>
+</li>
+<li>For the project function:
+<ul>
+<li>Modify a select set of kwargs</li>
+<li>Modify the default options list</li>
+</ul>
+</li>
+</ul>
+<p>For more information see the rewriter documentation.</p>
+<h2 id="introspect-scandependencies-can-now-be-used-to-scan-for-dependencies-used-in-a-project">
+<code>introspect --scan-dependencies</code> can now be used to scan for dependencies used in a project</h2>
+<p>It is now possible to run <code>meson introspect --scan-dependencies /path/to/meson.build</code> without a configured build directory to scan for
+dependencies.</p>
+<p>The output format is as follows:</p>
+<pre><code class="language-json">[
+  {
+    "name": "The name of the dependency",
+    "required": true,
+    "conditional": false,
+    "has_fallback": false
+  }
+]
+</code></pre>
+<p>The <code>required</code> keyword specifies whether the dependency is marked as required
+in the <code>meson.build</code> (all dependencies are required by default). The
+<code>conditional</code> key indicates whether the <code>dependency()</code> function was called
+inside a conditional block. In a real meson run these dependencies might not be
+used, thus they <em>may</em> not be required, even if the <code>required</code> key is set. The
+<code>has_fallback</code> key just indicates whether a fallback was directly set in the
+<code>dependency()</code> function.</p>
+<h2 id="introspect-targets-can-now-be-used-without-configured-build-directory">
+<code>introspect --targets</code> can now be used without configured build directory</h2>
+<p>It is now possible to run <code>meson introspect --targets /path/to/meson.build</code>
+without a configured build directory.</p>
+<p>The generated output is similar to running the introspection with a build
+directory. However, there are some key differences:</p>
+<ul>
+<li>The paths in <code>filename</code> now are <em>relative</em> to the future build directory</li>
+<li>The <code>install_filename</code> key is completely missing</li>
+<li>There is only one entry in <code>target_sources</code>:
+<ul>
+<li>With the language set to <code>unknown</code>
+</li>
+<li>Empty lists for <code>compiler</code> and <code>parameters</code> and <code>generated_sources</code>
+</li>
+<li>The <code>sources</code> list <em>should</em> contain all sources of the target</li>
+</ul>
+</li>
+</ul>
+<p>There is no guarantee that the sources list in <code>target_sources</code> is correct.
+There might be differences, due to internal limitations. It is also not
+guaranteed that all targets will be listed in the output. It might even be
+possible that targets are listed, which won't exist when meson is run normally.
+This can happen if a target is defined inside an if statement.
+Use this feature with care.</p>
+<h2 id="added-option-to-introspect-multiple-parameters-at-once">Added option to introspect multiple parameters at once</h2>
+<p>Meson introspect can now print the results of multiple introspection
+commands in a single call. The results are then printed as a single JSON
+object.</p>
+<p>The format for a single command was not changed to keep backward
+compatibility.</p>
+<p>Furthermore the option <code>-a,--all</code>, <code>-i,--indent</code> and <code>-f,--force-object-output</code>
+were added to print all introspection information in one go, format the
+JSON output (the default is still compact JSON) and force use the new
+output format, even if only one introspection command was given.</p>
+<p>A complete introspection dump is also stored in the <code>meson-info</code>
+directory. This dump will be (re)generated each time meson updates the
+configuration of the build directory.</p>
+<p>Additionlly the format of <code>meson introspect target</code> was changed:</p>
+<ul>
+<li>New: the <code>sources</code> key. It stores the source files of a target and their compiler parameters.</li>
+<li>New: the <code>defined_in</code> key. It stores the meson file where a target is defined</li>
+<li>New: the <code>subproject</code> key. It stores the name of the subproject where a target is defined.</li>
+<li>Added new target types (<code>jar</code>, <code>shared module</code>).</li>
+</ul>
+<h2 id="meson-configure-can-now-print-the-default-options-of-an-unconfigured-project">meson configure can now print the default options of an unconfigured project</h2>
+<p>With this release, it is also possible to get a list of all build options
+by invoking <code>meson configure</code> with the project source directory or
+the path to the root <code>meson.build</code>. In this case, meson will print the
+default values of all options.</p>
+<h2 id="hdf5">HDF5</h2>
+<p>HDF5 support is added via pkg-config.</p>
+<h2 id="added-the-mesoninfojson-introspection-file">Added the <code>meson-info.json</code> introspection file</h2>
+<p>Meson now generates a <code>meson-info.json</code> file in the <code>meson-info</code> directory
+to provide introspection information about the latest meson run. This file
+is updated when the build configuration is changed and the build files are
+(re)generated.</p>
 
     </div>
         

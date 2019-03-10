@@ -215,6 +215,12 @@ whether it was found or not. Since <em>0.48.0</em>  the value of a
 <p>The <code>python_installation</code> object is an <a href="Reference-manual.html#external-program-object">external program</a>, with several
 added methods.</p>
 <h3 id="methods">Methods</h3>
+<h4 id="path"><code>path()</code></h4>
+<pre><code class="language-meson">str py_installation.path()
+</code></pre>
+<p><em>Added 0.50.0</em></p>
+<p>Works like the path method of other <code>ExternalProgram</code> objects. Was not
+provided prior to 0.50.0 due to a bug.</p>
 <h4 id="extension_module"><code>extension_module()</code></h4>
 <pre><code class="language-meson">shared_module py_installation.extension_module(module_name, list_of_sources, ...)
 </code></pre>
