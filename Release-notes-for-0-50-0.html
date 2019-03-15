@@ -199,13 +199,14 @@ target called <code>clang-format</code> so you can reformat all files with one
 command:</p>
 <pre><code class="language-meson">ninja clang-format
 </code></pre>
-<h2 id="added-a-path-method-to-object-return-by-pythonfind_installation">Added a .path() method to object return by python.find_installation()</h2>
+<h2 id="added-path-method-to-object-returned-by-pythonfind_installation">Added <code>.path()</code> method to object returned by <code>python.find_installation()</code>
+</h2>
 <p><code>ExternalProgram</code> objects as well as the object returned by the
-<code>python3</code> module provide this method, but the new python module did
+<code>python3</code> module provide this method, but the new <code>python</code> module did
 not.</p>
 <h2 id="fix-ninja-console-log-from-generators-with-multiple-output-nodes">Fix ninja console log from generators with multiple output nodes</h2>
-<p>This resolves ticket #4760 where a generator w/ multiple output nodes
-printed an empty string to the console</p>
+<p>This resolves <a href="https://github.com/mesonbuild/meson/issues/4760">issue #4760</a>
+where a generator with multiple output nodes printed an empty string to the console</p>
 <h2 id="introspect-buildoptions-can-now-be-used-without-configured-build-directory">
 <code>introspect --buildoptions</code> can now be used without configured build directory</h2>
 <p>It is now possible to run <code>meson introspect --buildoptions /path/to/meson.build</code>
@@ -225,7 +226,7 @@ expand it so that a declaration like this:</p>
 </code></pre>
 <p>Is equivalent to this:</p>
 <pre><code class="language-meson">foo_inc = include_directories('foo')
-executable(..., include_directories: inc)
+executable(..., include_directories: foo_inc)
 </code></pre>
 <h2 id="fortran-submodule-support">Fortran submodule support</h2>
 <p>Initial support for Fortran <code>submodule</code> was added, where the submodule is in
@@ -235,7 +236,7 @@ statements are used by Meson to resolve source file dependencies.
 For example:</p>
 <pre><code class="language-fortran">submodule (ancestor:parent) child
 </code></pre>
-<h2 id="add-subproject_dir-to-projectinfo-introspection-output">Add subproject_dir to --projectinfo introspection output</h2>
+<h2 id="add-subproject_dir-to-projectinfo-introspection-output">Add <code>subproject_dir</code> to <code>--projectinfo</code> introspection output</h2>
 <p>This allows applications interfacing with Meson (such as IDEs) to know about
 an overridden subproject directory.</p>
 <h2 id="find-library-with-its-headers">Find library with its headers</h2>
@@ -255,11 +256,12 @@ be passed to the <code>has_header()</code> method with the prefix removed.</p>
 </code></pre>
 <h2 id="netcdf">NetCDF</h2>
 <p>NetCDF support for C, C++ and Fortran is added via pkg-config.</p>
-<h2 id="added-the-flang-compiler">added the Flang compiler</h2>
+<h2 id="added-the-flang-compiler">Added the Flang compiler</h2>
 <p><a href="https://github.com/flang-compiler/flang/releases">Flang</a> Fortran
 compiler support was added.  As with other Fortran compilers, flang is
 specified using <code>FC=flang meson ..</code> or similar.</p>
-<h2 id="new-not_found_message-for-dependency">New <code>not_found_message</code> for dependency</h2>
+<h2 id="new-not_found_message-for-dependency">New <code>not_found_message</code> for <code>dependency()</code>
+</h2>
 <p>You can now specify a <code>not_found_message</code> that will be printed if the
 specified dependency was not found. The point is to convert constructs
 that look like this:</p>
@@ -290,7 +292,7 @@ Ninja backend. This has been tested only on Linux for now.</p>
 <p>Because NVidia's Cuda compiler does not produce <code>.d</code> dependency files,
 dependency tracking does not work.</p>
 <h2 id="run_command-accepts-env-kwarg">
-<code>run_command</code> accepts <code>env</code> kwarg</h2>
+<code>run_command()</code> accepts <code>env</code> kwarg</h2>
 <p>You can pass <a href="Reference-manual.html#environment-object"><code>environment</code></a>
 object to <a href="Reference-manual.html#run-command"><code>run_command</code></a>, just
 like to <code>test</code>:</p>
@@ -299,7 +301,7 @@ env.set('FOO', 'bar')
 run_command('command', 'arg1', 'arg2', env: env)
 </code></pre>
 <h2 id="extract_objects-accepts-file-arguments">
-<code>extract_objects</code> accepts <code>File</code> arguments</h2>
+<code>extract_objects:</code> accepts <code>File</code> arguments</h2>
 <p>The <code>extract_objects</code> function now supports File objects to tell it
 what to extract. Previously, file paths could only be passed as strings.</p>
 <h2 id="changed-the-json-format-of-the-introspection">Changed the JSON format of the introspection</h2>
@@ -402,7 +404,8 @@ configuration of the build directory.</p>
 <li>New: the <code>subproject</code> key. It stores the name of the subproject where a target is defined.</li>
 <li>Added new target types (<code>jar</code>, <code>shared module</code>).</li>
 </ul>
-<h2 id="meson-configure-can-now-print-the-default-options-of-an-unconfigured-project">meson configure can now print the default options of an unconfigured project</h2>
+<h2 id="meson-configure-can-now-print-the-default-options-of-an-unconfigured-project">
+<code>meson configure</code> can now print the default options of an unconfigured project</h2>
 <p>With this release, it is also possible to get a list of all build options
 by invoking <code>meson configure</code> with the project source directory or
 the path to the root <code>meson.build</code>. In this case, meson will print the

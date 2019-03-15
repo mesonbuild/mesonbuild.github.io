@@ -1759,7 +1759,9 @@ dependency couldn't be found, return a <a href="Reference-manual.html#disabler-o
 instead of a not-found dependency. <em>Since 0.50.0</em> the <code>has_headers</code> keyword
 argument can be a list of header files that must be found as well, using
 <code>has_header()</code> method. All keyword arguments prefixed with <code>header_</code> will be
-passed down to <code>has_header()</code> method with the prefix removed.</p>
+passed down to <code>has_header()</code> method with the prefix removed. <em>Since 0.51.0</em>
+the <code>static</code> keyword (boolean) can be set to <code>true</code> to limit the search to
+static libraries and <code>false</code> for dynamic/shared.</p>
 </li>
 <li>
 <p><code>first_supported_argument(list_of_strings)</code>, given a list of
