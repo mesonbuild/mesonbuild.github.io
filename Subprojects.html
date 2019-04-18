@@ -185,7 +185,7 @@ with mixed build systems.</p>
 <p>Usually dependencies consist of some header files plus a library to link against.
 To declare this internal dependency use <code>declare_dependency</code> function.</p>
 <p>As an example, suppose we have a simple project that provides a shared
-library. It's <code>meson.build</code> would look like this.</p>
+library. Its <code>meson.build</code> would look like this.</p>
 <pre><code class="language-meson">project('libsimple', 'c')
 
 inc = include_directories('include')
@@ -350,10 +350,16 @@ it is skipped. Unless <code>--rebase</code> option is passed in which case
 <p>The command-line <code>meson subprojects checkout &lt;branch_name&gt;</code> will checkout a
 branch, or create one with <code>-b</code> argument, in every git subprojects. This is
 useful when starting local changes across multiple subprojects. It is still your
-responsability to commit and push in each repository where you made local
+responsibility to commit and push in each repository where you made local
 changes.</p>
 <p>To come back to the revision set in wrap file (i.e. master), just run
 <code>meson subprojects checkout</code> with no branch name.</p>
+<h2 id="execute-a-command-on-all-subprojects">Execute a command on all subprojects</h2>
+<p><em>Since 0.51.0</em></p>
+<p>The command-line <code>meson subprojects foreach &lt;command&gt; [...]</code> will
+execute a command in each subproject directory. For example this can be useful
+to check the status of subprojects (e.g. with <code>git status</code> or <code>git diff</code>) before
+performing other actions on them.</p>
 <h2 id="why-must-all-subprojects-be-inside-a-single-directory">Why must all subprojects be inside a single directory?</h2>
 <p>There are several reasons.</p>
 <p>First of all, to maintain any sort of sanity, the system must prevent going

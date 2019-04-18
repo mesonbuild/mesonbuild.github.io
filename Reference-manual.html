@@ -475,6 +475,8 @@ than one outputs are specified, the behavior is the same as
 <code>@PLAINNAME@</code>: the input filename, without a path</li>
 <li>
 <code>@BASENAME@</code>: the input filename, with extension removed</li>
+<li>
+<code>@PRIVATE_DIR@</code>: path to a directory where the custom target must store all its intermediate files, available since 0.50.1</li>
 </ul>
 <p>The <code>depfile</code> keyword argument also accepts the <code>@BASENAME@</code> and <code>@PLAINNAME@</code>
 substitutions. <em>(since 0.47)</em></p>
@@ -597,7 +599,8 @@ and only if that's allowed by <code>--wrap-mode</code>.</p>
 <h3 id="environment">environment()</h3>
 <pre><code class="language-meson">    environment_object environment()
 </code></pre>
-<p>Returns an empty <a href="Reference-manual.html#environment-object">environment variable object</a>.</p>
+<p>Returns an empty <a href="Reference-manual.html#environment-object">environment variable object</a>. Added in
+0.35.0.</p>
 <h3 id="executable">executable()</h3>
 <pre><code class="language-meson">    buildtarget executable(*exe_name*, *sources*, ...)
 </code></pre>
@@ -666,12 +669,19 @@ when this file changes.</li>
 <li>
 <code>link_whole</code> links all contents of the given static libraries
 whether they are used by not, equivalent to the
-<code>-Wl,--whole-archive</code> argument flag of GCC, available since
-0.40.0. As of 0.41.0 if passed a list that list will be flattened.</li>
+<code>-Wl,--whole-archive</code> argument flag of GCC, available since 0.40.0.
+As of 0.41.0 if passed a list that list will be flattened. Starting
+from version 0.51.0 this argument also accepts outputs produced by
+custom targets. The user must ensure that the output is a library in
+the correct format.</li>
 <li>
 <code>link_with</code>, one or more shared or static libraries (built by this
 project) that this target should be linked with, If passed a list
-this list will be flattened as of 0.41.0.</li>
+this list will be flattened as of 0.41.0. Starting with version
+0.51.0, the arguments can also be custom targets. In this case Meson
+will assume that merely adding the output file in the linker command
+line is sufficient to make linking work. If this is not sufficient,
+then the build system writer must write all other steps manually.</li>
 <li>
 <code>export_dynamic</code> when set to true causes the target's symbols to be
 dynamically exported, allowing modules built using the
@@ -1116,8 +1126,9 @@ res2 = foo / bar
 <pre><code class="language-meson">    buildtarget library(library_name, list_of_sources, ...)
 </code></pre>
 <p>Builds a library that is either static, shared or both depending on
-the value of <code>default_library</code> user option. You should use this
-instead of <a href="Reference-manual.html#shared_library"><code>shared_library</code></a>,
+the value of <code>default_library</code>
+user <a href="https://mesonbuild.com/Builtin-options.html">option</a>.
+You should use this instead of <a href="Reference-manual.html#shared_library"><code>shared_library</code></a>,
 <a href="Reference-manual.html#static_library"><code>static_library</code></a> or
 <a href="Reference-manual.html#both_libraries"><code>both_libraries</code></a> most of the time. This allows you
 to toggle your entire project (including subprojects) from shared to
@@ -1561,7 +1572,8 @@ generated. This script will have the environment variables
 </li>
 <li>
 <p><code>backend()</code> <em>(added 0.37.0)</em> returns a string representing the
-current backend: <code>ninja</code>, <code>vs2010</code>, <code>vs2015</code>, <code>vs2017</code>, or <code>xcode</code>.</p>
+current backend: <code>ninja</code>, <code>vs2010</code>, <code>vs2015</code>, <code>vs2017</code>, <code>vs2019</code>,
+or <code>xcode</code>.</p>
 </li>
 <li>
 <p><code>build_root()</code> returns a string with the absolute path to the build
@@ -2247,6 +2259,8 @@ dep3 = dep2.partial_dependency(compile_args : true)
 <p>dep3 will add <code>['-Werror=foo', '-Werror=bar']</code> to the compiler args
 of any target it is added to, but libfoo will not be added to the
 link_args.</p>
+<p><em>Note</em>: A bug present until 0.50.1 results in the above behavior
+not working correctly.</p>
 <p>The following arguments will add the following attributes:</p>
 <ul>
 <li>compile_args: any arguments passed to the compiler</li>

@@ -306,7 +306,7 @@ wmf_dep = dependency('libwmf', method : 'config-tool')
 </code></pre>
 <h2 id="dependencies-using-config-tools">Dependencies using config tools</h2>
 <p><a href="Dependencies.html#cups">CUPS</a>, <a href="Dependencies.html#llvm">LLVM</a>, <a href="Dependencies.html#pcap">pcap</a>, <a href="Dependencies.html#wxwidgets">WxWidgets</a>,
-<a href="Dependencies.html#libwmf">libwmf</a>, <a href="Dependencies.html#libgcrypt">GCrypt</a>, and GnuStep either do not provide pkg-config
+<a href="Dependencies.html#libwmf">libwmf</a>, <a href="Dependencies.html#libgcrypt">GCrypt</a>, <a href="Dependencies.html#gpgme">GPGME</a>, and GnuStep either do not provide pkg-config
 modules or additionally can be detected via a config tool
 (cups-config, llvm-config, libgcrypt-config, etc). Meson has native support for these
 tools, and they can be found like other dependencies:</p>
@@ -314,6 +314,7 @@ tools, and they can be found like other dependencies:</p>
 cups_dep = dependency('cups', version : '&gt;=1.4')
 llvm_dep = dependency('llvm', version : '&gt;=4.0')
 libgcrypt_dep = dependency('libgcrypt', version: '&gt;= 1.8')
+gpgme_dep = dependency('gpgme', version: '&gt;= 1.0')
 </code></pre>
 <h2 id="appleframeworks">AppleFrameworks</h2>
 <p>Use the <code>modules</code> keyword to list frameworks required, e.g.</p>
@@ -442,6 +443,9 @@ for OpenMP support.</p>
 <h2 id="libgcrypt">libgcrypt</h2>
 <p><em>(added 0.49.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
+<h2 id="gpgme">GPGME</h2>
+<p><em>(added 0.51.0)</em></p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
 <h2 id="python3">Python3</h2>
 <p>Python3 is handled specially by meson:</p>
 <ol>
@@ -520,6 +524,14 @@ Meson substitutes <code>modules</code> to <code>wx-config</code> invocation, it 
 <code>link_args</code> using <code>wx-config --libs $modules...</code>
 </li>
 </ul>
+<h2 id="shaderc">Shaderc</h2>
+<p><em>(added 0.51.0)</em></p>
+<p>Shaderc currently does not ship with any means of detection. Nevertheless, Meson
+can try to detect it using <code>pkg-config</code>, but will default to looking for the
+appropriate library manually. If the <code>static</code> keyword argument is <code>true</code>,
+<code>shaderc_combined</code> is preferred. Otherwise, <code>shaderc_shared</code> is preferred. Note
+that it is not possible to obtain the shaderc version using this method.</p>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <h3 id="example">Example</h3>
 <pre><code class="language-meson">wx_dep = dependency(
   'wxwidgets', version : '&gt;=3.0.0', modules : ['std', 'stc'],

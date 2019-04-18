@@ -184,6 +184,7 @@ by setting them inside <code>default_options</code> of <code>project()</code> in
 <li>When the prefix is <code>/usr/local</code>: <code>localstatedir</code> defaults to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/var/local/lib</code>
 </li>
 </ul>
+<h3 id="directories">Directories</h3>
 <table>
 <thead>
 <tr>
@@ -199,6 +200,26 @@ by setting them inside <code>default_options</code> of <code>project()</code> in
 <td> Installation prefix</td>
 </tr>
 <tr>
+<td> bindir</td>
+<td> bin</td>
+<td> Executable directory</td>
+</tr>
+<tr>
+<td> datadir</td>
+<td> share</td>
+<td> Data file directory</td>
+</tr>
+<tr>
+<td> includedir</td>
+<td> include</td>
+<td> Header file directory</td>
+</tr>
+<tr>
+<td> infodir</td>
+<td> share/info</td>
+<td> Info page directory</td>
+</tr>
+<tr>
 <td> libdir</td>
 <td> see below</td>
 <td> Library directory</td>
@@ -209,44 +230,9 @@ by setting them inside <code>default_options</code> of <code>project()</code> in
 <td> Library executable directory</td>
 </tr>
 <tr>
-<td> bindir</td>
-<td> bin</td>
-<td> Executable directory</td>
-</tr>
-<tr>
-<td> sbindir</td>
-<td> sbin</td>
-<td> System executable directory</td>
-</tr>
-<tr>
-<td> includedir</td>
-<td> include</td>
-<td> Header file directory</td>
-</tr>
-<tr>
-<td> datadir</td>
-<td> share</td>
-<td> Data file directory</td>
-</tr>
-<tr>
-<td> mandir</td>
-<td> share/man</td>
-<td> Manual page directory</td>
-</tr>
-<tr>
-<td> infodir</td>
-<td> share/info</td>
-<td> Info page directory</td>
-</tr>
-<tr>
 <td> localedir</td>
 <td> share/locale</td>
 <td> Locale data directory</td>
-</tr>
-<tr>
-<td> sysconfdir</td>
-<td> etc</td>
-<td> Sysconf data directory</td>
 </tr>
 <tr>
 <td> localstatedir</td>
@@ -254,54 +240,24 @@ by setting them inside <code>default_options</code> of <code>project()</code> in
 <td> Localstate data directory</td>
 </tr>
 <tr>
+<td> mandir</td>
+<td> share/man</td>
+<td> Manual page directory</td>
+</tr>
+<tr>
+<td> sbindir</td>
+<td> sbin</td>
+<td> System executable directory</td>
+</tr>
+<tr>
 <td> sharedstatedir</td>
 <td> com</td>
 <td> Architecture-independent data directory</td>
 </tr>
 <tr>
-<td> werror</td>
-<td> false</td>
-<td> Treat warnings as errors</td>
-</tr>
-<tr>
-<td> warning_level {0, 1, 2, 3}</td>
-<td> 1</td>
-<td> Set the warning level. From 0 = none to 3 = highest</td>
-</tr>
-<tr>
-<td> layout {mirror,flat}</td>
-<td> mirror</td>
-<td> Build directory layout.</td>
-</tr>
-<tr>
-<td> default_library {shared, static, both}</td>
-<td> shared</td>
-<td> Default library type.</td>
-</tr>
-<tr>
-<td> backend {ninja, vs,<br>vs2010, vs2015, vs2017, xcode}</td>
-<td></td>
-<td> Backend to use (default: ninja).</td>
-</tr>
-<tr>
-<td> stdsplit</td>
-<td></td>
-<td> Split stdout and stderr in test logs.</td>
-</tr>
-<tr>
-<td> errorlogs</td>
-<td></td>
-<td> Whether to print the logs from failing tests.</td>
-</tr>
-<tr>
-<td> cross-file CROSS_FILE</td>
-<td></td>
-<td> File describing cross compilation environment.</td>
-</tr>
-<tr>
-<td> wrap-mode {default, nofallback, nodownload, forcefallback}</td>
-<td></td>
-<td> Special wrap mode to use</td>
+<td> sysconfdir</td>
+<td> etc</td>
+<td> Sysconf data directory</td>
 </tr>
 </tbody>
 </table>
@@ -310,9 +266,119 @@ override this value.</p>
 <p><code>libdir</code> is automatically detected based on your platform, but the
 implementation is <a href="https://github.com/mesonbuild/meson/issues/2038">currently buggy</a>
 on Linux platforms.</p>
-<p>There are various other options to set, for instance the backend to use and
-the path to the cross-file while cross compiling, which won't be repeated here.
-Please see the output of <code>meson --help</code>.</p>
+<h3 id="core-options">Core options</h3>
+<p>Options that have a separate cross option will be prefixed with
+cross_, for example, "cross_pkg_config_path" controls the paths
+pkg-config will search for host dependencies in a cross compile.
+They have no effect when the host and build machines are the same.</p>
+<table>
+<thead>
+<tr>
+<th> Option</th>
+<th> Default value</th>
+<th> Description</th>
+<th> Has Separate cross</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> auto_features {enabled, disabled, auto}</td>
+<td> auto</td>
+<td> Override value of all 'auto' features</td>
+<td> no</td>
+</tr>
+<tr>
+<td> backend {ninja, vs,<br>vs2010, vs2015, vs2017, xcode}</td>
+<td> ninja</td>
+<td> Backend to use</td>
+<td> no</td>
+</tr>
+<tr>
+<td> buildtype {plain, debug,<br>debugoptimized, release, minsize, custom}</td>
+<td> debug</td>
+<td>  Build type to use</td>
+<td> no</td>
+</tr>
+<tr>
+<td> debug</td>
+<td> true</td>
+<td> Debug</td>
+<td> no</td>
+</tr>
+<tr>
+<td> default_library {shared, static, both}</td>
+<td> shared</td>
+<td> Default library type</td>
+<td> no</td>
+</tr>
+<tr>
+<td> errorlogs</td>
+<td> true</td>
+<td> Whether to print the logs from failing tests.</td>
+<td> no</td>
+</tr>
+<tr>
+<td> install_umask {preserve, 0000-0777}</td>
+<td> 022</td>
+<td> Default umask to apply on permissions of installed files</td>
+<td> no</td>
+</tr>
+<tr>
+<td> layout {mirror,flat}</td>
+<td> mirror</td>
+<td> Build directory layout</td>
+<td> no</td>
+</tr>
+<tr>
+<td> optimization {0, g, 1, 2, 3, s}</td>
+<td> 0</td>
+<td> Optimization level</td>
+<td> no</td>
+</tr>
+<tr>
+<td> pkg_config_path {OS separated path}</td>
+<td> ''</td>
+<td> Additional paths for pkg-config to search before builtin paths</td>
+<td> yes</td>
+</tr>
+<tr>
+<td> stdsplit</td>
+<td> true</td>
+<td> Split stdout and stderr in test logs</td>
+<td> no</td>
+</tr>
+<tr>
+<td> strip</td>
+<td> false</td>
+<td> Strip targets on install</td>
+<td> no</td>
+</tr>
+<tr>
+<td> unity {on, off, subprojects}</td>
+<td> off</td>
+<td> Unity build</td>
+<td> no</td>
+</tr>
+<tr>
+<td> warning_level {0, 1, 2, 3}</td>
+<td> 1</td>
+<td> Set the warning level. From 0 = none to 3 = highest</td>
+<td> no</td>
+</tr>
+<tr>
+<td> werror</td>
+<td> false</td>
+<td> Treat warnings as errors</td>
+<td> no</td>
+</tr>
+<tr>
+<td> wrap_mode {default, nofallback,<br>nodownload, forcefallback}</td>
+<td> default</td>
+<td> Wrap mode to use</td>
+<td> no</td>
+</tr>
+</tbody>
+</table>
 <h2 id="base-options">Base options</h2>
 <p>These are set in the same way as universal options, but cannot be shown in the
 output of <code>meson --help</code> because they depend on both the current platform and
@@ -353,12 +419,6 @@ platforms or with all compilers:</p>
 <td> false</td>
 <td> true, false</td>
 <td> Enable coverage tracking</td>
-</tr>
-<tr>
-<td> b_vscrt</td>
-<td> from_buildtype</td>
-<td> none, md, mdd, mt, mtd, from_buildtype</td>
-<td> VS runtime library to use (since 0.48.0)</td>
 </tr>
 <tr>
 <td> b_lundef</td>
@@ -408,6 +468,12 @@ platforms or with all compilers:</p>
 <td> true, false</td>
 <td> Build position-independent executables (since 0.49.0)</td>
 </tr>
+<tr>
+<td> b_vscrt</td>
+<td> from_buildtype</td>
+<td> none, md, mdd, mt, mtd, from_buildtype</td>
+<td> VS runtime library to use (since 0.48.0)</td>
+</tr>
 </tbody>
 </table>
 <p>The value of <code>b_sanitize</code> can be one of: <code>none</code>, <code>address</code>, <code>thread</code>,
@@ -449,7 +515,7 @@ compiler being used:</p>
 <tr>
 <td> c_std</td>
 <td> none</td>
-<td> none, c89, c99, c11, gnu89, gnu99, gnu11</td>
+<td> none, c89, c99, c11, c17, c18, gnu89, gnu99, gnu11, gnu17, gnu18</td>
 <td> C language standard to use</td>
 </tr>
 <tr>
