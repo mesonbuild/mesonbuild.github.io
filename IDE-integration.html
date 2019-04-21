@@ -187,16 +187,56 @@ introspection information that is stored in <code>intro-*.json</code> files in t
 when meson is (re)configured, or the build options change. Thus, an IDE can
 watch for changes in this directory to know when something changed.</p>
 <p>The <code>meson-info</code> directory should contain the following files:</p>
-<p>File                            | Description
-------------------------------- | ---------------------------------------------------------------------
-<code>intro-benchmarks.json</code>         | Lists all benchmarks
-<code>intro-buildoptions.json</code>       | Contains a full list of meson configuration options for the project
-<code>intro-buildsystem_files.json</code>  | Full list of all meson build files
-<code>intro-dependencies.json</code>       | Lists all dependencies used in the project
-<code>intro-installed.json</code>          | Contains mapping of files to their installed location
-<code>intro-projectinfo.json</code>        | Stores basic information about the project (name, version, etc.)
-<code>intro-targets.json</code>            | Full list of all build targets
-<code>intro-tests.json</code>              | Lists all tests with instructions how to run them</p>
+<table>
+<thead>
+<tr>
+<th> File</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>intro-benchmarks.json</code>
+</td>
+<td> Lists all benchmarks</td>
+</tr>
+<tr>
+<td> <code>intro-buildoptions.json</code>
+</td>
+<td> Contains a full list of meson configuration options for the project</td>
+</tr>
+<tr>
+<td> <code>intro-buildsystem_files.json</code>
+</td>
+<td> Full list of all meson build files</td>
+</tr>
+<tr>
+<td> <code>intro-dependencies.json</code>
+</td>
+<td> Lists all dependencies used in the project</td>
+</tr>
+<tr>
+<td> <code>intro-installed.json</code>
+</td>
+<td> Contains mapping of files to their installed location</td>
+</tr>
+<tr>
+<td> <code>intro-projectinfo.json</code>
+</td>
+<td> Stores basic information about the project (name, version, etc.)</td>
+</tr>
+<tr>
+<td> <code>intro-targets.json</code>
+</td>
+<td> Full list of all build targets</td>
+</tr>
+<tr>
+<td> <code>intro-tests.json</code>
+</td>
+<td> Lists all tests with instructions how to run them</td>
+</tr>
+</tbody>
+</table>
 <p>The content of the JSON files is further specified in the remainder of this document.</p>
 <h2 id="the-targets-section">The <code>targets</code> section</h2>
 <p>The most important file for an IDE is probably <code>intro-targets.json</code>. Here each
@@ -241,15 +281,52 @@ for actual compilation.</p>
 <h3 id="possible-values-for-type">Possible values for <code>type</code>
 </h3>
 <p>The following table shows all valid types for a target.</p>
-<p>value of <code>type</code>  | Description
----------------- | -------------------------------------------------------------------------------------------------
-<code>executable</code>     | This target will generate an executable file
-<code>static library</code> | Target for a static library
-<code>shared library</code> | Target for a shared library
-<code>shared module</code>  | A shared library that is meant to be used with dlopen rather than linking into something else
-<code>custom</code>         | A custom target
-<code>run</code>            | A Meson run target
-<code>jar</code>            | A Java JAR target</p>
+<table>
+<thead>
+<tr>
+<th> value of <code>type</code>
+</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>executable</code>
+</td>
+<td> This target will generate an executable file</td>
+</tr>
+<tr>
+<td> <code>static library</code>
+</td>
+<td> Target for a static library</td>
+</tr>
+<tr>
+<td> <code>shared library</code>
+</td>
+<td> Target for a shared library</td>
+</tr>
+<tr>
+<td> <code>shared module</code>
+</td>
+<td> A shared library that is meant to be used with dlopen rather than linking into something else</td>
+</tr>
+<tr>
+<td> <code>custom</code>
+</td>
+<td> A custom target</td>
+</tr>
+<tr>
+<td> <code>run</code>
+</td>
+<td> A Meson run target</td>
+</tr>
+<tr>
+<td> <code>jar</code>
+</td>
+<td> A Java JAR target</td>
+</tr>
+</tbody>
+</table>
 <h3 id="using-targets-without-a-build-directory">Using <code>--targets</code> without a build directory</h3>
 <p>It is also possible to get most targets without a build directory. This can be
 done by running <code>meson introspect --targets /path/to/meson.build</code>.</p>
