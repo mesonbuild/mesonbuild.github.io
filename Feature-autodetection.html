@@ -167,12 +167,26 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-source="Feature-autodetection.md" data-hotdoc-role="main">
         <h1 id="feature-autodetection">Feature autodetection</h1>
-<p>Meson is designed for high productivity. It tries to do as many things automatically as it possibly can.</p>
+<p>Meson is designed for high productivity. It tries to do as many things
+automatically as it possibly can.</p>
 <h2 id="ccache">CCache</h2>
-<p><a href="https://ccache.samba.org/">CCache</a> is a cache system designed to make compiling faster. When you run Meson for the first time for a given project, it checks if CCache is installed. If it is, Meson will use it automatically.</p>
-<p>If you do not wish to use CCache for some reason, just specify your compiler with environment variables <code>CC</code> and/or <code>CXX</code> when first running Meson (remember that once specified the compiler can not be changed). Meson will then use the specified compiler without CCache.</p>
+<p><a href="https://ccache.samba.org/">CCache</a> is a cache system designed to make
+compiling faster. When you run Meson for the first time for a given
+project, it checks if CCache is installed. If it is, Meson will use it
+automatically.</p>
+<p>If you do not wish to use CCache for some reason, just specify your
+compiler with environment variables <code>CC</code> and/or <code>CXX</code> when first
+running Meson (remember that once specified the compiler can not be
+changed). Meson will then use the specified compiler without CCache.</p>
 <h2 id="coverage">Coverage</h2>
-<p>When doing a code coverage build, Meson will check the existence of binaries <code>gcovr</code>, <code>lcov</code> and <code>genhtml</code>. If the first one is found, it will create targets called <em>coverage-text</em> and <em>coverage-xml</em>. If the latter two or a new enough <code>gcovr</code> is found, it generates the target <em>coverage-html</em>. You can then generate coverage reports just by calling e.g. <code>ninja coverage-xml</code>.</p>
+<p>When doing a code coverage build, Meson will check for existence of
+the binaries <code>gcovr</code>, <code>lcov</code> and <code>genhtml</code>. If version 3.3 or higher
+of the first is found, targets called <em>coverage-text</em>, <em>coverage-xml</em>
+and <em>coverage-html</em> are generated. Alternatively, if the latter two
+are found, only the target <em>coverage-html</em> is generated. Coverage
+reports can then be produced simply by calling e.g. <code>ninja coverage-xml</code>. As a convenience, a high-level <em>coverage</em> target is
+also generated which will produce all 3 coverage report types, if
+possible.</p>
 
     </div>
         
