@@ -539,7 +539,7 @@ compiler being used:</p>
 <tr>
 <td> cpp_std</td>
 <td> none</td>
-<td> none, c++98, c++03, c++11, c++14, c++17, <br>c++1z, gnu++03, gnu++11, gnu++14, gnu++17, gnu++1z</td>
+<td> none, c++98, c++03, c++11, c++14, c++17, <br>c++1z, gnu++03, gnu++11, gnu++14, gnu++17, gnu++1z, <br> vc++14, vc++17, vc++latest</td>
 <td> C++ language standard to use</td>
 </tr>
 <tr>
@@ -550,8 +550,8 @@ compiler being used:</p>
 </tr>
 <tr>
 <td> cpp_eh</td>
-<td> sc</td>
-<td> none, a, s, sc</td>
+<td> default</td>
+<td> none, default, a, s, sc</td>
 <td> C++ exception handling type</td>
 </tr>
 <tr>
@@ -568,6 +568,11 @@ shell32, ole32, oleaut32, uuid, comdlg32, advapi32.</p>
 <p>c_args, cpp_args, c_link_args, and cpp_link_args only affect native builds,
 when cross compiling they will not be applied to binaries or libraries
 targeting the host system, only those being run on the build system.</p>
+<p>When using MSVC, <code>cpp_eh=none</code> will result in no exception flags being passed,
+while the <code>cpp_eh=[value]</code> will result in <code>/EH[value]</code>.
+Since <em>0.51.0</em> <code>cpp_eh=default</code> will result in <code>/EHsc</code> on MSVC. When using
+gcc-style compilers, nothing is passed (allowing exceptions to work), while
+<code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
 
     </div>
         

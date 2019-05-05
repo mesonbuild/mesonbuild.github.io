@@ -667,6 +667,9 @@ depends on such as a symbol visibility map. The purpose is to
 automatically trigger a re-link (but not a re-compile) of the target
 when this file changes.</li>
 <li>
+<code>link_language</code> since 0.51.0 makes the linker for this target
+be for the specified language. This is helpful for multi-language targets.</li>
+<li>
 <code>link_whole</code> links all contents of the given static libraries
 whether they are used by not, equivalent to the
 <code>-Wl,--whole-archive</code> argument flag of GCC, available since 0.40.0.
@@ -728,7 +731,7 @@ the keyword argument for the default behaviour.</li>
 <li>
 <code>override_options</code> takes an array of strings in the same format as
 <code>project</code>'s <code>default_options</code> overriding the values of these options
-for this target only, since 0.40.0</li>
+for this target only, since 0.40.0.</li>
 <li>
 <code>gnu_symbol_visibility</code> specifies how symbols should be exported, see
 e.g <a href="https://gcc.gnu.org/wiki/Visibility">the GCC Wiki</a> for more
