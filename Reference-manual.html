@@ -288,7 +288,18 @@ library. In addition it supports the following extra methods:</p>
 <p><em>Added 0.46.0</em></p>
 <h3 id="build_target">build_target()</h3>
 <p>Creates a build target whose type can be set dynamically with the
-<code>target_type</code> keyword argument. This declaration:</p>
+<code>target_type</code> keyword argument.</p>
+<p><code>target_type</code> may be set to one of:</p>
+<ul>
+<li><code>executable</code></li>
+<li><code>shared_library</code></li>
+<li><code>shared_module</code></li>
+<li><code>static_library</code></li>
+<li><code>both_libraries</code></li>
+<li><code>library</code></li>
+<li><code>jar</code></li>
+</ul>
+<p>This declaration:</p>
 <pre><code class="language-meson">executable(&lt;arguments and keyword arguments&gt;)
 </code></pre>
 <p>is equivalent to this:</p>

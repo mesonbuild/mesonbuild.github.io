@@ -456,6 +456,36 @@ method called <code>detect_c_compiler</code>.</p>
 system.</p>
 </li>
 </ul>
+<h2 id="why-does-building-my-project-with-msvc-output-static-libraries-called-libfooa">Why does building my project with MSVC output static libraries called <code>libfoo.a</code>?</h2>
+<p>The naming convention for static libraries on Windows is usually <code>foo.lib</code>.
+Unfortunately, import libraries are also called <code>foo.lib</code>.</p>
+<p>This causes filename collisions with the default library type where we build
+both shared and static libraries, and also causes collisions during
+installation since all libraries are installed to the same directory by default.</p>
+<p>To resolve this, we decided to default to creating static libraries of the form
+<code>libfoo.a</code> when building with MSVC. This has the following advantages:</p>
+<ol>
+<li>Filename collisions are completely avoided.</li>
+<li>The format for MSVC static libraries is <code>ar</code>, which is the same as the GNU
+static library format, so using this extension is semantically correct.</li>
+<li>The static library filename format is now the same on all platforms and with
+all toolchains.</li>
+<li>Both Clang and GNU compilers can search for <code>libfoo.a</code> when specifying
+a library as <code>-lfoo</code>. This does not work for alternative naming schemes for
+static libraries such as <code>libfoo.lib</code>.</li>
+<li>Since <code>-lfoo</code> works out of the box, pkgconfig files will work correctly for
+projects built with both MSVC, GCC, and Clang on Windows.</li>
+<li>MSVC does not have arguments to search for library filenames, and <a href="https://docs.microsoft.com/en-us/cpp/build/reference/link-input-files?view=vs-2019">it does
+not care what the extension is</a>,
+so specifying <code>libfoo.a</code> instead of <code>foo.lib</code> does not change the workflow,
+and is an improvement since it's less ambiguous.</li>
+</ol>
+<p>If, for some reason, you really need your project to output static libraries of
+the form <code>foo.lib</code> when building with MSVC, you can set the
+<a href="https://mesonbuild.com/Reference-manual.html#library"><code>name_prefix:</code></a>
+kwarg to <code>''</code> and the <a href="https://mesonbuild.com/Reference-manual.html#library"><code>name_suffix:</code></a>
+kwarg to <code>'lib'</code>. To get the default behaviour for each, you can either not
+specify the kwarg, or pass <code>[]</code> (an empty array) to it.</p>
 
     </div>
         
