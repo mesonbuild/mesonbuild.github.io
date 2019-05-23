@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				    <div id="page-description" data-hotdoc-source="Porting-from-autotools.md" data-hotdoc-role="main">
+				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="porting-from-autotools">Porting from Autotools</h1>
 <p>This page uses <a href="https://github.com/hughsie/appstream-glib/">AppStream-glib</a> as an example project. AppStream-Glib contains some libraries, GObject Introspection data, tests, man pages, i18n, bash-completion with optional flags to build/not build support for some things.</p>
 <p>Meson comes with a helper script <code>ac_converter</code> that you can use to convert the basic autoconf checks for your project.</p>
@@ -657,7 +657,7 @@ gnome.generate_gir(asglib,
 @GSETTINGS_RULES@
 </code></pre>
 <p><code>meson.build</code>:</p>
-<pre><code class="language-meson">install_data('foo.gschema.xml', install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas'))
+<pre><code class="language-meson">install_data('foo.gschema.xml', install_dir: get_option('datadir') / 'glib-2.0' / 'schemas')
 meson.add_install_script('meson_post_install.py')
 </code></pre>
 <p><code>meson_post_install.py</code>:</p>
@@ -705,7 +705,7 @@ i18n.merge_file(
   type: 'desktop',
   po_dir: 'po',
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'applications')
+  install_dir: get_option('datadir') / 'applications'
 )
 
 i18n.merge_file(
@@ -713,7 +713,7 @@ i18n.merge_file(
   output: 'foo.appdata.xml',
   po_dir: 'po',
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'appdata')
+  install_dir: get_option('datadir') / 'appdata'
 )
 </code></pre>
 <p><code>po/meson.build</code>:</p>
@@ -733,6 +733,13 @@ i18n.merge_file(
 	</div>
 	<div id="footer">
 		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
 
 	</div>
 </div>

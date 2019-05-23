@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "run_project_tests.py", "urls": [{"url": "Contributing.html#page-description", "context": {"gi-language": ["default"]}}]});
+urls_downloaded_cb({"token":"run_project_tests.py","urls":[{"url":"Contributing.html#page-description","node_type":"p","context":{"gi-language":["default"]}}]});

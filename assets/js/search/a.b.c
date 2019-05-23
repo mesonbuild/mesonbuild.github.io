@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "a.b.c", "urls": [{"url": "Reference-manual.html#page-description", "context": {"gi-language": ["default"]}}]});
+urls_downloaded_cb({"token":"a.b.c","urls":[{"url":"Reference-manual.html#page-description","node_type":"ul","context":{"gi-language":["default"]}}]});

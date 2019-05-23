@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				    <div id="page-description" data-hotdoc-source="Shipping-prebuilt-binaries-as-wraps.md" data-hotdoc-role="main">
+				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="shipping-prebuilt-binaries-as-wraps">Shipping prebuilt binaries as wraps</h1>
 <p>A common dependency case, especially on Windows, is the need to provide dependencies as prebuilt binaries rather than Meson projects that you build from scratch. Common reasons include not having access to source code, not having the time and effort to rewrite a legacy system's build definitions to Meson or just the fact that compiling the dependency projects takes too long.</p>
 <p>Packaging a project is straightforward. As an example let's look at a case where the project consists of one static library called <code>bob</code> and some headers. To create a binary dependency project we put the static library at the top level and headers in a subdirectory called <code>include</code>. The Meson build definition would look like the following.</p>
@@ -196,6 +196,13 @@ executable('prog', 'prog.c', dependencies : bob_dep)
 	</div>
 	<div id="footer">
 		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
 
 	</div>
 </div>

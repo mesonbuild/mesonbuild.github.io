@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				    <div id="page-description" data-hotdoc-source="Dependencies.md" data-hotdoc-role="main">
+				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="dependencies">Dependencies</h1>
 <p>Very few applications are fully self-contained, but rather they use
 external libraries and frameworks to do their work. Meson makes it
@@ -209,6 +209,23 @@ parameter, which might be useful in certain situations:</p>
 pkg-config files. Meson has autodetection support for some of these,
 and they are described <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">later in this
 page</a>.</p>
+<h1 id="arbitrary-variables-from-dependencies-that-can-be-found-multiple-ways">Arbitrary variables from dependencies that can be found multiple ways</h1>
+<p><em>Note</em> new in 0.51.0</p>
+<p>When you need to get an arbitrary variables from a dependency that can be
+found multiple ways and you don't want to constrain the type you can use
+the generic <code>get_variable</code> method. This currently supports cmake, pkg-config,
+and config-tool based variables.</p>
+<pre><code class="language-meson">foo_dep = dependency('foo')
+var = foo.get_variable(cmake : 'CMAKE_VAR', pkgconfig : 'pkg-config-var', configtool : 'get-var', default_value : 'default')
+</code></pre>
+<p>It accepts the keywords 'cmake', 'pkgconfig', 'pkgconfig_define',
+'configtool', and 'default_value'. 'pkgconfig_define' works just like the
+'define_variable' argument to <code>get_pkgconfig_variable</code>. When this method is
+invoked the keyword corresponding to the underlying type of the dependency
+will be used to look for a variable. If that variable cannot be found or if
+the caller does not provide an argument for the type of dependency, one of
+the following will happen: If 'default_value' was provided that value will be
+returned, if 'default_value' was not provided then an error will be raised.</p>
 <h1 id="declaring-your-own">Declaring your own</h1>
 <p>You can declare your own dependency objects that can be used
 interchangeably with dependency objects obtained from the system. The
@@ -560,6 +577,13 @@ $ wx-config --libs std stc
 	</div>
 	<div id="footer">
 		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
 
 	</div>
 </div>

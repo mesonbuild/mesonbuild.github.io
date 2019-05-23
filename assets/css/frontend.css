@@ -756,15 +756,22 @@ body.no-script #page-wrapper[data-extension="gst-extension"] .gi-js-prototype {
   line-height: 20px;
   padding: 0px 15px;
 }
-.thumb-subpages {
+.thumb-subpages,
+ul[hotdoc-flex-list="true"] {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.thumb-subpage {
+.thumb-subpage,
+li[hotdoc-flex-item="true"] {
   width: 250px;
 }
-.thumb-subpage > p {
+.thumb-subpage > p,
+li[hotdoc-flex-item="true"] {
   text-align: center;
+}
+ul[hotdoc-flex-list="true"] {
+  list-style-type: none;
+  padding: 0;
 }

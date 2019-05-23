@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				    <div id="page-description" data-hotdoc-source="Syntax.md" data-hotdoc-role="main">
+				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="syntax">Syntax</h1>
 <p>The syntax of Meson's specification language has been kept as simple
 as possible. It is <em>strongly typed</em> so no object is ever converted to
@@ -324,12 +324,12 @@ pathsep = ':'
 path = pathsep.join(['/usr/bin', '/bin', '/usr/local/bin'])
 # path now has the value '/usr/bin:/bin:/usr/local/bin'
 
-# For joining paths, you should use join_paths()
+# For joining path elements, you should use path1 / path2
 # This has the advantage of being cross-platform
-path = join_paths(['/usr', 'local', 'bin'])
+path = '/usr' / 'local' / 'bin'
 # path now has the value '/usr/local/bin'
 
-# Don't use join_paths for sources files, use files for that:
+# For sources files, use files():
 my_sources = files('foo.c')
 ...
 my_sources += files('bar.c')
@@ -601,6 +601,13 @@ instead</a>.</p>
 	</div>
 	<div id="footer">
 		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
 
 	</div>
 </div>

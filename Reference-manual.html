@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				    <div id="page-description" data-hotdoc-source="Reference-manual.md" data-hotdoc-role="main">
+				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="reference-manual">Reference manual</h1>
 <h2 id="functions">Functions</h2>
 <p>The following functions are available in build files. Click on each to
@@ -723,7 +723,7 @@ will be transparently expanded to include directory objects</li>
 <li>
 <code>install_dir</code> override install directory for this file. The value is
 relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : join_paths(get_option('libdir'), 'projectname-1.0'</code>).</li>
+plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</li>
 <li>
 <code>install_mode</code> <em>(added 0.47.0)</em> specify the file mode in symbolic format
 and optionally the owner/uid and group/gid for the installed files.</li>
@@ -856,6 +856,10 @@ following:</p>
 <code>arguments</code> a list of template strings that will be the command line
 arguments passed to the executable</li>
 <li>
+<code>depends</code> is an array of build targets that must be built before this
+generator can be run. This is used if you have a generator that calls
+a second executable that is built in this project. Available since 0.51.0</li>
+<li>
 <code>depfile</code> is a template string pointing to a dependency file that a
 generator can write listing all the additional files this target
 depends on, for example a C compiler would list all the header files
@@ -920,7 +924,7 @@ inside) the <code>prefix</code>.</p>
 configuration as-is, which may be absolute, or relative to <code>prefix</code>.
 <a href="Installing.html"><code>install_dir</code> arguments</a> handles that as expected, but
 if you need the absolute path to one of these e.g. to use in a define
-etc., you should use <code>join_paths(get_option('prefix'), get_option('localstatedir'))</code></p>
+etc., you should use <code>get_option('prefix') / get_option('localstatedir')</code></p>
 <p>For options of type <code>feature</code> a special object is returned instead of
 a string.  See <a href="Build-options.html#features"><code>feature</code> options</a>
 documentation for more details.</p>
@@ -2284,6 +2288,15 @@ not working correctly.</p>
 <li>sources: any compiled or static sources the dependency has</li>
 </ul>
 </li>
+<li>
+<p>`get_variable(cmake : str, pkgconfig : str, configtool : str,
+default_value : str, pkgconfig_define : [str, str]) <em>(Added in 0.51.0)</em> A
+generic variable getter method, which repalces the get_<em>type</em>_variable
+methods. This allows one to get the variable from a dependency without
+knowing specifically how that dependency was found. If default_value is set and
+the value cannot be gotten from the object then default_value is returned,
+if it is not set then an error is raised.</p>
+</li>
 </ul>
 <h3 id="disabler-object">
 <code>disabler</code> object</h3>
@@ -2425,6 +2438,13 @@ for <code>compiler.run()</code> results.</li>
 	</div>
 	<div id="footer">
 		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
 
 	</div>
 </div>

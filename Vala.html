@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				    <div id="page-description" data-hotdoc-source="Vala.md" data-hotdoc-role="main">
+				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="compiling-vala-applications-and-libraries">Compiling Vala applications and libraries</h1>
 <p>Meson supports compiling applications and libraries written in
 <a href="https://vala-project.org/">Vala</a> and
@@ -286,7 +286,7 @@ the VAPI search path. In Meson this is done with the <code>add_project_arguments
 function:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
-vapi_dir = join_paths(meson.current_source_dir(), 'vapi')
+vapi_dir = meson.current_source_dir() / 'vapi'
 
 add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 
@@ -354,7 +354,7 @@ portably</a>.</p>
 file and the VAPI is in the <code>vapi</code> directory of your project source files:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
-vapi_dir = join_paths(meson.current_source_dir(), 'vapi')
+vapi_dir = meson.current_source_dir() / 'vapi'
 
 add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 
@@ -416,11 +416,11 @@ indicates where the GIR file will be installed.</p>
 program and a dependency on the library:</p>
 <pre><code class="language-meson">g_ir_compiler = find_program('g-ir-compiler')
 custom_target('foo typelib', command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
-              input: join_paths(meson.current_build_dir(), 'Foo-1.0.gir'),
+              input: meson.current_build_dir() / 'Foo-1.0.gir',
               output: 'Foo-1.0.typelib',
               depends: foo_lib,
               install: true,
-              install_dir: join_paths(get_option('libdir'), 'girepository-1.0'))
+              install_dir: get_option('libdir') / 'girepository-1.0')
 </code></pre>
 
     </div>
@@ -436,6 +436,13 @@ custom_target('foo typelib', command: [g_ir_compiler, '--output', '@OUTPUT@', '@
 	</div>
 	<div id="footer">
 		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
 
 	</div>
 </div>

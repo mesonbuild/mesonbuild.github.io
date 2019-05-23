@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Source set module</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Modules <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="modules-menu">
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="SourceSet-module.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="source-set-module">Source set module</h1>
+<p>This module provides support for building many targets against a single set
+of files; the choice of which files to include in each target depends on the
+contents of a dictionary or a <code>configuration_data</code> object.  The module can
+be loaded with:</p>
+<pre><code class="language-meson">ssmod = import('sourceset')
+</code></pre>
+<p>A simple example of using the module looks like this:</p>
+<pre><code class="language-meson">ss = ssmod.source_set()
+# Include main.c unconditionally
+ss.add(files('main.c'))
+# Include a.c if configuration key FEATURE1 is true
+ss.add(when: 'FEATURE1', if_true: files('a.c'))
+# Include zlib.c if the zlib dependency was found, and link zlib
+# in the executable
+ss.add(when: zlib, if_true: files('zlib.c'))
+# many more rules here...
+ssconfig = ss.apply(config)
+executable('exe', sources: ssconfig.sources(),
+           dependencies: ssconfig.dependencies())
+</code></pre>
+<p>and it would be equivalent to</p>
+<pre><code class="language-meson">sources = files('main.c')
+dependencies = []
+if config['FEATURE1'] then
+    sources += [files('a.c')]
+endif
+if zlib.found() then
+    sources += [files('zlib.c')]
+    dependencies += [zlib]
+endif
+# many more "if"s here...
+executable('exe', sources: sources, dependencies: dependencies())
+</code></pre>
+<p>Sourcesets can be used with a single invocation of the <code>apply</code> method,
+similar to the example above, but the module is especially useful
+when multiple executables are generated by applying the same rules to
+many different configurations.</p>
+<p><em>Added 0.51.0</em></p>
+<h2 id="functions">Functions</h2>
+<h3 id="source_set"><code>source_set()</code></h3>
+<pre><code class="language-meson">ssmod.source_set()
+</code></pre>
+<p>Create and return a new source set object.</p>
+<p><strong>Returns</strong>: a <a href="SourceSet-module.html#source_set-object">source set</a></p>
+<h2 id="source_set-object">
+<code>source_set</code> object</h2>
+<p>The <code>source_set</code> object provides methods to add files to a source set and
+to query it.  The source set becomes immutable after any method but <code>add</code>
+is called.</p>
+<h3 id="methods">Methods</h3>
+<h4 id="add"><code>add()</code></h4>
+<pre><code class="language-meson">source_set.add([when: varnames_and_deps],
+               [if_true: sources_and_deps],
+               [if_false: list_of_alt_sources])
+source_set.add(sources_and_deps)
+</code></pre>
+<p>Add a <em>rule</em> to a source set.  A rule determines the conditions under which
+some source files or dependency objects are included in a build configuration.
+All source files must be present in the source tree or they can be created
+in the build tree via <code>configure_file</code>, <code>custom_target</code> or <code>generator</code>.</p>
+<p><code>varnames_and_deps</code> is a list of conditions for the rule, which can be
+either strings or dependency objects (a dependency object is anything that
+has a <code>found()</code> method).  If <em>all</em> the strings evaluate to true and all
+dependencies are found, the rule will evaluate to true; <code>apply()</code>
+will then include the contents of the <code>if_true</code> keyword argument in its
+result.  Otherwise, that is if any of the strings in the positional
+arguments evaluate to false or any dependency is not found, <code>apply()</code>
+will instead use the contents of the <code>if_false</code> keyword argument.</p>
+<p>Dependencies can also appear in <code>sources_and_deps</code>.  In this case, a
+missing dependency will simply be ignored and will <em>not</em> disable the rule,
+similar to how the <code>dependencies</code> keyword argument works in build targets.</p>
+<p><strong>Note</strong>: It is generally better to avoid mixing source sets and disablers.
+This is because disablers will cause the rule to be dropped altogether,
+and the <code>list_of_alt_sources</code> would not be taken into account anymore.</p>
+<h4 id="add_all"><code>add_all()</code></h4>
+<pre><code class="language-meson">source_set.add_all(when: varnames_and_deps,
+                   if_true: [source_set1, source_set2, ...])
+source_set.add_all(source_set1, source_set2, ...)
+</code></pre>
+<p>Add one or more source sets to another.</p>
+<p>For each source set listed in the arguments, <code>apply()</code> will
+consider their rules only if the conditions in <code>varnames_and_deps</code> are
+evaluated positively.  For example, the following:</p>
+<pre><code class="language-meson">sources_b = ssmod.source_set()
+sources_b.add(when: 'HAVE_A', if_true: 'file.c')
+sources = ssmod.source_set()
+sources.add_all(when: 'HAVE_B', if_true: sources_b)
+</code></pre>
+<p>is equivalent to:</p>
+<pre><code class="language-meson">sources = ssmod.source_set()
+sources.add(when: ['HAVE_A', 'HAVE_B'], if_true: 'file.c')
+</code></pre>
+<h4 id="all_sources"><code>all_sources()</code></h4>
+<pre><code class="language-meson">list source_set.all_sources(...)
+</code></pre>
+<p>Returns a list of all sources that were placed in the source set using
+<code>add</code> (including nested source sets) and that do not have a not-found
+dependency.  If a rule has a not-found dependency, only the <code>if_false</code>
+sources are included (if any).</p>
+<p><strong>Returns</strong>: a list of file objects</p>
+<h4 id="apply"><code>apply()</code></h4>
+<pre><code class="language-meson">source_files source_set.apply(conf_data[, strict: false])
+</code></pre>
+<p>Match the source set against a dictionary or a <code>configuration_data</code> object
+and return a <em>source configuration</em> object.  A source configuration object
+allows you to retrieve the sources and dependencies for a specific configuration.</p>
+<p>By default, all the variables that were specified in the rules have to
+be present in <code>conf_data</code>.  However, in some cases the convention is
+that <code>false</code> configuration symbols are absent in <code>conf_data</code>; this is
+the case for example when the configuration was loaded from a Kconfig file.
+In that case you can specify the <code>strict: false</code> keyword argument, which
+will treat absent variables as false.</p>
+<p><strong>Returns</strong>: a <a href="SourceSet-module.html#source_configuration-object">source configuration</a></p>
+<h2 id="source_configuration-object">
+<code>source_configuration</code> object</h2>
+<p>The <code>source_configuration</code> object provides methods to query the result of an
+<code>apply</code> operation on a source set.</p>
+<h3 id="methods1">Methods</h3>
+<h4 id="sources"><code>sources()</code></h4>
+<pre><code class="language-meson">source_config.sources()
+</code></pre>
+<p>Return the source files corresponding to the applied configuration.</p>
+<p><strong>Returns</strong>: a list of file objects</p>
+<h4 id="dependencies"><code>dependencies()</code></h4>
+<pre><code class="language-meson">source_config.dependencies()
+</code></pre>
+<p>Return the dependencies corresponding to the applied configuration.</p>
+<p><strong>Returns</strong>: a list of dependency objects</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+        
+<div class="copyrights-description">
+		<p>
+				© 								2019, 
+													       	Paolo Bonzini 				(<a href="mailto:pbonzini@redhat.com">pbonzini@redhat.com</a>)
+			</p>
+	</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/SourceSet-module.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

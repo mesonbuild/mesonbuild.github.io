@@ -165,7 +165,7 @@ $('body').removeClass('no-script');
 
 <div id="body">
 	<div id="main">
-				    <div id="page-description" data-hotdoc-source="Wrap-best-practices-and-tips.md" data-hotdoc-role="main">
+				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="wrap-best-practices-and-tips">Wrap best practices and tips</h1>
 <p>There are several things you need to take into consideration when
 writing a Meson build definition for a project. This is especially
@@ -202,17 +202,9 @@ statically. In other cases you might want shared libraries. They are
 also faster during development due to Meson's relinking
 optimization. However building both library types on all builds is
 slow and wasteful.</p>
-<p>Your project should provide a toggle specifying which type of library
-it should build. As an example if you have a Meson option called
-<code>shared_lib</code> then you could do this:</p>
-<pre><code class="language-meson">if get_option('shared_lib')
-  libtype = 'shared_library'
-else
-  libtype = 'static_library'
-endif
-
-mylib = build_target('foo', 'foo.c',
-  target_type : libtype)
+<p>Your project should use the <code>library</code> method that can be toggled
+between shared and static with the <code>defaul_library</code> builtin option.</p>
+<pre><code class="language-meson">mylib = library('foo', 'foo.c')
 </code></pre>
 <h2 id="declare-generated-headers-explicitly">Declare generated headers explicitly</h2>
 <p>Meson's Ninja backend works differently from Make and other
@@ -312,6 +304,13 @@ such should not expose sources.</p>
 	</div>
 	<div id="footer">
 		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
 
 	</div>
 </div>

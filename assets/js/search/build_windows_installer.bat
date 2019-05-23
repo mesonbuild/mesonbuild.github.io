@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token": "build_windows_installer.bat", "urls": [{"url": "Creating-OSX-packages.html#page-description", "context": {"gi-language": ["default"]}}]});
+urls_downloaded_cb({"token":"build_windows_installer.bat","urls":[{"url":"Creating-OSX-packages.html#page-description","node_type":"p","context":{"gi-language":["default"]}}]});
