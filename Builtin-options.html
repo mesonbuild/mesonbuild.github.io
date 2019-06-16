@@ -267,17 +267,27 @@ override this value.</p>
 implementation is <a href="https://github.com/mesonbuild/meson/issues/2038">currently buggy</a>
 on Linux platforms.</p>
 <h3 id="core-options">Core options</h3>
-<p>Options that have a separate cross option will be prefixed with
-cross_, for example, "cross_pkg_config_path" controls the paths
-pkg-config will search for host dependencies in a cross compile.
-They have no effect when the host and build machines are the same.</p>
+<p>Options that are labled "per machine" in the table are set per machine.
+Prefixing the option with <code>build.</code> just affects the build machine configuration,
+while unprefixed just affects the host machine configuration, respectively.
+Using the option as-is with no prefix affects all machines. For example:</p>
+<ul>
+<li>
+<p><code>build.pkg_config_path</code> controls the paths pkg-config will search for just
+<code>native: true</code> dependencies (build machine).</p>
+</li>
+<li>
+<p><code>pkg_config_path</code> controls the paths pkg-config will search for just
+<code>native: false</code> dependencies (host machine).</p>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
 <th> Option</th>
 <th> Default value</th>
 <th> Description</th>
-<th> Has Separate cross</th>
+<th> Is per machine</th>
 </tr>
 </thead>
 <tbody>
@@ -339,6 +349,12 @@ They have no effect when the host and build machines are the same.</p>
 <td> pkg_config_path {OS separated path}</td>
 <td> ''</td>
 <td> Additional paths for pkg-config to search before builtin paths</td>
+<td> yes</td>
+</tr>
+<tr>
+<td> cmake_prefix_path</td>
+<td> []</td>
+<td> Additional prefixes for cmake to search before builtin paths</td>
 <td> yes</td>
 </tr>
 <tr>

@@ -234,7 +234,8 @@ for i in *.c; do
   echo $i
 done
 </code></pre>
-<p>Then you need to run this script in your Meson file, convert the output into a string array and use the result in a target.</p>
+<p>Then you need to run this script in your Meson file, convert the
+output into a string array and use the result in a target.</p>
 <pre><code class="language-meson">c = run_command('grabber.sh')
 sources = c.stdout().strip().split('\n')
 e = executable('prog', sources)
@@ -457,13 +458,15 @@ system.</p>
 </li>
 </ul>
 <h2 id="why-does-building-my-project-with-msvc-output-static-libraries-called-libfooa">Why does building my project with MSVC output static libraries called <code>libfoo.a</code>?</h2>
-<p>The naming convention for static libraries on Windows is usually <code>foo.lib</code>.
-Unfortunately, import libraries are also called <code>foo.lib</code>.</p>
-<p>This causes filename collisions with the default library type where we build
-both shared and static libraries, and also causes collisions during
-installation since all libraries are installed to the same directory by default.</p>
-<p>To resolve this, we decided to default to creating static libraries of the form
-<code>libfoo.a</code> when building with MSVC. This has the following advantages:</p>
+<p>The naming convention for static libraries on Windows is usually
+<code>foo.lib</code>.  Unfortunately, import libraries are also called <code>foo.lib</code>.</p>
+<p>This causes filename collisions with the default library type where we
+build both shared and static libraries, and also causes collisions
+during installation since all libraries are installed to the same
+directory by default.</p>
+<p>To resolve this, we decided to default to creating static libraries of
+the form <code>libfoo.a</code> when building with MSVC. This has the following
+advantages:</p>
 <ol>
 <li>Filename collisions are completely avoided.</li>
 <li>The format for MSVC static libraries is <code>ar</code>, which is the same as the GNU

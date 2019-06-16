@@ -177,10 +177,12 @@ provide both at the same time. The way this is done is that Meson
 allows you to take any other Meson project and make it a part of your
 build without (in the best case) any changes to its Meson setup. It
 becomes a transparent part of the project.</p>
-<p>It should be noted that this only works for subprojects that are built
-with Meson. It can not be used with any other build system. The reason
-is the simple fact that there is no possible way to do this reliably
-with mixed build systems.</p>
+<p>It should be noted that this is only guaranteed to work for subprojects
+that are built with Meson. The reason is the simple fact that there is
+no possible way to do this reliably with mixed build systems. Because of
+this, only meson subprojects are described here.
+<a href="CMake-module.html#CMake-subprojects">CMake based subprojects</a> are also
+supported but not guaranteed to work.</p>
 <h2 id="a-subproject-example">A subproject example</h2>
 <p>Usually dependencies consist of some header files plus a library to link against.
 To declare this internal dependency use <code>declare_dependency</code> function.</p>
@@ -189,12 +191,12 @@ library. Its <code>meson.build</code> would look like this.</p>
 <pre><code class="language-meson">project('libsimple', 'c')
 
 inc = include_directories('include')
-libsimple = shared_library('simple', 
-  'simple.c', 
-  include_directories : inc, 
+libsimple = shared_library('simple',
+  'simple.c',
+  include_directories : inc,
   install : true)
 
-libsimple_dep = declare_dependency(include_directories : inc, 
+libsimple_dep = declare_dependency(include_directories : inc,
   link_with : libsimple)
 </code></pre>
 <h3 id="naming-convention-for-dependency-variables">Naming convention for dependency variables</h3>
@@ -213,8 +215,8 @@ must not set global arguments because there is no way to do that
 reliably over multiple subprojects. To check whether you are running
 as a subproject, use the <code>is_subproject</code> function.</p>
 <h2 id="using-a-subproject">Using a subproject</h2>
-<p>All subprojects must be inside <code>subprojects</code> directory.<br>
-The <code>subprojects</code> directory must be at the top level of your project.<br>
+<p>All subprojects must be inside <code>subprojects</code> directory.
+The <code>subprojects</code> directory must be at the top level of your project.
 Subproject declaration must be in your top level <code>meson.build</code>.</p>
 <h3 id="a-simple-example">A simple example</h3>
 <p>Let's use <code>libsimple</code> as a subproject.</p>
@@ -226,9 +228,9 @@ Then copy <code>libsimple</code> into <code>subprojects</code> directory.</p>
 libsimple_proj = subproject('libsimple')
 libsimple_dep = libsimple_proj.get_variable('libsimple_dep')
 
-executable('my_project', 
-  'my_project.cpp', 
-  dependencies : libsimple_dep, 
+executable('my_project',
+  'my_project.cpp',
+  dependencies : libsimple_dep,
   install : true)
 </code></pre>
 <p>Note that the subproject object is <em>not</em> used as the dependency, but
@@ -251,9 +253,9 @@ if not libsimple_dep.found()
   libsimple_dep = libsimple_proj.get_variable('libsimple_dep')
 endif
 
-executable('my_project', 
-  'my_project.cpp', 
-  dependencies : libsimple_dep, 
+executable('my_project',
+  'my_project.cpp',
+  dependencies : libsimple_dep,
   install : true)
 </code></pre>
 <p>Because this is such a common operation, Meson provides a shortcut for
@@ -270,9 +272,9 @@ method described above.</p>
 
 libsimple_dep = dependency('libsimple', fallback : ['libsimple', 'libsimple_dep'])
 
-executable('my_project', 
-  'my_project.cpp', 
-  dependencies : libsimple_dep, 
+executable('my_project',
+  'my_project.cpp',
+  dependencies : libsimple_dep,
   install : true)
 </code></pre>
 <p>With this setup when libsimple is provided by the system, we use it. When

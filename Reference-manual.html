@@ -253,7 +253,8 @@ the following:</p>
 If <code>true</code>, the setup will be used whenever <code>meson test</code> is run
 without the <code>--setup</code> option. Since 0.49.0</li>
 </ul>
-<p>To use the test setup, run <code>meson test --setup=*name*</code> inside the build dir.</p>
+<p>To use the test setup, run <code>meson test --setup=*name*</code> inside the
+build dir.</p>
 <p>Note that all these options are also available while running the
 <code>meson test</code> script for running tests instead of <code>ninja test</code> or
 <code>msbuild RUN_TESTS.vcxproj</code>, etc depending on the backend.</p>
@@ -277,8 +278,8 @@ for <a href="Reference-manual.html#library"><code>library</code></a>. Source fil
 object files will be reused to build both shared and static libraries,
 unless <code>b_staticpic</code> user option or <code>pic</code> argument are set to false in
 which case sources will be compiled twice.</p>
-<p>The returned <a href="Reference-manual.html#build-target-object">buildtarget</a> always represents the shared
-library. In addition it supports the following extra methods:</p>
+<p>The returned <a href="Reference-manual.html#build-target-object">buildtarget</a> always represents the
+shared library. In addition it supports the following extra methods:</p>
 <ul>
 <li>
 <code>get_shared_lib()</code> returns the shared library build target</li>
@@ -315,9 +316,9 @@ methods section</a> below.</p>
 <p>Creates an empty configuration object. You should add your
 configuration with <a href="Reference-manual.html#configuration-data-object">its method calls</a> and
 finally use it in a call to <code>configure_file</code>.</p>
-<p>Since <em>0.49.0</em> takes an optional dictionary as first argument. If provided, each
-key/value pair is added into the <code>configuration_data</code> as if <code>set()</code> method was
-called for each of them.</p>
+<p>Since <em>0.49.0</em> takes an optional dictionary as first argument. If
+provided, each key/value pair is added into the <code>configuration_data</code>
+as if <code>set()</code> method was called for each of them.</p>
 <h3 id="configure_file">configure_file()</h3>
 <pre><code class="language-meson">    generated_file = configure_file(...)
 </code></pre>
@@ -327,8 +328,9 @@ passed to it.</p>
 to the <code>configuration:</code> keyword argument, it takes a template file as
 the <code>input:</code> (optional) and produces the <code>output:</code> (required) by
 substituting values from the configuration data as detailed in <a href="Configuration.html">the
-configuration file documentation</a>. Since <em>0.49.0</em> a dictionary
-can be passed instead of a <a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> object.</p>
+configuration file documentation</a>. Since <em>0.49.0</em> a
+dictionary can be passed instead of a
+<a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> object.</p>
 <p>When a list of strings is passed to the <code>command:</code> keyword argument,
 it takes any source or configured file as the <code>input:</code> and assumes
 that the <code>output:</code> is produced when the specified command is run.</p>
@@ -529,10 +531,12 @@ that should be built before sources including them are built)</li>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
 </code></pre>
 <p>Finds an external dependency (usually a library installed on your
-system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#CMake">with CMake</a>
-if <code>pkg-config</code> fails. Additionally, frameworks (OSX only) and
-<a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection logic</a>
-are also supported. This function supports the following keyword arguments:</p>
+system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#CMake">with
+CMake</a> if <code>pkg-config</code> fails. Additionally,
+frameworks (OSX only) and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection
+logic</a>
+are also supported. This function supports the following keyword
+arguments:</p>
 <ul>
 <li>
 <code>default_options</code> <em>(added 0.37.0)</em> an array of default option values
@@ -591,14 +595,15 @@ dependencies such as Qt5 or Boost. )</li>
 <em>Since 0.49.0</em>
 </li>
 </ul>
-<p>If dependency_name is <code>''</code>, the dependency is always not found.  So with
-<code>required: false</code>, this always returns a dependency object for which the
-<code>found()</code> method returns <code>false</code>, and which can be passed like any other
-dependency to the <code>dependencies:</code> keyword argument of a <code>build_target</code>.  This
-can be used to implement a dependency which is sometimes not required e.g. in
-some branches of a conditional, or with a <code>fallback:</code> kwarg, can be used to
-declare an optional dependency that only looks in the specified subproject,
-and only if that's allowed by <code>--wrap-mode</code>.</p>
+<p>If dependency_name is <code>''</code>, the dependency is always not found.  So
+with <code>required: false</code>, this always returns a dependency object for
+which the <code>found()</code> method returns <code>false</code>, and which can be passed
+like any other dependency to the <code>dependencies:</code> keyword argument of a
+<code>build_target</code>.  This can be used to implement a dependency which is
+sometimes not required e.g. in some branches of a conditional, or with
+a <code>fallback:</code> kwarg, can be used to declare an optional dependency
+that only looks in the specified subproject, and only if that's
+allowed by <code>--wrap-mode</code>.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#dependency-object">object methods section</a> below.</p>
 <h3 id="disabler">disabler()</h3>
@@ -610,8 +615,8 @@ and only if that's allowed by <code>--wrap-mode</code>.</p>
 <h3 id="environment">environment()</h3>
 <pre><code class="language-meson">    environment_object environment()
 </code></pre>
-<p>Returns an empty <a href="Reference-manual.html#environment-object">environment variable object</a>. Added in
-0.35.0.</p>
+<p>Returns an empty <a href="Reference-manual.html#environment-object">environment variable
+object</a>. Added in 0.35.0.</p>
 <h3 id="executable">executable()</h3>
 <pre><code class="language-meson">    buildtarget executable(*exe_name*, *sources*, ...)
 </code></pre>
@@ -1742,6 +1747,127 @@ machine and the target machine).</p>
 <p>Note that while cross-compiling, it simply returns the values defined
 in the cross-info file. If <code>target_machine</code> values are not defined in
 the cross-info file, <code>host_machine</code> values are returned instead.</p>
+<h3 id="string-object">
+<code>string</code> object</h3>
+<p>All <a href="Syntax.html#strings">strings</a> have the following methods. Strings
+are immutable, all operations return their results as a new string.</p>
+<ul>
+<li>
+<p><code>contains(string)</code> returns true if string contains the string
+specified as the argument</p>
+</li>
+<li>
+<p><code>endswith(string)</code> returns true if string ends with the string
+specified as the argument</p>
+</li>
+<li>
+<p><code>format()</code> formats text, see the <a href="Syntax.html#string-formatting">Syntax
+manual</a> for usage info</p>
+</li>
+<li>
+<p><code>join(list_of_strings)</code> is the opposite of split, for example
+<code>'.'.join(['a', 'b', 'c']</code> yields <code>'a.b.c'</code></p>
+</li>
+<li>
+<p><code>split(split_character)</code> splits the string at the specified
+character (or whitespace if not set) and returns the parts in an
+array</p>
+</li>
+<li>
+<p><code>startswith(string)</code> returns true if string starts with the string
+specified as the argument</p>
+</li>
+<li>
+<p><code>strip()</code> removes whitespace at the beginning and end of the string
+<em>(added 0.43.0)</em> optionally can take one positional string argument,
+and all characters in that string will be stripped</p>
+</li>
+<li>
+<p><code>to_int</code> returns the string converted to an integer (error if string
+is not a number)</p>
+</li>
+<li>
+<p><code>to_lower()</code> creates a lower case version of the string</p>
+</li>
+<li>
+<p><code>to_upper()</code> creates an upper case version of the string</p>
+</li>
+<li>
+<p><code>underscorify()</code> creates a string where every non-alphabetical
+non-number character is replaced with <code>_</code></p>
+</li>
+<li>
+<p><code>version_compare(comparison_string)</code> does semantic version
+comparison, if <code>x = '1.2.3'</code> then <code>x.version_compare('&gt;1.0.0')</code>
+returns <code>true</code></p>
+</li>
+</ul>
+<h3 id="number-object">
+<code>Number</code> object</h3>
+<p><a href="Syntax.html#numbers">Numbers</a> support these methods:</p>
+<ul>
+<li>
+<code>is_even()</code> returns true if the number is even</li>
+<li>
+<code>is_odd()</code> returns true if the number is odd</li>
+</ul>
+<h3 id="boolean-object">
+<code>boolean</code> object</h3>
+<p>A <a href="Syntax.html#booleans">boolean</a> object has two simple methods:</p>
+<ul>
+<li>
+<p><code>to_int()</code> as above, but returns either <code>1</code> or <code>0</code></p>
+</li>
+<li>
+<p><code>to_string()</code> returns the string <code>'true'</code> if the boolean is true or
+<code>'false'</code> otherwise. You can also pass it two strings as positional
+arguments to specify what to return for true/false. For instance,
+<code>bool.to_string('yes', 'no')</code> will return <code>yes</code> if the boolean is
+true and <code>no</code> if it is false.</p>
+</li>
+</ul>
+<h3 id="array-object">
+<code>array</code> object</h3>
+<p>The following methods are defined for all <a href="Syntax.html#arrays">arrays</a>:</p>
+<ul>
+<li>
+<p><code>contains(item)</code>, returns <code>true</code> if the array contains the object
+given as argument, <code>false</code> otherwise</p>
+</li>
+<li>
+<p><code>get(index, fallback)</code>, returns the object at the given index,
+negative indices count from the back of the array, indexing out of
+bounds returns the <code>fallback</code> value <em>(added 0.38.0)</em> or, if it is
+not specified, causes a fatal error</p>
+</li>
+<li>
+<p><code>length()</code>, the size of the array</p>
+</li>
+</ul>
+<p>You can also iterate over arrays with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
+statement</a>.</p>
+<h3 id="dictionary-object">
+<code>dictionary</code> object</h3>
+<p>The following methods are defined for all <a href="Syntax.html#dictionaries">dictionaries</a>:</p>
+<ul>
+<li>
+<p><code>has_key(key)</code> returns <code>true</code> if the dictionary contains the key
+given as argument, <code>false</code> otherwise</p>
+</li>
+<li>
+<p><code>get(key, fallback)</code>, returns the value for the key given as first
+argument if it is present in the dictionary, or the optional
+fallback value given as the second argument. If a single argument
+was given and the key was not found, causes a fatal error</p>
+</li>
+</ul>
+<p>You can also iterate over dictionaries with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
+statement</a>.</p>
+<p>Dictionaries are available since 0.47.0.</p>
+<p>Since 0.48.0 dictionaries can be added (e.g. <code>d1 = d2 + d3</code> and <code>d1 += d2</code>).
+Values from the second dictionary overrides values from the first.</p>
+<h2 id="returned-objects">Returned objects</h2>
+<p>These are objects returned by the <a href="Reference-manual.html#functions">functions listed above</a>.</p>
 <h3 id="compiler-object">
 <code>compiler</code> object</h3>
 <p>This object is returned by
@@ -2001,127 +2127,6 @@ MSVC to expand the default library search path.</p>
 <p>However, with GCC, these variables will be ignored when
 cross-compiling. In that case you need to use a specs file. See:
 <a href="http://www.mingw.org/wiki/SpecsFileHOWTO">http://www.mingw.org/wiki/SpecsFileHOWTO</a></p>
-<h3 id="string-object">
-<code>string</code> object</h3>
-<p>All <a href="Syntax.html#strings">strings</a> have the following methods. Strings
-are immutable, all operations return their results as a new string.</p>
-<ul>
-<li>
-<p><code>contains(string)</code> returns true if string contains the string
-specified as the argument</p>
-</li>
-<li>
-<p><code>endswith(string)</code> returns true if string ends with the string
-specified as the argument</p>
-</li>
-<li>
-<p><code>format()</code> formats text, see the <a href="Syntax.html#string-formatting">Syntax
-manual</a> for usage info</p>
-</li>
-<li>
-<p><code>join(list_of_strings)</code> is the opposite of split, for example
-<code>'.'.join(['a', 'b', 'c']</code> yields <code>'a.b.c'</code></p>
-</li>
-<li>
-<p><code>split(split_character)</code> splits the string at the specified
-character (or whitespace if not set) and returns the parts in an
-array</p>
-</li>
-<li>
-<p><code>startswith(string)</code> returns true if string starts with the string
-specified as the argument</p>
-</li>
-<li>
-<p><code>strip()</code> removes whitespace at the beginning and end of the string
-<em>(added 0.43.0)</em> optionally can take one positional string argument,
-and all characters in that string will be stripped</p>
-</li>
-<li>
-<p><code>to_int</code> returns the string converted to an integer (error if string
-is not a number)</p>
-</li>
-<li>
-<p><code>to_lower()</code> creates a lower case version of the string</p>
-</li>
-<li>
-<p><code>to_upper()</code> creates an upper case version of the string</p>
-</li>
-<li>
-<p><code>underscorify()</code> creates a string where every non-alphabetical
-non-number character is replaced with <code>_</code></p>
-</li>
-<li>
-<p><code>version_compare(comparison_string)</code> does semantic version
-comparison, if <code>x = '1.2.3'</code> then <code>x.version_compare('&gt;1.0.0')</code>
-returns <code>true</code></p>
-</li>
-</ul>
-<h3 id="number-object">
-<code>Number</code> object</h3>
-<p><a href="Syntax.html#numbers">Numbers</a> support these methods:</p>
-<ul>
-<li>
-<code>is_even()</code> returns true if the number is even</li>
-<li>
-<code>is_odd()</code> returns true if the number is odd</li>
-</ul>
-<h3 id="boolean-object">
-<code>boolean</code> object</h3>
-<p>A <a href="Syntax.html#booleans">boolean</a> object has two simple methods:</p>
-<ul>
-<li>
-<p><code>to_int()</code> as above, but returns either <code>1</code> or <code>0</code></p>
-</li>
-<li>
-<p><code>to_string()</code> returns the string <code>'true'</code> if the boolean is true or
-<code>'false'</code> otherwise. You can also pass it two strings as positional
-arguments to specify what to return for true/false. For instance,
-<code>bool.to_string('yes', 'no')</code> will return <code>yes</code> if the boolean is
-true and <code>no</code> if it is false.</p>
-</li>
-</ul>
-<h3 id="array-object">
-<code>array</code> object</h3>
-<p>The following methods are defined for all <a href="Syntax.html#arrays">arrays</a>:</p>
-<ul>
-<li>
-<p><code>contains(item)</code>, returns <code>true</code> if the array contains the object
-given as argument, <code>false</code> otherwise</p>
-</li>
-<li>
-<p><code>get(index, fallback)</code>, returns the object at the given index,
-negative indices count from the back of the array, indexing out of
-bounds returns the <code>fallback</code> value <em>(added 0.38.0)</em> or, if it is
-not specified, causes a fatal error</p>
-</li>
-<li>
-<p><code>length()</code>, the size of the array</p>
-</li>
-</ul>
-<p>You can also iterate over arrays with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
-statement</a>.</p>
-<h3 id="dictionary-object">
-<code>dictionary</code> object</h3>
-<p>The following methods are defined for all <a href="Syntax.html#dictionaries">dictionaries</a>:</p>
-<ul>
-<li>
-<p><code>has_key(key)</code> returns <code>true</code> if the dictionary contains the key
-given as argument, <code>false</code> otherwise</p>
-</li>
-<li>
-<p><code>get(key, fallback)</code>, returns the value for the key given as first
-argument if it is present in the dictionary, or the optional
-fallback value given as the second argument. If a single argument
-was given and the key was not found, causes a fatal error</p>
-</li>
-</ul>
-<p>You can also iterate over dictionaries with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
-statement</a>.</p>
-<p>Dictionaries are available since 0.47.0.</p>
-<p>Since 0.48.0 dictionaries can be added (e.g. <code>d1 = d2 + d3</code> and <code>d1 += d2</code>).
-Values from the second dictionary overrides values from the first.</p>
-<h2 id="returned-objects">Returned objects</h2>
-<p>These are objects returned by the <a href="Reference-manual.html#functions">functions listed above</a>.</p>
 <h3 id="build-target-object">
 <code>build target</code> object</h3>
 <p>A build target is either an <a href="Reference-manual.html#executable">executable</a>,
@@ -2290,12 +2295,13 @@ not working correctly.</p>
 </li>
 <li>
 <p>`get_variable(cmake : str, pkgconfig : str, configtool : str,
-default_value : str, pkgconfig_define : [str, str]) <em>(Added in 0.51.0)</em> A
-generic variable getter method, which repalces the get_<em>type</em>_variable
-methods. This allows one to get the variable from a dependency without
-knowing specifically how that dependency was found. If default_value is set and
-the value cannot be gotten from the object then default_value is returned,
-if it is not set then an error is raised.</p>
+default_value : str, pkgconfig_define : [str, str]) <em>(Added in
+0.51.0)</em> A generic variable getter method, which repalces the
+get_<em>type</em>_variable methods. This allows one to get the variable
+from a dependency without knowing specifically how that dependency
+was found. If default_value is set and the value cannot be gotten
+from the object then default_value is returned, if it is not set
+then an error is raised.</p>
 </li>
 </ul>
 <h3 id="disabler-object">
@@ -2341,8 +2347,8 @@ separator for the host operating system will be used, i.e. ';' for
 Windows and ':' for UNIX/POSIX systems.</p>
 </li>
 <li>
-<p><code>prepend(varname, value1, value2, ...)</code> is the same as <code>append</code> except that it
-writes to the beginning of the variable</p>
+<p><code>prepend(varname, value1, value2, ...)</code> is the same as <code>append</code>
+except that it writes to the beginning of the variable</p>
 </li>
 <li>
 <p><code>set(varname, value1, value2)</code> sets the environment variable
@@ -2402,9 +2408,13 @@ opaque object representing it.</p>
 successfully setup</p>
 </li>
 <li>
-<p><code>get_variable(name)</code> fetches the specified variable from inside the
-subproject. This is useful to, for instance, get a <a href="Reference-manual.html#declare_dependency">declared
-dependency</a> from the <a href="Subprojects.html">subproject</a>.</p>
+<p><code>get_variable(name, fallback)</code> fetches the specified variable from
+inside the subproject. This is useful to, for instance, get a
+<a href="Reference-manual.html#declare_dependency">declared dependency</a> from the
+<a href="Subprojects.html">subproject</a>.</p>
+<p>If the variable does not exist, the variable <code>fallback</code> is returned.
+If a fallback is not specified, then attempting to read a non-existing
+variable will cause a fatal error.</p>
 </li>
 </ul>
 <h3 id="run-result-object">

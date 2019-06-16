@@ -167,12 +167,87 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="cmake-module">CMake module</h1>
-<p>This module provides helper tools for generating cmake package files.</p>
+<p>This module provides helper tools for generating cmake package files.
+It also supports the usage of CMake based subprojects, similar to
+the normal <a href="Subprojects.html">meson subprojects</a>.</p>
 <h2 id="usage">Usage</h2>
 <p>To use this module, just do: <strong><code>cmake = import('cmake')</code></strong>. The
 following functions will then be available as methods on the object
 with the name <code>cmake</code>. You can, of course, replace the name <code>cmake</code>
 with anything else.</p>
+<h2 id="cmake-subprojects">CMake subprojects</h2>
+<p>Using CMake subprojects is similar to using the "normal" meson
+subprojects. They also have to be located in the <code>subprojects</code>
+directory.</p>
+<p>Example:</p>
+<pre><code class="language-cmake">add_library(cm_lib SHARED ${SOURCES})
+</code></pre>
+<pre><code class="language-meson">cmake = import('cmake')
+
+# Configure the CMake project
+sub_proj = cmake.subproject('libsimple_cmake')
+
+# Fetch the dependency object
+cm_lib = sub_proj.dependency('cm_lib')
+
+executable(exe1, ['sources'], dependencies: [cm_lib])
+</code></pre>
+<p>The <code>subproject</code> method is almost identical to the normal meson
+<code>subproject</code> function. The only difference is that a CMake project
+instead of a meson project is configured.</p>
+<p>Also, project specific CMake options can be added with the <code>cmake_options</code> key.</p>
+<p>The returned <code>sub_proj</code> supports the same options as a "normal" subproject.
+Meson automatically detects CMake build targets, which can be accessed with
+the methods listed <a href="CMake-module.html#subproject-object">below</a>.</p>
+<p>It is usually enough to just use the dependency object returned by the
+<code>dependency()</code> method in the build targets. This is almost identical to
+using <code>declare_dependency()</code> object from a normal meson subproject.</p>
+<p>It is also possible to use executables defined in the CMake project as code
+generators with the <code>target()</code> method:</p>
+<pre><code class="language-cmake">add_executable(cm_exe ${EXE_SRC})
+</code></pre>
+<pre><code class="language-meson">cmake = import('cmake')
+
+# Subproject with the "code generator"
+sub_pro = cmake.subproject('cmCodeGen')
+
+# Fetch the code generator exe
+sub_exe = sub_pro.target('cm_exe')
+
+# Use the code generator
+generated = custom_target(
+  'cmake-generated',
+  input: [],
+  output: ['test.cpp'],
+  command: [sub_exe, '@OUTPUT@']
+)
+</code></pre>
+<p>It should be noted that not all projects are guaranteed to work. The
+safest approach would still be to create a <code>meson.build</code> for the
+subprojects in question.</p>
+<h3 id="subproject-object">
+<code>subproject</code> object</h3>
+<p>This object is returned by the <code>subproject</code> function described above
+and supports the following methods:</p>
+<ul>
+<li>
+<code>dependency(target)</code> returns a dependency object for any CMake target.</li>
+<li>
+<code>include_directories(target)</code> returns a meson <code>include_directories()</code>
+object for the specified target. Using this function is not neccessary
+if the dependency object is used.</li>
+<li>
+<code>target(target)</code> returns the raw build target.</li>
+<li>
+<code>target_type(target)</code> returns the type of the target as a string</li>
+<li>
+<code>target_list()</code> returns a list of all target <em>names</em>.</li>
+<li>
+<code>get_variable(name)</code> fetches the specified variable from inside
+the subproject. Usually <code>dependency()</code> or <code>target()</code> should be
+prefered to extract build targets.</li>
+</ul>
+<h2 id="cmake-configuration-files">CMake configuration files</h2>
 <h3 id="cmakewrite_basic_package_version_file">cmake.write_basic_package_version_file()</h3>
 <p>This function is the equivalent of the corresponding <a href="https://cmake.org/cmake/help/v3.11/module/CMakePackageConfigHelpers.html#generating-a-package-version-file">CMake function</a>,
 it generates a <code>name</code> package version file.</p>
