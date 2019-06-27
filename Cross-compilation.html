@@ -114,6 +114,9 @@ $('body').removeClass('no-script');
 				<a href="RPM-module.html">RPM</a>
 			</li>
 					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
 				<a href="Windows-module.html">Windows</a>
 			</li>
 					<li>
@@ -272,6 +275,7 @@ has_function_printf = true
 
 c_args = ['-DCROSS=1', '-DSOMETHING=3']
 c_link_args = ['-some_link_arg']
+sys_root = '/some/path'
 </code></pre>
 <p>In most cases you don't need the size and alignment settings, Meson
 will detect all these by compiling and running some sample
@@ -280,6 +284,11 @@ here, Meson will stop and write an error message describing how to fix
 the issue. If you need extra compiler arguments to be used during
 cross compilation you can set them with <code>[langname]_args = [args]</code>. Just remember to specify the args as an array and not as a
 single string (i.e. not as <code>'-DCROSS=1 -DSOMETHING=3'</code>).</p>
+<p><em>Since 0.52.0</em> The <code>sys_root</code> property may point to the root of the host
+system path (the system that will run the compiled binaries). This is used
+internally by meson to set the PKG_CONFIG_SYSROOT_DIR environment variable
+for pkg-config. If this is unset the host system is assumed to share a root
+with the build system.</p>
 <p>One important thing to note, if you did not define an <code>exe_wrapper</code> in
 the previous section, is that Meson will make a best-effort guess at
 whether it can run the generated binaries on the build machine. It

@@ -114,6 +114,9 @@ $('body').removeClass('no-script');
 				<a href="RPM-module.html">RPM</a>
 			</li>
 					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
 				<a href="Windows-module.html">Windows</a>
 			</li>
 					<li>
@@ -263,9 +266,12 @@ by setting them inside <code>default_options</code> of <code>project()</code> in
 </table>
 <p><code>prefix</code> defaults to <code>C:/</code> on Windows, and <code>/usr/local/</code> otherwise. You should always
 override this value.</p>
-<p><code>libdir</code> is automatically detected based on your platform, but the
-implementation is <a href="https://github.com/mesonbuild/meson/issues/2038">currently buggy</a>
-on Linux platforms.</p>
+<p><code>libdir</code> is automatically detected based on your platform, it should be
+correct when doing "native" (build machine == host machine) compilation. For
+cross compiles meson will try to guess the correct libdir, but it may not be
+accurate, especially on Linux where different distributions have different
+defaults. Using a <a href="Cross-compilation.html#defining-the-environment">cross file</a>,
+particularly the paths section may be necessary.</p>
 <h3 id="core-options">Core options</h3>
 <p>Options that are labled "per machine" in the table are set per machine.
 Prefixing the option with <code>build.</code> just affects the build machine configuration,

@@ -114,6 +114,9 @@ $('body').removeClass('no-script');
 				<a href="RPM-module.html">RPM</a>
 			</li>
 					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
 				<a href="Windows-module.html">Windows</a>
 			</li>
 					<li>
@@ -694,7 +697,19 @@ which are supported by GCC, Clang, and other compilers.</p>
 <td> used</td>
 </tr>
 <tr>
-<td> visibility</td>
+<td> visibility*</td>
+</tr>
+<tr>
+<td> visibility:default†</td>
+</tr>
+<tr>
+<td> visibility:hidden†</td>
+</tr>
+<tr>
+<td> visibility:internal†</td>
+</tr>
+<tr>
+<td> visibility:protected†</td>
 </tr>
 <tr>
 <td> warning</td>
@@ -710,6 +725,10 @@ which are supported by GCC, Clang, and other compilers.</p>
 </tr>
 </tbody>
 </table>
+<p>* <em>Changed in 0.52.0</em> the "visibility" target no longer includes
+"protected", which is not present in Apple's clang.</p>
+<p>† <em>New in 0.52.0</em> These split visibility attributes are preferred to the plain
+"visibility" as they provide narrower checks.</p>
 <h3 id="msvc-__declspec">MSVC __declspec</h3>
 <p>These values are supported using the MSVC style <code>__declspec</code> annotation,
 which are supported by MSVC, GCC, Clang, and other compilers.</p>
