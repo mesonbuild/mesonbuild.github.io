@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -246,6 +246,22 @@ only installing those files that have changed, you would run this
 command in the build tree:</p>
 <pre><code class="language-console">$ meson install --no-rebuild --only-changed
 </code></pre>
+<h2 id="finer-control-over-install-locations">Finer control over install locations</h2>
+<p>Sometimes it is necessary to only install a subsection of output files
+or install them in different directories. This can be done by
+specifying <code>install_dir</code> as an array rather than a single string. The
+array must have as many items as there are outputs and each entry
+specifies how the corresponding output file should be installed. For
+example:</p>
+<pre><code class="language-meson">custom_target(...
+    output: ['file1', 'file2', 'file3'],
+    install_dir: ['path1', false, 'path3'],
+    ...
+)
+</code></pre>
+<p>In this case <code>file1</code> would be installed to <code>/prefix/path1/file1</code>,
+<code>file2</code> would not be installed at all and <code>file3</code> would be installed
+to `/prefix/path3/file3'.</p>
 
     </div>
         

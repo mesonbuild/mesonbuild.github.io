@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -209,7 +209,7 @@ because that works even when you project is used as a subproject.</p>
 </code></pre>
 <p>Like <code>add_global_arguments</code> but the arguments are passed to the linker.</p>
 <h3 id="add_languages">add_languages()</h3>
-<pre><code class="language-meson">  add_languages(*langs*)
+<pre><code class="language-meson">  bool add_languages(*langs*)
 </code></pre>
 <p>Add support for new programming languages. Equivalent to having them
 in the <code>project</code> declaration. This function is usually used to add
@@ -217,6 +217,9 @@ languages that are only used on some platforms like this:</p>
 <pre><code class="language-meson">project('foobar', 'c')
 if compiling_for_osx
   add_languages('objc')
+endif
+if add_languages('cpp', required : false)
+  executable('cpp-app', 'main.cpp')
 endif
 </code></pre>
 <p>Takes one keyword argument, <code>required</code>. It defaults to <code>true</code>, which

@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -331,7 +331,7 @@ colliding target names when using the substitution twice.
 i18n.merge_file() now behaves as custom_target() in this regard.</p>
 <h2 id="projects-args-can-be-set-separately-for-cross-and-native-builds-potentially-breaking-change">Projects args can be set separately for cross and native builds (potentially breaking change)</h2>
 <p>It has been a longstanding bug (or let's call it a "delayed bug fix")
-that if yo do this:</p>
+that if you do this:</p>
 <pre><code class="language-meson">add_project_arguments('-DFOO', language : 'c')
 </code></pre>
 <p>Then the flag is used both in native and cross compilations. This is

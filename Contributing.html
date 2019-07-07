@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -434,6 +434,13 @@ one cross.</p>
 <p>Prefer specific solutions to generic frameworks. Solve the end
 user's problems rather than providing them tools to do it
 themselves.</p>
+</li>
+<li>
+<p>Never use features of the Unix shell (or Windows shell for that
+matter). Doing things like forwaring output with <code>&gt;</code> or invoking
+multiple commands with <code>&amp;&amp;</code> are not permitted. Whenever these sorts
+of requirements show up, write an internal Python script with the
+desired functionality and use that instead.</p>
 </li>
 </ul>
 
