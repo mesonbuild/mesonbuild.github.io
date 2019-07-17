@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -264,6 +264,15 @@ build dir.</p>
 <p>Note that all these options are also available while running the
 <code>meson test</code> script for running tests instead of <code>ninja test</code> or
 <code>msbuild RUN_TESTS.vcxproj</code>, etc depending on the backend.</p>
+<h3 id="alias_target">alias_target</h3>
+<pre><code class="language-meson">runtarget alias_target(target_name, dep1, ...)
+</code></pre>
+<p>Since <em>0.52.0</em></p>
+<p>This function creates a new top-level target. Like all top-level targets, this
+integrates with the selected backend. For instance, with Ninja you can
+run it as <code>ninja target_name</code>. This is a dummy target that does not execute any
+command, but ensures that all dependencies are built. Dependencies can be any
+build target (e.g. return value of executable(), custom_target(), etc)</p>
 <h3 id="assert">assert()</h3>
 <pre><code class="language-meson">    void assert(*condition*, *message*)
 </code></pre>

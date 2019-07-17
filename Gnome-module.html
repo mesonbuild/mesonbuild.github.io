@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -575,9 +575,15 @@ to the gtk-doc html dir or an absolute path (default: module name)</li>
 <code>c_args</code>: (<em>Added 0.48.0</em>) additional compile arguments to pass</li>
 <li>
 <code>src_dir</code>: include_directories to include</li>
+<li>
+<code>check</code>: (<em>Since 0.52.0</em>) if <code>true</code> runs <code>gtkdoc-check</code> when running unit tests.
+Note that this has the downside of rebuilding the doc for each build, which is
+often very slow. It usually should be enabled only in CI.</li>
 </ul>
 <p>This creates a <code>$module-doc</code> target that can be ran to build docs and
 normally these are only built on install.</p>
+<p><em>Since 0.52.0</em> Returns a target object that can be passed as dependency to other
+targets using generated doc files (e.g. in <code>content_files</code> of another doc).</p>
 <h3 id="gnomegtkdoc_html_dir">gnome.gtkdoc_html_dir()</h3>
 <p>Takes as argument a module name and returns the path where that
 module's HTML files will be installed. Usually used with

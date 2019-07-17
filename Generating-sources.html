@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -208,14 +208,14 @@ foo_c = custom_target(
     output : 'foo.c',
     input : 'my_gen.py',
     command : [prog_python, '@INPUT@', '--code', '@OUTPUT@'],
-]
+)
 
 foo_h = custom_target(
     'foo.h',
     output : 'foo.h',
     input : 'my_gen.py',
     command : [prog_python, '@INPUT@', '--header', '@OUTPUT@'],
-]
+)
 
 libfoo = static_library('foo', [foo_c, foo_h])
 
@@ -238,7 +238,7 @@ foo_ch = custom_target(
     output : ['foo.c', 'foo.h'],
     input : 'my_gen.py',
     command : [prog_python, '@INPUT@', '@OUTPUT@'],
-]
+)
 
 libfoo = static_library('foo', [foo_ch])
 
