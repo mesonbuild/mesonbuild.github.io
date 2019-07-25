@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -830,6 +830,15 @@ file is ignored and the program is only searched from the system.</p>
 <a href="Reference-manual.html#disabler-object">disabler object</a> instead of a not-found object.
 <em>Since 0.49.0</em></p>
 </li>
+<li>
+<p><code>version</code> <em>(since 0.52.0)</em> Specifies the required version, see
+<a href="Reference-manual.html#dependency"><code>dependency()</code></a> for argument format. The version of the program
+is determined by running <code>program_name --version</code> command. If stdout is empty
+it fallbacks to stderr. If the output contains more text than simply a version
+number, only the first occurence of numbers separated by dots is kept.
+If the output is more complicated than that, the version checking will have to
+be done manually using <a href="Reference-manual.html#run_command"><code>run_command()</code></a>.</p>
+</li>
 </ul>
 <p>Meson will also autodetect scripts with a shebang line and run them
 with the executable/interpreter specified in it both on Windows
@@ -1368,6 +1377,14 @@ library that is loading it.</p>
 variables defined in the <a href="Reference-manual.html#executable"><code>executable</code></a> it is loaded by,
 you will need to set the <code>export_dynamic</code> argument of the executable to
 <code>true</code>.</p>
+<p>Supports the following extra keyword arguments:</p>
+<ul>
+<li>
+<code>vs_module_defs</code>, <em>(Added 0.52.0)</em>, a string, a File object, or
+Custom Target for a Microsoft module definition file for controlling
+symbol exports, etc., on platforms where that is possible
+(e.g. Windows).</li>
+</ul>
 <p><strong>Note:</strong> Linking to a shared module is not supported on some
 platforms, notably OSX.  Consider using a
 <a href="Reference-manual.html#shared_library"><code>shared_library</code></a> instead, if you need to both

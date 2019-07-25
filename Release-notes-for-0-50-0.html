@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -420,6 +420,11 @@ default values of all options.</p>
 to provide introspection information about the latest meson run. This file
 is updated when the build configuration is changed and the build files are
 (re)generated.</p>
+<h2 id="new-kwarg-install-for-configure_file">New kwarg <code>install:</code> for <code>configure_file()</code>
+</h2>
+<p>Previously when using <code>configure_file()</code>, you could install the outputted file
+by setting the <code>install_dir:</code> keyword argument. Now, there is an explicit kwarg
+<code>install:</code> to enable/disable it. Omitting it will maintain the old behaviour.</p>
 
     </div>
         
