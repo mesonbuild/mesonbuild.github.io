@@ -203,13 +203,29 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 <p>The simplest thing to do is just to run all tests, which is equivalent to running <code>ninja test</code>.</p>
 <pre><code class="language-console">$ meson test
 </code></pre>
-<p>You can also run only a single test by giving its name:</p>
-<pre><code class="language-console">$ meson test testname
+<h3 id="run-subsets-of-tests">Run subsets of tests</h3>
+<p>For clarity, consider the meson.build containing:</p>
+<pre><code class="language-meson">
+test('A', ..., suite: 'foo')
+test('B', ..., suite: 'foo')
+test('C', ..., suite: 'bar')
+test('D', ..., suite: 'baz')
+
+</code></pre>
+<p>Specify test(s) by name like:</p>
+<pre><code class="language-console">$ meson test A D
 </code></pre>
 <p>Tests belonging to a suite <code>suite</code> can be run as follows</p>
 <pre><code class="language-console">$ meson test --suite (sub)project_name:suite
 </code></pre>
 <p>Since version <em>0.46</em>, <code>(sub)project_name</code> can be omitted if it is the top-level project.</p>
+<p>Multiple suites are specified like:</p>
+<pre><code class="language-console">$ meson test --suite foo --suite bar
+</code></pre>
+<p>NOTE: If you choose to specify both suite(s) and specific test name(s), the
+test name(s) must be contained in the suite(s). This however is redundant--
+it would be more useful to specify either specific test names or suite(s).</p>
+<h3 id="other-test-options">Other test options</h3>
 <p>Sometimes you need to run the tests multiple times, which is done like this:</p>
 <pre><code class="language-console">$ meson test --repeat=10
 </code></pre>
@@ -231,7 +247,10 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 </code></pre>
 <p>Meson will report the output produced by the failing tests along with other useful informations as the environmental variables. This is useful, for example, when you run the tests on Travis-CI, Jenkins and the like.</p>
 <p>For further information see the command line help of Meson by running <code>meson test -h</code>.</p>
-<p><strong>NOTE:</strong> If <code>meson test</code> does not work for you, you likely have a old version of Meson. In that case you should call <code>mesontest</code> instead. If <code>mesontest</code> doesn't work either you have a very old version prior to 0.37.0 and should upgrade.</p>
+<h2 id="legacy-notes">Legacy notes</h2>
+<p>If <code>meson test</code> does not work for you, you likely have a old version of Meson.
+In that case you should call <code>mesontest</code> instead. If <code>mesontest</code> doesn't work
+either you have a very old version prior to 0.37.0 and should upgrade.</p>
 
     </div>
         

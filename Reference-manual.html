@@ -272,7 +272,7 @@ build dir.</p>
 integrates with the selected backend. For instance, with Ninja you can
 run it as <code>ninja target_name</code>. This is a dummy target that does not execute any
 command, but ensures that all dependencies are built. Dependencies can be any
-build target (e.g. return value of executable(), custom_target(), etc)</p>
+build target (e.g. return value of <a href="Reference-manual.html#executable">executable()</a>, custom_target(), etc)</p>
 <h3 id="assert">assert()</h3>
 <pre><code class="language-meson">    void assert(*condition*, *message*)
 </code></pre>
@@ -739,7 +739,8 @@ defaults to <code>true</code>, since 0.42.0</li>
 <code>include_directories</code> function, or, since 0.50.0, strings, which
 will be transparently expanded to include directory objects</li>
 <li>
-<code>install</code>, when set to true, this executable should be installed</li>
+<code>install</code>, when set to true, this executable should be installed, defaults to <code>false</code>
+</li>
 <li>
 <code>install_dir</code> override install directory for this file. The value is
 relative to the <code>prefix</code> specified. F.ex, if you want to install
@@ -1842,6 +1843,8 @@ returns <code>true</code></p>
 <code>is_even()</code> returns true if the number is even</li>
 <li>
 <code>is_odd()</code> returns true if the number is odd</li>
+<li>
+<code>to_string()</code> returns the value of the number as a string.</li>
 </ul>
 <h3 id="boolean-object">
 <code>boolean</code> object</h3>
@@ -2326,8 +2329,7 @@ not working correctly.</p>
 </ul>
 </li>
 <li>
-<p>`get_variable(cmake : str, pkgconfig : str, configtool : str,
-default_value : str, pkgconfig_define : [str, str]) <em>(Added in
+<p><code>get_variable(cmake : str, pkgconfig : str, configtool : str, default_value : str, pkgconfig_define : [str, str])</code> <em>(Added in
 0.51.0)</em> A generic variable getter method, which repalces the
 get_<em>type</em>_variable methods. This allows one to get the variable
 from a dependency without knowing specifically how that dependency
@@ -2360,7 +2362,7 @@ and has the following methods:</p>
 <li>
 <p><code>path()</code> which returns a string pointing to the script or executable
 <strong>NOTE:</strong> You should not need to use this method. Passing the object
-itself should work in all cases. F.ex.: <code>run_command(obj, arg1, arg2)</code></p>
+itself should work in all cases. For example: <code>run_command(obj, arg1, arg2)</code></p>
 </li>
 </ul>
 <h3 id="environment-object">
