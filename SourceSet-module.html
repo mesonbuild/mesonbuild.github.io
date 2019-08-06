@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -270,6 +270,14 @@ sources.add(when: ['HAVE_A', 'HAVE_B'], if_true: 'file.c')
 dependency.  If a rule has a not-found dependency, only the <code>if_false</code>
 sources are included (if any).</p>
 <p><strong>Returns</strong>: a list of file objects</p>
+<h4 id="all_dependencies-since-0520">
+<code>all_dependencies()</code> <em>(since 0.52.0)</em>
+</h4>
+<pre><code class="language-meson">list source_set.all_dependencies(...)
+</code></pre>
+<p>Returns a list of all dependencies that were placed in the source set
+using <code>add</code> (including nested source sets) and that were found.</p>
+<p><strong>Returns</strong>: a list of dependencies</p>
 <h4 id="apply"><code>apply()</code></h4>
 <pre><code class="language-meson">source_files source_set.apply(conf_data[, strict: false])
 </code></pre>
