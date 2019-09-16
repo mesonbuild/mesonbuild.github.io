@@ -170,15 +170,34 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="using-with-visual-studio">Using with Visual Studio</h1>
-<p>In order to generate Visual Studio projects, Meson needs to know the settings of your installed version of Visual Studio. The only way to get this information is to run Meson under the Visual Studio Command Prompt. The steps to set it up are as follows:</p>
+<p>In order to generate Visual Studio projects, Meson needs to know the settings
+of your installed version of Visual Studio. The only way to get this
+information is to run Meson under the Visual Studio Command Prompt. The steps
+to set it up are as follows:</p>
 <ol>
 <li>Click on start menu and select "Visual Studio 2015 Command Prompt"</li>
 <li>cd into your source directory</li>
 <li>mkdir builddir</li>
-<li>python3 path/to/meson.py builddir --backend vs2015</li>
+<li>py -3 path/to/meson.py builddir --backend vs2015</li>
 </ol>
-<p>If you wish to use the Ninja backend instead of vs2015, pass <code>--backend ninja</code>. At the time of writing the Ninja backend is more mature than the VS backend so you might want to use it for serious work.</p>
-<p>This assumes Python3 is in your <code>PATH</code>, which is highly recommended.</p>
+<p>If you wish to use the Ninja backend instead of vs2015, pass <code>--backend ninja</code>. At the time of writing the Ninja backend is more mature than the VS
+backend so you might want to use it for serious work.</p>
+<p>This assumes the py launcher is in your <code>PATH</code>, which is highly recommended.</p>
+<h1 id="using-clangcl-with-visual-studio">Using Clang-CL with Visual Studio</h1>
+<p><em>(new in 0.52.0)</em></p>
+<p>You will first need to get a copy of llvm+clang for Windows, such versions
+are available from a number of sources, including the llvm website. Then you
+will need the <a href="https://marketplace.visualstudio.com/items?itemName=LLVMExtensions.llvm-toolchain">llvm toolset extension for visual
+studio</a>.
+You then need to either use a <a href="Native-environments.html#binaries">native file</a>
+or <code>set CC=clang-cl</code>, and <code>set CXX=clang-cl</code> to use those compilers, meson
+will do the rest.</p>
+<p>This only works with visual studio 2017 and 2019.</p>
+<p>There is currently no support in meson for clang/c2.</p>
+<h1 id="using-intelcl-icl-with-visual-studio">Using Intel-CL (ICL) with Visual Studio</h1>
+<p><em>(new in 0.52.0)</em></p>
+<p>To use ICL you need only have ICL installed and launch an ICL development
+shell like you would for the ninja backend and meson will take care of it.</p>
 
     </div>
         

@@ -193,6 +193,13 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 <p>By default Meson uses as many concurrent processes as there are cores on the test machine. You can override this with the environment variable <code>MESON_TESTTHREADS</code> like this.</p>
 <pre><code class="language-console">$ MESON_TESTTHREADS=5 ninja test
 </code></pre>
+<h2 id="priorities">Priorities</h2>
+<p>Tests can be assigned a priority that determines when a test is <em>started</em>. Tests with higher priority are started first, tests with lower priority started later. The default priority is 0, meson makes no guarantee on the ordering of tests with identical priority.</p>
+<pre><code class="language-meson">test('started second', t, priority : 0)
+test('started third', t, priority : -50)
+test('started first', t, priority : 1000)
+</code></pre>
+<p>Note that the test priority only affects the starting order of tests and subsequent tests are affected by how long it takes previous tests to complete. It is thus possible that a higher-priority test is still running when lower-priority tests with a shorter runtime have completed.</p>
 <h2 id="skipped-tests-and-hard-errors">Skipped tests and hard errors</h2>
 <p>Sometimes a test can only determine at runtime that it can not be run.</p>
 <p>For the default <code>exitcode</code> testing protocol, the GNU standard approach in this case is to exit the program with error code 77. Meson will detect this and report these tests as skipped rather than failed. This behavior was added in version 0.37.0.</p>

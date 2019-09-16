@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Quick guide</title>
+<title>Quickstart Guide</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
@@ -170,29 +170,58 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="using-meson">Using Meson</h1>
-<p>Meson has been designed to be as easy to use as possible. This page
-outlines the basic use cases. For more advanced cases refer to Meson's
-command line help which is accessible with the command <code>meson --help</code>.</p>
+<p>Meson has been designed to be as simple to use as possible. This page
+outlines the initial steps needed for installation, troubleshooting,
+and standard use.</p>
+<p>For more advanced configuration please refer to the command line help <code>meson --help</code>
+or the Meson documentation located at the <a href="https://mesonbuild.com">Mesonbuild</a> website.</p>
+<p>Table of Contents:</p>
+<ul>
+<li><a href="Quick-guide.html#requirements">Requirements</a></li>
+<li><a href="Quick-guide.html#installation-using-package-manager">Installation using package manager</a></li>
+<li><a href="Quick-guide.html#installation-using-python">Installation using Python</a></li>
+<li><a href="Quick-guide.html#installation-from-source">Installation from source</a></li>
+<li><a href="Quick-guide.html#troubleshooting">Troubleshooting</a></li>
+<li><a href="Quick-guide.html#compiling-a-meson-project">Compiling a Meson project</a></li>
+<li><a href="Quick-guide.html#using-meson-as-a-distro-packager">Using Meson as a distro packager</a></li>
+</ul>
 <h2 id="requirements">Requirements</h2>
-<p>Meson has two main dependencies.</p>
 <ul>
 <li><a href="https://python.org">Python 3</a></li>
 <li><a href="https://github.com/ninja-build/ninja/">Ninja</a></li>
 </ul>
-<p>Ninja is only needed if you use the Ninja backend. Meson can also
-generate native VS and XCode project files.</p>
-<p>On Ubuntu these can be easily installed with the following command:</p>
+<p><em>Ninja is only needed if you use the Ninja backend. Meson can also
+generate native VS and XCode project files.</em></p>
+<h2 id="installation-using-package-manager">Installation using package manager</h2>
+<p>Ubuntu:</p>
 <pre><code class="language-console">$ sudo apt-get install python3 python3-pip python3-setuptools \
                        python3-wheel ninja-build
 </code></pre>
-<p>The best way to get Meson is to <code>pip install</code> it for your user</p>
+<p><em>Due to our frequent release cycle and development speed, distro packaged software may quickly become outdated.</em></p>
+<h2 id="installation-using-python">Installation using Python</h2>
+<p>Requirements: <strong>pip3</strong></p>
+<p>The best way to receive the most up-to-date version of Mesonbuild.</p>
+<p>Install as a local user (recommended):</p>
 <pre><code class="language-console">$ pip3 install --user meson
 </code></pre>
-<p>You can also use Meson as packaged by your distro, but beware that due
-to our frequent release cycle and development speed this version might
-be out of date.</p>
-<p>Another option is to clone the git repository and run it directly from
-there.</p>
+<p>Install as root:</p>
+<pre><code class="language-console">$ pip3 install meson
+</code></pre>
+<p><em>If you are unsure whether to install as root or a local user, install as a local user.</em></p>
+<h2 id="installation-from-source">Installation from source</h2>
+<p>Requirements: <strong>git</strong></p>
+<p>Meson can be run directly from the cloned git repository.</p>
+<pre><code class="language-console">$ git clone https://github.com/mesonbuild/meson.git /path/to/sourcedir
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting:</h2>
+<p>Common Issues:</p>
+<pre><code class="language-console">$ meson builddir
+$ bash: /usr/bin/meson: No such file or directory
+</code></pre>
+<p>Description: The default installation prefix for the python pip module installation is not included in your shell environment PATH. The default prefix for python pip installation modules is located under <code>/usr/local</code>.</p>
+<p>**Resolution:
+This issue can be resolved by altering the default shell environment PATH to include <code>/usr/local/bin</code>. **</p>
+<p><em>Note: There are other ways of fixing this issue such as using symlinks or copying the binaries to a default path and these methods are not recommended or supported as they may break package management interoperability.</em></p>
 <h2 id="compiling-a-meson-project">Compiling a Meson project</h2>
 <p>The most common use case of Meson is compiling code on a code base you
 are working on. The steps to take are very simple.</p>
