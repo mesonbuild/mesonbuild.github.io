@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -158,7 +158,7 @@ $('body').removeClass('no-script');
 </nav>
 
 <main>
-<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation-1.0" data-hotdoc-ref="Reference-manual.html" class="page_container" id="page-wrapper">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Reference-manual.html" class="page_container" id="page-wrapper">
 <script src="assets/js/utils.js"></script>
 
 <div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
@@ -361,7 +361,10 @@ of the <code>command</code> and writes it to the target file specified as
 <li>
 <code>command</code> as explained above, if specified, Meson does not create
 the file itself but rather runs the specified command, which allows
-you to do fully custom file generation.</li>
+you to do fully custom file generation. Since <em>0.52.0</em> the command can contain
+file objects and more than one file can be passed to the <code>input</code> keyword
+argument, see <a href="Reference-manual.html#custom_target"><code>custom_target()</code></a> for details about string
+substitutions.</li>
 <li>
 <code>copy</code> <em>(added 0.47.0)</em> as explained above, if specified Meson only
 copies the file from input to output.</li>
@@ -750,7 +753,7 @@ plugins into a subdir, you'd use something like this: <code>install_dir : get_op
 and optionally the owner/uid and group/gid for the installed files.</li>
 <li>
 <code>install_rpath</code> a string to set the target's rpath to after install
-(but <em>not</em> before that)</li>
+(but <em>not</em> before that). On Windows, this argument has no effect.</li>
 <li>
 <code>objects</code> list of prebuilt object files (usually for third party
 products you don't have source to) that should be linked in this
@@ -1228,8 +1231,8 @@ them for the default behaviour for each platform.</p>
 of this project. It is followed by programming languages that the
 project uses. Supported values for languages are <code>c</code>, <code>cpp</code> (for
 <code>C++</code>), <code>d</code>, <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>),
-<code>vala</code> and <code>rust</code>. In versions before <code>0.40.0</code> you must have at least one
-language listed.</p>
+<code>vala</code> and <code>rust</code>. Since version <code>0.40.0</code> the list of languages
+is optional.</p>
 <p>The project name can be any string you want, it's not used for
 anything except descriptive purposes. However since it is written to
 e.g. the dependency manifest is usually makes sense to have it be the

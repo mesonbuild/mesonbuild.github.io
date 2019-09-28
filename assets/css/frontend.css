@@ -1,8 +1,8 @@
 .page_container {
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .base_symbol_container table,
 #page-description table,
@@ -12,8 +12,8 @@
 #page-description .authors-description,
 .csp-previewer .authors-description,
 #subpages .authors-description {
+  min-height: .01%;
   overflow-x: auto;
-  min-height: 0.01%;
 }
 @media screen and (max-width: 767px) {
   .base_symbol_container table,
@@ -38,12 +38,12 @@ a[data-hotdoc-role='edit-button'] {
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
+  white-space: nowrap;
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
   background-image: none;
   border: 1px solid transparent;
-  white-space: nowrap;
   padding: 8px 12px;
   font-size: 14px;
   line-height: 1.42857143;
@@ -438,12 +438,12 @@ a[data-hotdoc-role='edit-button']:hover {
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
+  white-space: nowrap;
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
   background-image: none;
   border: 1px solid transparent;
-  white-space: nowrap;
   padding: 8px 12px;
   font-size: 14px;
   line-height: 1.42857143;
@@ -477,8 +477,8 @@ a[data-hotdoc-role='edit-button']:hover.focus {
 }
 a[data-hotdoc-role='edit-button']:hover:active,
 a[data-hotdoc-role='edit-button']:hover.active {
-  outline: 0;
   background-image: none;
+  outline: 0;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
@@ -486,8 +486,8 @@ a[data-hotdoc-role='edit-button']:hover.disabled,
 a[data-hotdoc-role='edit-button']:hover[disabled],
 fieldset[disabled] a[data-hotdoc-role='edit-button']:hover {
   cursor: not-allowed;
-  opacity: 0.65;
   filter: alpha(opacity=65);
+  opacity: 0.65;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -511,6 +511,7 @@ a[data-hotdoc-role='edit-button']:hover.active,
 .open > .dropdown-togglea[data-hotdoc-role='edit-button']:hover {
   color: #fff;
   background-color: #62686d;
+  background-image: none;
   border-color: #5d6368;
 }
 a[data-hotdoc-role='edit-button']:hover:active:hover,
@@ -525,11 +526,6 @@ a[data-hotdoc-role='edit-button']:hover.active.focus,
   color: #fff;
   background-color: #51565a;
   border-color: #3e4245;
-}
-a[data-hotdoc-role='edit-button']:hover:active,
-a[data-hotdoc-role='edit-button']:hover.active,
-.open > .dropdown-togglea[data-hotdoc-role='edit-button']:hover {
-  background-image: none;
 }
 a[data-hotdoc-role='edit-button']:hover.disabled:hover,
 a[data-hotdoc-role='edit-button']:hover[disabled]:hover,
