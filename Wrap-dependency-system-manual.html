@@ -278,6 +278,11 @@ the end of your wrap file:</p>
 automatically by adding the following <em>(since 0.48.0)</em>:</p>
 <pre><code class="language-ini">clone-recursive = true
 </code></pre>
+<p>Setting the clone depth is supported using the <code>depth</code> directive <em>(since 0.52.0)</em>.
+Note that git always allow shallowly cloning branches, but in order to clone commit ids
+shallowly, the server must support <code>uploadpack.allowReachableSHA1InWant=true</code>.</p>
+<pre><code class="language-ini">depth = 1
+</code></pre>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>Wraps provide a convenient way of obtaining a project into your subproject directory.
 Then you use it as a regular subproject (see <a href="Subprojects.html">subprojects</a>).</p>

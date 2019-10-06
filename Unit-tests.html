@@ -250,6 +250,9 @@ it would be more useful to specify either specific test names or suite(s).</p>
 <pre><code class="language-console">$ meson test --gdb --repeat=10000 testname
 </code></pre>
 <p>This runs the test up to 10 000 times under GDB automatically. If the program crashes, GDB will halt and the user can debug the application. Note that testing timeouts are disabled in this case so <code>meson test</code> will not kill <code>gdb</code> while the developer is still debugging it. The downside is that if the test binary freezes, the test runner will wait forever.</p>
+<p>Sometimes, the GDB binary is not in the PATH variable or the user wants to use a GDB replacement. Therefore, the invoked GDB program can be specified <em>(added 0.52.0)</em>:</p>
+<pre><code class="language-console">$ meson test --gdb --gdb-path /path/to/gdb testname
+</code></pre>
 <pre><code class="language-console">$ meson test --print-errorlogs
 </code></pre>
 <p>Meson will report the output produced by the failing tests along with other useful informations as the environmental variables. This is useful, for example, when you run the tests on Travis-CI, Jenkins and the like.</p>

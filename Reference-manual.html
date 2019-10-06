@@ -246,7 +246,9 @@ custom setup, for example under Valgrind. The keyword arguments are
 the following:</p>
 <ul>
 <li>
-<code>env</code> an <a href="Reference-manual.html#environment-object">environment object</a> to use a custom environment</li>
+<code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
+object</a> which allows more sophisticated
+environment juggling. <em>Since 0.52.0</em> a dictionary is also accepted.</li>
 <li>
 <code>exe_wrapper</code> a list containing the wrapper command or script followed by the arguments to it</li>
 <li>
@@ -284,6 +286,8 @@ build target (e.g. return value of <a href="Reference-manual.html#executable">ex
 run. The behavior of this function is identical to <code>test</code> with the
 exception that there is no <code>is_parallel</code> keyword, because benchmarks
 are never run in parallel.</p>
+<p><em>Note:</em> Prior to 0.52.0 benchmark would warn that <code>depends</code> and <code>proiority</code>
+were unsupported, this is incorrect</p>
 <h3 id="both_libraries">both_libraries()</h3>
 <pre><code class="language-meson">    buildtarget = both_libraries(library_name, list_of_sources, ...)
 </code></pre>
@@ -368,6 +372,10 @@ substitutions.</li>
 <li>
 <code>copy</code> <em>(added 0.47.0)</em> as explained above, if specified Meson only
 copies the file from input to output.</li>
+<li>
+<code>depfile</code> <em>(added 0.52.0)</em> is a dependency file that the command can write listing
+all the additional files this target depends on. A change
+in any one of these files triggers a reconfiguration.</li>
 <li>
 <code>format</code> <em>(added 0.46.0)</em> the format of defines. It defaults to <code>meson</code>, and so substitutes
 <code>#mesondefine</code> statements and variables surrounded by <code>@</code> characters, you can also use <code>cmake</code>
@@ -603,6 +611,13 @@ comparison operator followed by the version string, examples include
 You can also specify multiple restrictions by passing a list to this
 keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.
 These requirements are never met if the version is unknown.</li>
+<li>
+<code>include_type</code> <em>(added 0.52.0)</em> is an enum flag, marking how the dependency
+flags should be converted. Supported values are <code>'preserve'</code>, <code>'system'</code> and
+<code>'non-system'</code>. System dependencies may be handled differently on some
+platforms, for instance, using <code>-isystem</code> instead of <code>-I</code>, where possible.
+If <code>include_type</code> is set to <code>'preserve'</code>, no additional conversion will be
+performed. The default value is <code>'preserve'</code>.</li>
 <li>other
 <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific</a>
 keywords may also be accepted (e.g. <code>modules</code> specifies submodules to use for
@@ -631,10 +646,13 @@ allowed by <code>--wrap-mode</code>.</p>
 </code></pre>
 <p>Print the argument string and halts the build process.</p>
 <h3 id="environment">environment()</h3>
-<pre><code class="language-meson">    environment_object environment()
+<pre><code class="language-meson">    environment_object environment(...)
 </code></pre>
 <p>Returns an empty <a href="Reference-manual.html#environment-object">environment variable
 object</a>. Added in 0.35.0.</p>
+<p>Since <em>0.52.0</em> takes an optional dictionary as first argument. If
+provided, each key/value pair is added into the <code>environment_object</code>
+as if <code>set()</code> method was called for each of them.</p>
 <h3 id="executable">executable()</h3>
 <pre><code class="language-meson">    buildtarget executable(*exe_name*, *sources*, ...)
 </code></pre>
@@ -1301,7 +1319,9 @@ be checked, and the configuration will fail if it is non-zero. The default is
 <code>false</code>.
 Since 0.47.0</li>
 <li>
-<code>env</code> an <a href="Reference-manual.html#environment-object">environment object</a> to use a custom environment
+<code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
+object</a> which allows more sophisticated
+environment juggling. <em>Since 0.52.0</em> a dictionary is also accepted.
 Since 0.50.0</li>
 </ul>
 <p>See also <a href="External-commands.html">External commands</a>.</p>
@@ -1503,7 +1523,7 @@ object</a> returned by
 <li>
 <p><code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
 object</a> which allows more sophisticated
-environment juggling</p>
+environment juggling. <em>Since 0.52.0</em> a dictionary is also accepted.</p>
 </li>
 <li>
 <p><code>is_parallel</code> when false, specifies that no other test must be
@@ -2315,6 +2335,14 @@ obtained with Pkg-config.</p>
 <p><code>version()</code> is the version number as a string, for example <code>1.2.8</code>.
 <code>unknown</code> if the dependency provider doesn't support determining the
 version.</p>
+</li>
+<li>
+<p><code>include_type()</code> returns whether the value set by the <code>include_type</code> kwarg</p>
+</li>
+<li>
+<p><code>as_system(value)</code> returns a copy of the dependency object, which has changed
+the value of <code>include_type</code> to <code>value</code>. The <code>value</code> argument is optional and
+defaults to <code>'preserve'</code>.</p>
 </li>
 <li>
 <p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> <em>(Added 0.46.0)</em> returns
