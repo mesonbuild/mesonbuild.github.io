@@ -194,6 +194,7 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 <pre><code class="language-console">$ MESON_TESTTHREADS=5 ninja test
 </code></pre>
 <h2 id="priorities">Priorities</h2>
+<p><em>(added in version 0.52.0)</em></p>
 <p>Tests can be assigned a priority that determines when a test is <em>started</em>. Tests with higher priority are started first, tests with lower priority started later. The default priority is 0, meson makes no guarantee on the ordering of tests with identical priority.</p>
 <pre><code class="language-meson">test('started second', t, priority : 0)
 test('started third', t, priority : -50)
