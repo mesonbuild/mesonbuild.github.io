@@ -206,13 +206,21 @@ cleanly without pch (that is, checking that its #includes are in
 order) and working around compiler bugs.</p>
 <h2 id="using-precompiled-headers-with-gcc-and-derivatives">Using precompiled headers with GCC and derivatives</h2>
 <p>Once you have a file to precompile, you can enable the use of pch for
-a give target with a <em>pch</em> keyword argument. As an example, here's how
-you would use it with a C binary.</p>
+a give target with a <em>pch</em> keyword argument. As an example, let's assume
+you want to build a small C binary with precompiled headers.
+Let's say the source files of the binary use the system headers <code>stdio.h</code>
+and <code>string.h</code>. Then you create a header file <code>pch/myexe_pch.h</code> with this
+content:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+</code></pre>
+<p>And add this to meson:</p>
 <pre><code class="language-meson">executable('myexe', sources : sourcelist, c_pch : 'pch/myexe_pch.h')
 </code></pre>
-<p>You should note that your source files must <em>not</em> include the file
-<code>myexe_pch.h</code> and you must <em>not</em> add the pch subdirectory to your
-search path. Meson will make the compiler include the pch with
+<p>That's all. You should note that your source files must <em>not</em> include
+the file <code>myexe_pch.h</code> and you must <em>not</em> add the pch subdirectory to
+your search path. Any modification of the original program files is
+not necessary. Meson will make the compiler include the pch with
 compiler options. If you want to disable pch (because of, say,
 compiler bugs), it can be done entirely on the build system side with
 no changes to source code.</p>

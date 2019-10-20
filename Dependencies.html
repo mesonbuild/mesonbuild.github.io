@@ -384,7 +384,7 @@ you. If you want to use GMock, it is recommended to use GTest as well,
 as getting it to work standalone is tricky.</p>
 <p>You can set the <code>main</code> keyword argument to <code>true</code> to use the <code>main()</code>
 function provided by GTest:</p>
-<pre><code>gtest_dep = dependency('gtest', main : true, required : false)
+<pre><code class="language-meson">gtest_dep = dependency('gtest', main : true, required : false)
 e = executable('testprog', 'test.cc', dependencies : gtest_dep)
 test('gtest test', e)
 </code></pre>

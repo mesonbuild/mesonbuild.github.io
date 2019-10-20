@@ -206,7 +206,7 @@ explicitly from cross-file(<code>c_args</code>/<code>cpp_args</code>) or some ot
 </ul>
 <h2 id="new-base-build-option-for-llvm-apple-bitcode-support">New base build option for LLVM (Apple) bitcode support</h2>
 <p>When building with clang on macOS, you can now build your static and shared
-binaries with embedded bitcode by enabling the <code>b_bitcode</code> <a href="Builtin-options.html#Base_options">base
+binaries with embedded bitcode by enabling the <code>b_bitcode</code> <a href="Builtin-options.html#base-options">base
 option</a> by passing <code>-Db_bitcode=true</code> to
 Meson.</p>
 <p>This is better than passing the options manually in the environment since Meson
@@ -229,7 +229,7 @@ used whenever possible.</p>
 <h2 id="new-action-copy-for-configure_file">New action <code>copy:</code> for <code>configure_file()</code>
 </h2>
 <p>In addition to the existing actions <code>configuration:</code> and <code>command:</code>,
-<a href="Release-notes-for-0-47-0.html#Reference-manual.md#configure_file"><code>configure_file()</code></a> now accepts a keyword
+<a href="Reference-manual.html#configure_file"><code>configure_file()</code></a> now accepts a keyword
 argument <code>copy:</code> which specifies a new action to copy the file specified with
 the <code>input:</code> keyword argument to a file in the build directory with the name
 specified with the <code>output:</code> keyword argument.</p>
@@ -237,7 +237,7 @@ specified with the <code>output:</code> keyword argument.</p>
 do one action at a time.</p>
 <h2 id="new-keyword-argument-encoding-for-configure_file">New keyword argument <code>encoding:</code> for <code>configure_file()</code>
 </h2>
-<p>Add a new keyword to <a href="Release-notes-for-0-47-0.html#Reference-manual.md#configure_file"><code>configure_file()</code></a>
+<p>Add a new keyword to <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>
 that allows the developer to specify the input and output file encoding. The
 default value is the same as before: UTF-8.</p>
 <p>In the past, Meson would not handle non-UTF-8/ASCII files correctly, and in the

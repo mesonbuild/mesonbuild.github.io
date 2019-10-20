@@ -557,7 +557,7 @@ that should be built before sources including them are built)</li>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
 </code></pre>
 <p>Finds an external dependency (usually a library installed on your
-system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#CMake">with
+system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#cmake">with
 CMake</a> if <code>pkg-config</code> fails. Additionally,
 frameworks (OSX only) and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection
 logic</a>
@@ -869,10 +869,12 @@ Unixes (if the script file does not have the executable bit
 set). Hence, you <em>must not</em> manually add the interpreter while using
 this script as part of a list of commands.</p>
 <p>If you need to check for a program in a non-standard location, you can
-just pass an absolute path to <code>find_program</code>, e.g.  <code>setcap = find_program('setcap', '/usr/sbin/setcap', '/sbin/setcap', required : false)</code></p>
+just pass an absolute path to <code>find_program</code>, e.g.</p>
+<pre><code class="language-meson">setcap = find_program('setcap', '/usr/sbin/setcap', '/sbin/setcap', required : false)
+</code></pre>
 <p>It is also possible to pass an array to <code>find_program</code> in case you
 need to construct the set of paths to search on the fly:</p>
-<pre><code>setcap = find_program(['setcap', '/usr/sbin/setcap', '/sbin/setcap'], required : false)
+<pre><code class="language-meson">setcap = find_program(['setcap', '/usr/sbin/setcap', '/sbin/setcap'], required : false)
 </code></pre>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#external-program-object">object methods section</a> below.</p>
