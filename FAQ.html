@@ -556,6 +556,12 @@ libbar = library('bar', sources: libbar_sources, dependencies: libfoo_dep)
 </code></pre>
 <p>A good example of a generator that outputs both sources and headers is
 <a href="https://mesonbuild.com/Gnome-module.html#gnomemkenums"><code>gnome.mkenums()</code></a>.</p>
+<h2 id="how-do-i-disable-exceptions-and-rtti-in-my-c-project">How do I disable exceptions and RTTI in my C++ project?</h2>
+<p>With the <code>cpp_eh</code> and <code>cpp_rtti</code> options. A typical invocation would
+look like this:</p>
+<pre><code>meson -Dcpp_eh=none -Dcpp_rtti=false &lt;other options&gt;
+</code></pre>
+<p>The RTTI option is only available since Meson version 0.53.0.</p>
 
     </div>
         
