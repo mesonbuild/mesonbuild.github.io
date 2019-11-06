@@ -344,6 +344,10 @@ libdir = 'lib/i386-linux-gnu'
 bindir = 'bin'
 </code></pre>
 <p>This will be overwritten by any options passed on the command line.</p>
+<p>Since meson 0.52.0 it is possible to layer cross files together. This
+works like native file layering: the purpose is to compose cross files
+together, and values from the second cross file will replace those
+from the first.</p>
 <h2 id="starting-a-cross-build">Starting a cross build</h2>
 <p>Once you have the cross file, starting a build is simple</p>
 <pre><code class="language-console">$ meson srcdir builddir --cross-file cross_file.txt

@@ -264,7 +264,7 @@ of all the work behind the scenes to make this work.</p>
 <h1 id="dependency-method">Dependency method</h1>
 <p>You can use the keyword <code>method</code> to let meson know what method to use
 when searching for the dependency. The default value is <code>auto</code>.
-Aditional dependencies methods are <code>pkg-config</code>, <code>config-tool</code>, <code>cmake</code>,
+Additional dependencies methods are <code>pkg-config</code>, <code>config-tool</code>, <code>cmake</code>,
 <code>system</code>, <code>sysconfig</code>, <code>qmake</code>, <code>extraframework</code> and <code>dub</code>.</p>
 <pre><code class="language-meson">cups_dep = dependency('cups', method : 'pkg-config')
 </code></pre>
@@ -282,10 +282,10 @@ project configurations (usually in <code>/usr/lib/cmake</code>). Meson is able
 to use both the old-style <code>&lt;NAME&gt;_LIBRARIES</code> variables as well as
 imported targets.</p>
 <p>It is possible to manually specify a list of CMake targets that should
-be used with the <code>modules</code> property. Howerver, this step is optional
+be used with the <code>modules</code> property. However, this step is optional
 since meson tries to automatically guess the correct target based on the
 name of the dependency.</p>
-<p>Depending on the dependency it may be neccessary to explicitly specify
+<p>Depending on the dependency it may be necessary to explicitly specify
 a CMake target with the <code>modules</code> property if meson is unable to guess
 it automatically.</p>
 <pre><code class="language-meson">    cmake_dep = dependency('ZLIB', method : 'cmake', modules : ['ZLIB::ZLIB'])
@@ -365,6 +365,16 @@ can set the BOOST_ROOT, BOOST_INCLUDEDIR, and/or BOOST_LIBRARYDIR
 environment variables.</p>
 <p>You can set the argument <code>threading</code> to <code>single</code> to use boost
 libraries that have been compiled for single-threaded use instead.</p>
+<h2 id="cuda">CUDA</h2>
+<p><em>(added 0.53.0)</em></p>
+<p>Enables compiling and linking against the CUDA Toolkit. The <code>version</code>
+and <code>modules</code> keywords may be passed to request the use of a specific
+CUDA Toolkit version and/or additional CUDA libraries, correspondingly:</p>
+<pre><code class="language-meson">dep = dependency('cuda', version : '&gt;=10', modules : ['cublas'])
+</code></pre>
+<p>Note that explicitly adding this dependency is only necessary if you are
+using CUDA Toolkit from a C/C++ file or project, or if you are utilizing
+additional toolkit libraries that need to be explicitly linked to.</p>
 <h2 id="cups">CUPS</h2>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>pkg-config</code>, <code>cmake</code> or <code>extraframework</code>.</p>
 <h2 id="fortran-coarrays">Fortran Coarrays</h2>
