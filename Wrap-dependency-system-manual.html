@@ -172,12 +172,13 @@ $('body').removeClass('no-script');
         <h1 id="wrap-dependency-system-manual">Wrap dependency system manual</h1>
 <p>One of the major problems of multiplatform development is wrangling
 all your dependencies. This is easy on Linux where you can use system
-packages but awkward on other platforms. Most of those do not have a
-package manager at all. This has been worked around by having third
-party package managers. They are not really a solution for end user
-deployment, because you can't tell them to install a package manager
-just to use your app. On these platforms you must produce
-self-contained applications.</p>
+packages (and happen to know that your target distribution provides a
+recent enough version of the dependency) but awkward on other
+platforms. Most of those do not have a package manager at all. This
+has been worked around by having third party package managers. They
+are not really a solution for end user deployment, because you can't
+tell them to install a package manager just to use your app. On these
+platforms you must produce self-contained applications.</p>
 <p>The traditional approach to this has been to bundle dependencies
 inside your own project. Either as prebuilt libraries and headers or
 by embedding the source code inside your source tree and rewriting
@@ -198,15 +199,18 @@ how to download it for you. If you then use this subproject in your build,
 Meson will automatically download and extract it during build. This makes
 subproject embedding extremely easy.</p>
 <p>All wrap files must have a name of <code>&lt;project_name&gt;.wrap</code> form and be in <code>subprojects</code> dir.</p>
-<p>Currently Meson has three kinds of wraps:</p>
+<p>Currently Meson has four kinds of wraps:</p>
 <ul>
 <li>wrap-file</li>
-<li>wrap-file with Meson build patch</li>
 <li>wrap-git</li>
+<li>wrap-hg</li>
+<li>wrap-svn</li>
 </ul>
-<h2 id="wrapfile">wrap-file</h2>
-<p>An example wrap file for <code>libfoobar</code> would have a name <code>libfoobar.wrap</code>
-and would look like this:</p>
+<h2 id="wrap-format">wrap format</h2>
+<p>Wrap files are written in ini format, with a single header containing the type
+of wrap, followed by properties describing how to obtain the sources, validate
+them, and modify them if needed. An example wrap-file for the wrap named
+<code>libfoobar</code> would have a filename <code>libfoobar.wrap</code> and would look like this:</p>
 <pre><code class="language-ini">[wrap-file]
 directory = libfoobar-1.0
 
@@ -214,31 +218,74 @@ source_url = https://example.com/foobar-1.0.tar.gz
 source_filename = foobar-1.0.tar.gz
 source_hash = 5ebeea0dfb75d090ea0e7ff84799b2a7a1550db3fe61eb5f6f61c2e971e57663
 </code></pre>
-<p><code>source_hash</code> is <em>sha256sum</em> of <code>source_filename</code>.</p>
-<p>Since <em>0.49.0</em> if <code>source_filename</code> is found in project's
-<code>subprojects/packagecache</code> directory, it will be used instead of downloading the
-source, even if <code>--wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
-be checked.</p>
+<p>An example wrap-git will look like this:</p>
+<pre><code class="language-ini">[wrap-git]
+url = https://github.com/libfoobar/libfoobar.git
+revision = head
+</code></pre>
+<h2 id="accepted-configuration-properties-for-wraps">Accepted configuration properties for wraps</h2>
+<ul>
+<li>
+<code>directory</code> - name of the subproject root directory, defaults to the name of the wrap.</li>
+</ul>
+<h3 id="specific-to-wrapfile">Specific to wrap-file</h3>
+<ul>
+<li>
+<code>source_url</code> - download url to retrieve the wrap-file source archive</li>
+<li>
+<code>source_filename</code> - filename of the downloaded source archive</li>
+<li>
+<code>source_hash</code> - sha256 checksum of the downloaded source archive</li>
+<li>
+<code>patch_url</code> - download url to retrieve an optional overlay archive</li>
+<li>
+<code>patch_filename</code> - filename of the downloaded overlay archive</li>
+<li>
+<code>patch_hash</code> - sha256 checksum of the downloaded overlay archive</li>
+<li>
+<code>lead_directory_missing</code> - for <code>wrap-file</code> create the leading
+directory name. Needed when the source file does not have a leading
+directory.</li>
+</ul>
+<p>Since <em>0.49.0</em> if <code>source_filename</code> or <code>patch_filename</code> is found in the
+project's <code>subprojects/packagecache</code> directory, it will be used instead
+of downloading the file, even if <code>--wrap-mode</code> option is set to
+<code>nodownload</code>. The file's hash will be checked.</p>
+<h3 id="specific-to-vcsbased-wraps">Specific to VCS-based wraps</h3>
+<ul>
+<li>
+<code>url</code> - name of the wrap-git repository to clone. Required.</li>
+<li>
+<code>revision</code> - name of the revision to checkout. Must be either: a
+valid value (such as a git tag) for the VCS's <code>checkout</code> command, or
+(for git) <code>head</code> to track upstream's default branch. Required.</li>
+</ul>
+<h2 id="specific-to-wrapgit">Specific to wrap-git</h2>
+<ul>
+<li>
+<code>depth</code> - shallowly clone the repository to X number of commits. Note
+that git always allow shallowly cloning branches, but in order to
+clone commit ids shallowly, the server must support
+<code>uploadpack.allowReachableSHA1InWant=true</code>.  <em>(since 0.52.0)</em>
+</li>
+<li>
+<code>push-url</code> - alternative url to configure as a git push-url. Useful if
+the subproject will be developed and changes pushed upstream.
+<em>(since 0.37.0)</em>
+</li>
+<li>
+<code>clone-recursive</code> - also clone submodules of the repository
+<em>(since 0.48.0)</em>
+</li>
+</ul>
 <h2 id="wrapfile-with-meson-build-patch">wrap-file with Meson build patch</h2>
 <p>Unfortunately most software projects in the world do not build with
-Meson. Because of this Meson allows you to specify a patch URL. This
-works in much the same way as Debian's distro patches. That is, they
-are downloaded and automatically applied to the subproject. These
-files contain a Meson build definition for the given subproject.</p>
-<p>A wrap file with an additional patch URL would look like this:</p>
-<pre><code class="language-ini">[wrap-file]
-directory = libfoobar-1.0
-
-source_url = https://upstream.example.com/foobar-1.0.tar.gz
-source_filename = foobar-1.0.tar.gz
-source_hash = 5ebeea0dfb75d090ea0e7ff84799b2a7a1550db3fe61eb5f6f61c2e971e57663
-
-patch_url = https://myserver.example.com/libfoobar-meson.tar.gz
-patch_filename = libfoobar-meson.tar.gz
-patch_hash = 8c9d00702d5fe4a6bf25a36b821a332f6b2dfd117c66fe818b88b23d604635e9
-</code></pre>
-<p>In this example the Wrap manager would download the patch and unzip it
-in libfoobar's directory.</p>
+Meson. Because of this Meson allows you to specify a patch URL.</p>
+<p>For historic reasons this is called a "patch", however, it serves as an
+overlay to add or replace files rather than modifying them. The file
+must be an archive; it is downloaded and automatically extracted into
+the subproject. The extracted files will include a meson build
+definition for the given subproject.</p>
 <p>This approach makes it extremely simple to embed dependencies that
 require build system changes. You can write the Meson build definition
 for the dependency in total isolation. This is a lot better than doing
@@ -246,43 +293,8 @@ it inside your own source tree, especially if it contains hundreds of
 thousands of lines of code. Once you have a working build definition,
 just zip up the Meson build files (and others you have changed) and
 put them somewhere where you can download them.</p>
-<p>Since <em>0.49.0</em> if <code>patch_filename</code> is found in project's
-<code>subprojects/packagecache</code> directory, it will be used instead of downloading the
-patch, even if <code>--wrap-mode</code> option is set to <code>nodownload</code>. The file's hash will
-be checked.</p>
-<h2 id="wrapgit">wrap-git</h2>
-<p>This type of wrap allows branching subprojects directly from git.</p>
-<p>The above mentioned scheme assumes that your subproject is working off
-packaged files. Sometimes you want to check code out directly from
-Git. Meson supports this natively. All you need to do is to write a
-slightly different wrap file.</p>
-<pre><code class="language-ini">[wrap-git]
-directory = samplesubproject
-url = https://github.com/jpakkane/samplesubproject.git
-revision = head
-</code></pre>
-<p>The format is straightforward. The only thing to note is the revision
-element that can have one of two values. The first is <code>head</code> which
-will cause Meson to track the master head (doing a repull whenever the
-build definition is altered). The second type is a commit hash or a
-tag. In this case Meson will use the commit specified (with <code>git checkout [hash/tag id]</code>).</p>
-<p>Note that in this case you cannot specify an extra patch file to
-use. The git repo must contain all necessary Meson build definitions.</p>
-<p>Usually you would use subprojects as read only. However in some cases
-you want to do commits to subprojects and push them upstream. For
-these cases you can specify the upload URL by adding the following at
-the end of your wrap file:</p>
-<pre><code class="language-ini">push-url = git@git.example.com:projects/someproject.git # Supported since version 0.37.0
-</code></pre>
-<p>If the git repo contains submodules, you can tell Meson to clone them
-automatically by adding the following <em>(since 0.48.0)</em>:</p>
-<pre><code class="language-ini">clone-recursive = true
-</code></pre>
-<p>Setting the clone depth is supported using the <code>depth</code> directive <em>(since 0.52.0)</em>.
-Note that git always allow shallowly cloning branches, but in order to clone commit ids
-shallowly, the server must support <code>uploadpack.allowReachableSHA1InWant=true</code>.</p>
-<pre><code class="language-ini">depth = 1
-</code></pre>
+<p>Meson build patches are only supported for wrap-file mode. When using
+wrap-git, the repository must contain all Meson build definitions.</p>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>Wraps provide a convenient way of obtaining a project into your subproject directory.
 Then you use it as a regular subproject (see <a href="Subprojects.html">subprojects</a>).</p>
