@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -245,6 +245,8 @@ $ ninja test
 $ ninja coverage-html (or coverage-xml)
 </code></pre>
 <p>The coverage report can be found in the meson-logs subdirectory.</p>
+<p>Note: Currently, Meson does not support generating coverage reports
+with Clang.</p>
 <h2 id="add-some-optimization-to-debug-builds">Add some optimization to debug builds</h2>
 <p>By default the debug build does not use any optimizations. This is the
 desired approach most of the time. However some projects benefit from

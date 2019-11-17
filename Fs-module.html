@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -175,6 +175,7 @@ available starting with version 0.53.0.</p>
 <h2 id="file-lookup-rules">File lookup rules</h2>
 <p>Non-absolute paths are looked up relative to the directory where the
 current <code>meson.build</code> file is.</p>
+<p>If specified, a leading <code>~</code> is expanded to the user home directory.</p>
 <h3 id="exists">exists</h3>
 <p>Takes a single string argument and returns true if an entity with that
 name exists on the file system. This can be a file, directory or a
@@ -189,6 +190,50 @@ name exists on the file system. This method follows symbolic links.</p>
 <h3 id="is_symlink">is_symlink</h3>
 <p>Takes a single string argument and returns true if the path pointed to
 by the string is a symbolic link.</p>
+<h2 id="file-parameters">File Parameters</h2>
+<h3 id="hash">hash</h3>
+<p>The <code>fs.hash(filename, hash_algorithm)</code> method returns a string containing
+the hexidecimal <code>hash_algorithm</code> digest of a file.
+<code>hash_algorithm</code> is a string; the available hash algorithms include:
+md5, sha1, sha224, sha256, sha384, sha512.</p>
+<h3 id="size">size</h3>
+<p>The <code>fs.size(filename)</code> method returns the size of the file in integer bytes.
+Symlinks will be resolved if possible.</p>
+<h3 id="samefile">samefile</h3>
+<p>The <code>fs.samefile(filename1, filename2)</code> returns boolean <code>true</code> if the input filenames refer to the same file.
+For example, suppose filename1 is a symlink and filename2 is a relative path.
+If filename1 can be resolved to a file that is the same file as filename2, then <code>true</code> is returned.
+If filename1 is not resolved to be the same as filename2, <code>false</code> is returned.
+If either filename does not exist, an error message is raised.</p>
+<p>Examples:</p>
+<pre><code class="language-meson">x = 'foo.txt'
+y = 'sub/../foo.txt'
+z = 'bar.txt'  # a symlink pointing to foo.txt
+
+fs.samefile(x, y)  # true
+fs.samefile(x, z)  # true
+</code></pre>
+<h2 id="filename-modification">Filename modification</h2>
+<h3 id="replace_suffix">replace_suffix</h3>
+<p>The <code>replace_suffix</code> method is a <em>string manipulation</em> convenient for filename modifications.
+It allows changing the filename suffix like:</p>
+<h4 id="swap-suffix">swap suffix</h4>
+<pre><code class="language-meson">original = '/opt/foo.ini'
+new = fs.replace_suffix(original, '.txt')  # /opt/foo.txt
+</code></pre>
+<h4 id="add-suffix">add suffix</h4>
+<pre><code class="language-meson">original = '/opt/foo'
+new = fs.replace_suffix(original, '.txt')  # /opt/foo.txt
+</code></pre>
+<h4 id="compound-suffix-swap">compound suffix swap</h4>
+<pre><code class="language-meson">original = '/opt/foo.dll.a'
+new = fs.replace_suffix(original, '.so')  # /opt/foo.dll.so
+</code></pre>
+<h4 id="delete-suffix">delete suffix</h4>
+<pre><code class="language-meson">original = '/opt/foo.dll.a'
+new = fs.replace_suffix(original, '')  # /opt/foo.dll
+</code></pre>
+<p>The files need not actually exist yet for this method, as it's just string manipulation.</p>
 
     </div>
         
