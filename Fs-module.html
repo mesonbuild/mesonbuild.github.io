@@ -214,6 +214,7 @@ fs.samefile(x, y)  # true
 fs.samefile(x, z)  # true
 </code></pre>
 <h2 id="filename-modification">Filename modification</h2>
+<p>The files need not actually exist yet for this method, as it's just string manipulation.</p>
 <h3 id="replace_suffix">replace_suffix</h3>
 <p>The <code>replace_suffix</code> method is a <em>string manipulation</em> convenient for filename modifications.
 It allows changing the filename suffix like:</p>
@@ -233,7 +234,10 @@ new = fs.replace_suffix(original, '.so')  # /opt/foo.dll.so
 <pre><code class="language-meson">original = '/opt/foo.dll.a'
 new = fs.replace_suffix(original, '')  # /opt/foo.dll
 </code></pre>
-<p>The files need not actually exist yet for this method, as it's just string manipulation.</p>
+<h3 id="parent">parent</h3>
+<p>Returns the parent directory (i.e. dirname).</p>
+<h3 id="name">name</h3>
+<p>Returns the last component of the path (i.e. basename).</p>
 
     </div>
         
