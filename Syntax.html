@@ -410,8 +410,8 @@ endif
 </ul>
 <h2 id="dictionaries">Dictionaries</h2>
 <p>Dictionaries are delimited by curly braces. A dictionary can contain an
-arbitrary number of key value pairs. Keys are required to be literal
-strings, values can be objects of any type.</p>
+arbitrary number of key value pairs. Keys are required to be strings, values can
+be objects of any type. Prior to <em>0.53.0</em> keys were required to be literal strings.</p>
 <pre><code class="language-meson">my_dict = {'foo': 42, 'bar': 'baz'}
 </code></pre>
 <p>Keys must be unique:</p>
@@ -433,6 +433,12 @@ endif
 if 'foo' not in my_dict
 # This condition is false
 endif
+</code></pre>
+<p><em>Since 0.53.0</em> Keys can be any expression evaluating to a string value, not limited
+to string literals any more.</p>
+<pre><code class="language-meson">d = {'a' + 'b' : 42}
+k = 'cd'
+d += {k : 43}
 </code></pre>
 <h2 id="function-calls">Function calls</h2>
 <p>Meson provides a set of usable functions. The most common use case is
