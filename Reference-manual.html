@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -283,9 +283,11 @@ build target (e.g. return value of <a href="Reference-manual.html#executable">ex
 <pre><code class="language-meson">    void benchmark(name, executable, ...)
 </code></pre>
 <p>Creates a benchmark item that will be run when the benchmark target is
-run. The behavior of this function is identical to <code>test</code> with the
-exception that there is no <code>is_parallel</code> keyword, because benchmarks
-are never run in parallel.</p>
+run. The behavior of this function is identical to <a href="Reference-manual.html#test"><code>test()</code></a> except for:</p>
+<ul>
+<li>benchmark() has no <code>is_parallel</code> keyword because benchmarks are not run in parallel</li>
+<li>benchmark() does not automatically add the <code>MALLOC_PERTURB_</code> environment variable</li>
+</ul>
 <p><em>Note:</em> Prior to 0.52.0 benchmark would warn that <code>depends</code> and <code>priority</code>
 were unsupported, this is incorrect</p>
 <h3 id="both_libraries">both_libraries()</h3>
@@ -1524,7 +1526,22 @@ object</a> returned by
 <a href="Reference-manual.html#executable"><code>executable()</code></a> or an <a href="Reference-manual.html#external-program-object">external program
 object</a> returned by
 <a href="Reference-manual.html#find_program"><code>find_program()</code></a>.</p>
-<p>Keyword arguments are the following:</p>
+<p>By default, environment variable
+<a href="http://man7.org/linux/man-pages/man3/mallopt.3.html"><code>MALLOC_PERTURB_</code></a>
+is automatically set by <code>meson test</code> to a random value between 1..255.
+This can help find memory leaks on configurations using glibc,
+including with non-GCC compilers. However, this can have a performance impact,
+and may fail a test due to external libraries whose internals are out of the
+user's control. To check if this feature is causing an expected runtime crash,
+disable the feature by temporarily setting environment variable
+<code>MALLOC_PERTURB_=0</code>. While it's preferable to only temporarily disable this
+check, if a project requires permanent disabling of this check
+in meson.build do like:</p>
+<pre><code class="language-meson">nomalloc = environment({'MALLOC_PERTURB_': '0'})
+
+test(..., env: nomalloc, ...)
+</code></pre>
+<h4 id="test-keyword-arguments">test() Keyword arguments</h4>
 <ul>
 <li>
 <p><code>args</code> arguments to pass to the executable</p>

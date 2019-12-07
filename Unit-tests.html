@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -182,6 +182,12 @@ test('name of test', e)
 test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 </code></pre>
 <p>Note how you need to specify multiple values as an array.</p>
+<h3 id="malloc_perturb_">MALLOC_PERTURB_</h3>
+<p>By default, environment variable
+<a href="http://man7.org/linux/man-pages/man3/mallopt.3.html"><code>MALLOC_PERTURB_</code></a>
+is set to a random value between 1..255. This can help find memory
+leaks on configurations using glibc, including with non-GCC compilers.
+This feature can be disabled as discussed in <a href="./Reference-manual#test">test()</a>.</p>
 <h2 id="coverage">Coverage</h2>
 <p>If you enable coverage measurements by giving Meson the command line flag <code>-Db_coverage=true</code>, you can generate coverage reports. Meson will autodetect what coverage generator tools you have installed and will generate the corresponding targets. These targets are <code>coverage-xml</code> and <code>coverage-text</code> which are both provided by <a href="http://gcovr.com">Gcovr</a> (version 3.3 or higher) and <code>coverage-html</code>, which requires <a href="https://ltp.sourceforge.io/coverage/lcov.php">Lcov</a> and <a href="https://linux.die.net/man/1/genhtml">GenHTML</a> or <a href="http://gcovr.com">Gcovr</a>. As a convenience, a high-level <code>coverage</code> target is also generated which will produce all 3 coverage report types, if possible.</p>
 <p>The output of these commands is written to the log directory <code>meson-logs</code> in your build directory.</p>
