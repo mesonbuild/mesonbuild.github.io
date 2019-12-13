@@ -187,8 +187,22 @@ compilation is done by setting <code>CC</code> to point to the cross compiler
 that Meson supports natively the case where you compile helper tools
 (such as code generators) and use the results during the
 build. Because of this Meson needs to know both the native and the
-cross compiler. The former is set via the environment variables and
-the latter via the cross file only.</p>
+cross compiler. The former is set via the environment variables or
+native-files and the latter via the cross file only.</p>
+<h2 id="set-dynamic-linker">Set dynamic linker</h2>
+<pre><code class="language-console">$ CC=clang LD=lld meson &lt;options&gt;
+</code></pre>
+<p>or</p>
+<pre><code class="language-console">$ CC=clang-cl LD=link meson &lt;options&gt;
+</code></pre>
+<p>Like the compiler, the linker is selected via the LD environment variable, or
+through the <code>ld</code> entry in a native or cross file. You must be aware of
+whehter you're using a compiler that invokes the linker itself (most
+compilers including GCC and Clang) or a linker that is invoked directly (when
+using MSVC or compilers that act like it, including Clang-Cl). With the
+former <code>ld</code> or <code>LD</code> should be the value to pass to the compiler's special
+argument (such as <code>-fuse-ld</code> with clang and gcc), with the latter it should
+be an exectuable, such as <code>lld-link.exe</code>.</p>
 <h2 id="set-default-cc-language-version">Set default C/C++ language version</h2>
 <pre><code class="language-meson">project('myproj', 'c', 'cpp',
         default_options : ['c_std=c11', 'cpp_std=c++11'])

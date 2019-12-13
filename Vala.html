@@ -377,6 +377,10 @@ header files and the library to link with.</p>
 <p>The <code>find_library()</code> method of the Vala compiler object needs to have the <code>dir</code>
 keyword added to include the project VAPI directory. This is not added
 automatically by <code>add_project_arguments()</code>.</p>
+<h3 id="working-with-the-vala-preprocessor">Working with the Vala Preprocessor</h3>
+<p>Passing arguments to <a href="https://wiki.gnome.org/Projects/Vala/Manual/Preprocessor">Vala's preprocessor</a> requires specifying the language as <code>c</code>.  For example, the following statement sets the preprocessor symbol <code>FUSE_USE_VERSION</code> to the value <code>26</code>:</p>
+<pre><code class="language-meson">add_project_arguments('-DFUSE_USE_VERSION=26', language: 'c')
+</code></pre>
 <h2 id="building-libraries">Building libraries</h2>
 <h3 id="changing-c-header-and-vapi-names">Changing C header and VAPI names</h3>
 <p>Meson's <a href="Reference-manual.html#library"><code>library</code></a> target automatically outputs

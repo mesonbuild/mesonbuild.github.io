@@ -559,14 +559,6 @@ Meson substitutes <code>modules</code> to <code>wx-config</code> invocation, it 
 <code>link_args</code> using <code>wx-config --libs $modules...</code>
 </li>
 </ul>
-<h2 id="shaderc">Shaderc</h2>
-<p><em>(added 0.51.0)</em></p>
-<p>Shaderc currently does not ship with any means of detection. Nevertheless, Meson
-can try to detect it using <code>pkg-config</code>, but will default to looking for the
-appropriate library manually. If the <code>static</code> keyword argument is <code>true</code>,
-<code>shaderc_combined</code> is preferred. Otherwise, <code>shaderc_shared</code> is preferred. Note
-that it is not possible to obtain the shaderc version using this method.</p>
-<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <h3 id="example">Example</h3>
 <pre><code class="language-meson">wx_dep = dependency(
   'wxwidgets', version : '&gt;=3.0.0', modules : ['std', 'stc'],
@@ -578,6 +570,14 @@ $ wx-config --cxxflags std stc
 # link_args:
 $ wx-config --libs std stc
 </code></pre>
+<h2 id="shaderc">Shaderc</h2>
+<p><em>(added 0.51.0)</em></p>
+<p>Shaderc currently does not ship with any means of detection. Nevertheless, Meson
+can try to detect it using <code>pkg-config</code>, but will default to looking for the
+appropriate library manually. If the <code>static</code> keyword argument is <code>true</code>,
+<code>shaderc_combined</code> is preferred. Otherwise, <code>shaderc_shared</code> is preferred. Note
+that it is not possible to obtain the shaderc version using this method.</p>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <hr>
 <a name="footnote1">1</a>: They may appear to be case-insensitive, if the
     underlying file system happens to be case-insensitive.

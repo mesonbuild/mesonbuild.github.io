@@ -417,6 +417,7 @@ This can be done by running <code>meson introspect --scan-dependencies /path/to/
   {
     "name": "The name of the dependency",
     "required": true,
+    "version": ["&gt;=1.2.3"],
     "conditional": false,
     "has_fallback": false
   }
@@ -428,7 +429,10 @@ in the <code>meson.build</code> (all dependencies are required by default). The
 inside a conditional block. In a real meson run these dependencies might not be
 used, thus they <em>may</em> not be required, even if the <code>required</code> key is set. The
 <code>has_fallback</code> key just indicates whether a fallback was directly set in the
-<code>dependency()</code> function.</p>
+<code>dependency()</code> function. The <code>version</code> key always contains a list of version
+requirements from the <code>meson.build</code> and <strong>not</strong> the actual version of the
+dependency on disc. The version list is empty if no version was specified
+in the <code>meson.build</code>.</p>
 <h2 id="tests">Tests</h2>
 <p>Compilation and unit tests are done as usual by running the <code>ninja</code> and
 <code>ninja test</code> commands. A JSON formatted result log can be found in

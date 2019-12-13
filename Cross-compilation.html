@@ -202,13 +202,22 @@ three machines are the same. Simple so far.</p>
 <p>Let's next look at the most common cross-compilation setup. Let's
 suppose you are on a 64 bit OSX machine and you are cross compiling a
 binary that will run on a 32 bit ARM Linux board. In this case your
-<em>build machine</em> is 64 bit OSX and both your <em>host</em> and <em>target
-machines</em> are 32 bit ARM Linux. This should be quite understandable as
-well.</p>
-<p>It gets a bit trickier when we think about how the cross compiler was
-generated. It was built and it runs on a specific platform but the
-output it generates is for a different platform. In this case <em>build</em>
-and <em>host machines</em> are the same, but <em>target machine</em> is different.</p>
+<em>build machine</em> is 64 bit OSX, your <em>host machine</em> is 32 bit ARM Linux
+and your <em>target machine</em> is irrelevant (but defaults to the same value
+as the <em>host machine</em>). This should be quite understandable as well.</p>
+<p>The usual mistake in this case is to call the OSX system the <em>host</em> and
+the ARM Linux board the <em>target</em>. That's because these were their actual
+names when the cross-compiler itself was compiled!  Let's assume the
+cross-compiler was created on OSX too. When that happened the <em>build</em>
+and <em>host machines</em> were the same OSX and different from the ARM Linux
+<em>target machine</em>.</p>
+<p>In a nutshell, the typical mistake assumes that the terms <em>build</em>,
+<em>host</em> and <em>target</em> refer to some fixed positions whereas they're
+actually relative to where the current compiler is running. Think of
+<em>host</em> as a <em>child</em> of the current compiler and <em>target</em> as an optional
+<em>grand-child</em>. Compilers don't change their terminology when they're
+creating another compiler, that would at the very least make their user
+interface much more complex.</p>
 <p>The most complicated case is when you cross-compile a cross
 compiler. As an example you can, on a Linux machine, generate a cross
 compiler that runs on Windows but produces binaries on MIPS Linux. In
@@ -220,8 +229,8 @@ a side note, be careful when reading cross compilation articles on
 Wikipedia or the net in general. It is very common for them to get
 build, host and target mixed up, even in consecutive sentences, which
 can leave you puzzled until you figure it out.</p>
-<p>A lot of confusion stems from the fact that when you cross-compile
-something, the 3 systems (<em>build</em>, <em>host</em>, and <em>target</em>) used when
+<p>Again note that when you cross-compile something,
+the 3 systems (<em>build</em>, <em>host</em>, and <em>target</em>) used when
 building the cross compiler don't align with the ones used when
 building something with that newly-built cross compiler. To take our
 Canadian Cross scenario from above (for full generality), since its
@@ -231,8 +240,8 @@ Linux, the <em>host machine</em> of anything we build with it is <em>MIPS
 Linux</em>. Only the <em>target machine</em> of whatever we build with it can be
 freely chosen by us, say if we want to build another cross compiler
 that runs on MIPS Linux and targets Aarch64 iOS. As this example
-hopefully makes clear to you, the platforms are shifted over to the
-left by one position.</p>
+hopefully makes clear to you, the machine names are relative and
+shifted over to the left by one position.</p>
 <p>If you did not understand all of the details, don't worry. For most
 people it takes a while to wrap their head around these
 concepts. Don't panic, it might take a while to click, but you will
@@ -246,6 +255,7 @@ this:</p>
 <pre><code class="language-ini">[binaries]
 c = '/usr/bin/i586-mingw32msvc-gcc'
 cpp = '/usr/bin/i586-mingw32msvc-g++'
+ld = 'gold'
 ar = '/usr/i586-mingw32msvc/bin/ar'
 strip = '/usr/i586-mingw32msvc/bin/strip'
 pkgconfig = '/usr/bin/i586-mingw32msvc-pkg-config'
@@ -259,6 +269,11 @@ application with qemu or a hardware simulator. If you have this kind
 of a wrapper, these lines are all you need to write. Meson will
 automatically use the given wrapper when it needs to run host
 binaries. This happens e.g. when running the project's test suite.</p>
+<p>ld is special because it is compiler specific. For compilers like gcc and
+clang which are used to invoke the linker this is a value to pass to their
+"choose the linker" argument (-fuse-ld= in this case). For compilers like
+MSVC and Clang-Cl, this is the path to a linker for meson to invoke, such as
+<code>link.exe</code> or <code>lld-link.exe</code>. Support for ls is <em>new in 0.53.0</em></p>
 <p>The next section lists properties of the cross compiler and its target
 system, and thus properties of host system of what we're building. It
 looks like this:</p>
