@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -250,7 +250,13 @@ need to add <code>dependencies : py_installation.dependency()</code>, see <a hre
 <h4 id="dependency"><code>dependency()</code></h4>
 <pre><code class="language-meson">python_dependency py_installation.dependency(...)
 </code></pre>
-<p>This method accepts the same arguments as the standard <a href="Reference-manual.html#dependency">dependency</a> function.</p>
+<p>This method accepts the same arguments as the standard <a href="Reference-manual.html#dependency">dependency</a> function and
+the following additional keyword arguments:</p>
+<ul>
+<li>
+<code>embed</code>: <em>(since 0.53.0)</em> If true, meson will try to find a python dependency
+that can be used for embedding python into an application.</li>
+</ul>
 <p><strong>Returns</strong>: a <a href="Python-module.html#python_dependency-object">python dependency</a></p>
 <h4 id="install_sources"><code>install_sources()</code></h4>
 <pre><code class="language-meson">void py_installation.install_sources(list_of_files, ...)

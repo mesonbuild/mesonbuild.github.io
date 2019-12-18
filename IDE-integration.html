@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -441,13 +441,14 @@ in the <code>meson.build</code>.</p>
 debugger. To make this as integrated as possible, extract the tests from the
 <code>intro-tests.json</code> and <code>intro-benchmarks.json</code> files. This provides you with
 all the information needed to run the test: what command to execute, command
-line arguments and environment variable settings.</p>
+line arguments, environment variable settings and how to process the output.</p>
 <pre><code class="language-json">{
     "name": "name of the test",
     "workdir": "the working directory (can be null)",
     "timeout": "the test timeout",
     "suite": ["list", "of", "test", "suites"],
     "is_parallel": true / false,
+    "protocol": "exitcode" / "tap",
     "cmd": ["command", "to", "run"],
     "env": {
         "VARIABLE1": "value 1",
