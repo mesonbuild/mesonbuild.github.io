@@ -187,9 +187,13 @@ to an unrecoverable error.</p>
 know the operating system your code will run on, issue this command:</p>
 <pre><code class="language-meson">host_machine.system()
 </code></pre>
-<h1 id="compiler-id">Compiler id</h1>
-<p>The compiler object has a method called <code>get_id</code>, which returns a
-lower case string describing the "family" of the compiler.</p>
+<h2 id="compiler-id">Compiler id</h2>
+<p>The compiler object method <code>get_id</code> returns a
+lower case string describing the "family" of the compiler. Since 0.53.0
+<code>get_linker_id</code> returns a lower case string with the linker name. Since
+compilers can often choose from multiple linkers depending on operating
+system, <code>get_linker_id</code> can be useful for handling or mitigating effects
+of particular linkers.</p>
 <p>The compiler object also has a method <code>get_argument_syntax</code> which
 returns a lower case string of <code>gcc</code>, <code>msvc</code>, or another undefined string
 value; identifying whether the compiler arguments use the same syntax as
@@ -198,9 +202,13 @@ only be used to select the syntax of the arguments, such as those to test
 with <code>has_argument</code>.</p>
 <p>See <a href="Reference-tables.html#compiler-ids">reference tables</a> for a list of supported compiler
 ids and their argument type.</p>
-<h1 id="does-code-compile">Does code compile?</h1>
+<h2 id="does-code-compile">Does code compile?</h2>
 <p>Sometimes the only way to test the system is to try to compile some
-sample code and see if it works. This is a two-phase operation. First
+sample code and see if it works. For example, this can test that a
+"C++17" compiler actually supports a particular C++17 feature,
+without resorting to maintaining a feature list vs. compiler vendor,
+compiler version and operating system.
+Testing that a code snippet runs is a two-phase operation. First
 we define some code using the multiline string operator:</p>
 <pre><code class="language-meson">code = '''#include&lt;stdio.h&gt;
 void func() { printf("Compile me.\n"); }
@@ -213,7 +221,7 @@ void func() { printf("Compile me.\n"); }
 depending on whether the compilation succeeded or not. The keyword
 argument <code>name</code> is optional. If it is specified, Meson will write the
 result of the check to its log.</p>
-<h1 id="does-code-compile-and-link">Does code compile and link?</h1>
+<h2 id="does-code-compile-and-link">Does code compile and link?</h2>
 <p>Sometimes it is necessary to check whether a certain code fragment not
 only compiles, but also links successfully, e.g. to check if a symbol
 is actually present in a library. This can be done using the
@@ -229,8 +237,10 @@ void func() { printf("Compile me.\n"); }
 depending on whether the compilation and linking succeeded or not. The
 keyword argument <code>name</code> is optional. If it is specified, Meson will
 write the result of the check to its log.</p>
-<h1 id="compile-and-run-test-application">Compile and run test application</h1>
-<p>Here is how you would compile and run a small test application.</p>
+<h2 id="compile-and-run-test-application">Compile and run test application</h2>
+<p>Here is how you would compile and run a small test application.
+Testing if a code snippets <strong>runs</strong> versus merely that it links
+is particularly important for some dependencies such as MPI.</p>
 <pre><code class="language-meson">code = '''#include&lt;stdio.h&gt;
 int main(int argc, char **argv) {
   printf("%s\n", "stdout");
@@ -274,7 +284,7 @@ works the same as with <code>compiles</code>.</p>
   # do something
 endif
 </code></pre>
-<h1 id="does-a-header-exist">Does a header exist?</h1>
+<h2 id="does-a-header-exist">Does a header exist?</h2>
 <p>Header files provided by different platforms vary quite a lot. Meson
 has functionality to detect whether a given header file is available
 on the system. The test is done by trying to compile a simple test
@@ -284,7 +294,7 @@ describes how this feature can be used.</p>
   # header exists, do something
 endif
 </code></pre>
-<h1 id="expression-size">Expression size</h1>
+<h2 id="expression-size">Expression size</h2>
 <p>Often you need to determine the size of a particular element (such as
 <code>int</code>, <code>wchar_t</code> or <code>char*</code>). Using the <code>compiler</code> variable mentioned
 above, the check can be done like this.</p>
@@ -298,7 +308,7 @@ configuration files.</p>
 <p>In older versions (&lt;= 0.30) meson would error out if the size could
 not be determined. Since version 0.31 it returns -1 if the size could
 not be determined.</p>
-<h1 id="does-a-function-exist">Does a function exist?</h1>
+<h2 id="does-a-function-exist">Does a function exist?</h2>
 <p>Just having a header doesn't say anything about its
 contents. Sometimes you need to explicitly check if some function
 exists. This is how we would check whether the function <code>open_memstream</code>
@@ -319,7 +329,7 @@ targeting macOS 10.11 (<code>-mmacosx-version-min=10.11</code>), this will corre
 report the function as missing. Without the header however, it would lack
 the necessary availability information and incorrectly report the function
 as available.</p>
-<h1 id="does-a-structure-contain-a-member">Does a structure contain a member?</h1>
+<h2 id="does-a-structure-contain-a-member">Does a structure contain a member?</h2>
 <p>Some platforms have different standard structures. Here's how one
 would check if a struct called <code>mystruct</code> from header <code>myheader.h</code>
 contains a member called <code>some_member</code>.</p>
@@ -327,7 +337,7 @@ contains a member called <code>some_member</code>.</p>
   # member exists, do whatever is required
 endif
 </code></pre>
-<h1 id="type-alignment">Type alignment</h1>
+<h2 id="type-alignment">Type alignment</h2>
 <p>Most platforms can't access some data types at any address. For
 example it is common that a <code>char</code> can be at any address but a 32 bit
 integer only at locations which are divisible by four. Determining the

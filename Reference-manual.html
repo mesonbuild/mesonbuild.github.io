@@ -1258,19 +1258,16 @@ them for the default behaviour for each platform.</p>
 <h3 id="summary">summary()</h3>
 <pre><code class="language-meson">    void summary(key, value)
     void summary(dictionary)
-    void summary(section_name, key, value)
-    void summary(section_name, dictionary)
 </code></pre>
 <p>This function is used to summarize build configuration at the end of the build
 process. This function provides a way for projects (and subprojects) to report
 this information in a clear way.</p>
 <p>The content is a serie of key/value pairs grouped into sections. If the section
-argument is omitted, those key/value pairs are implicitly grouped into a section
+keyword argument is omitted, those key/value pairs are implicitly grouped into a section
 with no title. key/value pairs can optionally be grouped into a dictionary,
-but keep in mind that dictionaries does not guarantee ordering.
-<code>section_name</code> and <code>key</code> must be strings, <code>value</code> can only be lists, integers,
-booleans or strings.</p>
-<p><code>summary()</code> can be called multiple times as long as the same section_name/key
+but keep in mind that dictionaries does not guarantee ordering. <code>key</code> must be string,
+<code>value</code> can only be integer, boolean, string, or a list of those.</p>
+<p><code>summary()</code> can be called multiple times as long as the same section/key
 pair doesn't appear twice. All sections will be collected and printed at
 the end of the configuration in the same order as they have been called.</p>
 <p>Keyword arguments:</p>
@@ -1278,18 +1275,20 @@ the end of the configuration in the same order as they have been called.</p>
 <li>
 <code>bool_yn</code> if set to true, all boolean values will be replaced by green YES
 or red NO.</li>
+<li>
+<code>section</code> title to group a set of key/value pairs.</li>
 </ul>
 <p>Example:</p>
 <pre><code class="language-meson">project('My Project', version : '1.0')
-summary('Directories', {'bindir': get_option('bindir'),
-                        'libdir': get_option('libdir'),
-                        'datadir': get_option('datadir'),
-                        })
-summary('Configuration', {'Some boolean': false,
-                          'Another boolean': true,
-                          'Some string': 'Hello World',
-                          'A list': ['string', 1, true],
-                          })
+summary({'bindir': get_option('bindir'),
+         'libdir': get_option('libdir'),
+         'datadir': get_option('datadir'),
+        }, section: 'Directories')
+summary({'Some boolean': false,
+         'Another boolean': true,
+         'Some string': 'Hello World',
+         'A list': ['string', 1, true],
+        }, section: 'Configuration')
 </code></pre>
 <p>Output:</p>
 <pre><code>My Project 1.0
@@ -2097,6 +2096,10 @@ string value. This method is useful for identifying compilers that are not
 gcc or msvc, but use the same argument syntax as one of those two compilers
 such as clang or icc, especially when they use different syntax on different
 operating systems.</p>
+</li>
+<li>
+<p><code>get_linker_id()</code> <em>(added 0.53.0)</em> returns a string identifying the linker.
+For example, <code>ld.bfd</code>, <code>link</code>, <a href="Reference-tables.html#linker-ids">and more</a>.</p>
 </li>
 <li>
 <p><code>get_supported_arguments(list_of_string)</code> <em>(added 0.43.0)</em> returns
