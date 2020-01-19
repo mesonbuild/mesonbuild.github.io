@@ -171,14 +171,14 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="wrap-dependency-system-manual">Wrap dependency system manual</h1>
 <p>One of the major problems of multiplatform development is wrangling
-all your dependencies. This is easy on Linux where you can use system
-packages (and happen to know that your target distribution provides a
-recent enough version of the dependency) but awkward on other
-platforms. Most of those do not have a package manager at all. This
+all your dependencies. This is awkward on many platforms, especially
+on ones that do not have a built-in package manager. The latter problem
 has been worked around by having third party package managers. They
 are not really a solution for end user deployment, because you can't
 tell them to install a package manager just to use your app. On these
-platforms you must produce self-contained applications.</p>
+platforms you must produce self-contained applications. Same applies
+when destination platform is missing (up-to-date versions of) your
+application's dependencies.</p>
 <p>The traditional approach to this has been to bundle dependencies
 inside your own project. Either as prebuilt libraries and headers or
 by embedding the source code inside your source tree and rewriting
