@@ -213,7 +213,8 @@ pkg-config files. Meson has autodetection support for some of these,
 and they are described <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">later in this
 page</a>.</p>
 <h1 id="arbitrary-variables-from-dependencies-that-can-be-found-multiple-ways">Arbitrary variables from dependencies that can be found multiple ways</h1>
-<p><em>Note</em> new in 0.51.0</p>
+<p><em>Note</em> new in 0.51.0
+<em>new in 0.54.0, the <code>internal</code> keyword</em></p>
 <p>When you need to get an arbitrary variables from a dependency that can be
 found multiple ways and you don't want to constrain the type you can use
 the generic <code>get_variable</code> method. This currently supports cmake, pkg-config,
@@ -222,13 +223,14 @@ and config-tool based variables.</p>
 var = foo.get_variable(cmake : 'CMAKE_VAR', pkgconfig : 'pkg-config-var', configtool : 'get-var', default_value : 'default')
 </code></pre>
 <p>It accepts the keywords 'cmake', 'pkgconfig', 'pkgconfig_define',
-'configtool', and 'default_value'. 'pkgconfig_define' works just like the
-'define_variable' argument to <code>get_pkgconfig_variable</code>. When this method is
-invoked the keyword corresponding to the underlying type of the dependency
-will be used to look for a variable. If that variable cannot be found or if
-the caller does not provide an argument for the type of dependency, one of
-the following will happen: If 'default_value' was provided that value will be
-returned, if 'default_value' was not provided then an error will be raised.</p>
+'configtool', 'internal', and 'default_value'. 'pkgconfig_define' works just
+like the 'define_variable' argument to <code>get_pkgconfig_variable</code>. When this
+method is invoked the keyword corresponding to the underlying type of the
+dependency will be used to look for a variable. If that variable cannot be
+found or if the caller does not provide an argument for the type of
+dependency, one of the following will happen: If 'default_value' was provided
+that value will be returned, if 'default_value' was not provided then an
+error will be raised.</p>
 <h1 id="declaring-your-own">Declaring your own</h1>
 <p>You can declare your own dependency objects that can be used
 interchangeably with dependency objects obtained from the system. The

@@ -209,6 +209,19 @@ This way one can just use it without even looking inside build definitions of th
 should be named as <code>&lt;project_name&gt;_dep</code> (e.g. <code>gtest_dep</code>), and others can have
 <code>&lt;project_name&gt;_&lt;other&gt;_&lt;name&gt;_dep</code> form (e.g. <code>gtest_main_dep</code> - gtest with main function).</p>
 <p>There may be exceptions to these rules where common sense should be applied.</p>
+<h3 id="adding-variables-to-the-dependency">Adding variables to the dependency</h3>
+<p><em>New in 0.54.0</em></p>
+<p>In some cases a project may define special variables via pkg-config or cmake
+that a caller needs to know about. Meson provides a <code>dependency.get_variable</code>
+method to hide what kind of dependency is provided, and this is available to
+subprojects as well. Use the <code>variables</code> keyword to add a dict of strings:</p>
+<pre><code class="language-meson">my_dep = declare_dependency(..., variables : {'var': 'value', 'number': '3'})
+</code></pre>
+<p>Which another project can access via:</p>
+<pre><code class="language-meson">var = my_dep.get_variable(internal : 'var', cmake : 'CMAKE_VAR')
+</code></pre>
+<p>The values of the dict must be strings, as pkg-config and cmake will return
+variables as strings.</p>
 <h3 id="build-options-in-subproject">Build options in subproject</h3>
 <p>All Meson features of the subproject, such as project options keep
 working and can be set in the master project. There are a few

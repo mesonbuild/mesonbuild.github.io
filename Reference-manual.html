@@ -556,6 +556,10 @@ that should be built before sources including them are built)</li>
 <li>
 <code>version</code>, the version of this dependency, such as <code>1.2.3</code>
 </li>
+<li>
+<code>variables</code>, a dictionary of arbitrary strings, this is meant to be used
+in subprojects where special variables would be provided via cmake or
+pkg-config. Since 0.54.0</li>
 </ul>
 <h3 id="dependency">dependency()</h3>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
@@ -2463,13 +2467,14 @@ not working correctly.</p>
 </ul>
 </li>
 <li>
-<p><code>get_variable(cmake : str, pkgconfig : str, configtool : str, default_value : str, pkgconfig_define : [str, str])</code> <em>(Added in
-0.51.0)</em> A generic variable getter method, which replaces the
+<p><code>get_variable(cmake : str, pkgconfig : str, configtool : str, internal: str, default_value : str, pkgconfig_define : [str, str])</code>
+<em>(Added in 0.51.0)</em> A generic variable getter method, which replaces the
 get_<em>type</em>_variable methods. This allows one to get the variable
 from a dependency without knowing specifically how that dependency
 was found. If default_value is set and the value cannot be gotten
 from the object then default_value is returned, if it is not set
 then an error is raised.</p>
+<p><em>New in 0.54.0, the <code>internal</code> keyword</em></p>
 </li>
 </ul>
 <h3 id="disabler-object">
