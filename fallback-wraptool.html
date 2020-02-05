@@ -179,10 +179,13 @@ slick and may have bugs but at least it will allow you to use wraps.</p>
 </code></pre>
 <p>To install a wrap, go to your source root, make sure that the
 <code>subprojects</code> directory exists and run this command:</p>
-<pre><code>ghwt.py install &lt;projectname&gt;
+<pre><code>ghwt.py install &lt;projectname&gt; [&lt;branchname&gt;]
 </code></pre>
 <p>This will stage the subproject ready to use. If you have multiple
 subprojects you need to download them all manually.</p>
+<p>Specifying branch name is optional. If not specified, the list
+of potential branches is sorted alphabetically and the last branch is
+used.</p>
 <p><em>Note</em> The tool was added in 0.32.0, for versions older than that you
 need to delete the <code>foo.wrap</code> file to work around this issue.</p>
 <h2 id="how-to-upgrade-an-existing-dirfix-broken-stateany-other-problem">How to upgrade an existing dir/fix broken state/any other problem</h2>

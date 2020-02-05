@@ -236,6 +236,10 @@ e.g. <code>datadir=${prefix}/share</code>. The names <code>prefix</code>, <code>
 <li>
 <code>d_module_versions</code> a list of module version flags used when compiling
 D sources referred to by this pkg-config file</li>
+<li>
+<code>uninstalled_variables</code> used instead of the <code>variables</code> keyword argument, when
+generating the uninstalled pkg-config file. Since <em>0.54.0</em>
+</li>
 </ul>
 <p>Since 0.46 a <code>StaticLibrary</code> or <code>SharedLibrary</code> object can optionally be passed
 as first positional argument. If one is provided a default value will be
@@ -248,6 +252,14 @@ provided for all required fields of the pc file:</p>
 <li>
 <code>name</code> is set to the library's name.</li>
 </ul>
+<p>Since 0.54.0 uninstalled pkg-config files are generated as well. They are
+located in <code>&lt;build dir&gt;/meson-uninstalled/</code>. It is sometimes
+useful to build projects against libraries built by meson without having to
+install them into a prefix. In order to do so, just set
+<code>PKG_CONFIG_PATH=&lt;builddir&gt;/meson-uninstalled</code> before building your
+application. That will cause pkg-config to prefer those <code>-uninstalled.pc</code> files
+and find libraries and headers from the meson builddir. This is an experimental
+feature provided on a best-effort basis, it might not work in all use-cases.</p>
 <h3 id="implicit-dependencies">Implicit dependencies</h3>
 <p>The exact rules followed to find dependencies that are implicitly added into the
 pkg-config file have evolved over time. Here are the rules as of Meson <em>0.49.0</em>,

@@ -190,17 +190,18 @@ build. Because of this Meson needs to know both the native and the
 cross compiler. The former is set via the environment variables or
 native-files and the latter via the cross file only.</p>
 <h2 id="set-dynamic-linker">Set dynamic linker</h2>
-<p>Like the compiler, the linker is selected via the <compiler variable>_LD
+<p><em>New in 0.53.0</em></p>
+<p>Like the compiler, the linker is selected via the <code>&lt;compiler variable&gt;_LD</code>
 environment variable, or through the <code>&lt;compiler entry&gt;ld</code> entry in a native
 or cross file. You must be aware of whether you're using a compiler that
 invokes the linker itself (most compilers including GCC and Clang) or a
 linker that is invoked directly (when using MSVC or compilers that act like
 it, including Clang-Cl). With the former <code>cld</code> or <code>CC_LD</code> should be the value
 to pass to the compiler's special argument (such as <code>-fuse-ld</code> with clang and
-gcc), with the latter it should be an executable, such as <code>lld-link.exe</code>.</compiler></p>
+gcc), with the latter it should be an executable, such as <code>lld-link.exe</code>.</p>
 <p><em>NOTE</em> In meson 0.53.0 the <code>ld</code> entry in the cross/native file and the <code>LD</code>
-environment variable was used, this resulted in a large number of regressions
-and was changed.</p>
+environment variable were used, this resulted in a large number of regressions
+and was changed in 0.53.1 to <code>&lt;lang&gt;_ld</code> and <code>&lt;comp variable&gt;_LD</code>.</p>
 <pre><code class="language-console">$ CC=clang CC_LD=lld meson &lt;options&gt;
 </code></pre>
 <p>or</p>
