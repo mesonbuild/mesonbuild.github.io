@@ -85,15 +85,36 @@ $('body').removeClass('no-script');
 			<ul class="nav navbar-nav" id="menu">
 				
 <li class="dropdown">
-	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Modules <span class="caret"></span>
-	</a>
-	<ul class="dropdown-menu" id="modules-menu">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
 					<li>
 				<a href="Gnome-module.html">GNOME</a>
 			</li>
 					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
 				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Kconfig-module.html">kconfig</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -118,9 +139,6 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
-			</li>
-					<li>
-				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -175,30 +193,47 @@ available starting with version 0.53.0.</p>
 <h2 id="file-lookup-rules">File lookup rules</h2>
 <p>Non-absolute paths are looked up relative to the directory where the
 current <code>meson.build</code> file is.</p>
-<p>If specified, a leading <code>~</code> is expanded to the user home directory.</p>
+<p>If specified, a leading <code>~</code> is expanded to the user home directory.
+Environment variables are not available as is the rule throughout Meson.
+That is, $HOME, %USERPROFILE%, $MKLROOT, etc. have no meaning to the Meson
+filesystem module. If needed, pass such variables into Meson via command
+line options in <code>meson_options.txt</code>, native-file or cross-file.</p>
+<p>Where possible, symlinks and parent directory notation are resolved to an
+absolute path.</p>
 <h3 id="exists">exists</h3>
 <p>Takes a single string argument and returns true if an entity with that
 name exists on the file system. This can be a file, directory or a
 special entry such as a device node.</p>
 <h3 id="is_dir">is_dir</h3>
 <p>Takes a single string argument and returns true if a directory with
-that name exists on the file system. This method follows symbolic
-links.</p>
+that name exists on the file system.</p>
 <h3 id="is_file">is_file</h3>
 <p>Takes a single string argument and returns true if an file with that
-name exists on the file system. This method follows symbolic links.</p>
+name exists on the file system.</p>
 <h3 id="is_symlink">is_symlink</h3>
 <p>Takes a single string argument and returns true if the path pointed to
 by the string is a symbolic link.</p>
 <h2 id="file-parameters">File Parameters</h2>
+<h3 id="is_absolute">is_absolute</h3>
+<p><em>since 0.54.0</em></p>
+<p>Return a boolean indicating if the path string specified is absolute, WITHOUT expanding <code>~</code>.</p>
+<p>Examples:</p>
+<pre><code class="language-meson">fs.is_absolute('~')   # false
+
+home = fs.expanduser('~')
+fs.is_absolute(home)  # true
+
+fs.is_absolute(home / 'foo')  # true, even if ~/foo doesn't exist
+
+fs.is_absolute('foo/bar')  # false, even if ./foo/bar exists
+</code></pre>
 <h3 id="hash">hash</h3>
 <p>The <code>fs.hash(filename, hash_algorithm)</code> method returns a string containing
 the hexidecimal <code>hash_algorithm</code> digest of a file.
 <code>hash_algorithm</code> is a string; the available hash algorithms include:
 md5, sha1, sha224, sha256, sha384, sha512.</p>
 <h3 id="size">size</h3>
-<p>The <code>fs.size(filename)</code> method returns the size of the file in integer bytes.
-Symlinks will be resolved if possible.</p>
+<p>The <code>fs.size(filename)</code> method returns the size of the file in integer bytes.</p>
 <h3 id="is_samepath">is_samepath</h3>
 <p>The <code>fs.is_samepath(path1, path2)</code> returns boolean <code>true</code> if both paths resolve to the same path.
 For example, suppose path1 is a symlink and path2 is a relative path.
@@ -216,7 +251,7 @@ fs.is_samepath(x, z)  # true
 fs.is_samepath(x, j)  # false
 
 p = 'foo/bar'
-q = 'foo/bar/../baz'
+q = 'foo/bar/baz/..'
 r = 'buz'  # a symlink pointing to foo/bar
 s = 'notapath'  # non-existant directory
 
@@ -225,7 +260,25 @@ fs.is_samepath(p, r)  # true
 fs.is_samepath(p, s)  # false
 </code></pre>
 <h2 id="filename-modification">Filename modification</h2>
-<p>The files need not actually exist yet for this method, as it's just string manipulation.</p>
+<p>The files need not actually exist yet for these path string manipulation methods.</p>
+<h3 id="expanduser">expanduser</h3>
+<p><em>since 0.54.0</em></p>
+<p>A path string with a leading <code>~</code> is expanded to the user home directory</p>
+<p>Examples:</p>
+<pre><code class="language-meson">fs.expanduser('~')  # user home directory
+
+fs.expanduser('~/foo')  # &lt;homedir&gt;/foo
+</code></pre>
+<h3 id="as_posix">as_posix</h3>
+<p><em>since 0.54.0</em></p>
+<p><code>fs.as_posix(path)</code> assumes a Windows path, even if on a Unix-like system.
+Thus, all <code>'\'</code> or <code>'\\'</code> are turned to '/', even if you meant to escape a character.</p>
+<p>Examples</p>
+<pre><code class="language-meson">fs.as_posix('\\') == '/'  # true
+fs.as_posix('\\\\') == '/'  # true
+
+fs.as_posix('foo\\bar/baz') == 'foo/bar/baz'  # true
+</code></pre>
 <h3 id="replace_suffix">replace_suffix</h3>
 <p>The <code>replace_suffix</code> method is a <em>string manipulation</em> convenient for filename modifications.
 It allows changing the filename suffix like:</p>
@@ -247,8 +300,19 @@ new = fs.replace_suffix(original, '')  # /opt/foo.dll
 </code></pre>
 <h3 id="parent">parent</h3>
 <p>Returns the parent directory (i.e. dirname).</p>
+<pre><code class="language-meson">new = fs.parent('foo/bar')  # foo
+new = fs.parent('foo/bar/baz.dll')  # foo/bar
+</code></pre>
 <h3 id="name">name</h3>
 <p>Returns the last component of the path (i.e. basename).</p>
+<pre><code class="language-meson">fs.name('foo/bar/baz.dll.a')  # baz.dll.a
+</code></pre>
+<h3 id="stem">stem</h3>
+<p><em>since 0.54.0</em></p>
+<p>Returns the last component of the path, dropping the last part of the suffix</p>
+<pre><code class="language-meson">fs.stem('foo/bar/baz.dll')  # baz
+fs.stem('foo/bar/baz.dll.a')  # baz.dll
+</code></pre>
 
     </div>
         

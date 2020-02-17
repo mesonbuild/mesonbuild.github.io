@@ -85,15 +85,36 @@ $('body').removeClass('no-script');
 			<ul class="nav navbar-nav" id="menu">
 				
 <li class="dropdown">
-	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Modules <span class="caret"></span>
-	</a>
-	<ul class="dropdown-menu" id="modules-menu">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
 					<li>
 				<a href="Gnome-module.html">GNOME</a>
 			</li>
 					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
 				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Kconfig-module.html">kconfig</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -118,9 +139,6 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
-			</li>
-					<li>
-				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -581,6 +599,13 @@ appropriate library manually. If the <code>static</code> keyword argument is <co
 <code>shaderc_combined</code> is preferred. Otherwise, <code>shaderc_shared</code> is preferred. Note
 that it is not possible to obtain the shaderc version using this method.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
+<h2 id="zlib">Zlib</h2>
+<p>Zlib ships with pkg-config and cmake support, but on some operating systems
+(windows, macOs, FreeBSD, dragonflybsd), it is provided as part of the base
+operating system without pkg-config support. The new System finder can be used
+on these OSes to link with the bundled version.</p>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>cmake</code>, or <code>system</code>.</p>
+<p><em>New in 0.54.0</em> the <code>system</code> method.</p>
 <hr>
 <a name="footnote1">1</a>: They may appear to be case-insensitive, if the
     underlying file system happens to be case-insensitive.

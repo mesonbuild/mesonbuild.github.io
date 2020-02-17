@@ -85,15 +85,36 @@ $('body').removeClass('no-script');
 			<ul class="nav navbar-nav" id="menu">
 				
 <li class="dropdown">
-	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Modules <span class="caret"></span>
-	</a>
-	<ul class="dropdown-menu" id="modules-menu">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
 					<li>
 				<a href="Gnome-module.html">GNOME</a>
 			</li>
 					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
 				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Kconfig-module.html">kconfig</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -118,9 +139,6 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
-			</li>
-					<li>
-				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -192,11 +210,11 @@ native-files and the latter via the cross file only.</p>
 <h2 id="set-dynamic-linker">Set dynamic linker</h2>
 <p><em>New in 0.53.0</em></p>
 <p>Like the compiler, the linker is selected via the <code>&lt;compiler variable&gt;_LD</code>
-environment variable, or through the <code>&lt;compiler entry&gt;ld</code> entry in a native
+environment variable, or through the <code>&lt;compiler entry&gt;_ld</code> entry in a native
 or cross file. You must be aware of whether you're using a compiler that
 invokes the linker itself (most compilers including GCC and Clang) or a
 linker that is invoked directly (when using MSVC or compilers that act like
-it, including Clang-Cl). With the former <code>cld</code> or <code>CC_LD</code> should be the value
+it, including Clang-Cl). With the former <code>c_ld</code> or <code>CC_LD</code> should be the value
 to pass to the compiler's special argument (such as <code>-fuse-ld</code> with clang and
 gcc), with the latter it should be an executable, such as <code>lld-link.exe</code>.</p>
 <p><em>NOTE</em> In meson 0.53.0 the <code>ld</code> entry in the cross/native file and the <code>LD</code>

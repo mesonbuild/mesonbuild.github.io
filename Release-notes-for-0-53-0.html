@@ -85,15 +85,36 @@ $('body').removeClass('no-script');
 			<ul class="nav navbar-nav" id="menu">
 				
 <li class="dropdown">
-	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Modules <span class="caret"></span>
-	</a>
-	<ul class="dropdown-menu" id="modules-menu">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
 					<li>
 				<a href="Gnome-module.html">GNOME</a>
 			</li>
 					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
 				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Kconfig-module.html">kconfig</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -118,9 +139,6 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
-			</li>
-					<li>
-				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -224,11 +242,23 @@ summary({'Some boolean': false,
 flags passed via language flags and hoped things worked out. In meson 0.52.0
 meson started detecting the linker and making intelligent decisions about
 using it. Unfortunately this broke choosing a non-default linker.</p>
-<p>Now there is a generic mechanism for doing this, you may use the LD
-environment variable (with normal meson environment variable rules), or add
-the following to a cross or native file:</p>
+<p>Now there is a generic mechanism for doing this. In 0.53.0, you can use the <code>LD</code>
+environment variable. <strong>In 0.53.1</strong> this was changed to <code>&lt;compiler_variable&gt;_LD</code>,
+such as <code>CC_LD</code>, <code>CXX_LD</code>, <code>D_LD</code>, etc due to regressions. The usual meson
+<a href="https://mesonbuild.com/Running-Meson.html#environment-variables">environment variable rules</a>
+apply. Alternatively, you can add the following to a cross or native file:</p>
+<p>In 0.53.0:</p>
 <pre><code class="language-ini">[binaries]
 ld = 'gold'
+</code></pre>
+<p><strong>In 0.53.1 or newer</strong>:</p>
+<pre><code class="language-ini">[binaries]
+c = 'gcc'
+c_ld = 'gold'
+</code></pre>
+<pre><code class="language-ini">[binaries]
+c = 'clang'
+c_ld = 'lld'
 </code></pre>
 <p>And meson will select the linker if possible.</p>
 <h2 id="fortran_std-option">

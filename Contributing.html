@@ -85,15 +85,36 @@ $('body').removeClass('no-script');
 			<ul class="nav navbar-nav" id="menu">
 				
 <li class="dropdown">
-	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Modules <span class="caret"></span>
-	</a>
-	<ul class="dropdown-menu" id="modules-menu">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
 					<li>
 				<a href="Gnome-module.html">GNOME</a>
 			</li>
 					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
 				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Kconfig-module.html">kconfig</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -118,9 +139,6 @@ $('body').removeClass('no-script');
 			</li>
 					<li>
 				<a href="Windows-module.html">Windows</a>
-			</li>
-					<li>
-				<a href="Hotdoc-module.html">Hotdoc</a>
 			</li>
 			</ul>
 </li>
@@ -288,6 +306,7 @@ in problematic cases.</p>
 project tests. To run all tests, execute <code>./run_tests.py</code>. Unit tests
 can be run with <code>./run_unittests.py</code> and project tests with
 <code>./run_project_tests.py</code>.</p>
+<h3 id="project-tests">Project tests</h3>
 <p>Subsets of project tests can be selected with
 <code>./run_project_tests.py --only</code> option. This can save a great deal of
 time when only a certain part of Meson is being tested.
@@ -299,7 +318,7 @@ Some families of tests require a particular backend to run.
 For example, all the CUDA project tests run and pass on Windows via
 <code>./run_project_tests.py --only cuda --backend ninja</code></p>
 <p>Each project test is a standalone project that can be compiled on its
-own. They are all in <code>test cases</code> subdirectory. The simplest way to
+own. They are all in the <code>test cases</code> subdirectory. The simplest way to
 run a single project test is to do something like <code>./meson.py test\ cases/common/1\ trivial builddir</code>. The one exception to this is <code>test cases/unit</code> directory discussed below.</p>
 <p>The test cases in the <code>common</code> subdirectory are meant to be run always
 for all backends. They should only depend on C and C++, without any
@@ -309,13 +328,36 @@ external program in the common directory, such as a code generator, it
 should be implemented as a Python script. The goal of test projects is
 also to provide sample projects that end users can use as a base for
 their own projects.</p>
-<p>All project tests follow the same pattern: they are compiled, tests
-are run and finally install is run. Passing means that building and
-tests succeed and installed files match the <code>installed_files.txt</code> file
-in the test's source root. Any tests that require more thorough
-analysis, such as checking that certain compiler arguments can be
-found in the command line or that the generated pkg-config files
-actually work should be done with a unit test.</p>
+<p>All project tests follow the same pattern: they are configured, compiled, tests
+are run and finally install is run. Passing means that configuring, building and
+tests succeed and that installed files match those expected.</p>
+<p>Any tests that require more thorough analysis, such as checking that certain
+compiler arguments can be found in the command line or that the generated
+pkg-config files actually work should be done with a unit test.</p>
+<p>The following files in the test's source root are consulted, if they exist:</p>
+<ul>
+<li>
+<p><code>installed_files.txt</code> lists the files which are expected to be installed.
+Various constructs containing <code>?</code> are used to indicate platform specific
+filename variations (e.g. <code>?so</code> represents the platform appropriate suffix for a
+shared library)</p>
+</li>
+<li>
+<p><code>setup_env.json</code> contains a dictionary which specifies additional
+environment variables to be set during the configure step of the test. <code>@ROOT@</code>
+is replaced with the absolute path of the source directory.</p>
+</li>
+<li>
+<p><code>crossfile.ini</code> and <code>nativefile.ini</code> are passed to the configure step with
+<code>--cross-file</code> and <code>--native-file</code> options, respectively.</p>
+</li>
+</ul>
+<p>Additionally:</p>
+<ul>
+<li>
+<code>mlog.cmd_ci_include()</code> can be called from anywhere inside meson to capture the
+contents of an additional file into the CI log on failure.</li>
+</ul>
 <p>Projects needed by unit tests are in the <code>test cases/unit</code>
 subdirectory. They are not run as part of <code>./run_project_tests.py</code>.</p>
 <h3 id="skipping-integration-tests">Skipping integration tests</h3>
