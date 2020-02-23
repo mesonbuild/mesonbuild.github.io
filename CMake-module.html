@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -271,6 +271,10 @@ if the dependency object is used.</li>
 <code>get_variable(name)</code> fetches the specified variable from inside
 the subproject. Usually <code>dependency()</code> or <code>target()</code> should be
 preferred to extract build targets.</li>
+<li>
+<code>found</code> returns true if the subproject is available, otherwise false
+<em>new in in 0.53.2</em>
+</li>
 </ul>
 <h2 id="cmake-configuration-files">CMake configuration files</h2>
 <h3 id="cmakewrite_basic_package_version_file">cmake.write_basic_package_version_file()</h3>

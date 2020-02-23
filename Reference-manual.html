@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -1009,8 +1009,10 @@ configuration as-is, which may be absolute, or relative to <code>prefix</code>.
 <a href="Installing.html"><code>install_dir</code> arguments</a> handles that as expected, but
 if you need the absolute path to one of these e.g. to use in a define
 etc., you should use <code>get_option('prefix') / get_option('localstatedir')</code></p>
-<p>For options of type <code>feature</code> a special object is returned instead of
-a string.  See <a href="Build-options.html#features"><code>feature</code> options</a>
+<p>For options of type <code>feature</code> a
+<a href="Reference-manual.html#feature-option-object">feature option object</a>
+is returned instead of a string.
+See <a href="Build-options.html#features"><code>feature</code> options</a>
 documentation for more details.</p>
 <h3 id="get_variable">get_variable()</h3>
 <pre><code class="language-meson">    value get_variable(variable_name, fallback)
@@ -1289,7 +1291,7 @@ space.</p>
 <p>This function is used to summarize build configuration at the end of the build
 process. This function provides a way for projects (and subprojects) to report
 this information in a clear way.</p>
-<p>The content is a serie of key/value pairs grouped into sections. If the section
+<p>The content is a series of key/value pairs grouped into sections. If the section
 keyword argument is omitted, those key/value pairs are implicitly grouped into a section
 with no title. key/value pairs can optionally be grouped into a dictionary,
 but keep in mind that dictionaries does not guarantee ordering. <code>key</code> must be string,
@@ -1341,7 +1343,7 @@ summary({'Some boolean': false,
 <p>The first argument to this function must be a string defining the name
 of this project. It is followed by programming languages that the
 project uses. Supported values for languages are <code>c</code>, <code>cpp</code> (for
-<code>C++</code>), <code>d</code>, <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>),
+<code>C++</code>), <code>cuda</code>, <code>d</code>, <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>),
 <code>vala</code> and <code>rust</code>. Since version <code>0.40.0</code> the list of languages
 is optional.</p>
 <p>The project name can be any string you want, it's not used for
@@ -1745,8 +1747,10 @@ are set when dist scripts are run.</p>
 given as an argument to be run during the install step, this script
 will have the environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code>, <code>MESON_INSTALL_PREFIX</code>,
-<code>MESON_INSTALL_DESTDIR_PREFIX</code>, and <code>MESONINTROSPECT</code> set. All
-additional arguments are passed as parameters.</p>
+<code>MESON_INSTALL_DESTDIR_PREFIX</code>, and <code>MESONINTROSPECT</code> set.
+All positional arguments are passed as parameters.</p>
+<p><em>(added 0.54)</em> If <code>meson install</code> is called with the <code>--quiet</code> option, the
+environment variable <code>MESON_INSTALL_QUIET</code> will be set.</p>
 <p>Meson uses the <code>DESTDIR</code> environment variable as set by the
 inherited environment to determine the (temporary) installation
 location for files. Your install script must be aware of this while
@@ -2590,6 +2594,20 @@ object will only inherit other attributes from its parent as
 controlled by keyword arguments.</p>
 </li>
 </ul>
+<h3 id="feature-option-object">Feature option object</h3>
+<p>The following methods are defined for all <a href="Build-options.html#features"><code>feature</code> options</a>:</p>
+<ul>
+<li>
+<code>enabled()</code> returns whether the feature was set to <code>'enabled'</code>
+</li>
+<li>
+<code>disabled()</code> returns whether the feature was set to <code>'disabled'</code>
+</li>
+<li>
+<code>auto()</code> returns whether the feature was set to <code>'auto'</code>
+</li>
+</ul>
+<p>Feature options are available since 0.47.0.</p>
 <h3 id="generator-object">
 <code>generator</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#generator"><code>generator()</code></a> and contains a

@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -249,12 +249,24 @@ Currently supported in
 <code>disabled</code> do not look for the dependency and always return 'not-found'.</li>
 </ul>
 <p>When getting the value of this type of option using <code>get_option()</code>, a special
-object is returned instead of the string representation of the option's value.
-That object has three methods returning boolean and taking no argument:
-<code>enabled()</code>, <code>disabled()</code>, and <code>auto()</code>.</p>
+<a href="Reference-manual.html#feature-option-object">feature option object</a>
+is returned instead of the string representation of the option's value.
+This object can be passed to <code>required</code>:</p>
 <pre><code class="language-meson">d = dependency('foo', required : get_option('myfeature'))
 if d.found()
   app = executable('myapp', 'main.c', dependencies : [d])
+endif
+</code></pre>
+<p>To check the value of the feature, the object has three methods
+returning a boolean and taking no argument:</p>
+<ul>
+<li><code>.enabled()</code></li>
+<li><code>.disabled()</code></li>
+<li><code>.auto()</code></li>
+</ul>
+<p>This is useful for custom code depending on the feature:</p>
+<pre><code class="language-meson">if get_option('myfeature').enabled()
+  # ...
 endif
 </code></pre>
 <p>If the value of a <code>feature</code> option is set to <code>auto</code>, that value is overridden by

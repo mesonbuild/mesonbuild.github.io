@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -258,6 +258,9 @@ D sources referred to by this pkg-config file</li>
 <code>uninstalled_variables</code> used instead of the <code>variables</code> keyword argument, when
 generating the uninstalled pkg-config file. Since <em>0.54.0</em>
 </li>
+<li>
+<code>dataonly</code> field. (<em>since 0.54.0</em>) this is used for architecture-independent
+pkg-config files in projects which also have architecture-dependent outputs.</li>
 </ul>
 <p>Since 0.46 a <code>StaticLibrary</code> or <code>SharedLibrary</code> object can optionally be passed
 as first positional argument. If one is provided a default value will be

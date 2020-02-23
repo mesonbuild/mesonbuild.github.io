@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -318,7 +318,7 @@ $('body').removeClass('no-script');
 </tbody>
 </table>
 <h2 id="linker-ids">Linker ids</h2>
-<p>These are return values of the <code>get_linker_id</code> (Linker family) method in a compiler object.</p>
+<p>These are return values of the <code>get_linker_id</code> method in a compiler object.</p>
 <table>
 <thead>
 <tr>
@@ -326,33 +326,23 @@ $('body').removeClass('no-script');
 <th> Linker family</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td> ld.bfd</td>
-<td> GNU Compiler Collection</td>
-</tr>
-<tr>
-<td> {ld.bfd,lld}</td>
-<td> Clang non-Windows</td>
-</tr>
-<tr>
-<td> link</td>
-<td> MSVC, Clang-cl, clang Windows</td>
-</tr>
-<tr>
-<td> pgi</td>
-<td> Portland/Nvidia PGI</td>
-</tr>
-<tr>
-<td> {ld.bfd,gold,xild}</td>
-<td> Intel compiler non-Windows</td>
-</tr>
-<tr>
-<td> xilink</td>
-<td> Intel-cl Windows</td>
-</tr>
-</tbody>
+<tbody></tbody>
 </table>
+<p>| ld.bfd     | The GNU linker                              |
+| ld.gold    | The GNU gold linker                         |
+| ld.lld     | The LLVM linker, with the GNU interface     |
+| ld.solaris | Solaris and illumos                         |
+| ld64       | Apple ld64                                  |
+| link       | MSVC linker                                 |
+| lld-link   | The LLVM linker, with the MSVC interface    |
+| xilink     | Used with Intel-cl only, MSVC like          |
+| optlink    | optlink (used with DMD)                     |
+| rlink      | The Renesas linker, used with CCrx only     |
+| armlink    | The ARM linker (arm and armclang compilers) |
+| pgi        | Portland/Nvidia PGI                         |
+| nvlink     | Nvidia Linker used with cuda                |</p>
+<p>For languages that don't have separate dynamic linkers such as C# and Java, the
+<code>get_linker_id</code> will return the compiler name.</p>
 <h2 id="script-environment-variables">Script environment variables</h2>
 <table>
 <thead>
