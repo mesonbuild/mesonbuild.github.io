@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -425,6 +425,49 @@ Using the option as-is with no prefix affects all machines. For example:</p>
 </tr>
 </tbody>
 </table>
+<p>For setting optimization levels and toggling debug, you can either set the
+<code>buildtype</code> option, or you can set the <code>optimization</code> and <code>debug</code> options which
+give finer control over the same. Whichever you decide to use, the other will
+be deduced from it. For example, <code>-Dbuildtype=debugoptimized</code> is the same as
+<code>-Ddebug=true -Doptimization=2</code> and vice-versa. This table documents the
+two-way mapping:</p>
+<table>
+<thead>
+<tr>
+<th> buildtype</th>
+<th> debug</th>
+<th> optimization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> plain</td>
+<td> false</td>
+<td> 0</td>
+</tr>
+<tr>
+<td> debug</td>
+<td> true</td>
+<td> 0</td>
+</tr>
+<tr>
+<td> debugoptimized</td>
+<td> true</td>
+<td> 2</td>
+</tr>
+<tr>
+<td> release</td>
+<td> false</td>
+<td> 3</td>
+</tr>
+<tr>
+<td> minsize</td>
+<td> true</td>
+<td> s</td>
+</tr>
+</tbody>
+</table>
+<p>All other combinations of <code>debug</code> and <code>optimization</code> set <code>buildtype</code> to <code>'custom'</code>.</p>
 <h2 id="base-options">Base options</h2>
 <p>These are set in the same way as universal options, but cannot be shown in the
 output of <code>meson --help</code> because they depend on both the current platform and

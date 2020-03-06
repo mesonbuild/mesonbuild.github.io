@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -1302,10 +1302,12 @@ the end of the configuration in the same order as they have been called.</p>
 <p>Keyword arguments:</p>
 <ul>
 <li>
+<code>section</code> title to group a set of key/value pairs.</li>
+<li>
 <code>bool_yn</code> if set to true, all boolean values will be replaced by green YES
 or red NO.</li>
 <li>
-<code>section</code> title to group a set of key/value pairs.</li>
+<code>list_sep</code> <em>Since 0.54.0</em> string used to separate list values (e.g. <code>', '</code>).</li>
 </ul>
 <p>Example:</p>
 <pre><code class="language-meson">project('My Project', version : '1.0')
@@ -2362,6 +2364,9 @@ correctly. Please file a bug if that doesn't work for you.</p>
 <code>include_directories</code> but points to the private directory of this
 target, usually only needed if an another target needs to access
 some generated internal headers of this target</p>
+</li>
+<li>
+<p><code>name()</code> <em>Since 0.54.0</em>, returns the target name.</p>
 </li>
 </ul>
 <h3 id="configuration-data-object">
