@@ -614,6 +614,12 @@ compiler being used:</p>
 <td> Standard Windows libs to link against</td>
 </tr>
 <tr>
+<td> c_thread_count</td>
+<td> 4</td>
+<td> integer value ≥ 0</td>
+<td> Number of threads to use with emcc when using threads</td>
+</tr>
+<tr>
 <td> cpp_args</td>
 <td></td>
 <td> free-form comma-separated list</td>
@@ -650,6 +656,12 @@ compiler being used:</p>
 <td> Whether to enable RTTI (runtime type identification)</td>
 </tr>
 <tr>
+<td> cpp_thread_count</td>
+<td> 4</td>
+<td> integer value ≥ 0</td>
+<td> Number of threads to use with emcc when using threads</td>
+</tr>
+<tr>
 <td> cpp_winlibs</td>
 <td> see below</td>
 <td> free-form comma-separated list</td>
@@ -674,6 +686,9 @@ while the <code>cpp_eh=[value]</code> will result in <code>/EH[value]</code>.
 Since <em>0.51.0</em> <code>cpp_eh=default</code> will result in <code>/EHsc</code> on MSVC. When using
 gcc-style compilers, nothing is passed (allowing exceptions to work), while
 <code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
+<p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control the
+value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other c/c++
+compiler supports this option.</p>
 
     </div>
         

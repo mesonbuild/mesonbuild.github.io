@@ -326,21 +326,65 @@ $('body').removeClass('no-script');
 <th> Linker family</th>
 </tr>
 </thead>
-<tbody></tbody>
+<tbody>
+<tr>
+<td> ld.bfd</td>
+<td> The GNU linker</td>
+</tr>
+<tr>
+<td> ld.gold</td>
+<td> The GNU gold linker</td>
+</tr>
+<tr>
+<td> ld.lld</td>
+<td> The LLVM linker, with the GNU interface</td>
+</tr>
+<tr>
+<td> ld.solaris</td>
+<td> Solaris and illumos</td>
+</tr>
+<tr>
+<td> ld.wasm</td>
+<td> emscripten's wasm-ld linker</td>
+</tr>
+<tr>
+<td> ld64</td>
+<td> Apple ld64</td>
+</tr>
+<tr>
+<td> link</td>
+<td> MSVC linker</td>
+</tr>
+<tr>
+<td> lld-link</td>
+<td> The LLVM linker, with the MSVC interface</td>
+</tr>
+<tr>
+<td> xilink</td>
+<td> Used with Intel-cl only, MSVC like</td>
+</tr>
+<tr>
+<td> optlink</td>
+<td> optlink (used with DMD)</td>
+</tr>
+<tr>
+<td> rlink</td>
+<td> The Renesas linker, used with CCrx only</td>
+</tr>
+<tr>
+<td> armlink</td>
+<td> The ARM linker (arm and armclang compilers)</td>
+</tr>
+<tr>
+<td> pgi</td>
+<td> Portland/Nvidia PGI</td>
+</tr>
+<tr>
+<td> nvlink</td>
+<td> Nvidia Linker used with cuda</td>
+</tr>
+</tbody>
 </table>
-<p>| ld.bfd     | The GNU linker                              |
-| ld.gold    | The GNU gold linker                         |
-| ld.lld     | The LLVM linker, with the GNU interface     |
-| ld.solaris | Solaris and illumos                         |
-| ld64       | Apple ld64                                  |
-| link       | MSVC linker                                 |
-| lld-link   | The LLVM linker, with the MSVC interface    |
-| xilink     | Used with Intel-cl only, MSVC like          |
-| optlink    | optlink (used with DMD)                     |
-| rlink      | The Renesas linker, used with CCrx only     |
-| armlink    | The ARM linker (arm and armclang compilers) |
-| pgi        | Portland/Nvidia PGI                         |
-| nvlink     | Nvidia Linker used with cuda                |</p>
 <p>For languages that don't have separate dynamic linkers such as C# and Java, the
 <code>get_linker_id</code> will return the compiler name.</p>
 <h2 id="script-environment-variables">Script environment variables</h2>

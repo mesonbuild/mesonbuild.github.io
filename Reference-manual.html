@@ -229,9 +229,9 @@ because that works even when you project is used as a subproject.</p>
 <h3 id="add_languages">add_languages()</h3>
 <pre><code class="language-meson">  bool add_languages(*langs*)
 </code></pre>
-<p>Add support for new programming languages. Equivalent to having them
-in the <code>project</code> declaration. This function is usually used to add
-languages that are only used on some platforms like this:</p>
+<p>Add programming languages used by the project. Equivalent to having them in the
+<code>project</code> declaration. This function is usually used to add languages that are
+only used under some conditions, like this:</p>
 <pre><code class="language-meson">project('foobar', 'c')
 if compiling_for_osx
   add_languages('objc')
@@ -240,12 +240,23 @@ if add_languages('cpp', required : false)
   executable('cpp-app', 'main.cpp')
 endif
 </code></pre>
-<p>Takes one keyword argument, <code>required</code>. It defaults to <code>true</code>, which
-means that if any of the languages specified is not found, Meson will
-halt. Returns true if all languages specified were found and false
-otherwise. Since <em>0.47.0</em> the value of a
-<a href="Build-options.html#features"><code>feature</code></a> option can also be passed to
-the <code>required</code> keyword argument.</p>
+<p>Takes the following keyword arguments:</p>
+<ul>
+<li>
+<p><code>required</code> defaults to <code>true</code>, which means that if any of the languages
+specified is not found, Meson will halt. Since <em>0.47.0</em> the value of a
+<a href="Build-options.html#features"><code>feature</code></a> option can also be passed.</p>
+</li>
+<li>
+<p><code>native</code> if set to <code>true</code>, the language will be used to compile for the build
+machine, if <code>false</code>, for the host machine. Since <em>0.54.0</em>.</p>
+</li>
+</ul>
+<p>Returns <code>true</code> if all languages specified were found and <code>false</code> otherwise.</p>
+<p>If <code>native</code> is omitted, the languages may be used for either build or host
+machine, but are never required for the build machine.  (i.e. it is equivalent
+to <code>add_languages(*langs*, native: false, required: *required*) and add_languages(*langs*, native: true, required: false)</code>. This default behaviour
+may change to <code>native: false</code> in a future meson version.</p>
 <h3 id="add_project_arguments">add_project_arguments()</h3>
 <pre><code class="language-meson">  void add_project_arguments(arg1, arg2, ...)
 </code></pre>
@@ -605,7 +616,11 @@ subproject that contains a dependency object such as the return
 value of <a href="Reference-manual.html#declare_dependency"><code>declare_dependency</code></a> or
 <a href="Reference-manual.html#dependency"><code>dependency()</code></a>, etc. Note that this means the
 fallback dependency may be a not-found dependency, in which
-case the value of the <code>required:</code> kwarg will be obeyed.</li>
+case the value of the <code>required:</code> kwarg will be obeyed.
+<em>Since 0.54.0</em> <code>'subproj_dep'</code> argument can be omitted in the case the
+subproject used <code>meson.override_dependency('dependency_name', subproj_dep)</code>.
+In that case, the <code>fallback</code> keyword argument can be a single string instead
+of a list of 2 strings.</li>
 <li>
 <code>language</code> <em>(added 0.42.0)</em> defines what language-specific
 dependency to find if it's available for multiple languages.</li>
@@ -1863,10 +1878,20 @@ compilation to reduce build time) and <code>false</code> otherwise.</p>
 <p><code>override_find_program(progname, program)</code> <a href="Release-notes-for-0-46-0.html#can-override-find_program"><em>(Added
 0.46.0)</em></a>
 specifies that whenever <code>find_program</code> is used to find a program
-named <code>progname</code>, Meson should not not look it up on the system but
+named <code>progname</code>, Meson should not look it up on the system but
 instead return <code>program</code>, which may either be the result of
 <code>find_program</code>, <code>configure_file</code> or <code>executable</code>.</p>
 <p>If <code>program</code> is an <code>executable</code>, it cannot be used during configure.</p>
+</li>
+<li>
+<p><code>override_dependency(name, dep_object)</code> <a href="Release-notes-for-0.54.0.md#override-dependency"><em>(Added
+0.54.0)</em></a>
+specifies that whenever <code>dependency(name, ...)</code> is used, Meson should not
+look it up on the system but instead return <code>dep_object</code>, which may either be
+the result of <code>dependency()</code> or <code>declare_dependency()</code>. It takes optional
+<code>native</code> keyword arguments. Doing this in a subproject allows the parent
+project to retrieve the dependency without having to know the dependency
+variable name: <code>dependency(name, fallback : subproject_name)</code>.</p>
 </li>
 <li>
 <p><code>project_version()</code> returns the version string specified in
