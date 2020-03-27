@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -204,39 +204,8 @@ persistent environment:</p>
 <p>All of the rules about cross files and changed settings apply to native files
 as well, see <a href="Cross-compilation.html#changing-cross-file-settings">here</a></p>
 <h2 id="defining-the-environment">Defining the environment</h2>
-<h3 id="binaries">Binaries</h3>
-<p>Currently the only use of native files is to override native binaries. This
-includes the compilers and binaries collected with <code>find_program</code>, and those
-used by dependencies that use a config-tool instead of pkgconfig for detection,
-like <code>llvm-config</code></p>
-<pre><code class="language-ini">[binaries]
-c = '/usr/local/bin/clang'
-cpp = '/usr/local/bin/clang++'
-rust = '/usr/local/bin/rust'
-ld = 'gold'
-llvm-config = '/usr/local/llvm-svn/bin/llvm-config'
-</code></pre>
-<h3 id="paths-and-directories">Paths and Directories</h3>
-<p>As of 0.50.0 paths and directories such as libdir can be defined in the native
-file in a paths section</p>
-<pre><code class="language-ini">[paths]
-libdir = 'mylibdir'
-prefix = '/my prefix'
-</code></pre>
-<p>These values will only be loaded when not cross compiling. Any arguments on the
-command line will override any options in the native file. For example, passing
-<code>--libdir=otherlibdir</code> would result in a prefix of <code>/my prefix</code> and a libdir of
-<code>otherlibdir</code>.</p>
-<h2 id="loading-multiple-native-files">Loading multiple native files</h2>
-<p>Native files allow layering (cross files can be layered since meson 0.52.0).
-More than one native file can be loaded, with values from a previous file being
-overridden by the next. The intention of this is not overriding, but to allow
-composing native files.</p>
-<p>For example, if there is a project using C and C++, python 3.4-3.7, and LLVM
-5-7, and it needs to build with clang 5, 6, and 7, and gcc 5.x, 6.x, and 7.x;
-expressing all of these configurations in monolithic configurations would
-result in 81 different native files. By layering them, it can be expressed by
-just 12 native files.</p>
+<p>See the <a href="Machine-files.html">config-files section</a>, for options shared by cross
+and native files.</p>
 <h2 id="native-file-locations">Native file locations</h2>
 <p>Like cross files, native files may be installed to user or system wide
 locations, defined as:</p>

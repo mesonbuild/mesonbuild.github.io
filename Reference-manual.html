@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -456,8 +456,12 @@ following.</p>
 <ul>
 <li>
 <code>build_by_default</code> <em>(added 0.38)</em> causes, when set to true, to
-have this target be built by default, that is, when invoking plain
-<code>ninja</code>; the default value is false
+have this target be built by default. This means it will be built when
+<code>ninja</code> is called without any arguments or asked to build a target
+like <code>ninja test</code> that depends on ninja's <a href="https://ninja-build.org/manual.html#_default_target_statements">default
+target</a>
+set to <code>all</code> by meson. The same behavior applies for backends other
+than <code>ninja</code>.  The default value is <code>false</code>.
 <em>(changed in 0.50)</em> if <code>build_by_default</code> is explicitly set to false, <code>install</code>
 will no longer override it. If <code>build_by_default</code> is not set, <code>install</code> will
 still determine its default.</li>
@@ -662,7 +666,8 @@ performed. The default value is <code>'preserve'</code>.</li>
 <li>other
 <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific</a>
 keywords may also be accepted (e.g. <code>modules</code> specifies submodules to use for
-dependencies such as Qt5 or Boost. )</li>
+dependencies such as Qt5 or Boost. <code>components</code> allows the user to manually
+add CMake <code>COMPONENTS</code> for the <code>find_package</code> lookup)</li>
 <li>
 <code>disabler</code> if <code>true</code> and the dependency couldn't be found, return a
 <a href="Reference-manual.html#disabler-object">disabler object</a> instead of a not-found dependency.

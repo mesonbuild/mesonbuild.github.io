@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -425,7 +425,8 @@ Using the option as-is with no prefix affects all machines. For example:</p>
 </tr>
 </tbody>
 </table>
-<p>For setting optimization levels and toggling debug, you can either set the
+<p><a name="build-type-options"></a>
+For setting optimization levels and toggling debug, you can either set the
 <code>buildtype</code> option, or you can set the <code>optimization</code> and <code>debug</code> options which
 give finer control over the same. Whichever you decide to use, the other will
 be deduced from it. For example, <code>-Dbuildtype=debugoptimized</code> is the same as
@@ -567,6 +568,44 @@ platforms or with all compilers:</p>
 </table>
 <p>The value of <code>b_sanitize</code> can be one of: <code>none</code>, <code>address</code>, <code>thread</code>,
 <code>undefined</code>, <code>memory</code>, <code>address,undefined</code>.</p>
+<p><a name="b_vscrt-from_buildtype"></a>
+The default value of <code>b_vscrt</code> is <code>from_buildtype</code>. In that case, the following
+table is used internally to pick the CRT compiler arguments based on the value
+of the <code>buildtype</code> option:</p>
+<table>
+<thead>
+<tr>
+<th> buildtype</th>
+<th> Visual Studio CRT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> debug</td>
+<td> <code>/MDd</code>
+</td>
+</tr>
+<tr>
+<td> debugoptimized</td>
+<td> <code>/MD</code>
+</td>
+</tr>
+<tr>
+<td> release</td>
+<td> <code>/MD</code>
+</td>
+</tr>
+<tr>
+<td> minsize</td>
+<td> <code>/MD</code>
+</td>
+</tr>
+<tr>
+<td> custom</td>
+<td> error!</td>
+</tr>
+</tbody>
+</table>
 <h3 id="notes-about-apple-bitcode-support">Notes about Apple Bitcode support</h3>
 <p><code>b_bitcode</code> will pass <code>-fembed-bitcode</code> while compiling and will pass
 <code>-Wl,-bitcode_bundle</code> while linking. These options are incompatible with

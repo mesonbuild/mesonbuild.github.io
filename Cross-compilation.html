@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -267,34 +267,25 @@ get the hang of it eventually.</p>
 <h2 id="defining-the-environment">Defining the environment</h2>
 <p>Meson requires you to write a cross build definition file. It defines
 various properties of the cross build environment. The cross file
-consists of different sections. The first one is the list of
-executables that we are going to use. A sample snippet might look like
-this:</p>
+consists of different sections.</p>
+<p>There are a number of options shared by cross and native files,
+<a href="Machine-files.html">here</a>. It is assumed that you have read that section already,
+as this documentation will only call out options specific to cross files.</p>
+<h3 id="binaries">Binaries</h3>
 <pre><code class="language-ini">[binaries]
-c = '/usr/bin/i586-mingw32msvc-gcc'
-cpp = '/usr/bin/i586-mingw32msvc-g++'
-ld = 'gold'
-ar = '/usr/i586-mingw32msvc/bin/ar'
-strip = '/usr/i586-mingw32msvc/bin/strip'
-pkgconfig = '/usr/bin/i586-mingw32msvc-pkg-config'
 exe_wrapper = 'wine' # A command used to run generated executables.
 </code></pre>
-<p>The entries are pretty self explanatory but the last line is
-special. It defines a <em>wrapper command</em> that can be used to run
-executables for this host. In this case we can use Wine, which runs
-Windows applications on Linux. Other choices include running the
-application with qemu or a hardware simulator. If you have this kind
-of a wrapper, these lines are all you need to write. Meson will
-automatically use the given wrapper when it needs to run host
-binaries. This happens e.g. when running the project's test suite.</p>
-<p>ld is special because it is compiler specific. For compilers like gcc and
-clang which are used to invoke the linker this is a value to pass to their
-"choose the linker" argument (-fuse-ld= in this case). For compilers like
-MSVC and Clang-Cl, this is the path to a linker for meson to invoke, such as
-<code>link.exe</code> or <code>lld-link.exe</code>. Support for ls is <em>new in 0.53.0</em></p>
-<p>The next section lists properties of the cross compiler and its target
-system, and thus properties of host system of what we're building. It
-looks like this:</p>
+<p>The <code>exe_wrapper</code> option defines a <em>wrapper command</em> that can be used to run
+executables for this host. In this case we can use Wine, which runs Windows
+applications on Linux. Other choices include running the application with
+qemu or a hardware simulator. If you have this kind of a wrapper, these lines
+are all you need to write. Meson will automatically use the given wrapper
+when it needs to run host binaries. This happens e.g. when running the
+project's test suite.</p>
+<h3 id="properties">Properties</h3>
+<p>In addition to the properites allowed in <a href="Machine-files.html#properties">all machine
+files</a>, the cross file may contain specific
+information about the cross compiler or the host machine. It looks like this:</p>
 <pre><code class="language-ini">[properties]
 sizeof_int = 4
 sizeof_wchar_t = 4
@@ -306,8 +297,6 @@ alignment_double = 4
 
 has_function_printf = true
 
-c_args = ['-DCROSS=1', '-DSOMETHING=3']
-c_link_args = ['-some_link_arg']
 sys_root = '/some/path'
 pkg_config_libdir = '/some/path/lib/pkgconfig'
 </code></pre>
@@ -342,6 +331,7 @@ binaries are not actually compatible. In such cases you may use the
 <pre><code class="language-ini">[properties]
 needs_exe_wrapper = true
 </code></pre>
+<h3 id="machine-entries">Machine Entries</h3>
 <p>The next bit is the definition of host and target machines. Every
 cross build definition must have one or both of them. If it had
 neither, the build would not be a cross build but a native build. You
@@ -372,19 +362,6 @@ but with different operating systems.</p>
 <p>If you do not define your host machine, it is assumed to be the build
 machine. Similarly if you do not specify target machine, it is assumed
 to be the host machine.</p>
-<p>Additionally, you can define the paths that you want to install to in your
-cross file. This may be especially useful when cross compiling an entire
-operating system, or for operating systems to use internally for consistency.</p>
-<pre><code class="language-ini">[paths]
-prefix = '/my/prefix'
-libdir = 'lib/i386-linux-gnu'
-bindir = 'bin'
-</code></pre>
-<p>This will be overwritten by any options passed on the command line.</p>
-<p>Since meson 0.52.0 it is possible to layer cross files together. This
-works like native file layering: the purpose is to compose cross files
-together, and values from the second cross file will replace those
-from the first.</p>
 <h2 id="starting-a-cross-build">Starting a cross build</h2>
 <p>Once you have the cross file, starting a build is simple</p>
 <pre><code class="language-console">$ meson srcdir builddir --cross-file cross_file.txt

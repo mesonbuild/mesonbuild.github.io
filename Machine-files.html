@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Cross and Native File reference</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Kconfig-module.html">kconfig</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Machine-files.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="cross-and-native-file-reference">Cross and Native File reference</h1>
+<p>Cross and native files are nearly identical, but not completely. This is the
+documentation on the common values used by both, for the specific values of
+one or the other see the <a href="Cross-compilation.html">cross compilation</a> and <a href="Native-environments.html">native
+environments</a>.</p>
+<h2 id="sections">Sections</h2>
+<p>The following sections are allowed:</p>
+<ul>
+<li>binaries</li>
+<li>paths</li>
+<li>properties</li>
+</ul>
+<h3 id="binaries">Binaries</h3>
+<p>The binaries section contains a list of binaries. These can be used
+internally by meson, or by the <code>find_program</code> function:</p>
+<p>Compilers and linkers are defined here using <code>&lt;lang&gt;</code> and <code>&lt;lang&gt;_ld</code>.
+<code>&lt;lang&gt;_ld</code> is special because it is compiler specific. For compilers like
+gcc and clang which are used to invoke the linker this is a value to pass to
+their "choose the linker" argument (-fuse-ld= in this case). For compilers
+like MSVC and Clang-Cl, this is the path to a linker for meson to invoke,
+such as <code>link.exe</code> or <code>lld-link.exe</code>. Support for ls is <em>new in 0.53.0</em></p>
+<p><em>changed in 0.53.1</em> the <code>ld</code> variable was replaced by <code>&lt;lang&gt;_ld</code>, because it
+*regressed a large number of projects. in 0.53.0 the <code>ld</code> variable was used
+instead.</p>
+<p>Native example:</p>
+<pre><code class="language-ini">c = '/usr/bin/clang'
+c_ld = 'lld'
+sed = 'C:\\program files\\gnu\\sed.exe'
+llvm-config = '/usr/lib/llvm8/bin/llvm-config'
+</code></pre>
+<p>Cross example:</p>
+<pre><code class="language-ini">c = '/usr/bin/i586-mingw32msvc-gcc'
+cpp = '/usr/bin/i586-mingw32msvc-g++'
+c_ld = 'gold'
+cpp_ld = 'gold'
+ar = '/usr/i586-mingw32msvc/bin/ar'
+strip = '/usr/i586-mingw32msvc/bin/strip'
+pkgconfig = '/usr/bin/i586-mingw32msvc-pkg-config'
+</code></pre>
+<p>An incomplete list of internally used programs that can be overridden here is:</p>
+<ul>
+<li>cmake</li>
+<li>cups-config</li>
+<li>gnustep-config</li>
+<li>gpgme-config</li>
+<li>libgcrypt-config</li>
+<li>libwmf-config</li>
+<li>llvm-config</li>
+<li>pcap-config</li>
+<li>pkgconfig</li>
+<li>sdl2-config</li>
+<li>wx-config (or wx-3.0-config or wx-config-gtk)</li>
+</ul>
+<h3 id="paths-and-directories">Paths and Directories</h3>
+<p>As of 0.50.0 paths and directories such as libdir can be defined in the native
+file in a paths section</p>
+<pre><code class="language-ini">[paths]
+libdir = 'mylibdir'
+prefix = '/my prefix'
+</code></pre>
+<p>These values will only be loaded when not cross compiling. Any arguments on the
+command line will override any options in the native file. For example, passing
+<code>--libdir=otherlibdir</code> would result in a prefix of <code>/my prefix</code> and a libdir of
+<code>otherlibdir</code>.</p>
+<h3 id="properties">Properties</h3>
+<p><em>New in native files in 0.54.0</em>, always in cross files.</p>
+<p>In addition to special data that may be specified in cross files, this
+section may contain random key value pairs accessed using the
+<code>meson.get_external_property()</code></p>
+<h2 id="properties1">Properties</h2>
+<p><em>New for native files in 0.54.0</em></p>
+<p>The properties section can contain any variable you like, and is accessed via
+<code>meson.get_external_property</code>, or <code>meson.get_cross_property</code>.</p>
+<h2 id="loading-multiple-machine-files">Loading multiple machine files</h2>
+<p>Native files allow layering (cross files can be layered since meson 0.52.0).
+More than one native file can be loaded, with values from a previous file being
+overridden by the next. The intention of this is not overriding, but to allow
+composing native files. This composition is done by passing the command line
+argument multiple times:</p>
+<pre><code class="language-console">meson setup builddir/ --cross-file first.ini --cross-file second.ini --cross-file thrid.ini
+</code></pre>
+<p>In this case <code>first.ini</code> will be loaded, then <code>second.ini</code>, with values from
+<code>second.ini</code> replacing <code>first.ini</code>, and so on.</p>
+<p>For example, if there is a project using C and C++, python 3.4-3.7, and LLVM
+5-7, and it needs to build with clang 5, 6, and 7, and gcc 5.x, 6.x, and 7.x;
+expressing all of these configurations in monolithic configurations would
+result in 81 different native files. By layering them, it can be expressed by
+just 12 native files.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Machine-files.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

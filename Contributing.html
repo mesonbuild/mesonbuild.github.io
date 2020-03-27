@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -359,6 +359,7 @@ are independent of each other and can be combined as needed.</p>
   "installed": [
     { "type": "exe", "file": "usr/bin/testexe" },
     { "type": "pdb", "file": "usr/bin/testexe" },
+    { "type": "shared_lib", "file": "usr/lib/z", "version": "1.2.3" },
   ],
   "matrix": {
     "options": {
@@ -392,20 +393,38 @@ to be installed. Each dict contains the following keys:</p>
 <li><code>type</code></li>
 <li>
 <code>platform</code> (optional)</li>
+<li>
+<code>version</code> (optional)</li>
+<li>
+<code>language</code> (optional)</li>
 </ul>
 <p>The <code>file</code> entry contains the relative path (from the install root) to the
 actually installed file.</p>
 <p>The <code>type</code> entry specifies how the <code>file</code> path should be interpreted based on the
 current platform. The following values are currently supported:</p>
-<p>| <code>type</code>        | Description                                                                      |
-| :-----------: | -------------------------------------------------------------------------------- |
-| <code>file</code>        | No postprocessing, just use the provided path                                    |
-| <code>exe</code>         | For executables. On Windows the <code>.exe</code> suffix is added to the path in <code>file</code>     |
-| <code>pdb</code>         | For Windows PDB files. PDB entries are ignored on non Windows platforms          |
-| <code>implib</code>      | For Windows import libraries. These entries are ignored on non Windows platforms |
-| <code>implibempty</code> | Like <code>implib</code>, but no symbols are exported in the library                        |
-| <code>expr</code>        | <code>file</code> is an expression. This type should be avoided and removed if possible     |</p>
+<p>| <code>type</code>        | Description                                                                                             |
+| :-----------: | ------------------------------------------------------------------------------------------------------- |
+| <code>file</code>        | No postprocessing, just use the provided path                                                           |
+| <code>exe</code>         | For executables. On Windows the <code>.exe</code> suffix is added to the path in <code>file</code>                            |
+| <code>shared_lib</code>  | For shared libraries, always written as <code>name</code>. The appropriate suffix and prefix are added by platform |
+| <code>pdb</code>         | For Windows PDB files. PDB entries are ignored on non Windows platforms                                 |
+| <code>implib</code>      | For Windows import libraries. These entries are ignored on non Windows platforms                        |
+| <code>implibempty</code> | Like <code>implib</code>, but no symbols are exported in the library                                               |
+| <code>expr</code>        | <code>file</code> is an expression. This type should be avoided and removed if possible                            |</p>
 <p>Except for the <code>file</code> and <code>expr</code> types, all paths should be provided <em>without</em> a suffix.</p>
+<p>| Argument   | Applies to                 | Description                                                                   |
+| :---------:|----------------------------|-------------------------------------------------------------------------------|
+| <code>version</code>  | <code>shared_lib</code>, <code>pdb</code>        | Sets the version to look for appropriately per-platform                       |
+| <code>language</code> | <code>pdb</code>                      | Determines which compiler/linker determines the existence of this file        |</p>
+<p>The <code>shared_lib</code> and <code>pdb</code> types takes an optional additional parameter, <code>version</code>, this is us a string in <code>X.Y.Z</code> format that will be applied to the library. Each version to be tested must have a single version. The harness will apply this correctly per platform:</p>
+<p><code>pdb</code> takes an optional <code>language</code> argument. This determines which compiler/linker should generate the pdb file. Because it's possible to mix compilers that do and don't generate pdb files (dmd's optlink doesn't). Currently this is only needed when mixing D and C code.</p>
+<pre><code class="language-json">{
+  "type": "shared_lib", "file": "usr/lib/lib",
+  "type": "shared_lib", "file": "usr/lib/lib", "version": "1",
+  "type": "shared_lib", "file": "usr/lib/lib", "version": "1.2.3.",
+}
+</code></pre>
+<p>This will be applied appropriatly per platform. On windows this expects <code>lib.dll</code> and <code>lib-1.dll</code>. on MacOS it expects <code>liblib.dylib</code> and <code>liblib.1.dylib</code>. On other Unices it expects <code>liblib.so</code>, <code>liblib.so.1</code>, and <code>liblib.so.1.2.3</code>.</p>
 <p>If the <code>platform</code> key is present, the installed file entry is only considered if
 the platform matches. The following values for <code>platform</code> are currently supported:</p>
 <p>| <code>platform</code> | Description                                                          |

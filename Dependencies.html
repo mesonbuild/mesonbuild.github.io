@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -310,6 +310,9 @@ a CMake target with the <code>modules</code> property if meson is unable to gues
 it automatically.</p>
 <pre><code class="language-meson">    cmake_dep = dependency('ZLIB', method : 'cmake', modules : ['ZLIB::ZLIB'])
 </code></pre>
+<p>Support for adding additional <code>COMPONENTS</code> for the CMake <code>find_package</code> lookup
+is provided with the <code>components</code> kwarg (<em>introduced in 0.54.0</em>). All specified
+componets will be passed directly to <code>find_package(COMPONENTS)</code>.</p>
 <p>It is also possible to reuse existing <code>Find&lt;name&gt;.cmake</code> files with the
 <code>cmake_module_path</code> property. Using this property is equivalent to setting the
 <code>CMAKE_MODULE_PATH</code> variable in CMake. The path(s) given to <code>cmake_module_path</code>
@@ -473,7 +476,11 @@ not provide them, it will search for the standard wrapper executables,
 <code>mpic</code>, <code>mpicxx</code>, <code>mpic++</code>, <code>mpifort</code>, <code>mpif90</code>, <code>mpif77</code>. If these
 are not in your path, they can be specified by setting the standard
 environment variables <code>MPICC</code>, <code>MPICXX</code>, <code>MPIFC</code>, <code>MPIF90</code>, or
-<code>MPIF77</code>, during configuration.</p>
+<code>MPIF77</code>, during configuration. It will also try to use the Microsoft
+implementation on windows via the <code>system</code> method.</p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>pkg-config</code> or <code>system</code>.</p>
+<p><em>New in 0.54.0</em> The <code>config-tool</code> and <code>system</code> method values. Previous
+versions would always try <code>pkg-config</code>, then <code>config-tool</code>, then <code>system</code>.</p>
 <h2 id="netcdf">NetCDF</h2>
 <p><em>(added 0.50.0)</em></p>
 <p>NetCDF is supported for C, C++ and Fortran. Because NetCDF dependencies are
