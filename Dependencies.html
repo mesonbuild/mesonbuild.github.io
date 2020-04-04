@@ -458,6 +458,14 @@ generated for a static link):</p>
   'llvm', version : '&gt;= 4.0', modules : ['amdgpu'], optional_modules : ['inteljitevents'],
 )
 </code></pre>
+<h3 id="using-llvm-tools">Using LLVM tools</h3>
+<p>When using LLVM as library but also needing its tools, it is often beneficial to use the same version.
+This can partially be achieved with the <code>version</code> argument of <code>find_program()</code>.
+However, distributions tend to package different LLVM versions in rather different ways.
+Therefore, it is often better to use the llvm dependency directly to retrieve the tools:</p>
+<pre><code class="language-meson">llvm_dep = dependency('llvm', version : ['&gt;= 8', '&lt; 9'])
+llvm_link = find_program(llvm_dep.get_variable(configtool: 'bindir') / 'llvm-link')
+</code></pre>
 <h2 id="mpi">MPI</h2>
 <p><em>(added 0.42.0)</em></p>
 <p>MPI is supported for C, C++ and Fortran. Because dependencies are
