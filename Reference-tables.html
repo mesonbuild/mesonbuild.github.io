@@ -945,17 +945,72 @@ which are supported by MSVC, GCC, Clang, and other compilers.</p>
 </tbody>
 </table>
 <h2 id="compiler-and-linker-selection-variables">Compiler and Linker selection variables</h2>
-<p>| Language      | Compiler | Linker    | Note                                        |
-|:-------------:|----------|-----------|---------------------------------------------|
-| C             | CC       | CC_LD     |                                             |
-| C++           | CXX      | CXX_LD    |                                             |
-| D             | DC       | DC_LD     | Before 0.54 D_LD*                           |
-| Fortran       | FC       | FC_LD     | Before 0.54 F_LD*                           |
-| Objective-C   | OBJC     | OBJC_LD   |                                             |
-| Objective-C++ | OBJCXX   | OBJCXX_LD | Before 0.54 OBJCPP_LD*                      |
-| Rust          | RUSTC    | RUSTC_LD  | Before 0.54 RUST_LD*                        |
-| Vala          | VALAC    |           | Use CC_LD. Vala transpiles to C             |
-| C#            | CSC      | CSC       | The linker is the compiler                  |</p>
+<table>
+<thead>
+<tr>
+<th> Language</th>
+<th> Compiler</th>
+<th> Linker</th>
+<th> Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> C</td>
+<td> CC</td>
+<td> CC_LD</td>
+<td></td>
+</tr>
+<tr>
+<td> C++</td>
+<td> CXX</td>
+<td> CXX_LD</td>
+<td></td>
+</tr>
+<tr>
+<td> D</td>
+<td> DC</td>
+<td> DC_LD</td>
+<td> Before 0.54 D_LD*</td>
+</tr>
+<tr>
+<td> Fortran</td>
+<td> FC</td>
+<td> FC_LD</td>
+<td> Before 0.54 F_LD*</td>
+</tr>
+<tr>
+<td> Objective-C</td>
+<td> OBJC</td>
+<td> OBJC_LD</td>
+<td></td>
+</tr>
+<tr>
+<td> Objective-C++</td>
+<td> OBJCXX</td>
+<td> OBJCXX_LD</td>
+<td> Before 0.54 OBJCPP_LD*</td>
+</tr>
+<tr>
+<td> Rust</td>
+<td> RUSTC</td>
+<td> RUSTC_LD</td>
+<td> Before 0.54 RUST_LD*</td>
+</tr>
+<tr>
+<td> Vala</td>
+<td> VALAC</td>
+<td></td>
+<td> Use CC_LD. Vala transpiles to C</td>
+</tr>
+<tr>
+<td> C#</td>
+<td> CSC</td>
+<td> CSC</td>
+<td> The linker is the compiler</td>
+</tr>
+</tbody>
+</table>
 <p>*The old environment variales are still supported, but are deprecated and will
 be removed in a future version of meson.</p>
 

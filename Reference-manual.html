@@ -1188,7 +1188,7 @@ the owner/uid and group/gid for the installed files. <em>(Added 0.47.0)</em>
 </li>
 <li>
 <code>strip_directory</code>: install directory contents. <code>strip_directory=false</code> by default.
-If <code>strip_directory=false</code> only last component of source path is used.
+If <code>strip_directory=true</code> only the last component of the source path is used.
 Since 0.45.0</li>
 </ul>
 <p>For a given directory <code>foo</code>:</p>
@@ -1270,9 +1270,9 @@ library basis using the <a href="Reference-manual.html#dependency">dependency()<
 <li>
 <code>name_prefix</code> the string that will be used as the prefix for the
 target output filename by overriding the default (only used for
-libraries). By default this is <code>lib</code> on all platforms and compilers
-except with MSVC shared libraries where it is omitted to follow
-convention.</li>
+libraries). By default this is <code>lib</code> on all platforms and compilers,
+except for MSVC shared libraries where it is omitted to follow
+convention, and Cygwin shared libraries where it is <code>cyg</code>.</li>
 <li>
 <code>name_suffix</code> the string that will be used as the suffix for the
 target output filename by overriding the default (see also:
@@ -1281,7 +1281,7 @@ is <code>dylib</code> on macOS, <code>dll</code> on Windows, and <code>so</code>
 For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
-<code>xxx.lib</code> import files.</li>
+import libraries with a <code>lib</code> suffix.</li>
 <li>
 <code>rust_crate_type</code> specifies the crate type for Rust
 libraries. Defaults to <code>dylib</code> for shared libraries and <code>rlib</code> for
