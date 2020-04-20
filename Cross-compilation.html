@@ -351,14 +351,17 @@ your Meson scripts. There are three predefined variables called,
 surprisingly, <code>build_machine</code>, <code>host_machine</code> and
 <code>target_machine</code>. Determining the operating system of your host
 machine is simply a matter of calling <code>host_machine.system()</code>.</p>
-<p>There are two different values for the CPU. The first one is
-<code>cpu_family</code>. It is a general type of the CPU. Common values might
-include <code>x86</code>, <code>arm</code> or <code>x86_64</code>. The second value is <code>cpu</code> which is a
-more specific subtype for the CPU. Typical values for a <code>x86</code> CPU
-family might include <code>i386</code> or <code>i586</code> and for <code>arm</code> family <code>armv5</code> or
-<code>armv7hl</code>. Note that CPU type strings are very system dependent. You
-might get a different value if you check its value on the same machine
-but with different operating systems.</p>
+<p>There are two different values for the CPU. The first one is <code>cpu_family</code>. It
+is a general type of the CPU. This should have a value from <a href="Reference-tables.html#cpu-families">the CPU Family
+table</a>. <em>Note</em> that meson does not add
+<code>el</code> to end cpu_family value for little endian systems. Big endian and little
+endian mips are both just <code>mips</code>, with the <code>endian</code> field set approriately.</p>
+<p>The second value is <code>cpu</code> which is
+a more specific subtype for the CPU. Typical values for a <code>x86</code> CPU family
+might include <code>i386</code> or <code>i586</code> and for <code>arm</code> family <code>armv5</code> or <code>armv7hl</code>.
+Note that CPU type strings are very system dependent. You might get a
+different value if you check its value on the same machine but with different
+operating systems.</p>
 <p>If you do not define your host machine, it is assumed to be the build
 machine. Similarly if you do not specify target machine, it is assumed
 to be the host machine.</p>
