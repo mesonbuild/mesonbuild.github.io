@@ -114,7 +114,7 @@ $('body').removeClass('no-script');
 				<a href="Icestorm-module.html">Icestorm</a>
 			</li>
 					<li>
-				<a href="Kconfig-module.html">kconfig</a>
+				<a href="Keyval-module.html">Keyval</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -359,6 +359,8 @@ llvm_dep = dependency('llvm', version : '&gt;=4.0')
 libgcrypt_dep = dependency('libgcrypt', version: '&gt;= 1.8')
 gpgme_dep = dependency('gpgme', version: '&gt;= 1.0')
 </code></pre>
+<p><em>Since 0.55.0</em> Meson won't search $PATH any more for a config tool binary when
+cross compiling if the config tool did not have an entry in the cross file.</p>
 <h2 id="appleframeworks">AppleFrameworks</h2>
 <p>Use the <code>modules</code> keyword to list frameworks required, e.g.</p>
 <pre><code class="language-meson">dep = dependency('appleframeworks', modules : 'foundation')

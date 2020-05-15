@@ -114,7 +114,7 @@ $('body').removeClass('no-script');
 				<a href="Icestorm-module.html">Icestorm</a>
 			</li>
 					<li>
-				<a href="Kconfig-module.html">kconfig</a>
+				<a href="Keyval-module.html">Keyval</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -560,10 +560,43 @@ an empty dict (<code>{}</code>) to will match <strong>all</strong> elements in t
 <li><code>libdir</code></li>
 </ul>
 <h4 id="tools">tools</h4>
-<p>This section specifies a list of tool requirements in a simple key-value format.
+<p>This section specifies a dict of tool requirements in a simple key-value format.
 If a tool is specified, it has to be present in the environment, and the version
-requirement must be fulfilled match. Otherwise, the entire test is skipped
-(including every element in the test matrix).</p>
+requirement must be fulfilled. Otherwise, the entire test is skipped (including
+every element in the test matrix).</p>
+<h4 id="stdout">stdout</h4>
+<p>The <code>stdout</code> key contains a list of dicts, describing the expected stdout.</p>
+<p>Each dict contains the following keys:</p>
+<ul>
+<li><code>line</code></li>
+<li>
+<code>match</code> (optional)</li>
+</ul>
+<p>Each item in the list is matched, in order, against the remaining actual stdout
+lines, after any previous matches. If the actual stdout is exhausted before
+every item in the list is matched, the expected output has not been seen, and
+the test has failed.</p>
+<p>The <code>match</code> element of the dict determines how the <code>line</code> element is matched:</p>
+<table>
+<thead>
+<tr>
+<th> Type</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>literal</code>
+</td>
+<td> Literal match (default)</td>
+</tr>
+<tr>
+<td> <code>re</code>
+</td>
+<td> regex match</td>
+</tr>
+</tbody>
+</table>
 <h3 id="skipping-integration-tests">Skipping integration tests</h3>
 <p>Meson uses several continuous integration testing systems that have slightly
 different interfaces for indicating a commit should be skipped.</p>

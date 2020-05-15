@@ -114,7 +114,7 @@ $('body').removeClass('no-script');
 				<a href="Icestorm-module.html">Icestorm</a>
 			</li>
 					<li>
-				<a href="Kconfig-module.html">kconfig</a>
+				<a href="Keyval-module.html">Keyval</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -349,6 +349,25 @@ property to the path in your project where the CMake scripts are stored.</p>
 <p>The <code>cmake_module_path</code> property is only needed for custom CMake scripts. System
 wide CMake scripts are found automatically.</p>
 <p>More information can be found <a href="Dependencies.html#cmake">here</a></p>
+<h2 id="get-a-default-notfound-dependency">Get a default not-found dependency?</h2>
+<pre><code class="language-meson">null_dep = dependency('', required : false)
+</code></pre>
+<p>This can be used in cases where you want a default value, but might override it
+later.</p>
+<pre><code class="language-meson"># Not needed on Windows!
+my_dep = dependency('', required : false)
+if host_machine.system() in ['freebsd', 'netbsd', 'openbsd', 'dragonfly']
+  my_dep = dependency('some dep', required : false)
+elif host_machine.system() == 'linux'
+  my_dep = dependency('some other dep', required : false)
+endif
+
+executable(
+  'myexe',
+  my_sources,
+  deps : [my_dep]
+)
+</code></pre>
 
     </div>
         

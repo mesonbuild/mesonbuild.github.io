@@ -114,7 +114,7 @@ $('body').removeClass('no-script');
 				<a href="Icestorm-module.html">Icestorm</a>
 			</li>
 					<li>
-				<a href="Kconfig-module.html">kconfig</a>
+				<a href="Keyval-module.html">Keyval</a>
 			</li>
 					<li>
 				<a href="Pkgconfig-module.html">Pkgconfig</a>
@@ -1695,11 +1695,19 @@ before test is executed even if they have <code>build_by_default : false</code>.
 Since 0.46.0</p>
 </li>
 <li>
-<p><code>protocol</code> specifies how the test results are parsed and can be one
-of <code>exitcode</code> (the executable's exit code is used by the test harness
-to record the outcome of the test) or <code>tap</code> (<a href="https://www.testanything.org/">Test Anything
-Protocol</a>). For more on the Meson test
-harness protocol read <a href="Unit-tests.html">Unit Tests</a>. Since 0.50.0</p>
+<p><code>protocol</code> <em>(Since 0.50.0)</em> specifies how the test results are parsed and can
+be one of <code>exitcode</code>, <code>tap</code>, or <code>gtest</code>. For more information about test
+harness protocol read <a href="Unit-tests.html">Unit Tests</a>. The following values are
+accepted:</p>
+<ul>
+<li>
+<code>exitcode</code>: the executable's exit code is used by the test harness
+to record the outcome of the test)</li>
+<li>
+<code>tap</code> (<a href="https://www.testanything.org/">Test Anything Protocol</a>)</li>
+<li>
+<code>gtest</code>. <em>(Since 0.55.0)</em> for Google Tests.</li>
+</ul>
 </li>
 <li>
 <p><code>priority</code> specifies the priority of a test. Tests with a
@@ -1867,10 +1875,15 @@ If <code>native: false</code> or not specified, variable is retrieved from the
 cross-file if cross-compiling, and from the native-file when not cross-compiling.</p>
 </li>
 <li>
-<p><code>has_exe_wrapper()</code> returns true when doing a cross build if there
-is a wrapper command that can be used to execute cross built
-binaries (for example when cross compiling from Linux to Windows,
-one can use <code>wine</code> as the wrapper).</p>
+<p><code>can_run_host_binaries()</code> returns true if the build machine can run
+binaries compiled for the host. This returns true unless you are
+cross compiling, need a helper to run host binaries, and don't have one.
+For example when cross compiling from Linux to Windows, one can use <code>wine</code>
+as the helper. <em>New in 0.55.0</em></p>
+</li>
+<li>
+<p><code>has_exe_wrapper()</code> alias of <code>can_run_host_binaries</code>
+<em>Deprecated since 0.55.0</em></p>
 </li>
 <li>
 <p><code>install_dependency_manifest(output_name)</code> installs a manifest file
