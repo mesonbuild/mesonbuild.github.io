@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -238,7 +238,7 @@ found multiple ways and you don't want to constrain the type you can use
 the generic <code>get_variable</code> method. This currently supports cmake, pkg-config,
 and config-tool based variables.</p>
 <pre><code class="language-meson">foo_dep = dependency('foo')
-var = foo.get_variable(cmake : 'CMAKE_VAR', pkgconfig : 'pkg-config-var', configtool : 'get-var', default_value : 'default')
+var = foo_dep.get_variable(cmake : 'CMAKE_VAR', pkgconfig : 'pkg-config-var', configtool : 'get-var', default_value : 'default')
 </code></pre>
 <p>It accepts the keywords 'cmake', 'pkgconfig', 'pkgconfig_define',
 'configtool', 'internal', and 'default_value'. 'pkgconfig_define' works just

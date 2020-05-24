@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -488,6 +488,190 @@ can be done by running <code>meson introspect --buildsystem-files /path/to/build
 <p>Meson also provides the <code>meson introspect</code> for project introspection via the
 command line. Use <code>meson introspect -h</code> to see all available options.</p>
 <p>This API can also work without a build directory for the <code>--projectinfo</code> command.</p>
+<h1 id="ast-of-a-mesonbuild">AST of a <code>meson.build</code>
+</h1>
+<p>Since meson <em>0.55.0</em> it is possible to dump the AST of a <code>meson.build</code> as a JSON
+object. The interface for this is <code>meson introspect --ast /path/to/meson.build</code>.</p>
+<p>Each node of the AST has at least the following entries:</p>
+<table>
+<thead>
+<tr>
+<th> Key</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>node</code>
+</td>
+<td> Type of the node (see following table)</td>
+</tr>
+<tr>
+<td> <code>lineno</code>
+</td>
+<td> Line number of the node in the file</td>
+</tr>
+<tr>
+<td> <code>colno</code>
+</td>
+<td> Column number of the node in the file</td>
+</tr>
+<tr>
+<td> <code>end_lineno</code>
+</td>
+<td> Marks the end of the node (may be the same as <code>lineno</code>)</td>
+</tr>
+<tr>
+<td> <code>end_colno</code>
+</td>
+<td> Marks the end of the node (may be the same as <code>colno</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Possible values for <code>node</code> with additional keys:</p>
+<table>
+<thead>
+<tr>
+<th> Node type</th>
+<th> Additional keys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>BooleanNode</code>
+</td>
+<td> <code>value</code>: bool</td>
+</tr>
+<tr>
+<td> <code>IdNode</code>
+</td>
+<td> <code>value</code>: str</td>
+</tr>
+<tr>
+<td> <code>NumberNode</code>
+</td>
+<td> <code>value</code>: int</td>
+</tr>
+<tr>
+<td> <code>StringNode</code>
+</td>
+<td> <code>value</code>: str</td>
+</tr>
+<tr>
+<td> <code>ContinueNode</code>
+</td>
+<td></td>
+</tr>
+<tr>
+<td> <code>BreakNode</code>
+</td>
+<td></td>
+</tr>
+<tr>
+<td> <code>ArgumentNode</code>
+</td>
+<td> <code>positional</code>: node list; <code>kwargs</code>: accept_kwargs</td>
+</tr>
+<tr>
+<td> <code>ArrayNode</code>
+</td>
+<td> <code>args</code>: node</td>
+</tr>
+<tr>
+<td> <code>DictNode</code>
+</td>
+<td> <code>args</code>: node</td>
+</tr>
+<tr>
+<td> <code>EmptyNode</code>
+</td>
+<td></td>
+</tr>
+<tr>
+<td> <code>OrNode</code>
+</td>
+<td> <code>left</code>: node; <code>right</code>: node</td>
+</tr>
+<tr>
+<td> <code>AndNode</code>
+</td>
+<td> <code>left</code>: node; <code>right</code>: node</td>
+</tr>
+<tr>
+<td> <code>ComparisonNode</code>
+</td>
+<td> <code>left</code>: node; <code>right</code>: node; <code>ctype</code>: str</td>
+</tr>
+<tr>
+<td> <code>ArithmeticNode</code>
+</td>
+<td> <code>left</code>: node; <code>right</code>: node; <code>op</code>: str</td>
+</tr>
+<tr>
+<td> <code>NotNode</code>
+</td>
+<td> <code>right</code>: node</td>
+</tr>
+<tr>
+<td> <code>CodeBlockNode</code>
+</td>
+<td> <code>lines</code>: node list</td>
+</tr>
+<tr>
+<td> <code>IndexNode</code>
+</td>
+<td> <code>object</code>: node; <code>index</code>: node</td>
+</tr>
+<tr>
+<td> <code>MethodNode</code>
+</td>
+<td> <code>object</code>: node; <code>args</code>: node; <code>name</code>: str</td>
+</tr>
+<tr>
+<td> <code>FunctionNode</code>
+</td>
+<td> <code>args</code>: node; <code>name</code>: str</td>
+</tr>
+<tr>
+<td> <code>AssignmentNode</code>
+</td>
+<td> <code>value</code>: node; <code>var_name</code>: str</td>
+</tr>
+<tr>
+<td> <code>PlusAssignmentNode</code>
+</td>
+<td> <code>value</code>: node; <code>var_name</code>: str</td>
+</tr>
+<tr>
+<td> <code>ForeachClauseNode</code>
+</td>
+<td> <code>items</code>: node; <code>block</code>: node; <code>varnames</code>: list</td>
+</tr>
+<tr>
+<td> <code>IfClauseNode</code>
+</td>
+<td> <code>ifs</code>: node list; <code>else</code>: node</td>
+</tr>
+<tr>
+<td> <code>IfNode</code>
+</td>
+<td> <code>condition</code>: node; <code>block</code>: node</td>
+</tr>
+<tr>
+<td> <code>UMinusNode</code>
+</td>
+<td> <code>right</code>: node</td>
+</tr>
+<tr>
+<td> <code>TernaryNode</code>
+</td>
+<td> <code>condition</code>: node; <code>true</code>: node; <code>false</code>: node</td>
+</tr>
+</tbody>
+</table>
+<p>We do not guarantee the stability of this format since it is heavily linked to
+the internal Meson AST. However, breaking changes (removal of a node type or the
+removal of a key) are unlikely and will be announced in the release notes.</p>
 <h1 id="existing-integrations">Existing integrations</h1>
 <ul>
 <li><a href="https://wiki.gnome.org/Apps/Builder">Gnome Builder</a></li>

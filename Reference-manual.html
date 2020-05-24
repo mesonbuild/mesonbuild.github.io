@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -1637,6 +1637,12 @@ object</a> returned by
 <a href="Reference-manual.html#executable"><code>executable()</code></a> or an <a href="Reference-manual.html#external-program-object">external program
 object</a> returned by
 <a href="Reference-manual.html#find_program"><code>find_program()</code></a>.</p>
+<p><em>Since 0.55.0</em> When cross compiling, if an exe_wrapper is needed and defined
+the environment variable <code>MESON_EXE_WRAPPER</code> will be set to the string value
+of that wrapper (implementation detail: using <code>mesonlib.join_args</code>). Test
+scripts may use this to run cross built binaries. If your test needs
+<code>MESON_EXE_WRAPPER</code> in cross build situations it is your responsibility to
+return code 77 to tell the harness to report "skip"</p>
 <p>By default, environment variable
 <a href="http://man7.org/linux/man-pages/man3/mallopt.3.html"><code>MALLOC_PERTURB_</code></a>
 is automatically set by <code>meson test</code> to a random value between 1..255.
