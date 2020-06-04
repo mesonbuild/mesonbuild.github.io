@@ -271,6 +271,11 @@ revision = head
 directory name. Needed when the source file does not have a leading
 directory.</li>
 </ul>
+<p>Since <em>0.55.0</em> it is possible to use only the <code>source_filename</code> and
+<code>patch_filename</code> value in a .wrap file (without <code>source_url</code> and <code>patch_url</code>) to
+specify a local archive in the <code>subprojects/packagefiles</code> directory. The <code>*_hash</code>
+entries are optional when using this method. This method should be prefered over
+the old <code>packagecache</code> approach described below.</p>
 <p>Since <em>0.49.0</em> if <code>source_filename</code> or <code>patch_filename</code> is found in the
 project's <code>subprojects/packagecache</code> directory, it will be used instead
 of downloading the file, even if <code>--wrap-mode</code> option is set to
@@ -337,7 +342,7 @@ many dependencies ready to use. You can read more about WrapDB <a href="Using-th
 		<div id="subpages">
 	<p><b>Subpages:</b></p>
 	<div class="thumb-subpages">
-																																																				</div>
+																																																											</div>
 							<p>
 			<a href="Adding-new-projects-to-wrapdb.html">Adding new projects to WrapDB</a>
 						</p>
@@ -346,6 +351,9 @@ many dependencies ready to use. You can read more about WrapDB <a href="Using-th
 						</p>
 									<p>
 			<a href="Using-wraptool.html">Using wraptool</a>
+						</p>
+									<p>
+			<a href="Wrap-maintainer-tools.html">Wrap maintainer tools</a>
 						</p>
 									<p>
 			<a href="Wrap-best-practices-and-tips.html">Wrap best practices and tips</a>

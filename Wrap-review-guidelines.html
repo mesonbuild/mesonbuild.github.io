@@ -194,20 +194,30 @@ check in the review. If some item is not met it does not mean that the
 package is rejected. What should be done will be determined on a
 case-by-case basis. Similarly meeting all these requirements does not
 guarantee that the package will get accepted. Use common sense.</p>
-<h2 id="checklist">Checklist</h2>
-<p>Reviewer: copy-paste this to MR discussion box and tick all boxes that apply.</p>
-<pre><code>- [ ] project() has version string
-- [ ] project() has license string
-- [ ] if new project, master has tagged commit as only commit
-- [ ] if new branch, it is branched from master
-- [ ] contains a readme.txt
-- [ ] contains an upstream.wrap file
-- [ ] download link points to authoritative upstream location
-- [ ] wrap repository contains only build system files
-- [ ] merge request is pointed to correct target branch (not master)
-- [ ] wrap works
-- [ ] repo does not have useless top level directory (i.e. libfoobar-1.0.0)
+<p>The review process is partially automated by the <a href="Wrap-maintainer-tools.html">mesonwrap</a>
+<code>review</code> tool.</p>
+<pre><code>mesonwrap review zlib --pull-request=1 [--approve]
 </code></pre>
+<p>Since not every check can be automated please pay attention to the following during the review:</p>
+<ul>
+<li>Download link points to an authoritative upstream location.</li>
+<li>Version branch is created from master.</li>
+<li>Except for the existing code, <code>LICENSE.build</code> is mandatory.</li>
+<li>
+<code>project()</code> has a version and it matches the source version.</li>
+<li>
+<code>project()</code> has a license.</li>
+<li>Complex <code>configure_file()</code> inputs are documented.
+If the file is a copy of a project file make sure it is clear what was changed.</li>
+<li>Unit tests are enabled if the project provides them.</li>
+<li>There are no guidelines if <code>install()</code> is a good or a bad thing in wraps.</li>
+<li>If the project can't be tested on the host platform consider using the <code>--cross-file</code> flag.
+See <a href="https://github.com/mesonbuild/mesonwrap/issues/125">the issue</a>.</li>
+</ul>
+<p>Encourage wrap readability. Use your own judgement.</p>
+<h2 id="approval">Approval</h2>
+<p>If the code looks good use the <code>--approve</code> flag to merge it.
+The tool automatically creates a release.</p>
 
     </div>
         
