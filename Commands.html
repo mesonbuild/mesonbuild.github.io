@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Command-line commands</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Keyval-module.html">Keyval</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Commands.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="commandline-commands">Command-line commands</h1>
+<p>There are two different ways of invoking Meson. First, you can run it directly
+from the source tree with the command <code>/path/to/source/meson.py</code>. Meson may
+also be installed in which case the command is simply <code>meson</code>. In this manual
+we only use the latter format for simplicity.</p>
+<p>Meson is invoked using the following syntax:
+<code>meson [COMMAND] [COMMAND_OPTIONS]</code></p>
+<p>This section describes all available commands and some of their Optional arguments.
+The most common workflow is to run <a href="Commands.html#setup"><code>setup</code></a>, followed by <a href="Commands.html#compile"><code>compile</code></a>, and then <a href="Commands.html#install"><code>install</code></a>.</p>
+<p>For the full list of all available options for a specific command use the following syntax:
+<code>meson COMMAND --help</code></p>
+<h3 id="configure">configure</h3>
+<pre><code>$ meson configure [-h] [--prefix PREFIX] [--bindir BINDIR]
+                  [--datadir DATADIR] [--includedir INCLUDEDIR]
+                  [--infodir INFODIR] [--libdir LIBDIR]
+                  [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
+                  [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
+                  [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
+                  [--sysconfdir SYSCONFDIR]
+                  [--auto-features {enabled,disabled,auto}]
+                  [--backend {ninja,vs,vs2010,vs2015,vs2017,vs2019,xcode}]
+                  [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
+                  [--debug] [--default-library {shared,static,both}]
+                  [--errorlogs] [--install-umask INSTALL_UMASK]
+                  [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
+                  [--stdsplit] [--strip] [--unity {on,off,subprojects}]
+                  [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}]
+                  [--werror]
+                  [--wrap-mode {default,nofallback,nodownload,forcefallback}]
+                  [--force-fallback-for FORCE_FALLBACK_FOR]
+                  [--pkg-config-path PKG_CONFIG_PATH]
+                  [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
+                  [--cmake-prefix-path CMAKE_PREFIX_PATH]
+                  [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
+                  [-D option] [--clearcache]
+                  [builddir]
+</code></pre>
+<p>Changes options of a configured meson project.</p>
+<pre><code>positional arguments:
+  builddir
+
+optional arguments:
+  -h, --help                            show this help message and exit
+  --prefix PREFIX                       Installation prefix.
+  --bindir BINDIR                       Executable directory.
+  --datadir DATADIR                     Data file directory.
+  --includedir INCLUDEDIR               Header file directory.
+  --infodir INFODIR                     Info page directory.
+  --libdir LIBDIR                       Library directory.
+  --libexecdir LIBEXECDIR               Library executable directory.
+  --localedir LOCALEDIR                 Locale data directory.
+  --localstatedir LOCALSTATEDIR         Localstate data directory.
+  --mandir MANDIR                       Manual page directory.
+  --sbindir SBINDIR                     System executable directory.
+  --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
+  --sysconfdir SYSCONFDIR               Sysconf data directory.
+  --auto-features {enabled,disabled,auto}
+                                        Override value of all 'auto' features
+                                        (default: auto).
+  --backend {ninja,vs,vs2010,vs2015,vs2017,vs2019,xcode}
+                                        Backend to use (default: ninja).
+  --buildtype {plain,debug,debugoptimized,release,minsize,custom}
+                                        Build type to use (default: debug).
+  --debug                               Debug
+  --default-library {shared,static,both}
+                                        Default library type (default: shared).
+  --errorlogs                           Whether to print the logs from failing
+                                        tests
+  --install-umask INSTALL_UMASK         Default umask to apply on permissions of
+                                        installed files (default: 022).
+  --layout {mirror,flat}                Build directory layout (default:
+                                        mirror).
+  --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --stdsplit                            Split stdout and stderr in test logs
+  --strip                               Strip targets on install
+  --unity {on,off,subprojects}          Unity build (default: off).
+  --unity-size UNITY_SIZE               Unity block size (default: (2, None,
+                                        4)).
+  --warnlevel {0,1,2,3}                 Compiler warning level to use (default:
+                                        1).
+  --werror                              Treat warnings as errors
+  --wrap-mode {default,nofallback,nodownload,forcefallback}
+                                        Wrap mode (default: default).
+  --force-fallback-for FORCE_FALLBACK_FOR
+                                        Force fallback for those subprojects
+                                        (default: []).
+  --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
+                                        to search (default: []). (just for host
+                                        machine)
+  --build.pkg-config-path BUILD.PKG_CONFIG_PATH
+                                        List of additional paths for pkg-config
+                                        to search (default: []). (just for build
+                                        machine)
+  --cmake-prefix-path CMAKE_PREFIX_PATH
+                                        List of additional prefixes for cmake to
+                                        search (default: []). (just for host
+                                        machine)
+  --build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH
+                                        List of additional prefixes for cmake to
+                                        search (default: []). (just for build
+                                        machine)
+  -D option                             Set the value of an option, can be used
+                                        several times to set multiple options.
+  --clearcache                          Clear cached state (e.g. found
+                                        dependencies)
+</code></pre>
+<p>Most arguments are the same as in <a href="Commands.html#setup"><code>setup</code></a>.</p>
+<p>Note: reconfiguring project will not reset options to their default values (even if they were changed in <code>meson.build</code>).</p>
+<h4 id="examples">Examples:</h4>
+<p>List all available options:</p>
+<pre><code>meson configure builddir
+</code></pre>
+<p>Change value of a single option:</p>
+<pre><code>meson configure builddir -Doption=new_value
+</code></pre>
+<h3 id="compile">compile</h3>
+<p><em>(since 0.54.0)</em></p>
+<pre><code>$ meson compile [-h] [-j JOBS] [-l LOAD_AVERAGE] [--clean] [-C BUILDDIR]
+</code></pre>
+<p>Builds a default or a specified target of a configured meson project.</p>
+<pre><code>optional arguments:
+  -h, --help                            show this help message and exit
+  -j JOBS, --jobs JOBS                  The number of worker jobs to run (if
+                                        supported). If the value is less than 1
+                                        the build program will guess.
+  -l LOAD_AVERAGE, --load-average LOAD_AVERAGE
+                                        The system load average to try to
+                                        maintain (if supported)
+  --clean                               Clean the build directory.
+  -C BUILDDIR                           The directory containing build files to
+                                        be built.
+</code></pre>
+<h4 id="examples1">Examples:</h4>
+<p>Build the project:</p>
+<pre><code>meson compile -C builddir
+</code></pre>
+<h3 id="dist">dist</h3>
+<p><em>(since 0.52.0)</em></p>
+<pre><code>$ meson dist [-h] [-C WD] [--formats FORMATS] [--include-subprojects]
+             [--no-tests]
+</code></pre>
+<p>Generates a release archive from the current source tree.</p>
+<pre><code>optional arguments:
+  -h, --help             show this help message and exit
+  -C WD                  directory to cd into before running
+  --formats FORMATS      Comma separated list of archive types to create.
+  --include-subprojects  Include source code of subprojects that have been used
+                         for the build.
+  --no-tests             Do not build and test generated packages.
+</code></pre>
+<p>See <a href="Creating-releases.html">notes about creating releases</a> for more info.</p>
+<h4 id="examples2">Examples:</h4>
+<p>Create a release archive:</p>
+<pre><code>meson dist -C builddir
+</code></pre>
+<h3 id="init">init</h3>
+<p><em>(since 0.45.0)</em></p>
+<pre><code>$ meson init [-h] [-C WD] [-n NAME] [-e EXECUTABLE] [-d DEPS]
+             [-l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust}] [-b]
+             [--builddir BUILDDIR] [-f] [--type {executable,library}]
+             [--version VERSION]
+             [sourcefile [sourcefile ...]]
+</code></pre>
+<p>Creates a basic set of build files based on a template.</p>
+<pre><code>positional arguments:
+  sourcefile                            source files. default: all recognized
+                                        files in current directory
+
+optional arguments:
+  -h, --help                            show this help message and exit
+  -C WD                                 directory to cd into before running
+  -n NAME, --name NAME                  project name. default: name of current
+                                        directory
+  -e EXECUTABLE, --executable EXECUTABLE
+                                        executable name. default: project name
+  -d DEPS, --deps DEPS                  dependencies, comma-separated
+  -l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust}, --language {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust}
+                                        project language. default: autodetected
+                                        based on source files
+  -b, --build                           build after generation
+  --builddir BUILDDIR                   directory for build
+  -f, --force                           force overwrite of existing files and
+                                        directories.
+  --type {executable,library}           project type. default: executable based
+                                        project
+  --version VERSION                     project version. default: 0.1
+</code></pre>
+<h4 id="examples3">Examples:</h4>
+<p>Create a project in <code>sourcedir</code>:</p>
+<pre><code>meson init -C sourcedir
+</code></pre>
+<h3 id="introspect">introspect</h3>
+<pre><code>$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
+                   [--buildsystem-files] [--dependencies]
+                   [--scan-dependencies] [--installed] [--projectinfo]
+                   [--targets] [--tests]
+                   [--backend {ninja,vs,vs2010,vs2015,vs2017,vs2019,xcode}]
+                   [-a] [-i] [-f]
+                   [builddir]
+</code></pre>
+<p>Displays information about a configured meson project.</p>
+<pre><code>positional arguments:
+  builddir                              The build directory
+
+optional arguments:
+  -h, --help                            show this help message and exit
+  --ast                                 Dump the AST of the meson file.
+  --benchmarks                          List all benchmarks.
+  --buildoptions                        List all build options.
+  --buildsystem-files                   List files that make up the build
+                                        system.
+  --dependencies                        List external dependencies.
+  --scan-dependencies                   Scan for dependencies used in the
+                                        meson.build file.
+  --installed                           List all installed files and
+                                        directories.
+  --projectinfo                         Information about projects.
+  --targets                             List top level targets.
+  --tests                               List all unit tests.
+  --backend {ninja,vs,vs2010,vs2015,vs2017,vs2019,xcode}
+                                        The backend to use for the
+                                        --buildoptions introspection.
+  -a, --all                             Print all available information.
+  -i, --indent                          Enable pretty printed JSON.
+  -f, --force-object-output             Always use the new JSON format for
+                                        multiple entries (even for 0 and 1
+                                        introspection commands)
+</code></pre>
+<h4 id="examples4">Examples:</h4>
+<p>Display basic information about a configured project in <code>builddir</code>:</p>
+<pre><code>meson introspect builddir
+</code></pre>
+<h3 id="install">install</h3>
+<p><em>(since 0.47.0)</em></p>
+<pre><code>$ meson install [-h] [-C WD] [--no-rebuild] [--only-changed] [--quiet]
+</code></pre>
+<p>Installs the project to the prefix specified in <a href="Commands.html#setup"><code>setup</code></a>.</p>
+<pre><code>optional arguments:
+  -h, --help      show this help message and exit
+  -C WD           directory to cd into before running
+  --no-rebuild    Do not rebuild before installing.
+  --only-changed  Only overwrite files that are older than the copied file.
+  --quiet         Do not print every file that was installed.
+</code></pre>
+<p>See <a href="Installing.html">the installation documentation</a> for more info.</p>
+<h4 id="examples5">Examples:</h4>
+<p>Install project to <code>prefix</code>:</p>
+<pre><code>meson install -C builddir
+</code></pre>
+<p>Install project to <code>$DESTDIR/prefix</code>:</p>
+<pre><code>DESTDIR=/path/to/staging/area meson install -C builddir
+</code></pre>
+<h3 id="rewrite">rewrite</h3>
+<p><em>(since 0.50.0)</em></p>
+<pre><code>$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
+                {target,kwargs,default-options,command} ...
+</code></pre>
+<p>Modifies the meson project.</p>
+<pre><code>optional arguments:
+  -h, --help                            show this help message and exit
+  -s SRCDIR, --sourcedir SRCDIR         Path to source directory.
+  -V, --verbose                         Enable verbose output
+  -S, --skip-errors                     Skip errors instead of aborting
+
+Rewriter commands:
+  Rewrite command to execute
+
+  {target,kwargs,default-options,command}
+    target                              Modify a target
+    kwargs                              Modify keyword arguments
+    default-options                     Modify the project default options
+    command                             Execute a JSON array of commands
+</code></pre>
+<p>See <a href="Rewriter.html">the meson file rewriter documentation</a> for more info.</p>
+<h3 id="setup">setup</h3>
+<pre><code>$ meson setup [-h] [--prefix PREFIX] [--bindir BINDIR] [--datadir DATADIR]
+              [--includedir INCLUDEDIR] [--infodir INFODIR]
+              [--libdir LIBDIR] [--libexecdir LIBEXECDIR]
+              [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
+              [--mandir MANDIR] [--sbindir SBINDIR]
+              [--sharedstatedir SHAREDSTATEDIR] [--sysconfdir SYSCONFDIR]
+              [--auto-features {enabled,disabled,auto}]
+              [--backend {ninja,vs,vs2010,vs2015,vs2017,vs2019,xcode}]
+              [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
+              [--debug] [--default-library {shared,static,both}]
+              [--errorlogs] [--install-umask INSTALL_UMASK]
+              [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
+              [--stdsplit] [--strip] [--unity {on,off,subprojects}]
+              [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}] [--werror]
+              [--wrap-mode {default,nofallback,nodownload,forcefallback}]
+              [--force-fallback-for FORCE_FALLBACK_FOR]
+              [--pkg-config-path PKG_CONFIG_PATH]
+              [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
+              [--cmake-prefix-path CMAKE_PREFIX_PATH]
+              [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
+              [-D option] [--native-file NATIVE_FILE]
+              [--cross-file CROSS_FILE] [-v] [--fatal-meson-warnings]
+              [--reconfigure] [--wipe]
+              [builddir] [sourcedir]
+</code></pre>
+<p>Configures a build directory for the meson project.</p>
+<p>This is the default meson command (invoked if there was no COMMAND supplied).</p>
+<pre><code>positional arguments:
+  builddir
+  sourcedir
+
+optional arguments:
+  -h, --help                            show this help message and exit
+  --prefix PREFIX                       Installation prefix.
+  --bindir BINDIR                       Executable directory.
+  --datadir DATADIR                     Data file directory.
+  --includedir INCLUDEDIR               Header file directory.
+  --infodir INFODIR                     Info page directory.
+  --libdir LIBDIR                       Library directory.
+  --libexecdir LIBEXECDIR               Library executable directory.
+  --localedir LOCALEDIR                 Locale data directory.
+  --localstatedir LOCALSTATEDIR         Localstate data directory.
+  --mandir MANDIR                       Manual page directory.
+  --sbindir SBINDIR                     System executable directory.
+  --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
+  --sysconfdir SYSCONFDIR               Sysconf data directory.
+  --auto-features {enabled,disabled,auto}
+                                        Override value of all 'auto' features
+                                        (default: auto).
+  --backend {ninja,vs,vs2010,vs2015,vs2017,vs2019,xcode}
+                                        Backend to use (default: ninja).
+  --buildtype {plain,debug,debugoptimized,release,minsize,custom}
+                                        Build type to use (default: debug).
+  --debug                               Debug
+  --default-library {shared,static,both}
+                                        Default library type (default: shared).
+  --errorlogs                           Whether to print the logs from failing
+                                        tests
+  --install-umask INSTALL_UMASK         Default umask to apply on permissions of
+                                        installed files (default: 022).
+  --layout {mirror,flat}                Build directory layout (default:
+                                        mirror).
+  --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --stdsplit                            Split stdout and stderr in test logs
+  --strip                               Strip targets on install
+  --unity {on,off,subprojects}          Unity build (default: off).
+  --unity-size UNITY_SIZE               Unity block size (default: (2, None,
+                                        4)).
+  --warnlevel {0,1,2,3}                 Compiler warning level to use (default:
+                                        1).
+  --werror                              Treat warnings as errors
+  --wrap-mode {default,nofallback,nodownload,forcefallback}
+                                        Wrap mode (default: default).
+  --force-fallback-for FORCE_FALLBACK_FOR
+                                        Force fallback for those subprojects
+                                        (default: []).
+  --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
+                                        to search (default: []). (just for host
+                                        machine)
+  --build.pkg-config-path BUILD.PKG_CONFIG_PATH
+                                        List of additional paths for pkg-config
+                                        to search (default: []). (just for build
+                                        machine)
+  --cmake-prefix-path CMAKE_PREFIX_PATH
+                                        List of additional prefixes for cmake to
+                                        search (default: []). (just for host
+                                        machine)
+  --build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH
+                                        List of additional prefixes for cmake to
+                                        search (default: []). (just for build
+                                        machine)
+  -D option                             Set the value of an option, can be used
+                                        several times to set multiple options.
+  --native-file NATIVE_FILE             File containing overrides for native
+                                        compilation environment.
+  --cross-file CROSS_FILE               File describing cross compilation
+                                        environment.
+  -v, --version                         show program's version number and exit
+  --fatal-meson-warnings                Make all Meson warnings fatal
+  --reconfigure                         Set options and reconfigure the project.
+                                        Useful when new options have been added
+                                        to the project and the default value is
+                                        not working.
+  --wipe                                Wipe build directory and reconfigure
+                                        using previous command line options.
+                                        Useful when build directory got
+                                        corrupted, or when rebuilding with a
+                                        newer version of meson.
+</code></pre>
+<p>See <a href="Running-Meson.html#configuring-the-build-directory">meson introduction page</a> for more info.</p>
+<h4 id="examples6">Examples:</h4>
+<p>Configures <code>builddir</code> with default values:</p>
+<pre><code>meson setup builddir
+</code></pre>
+<h3 id="subprojects">subprojects</h3>
+<p><em>(since 0.49.0)</em></p>
+<pre><code>$ meson subprojects [-h] {update,checkout,download,foreach} ...
+</code></pre>
+<p>Manages subprojects of the meson project.</p>
+<pre><code>optional arguments:
+  -h, --help                          show this help message and exit
+
+Commands:
+  {update,checkout,download,foreach}
+    update                            Update all subprojects from wrap files
+    checkout                          Checkout a branch (git only)
+    download                          Ensure subprojects are fetched, even if
+                                      not in use. Already downloaded subprojects
+                                      are not modified. This can be used to pre-
+                                      fetch all subprojects and avoid downloads
+                                      during configure.
+    foreach                           Execute a command in each subproject
+                                      directory.
+</code></pre>
+<h3 id="test">test</h3>
+<pre><code>$ meson test [-h] [--repeat REPEAT] [--no-rebuild] [--gdb]
+             [--gdb-path GDB_PATH] [--list] [--wrapper WRAPPER] [-C WD]
+             [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
+             [--print-errorlogs] [--benchmark] [--logbase LOGBASE]
+             [--num-processes NUM_PROCESSES] [-v] [-q]
+             [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
+             [--test-args TEST_ARGS]
+             [args [args ...]]
+</code></pre>
+<p>Run tests for the configure meson project.</p>
+<pre><code>positional arguments:
+  args                                  Optional list of tests to run
+
+optional arguments:
+  -h, --help                            show this help message and exit
+  --repeat REPEAT                       Number of times to run the tests.
+  --no-rebuild                          Do not rebuild before running tests.
+  --gdb                                 Run test under gdb.
+  --gdb-path GDB_PATH                   Path to the gdb binary (default: gdb).
+  --list                                List available tests.
+  --wrapper WRAPPER                     wrapper to run tests with (e.g.
+                                        Valgrind)
+  -C WD                                 directory to cd into before running
+  --suite SUITE                         Only run tests belonging to the given
+                                        suite.
+  --no-suite SUITE                      Do not run tests belonging to the given
+                                        suite.
+  --no-stdsplit                         Do not split stderr and stdout in test
+                                        logs.
+  --print-errorlogs                     Whether to print failing tests' logs.
+  --benchmark                           Run benchmarks instead of tests.
+  --logbase LOGBASE                     Base name for log file.
+  --num-processes NUM_PROCESSES         How many parallel processes to use.
+  -v, --verbose                         Do not redirect stdout and stderr
+  -q, --quiet                           Produce less output to the terminal.
+  -t TIMEOUT_MULTIPLIER, --timeout-multiplier TIMEOUT_MULTIPLIER
+                                        Define a multiplier for test timeout,
+                                        for example when running tests in
+                                        particular conditions they might take
+                                        more time to execute.
+  --setup SETUP                         Which test setup to use.
+  --test-args TEST_ARGS                 Arguments to pass to the specified
+                                        test(s) or all tests
+</code></pre>
+<p>See <a href="Unit-tests.html">the unit test documentation</a> for more info.</p>
+<h4 id="examples7">Examples:</h4>
+<p>Run tests for the project:</p>
+<pre><code>meson test -C builddir
+</code></pre>
+<p>Run only <code>specific_test_1</code> and <code>specific_test_2</code>:</p>
+<pre><code>meson test -C builddir specific_test_1 specific_test_2
+</code></pre>
+<h3 id="wrap">wrap</h3>
+<pre><code>$ meson wrap [-h] {list,search,install,update,info,status,promote} ...
+</code></pre>
+<p>An utility to manage WrapDB dependencies.</p>
+<pre><code>optional arguments:
+  -h, --help                            show this help message and exit
+
+Commands:
+  {list,search,install,update,info,status,promote}
+    list                                show all available projects
+    search                              search the db by name
+    install                             install the specified project
+    update                              update the project to its newest
+                                        available release
+    info                                show available versions of a project
+    status                              show installed and available versions of
+                                        your projects
+    promote                             bring a subsubproject up to the master
+                                        project
+</code></pre>
+<p>See <a href="Using-wraptool.html">the WrapDB tool documentation</a> for more info.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Commands.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

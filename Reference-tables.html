@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -702,6 +702,9 @@ future releases.</p>
 </tr>
 </tbody>
 </table>
+<p>All these <code>&lt;lang&gt;_*</code> options are specified per machine. See in <a href="Builtin-options.html#Specifying-options-per-machine">specifying
+options per machine</a> for on
+how to do this in cross builds.</p>
 <h2 id="compiler-and-linker-flag-environment-variables">Compiler and linker flag environment variables</h2>
 <p>These environment variables will be used to modify the compiler and
 linker flags.</p>
@@ -752,6 +755,9 @@ instead.</p>
 </tr>
 </tbody>
 </table>
+<p>N.B. these settings are specified per machine, and so the environment varibles
+actually come in pairs. See the <a href="Reference-tables.html#Environment-variables-per-machine">environment variables per
+machine</a> section for details.</p>
 <h2 id="function-attributes">Function Attributes</h2>
 <p>These are the parameters names that are supported using
 <code>compiler.has_function_attribute()</code> or
@@ -953,6 +959,9 @@ which are supported by MSVC, GCC, Clang, and other compilers.</p>
 </tbody>
 </table>
 <h2 id="compiler-and-linker-selection-variables">Compiler and Linker selection variables</h2>
+<p>N.B. these settings are specified per machine, and so the environment varibles
+actually come in pairs. See the <a href="Reference-tables.html#Environment-variables-per-machine">environment variables per
+machine</a> section for details.</p>
 <table>
 <thead>
 <tr>
@@ -1019,8 +1028,31 @@ which are supported by MSVC, GCC, Clang, and other compilers.</p>
 </tr>
 </tbody>
 </table>
-<p>*The old environment variales are still supported, but are deprecated and will
-be removed in a future version of meson.</p>
+<p><em>The old environment variales are still supported, but are deprecated and will
+be removed in a future version of meson.</em></p>
+<h2 id="environment-variables-per-machine">Environment variables per machine</h2>
+<p>Since <em>0.54.0</em>, Following Autotool and other legacy build systems, environment
+variables that affect machine-specific settings come in pairs: for every bare
+environment variable <code>FOO</code>, there is a suffixed <code>FOO_FOR_BUILD</code>, where <code>FOO</code>
+just affects the host machine configuration, while <code>FOO_FOR_BUILD</code> just affects
+the build machine configuration. For example:</p>
+<ul>
+<li>
+<p><code>PKG_CONFIG_PATH_FOR_BUILD</code> controls the paths pkg-config will search for
+just <code>native: true</code> dependencies (build machine).</p>
+</li>
+<li>
+<p><code>PKG_CONFIG_PATH</code> controls the paths pkg-config will search for just
+<code>native: false</code> dependencies (host machine).</p>
+</li>
+</ul>
+<p>This mirrors the <code>build.</code> prefix used for (built-in) meson options, which has
+the same meaning.</p>
+<p>This is useful for cross builds. In the native builds, build = host, and the
+unsuffixed environment variables alone will suffice.</p>
+<p>Prior to <em>0.54.0</em>, there was no <code>_FOR_BUILD</code>-suffixed variables, and most
+environment variables only effected native machine configurations, though this
+wasn't consistent (e.g. <code>PKG_CONFIG_PATH</code> still affected cross builds).</p>
 
     </div>
         

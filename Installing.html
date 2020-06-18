@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -188,6 +188,12 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="installing">Installing</h1>
+<p>Invoked via the <a href="Commands.html#install">following command</a> <em>(available since 0.47.0)</em>:</p>
+<pre><code class="language-sh">meson install
+</code></pre>
+<p>or alternatively (on older meson versions with <code>ninja</code> backend):</p>
+<pre><code class="language-sh">ninja install
+</code></pre>
 <p>By default Meson will not install anything. Build targets can be
 installed by tagging them as installable in the definition.</p>
 <pre><code class="language-meson">project('install', 'c')
@@ -251,13 +257,11 @@ subdirectory.</p>
 install prefix. This is most common when building rpm or deb
 packages. This is done with the <code>DESTDIR</code> environment variable and it
 is used just like with other build systems:</p>
-<pre><code class="language-console">$ DESTDIR=/path/to/staging/area ninja install
+<pre><code class="language-console">$ DESTDIR=/path/to/staging/area meson install
 </code></pre>
 <h2 id="custom-install-behaviour">Custom install behaviour</h2>
-<p>The default install target (executed via, e.g., <code>ninja install</code>) does
-installing with reasonable default options. More control over the
-install behaviour can be achieved with the <code>meson install</code> command,
-that has been available since 0.47.0.</p>
+<p>Installation behaviour can be further customized using
+additional arguments.</p>
 <p>For example, if you wish to install the current setup without
 rebuilding the code (which the default install target always does) and
 only installing those files that have changed, you would run this

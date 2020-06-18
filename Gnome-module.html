@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -283,8 +283,6 @@ e.g. <code>Gtk</code>
 <code>header</code>: <em>(Added 0.43.0)</em> name of main c header to include for the library, e.g. <code>glib.h</code>
 </li>
 <li>
-<code>dependencies</code>: deps to use during introspection scanning</li>
-<li>
 <code>include_directories</code>: extra include paths to look for gir files</li>
 <li>
 <code>install</code>: if true, install the generated files</li>
@@ -299,6 +297,8 @@ the typelib file into</li>
 <li>
 <code>symbol_prefix</code>: the symbol prefix for the gir object, e.g. <code>gtk</code>,
 (<em>Since 0.43.0</em>) an ordered list of multiple prefixes is allowed</li>
+<li>
+<code>fatal_warnings</code>: <em>Since 0.55.0</em> turn scanner warnings into fatal errors.</li>
 </ul>
 <p>Returns an array of two elements which are: <code>[gir_target, typelib_target]</code></p>
 <h3 id="gnomegenmarshal">gnome.genmarshal()</h3>
@@ -439,7 +439,7 @@ useful when running the application locally for example during tests.</p>
 <ul>
 <li>
 <code>build_by_default</code>: causes, when set to true, to have this target be
-built by default, that is, when invoking plain <code>ninja</code>, the default
+built by default, that is, when invoking plain <code>meson compile</code>, the default
 value is true for all built target types</li>
 <li>
 <code>depend_files</code>: files (<a href="Reference-manual.html#string-object"><code>string</code></a>,
@@ -473,7 +473,7 @@ one XML file.</p>
 <code>docbook</code>: <em>(Added 0.43.0)</em> prefix to generate <code>'PREFIX'-NAME.xml</code> docbooks</li>
 <li>
 <code>build_by_default</code>: causes, when set to true, to have this target be
-built by default, that is, when invoking plain <code>ninja</code>, the default
+built by default, that is, when invoking plain <code>meson compile</code>, the default
 value is true for all built target types</li>
 <li>
 <code>install_dir</code>: (<em>Added 0.46.0</em>) location to install the header or
@@ -599,8 +599,8 @@ to the gtk-doc html dir or an absolute path (default: module name)</li>
 Note that this has the downside of rebuilding the doc for each build, which is
 often very slow. It usually should be enabled only in CI.</li>
 </ul>
-<p>This creates a <code>$module-doc</code> target that can be ran to build docs and
-normally these are only built on install.</p>
+<p>This also creates a <code>$module-doc</code> target that can be run to build documentation.
+Normally the documentation is only built on install.</p>
 <p><em>Since 0.52.0</em> Returns a target object that can be passed as dependency to other
 targets using generated doc files (e.g. in <code>content_files</code> of another doc).</p>
 <h3 id="gnomegtkdoc_html_dir">gnome.gtkdoc_html_dir()</h3>

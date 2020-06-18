@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -344,6 +344,8 @@ declarations in the build files, and will only look for them in the
 system. Note that this does not apply to unconditional subproject()
 calls, and those are meant to be used for sources that cannot be
 provided by the system, such as copylibs.</p>
+<p>This option may be overriden by <code>--force-fallback-for</code> for specific
+dependencies.</p>
 </li>
 <li>
 <p><strong>--wrap-mode=forcefallback</strong></p>
@@ -352,6 +354,17 @@ subproject fallbacks available, and will <em>only</em> use subprojects for
 them. This is useful when you want to test your fallback setup, or
 want to specifically build against the library sources provided by
 your subprojects.</p>
+</li>
+<li>
+<p><strong>--force-fallback-for=list,of,dependencies</strong></p>
+<p>Meson will not look at the system for any dependencies listed there,
+provided a fallback was supplied when the dependency was declared.</p>
+<p>This option takes precedence over <code>--wrap-mode=nofallback</code>, and when
+used in combination with <code>--wrap-mode=nodownload</code> will only work
+if the dependency has already been downloaded.</p>
+<p>This is useful when your project has many fallback dependencies,
+but you only want to build against the library sources for a few
+of them.</p>
 </li>
 </ul>
 <h2 id="download-subprojects">Download subprojects</h2>

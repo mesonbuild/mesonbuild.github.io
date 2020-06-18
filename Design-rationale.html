@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -355,11 +355,11 @@ exe = executable('testfoobar', 'tester.c', link : foolib)
 add_test('test library', exe)
 </code></pre>
 <p>First we build a shared library named foobar. It is marked
-installable, so running <code>ninja install</code> installs it to the library
+installable, so running <code>meson install</code> installs it to the library
 directory (the system knows which one so the user does not have to
 care). Then we build a test executable which is linked against the
 library. It will not be installed, but instead it is added to the list
-of unit tests, which can be run with the command <code>ninja test</code>.</p>
+of unit tests, which can be run with the command <code>meson test</code>.</p>
 <p>Above we mentioned precompiled headers as a feature not supported by
 other build systems. Here's how you would use them.</p>
 <pre><code class="language-meson">project('pch demo', 'cxx')

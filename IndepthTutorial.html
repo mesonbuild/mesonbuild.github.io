@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -240,11 +240,11 @@ test('foolib test', testexe)
 <p>At this point we can return to the pkg-config generator line. All shared libraries should provide a pkg-config file, which explains how that library is used. Meson provides this simple generator that should be sufficient for most simple projects. All you need to do is list a few basic pieces of information and Meson takes care of generating an appropriate file. More advanced users might want to create their own pkg-config files using Meson's <a href="Configuration.html">configuration file generator system</a>.</p>
 <p>With these four files we are done. To configure, build and run the test suite, we just need to execute the following commands (starting at source tree root directory).</p>
 <pre><code class="language-console">$ meson builddir &amp;&amp; cd builddir
-$ ninja
-$ ninja test
+$ meson compile
+$ meson test
 </code></pre>
 <p>To then install the project you only need one command.</p>
-<pre><code class="language-console">$ ninja install
+<pre><code class="language-console">$ meson install
 </code></pre>
 
     </div>

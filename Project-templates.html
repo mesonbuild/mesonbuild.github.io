@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -197,14 +197,27 @@ $ cd project_name
 $ meson init --language=c --name=myproject --version=0.1
 </code></pre>
 <p>This would create the build definitions for a helloworld type
-project. The result can be compiled as usual. For example compiling it
-with Ninja could be done like this:</p>
-<pre><code>$ meson builddir
-$ ninja -C builddir
+project. The result can be compiled as usual. For example it
+could be done like this:</p>
+<pre><code>$ meson setup builddir
+$ meson compile -C builddir
 </code></pre>
 <p>The generator has many different projects and settings. They can all
 be listed by invoking the command <code>meson init --help</code>.</p>
 <p>This feature is available since Meson version 0.45.0.</p>
+<h1 id="generate-a-build-script-for-an-existing-project">Generate a build script for an existing project</h1>
+<p>With <code>meson init</code> you can generate a build script for an existing
+project with existing project files by running the command in the
+root directory of your project. Meson currently supports this
+feature for <code>executable</code>, and <code>jar</code> projects.</p>
+<h1 id="build-after-generation-of-template">Build after generation of template</h1>
+<p>It is possible to have Meson generate a build directory from the
+<code>meson init</code> command without running <code>meson setup</code>. This is done
+by passing <code>-b</code> or <code>--build</code> switch.</p>
+<pre><code class="language-console">$ mkdir project_name
+$ cd project_name
+$ meson init --language=c --name=myproject --version=0.1 --build
+</code></pre>
 
     </div>
         

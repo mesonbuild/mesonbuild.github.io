@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -279,13 +279,12 @@ execute permissions, the generated file will have them too.</p>
 <pre><code class="language-console">$ meson &lt;other flags&gt; -Db_coverage=true
 </code></pre>
 <p>Then issue the following commands.</p>
-<pre><code class="language-console">$ ninja
-$ ninja test
+<pre><code class="language-console">$ meson compile
+$ meson test
 $ ninja coverage-html (or coverage-xml)
 </code></pre>
 <p>The coverage report can be found in the meson-logs subdirectory.</p>
-<p>Note: Currently, Meson does not support generating coverage reports
-with Clang.</p>
+<p><em>New in 0.55.0</em> llvm-cov support for use with clang</p>
 <h2 id="add-some-optimization-to-debug-builds">Add some optimization to debug builds</h2>
 <p>By default the debug build does not use any optimizations. This is the
 desired approach most of the time. However some projects benefit from
@@ -316,15 +315,15 @@ scan-build executable.</p>
 <p>Using profile guided optimization with GCC is a two phase
 operation. First we set up the project with profile measurements
 enabled and compile it.</p>
-<pre><code class="language-console">$ meson  &lt;Meson options, such as --buildtype=debugoptimized&gt; -Db_pgo=generate
-$ ninja -C builddir
+<pre><code class="language-console">$ meson setup &lt;Meson options, such as --buildtype=debugoptimized&gt; -Db_pgo=generate
+$ meson compile -C builddir
 </code></pre>
 <p>Then we need to run the program with some representative input. This
 step depends on your project.</p>
 <p>Once that is done we change the compiler flags to use the generated
 information and rebuild.</p>
 <pre><code class="language-console">$ meson configure -Db_pgo=use
-$ ninja
+$ meson compile
 </code></pre>
 <p>After these steps the resulting binary is fully optimized.</p>
 <h2 id="add-math-library-lm-portably">Add math library (<code>-lm</code>) portably</h2>

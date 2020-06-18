@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -221,7 +221,7 @@ use this command to set up you build instead of plain <code>meson</code>.</p>
 <p>After this you don't have to care about invoking Meson any more. It
 remembers where it was originally invoked from and calls itself
 appropriately. As a user the only thing you need to do is to <code>cd</code> into
-your build directory and invoke <code>ninja</code>.</p>
+your build directory and invoke <code>meson compile</code>.</p>
 <h2 id="why-cant-i-specify-target-files-with-a-wildcard">Why can't I specify target files with a wildcard?</h2>
 <p>Instead of specifying files explicitly, people seem to want to do this:</p>
 <pre><code class="language-meson">executable('myprog', sources : '*.cpp') # This does NOT work!
@@ -531,7 +531,7 @@ sources in the build target:</p>
 <pre><code class="language-meson">libfoo_gen_headers = custom_target('gen-headers', ..., output: 'foo-gen.h')
 libfoo_sources = files('foo-utils.c', 'foo-lib.c')
 # Add generated headers to the list of sources for the build target
-libfoo = library('foo', sources: libfoo_sources + libfoo_gen_headers)
+libfoo = library('foo', sources: [libfoo_sources + libfoo_gen_headers])
 </code></pre>
 <p>Now let's say you have a new target that links to <code>libfoo</code>:</p>
 <pre><code class="language-meson">libbar_sources = files('bar-lib.c')

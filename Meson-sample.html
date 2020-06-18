@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -216,7 +216,7 @@ src = ['source1.c', 'source2.c', 'source3.c']
 exe = executable('myexe', src)
 test('simple test', exe)
 </code></pre>
-<p>Here we create a unit test called <em>simple test</em>, and which uses the built executable. When the tests are run with the <code>ninja test</code> command, the built executable is run. If it returns zero, the test passes. A non-zero return value indicates an error, which Meson will then report to the user.</p>
+<p>Here we create a unit test called <em>simple test</em>, and which uses the built executable. When the tests are run with the <code>meson test</code> command, the built executable is run. If it returns zero, the test passes. A non-zero return value indicates an error, which Meson will then report to the user.</p>
 <h2 id="a-note-to-visual-studio-users">A note to Visual Studio users</h2>
 <p>There's a slight terminology difference between Meson and Visual Studio. A Meson <em>project</em> is the equivalent to a Visual Studio <em>solution</em>. That is, the topmost thing that encompasses all things to be built. A Visual Studio <em>project</em> on the other hand is the equivalent of a Meson top level build target, such as an executable or a shared library.</p>
 

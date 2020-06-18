@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -236,7 +236,7 @@ write your unit tests to be parallel executable whenever possible.</p>
 <p>By default Meson uses as many concurrent processes as there are cores on the
 test machine. You can override this with the environment variable
 <code>MESON_TESTTHREADS</code> like this.</p>
-<pre><code class="language-console">$ MESON_TESTTHREADS=5 ninja test
+<pre><code class="language-console">$ MESON_TESTTHREADS=5 meson test
 </code></pre>
 <h2 id="priorities">Priorities</h2>
 <p><em>(added in version 0.52.0)</em></p>
@@ -269,8 +269,7 @@ behavior was added in version 0.50.0.</p>
 <p>The goal of the meson test tool is to provide a simple way to run tests in a
 variety of different ways. The tool is designed to be run in the build
 directory.</p>
-<p>The simplest thing to do is just to run all tests, which is equivalent to
-running <code>ninja test</code>.</p>
+<p>The simplest thing to do is just to run all tests.</p>
 <pre><code class="language-console">$ meson test
 </code></pre>
 <h3 id="run-subsets-of-tests">Run subsets of tests</h3>

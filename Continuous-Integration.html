@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -218,8 +218,8 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo FROM YOUR/REPO:eoan &gt; Dockerfile; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo ADD . /root &gt;&gt; Dockerfile; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker build -t withgit .; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run withgit /bin/sh -c "cd /root &amp;&amp; TRAVIS=true CC=$CC CXX=$CXX meson builddir &amp;&amp; ninja -C builddir test"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson builddir &amp;&amp; ninja -C builddir test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run withgit /bin/sh -c "cd /root &amp;&amp; TRAVIS=true CC=$CC CXX=$CXX meson builddir &amp;&amp; meson test -C builddir"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson builddir &amp;&amp; meson test -C builddir; fi
 </code></pre>
 <h2 id="circleci-for-linux-with-docker">CircleCi for Linux (with Docker)</h2>
 <p><a href="https://circleci.com/">CircleCi</a> can work for spinning all of the Linux images you wish.
@@ -247,7 +247,7 @@ jobs:
     steps:
       - checkout
       - run: meson setup builddir --backend ninja
-      - run: ninja -C builddir
+      - run: meson compile -C builddir
       - run: meson test -C builddir
 
   meson_debian_build:
@@ -255,7 +255,7 @@ jobs:
     steps:
       - checkout
       - run: meson setup builddir --backend ninja
-      - run: ninja -C builddir
+      - run: meson compile -C builddir
       - run: meson test -C builddir
 
   meson_fedora_build:
@@ -263,7 +263,7 @@ jobs:
     steps:
       - checkout
       - run: meson setup builddir --backend ninja
-      - run: ninja -C builddir
+      - run: meson compile -C builddir
       - run: meson test -C builddir
 
 workflows:
@@ -312,10 +312,10 @@ install:
 build_script:
   - cmd: echo Building on %arch% with %compiler%
   - cmd: meson --backend=ninja builddir
-  - cmd: ninja -C builddir
+  - cmd: meson compile -C builddir
 
 test_script:
-  - cmd: ninja -C builddir test
+  - cmd: meson test -C builddir
 </code></pre>
 <h3 id="qt">Qt</h3>
 <p>For Qt 5, add the following line near the <code>PYTHON_ROOT</code> assignment:</p>
@@ -347,8 +347,8 @@ install:
 
 script:
   - meson builddir
-  - ninja -C builddir
-  - ninja -C builddir test
+  - meson compile -C builddir
+  - meson test -C builddir
 </code></pre>
 <h2 id="github-actions">GitHub Actions</h2>
 <p>GitHub Actions are distinct from Azure Pipelines in their workflow syntax.

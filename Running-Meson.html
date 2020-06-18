@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -192,11 +192,10 @@ $('body').removeClass('no-script');
 from the source tree with the command <code>/path/to/source/meson.py</code>. Meson may
 also be installed in which case the command is simply <code>meson</code>. In this manual
 we only use the latter format for simplicity.</p>
-<p>Additionally, the invocation can pass options to meson. The list of options is
-documented <a href="Builtin-options.html">here</a>.</p>
 <p>At the time of writing only a command line version of Meson is available. This
 means that Meson must be invoked using the terminal. If you wish to use the
 MSVC compiler, you need to run Meson under "Visual Studio command prompt".</p>
+<p>All available meson commands are listed on the <a href="Commands.html">commands reference page</a>.</p>
 <h2 id="configuring-the-build-directory">Configuring the build directory</h2>
 <p>Let us assume that we have a source tree that has a Meson build system. This
 means that at the topmost directory has a file called <code>meson.build</code>. We run the
@@ -215,6 +214,8 @@ given Meson will deduce the <code>srcdir</code> based on <code>pwd</code> and th
 build backend in the build directory. By default Meson generates a <em>debug
 build</em>, which turns on basic warnings and debug information and disables
 compiler optimizations.</p>
+<p>Additionally, the invocation can pass options to meson. The list of options is
+documented <a href="Builtin-options.html">here</a>.</p>
 <p>You can specify a different type of build with the <code>--buildtype</code> command line
 argument. It can have one of the following values.</p>
 <table>
@@ -271,7 +272,7 @@ be run in the source directory.</p>
 to use any of the other backends, you need to pass the corresponding argument
 during configuration time. As an example, here is how you would use Meson to
 generate a Visual studio solution.</p>
-<pre><code class="language-sh">meson setup &lt;build dir&gt; --backend=vs2010
+<pre><code class="language-sh">meson setup &lt;build dir&gt; --backend=vs
 </code></pre>
 <p>You can then open the generated solution with Visual Studio and compile it in
 the usual way. A list of backends can be obtained with <code>meson setup --help</code>.</p>
@@ -287,9 +288,13 @@ will be used.</p>
 <code>--buildtype=plain</code> option, in this case you must provide the full compiler and
 linker arguments needed.</p>
 <h2 id="building-from-the-source">Building from the source</h2>
-<p>If you are not using an IDE, Meson uses the <a href="https://ninja-build.org/">Ninja build
-system</a> to actually build the code. To start the
-build, simply type the following command.</p>
+<p>To start the build, simply type the following command.</p>
+<pre><code class="language-sh">meson compile -C builddir
+</code></pre>
+<p>See <a href="Commands.html#compile"><code>meson compile</code> description</a> for more info.</p>
+<h3 id="building-directly-with-ninja">Building directly with ninja</h3>
+<p>By default Meson uses the <a href="https://ninja-build.org/">Ninja build system</a> to
+actually build the code. To start the build, simply type the following command.</p>
 <pre><code class="language-sh">ninja -C builddir
 </code></pre>
 <p>The main usability difference between Ninja and Make is that Ninja will
@@ -307,14 +312,19 @@ directory and running Ninja.</p>
 <h2 id="running-tests">Running tests</h2>
 <p>Meson provides native support for running tests. The command to do that is
 simple.</p>
-<pre><code class="language-sh">ninja -C builddir test
+<pre><code class="language-sh">meson test -C builddir
 </code></pre>
+<p>See <a href="Commands.html#test"><code>meson test</code> description</a> for more info.</p>
 <p>Meson does not force the use of any particular testing framework. You are free
 to use GTest, Boost Test, Check or even custom executables.</p>
+<p>Note: it can be also invoked directly with ninja with the following command:</p>
+<pre><code class="language-sh">ninja -C builddir test
+</code></pre>
 <h2 id="installing">Installing</h2>
 <p>Installing the built software is just as simple.</p>
-<pre><code class="language-sh">ninja -C builddir install
+<pre><code class="language-sh">meson install -C builddir
 </code></pre>
+<p>See <a href="Commands.html#install"><code>meson install</code> description</a> for more info.</p>
 <p>Note that Meson will only install build targets explicitly tagged as
 installable, as detailed in the <a href="Installing.html">installing targets
 documentation</a>.</p>
@@ -322,7 +332,10 @@ documentation</a>.</p>
 command line argument <code>--prefix /your/prefix</code> to Meson during configure time.
 Meson also supports the <code>DESTDIR</code> variable used in e.g. building packages. It
 is used like this:</p>
-<pre><code class="language-sh">DESTDIR=/path/to/staging ninja -C builddir install
+<pre><code class="language-sh">DESTDIR=/path/to/staging meson install -C builddir
+</code></pre>
+<p>Note: it can be also invoked directly with ninja with the following command:</p>
+<pre><code class="language-sh">ninja -C builddir install
 </code></pre>
 <h2 id="command-line-help">Command line help</h2>
 <p>Meson has a standard command line help feature. It can be accessed with the

@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -273,11 +273,11 @@ executable('demo', 'main.c', dependencies : gtkdep)
 need to recreate our build directory, run any sort of magical commands
 or the like. Instead we just type the exact same command as if we were
 rebuilding our code without any build system changes.</p>
-<pre><code>$ ninja
+<pre><code>$ meson compile
 </code></pre>
 <p>Once you have set up your build directory the first time, you don't
 ever need to run the <code>meson</code> command again. You always just run
-<code>ninja</code>. Meson will automatically detect when you have done changes to
+<code>meson compile</code>. Meson will automatically detect when you have done changes to
 build definitions and will take care of everything so users don't have
 to care. In this case the following output is produced.</p>
 <pre><code>[1/1] Regenerating build files

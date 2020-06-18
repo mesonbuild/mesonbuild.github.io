@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -369,7 +369,7 @@ to be the host machine.</p>
 <p>Once you have the cross file, starting a build is simple</p>
 <pre><code class="language-console">$ meson srcdir builddir --cross-file cross_file.txt
 </code></pre>
-<p>Once configuration is done, compilation is started by invoking Ninja
+<p>Once configuration is done, compilation is started by invoking <code>meson compile</code>
 in the usual way.</p>
 <h2 id="introspection-and-system-checks">Introspection and system checks</h2>
 <p>The main <em>meson</em> object provides two functions to determine cross

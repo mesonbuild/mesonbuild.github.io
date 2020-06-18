@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -214,17 +214,18 @@ as follows:</p>
 <tbody>
 <tr>
 <td>build</td>
-<td> <code>ninja -C $(Configuration)</code>
+<td> <code>meson compile -C $(Configuration)</code>
 </td>
 </tr>
 <tr>
 <td>clean</td>
-<td> <code>ninja -C $(Configuration) clean</code>
+<td> <code>meson compile -C $(Configuration) --clean</code>
 </td>
 </tr>
 <tr>
 <td>rebuild</td>
-<td> `ninja -C $(Configuration) clean all</td>
+<td> <code>meson compile -C $(Configuration) --clean &amp;&amp; meson compile -C $(Configuration)</code>
+</td>
 </tr>
 <tr>
 <td>Output</td>

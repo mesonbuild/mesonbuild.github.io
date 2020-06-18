@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -291,20 +291,9 @@ accurate, especially on Linux where different distributions have different
 defaults. Using a <a href="Cross-compilation.html#defining-the-environment">cross file</a>,
 particularly the paths section may be necessary.</p>
 <h3 id="core-options">Core options</h3>
-<p>Options that are labeled "per machine" in the table are set per machine.
-Prefixing the option with <code>build.</code> just affects the build machine configuration,
-while unprefixed just affects the host machine configuration, respectively.
-Using the option as-is with no prefix affects all machines. For example:</p>
-<ul>
-<li>
-<p><code>build.pkg_config_path</code> controls the paths pkg-config will search for just
-<code>native: true</code> dependencies (build machine).</p>
-</li>
-<li>
-<p><code>pkg_config_path</code> controls the paths pkg-config will search for just
-<code>native: false</code> dependencies (host machine).</p>
-</li>
-</ul>
+<p>Options that are labeled "per machine" in the table are set per machine. See
+the <a href="Builtin-options.html#Specifying-options-per-machine">specifying options per machine</a> section
+for details.</p>
 <table>
 <thead>
 <tr>
@@ -421,6 +410,12 @@ Using the option as-is with no prefix affects all machines. For example:</p>
 <td> wrap_mode {default, nofallback,<br>nodownload, forcefallback}</td>
 <td> default</td>
 <td> Wrap mode to use</td>
+<td> no</td>
+</tr>
+<tr>
+<td> force_fallback_for</td>
+<td> []</td>
+<td> Force fallback for those dependencies</td>
 <td> no</td>
 </tr>
 </tbody>
@@ -717,9 +712,9 @@ compiler being used:</p>
 <p>The default values of <code>c_winlibs</code> and <code>cpp_winlibs</code> are in compiler-specific
 argument forms, but the libraries are: kernel32, user32, gdi32, winspool,
 shell32, ole32, oleaut32, uuid, comdlg32, advapi32.</p>
-<p>c_args, cpp_args, c_link_args, and cpp_link_args only affect native builds,
-when cross compiling they will not be applied to binaries or libraries
-targeting the host system, only those being run on the build system.</p>
+<p>All these <code>&lt;lang&gt;_*</code> options are specified per machine. See below in the
+<a href="Builtin-options.html#Specifying-options-per-machine">specifying options per machine</a> section on
+how to do this in cross builds.</p>
 <p>When using MSVC, <code>cpp_eh=none</code> will result in no exception flags being passed,
 while the <code>cpp_eh=[value]</code> will result in <code>/EH[value]</code>.
 Since <em>0.51.0</em> <code>cpp_eh=default</code> will result in <code>/EHsc</code> on MSVC. When using
@@ -728,6 +723,28 @@ gcc-style compilers, nothing is passed (allowing exceptions to work), while
 <p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control the
 value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other c/c++
 compiler supports this option.</p>
+<h2 id="specifying-options-per-machine">Specifying options per machine</h2>
+<p>Since <em>0.51.0</em>, some options are specified per machine rather than globally for
+all machine configurations. Prefixing the option with <code>build.</code> just affects the
+build machine configuration, while unprefixed just affects the host machine
+configuration, respectively. For example:</p>
+<ul>
+<li>
+<p><code>build.pkg_config_path</code> controls the paths pkg-config will search for just
+<code>native: true</code> dependencies (build machine).</p>
+</li>
+<li>
+<p><code>pkg_config_path</code> controls the paths pkg-config will search for just
+<code>native: false</code> dependencies (host machine).</p>
+</li>
+</ul>
+<p>This is useful for cross builds. In the native builds, build = host, and the
+unprefixed option alone will suffice.</p>
+<p>Prior to <em>0.51.0</em>, these options just effected native builds when specified on
+the command line, as there was no <code>build.</code> prefix. Similarly named fields in
+the <code>[properties]</code> section of the cross file would effect cross compilers, but
+the code paths were fairly different allowing differences in behavior to crop
+out.</p>
 
     </div>
         
