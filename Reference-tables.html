@@ -470,12 +470,16 @@ set in the cross file.</p>
 <td> Atmel AVR processor</td>
 </tr>
 <tr>
-<td> e2k</td>
-<td> MCST Elbrus processor</td>
-</tr>
-<tr>
 <td> c2000</td>
 <td> 32 bit C2000 processor</td>
+</tr>
+<tr>
+<td> dspic</td>
+<td> 16 bit Microchip dsPIC</td>
+</tr>
+<tr>
+<td> e2k</td>
+<td> MCST Elbrus processor</td>
 </tr>
 <tr>
 <td> ia64</td>
@@ -500,6 +504,10 @@ set in the cross file.</p>
 <tr>
 <td> parisc</td>
 <td> HP PA-RISC processor</td>
+</tr>
+<tr>
+<td> pic24</td>
+<td> 16 bit Microchip PIC24</td>
 </tr>
 <tr>
 <td> ppc</td>
@@ -534,6 +542,10 @@ set in the cross file.</p>
 <td> IBM zSystem s390x</td>
 </tr>
 <tr>
+<td> sh4</td>
+<td> SuperH SH-4</td>
+</tr>
+<tr>
 <td> sparc</td>
 <td> 32 bit SPARC</td>
 </tr>
@@ -548,14 +560,6 @@ set in the cross file.</p>
 <tr>
 <td> wasm64</td>
 <td> 64 bit Webassembly</td>
-</tr>
-<tr>
-<td> pic24</td>
-<td> 16 bit Microchip PIC24</td>
-</tr>
-<tr>
-<td> dspic</td>
-<td> 16 bit Microchip dsPIC</td>
 </tr>
 <tr>
 <td> x86</td>
@@ -825,6 +829,9 @@ which are supported by GCC, Clang, and other compilers.</p>
 <td> format_arg</td>
 </tr>
 <tr>
+<td> force_align_arg_pointer³</td>
+</tr>
+<tr>
 <td> gnu_inline</td>
 </tr>
 <tr>
@@ -902,6 +909,7 @@ which are supported by GCC, Clang, and other compilers.</p>
 "protected", which is not present in Apple's clang.</p>
 <p>† <em>New in 0.52.0</em> These split visibility attributes are preferred to the plain
 "visibility" as they provide narrower checks.</p>
+<p>³ <em>New in 0.55.0</em></p>
 <h3 id="msvc-__declspec">MSVC __declspec</h3>
 <p>These values are supported using the MSVC style <code>__declspec</code> annotation,
 which are supported by MSVC, GCC, Clang, and other compilers.</p>
