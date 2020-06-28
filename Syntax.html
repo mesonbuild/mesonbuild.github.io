@@ -198,9 +198,9 @@ statements</em> and <em>includes</em>.</p>
 <p>Usually one Meson statement takes just one line. There is no way to
 have multiple statements on one line as in e.g. <em>C</em>. Function and
 method calls' argument lists can be split over multiple lines. Meson
-will autodetect this case and do the right thing. In other cases you
-can get multi-line statements by ending the line with a <code>\</code>. Apart
-from line ending whitespace has no syntactic meaning.</p>
+will autodetect this case and do the right thing.</p>
+<p>In other cases, <em>(added 0.50)</em> you can get multi-line statements by ending the
+line with a <code>\</code>.  Apart from line ending whitespace has no syntactic meaning.</p>
 <h2 id="variables">Variables</h2>
 <p>Variables in Meson work just like in other high level programming
 languages. A variable can contain a value of any type, such as an
@@ -284,13 +284,25 @@ single quote do it like this:</p>
 <p>As in python and C, up to three octal digits are accepted in <code>\ooo</code>.</p>
 <p>Unrecognized escape sequences are left in the string unchanged, i.e., the
 backslash is left in the string.</p>
-<h4 id="string-concatenation">String concatenation</h4>
+<h3 id="string-concatenation">String concatenation</h3>
 <p>Strings can be concatenated to form a new string using the <code>+</code> symbol.</p>
 <pre><code class="language-meson">str1 = 'abc'
 str2 = 'xyz'
 combined = str1 + '_' + str2 # combined is now abc_xyz
 </code></pre>
-<h4 id="strings-running-over-multiple-lines">Strings running over multiple lines</h4>
+<h3 id="string-path-building">String path building</h3>
+<p><em>(Added 0.49)</em></p>
+<p>You can concatenate any two strings using <code>/</code> as an operator to build paths.
+This will always use <code>/</code> as the path separator on all platforms.</p>
+<pre><code class="language-meson">joined = '/usr/share' / 'projectname'    # =&gt; /usr/share/projectname
+joined = '/usr/local' / '/etc/name'      # =&gt; /etc/name
+
+joined = 'C:\\foo\\bar' / 'builddir'     # =&gt; C:/foo/bar/builddir
+joined = 'C:\\foo\\bar' / 'D:\\builddir' # =&gt; D:/builddir
+</code></pre>
+<p>Note that this is equivalent to using <a href="Reference-manual.html#join_paths"><code>join_paths()</code></a>,
+which was obsoleted by this operator.</p>
+<h3 id="strings-running-over-multiple-lines">Strings running over multiple lines</h3>
 <p>Strings running over multiple lines can be declared with three single
 quotes, like this:</p>
 <pre><code class="language-meson">multiline_string = '''#include &lt;foo.h&gt;
@@ -301,7 +313,7 @@ int main (int argc, char ** argv) {
 <p>These are raw strings that do not support the escape sequences listed
 above.  These strings can also be combined with the string formatting
 functionality described below.</p>
-<h4 id="string-formatting">String formatting</h4>
+<h3 id="string-formatting">String formatting</h3>
 <p>Strings can be built using the string formatting functionality.</p>
 <pre><code class="language-meson">template = 'string: @0@, number: @1@, bool: @2@'
 res = template.format('text', 1, true)
@@ -309,33 +321,33 @@ res = template.format('text', 1, true)
 </code></pre>
 <p>As can be seen, the formatting works by replacing placeholders of type
 <code>@number@</code> with the corresponding argument.</p>
-<h4 id="string-methods">String methods</h4>
+<h3 id="string-methods">String methods</h3>
 <p>Strings also support a number of other methods that return transformed
 copies.</p>
-<p><strong>.strip()</strong></p>
+<h4 id="strip">.strip()</h4>
 <pre><code class="language-meson"># Similar to the Python str.strip(). Removes leading/ending spaces and newlines
 define = ' -Dsomedefine '
 stripped_define = define.strip()
 # 'stripped_define' now has the value '-Dsomedefine'
 </code></pre>
-<p><strong>.to_upper()</strong>, <strong>.to_lower()</strong></p>
+<h4 id="to_upper-to_lower">.to_upper(), .to_lower()</h4>
 <pre><code class="language-meson">target = 'x86_FreeBSD'
 upper = target.to_upper() # t now has the value 'X86_FREEBSD'
 lower = target.to_lower() # t now has the value 'x86_freebsd'
 </code></pre>
-<p><strong>.to_int()</strong></p>
+<h4 id="to_int">.to_int()</h4>
 <pre><code class="language-meson">version = '1'
 # Converts the string to an int and throws an error if it can't be
 ver_int = version.to_int()
 </code></pre>
-<p><strong>.contains()</strong>, <strong>.startswith()</strong>, <strong>.endswith()</strong></p>
+<h4 id="contains-startswith-endswith">.contains(), .startswith(), .endswith()</h4>
 <pre><code class="language-meson">target = 'x86_FreeBSD'
 is_fbsd = target.to_lower().contains('freebsd')
 # is_fbsd now has the boolean value 'true'
 is_x86 = target.startswith('x86') # boolean value 'true'
 is_bsd = target.to_lower().endswith('bsd') # boolean value 'true'
 </code></pre>
-<p><strong>.split()</strong>, <strong>.join()</strong></p>
+<h4 id="split-join">.split(), .join()</h4>
 <pre><code class="language-meson"># Similar to the Python str.split()
 components = 'a b   c d '.split()
 # components now has the value ['a', 'b', 'c', 'd']
@@ -373,20 +385,24 @@ api_version = '.'.join([version_array[0], version_array[1]])
 api_version = '@0@.@1@'.format(version_array[0], version_array[1])
 # api_version now (again) has the value '0.2'
 </code></pre>
-<p><strong>.underscorify()</strong></p>
+<h4 id="underscorify">.underscorify()</h4>
 <pre><code class="language-meson">name = 'Meson Docs.txt#Reference-manual'
 # Replaces all characters other than `a-zA-Z0-9` with `_` (underscore)
 # Useful for substituting into #defines, filenames, etc.
 underscored = name.underscorify()
 # underscored now has the value 'Meson_Docs_txt_Reference_manual'
 </code></pre>
-<p><strong>.version_compare()</strong></p>
+<h4 id="version_compare">.version_compare()</h4>
 <pre><code class="language-meson">version = '1.2.3'
 # Compare version numbers semantically
 is_new = version.version_compare('&gt;=2.0')
 # is_new now has the boolean value false
 # Supports the following operators: '&gt;', '&lt;', '&gt;=', '&lt;=', '!=', '==', '='
 </code></pre>
+<p>Meson version comparison conventions include:</p>
+<pre><code class="language-meson">'3.6'.version_compare('&gt;=3.6.0') == false
+</code></pre>
+<p>It is best to be unambiguous and specify the full revision level to compare.</p>
 <h2 id="arrays">Arrays</h2>
 <p>Arrays are delimited by brackets. An array can contain an arbitrary number of objects of any type.</p>
 <pre><code class="language-meson">my_array = [1, 2, 'string', some_obj]
@@ -416,7 +432,7 @@ if 1 not in my_array
 # This condition is false
 endif
 </code></pre>
-<h4 id="array-methods">Array methods</h4>
+<h3 id="array-methods">Array methods</h3>
 <p>The following methods are defined for all arrays:</p>
 <ul>
 <li>
@@ -644,7 +660,7 @@ equality_expression: relational_expression | (equality_expression equality_opera
 equality_operator: "==" | "!="
 expression: assignment_expression
 expression_list: expression ("," expression)*
-expression_statememt: expression 
+expression_statememt: expression
 function_expression: id_expression "(" [argument_list] ")"
 hex_literal: "0x" HEX_NUMBER
 HEX_NUMBER: /[a-fA-F0-9]+/
