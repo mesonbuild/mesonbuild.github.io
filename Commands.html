@@ -304,26 +304,68 @@ optional arguments:
 </code></pre>
 <h3 id="compile">compile</h3>
 <p><em>(since 0.54.0)</em></p>
-<pre><code>$ meson compile [-h] [-j JOBS] [-l LOAD_AVERAGE] [--clean] [-C BUILDDIR]
-                [--verbose]
+<pre><code>$ meson compile [-h] [--clean] [-C BUILDDIR] [-j JOBS] [-l LOAD_AVERAGE]
+                [--verbose] [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
+                [TARGET [TARGET ...]]
 </code></pre>
 <p>Builds a default or a specified target of a configured meson project.</p>
-<pre><code>optional arguments:
+<pre><code>positional arguments:
+  TARGET                                Targets to build. Target has the
+                                        following format: [PATH_TO_TARGET/]TARGE
+                                        T_NAME[:TARGET_TYPE].
+
+optional arguments:
   -h, --help                            show this help message and exit
+  --clean                               Clean the build directory.
+  -C BUILDDIR                           The directory containing build files to
+                                        be built.
   -j JOBS, --jobs JOBS                  The number of worker jobs to run (if
                                         supported). If the value is less than 1
                                         the build program will guess.
   -l LOAD_AVERAGE, --load-average LOAD_AVERAGE
                                         The system load average to try to
-                                        maintain (if supported)
-  --clean                               Clean the build directory.
-  -C BUILDDIR                           The directory containing build files to
-                                        be built.
+                                        maintain (if supported).
   --verbose                             Show more verbose output.
+  --ninja-args NINJA_ARGS               Arguments to pass to `ninja` (applied
+                                        only on `ninja` backend).
+  --vs-args VS_ARGS                     Arguments to pass to `msbuild` (applied
+                                        only on `vs` backend).
+</code></pre>
+<p><code>--verbose</code> argument is available since 0.55.0.</p>
+<h4 id="targets">Targets</h4>
+<p><em>(since 0.55.0)</em></p>
+<p><code>TARGET</code> has the following syntax <code>[PATH/]NAME[:TYPE]</code>, where:</p>
+<ul>
+<li>
+<code>NAME</code>: name of the target from <code>meson.build</code> (e.g. <code>foo</code> from <code>executable('foo', ...)</code>).</li>
+<li>
+<code>PATH</code>: path to the target relative to the root <code>meson.build</code> file. Note: relative path for a target specified in the root <code>meson.build</code> is <code>./</code>.</li>
+<li>
+<code>TYPE</code>: type of the target. Can be one of the following: 'executable', 'static_library', 'shared_library', 'shared_module', 'custom', 'run', 'jar'.</li>
+</ul>
+<p><code>PATH</code> and/or <code>TYPE</code> can be ommited if the resulting <code>TARGET</code> can be used to uniquely identify the target in <code>meson.build</code>.</p>
+<h4 id="backend-specific-arguments">Backend specific arguments</h4>
+<p><em>(since 0.55.0)</em></p>
+<p><code>BACKEND-args</code> use the following syntax:</p>
+<p>If you only pass a single string, then it is considered to have all values separated by commas. Thus invoking the following command:</p>
+<pre><code>$ meson compile --ninja-args=-n,-d,explain
+</code></pre>
+<p>would add <code>-n</code>, <code>-d</code> and <code>explain</code> arguments to ninja invocation.</p>
+<p>If you need to have commas or spaces in your string values, then you need to pass the value with proper shell quoting like this:</p>
+<pre><code>$ meson compile "--ninja-args=['a,b', 'c d']"
 </code></pre>
 <h4 id="examples1">Examples:</h4>
 <p>Build the project:</p>
 <pre><code>meson compile -C builddir
+</code></pre>
+<p>Execute a dry run on ninja backend with additional debug info:</p>
+<pre><code>meson compile --ninja-args=-n,-d,explain
+</code></pre>
+<p>Build three targets: two targets that have the same <code>foo</code> name, but different type, and a <code>bar</code> target:</p>
+<pre><code>meson compile foo:shared_library foo:static_library bar
+</code></pre>
+<p>Produce a coverage html report (if available):</p>
+<pre><code>meson compile coverage-html
 </code></pre>
 <h3 id="dist">dist</h3>
 <p><em>(since 0.52.0)</em></p>
@@ -700,7 +742,7 @@ Commands:
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Commands.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/Commands.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">

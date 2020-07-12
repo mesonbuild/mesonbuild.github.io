@@ -199,7 +199,7 @@ afterwards</a>.</p>
 function has two keyword arguments:</p>
 <ul>
 <li>
-<p><code>language</code> specifies the language(s) that the arguments should be
+<p><code>language</code>: specifies the language(s) that the arguments should be
 applied to. If a list of languages is given, the arguments are added
 to each of the corresponding compiler command lines. Note that there
 is no way to remove an argument set in this way. If you have an
@@ -207,12 +207,12 @@ argument that is only used in a subset of targets, you have to specify
 it in per-target flags.</p>
 </li>
 <li>
-<p><code>native</code> is a boolean specifying whether the arguments should be
+<p><code>native</code> <em>(since 0.48.0)</em>: a boolean specifying whether the arguments should be
 applied to the native or cross compilation. If <code>true</code> the arguments
 will only be used for native compilations. If <code>false</code> the arguments
 will only be used in cross compilations. If omitted, the flags are
 added to native compilations if compiling natively and cross
-compilations (only) when cross compiling. Available since 0.48.0</p>
+compilations (only) when cross compiling.</p>
 </li>
 </ul>
 <p>The arguments are used in all compiler invocations with the exception
@@ -243,13 +243,13 @@ endif
 <p>Takes the following keyword arguments:</p>
 <ul>
 <li>
-<p><code>required</code> defaults to <code>true</code>, which means that if any of the languages
-specified is not found, Meson will halt. Since <em>0.47.0</em> the value of a
+<p><code>required</code>: defaults to <code>true</code>, which means that if any of the languages
+specified is not found, Meson will halt. <em>(since 0.47.0)</em> The value of a
 <a href="Build-options.html#features"><code>feature</code></a> option can also be passed.</p>
 </li>
 <li>
-<p><code>native</code> if set to <code>true</code>, the language will be used to compile for the build
-machine, if <code>false</code>, for the host machine. Since <em>0.54.0</em>.</p>
+<p><code>native</code> <em>(since 0.54.0)</em>: if set to <code>true</code>, the language will be used to compile for the build
+machine, if <code>false</code>, for the host machine.</p>
 </li>
 </ul>
 <p>Returns <code>true</code> if all languages specified were found and <code>false</code> otherwise.</p>
@@ -275,20 +275,20 @@ custom setup, for example under Valgrind. The keyword arguments are
 the following:</p>
 <ul>
 <li>
-<code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
+<code>env</code>: environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
 object</a> which allows more sophisticated
-environment juggling. <em>Since 0.52.0</em> a dictionary is also accepted.</li>
+environment juggling. <em>(since 0.52.0)</em> A dictionary is also accepted.</li>
 <li>
-<code>exe_wrapper</code> a list containing the wrapper command or script followed by the arguments to it</li>
+<code>exe_wrapper</code>: a list containing the wrapper command or script followed by the arguments to it</li>
 <li>
-<code>gdb</code> if <code>true</code>, the tests are also run under <code>gdb</code>
+<code>gdb</code>: if <code>true</code>, the tests are also run under <code>gdb</code>
 </li>
 <li>
-<code>timeout_multiplier</code> a number to multiply the test timeout with</li>
+<code>timeout_multiplier</code>: a number to multiply the test timeout with</li>
 <li>
-<code>is_default</code> a bool to set whether this is the default test setup.
+<code>is_default</code> <em>(since 0.49.0)</em>: a bool to set whether this is the default test setup.
 If <code>true</code>, the setup will be used whenever <code>meson test</code> is run
-without the <code>--setup</code> option. Since 0.49.0</li>
+without the <code>--setup</code> option.</li>
 </ul>
 <p>To use the test setup, run <code>meson test --setup=*name*</code> inside the
 build dir.</p>
@@ -298,17 +298,17 @@ build dir.</p>
 <h3 id="alias_target">alias_target</h3>
 <pre><code class="language-meson">runtarget alias_target(target_name, dep1, ...)
 </code></pre>
-<p>Since <em>0.52.0</em></p>
+<p><em>(since 0.52.0)</em></p>
 <p>This function creates a new top-level target. Like all top-level targets, this
-integrates with the selected backend. For instance, with Ninja you can
-run it as <code>ninja target_name</code>. This is a dummy target that does not execute any
+integrates with the selected backend. For instance, with you can
+run it as <code>meson compile target_name</code>. This is a dummy target that does not execute any
 command, but ensures that all dependencies are built. Dependencies can be any
 build target (e.g. return value of <a href="Reference-manual.html#executable">executable()</a>, custom_target(), etc)</p>
 <h3 id="assert">assert()</h3>
 <pre><code class="language-meson">    void assert(*condition*, *message*)
 </code></pre>
 <p>Abort with an error message if <code>condition</code> evaluates to <code>false</code>.</p>
-<p><em>Since 0.53.0</em> <code>message</code> argument is optional and defaults to print the condition
+<p><em>(since 0.53.0)</em> <code>message</code> argument is optional and defaults to print the condition
 statement instead.</p>
 <h3 id="benchmark">benchmark()</h3>
 <pre><code class="language-meson">    void benchmark(name, executable, ...)
@@ -320,10 +320,11 @@ run. The behavior of this function is identical to <a href="Reference-manual.htm
 <li>benchmark() does not automatically add the <code>MALLOC_PERTURB_</code> environment variable</li>
 </ul>
 <p><em>Note:</em> Prior to 0.52.0 benchmark would warn that <code>depends</code> and <code>priority</code>
-were unsupported, this is incorrect</p>
+were unsupported, this is incorrect.</p>
 <h3 id="both_libraries">both_libraries()</h3>
 <pre><code class="language-meson">    buildtarget = both_libraries(library_name, list_of_sources, ...)
 </code></pre>
+<p><em>(since 0.46.0)</em></p>
 <p>Builds both a static and shared library with the given
 sources. Positional and keyword arguments are otherwise the same as
 for <a href="Reference-manual.html#library"><code>library</code></a>. Source files will be compiled only once and
@@ -338,7 +339,6 @@ shared library. In addition it supports the following extra methods:</p>
 <li>
 <code>get_static_lib()</code> returns the static library build target</li>
 </ul>
-<p><em>Added 0.46.0</em></p>
 <h3 id="build_target">build_target()</h3>
 <p>Creates a build target whose type can be set dynamically with the
 <code>target_type</code> keyword argument.</p>
@@ -368,7 +368,7 @@ methods section</a> below.</p>
 <p>Creates an empty configuration object. You should add your
 configuration with <a href="Reference-manual.html#configuration-data-object">its method calls</a> and
 finally use it in a call to <code>configure_file</code>.</p>
-<p>Since <em>0.49.0</em> takes an optional dictionary as first argument. If
+<p><em>(since 0.49.0)</em> Takes an optional dictionary as first argument. If
 provided, each key/value pair is added into the <code>configuration_data</code>
 as if <code>set()</code> method was called for each of them.</p>
 <h3 id="configure_file">configure_file()</h3>
@@ -380,70 +380,70 @@ passed to it.</p>
 to the <code>configuration:</code> keyword argument, it takes a template file as
 the <code>input:</code> (optional) and produces the <code>output:</code> (required) by
 substituting values from the configuration data as detailed in <a href="Configuration.html">the
-configuration file documentation</a>. Since <em>0.49.0</em> a
+configuration file documentation</a>. <em>(since 0.49.0)</em> A
 dictionary can be passed instead of a
 <a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> object.</p>
 <p>When a list of strings is passed to the <code>command:</code> keyword argument,
 it takes any source or configured file as the <code>input:</code> and assumes
 that the <code>output:</code> is produced when the specified command is run.</p>
-<p>Since <em>0.47.0</em>, when the <code>copy:</code> keyword argument is set to <code>true</code>,
+<p><em>(since 0.47.0)</em> When the <code>copy:</code> keyword argument is set to <code>true</code>,
 this function will copy the file provided in <code>input:</code> to a file in the
 build directory with the name <code>output:</code> in the current directory.</p>
 <p>These are all the supported keyword arguments:</p>
 <ul>
 <li>
-<code>capture</code> when this argument is set to true, Meson captures <code>stdout</code>
-of the <code>command</code> and writes it to the target file specified as
-<code>output</code>. Available since v0.41.0.</li>
+<code>capture</code> <em>(since 0.41.0)</em>: when this argument is set to true,
+Meson captures <code>stdout</code> of the <code>command</code> and writes it to the target
+file specified as <code>output</code>.</li>
 <li>
-<code>command</code> as explained above, if specified, Meson does not create
+<code>command</code>: as explained above, if specified, Meson does not create
 the file itself but rather runs the specified command, which allows
-you to do fully custom file generation. Since <em>0.52.0</em> the command can contain
+you to do fully custom file generation. <em>(since 0.52.0)</em> The command can contain
 file objects and more than one file can be passed to the <code>input</code> keyword
 argument, see <a href="Reference-manual.html#custom_target"><code>custom_target()</code></a> for details about string
 substitutions.</li>
 <li>
-<code>copy</code> <em>(added 0.47.0)</em> as explained above, if specified Meson only
+<code>copy</code> <em>(since 0.47.0)</em>: as explained above, if specified Meson only
 copies the file from input to output.</li>
 <li>
-<code>depfile</code> <em>(added 0.52.0)</em> is a dependency file that the command can write listing
+<code>depfile</code> <em>(since 0.52.0)</em>: a dependency file that the command can write listing
 all the additional files this target depends on. A change
 in any one of these files triggers a reconfiguration.</li>
 <li>
-<code>format</code> <em>(added 0.46.0)</em> the format of defines. It defaults to <code>meson</code>, and so substitutes
+<code>format</code> <em>(since 0.46.0)</em>: the format of defines. It defaults to <code>meson</code>, and so substitutes
 <code>#mesondefine</code> statements and variables surrounded by <code>@</code> characters, you can also use <code>cmake</code>
 to replace <code>#cmakedefine</code> statements and variables with the <code>${variable}</code> syntax. Finally you can use
 <code>cmake@</code> in which case substitutions will apply on <code>#cmakedefine</code> statements and variables with
 the <code>@variable@</code> syntax.</li>
 <li>
-<code>input</code> the input file name. If it's not specified in configuration
+<code>input</code>: the input file name. If it's not specified in configuration
 mode, all the variables in the <code>configuration:</code> object (see above)
 are written to the <code>output:</code> file.</li>
 <li>
-<code>install</code> <em>(added 0.50.0)</em> When true, this generated file is installed during
+<code>install</code> <em>(since 0.50.0)</em>: when true, this generated file is installed during
 the install step, and <code>install_dir</code> must be set and not empty. When false, this
 generated file is not installed regardless of the value of <code>install_dir</code>.
 When omitted it defaults to true when <code>install_dir</code> is set and not empty,
 false otherwise.</li>
 <li>
-<code>install_dir</code> the subdirectory to install the generated file to
+<code>install_dir</code>: the subdirectory to install the generated file to
 (e.g. <code>share/myproject</code>), if omitted or given the value of empty
 string, the file is not installed.</li>
 <li>
-<code>install_mode</code> <em>(added 0.47.0)</em> specify the file mode in symbolic format
+<code>install_mode</code> <em>(since 0.47.0)</em>: specify the file mode in symbolic format
 and optionally the owner/uid and group/gid for the installed files.</li>
 <li>
-<code>output</code> the output file name (since v0.41.0, may contain
-<code>@PLAINNAME@</code> or <code>@BASENAME@</code> substitutions). In configuration mode,
+<code>output</code>: the output file name. <em>(since 0.41.0)</em> may contain
+<code>@PLAINNAME@</code> or <code>@BASENAME@</code> substitutions. In configuration mode,
 the permissions of the input file (if it is specified) are copied to
 the output file.</li>
 <li>
-<code>output_format</code> <em>(added 0.47.0)</em> the format of the output to generate when no input
+<code>output_format</code> <em>(since 0.47.0)</em>: the format of the output to generate when no input
 was specified. It defaults to <code>c</code>, in which case preprocessor directives
 will be prefixed with <code>#</code>, you can also use <code>nasm</code>, in which case the
 prefix will be <code>%</code>.</li>
 <li>
-<code>encoding</code> <em>(added v0.47.0)</em> set the file encoding for the input and output file,
+<code>encoding</code> <em>(since 0.47.0)</em>: set the file encoding for the input and output file,
 defaults to utf-8. The supported encodings are those of python3, see
 <a href="https://docs.python.org/3/library/codecs.html#standard-encodings">standard-encodings</a>.</li>
 </ul>
@@ -455,39 +455,35 @@ is the name of this target and the keyword arguments are the
 following.</p>
 <ul>
 <li>
-<code>build_by_default</code> <em>(added 0.38)</em> causes, when set to true, to
+<code>build_by_default</code> <em>(since 0.38.0)</em>: causes, when set to true, to
 have this target be built by default. This means it will be built when
-<code>ninja</code> is called without any arguments or asked to build a target
-like <code>ninja test</code> that depends on ninja's <a href="https://ninja-build.org/manual.html#_default_target_statements">default
-target</a>
-set to <code>all</code> by meson. The same behavior applies for backends other
-than <code>ninja</code>.  The default value is <code>false</code>.
-<em>(changed in 0.50)</em> if <code>build_by_default</code> is explicitly set to false, <code>install</code>
+<code>meson compile</code> is called without any arguments. The default value is <code>false</code>.
+<em>(since 0.50.0)</em> If <code>build_by_default</code> is explicitly set to false, <code>install</code>
 will no longer override it. If <code>build_by_default</code> is not set, <code>install</code> will
 still determine its default.</li>
 <li>
-<code>build_always</code> (deprecated) if <code>true</code> this target is always considered out of
+<code>build_always</code> <strong>(deprecated)</strong>: if <code>true</code> this target is always considered out of
 date and is rebuilt every time.  Equivalent to setting both
 <code>build_always_stale</code> and <code>build_by_default</code> to true.</li>
 <li>
-<code>build_always_stale</code> <em>(added 0.47)</em> if <code>true</code> the target is always considered out of date.
+<code>build_always_stale</code> <em>(since 0.47.0)</em>: if <code>true</code> the target is always considered out of date.
 Useful for things such as build timestamps or revision control tags.
 The associated command is run even if the outputs are up to date.</li>
 <li>
-<code>capture</code>, there are some compilers that can't be told to write
+<code>capture</code>: there are some compilers that can't be told to write
 their output to a file but instead write it to standard output. When
 this argument is set to true, Meson captures <code>stdout</code> and writes it
 to the target file. Note that your command argument list may not
 contain <code>@OUTPUT@</code> when capture mode is active.</li>
 <li>
-<code>console</code> <em>(added 0.48)</em> keyword argument conflicts with <code>capture</code>, and is meant
+<code>console</code> <em>(since 0.48.0)</em>: keyword argument conflicts with <code>capture</code>, and is meant
 for commands that are resource-intensive and take a long time to
 finish. With the Ninja backend, setting this will add this target
 to <a href="https://ninja-build.org/manual.html#_the_literal_console_literal_pool">Ninja's <code>console</code> pool</a>,
 which has special properties such as not buffering stdout and
 serializing all targets in this pool.</li>
 <li>
-<code>command</code> command to run to create outputs from inputs. The command
+<code>command</code>: command to run to create outputs from inputs. The command
 may be strings or the return value of functions that return file-like
 objects such as <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
 <a href="Reference-manual.html#executable"><code>executable()</code></a>, <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>,
@@ -496,66 +492,65 @@ Meson will automatically insert the appropriate dependencies on
 targets and files listed in this keyword argument.
 Note: always specify commands in array form <code>['commandname', '-arg1', '-arg2']</code> rather than as a string <code>'commandname -arg1 -arg2'</code> as the latter will <em>not</em> work.</li>
 <li>
-<code>depend_files</code> files (<a href="Reference-manual.html#string-object"><code>string</code></a>,
+<code>depend_files</code>: files (<a href="Reference-manual.html#string-object"><code>string</code></a>,
 <a href="Reference-manual.html#files"><code>files()</code></a>, or <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>) that
 this target depends on but are not listed in the <code>command</code> keyword
 argument. Useful for adding regen dependencies.</li>
 <li>
-<code>depends</code> specifies that this target depends on the specified
+<code>depends</code>: specifies that this target depends on the specified
 target(s), even though it does not take any of them as a command
 line argument. This is meant for cases where you have a tool that
 e.g. does globbing internally. Usually you should just put the
 generated sources as inputs and Meson will set up all dependencies
 automatically.</li>
 <li>
-<code>depfile</code> is a dependency file that the command can write listing
+<code>depfile</code>: a dependency file that the command can write listing
 all the additional files this target depends on, for example a C
 compiler would list all the header files it included, and a change
 in any one of these files triggers a recompilation</li>
 <li>
-<code>input</code> list of source files. As of 0.41.0 the list will be flattened.</li>
+<code>input</code>: list of source files. <em>(since 0.41.0)</em> the list is flattened.</li>
 <li>
-<code>install</code> when true, this target is installed during the install step</li>
+<code>install</code>: when true, this target is installed during the install step</li>
 <li>
-<code>install_dir</code> directory to install to</li>
+<code>install_dir</code>: directory to install to</li>
 <li>
-<code>install_mode</code> <em>(added 0.47.0)</em> the file mode and optionally the
+<code>install_mode</code> <em>(since 0.47.0)</em>: the file mode and optionally the
 owner/uid and group/gid</li>
 <li>
-<code>output</code> list of output files</li>
+<code>output</code>: list of output files</li>
 </ul>
 <p>The list of strings passed to the <code>command</code> keyword argument accept
 the following special string substitutions:</p>
 <ul>
 <li>
-<code>@INPUT@</code> the full path to the input passed to <code>input</code>. If more than
+<code>@INPUT@</code>: the full path to the input passed to <code>input</code>. If more than
 one input is specified, all of them will be substituted as separate
 arguments only if the command uses <code>'@INPUT@'</code> as a
 standalone-argument. For instance, this would not work: <code>command : ['cp', './@INPUT@']</code>, but this would: <code>command : ['cp', '@INPUT@']</code>.</li>
 <li>
-<code>@OUTPUT@</code> the full path to the output passed to <code>output</code>. If more
+<code>@OUTPUT@</code>: the full path to the output passed to <code>output</code>. If more
 than one outputs are specified, the behavior is the same as
 <code>@INPUT@</code>.</li>
 <li>
-<code>@INPUT0@</code> <code>@INPUT1@</code> <code>...</code> the full path to the input with the specified array index in <code>input</code>
+<code>@INPUT0@</code> <code>@INPUT1@</code> <code>...</code>: the full path to the input with the specified array index in <code>input</code>
 </li>
 <li>
-<code>@OUTPUT0@</code> <code>@OUTPUT1@</code> <code>...</code> the full path to the output with the specified array index in <code>output</code>
+<code>@OUTPUT0@</code> <code>@OUTPUT1@</code> <code>...</code>: the full path to the output with the specified array index in <code>output</code>
 </li>
 <li>
-<code>@OUTDIR@</code> the full path to the directory where the output(s) must be written</li>
+<code>@OUTDIR@</code>: the full path to the directory where the output(s) must be written</li>
 <li>
-<code>@DEPFILE@</code> the full path to the dependency file passed to <code>depfile</code>
+<code>@DEPFILE@</code>: the full path to the dependency file passed to <code>depfile</code>
 </li>
 <li>
 <code>@PLAINNAME@</code>: the input filename, without a path</li>
 <li>
 <code>@BASENAME@</code>: the input filename, with extension removed</li>
 <li>
-<code>@PRIVATE_DIR@</code>: path to a directory where the custom target must store all its intermediate files, available since 0.50.1</li>
+<code>@PRIVATE_DIR@</code> <em>(since 0.50.1)</em>: path to a directory where the custom target must store all its intermediate files.</li>
 </ul>
-<p>The <code>depfile</code> keyword argument also accepts the <code>@BASENAME@</code> and <code>@PLAINNAME@</code>
-substitutions. <em>(since 0.47)</em></p>
+<p><em>(since 0.47.0)</em> The <code>depfile</code> keyword argument also accepts the <code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#custom-target-object">object methods section</a> below.</p>
 <h3 id="declare_dependency">declare_dependency()</h3>
@@ -567,32 +562,31 @@ internal to the current build. The main use case for this is in
 subprojects. This allows a subproject to easily specify how it should
 be used. This makes it interchangeable with the same dependency that
 is provided externally by the system. This function has the following
-keyword arguments.</p>
+keyword arguments:</p>
 <ul>
 <li>
-<code>compile_args</code>, compile arguments to use</li>
+<code>compile_args</code>: compile arguments to use.</li>
 <li>
-<code>dependencies</code>, other dependencies needed to use this dependency</li>
+<code>dependencies</code>: other dependencies needed to use this dependency.</li>
 <li>
-<code>include_directories</code>, the directories to add to header search path,
-must be include_directories objects or, since 0.50.0, plain strings</li>
+<code>include_directories</code>: the directories to add to header search path,
+must be include_directories objects or <em>(since 0.50.0)</em> plain strings</li>
 <li>
-<code>link_args</code>, link arguments to use</li>
+<code>link_args</code>: link arguments to use.</li>
 <li>
-<code>link_with</code>, libraries to link against</li>
+<code>link_with</code>: libraries to link against.</li>
 <li>
-<code>link_whole</code>, libraries to link fully, same as <a href="Reference-manual.html#executable"><code>executable</code></a>
-Since 0.46.0</li>
+<code>link_whole</code> <em>(since 0.46.0)</em>: libraries to link fully, same as <a href="Reference-manual.html#executable"><code>executable</code></a>.</li>
 <li>
-<code>sources</code>, sources to add to targets (or generated header files
+<code>sources</code>: sources to add to targets (or generated header files
 that should be built before sources including them are built)</li>
 <li>
-<code>version</code>, the version of this dependency, such as <code>1.2.3</code>
+<code>version</code>: the version of this dependency, such as <code>1.2.3</code>
 </li>
 <li>
-<code>variables</code>, a dictionary of arbitrary strings, this is meant to be used
+<code>variables</code> <em>(since 0.54.0)</em>: a dictionary of arbitrary strings, this is meant to be used
 in subprojects where special variables would be provided via cmake or
-pkg-config. Since 0.54.0</li>
+pkg-config.</li>
 </ul>
 <h3 id="dependency">dependency()</h3>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
@@ -606,13 +600,13 @@ are also supported. This function supports the following keyword
 arguments:</p>
 <ul>
 <li>
-<code>default_options</code> <em>(added 0.37.0)</em> an array of default option values
+<code>default_options</code> <em>(since 0.37.0)</em>: an array of default option values
 that override those set in the subproject's <code>meson_options.txt</code>
 (like <code>default_options</code> in <a href="Reference-manual.html#project"><code>project()</code></a>, they only have
 effect when Meson is run for the first time, and command line
 arguments override any default options in build files)</li>
 <li>
-<code>fallback</code> specifies a subproject fallback to use in case the
+<code>fallback</code>: specifies a subproject fallback to use in case the
 dependency is not found in the system. The value is an array
 <code>['subproj_name', 'subproj_dep']</code> where the first value is the name
 of the subproject and the second is the variable name in that
@@ -621,43 +615,49 @@ value of <a href="Reference-manual.html#declare_dependency"><code>declare_depend
 <a href="Reference-manual.html#dependency"><code>dependency()</code></a>, etc. Note that this means the
 fallback dependency may be a not-found dependency, in which
 case the value of the <code>required:</code> kwarg will be obeyed.
-<em>Since 0.54.0</em> <code>'subproj_dep'</code> argument can be omitted in the case the
+<em>(since 0.54.0)</em> <code>'subproj_dep'</code> argument can be omitted in the case the
 subproject used <code>meson.override_dependency('dependency_name', subproj_dep)</code>.
 In that case, the <code>fallback</code> keyword argument can be a single string instead
-of a list of 2 strings.</li>
+of a list of 2 strings. <em>Since 0.55.0</em> the <code>fallback</code> keyword argument can be
+omitted when there is a wrap file or a directory with the same <code>dependency_name</code>,
+and subproject registered the dependency using
+<code>meson.override_dependency('dependency_name', subproj_dep)</code>, or when the wrap
+file has <code>dependency_name</code> in its <code>[provide]</code> section.
+See <a href="Wrap-dependency-system-manual.html#provide-section">Wrap documentation</a>
+for more details.</li>
 <li>
-<code>language</code> <em>(added 0.42.0)</em> defines what language-specific
+<code>language</code> <em>(since 0.42.0)</em>: defines what language-specific
 dependency to find if it's available for multiple languages.</li>
 <li>
-<code>method</code> defines the way the dependency is detected, the default is
+<code>method</code>: defines the way the dependency is detected, the default is
 <code>auto</code> but can be overridden to be e.g. <code>qmake</code> for Qt development,
 and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">different dependencies support different values</a>
 for this (though <code>auto</code> will work on all of them)</li>
 <li>
-<code>native</code> if set to <code>true</code>, causes Meson to find the dependency on
+<code>native</code>: if set to <code>true</code>, causes Meson to find the dependency on
 the build machine system rather than the host system (i.e. where the
 cross compiled binary will run on), usually only needed if you build
 a tool to be used during compilation.</li>
 <li>
-<code>not_found_message</code> <em>(added 0.50.0)</em> is an optional string that will
+<code>not_found_message</code> <em>(since 0.50.0)</em>: an optional string that will
 be printed as a <code>message()</code> if the dependency was not found.</li>
 <li>
-<code>required</code>, when set to false, Meson will proceed with the build
-even if the dependency is not found. Since <em>0.47.0</em> the value of a
+<code>required</code>: when set to false, Meson will proceed with the build
+even if the dependency is not found. <em>(since 0.47.0)</em> The value of a
 <a href="Build-options.html#features"><code>feature</code></a> option can also be passed.</li>
 <li>
-<code>static</code> tells the dependency provider to try to get static
+<code>static</code>: tells the dependency provider to try to get static
 libraries instead of dynamic ones (note that this is not supported
 by all dependency backends)</li>
 <li>
-<code>version</code> specifies the required version, a string containing a
+<code>version</code> <em>(since 0.37.0)</em>: specifies the required version, a string containing a
 comparison operator followed by the version string, examples include
-<code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching. <em>(Added 0.37.0)</em>
+<code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching.
 You can also specify multiple restrictions by passing a list to this
 keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.
 These requirements are never met if the version is unknown.</li>
 <li>
-<code>include_type</code> <em>(added 0.52.0)</em> is an enum flag, marking how the dependency
+<code>include_type</code> <em>(since 0.52.0)</em>: an enum flag, marking how the dependency
 flags should be converted. Supported values are <code>'preserve'</code>, <code>'system'</code> and
 <code>'non-system'</code>. System dependencies may be handled differently on some
 platforms, for instance, using <code>-isystem</code> instead of <code>-I</code>, where possible.
@@ -669,10 +669,8 @@ keywords may also be accepted (e.g. <code>modules</code> specifies submodules to
 dependencies such as Qt5 or Boost. <code>components</code> allows the user to manually
 add CMake <code>COMPONENTS</code> for the <code>find_package</code> lookup)</li>
 <li>
-<code>disabler</code> if <code>true</code> and the dependency couldn't be found, return a
-<a href="Reference-manual.html#disabler-object">disabler object</a> instead of a not-found dependency.
-<em>Since 0.49.0</em>
-</li>
+<code>disabler</code> <em>(since 0.49.0)</em>: if <code>true</code> and the dependency couldn't be found,
+returns a <a href="Reference-manual.html#disabler-object">disabler object</a> instead of a not-found dependency.</li>
 </ul>
 <p>If dependency_name is <code>''</code>, the dependency is always not found.  So
 with <code>required: false</code>, this always returns a dependency object for
@@ -686,7 +684,8 @@ allowed by <code>--wrap-mode</code>.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#dependency-object">object methods section</a> below.</p>
 <h3 id="disabler">disabler()</h3>
-<p>Returns a <a href="Reference-manual.html#disabler-object">disabler object</a>. Added in 0.44.0.</p>
+<p><em>(since 0.44.0)</em></p>
+<p>Returns a <a href="Reference-manual.html#disabler-object">disabler object</a>.</p>
 <h3 id="error">error()</h3>
 <pre><code class="language-meson">    void error(message)
 </code></pre>
@@ -694,9 +693,9 @@ allowed by <code>--wrap-mode</code>.</p>
 <h3 id="environment">environment()</h3>
 <pre><code class="language-meson">    environment_object environment(...)
 </code></pre>
-<p>Returns an empty <a href="Reference-manual.html#environment-object">environment variable
-object</a>. Added in 0.35.0.</p>
-<p>Since <em>0.52.0</em> takes an optional dictionary as first argument. If
+<p><em>(since 0.35.0)</em></p>
+<p>Returns an empty <a href="Reference-manual.html#environment-object">environment variable object</a>.</p>
+<p><em>(since 0.52.0)</em> Takes an optional dictionary as first argument. If
 provided, each key/value pair is added into the <code>environment_object</code>
 as if <code>set()</code> method was called for each of them.</p>
 <h3 id="executable">executable()</h3>
@@ -734,129 +733,128 @@ like the positional arguments above, these keyword arguments can also
 be passed to <a href="Reference-manual.html#library">shared and static libraries</a>.</p>
 <ul>
 <li>
-<code>&lt;languagename&gt;_pch</code> precompiled header file to use for the given language</li>
+<code>&lt;languagename&gt;_pch</code>: precompiled header file to use for the given language</li>
 <li>
-<code>&lt;languagename&gt;_args</code> compiler flags to use for the given language;
+<code>&lt;languagename&gt;_args</code>: compiler flags to use for the given language;
 eg: <code>cpp_args</code> for C++</li>
 <li>
-<code>build_by_default</code> causes, when set to true, to have this target be
-built by default, that is, when invoking plain <code>ninja</code>, the default
-value is true for all built target types, since 0.38.0</li>
+<code>build_by_default</code> <em>(since 0.38.0)</em>: causes, when set to true, to
+have this target be built by default. This means it will be built when
+<code>meson compile</code> is called without any arguments. The default value is
+<code>true</code> for all built target types.</li>
 <li>
-<code>build_rpath</code> a string to add to target's rpath definition in the
+<code>build_rpath</code>: a string to add to target's rpath definition in the
 build dir, but which will be removed on install</li>
 <li>
-<code>dependencies</code> one or more objects created with
+<code>dependencies</code>: one or more objects created with
 <a href="Reference-manual.html#dependency"><code>dependency</code></a> or <a href="Reference-manual.html#compiler-object"><code>find_library</code></a>
 (for external deps) or <a href="Reference-manual.html#declare_dependency"><code>declare_dependency</code></a>
 (for deps built by the project)</li>
 <li>
-<code>extra_files</code> are not used for the build itself but are shown as
+<code>extra_files</code>: not used for the build itself but are shown as
 source files in IDEs that group files by targets (such as Visual
 Studio)</li>
 <li>
-<code>gui_app</code> when set to true flags this target as a GUI application on
-platforms where this makes a difference (e.g. Windows)</li>
+<code>gui_app</code>: when set to true flags this target as a GUI application on
+platforms where this makes a difference (e.g. Windows).</li>
 <li>
-<code>link_args</code> flags to use during linking. You can use UNIX-style
+<code>link_args</code>: flags to use during linking. You can use UNIX-style
 flags here for all platforms.</li>
 <li>
-<code>link_depends</code> strings, files, or custom targets the link step
+<code>link_depends</code>: strings, files, or custom targets the link step
 depends on such as a symbol visibility map. The purpose is to
 automatically trigger a re-link (but not a re-compile) of the target
 when this file changes.</li>
 <li>
-<code>link_language</code> since 0.51.0 (broken until 0.55.0) makes the linker for this
+<code>link_language</code> <em>(since 0.51.0)</em> <em>(broken until 0.55.0)</em>: makes the linker for this
 target be for the specified language. It is generally unnecessary to set
 this, as meson will detect the right linker to use in most cases. There are
 only two cases where this is needed. One, your main function in an
 executable is not in the language meson picked, or second you want to force
 a library to use only one ABI.</li>
 <li>
-<code>link_whole</code> links all contents of the given static libraries
-whether they are used by not, equivalent to the
-<code>-Wl,--whole-archive</code> argument flag of GCC, available since 0.40.0.
-As of 0.41.0 if passed a list that list will be flattened. Starting
-from version 0.51.0 this argument also accepts outputs produced by
+<code>link_whole</code> <em>(since 0.40.0)</em>: links all contents of the given static libraries
+whether they are used by not, equivalent to the <code>-Wl,--whole-archive</code> argument flag of GCC.
+<em>(since 0.41.0)</em> If passed a list that list will be flattened.
+<em>(since 0.51.0)</em> This argument also accepts outputs produced by
 custom targets. The user must ensure that the output is a library in
 the correct format.</li>
 <li>
-<code>link_with</code>, one or more shared or static libraries (built by this
-project) that this target should be linked with, If passed a list
-this list will be flattened as of 0.41.0. Starting with version
-0.51.0, the arguments can also be custom targets. In this case Meson
-will assume that merely adding the output file in the linker command
+<code>link_with</code>: one or more shared or static libraries (built by this
+project) that this target should be linked with. <em>(since 0.41.0)</em> If passed a
+list this list will be flattened. <em>(since 0.51.0)</em> The arguments can also be custom targets.
+In this case Meson will assume that merely adding the output file in the linker command
 line is sufficient to make linking work. If this is not sufficient,
 then the build system writer must write all other steps manually.</li>
 <li>
-<code>export_dynamic</code> when set to true causes the target's symbols to be
+<code>export_dynamic</code> <em>(since 0.45.0)</em>: when set to true causes the target's symbols to be
 dynamically exported, allowing modules built using the
 <a href="Reference-manual.html#shared_module"><code>shared_module</code></a> function to refer to functions,
 variables and other symbols defined in the executable itself. Implies
-the <code>implib</code> argument.  Since 0.45.0</li>
+the <code>implib</code> argument.</li>
 <li>
-<code>implib</code> when set to true, an import library is generated for the
+<code>implib</code> <em>(since 0.42.0)</em>: when set to true, an import library is generated for the
 executable (the name of the import library is based on <em>exe_name</em>).
 Alternatively, when set to a string, that gives the base name for
 the import library.  The import library is used when the returned
 build target object appears in <code>link_with:</code> elsewhere.  Only has any
 effect on platforms where that is meaningful (e.g. Windows). Implies
-the <code>export_dynamic</code> argument.  Since 0.42.0</li>
+the <code>export_dynamic</code> argument.</li>
 <li>
-<code>implicit_include_directories</code> is a boolean telling whether Meson
+<code>implicit_include_directories</code> <em>(since 0.42.0)</em>: a boolean telling whether Meson
 adds the current source and build directories to the include path,
-defaults to <code>true</code>, since 0.42.0</li>
+defaults to <code>true</code>.</li>
 <li>
-<code>include_directories</code> one or more objects created with the
-<code>include_directories</code> function, or, since 0.50.0, strings, which
+<code>include_directories</code>: one or more objects created with the
+<code>include_directories</code> function, or <em>(since 0.50.0)</em> strings, which
 will be transparently expanded to include directory objects</li>
 <li>
-<code>install</code>, when set to true, this executable should be installed, defaults to <code>false</code>
+<code>install</code>: when set to true, this executable should be installed, defaults to <code>false</code>
 </li>
 <li>
-<code>install_dir</code> override install directory for this file. The value is
+<code>install_dir</code>: override install directory for this file. The value is
 relative to the <code>prefix</code> specified. F.ex, if you want to install
 plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</li>
 <li>
-<code>install_mode</code> <em>(added 0.47.0)</em> specify the file mode in symbolic format
+<code>install_mode</code> <em>(since 0.47.0)</em>: specify the file mode in symbolic format
 and optionally the owner/uid and group/gid for the installed files.</li>
 <li>
-<code>install_rpath</code> a string to set the target's rpath to after install
+<code>install_rpath</code>: a string to set the target's rpath to after install
 (but <em>not</em> before that). On Windows, this argument has no effect.</li>
 <li>
-<code>objects</code> list of prebuilt object files (usually for third party
+<code>objects</code>: list of prebuilt object files (usually for third party
 products you don't have source to) that should be linked in this
 target, <strong>never</strong> use this for object files that you build yourself.</li>
 <li>
-<code>name_suffix</code> the string that will be used as the extension for the
+<code>name_suffix</code>: the string that will be used as the extension for the
 target by overriding the default. By default on Windows this is
 <code>exe</code> and on other platforms it is omitted. Set this to <code>[]</code>, or omit
 the keyword argument for the default behaviour.</li>
 <li>
-<code>override_options</code> takes an array of strings in the same format as
+<code>override_options</code> <em>(since 0.40.0)</em>: takes an array of strings in the same format as
 <code>project</code>'s <code>default_options</code> overriding the values of these options
-for this target only, since 0.40.0.</li>
+for this target only.</li>
 <li>
-<code>gnu_symbol_visibility</code> specifies how symbols should be exported, see
+<code>gnu_symbol_visibility</code> <em>(since 0.48.0)</em>: specifies how symbols should be exported, see
 e.g <a href="https://gcc.gnu.org/wiki/Visibility">the GCC Wiki</a> for more
 information. This value can either be an empty string or one of
 <code>default</code>, <code>internal</code>, <code>hidden</code>, <code>protected</code> or <code>inlineshidden</code>, which
 is the same as <code>hidden</code> but also includes things like C++ implicit
 constructors as specified in the GCC manual. Ignored on compilers that
-do not support GNU visibility arguments. Available since 0.48.0.</li>
+do not support GNU visibility arguments.</li>
 <li>
-<code>d_import_dirs</code> list of directories to look in for string imports used
+<code>d_import_dirs</code>: list of directories to look in for string imports used
 in the D programming language</li>
 <li>
-<code>d_unittest</code>, when set to true, the D modules are compiled in debug mode</li>
+<code>d_unittest</code>: when set to true, the D modules are compiled in debug mode</li>
 <li>
-<code>d_module_versions</code> list of module version identifiers set when compiling D sources</li>
+<code>d_module_versions</code>: list of module version identifiers set when compiling D sources</li>
 <li>
-<code>d_debug</code> list of module debug identifiers set when compiling D sources</li>
+<code>d_debug</code>: list of module debug identifiers set when compiling D sources</li>
 <li>
-<code>pie</code> <em>(added 0.49.0)</em> build a position-independent executable</li>
+<code>pie</code> <em>(since 0.49.0)</em>: build a position-independent executable</li>
 <li>
-<code>native</code>, is a boolean controlling whether the target is compiled for the
+<code>native</code>: is a boolean controlling whether the target is compiled for the
 build or host machines. Defaults to false, building for the host machine.</li>
 </ul>
 <p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always
@@ -865,7 +863,7 @@ creating the final list.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#build-target-object">object methods section</a> below.</p>
 <h3 id="find_library">find_library()</h3>
-<p>This function is deprecated and in the 0.31.0 release it was moved to
+<p><em>(since 0.31.0)</em> <strong>(deprecated)</strong> Use <code>find_library()</code> method of
 <a href="Reference-manual.html#compiler-object">the compiler object</a> as obtained from
 <code>meson.get_compiler(lang)</code>.</p>
 <h3 id="find_program">find_program()</h3>
@@ -874,12 +872,11 @@ creating the final list.</p>
 <p><code>program_name1</code> here is a string that can be an executable or script
 to be searched for in <code>PATH</code>, or a script in the current source
 directory.</p>
-<p><code>program_name2</code> and later positional arguments are used as fallback
+<p><em>(since 0.37.0)</em> <code>program_name2</code> and later positional arguments are used as fallback
 strings to search for. This is meant to be used for cases where the
 program may have many alternative names, such as <code>foo</code> and
 <code>foo.py</code>. The function will check for the arguments one by one and the
-first one that is found is returned. Meson versions earlier than
-0.37.0 only accept one argument.</p>
+first one that is found is returned.</p>
 <p>Keyword arguments are the following:</p>
 <ul>
 <li>
@@ -887,24 +884,23 @@ first one that is found is returned. Meson versions earlier than
 abort if no program can be found. If <code>required</code> is set to <code>false</code>,
 Meson continue even if none of the programs can be found. You can
 then use the <code>.found()</code> method on the <a href="Reference-manual.html#external-program-object">returned object</a> to check
-whether it was found or not. Since <em>0.47.0</em>  the value of a
+whether it was found or not. <em>(since 0.47.0)</em> The value of a
 <a href="Build-options.html#features"><code>feature</code></a> option can also be passed to the
 <code>required</code> keyword argument.</p>
 </li>
 <li>
-<p><code>native</code> <em>(since 0.43)</em> defines how this executable should be searched. By default
+<p><code>native</code> <em>(since 0.43.0)</em>: defines how this executable should be searched. By default
 it is set to <code>false</code>, which causes Meson to first look for the
 executable in the cross file (when cross building) and if it is not
 defined there, then from the system. If set to <code>true</code>, the cross
 file is ignored and the program is only searched from the system.</p>
 </li>
 <li>
-<p><code>disabler</code> if <code>true</code> and the program couldn't be found, return a
-<a href="Reference-manual.html#disabler-object">disabler object</a> instead of a not-found object.
-<em>Since 0.49.0</em></p>
+<p><code>disabler</code> <em>(since 0.49.0)</em>: if <code>true</code> and the program couldn't be found, return a
+<a href="Reference-manual.html#disabler-object">disabler object</a> instead of a not-found object.</p>
 </li>
 <li>
-<p><code>version</code> <em>(since 0.52.0)</em> Specifies the required version, see
+<p><code>version</code> <em>(since 0.52.0)</em>: specifies the required version, see
 <a href="Reference-manual.html#dependency"><code>dependency()</code></a> for argument format. The version of the program
 is determined by running <code>program_name --version</code> command. If stdout is empty
 it fallbacks to stderr. If the output contains more text than simply a version
@@ -913,7 +909,7 @@ If the output is more complicated than that, the version checking will have to
 be done manually using <a href="Reference-manual.html#run_command"><code>run_command()</code></a>.</p>
 </li>
 <li>
-<p><code>dirs</code> <em>(since 0.53.0)</em> Extra list of absolute paths where to look for program
+<p><code>dirs</code> <em>(since 0.53.0)</em>: extra list of absolute paths where to look for program
 names.</p>
 </li>
 </ul>
@@ -961,26 +957,26 @@ executable or one returned by find_program. Keyword arguments are the
 following:</p>
 <ul>
 <li>
-<code>arguments</code> a list of template strings that will be the command line
+<code>arguments</code>: a list of template strings that will be the command line
 arguments passed to the executable</li>
 <li>
-<code>depends</code> is an array of build targets that must be built before this
+<code>depends</code> <em>(since 0.51.0)</em>: is an array of build targets that must be built before this
 generator can be run. This is used if you have a generator that calls
-a second executable that is built in this project. Available since 0.51.0</li>
+a second executable that is built in this project.</li>
 <li>
-<code>depfile</code> is a template string pointing to a dependency file that a
+<code>depfile</code>: is a template string pointing to a dependency file that a
 generator can write listing all the additional files this target
 depends on, for example a C compiler would list all the header files
 it included, and a change in any one of these files triggers a
 recompilation</li>
 <li>
-<code>output</code> a template string (or list of template strings) defining
+<code>output</code>: a template string (or list of template strings) defining
 how an output file name is (or multiple output names are) generated
 from a single source file name</li>
 <li>
-<code>capture</code> when this argument is set to true, Meson captures <code>stdout</code>
-of the <code>executable</code> and writes it to the target file specified as
-<code>output</code>. Available since v0.43.0.</li>
+<code>capture</code> <em>(since 0.43.0)</em>: when this argument is set to true, Meson
+captures <code>stdout</code> of the <code>executable</code> and writes it to the target file
+specified as <code>output</code>.</li>
 </ul>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#generator-object">object methods section</a> below.</p>
@@ -1110,13 +1106,13 @@ except Visual Studio).</p>
 arguments. The following keyword arguments are supported:</p>
 <ul>
 <li>
-<p><code>install_dir</code> the absolute or relative path to the installation
+<p><code>install_dir</code>: the absolute or relative path to the installation
 directory. If this is a relative path, it is assumed to be relative
 to the prefix.</p>
-<p>If omitted, the directory defaults to <code>{datadir}/{projectname}</code> <em>(added 0.45.0)</em>.</p>
+<p>If omitted, the directory defaults to <code>{datadir}/{projectname}</code> <em>(since 0.45.0)</em>.</p>
 </li>
 <li>
-<p><code>install_mode</code> specify the file mode in symbolic format and
+<p><code>install_mode</code>: specify the file mode in symbolic format and
 optionally the owner/uid and group/gid for the installed files. For
 example:</p>
 <p><code>install_mode: 'rw-r--r--'</code> for just the file mode</p>
@@ -1127,11 +1123,10 @@ example:</p>
 <p>To leave any of these three as the default, specify <code>false</code>.</p>
 <ul>
 <li>
-<code>rename</code> if specified renames each source file into corresponding
+<code>rename</code> <em>(since 0.46.0)</em>: if specified renames each source file into corresponding
 file from <code>rename</code> list. Nested paths are allowed and they are
 joined with <code>install_dir</code>. Length of <code>rename</code> list must be equal to
-the number of sources.  <em>(added 0.46.0)</em>
-</li>
+the number of sources.</li>
 </ul>
 <p>See <a href="Installing.html">Installing</a> for more examples.</p>
 <h3 id="install_headers">install_headers()</h3>
@@ -1154,10 +1149,13 @@ headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
 <p>This will install <code>common.h</code> and <code>kola.h</code> into <code>/{prefix}/cust/myproj</code>:</p>
 <pre><code class="language-meson">install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 </code></pre>
-<p>The <code>install_mode</code> argument can be used to specify the file mode in symbolic
+<p>Accepts the following keywords:</p>
+<ul>
+<li>
+<code>install_mode</code> <em>(since 0.47.0)</em>: can be used to specify the file mode in symbolic
 format and optionally the owner/uid and group/gid for the installed files.
-An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.
-<em>(Added 0.47.0)</em>.</p>
+An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.</li>
+</ul>
 <h3 id="install_man">install_man()</h3>
 <pre><code class="language-meson">    void install_man(list_of_manpages, ...)
 </code></pre>
@@ -1165,11 +1163,14 @@ An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.
 man directory during the install step. This directory can be
 overridden by specifying it with the <code>install_dir</code> keyword
 argument.</p>
-<p>The <code>install_mode</code> argument can be used to specify the file mode in symbolic
+<p>Accepts the following keywords:</p>
+<ul>
+<li>
+<code>install_mode</code> <em>(since 0.47.0)</em>: can be used to specify the file mode in symbolic
 format and optionally the owner/uid and group/gid for the installed files.
-An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.
-<em>(Added 0.47.0)</em>.</p>
-<p>Since 0.49.0, <a href="https://mesonbuild.com/Release-notes-for-0-49-0.html#manpages-are-no-longer-compressed-implicitly">manpages are no longer compressed implicitly</a>.</p>
+An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.</li>
+</ul>
+<p><em>(since 0.49.0)</em> <a href="https://mesonbuild.com/Release-notes-for-0-49-0.html#manpages-are-no-longer-compressed-implicitly">manpages are no longer compressed implicitly</a>.</p>
 <h3 id="install_subdir">install_subdir()</h3>
 <pre><code class="language-meson">    void install_subdir(subdir_name, install_dir : ..., exclude_files : ..., exclude_directories : ..., strip_directory : ...)
 </code></pre>
@@ -1187,13 +1188,11 @@ Names are interpreted as paths relative to the <code>subdir_name</code> location
 <li>
 <code>install_dir</code>: the location to place the installed subdirectory.</li>
 <li>
-<code>install_mode</code>: the file mode in symbolic format and optionally
-the owner/uid and group/gid for the installed files. <em>(Added 0.47.0)</em>
-</li>
+<code>install_mode</code> <em>(since 0.47.0)</em>: the file mode in symbolic format and optionally
+the owner/uid and group/gid for the installed files.</li>
 <li>
-<code>strip_directory</code>: install directory contents. <code>strip_directory=false</code> by default.
-If <code>strip_directory=true</code> only the last component of the source path is used.
-Since 0.45.0</li>
+<code>strip_directory</code> <em>(since 0.45.0)</em>: install directory contents. <code>strip_directory=false</code> by default.
+If <code>strip_directory=true</code> only the last component of the source path is used.</li>
 </ul>
 <p>For a given directory <code>foo</code>:</p>
 <pre><code class="language-text">foo/
@@ -1226,7 +1225,8 @@ Since 0.45.0</li>
 <h3 id="is_disabler">is_disabler()</h3>
 <pre><code class="language-meson">    bool is_disabler(var)
 </code></pre>
-<p>Returns true if a variable is a disabler and false otherwise. Added in 0.52.0.</p>
+<p><em>(since 0.52.0)</em></p>
+<p>Returns true if a variable is a disabler and false otherwise.</p>
 <h3 id="is_variable">is_variable()</h3>
 <pre><code class="language-meson">    bool is_variable(varname)
 </code></pre>
@@ -1241,14 +1241,14 @@ the jar with <code>java -jar file.jar</code>.</p>
 <h3 id="join_paths">join_paths()</h3>
 <pre><code class="language-meson">string join_paths(string1, string2, ...)
 </code></pre>
+<p><em>(since 0.36.0)</em></p>
 <p>Joins the given strings into a file system path segment. For example
 <code>join_paths('foo', 'bar')</code> results in <code>foo/bar</code>. If any one of the
 individual segments is an absolute path, all segments before it are
 dropped. That means that <code>join_paths('foo', '/bar')</code> returns <code>/bar</code>.</p>
 <p><strong>Warning</strong> Don't use <code>join_paths()</code> for sources in <a href="Reference-manual.html#library"><code>library</code></a> and
 <a href="Reference-manual.html#executable"><code>executable</code></a>, you should use <a href="Reference-manual.html#files"><code>files</code></a> instead.</p>
-<p><em>Added 0.36.0</em></p>
-<p>Since 0.49.0 using the<code>/</code> operator on strings is equivalent to calling
+<p><em>(since 0.49.0)</em> Using the<code>/</code> operator on strings is equivalent to calling
 <code>join_paths</code>.</p>
 <pre><code class="language-meson"># res1 and res2 will have identical values
 res1 = join_paths(foo, bar)
@@ -1272,13 +1272,13 @@ library basis using the <a href="Reference-manual.html#dependency">dependency()<
 <a href="Reference-manual.html#executable"><code>executable</code></a> with the following additions:</p>
 <ul>
 <li>
-<code>name_prefix</code> the string that will be used as the prefix for the
+<code>name_prefix</code>: the string that will be used as the prefix for the
 target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</li>
 <li>
-<code>name_suffix</code> the string that will be used as the suffix for the
+<code>name_suffix</code>: the string that will be used as the suffix for the
 target output filename by overriding the default (see also:
 <a href="Reference-manual.html#executable">executable()</a>). By default, for shared libraries this
 is <code>dylib</code> on macOS, <code>dll</code> on Windows, and <code>so</code> everywhere else.
@@ -1287,7 +1287,7 @@ static libraries use the <code>lib</code> suffix, but we use <code>a</code> to a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</li>
 <li>
-<code>rust_crate_type</code> specifies the crate type for Rust
+<code>rust_crate_type</code>: specifies the crate type for Rust
 libraries. Defaults to <code>dylib</code> for shared libraries and <code>rlib</code> for
 static libraries.</li>
 </ul>
@@ -1299,19 +1299,20 @@ them for the default behaviour for each platform.</p>
 <pre><code class="language-meson">    void message(text)
 </code></pre>
 <p>This function prints its argument to stdout.</p>
-<p><strong>Since 0.54.0</strong> Can take more more than one argument that will be separated by
+<p><em>(since 0.54.0)</em> Can take more more than one argument that will be separated by
 space.</p>
 <h3 id="warning">warning()</h3>
 <pre><code class="language-meson">    void warning(text)
 </code></pre>
+<p><em>(since 0.44.0)</em></p>
 <p>This function prints its argument to stdout prefixed with WARNING:.</p>
-<p><em>Added 0.44.0</em></p>
-<p><strong>Since 0.54.0</strong> Can take more more than one argument that will be separated by
+<p><em>(since 0.54.0)</em> Can take more more than one argument that will be separated by
 space.</p>
 <h3 id="summary">summary()</h3>
 <pre><code class="language-meson">    void summary(key, value)
     void summary(dictionary)
 </code></pre>
+<p><em>(since 0.53.0)</em></p>
 <p>This function is used to summarize build configuration at the end of the build
 process. This function provides a way for projects (and subprojects) to report
 this information in a clear way.</p>
@@ -1326,12 +1327,12 @@ the end of the configuration in the same order as they have been called.</p>
 <p>Keyword arguments:</p>
 <ul>
 <li>
-<code>section</code> title to group a set of key/value pairs.</li>
+<code>section</code>: title to group a set of key/value pairs.</li>
 <li>
-<code>bool_yn</code> if set to true, all boolean values will be replaced by green YES
+<code>bool_yn</code>: if set to true, all boolean values will be replaced by green YES
 or red NO.</li>
 <li>
-<code>list_sep</code> <em>Since 0.54.0</em> string used to separate list values (e.g. <code>', '</code>).</li>
+<code>list_sep</code> <em>(since 0.54.0)</em>: string used to separate list values (e.g. <code>', '</code>).</li>
 </ul>
 <p>Example:</p>
 <pre><code class="language-meson">project('My Project', version : '1.0')
@@ -1362,7 +1363,6 @@ summary({'Some boolean': false,
                      1
                      True
 </code></pre>
-<p><em>Added 0.53.0</em></p>
 <h3 id="project">project()</h3>
 <pre><code class="language-meson">    void project(project_name, list_of_languages, ...)
 </code></pre>
@@ -1370,7 +1370,7 @@ summary({'Some boolean': false,
 of this project. It is followed by programming languages that the
 project uses. Supported values for languages are <code>c</code>, <code>cpp</code> (for
 <code>C++</code>), <code>cuda</code>, <code>d</code>, <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>),
-<code>vala</code> and <code>rust</code>. Since version <code>0.40.0</code> the list of languages
+<code>vala</code> and <code>rust</code>. <em>(since 0.40.0)</em> The list of languages
 is optional.</p>
 <p>The project name can be any string you want, it's not used for
 anything except descriptive purposes. However since it is written to
@@ -1381,7 +1381,7 @@ Library</em>.</p>
 <p>Project supports the following keyword arguments.</p>
 <ul>
 <li>
-<p><code>default_options</code> takes an array of strings. The strings are in the
+<p><code>default_options</code>: takes an array of strings. The strings are in the
 form <code>key=value</code> and have the same format as options to
 <code>meson configure</code>. For example to set the default project type you would
 set this: <code>default_options : ['buildtype=debugoptimized']</code>. Note
@@ -1391,7 +1391,7 @@ the master project, settings in subprojects are ignored. Project
 specific options are used normally even in subprojects.</p>
 </li>
 <li>
-<p><code>license</code> takes a string or array of strings describing the
+<p><code>license</code>: takes a string or array of strings describing the
 license(s) the code is under. Usually this would be something like
 <code>license : 'GPL2+'</code>, but if the code has multiple licenses you can
 specify them as an array like this: <code>license : ['proprietary', 'GPL3']</code>. Note that the text is informal and is only written to
@@ -1401,11 +1401,11 @@ terms. You can access the value in your Meson build files with
 <code>meson.project_license()</code>.</p>
 </li>
 <li>
-<p><code>meson_version</code> takes a string describing which Meson version the
+<p><code>meson_version</code>: takes a string describing which Meson version the
 project requires. Usually something like <code>&gt;=0.28.0</code>.</p>
 </li>
 <li>
-<p><code>subproject_dir</code> specifies the top level directory name that holds
+<p><code>subproject_dir</code>: specifies the top level directory name that holds
 Meson subprojects. This is only meant as a compatibility option
 for existing code bases that house their embedded source code in a
 custom directory. All new projects should not set this but instead
@@ -1414,7 +1414,7 @@ argument is ignored inside subprojects. There can be only one
 subproject dir and it is set in the top level Meson file.</p>
 </li>
 <li>
-<p><code>version</code>, which is a free form string describing the version of
+<p><code>version</code>: which is a free form string describing the version of
 this project. You can access the value in your Meson build files
 with <code>meson.project_version()</code>.</p>
 </li>
@@ -1435,15 +1435,13 @@ respectively.</p>
 <p>This function supports the following keyword arguments:</p>
 <ul>
 <li>
-<code>check</code> takes a boolean. If <code>true</code>, the exit status code of the command will
+<code>check</code> <em>(since 0.47.0)</em>: takes a boolean. If <code>true</code>, the exit status code of the command will
 be checked, and the configuration will fail if it is non-zero. The default is
-<code>false</code>.
-Since 0.47.0</li>
+<code>false</code>.</li>
 <li>
-<code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
+<code>env</code> <em>(since 0.50.0)</em>: environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
 object</a> which allows more sophisticated
-environment juggling. <em>Since 0.52.0</em> a dictionary is also accepted.
-Since 0.50.0</li>
+environment juggling. <em>(since 0.52.0)</em> A dictionary is also accepted.</li>
 </ul>
 <p>See also <a href="External-commands.html">External commands</a>.</p>
 <h3 id="run_target">run_target</h3>
@@ -1451,8 +1449,8 @@ Since 0.50.0</li>
 </code></pre>
 <p>This function creates a new top-level target that runs a specified
 command with the specified arguments. Like all top-level targets, this
-integrates with the selected backend. For instance, with Ninja you can
-run it as <code>ninja target_name</code>. Note that a run target produces no
+integrates with the selected backend. For instance, you can
+run it as <code>meson compile target_name</code>. Note that a run target produces no
 output as far as Meson is concerned. It is only meant for tasks such
 as running a code formatter or flashing an external device's firmware
 with a built file.</p>
@@ -1477,8 +1475,7 @@ script does file globbing internally)</li>
 </code></pre>
 <p>Assigns a value to the given variable name. Calling
 <code>set_variable('foo', bar)</code> is equivalent to <code>foo = bar</code>.</p>
-<p><strong>Note:</strong> Prior to v0.46.1, the <code>value</code> parameter could not be an
-array type, due to flattening of the function parameters.</p>
+<p><em>(since 0.46.1)</em> The <code>value</code> parameter can be an array type.</p>
 <h3 id="shared_library">shared_library()</h3>
 <pre><code class="language-meson">    buildtarget shared_library(library_name, list_of_sources, ...)
 </code></pre>
@@ -1487,7 +1484,7 @@ arguments are the same as for <a href="Reference-manual.html#library"><code>libr
 extra keyword arguments.</p>
 <ul>
 <li>
-<code>soversion</code> a string specifying the soversion of this shared
+<code>soversion</code>: a string specifying the soversion of this shared
 library, such as <code>0</code>. On Linux and Windows this is used to set the
 soversion (or equivalent) in the filename. For example, if
 <code>soversion</code> is <code>4</code>, a Windows DLL will be called <code>foo-4.dll</code> and one
@@ -1496,13 +1493,13 @@ of the aliases of the Linux shared library would be
 is used instead (see below). For example, if <code>version</code> is <code>3.6.0</code> and
 <code>soversion</code> is not defined, it is set to <code>3</code>.</li>
 <li>
-<code>version</code> a string specifying the version of this shared library,
+<code>version</code>: a string specifying the version of this shared library,
 such as <code>1.1.0</code>. On Linux and OS X, this is used to set the shared
 library version in the filename, such as <code>libfoo.so.1.1.0</code> and
 <code>libfoo.1.1.0.dylib</code>. If this is not specified, <code>soversion</code> is used
 instead (see above).</li>
 <li>
-<code>darwin_versions</code> <em>(added 0.48)</em> an integer, string, or a list of
+<code>darwin_versions</code> <em>(since 0.48.0)</em>: an integer, string, or a list of
 versions to use for setting dylib <code>compatibility version</code> and
 <code>current version</code> on macOS. If a list is specified, it must be
 either zero, one, or two elements. If only one element is specified
@@ -1510,13 +1507,14 @@ or if it's not a list, the specified value will be used for setting
 both compatibility version and current version. If unspecified, the
 <code>soversion</code> will be used as per the aforementioned rules.</li>
 <li>
-<code>vs_module_defs</code> a string, a File object, or Custom Target for a
+<code>vs_module_defs</code>: a string, a File object, or Custom Target for a
 Microsoft module definition file for controlling symbol exports,
 etc., on platforms where that is possible (e.g. Windows).</li>
 </ul>
 <h3 id="shared_module">shared_module()</h3>
 <pre><code class="language-meson">    buildtarget shared_module(module_name, list_of_sources, ...)
 </code></pre>
+<p><em>(since 0.37.0)</em></p>
 <p>Builds a shared module with the given sources. Positional and keyword
 arguments are the same as for <a href="Reference-manual.html#library"><code>library</code></a>.</p>
 <p>This is useful for building modules that will be <code>dlopen()</code>ed and
@@ -1529,7 +1527,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
 <p>Supports the following extra keyword arguments:</p>
 <ul>
 <li>
-<code>vs_module_defs</code>, <em>(Added 0.52.0)</em>, a string, a File object, or
+<code>vs_module_defs</code> <em>(since 0.52.0)</em>: a string, a File object, or
 Custom Target for a Microsoft module definition file for controlling
 symbol exports, etc., on platforms where that is possible
 (e.g. Windows).</li>
@@ -1538,7 +1536,6 @@ symbol exports, etc., on platforms where that is possible
 platforms, notably OSX.  Consider using a
 <a href="Reference-manual.html#shared_library"><code>shared_library</code></a> instead, if you need to both
 <code>dlopen()</code> and link with a library.</p>
-<p><em>Added 0.37.0</em></p>
 <h3 id="static_library">static_library()</h3>
 <pre><code class="language-meson">    buildtarget static_library(library_name, list_of_sources, ...)
 </code></pre>
@@ -1547,7 +1544,7 @@ arguments are otherwise the same as for <a href="Reference-manual.html#library">
 has one argument the others don't have:</p>
 <ul>
 <li>
-<code>pic</code>, <em>(Added 0.36.0)</em> builds the library as positional
+<code>pic</code> <em>(since 0.36.0)</em>: builds the library as positional
 independent code (so it can be linked into a shared library). This
 option has no effect on Windows and OS X since it doesn't make
 sense on Windows and PIC cannot be disabled on OS X.</li>
@@ -1566,7 +1563,7 @@ and must only be executed once.</p>
 <p>This function has one keyword argument.</p>
 <ul>
 <li>
-<code>if_found</code> takes one or several dependency objects and will only
+<code>if_found</code>: takes one or several dependency objects and will only
 recurse in the subdir if they all return <code>true</code> when queried with
 <code>.found()</code>
 </li>
@@ -1602,19 +1599,18 @@ example a subproject called <code>foo</code> must be located in
 arguments:</p>
 <ul>
 <li>
-<code>default_options</code> <em>(added 0.37.0)</em> an array of default option values
+<code>default_options</code> <em>(since 0.37.0)</em>: an array of default option values
 that override those set in the subproject's <code>meson_options.txt</code>
 (like <code>default_options</code> in <code>project</code>, they only have effect when
 Meson is run for the first time, and command line arguments override
-any default options in build files). <em>Since 0.54.0</em> <code>default_library</code>
+any default options in build files). <em>(since 0.54.0)</em>: <code>default_library</code>
 built-in option can also be overridden.</li>
 <li>
-<code>version</code> keyword argument that works just like the one in
-<code>dependency</code>. It specifies what version the subproject should be,
-as an example <code>&gt;=1.0.1</code>
+<code>version</code>: works just like the same as in <code>dependency</code>.
+It specifies what version the subproject should be, as an example <code>&gt;=1.0.1</code>
 </li>
 <li>
-<code>required</code> <em>(added 0.48.0)</em> By default, <code>required</code> is <code>true</code> and
+<code>required</code> <em>(since 0.48.0)</em>: By default, <code>required</code> is <code>true</code> and
 Meson will abort if the subproject could not be setup. You can set
 this to <code>false</code> and then use the <code>.found()</code> method on the <a href="Reference-manual.html#subproject-object">returned
 object</a>. You may also pass the value of a
@@ -1637,12 +1633,12 @@ object</a> returned by
 <a href="Reference-manual.html#executable"><code>executable()</code></a> or an <a href="Reference-manual.html#external-program-object">external program
 object</a> returned by
 <a href="Reference-manual.html#find_program"><code>find_program()</code></a>.</p>
-<p><em>Since 0.55.0</em> When cross compiling, if an exe_wrapper is needed and defined
+<p><em>(since 0.55.0)</em> When cross compiling, if an exe_wrapper is needed and defined
 the environment variable <code>MESON_EXE_WRAPPER</code> will be set to the string value
 of that wrapper (implementation detail: using <code>mesonlib.join_args</code>). Test
 scripts may use this to run cross built binaries. If your test needs
 <code>MESON_EXE_WRAPPER</code> in cross build situations it is your responsibility to
-return code 77 to tell the harness to report "skip"</p>
+return code 77 to tell the harness to report "skip".</p>
 <p>By default, environment variable
 <a href="http://man7.org/linux/man-pages/man3/mallopt.3.html"><code>MALLOC_PERTURB_</code></a>
 is automatically set by <code>meson test</code> to a random value between 1..255.
@@ -1661,66 +1657,65 @@ test(..., env: nomalloc, ...)
 <h4 id="test-keyword-arguments">test() Keyword arguments</h4>
 <ul>
 <li>
-<p><code>args</code> arguments to pass to the executable</p>
+<p><code>args</code>: arguments to pass to the executable</p>
 </li>
 <li>
-<p><code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
+<p><code>env</code>: environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="Reference-manual.html#environment-object"><code>environment()</code>
 object</a> which allows more sophisticated
-environment juggling. <em>Since 0.52.0</em> a dictionary is also accepted.</p>
+environment juggling. <em>(since 0.52.0)</em> A dictionary is also accepted.</p>
 </li>
 <li>
-<p><code>is_parallel</code> when false, specifies that no other test must be
+<p><code>is_parallel</code>: when false, specifies that no other test must be
 running at the same time as this test</p>
 </li>
 <li>
-<p><code>should_fail</code> when true the test is considered passed if the
+<p><code>should_fail</code>: when true the test is considered passed if the
 executable returns a non-zero return value (i.e. reports an error)</p>
 </li>
 <li>
-<p><code>suite</code> <code>'label'</code> (or list of labels <code>['label1', 'label2']</code>)
+<p><code>suite</code>: <code>'label'</code> (or list of labels <code>['label1', 'label2']</code>)
 attached to this test. The suite name is qualified by a (sub)project
 name resulting in <code>(sub)project_name:label</code>. In the case of a list
 of strings, the suite names will be <code>(sub)project_name:label1</code>,
 <code>(sub)project_name:label2</code>, etc.</p>
 </li>
 <li>
-<p><code>timeout</code> the amount of seconds the test is allowed to run, a test
+<p><code>timeout</code>: the amount of seconds the test is allowed to run, a test
 that exceeds its time limit is always considered failed, defaults to
 30 seconds</p>
 </li>
 <li>
-<p><code>workdir</code> absolute path that will be used as the working directory
+<p><code>workdir</code>: absolute path that will be used as the working directory
 for the test</p>
 </li>
 <li>
-<p><code>depends</code> specifies that this test depends on the specified
+<p><code>depends</code> <em>(since 0.46.0)</em>: specifies that this test depends on the specified
 target(s), even though it does not take any of them as a command
 line argument. This is meant for cases where test finds those
 targets internally, e.g. plugins or globbing. Those targets are built
-before test is executed even if they have <code>build_by_default : false</code>.
-Since 0.46.0</p>
+before test is executed even if they have <code>build_by_default : false</code>.</p>
 </li>
 <li>
-<p><code>protocol</code> <em>(Since 0.50.0)</em> specifies how the test results are parsed and can
+<p><code>protocol</code> <em>(since 0.50.0)</em>: specifies how the test results are parsed and can
 be one of <code>exitcode</code>, <code>tap</code>, or <code>gtest</code>. For more information about test
 harness protocol read <a href="Unit-tests.html">Unit Tests</a>. The following values are
 accepted:</p>
 <ul>
 <li>
 <code>exitcode</code>: the executable's exit code is used by the test harness
-to record the outcome of the test)</li>
+to record the outcome of the test).</li>
 <li>
-<code>tap</code> (<a href="https://www.testanything.org/">Test Anything Protocol</a>)</li>
+<code>tap</code>: <a href="https://www.testanything.org/">Test Anything Protocol</a>.</li>
 <li>
-<code>gtest</code>. <em>(Since 0.55.0)</em> for Google Tests.</li>
+<code>gtest</code> <em>(since 0.55.0)</em>: for Google Tests.</li>
 </ul>
 </li>
 <li>
-<p><code>priority</code> specifies the priority of a test. Tests with a
+<p><code>priority</code> <em>(since 0.52.0)</em>:specifies the priority of a test. Tests with a
 higher priority are <em>started</em> before tests with a lower priority.
 The starting order of tests with identical priorities is
 implementation-defined. The default priority is 0, negative numbers are
-permitted. Since 0.52.0</p>
+permitted.</p>
 </li>
 </ul>
 <p>Defined tests can be run in a backend-agnostic way by calling
@@ -1734,19 +1729,19 @@ and places it in the specified output file. This file is guaranteed to
 be up to date on every build. Keywords are similar to <code>custom_target</code>.</p>
 <ul>
 <li>
-<code>command</code> string list with the command to execute, see
+<code>command</code>: string list with the command to execute, see
 <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> for details on how this command
 must be specified</li>
 <li>
-<code>fallback</code> version number to use when no revision control
+<code>fallback</code>: version number to use when no revision control
 information is present, such as when building from a release tarball
 (defaults to <code>meson.project_version()</code>)</li>
 <li>
-<code>input</code> file to modify (e.g. <code>version.c.in</code>) (required)</li>
+<code>input</code>: file to modify (e.g. <code>version.c.in</code>) (required)</li>
 <li>
-<code>output</code> file to write the results to (e.g. <code>version.c</code>) (required)</li>
+<code>output</code>: file to write the results to (e.g. <code>version.c</code>) (required)</li>
 <li>
-<code>replace_string</code> string in the input file to substitute with the
+<code>replace_string</code>: string in the input file to substitute with the
 commit information (defaults to <code>@VCS_TAG@</code>)</li>
 </ul>
 <p>Meson will read the contents of <code>input</code>, substitute the
@@ -1770,31 +1765,30 @@ system. This object is always mapped in the <code>meson</code> variable. It has
 the following methods.</p>
 <ul>
 <li>
-<p><code>add_dist_script(script_name, arg1, arg, ...)</code> causes the script
+<p><code>add_dist_script(script_name, arg1, arg2, ...)</code> <em>(since 0.48.0)</em>: causes the script
 given as argument to run during <code>dist</code> operation after the
 distribution source has been generated but before it is
 archived. Note that this runs the script file that is in the
 <em>staging</em> directory, not the one in the source directory. If the
 script file can not be found in the staging directory, it is a hard
 error. This command can only invoked from the main project, calling
-it from a subproject is a hard error. Available since 0.48.0. Before
-0.49.0, the function only accepted a single argument. Since 0.54.0
-the <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code> environment variables
-are set when dist scripts are run.
-<em>(Since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, and <code>find_program</code>
+it from a subproject is a hard error. <em>(since 0.49.0)</em> Accepts multiple arguments
+for the fscript. <em>(since 0.54.0)</em> The <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>
+environment variables are set when dist scripts are run.
+<em>(since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, and <code>find_program</code>
 as well as strings.</p>
 </li>
 <li>
-<p><code>add_install_script(script_name, arg1, arg2, ...)</code> causes the script
+<p><code>add_install_script(script_name, arg1, arg2, ...)</code>: causes the script
 given as an argument to be run during the install step, this script
 will have the environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code>, <code>MESON_INSTALL_PREFIX</code>,
 <code>MESON_INSTALL_DESTDIR_PREFIX</code>, and <code>MESONINTROSPECT</code> set.
 All positional arguments are passed as parameters.
-<em>(Since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, <code>find_program</code>,
+<em>(since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, <code>find_program</code>,
 <code>custom_target</code>, indexes of <code>custom_target</code>, <code>executable</code>, <code>library</code>, and
 other built targets as well as strings.</p>
-<p><em>(added 0.54)</em> If <code>meson install</code> is called with the <code>--quiet</code> option, the
+<p><em>(since 0.54.0)</em> If <code>meson install</code> is called with the <code>--quiet</code> option, the
 environment variable <code>MESON_INSTALL_QUIET</code> will be set.</p>
 <p>Meson uses the <code>DESTDIR</code> environment variable as set by the
 inherited environment to determine the (temporary) installation
@@ -1816,26 +1810,26 @@ shell would. If your script uses Python, <code>shlex.split()</code> is the
 easiest correct way to do this.</p>
 </li>
 <li>
-<p><code>add_postconf_script(script_name, arg1, arg2, ...)</code> will run the
+<p><code>add_postconf_script(script_name, arg1, arg2, ...)</code>: runs the
 executable given as an argument after all project files have been
 generated. This script will have the environment variables
 <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code> set.
-<em>(Since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, and <code>find_program</code>
+<em>(since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, and <code>find_program</code>
 as well as strings.</p>
 </li>
 <li>
-<p><code>backend()</code> <em>(added 0.37.0)</em> returns a string representing the
+<p><code>backend()</code> <em>(since 0.37.0)</em>: returns a string representing the
 current backend: <code>ninja</code>, <code>vs2010</code>, <code>vs2015</code>, <code>vs2017</code>, <code>vs2019</code>,
 or <code>xcode</code>.</p>
 </li>
 <li>
-<p><code>build_root()</code> returns a string with the absolute path to the build
+<p><code>build_root()</code>: returns a string with the absolute path to the build
 root directory. Note: this function will return the build root of
 the parent project if called from a subproject, which is usually
 not what you want. Try using <code>current_build_dir()</code>.</p>
 </li>
 <li>
-<p><code>source_root()</code> returns a string with the absolute path to the
+<p><code>source_root()</code>: returns a string with the absolute path to the
 source root directory. Note: you should use the <code>files()</code> function
 to refer to files in the root source directory instead of
 constructing paths manually with <code>meson.source_root()</code>. This
@@ -1844,11 +1838,11 @@ from a subproject, which is usually not what you want. Try using
 <code>current_source_dir()</code>.</p>
 </li>
 <li>
-<p><code>current_build_dir()</code> returns a string with the absolute path to the
+<p><code>current_build_dir()</code>: returns a string with the absolute path to the
 current build directory.</p>
 </li>
 <li>
-<p><code>current_source_dir()</code> returns a string to the current source
+<p><code>current_source_dir()</code>: returns a string to the current source
 directory. Note: <strong>you do not need to use this function</strong> when
 passing files from the current source directory to a function since
 that is the default. Also, you can use the <code>files()</code> function to
@@ -1856,7 +1850,7 @@ refer to files in the current or any other source directory instead
 of constructing paths manually with <code>meson.current_source_dir()</code>.</p>
 </li>
 <li>
-<p><code>get_compiler(language)</code> returns <a href="Reference-manual.html#compiler-object">an object describing a
+<p><code>get_compiler(language)</code>: returns <a href="Reference-manual.html#compiler-object">an object describing a
 compiler</a>, takes one positional argument which is
 the language to use. It also accepts one keyword argument, <code>native</code>
 which when set to true makes Meson return the compiler for the build
@@ -1866,14 +1860,14 @@ returns the "cross" compiler if we're currently cross-compiling and
 the "native" compiler if we're not.</p>
 </li>
 <li>
-<p><code>get_cross_property(propname, fallback_value)</code>
-<em>Consider get_external_property() instead</em>. Returns the given
+<p><code>get_cross_property(propname, fallback_value)</code>:
+<em>Consider <code>get_external_property()</code> instead</em>. Returns the given
 property from a cross file, the optional fallback_value is returned
 if not cross compiling or the given property is not found.</p>
 </li>
 <li>
 <p><code>get_external_property(propname, fallback_value, native: true/false)</code>
-<em>(added 0.54.0)</em> returns the given property from a native or cross file.
+<em>(since 0.54.0)</em>: returns the given property from a native or cross file.
 The optional fallback_value is returned if the given property is not found.
 The optional <code>native: true</code> forces retrieving a variable from the
 native file, even when cross-compiling.
@@ -1881,48 +1875,45 @@ If <code>native: false</code> or not specified, variable is retrieved from the
 cross-file if cross-compiling, and from the native-file when not cross-compiling.</p>
 </li>
 <li>
-<p><code>can_run_host_binaries()</code> returns true if the build machine can run
+<p><code>can_run_host_binaries()</code> <em>(since 0.55.0)</em>: returns true if the build machine can run
 binaries compiled for the host. This returns true unless you are
 cross compiling, need a helper to run host binaries, and don't have one.
 For example when cross compiling from Linux to Windows, one can use <code>wine</code>
-as the helper. <em>New in 0.55.0</em></p>
+as the helper.</p>
 </li>
 <li>
-<p><code>has_exe_wrapper()</code> alias of <code>can_run_host_binaries</code>
-<em>Deprecated since 0.55.0</em></p>
+<p><code>has_exe_wrapper()</code>: <em>(since 0.55.0)</em> <strong>(deprecated)</strong>. Use <code>can_run_host_binaries</code> instead.</p>
 </li>
 <li>
-<p><code>install_dependency_manifest(output_name)</code> installs a manifest file
+<p><code>install_dependency_manifest(output_name)</code>: installs a manifest file
 containing a list of all subprojects, their versions and license
 files to the file name given as the argument.</p>
 </li>
 <li>
-<p><code>is_cross_build()</code> returns <code>true</code> if the current build is a <a href="Cross-compilation.html">cross
+<p><code>is_cross_build()</code>: returns <code>true</code> if the current build is a <a href="Cross-compilation.html">cross
 build</a> and <code>false</code> otherwise.</p>
 </li>
 <li>
-<p><code>is_subproject()</code> returns <code>true</code> if the current project is being
+<p><code>is_subproject()</code>: returns <code>true</code> if the current project is being
 built as a subproject of some other project and <code>false</code> otherwise.</p>
 </li>
 <li>
-<p><code>is_unity()</code> returns <code>true</code> when doing a <a href="Unity-builds.html">unity
+<p><code>is_unity()</code>: returns <code>true</code> when doing a <a href="Unity-builds.html">unity
 build</a> (multiple sources are combined before
 compilation to reduce build time) and <code>false</code> otherwise.</p>
 </li>
 <li>
-<p><code>override_find_program(progname, program)</code> <a href="Release-notes-for-0-46-0.html#can-override-find_program"><em>(Added
-0.46.0)</em></a>
+<p><code>override_find_program(progname, program)</code> <em>(since 0.46.0)</em>:
 specifies that whenever <code>find_program</code> is used to find a program
 named <code>progname</code>, Meson should not look it up on the system but
 instead return <code>program</code>, which may either be the result of
-<code>find_program</code>, <code>configure_file</code> or <code>executable</code>. <em>Since 0.55.0</em> if a version
+<code>find_program</code>, <code>configure_file</code> or <code>executable</code>. <em>(since 0.55.0)</em> If a version
 check is passed to <code>find_program</code> for a program that has been overridden with
 an executable, the current project version is used.</p>
 <p>If <code>program</code> is an <code>executable</code>, it cannot be used during configure.</p>
 </li>
 <li>
-<p><code>override_dependency(name, dep_object)</code> <a href="Release-notes-for-0-54-0.html#override-dependency"><em>(Added
-0.54.0)</em></a>
+<p><code>override_dependency(name, dep_object)</code> <em>(since 0.54.0)</em>:
 specifies that whenever <code>dependency(name, ...)</code> is used, Meson should not
 look it up on the system but instead return <code>dep_object</code>, which may either be
 the result of <code>dependency()</code> or <code>declare_dependency()</code>. It takes optional
@@ -1931,19 +1922,19 @@ project to retrieve the dependency without having to know the dependency
 variable name: <code>dependency(name, fallback : subproject_name)</code>.</p>
 </li>
 <li>
-<p><code>project_version()</code> returns the version string specified in
+<p><code>project_version()</code>: returns the version string specified in
 <code>project</code> function call.</p>
 </li>
 <li>
-<p><code>project_license()</code> returns the array of licenses specified in
+<p><code>project_license()</code>: returns the array of licenses specified in
 <code>project</code> function call.</p>
 </li>
 <li>
-<p><code>project_name()</code> returns the project name specified in the <code>project</code>
+<p><code>project_name()</code>: returns the project name specified in the <code>project</code>
 function call.</p>
 </li>
 <li>
-<p><code>version()</code> return a string with the version of Meson.</p>
+<p><code>version()</code>: return a string with the version of Meson.</p>
 </li>
 </ul>
 <h3 id="build_machine-object">
@@ -1954,22 +1945,22 @@ doing the actual compilation. See
 methods:</p>
 <ul>
 <li>
-<p><code>cpu_family()</code> returns the CPU family name. <a href="Reference-tables.html#cpu-families">This
+<p><code>cpu_family()</code>: returns the CPU family name. <a href="Reference-tables.html#cpu-families">This
 table</a> contains all known CPU
 families. These are guaranteed to continue working.</p>
 </li>
 <li>
-<p><code>cpu()</code> returns a more specific CPU name, such as <code>i686</code>, <code>amd64</code>,
+<p><code>cpu()</code>: returns a more specific CPU name, such as <code>i686</code>, <code>amd64</code>,
 etc.</p>
 </li>
 <li>
-<p><code>system()</code> returns the operating system name.  <a href="Reference-tables.html#operating-system-names">This
+<p><code>system()</code>: returns the operating system name.  <a href="Reference-tables.html#operating-system-names">This
 table</a> Lists all of
 the currently known Operating System names, these are guaranteed to
 continue working.</p>
 </li>
 <li>
-<p><code>endian()</code> returns <code>big</code> on big-endian systems and <code>little</code> on
+<p><code>endian()</code>: returns <code>big</code> on big-endian systems and <code>little</code> on
 little-endian systems.</p>
 </li>
 </ul>
@@ -2010,53 +2001,53 @@ the cross-info file, <code>host_machine</code> values are returned instead.</p>
 are immutable, all operations return their results as a new string.</p>
 <ul>
 <li>
-<p><code>contains(string)</code> returns true if string contains the string
-specified as the argument</p>
+<p><code>contains(string)</code>: returns true if string contains the string
+specified as the argument.</p>
 </li>
 <li>
-<p><code>endswith(string)</code> returns true if string ends with the string
-specified as the argument</p>
+<p><code>endswith(string)</code>: returns true if string ends with the string
+specified as the argument.</p>
 </li>
 <li>
-<p><code>format()</code> formats text, see the <a href="Syntax.html#string-formatting">Syntax
-manual</a> for usage info</p>
+<p><code>format()</code>: formats text, see the <a href="Syntax.html#string-formatting">Syntax
+manual</a> for usage info.</p>
 </li>
 <li>
-<p><code>join(list_of_strings)</code> is the opposite of split, for example
-<code>'.'.join(['a', 'b', 'c']</code> yields <code>'a.b.c'</code></p>
+<p><code>join(list_of_strings)</code>: the opposite of split, for example
+<code>'.'.join(['a', 'b', 'c']</code> yields <code>'a.b.c'</code>.</p>
 </li>
 <li>
-<p><code>split(split_character)</code> splits the string at the specified
+<p><code>split(split_character)</code>: splits the string at the specified
 character (or whitespace if not set) and returns the parts in an
-array</p>
+array.</p>
 </li>
 <li>
-<p><code>startswith(string)</code> returns true if string starts with the string
+<p><code>startswith(string)</code>: returns true if string starts with the string
 specified as the argument</p>
 </li>
 <li>
-<p><code>strip()</code> removes whitespace at the beginning and end of the string
-<em>(added 0.43.0)</em> optionally can take one positional string argument,
-and all characters in that string will be stripped</p>
+<p><code>strip()</code>: removes whitespace at the beginning and end of the string.
+<em>(since 0.43.0)</em> Optionally can take one positional string argument,
+and all characters in that string will be stripped.</p>
 </li>
 <li>
-<p><code>to_int</code> returns the string converted to an integer (error if string
-is not a number)</p>
+<p><code>to_int()</code>: returns the string converted to an integer (error if string
+is not a number).</p>
 </li>
 <li>
-<p><code>to_lower()</code> creates a lower case version of the string</p>
+<p><code>to_lower()</code>: creates a lower case version of the string.</p>
 </li>
 <li>
-<p><code>to_upper()</code> creates an upper case version of the string</p>
+<p><code>to_upper()</code>: creates an upper case version of the string.</p>
 </li>
 <li>
-<p><code>underscorify()</code> creates a string where every non-alphabetical
-non-number character is replaced with <code>_</code></p>
+<p><code>underscorify()</code>: creates a string where every non-alphabetical
+non-number character is replaced with <code>_</code>.</p>
 </li>
 <li>
-<p><code>version_compare(comparison_string)</code> does semantic version
+<p><code>version_compare(comparison_string)</code>: does semantic version
 comparison, if <code>x = '1.2.3'</code> then <code>x.version_compare('&gt;1.0.0')</code>
-returns <code>true</code></p>
+returns <code>true</code>.</p>
 </li>
 </ul>
 <h3 id="number-object">
@@ -2064,21 +2055,21 @@ returns <code>true</code></p>
 <p><a href="Syntax.html#numbers">Numbers</a> support these methods:</p>
 <ul>
 <li>
-<code>is_even()</code> returns true if the number is even</li>
+<code>is_even()</code>: returns true if the number is even</li>
 <li>
-<code>is_odd()</code> returns true if the number is odd</li>
+<code>is_odd()</code>: returns true if the number is odd</li>
 <li>
-<code>to_string()</code> returns the value of the number as a string.</li>
+<code>to_string()</code>: returns the value of the number as a string.</li>
 </ul>
 <h3 id="boolean-object">
 <code>boolean</code> object</h3>
 <p>A <a href="Syntax.html#booleans">boolean</a> object has two simple methods:</p>
 <ul>
 <li>
-<p><code>to_int()</code> as above, but returns either <code>1</code> or <code>0</code></p>
+<p><code>to_int()</code>: returns either <code>1</code> or <code>0</code>.</p>
 </li>
 <li>
-<p><code>to_string()</code> returns the string <code>'true'</code> if the boolean is true or
+<p><code>to_string()</code>: returns the string <code>'true'</code> if the boolean is true or
 <code>'false'</code> otherwise. You can also pass it two strings as positional
 arguments to specify what to return for true/false. For instance,
 <code>bool.to_string('yes', 'no')</code> will return <code>yes</code> if the boolean is
@@ -2090,31 +2081,32 @@ true and <code>no</code> if it is false.</p>
 <p>The following methods are defined for all <a href="Syntax.html#arrays">arrays</a>:</p>
 <ul>
 <li>
-<p><code>contains(item)</code>, returns <code>true</code> if the array contains the object
+<p><code>contains(item)</code>: returns <code>true</code> if the array contains the object
 given as argument, <code>false</code> otherwise</p>
 </li>
 <li>
-<p><code>get(index, fallback)</code>, returns the object at the given index,
+<p><code>get(index, fallback)</code>: returns the object at the given index,
 negative indices count from the back of the array, indexing out of
-bounds returns the <code>fallback</code> value <em>(added 0.38.0)</em> or, if it is
+bounds returns the <code>fallback</code> value <em>(since 0.38.0)</em> or, if it is
 not specified, causes a fatal error</p>
 </li>
 <li>
-<p><code>length()</code>, the size of the array</p>
+<p><code>length()</code>: the size of the array</p>
 </li>
 </ul>
 <p>You can also iterate over arrays with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
 statement</a>.</p>
 <h3 id="dictionary-object">
 <code>dictionary</code> object</h3>
+<p><em>(since 0.47.0)</em></p>
 <p>The following methods are defined for all <a href="Syntax.html#dictionaries">dictionaries</a>:</p>
 <ul>
 <li>
-<p><code>has_key(key)</code> returns <code>true</code> if the dictionary contains the key
+<p><code>has_key(key)</code>: returns <code>true</code> if the dictionary contains the key
 given as argument, <code>false</code> otherwise</p>
 </li>
 <li>
-<p><code>get(key, fallback)</code>, returns the value for the key given as first
+<p><code>get(key, fallback)</code>: returns the value for the key given as first
 argument if it is present in the dictionary, or the optional
 fallback value given as the second argument. If a single argument
 was given and the key was not found, causes a fatal error</p>
@@ -2122,8 +2114,7 @@ was given and the key was not found, causes a fatal error</p>
 </ul>
 <p>You can also iterate over dictionaries with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
 statement</a>.</p>
-<p>Dictionaries are available since 0.47.0.</p>
-<p>Since 0.48.0 dictionaries can be added (e.g. <code>d1 = d2 + d3</code> and <code>d1 += d2</code>).
+<p><em>(since 0.48.0)</em> Dictionaries can be added (e.g. <code>d1 = d2 + d3</code> and <code>d1 += d2</code>).
 Values from the second dictionary overrides values from the first.</p>
 <h2 id="returned-objects">Returned objects</h2>
 <p>These are objects returned by the <a href="Reference-manual.html#functions">functions listed above</a>.</p>
@@ -2135,23 +2126,23 @@ for a given language and allows you to query its properties. It has
 the following methods:</p>
 <ul>
 <li>
-<p><code>alignment(typename)</code> returns the alignment of the type specified in
+<p><code>alignment(typename)</code>: returns the alignment of the type specified in
 the positional argument, you can specify external dependencies to
 use with <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
-<p><code>cmd_array()</code> returns an array containing the command arguments for
+<p><code>cmd_array()</code>: returns an array containing the command arguments for
 the current compiler.</p>
 </li>
 <li>
-<p><code>compiles(code)</code> returns true if the code fragment given in the
+<p><code>compiles(code)</code>: returns true if the code fragment given in the
 positional argument compiles, you can specify external dependencies
 to use with <code>dependencies</code> keyword argument, <code>code</code> can be either a
 string containing source code or a <code>file</code> object pointing to the
 source code.</p>
 </li>
 <li>
-<p><code>compute_int(expr, ...')</code> computes the value of the given expression
+<p><code>compute_int(expr, ...')</code>: computes the value of the given expression
 (as an example <code>1 + 2</code>). When cross compiling this is evaluated with
 an iterative algorithm, you can specify keyword arguments <code>low</code>
 (defaults to -1024), <code>high</code> (defaults to 1024) and <code>guess</code> to
@@ -2159,47 +2150,47 @@ specify max and min values for the search and the value to try
 first.</p>
 </li>
 <li>
-<p><code>find_library(lib_name, ...)</code> tries to find the library specified in
+<p><code>find_library(lib_name, ...)</code>: tries to find the library specified in
 the positional argument. The <a href="Reference-manual.html#external-library-object">result
 object</a> can be used just like the return
 value of <code>dependency</code>. If the keyword argument <code>required</code> is false,
 Meson will proceed even if the library is not found. By default the
 library is searched for in the system library directory
 (e.g. /usr/lib). This can be overridden with the <code>dirs</code> keyword
-argument, which can be either a string or a list of strings.  Since
-<em>0.47.0</em> the value of a <a href="Build-options.html#features"><code>feature</code></a>
+argument, which can be either a string or a list of strings.
+<em>(since 0.47.0)</em> The value of a <a href="Build-options.html#features"><code>feature</code></a>
 option can also be passed to the <code>required</code> keyword argument.
-<em>Since 0.49.0</em> if the keyword argument <code>disabler</code> is <code>true</code> and the
+<em>(since 0.49.0)</em> If the keyword argument <code>disabler</code> is <code>true</code> and the
 dependency couldn't be found, return a <a href="Reference-manual.html#disabler-object">disabler object</a>
-instead of a not-found dependency. <em>Since 0.50.0</em> the <code>has_headers</code> keyword
+instead of a not-found dependency. <em>(since 0.50.0)</em> The <code>has_headers</code> keyword
 argument can be a list of header files that must be found as well, using
 <code>has_header()</code> method. All keyword arguments prefixed with <code>header_</code> will be
-passed down to <code>has_header()</code> method with the prefix removed. <em>Since 0.51.0</em>
-the <code>static</code> keyword (boolean) can be set to <code>true</code> to limit the search to
+passed down to <code>has_header()</code> method with the prefix removed. <em>(since 0.51.0)</em>
+The <code>static</code> keyword (boolean) can be set to <code>true</code> to limit the search to
 static libraries and <code>false</code> for dynamic/shared.</p>
 </li>
 <li>
-<p><code>first_supported_argument(list_of_strings)</code>, given a list of
+<p><code>first_supported_argument(list_of_strings)</code>: given a list of
 strings, returns the first argument that passes the <code>has_argument</code>
 test or an empty array if none pass.</p>
 </li>
 <li>
-<p><code>first_supported_link_argument(list_of_strings)</code> <em>(added 0.46.0)</em>,
+<p><code>first_supported_link_argument(list_of_strings)</code> <em>(since 0.46.0)</em>:
 given a list of strings, returns the first argument that passes the
 <code>has_link_argument</code> test or an empty array if none pass.</p>
 </li>
 <li>
-<p><code>get_define(definename)</code> returns the given preprocessor symbol's
+<p><code>get_define(definename)</code>: returns the given preprocessor symbol's
 value as a string or empty string if it is not defined.
-Starting with 0.47.0, this method will concatenate string literals as
+<em>(since 0.47.0)</em> This method will concatenate string literals as
 the compiler would. E.g. <code>"a" "b"</code> will become <code>"ab"</code>.</p>
 </li>
 <li>
-<p><code>get_id()</code> returns a string identifying the compiler. For example,
+<p><code>get_id()</code>: returns a string identifying the compiler. For example,
 <code>gcc</code>, <code>msvc</code>, <a href="Reference-tables.html#compiler-ids">and more</a>.</p>
 </li>
 <li>
-<p><code>get_argument_syntax()</code> <em>(new in 0.49.0)</em> returns a string identifying the type
+<p><code>get_argument_syntax()</code> <em>(since 0.49.0)</em>: returns a string identifying the type
 of arguments the compiler takes. Can be one of <code>gcc</code>, <code>msvc</code>, or an undefined
 string value. This method is useful for identifying compilers that are not
 gcc or msvc, but use the same argument syntax as one of those two compilers
@@ -2207,26 +2198,26 @@ such as clang or icc, especially when they use different syntax on different
 operating systems.</p>
 </li>
 <li>
-<p><code>get_linker_id()</code> <em>(added 0.53.0)</em> returns a string identifying the linker.
+<p><code>get_linker_id()</code> <em>(since 0.53.0)</em>: returns a string identifying the linker.
 For example, <code>ld.bfd</code>, <code>link</code>, <a href="Reference-tables.html#linker-ids">and more</a>.</p>
 </li>
 <li>
-<p><code>get_supported_arguments(list_of_string)</code> <em>(added 0.43.0)</em> returns
+<p><code>get_supported_arguments(list_of_string)</code> <em>(since 0.43.0)</em>: returns
 an array containing only the arguments supported by the compiler,
 as if <code>has_argument</code> were called on them individually.</p>
 </li>
 <li>
-<p><code>get_supported_link_arguments(list_of_string)</code> <em>(added 0.46.0)</em> returns
+<p><code>get_supported_link_arguments(list_of_string)</code> <em>(since 0.46.0)</em>: returns
 an array containing only the arguments supported by the linker,
 as if <code>has_link_argument</code> were called on them individually.</p>
 </li>
 <li>
-<p><code>has_argument(argument_name)</code> returns true if the compiler accepts
+<p><code>has_argument(argument_name)</code>: returns true if the compiler accepts
 the specified command line argument, that is, can compile code
 without erroring out or printing a warning about an unknown flag.</p>
 </li>
 <li>
-<p><code>has_link_argument(argument_name)</code> <em>(added 0.46.0)</em> returns true if
+<p><code>has_link_argument(argument_name)</code> <em>(since 0.46.0)</em>: returns true if
 the linker accepts the specified command line argument, that is, can
 compile and link code without erroring out or printing a warning
 about an unknown flag. Link arguments will be passed to the
@@ -2234,100 +2225,99 @@ compiler, so should usually have the <code>-Wl,</code> prefix. On VisualStudio
 a <code>/link</code> argument will be prepended.</p>
 </li>
 <li>
-<p><code>has_function(funcname)</code> returns true if the given function is
+<p><code>has_function(funcname)</code>: returns true if the given function is
 provided by the standard library or a library passed in with the
 <code>args</code> keyword, you can specify external dependencies to use with
 <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
-<p><code>check_header</code> <em>(added 0.47.0)</em> returns true if the specified header is <em>usable</em> with
+<p><code>check_header</code> <em>(since 0.47.0)</em>: returns true if the specified header is <em>usable</em> with
 the specified prefix, dependencies, and arguments.
 You can specify external dependencies to use with <code>dependencies</code>
 keyword argument and extra code to put above the header test with
 the <code>prefix</code> keyword. In order to look for headers in a specific
 directory you can use <code>args : '-I/extra/include/dir</code>, but this
 should only be used in exceptional cases for includes that can't be
-detected via pkg-config and passed via <code>dependencies</code>. Since <em>0.50.0</em> the
+detected via pkg-config and passed via <code>dependencies</code>. <em>(since 0.50.0)</em> The
 <code>required</code> keyword argument can be used to abort if the header cannot be
 found.</p>
 </li>
 <li>
-<p><code>has_header</code> returns true if the specified header <em>exists</em>, and is
+<p><code>has_header</code>: returns true if the specified header <em>exists</em>, and is
 faster than <code>check_header()</code> since it only does a pre-processor check.
 You can specify external dependencies to use with <code>dependencies</code>
 keyword argument and extra code to put above the header test with
 the <code>prefix</code> keyword. In order to look for headers in a specific
 directory you can use <code>args : '-I/extra/include/dir</code>, but this
 should only be used in exceptional cases for includes that can't be
-detected via pkg-config and passed via <code>dependencies</code>. Since <em>0.50.0</em> the
+detected via pkg-config and passed via <code>dependencies</code>. <em>(since 0.50.0)</em> The
 <code>required</code> keyword argument can be used to abort if the header cannot be
 found.</p>
 </li>
 <li>
-<p><code>has_header_symbol(headername, symbolname)</code> allows one to detect
+<p><code>has_header_symbol(headername, symbolname)</code>: detects
 whether a particular symbol (function, variable, #define, type
 definition, etc) is declared in the specified header, you can
 specify external dependencies to use with <code>dependencies</code> keyword
-argument. Since <em>0.50.0</em> the <code>required</code> keyword argument can be used to abort
-if the symbol cannot be found.</p>
+argument. <em>(since 0.50.0)</em> The <code>required</code> keyword argument can be
+used to abort if the symbol cannot be found.</p>
 </li>
 <li>
-<p><code>has_member(typename, membername)</code> takes two arguments, type name
+<p><code>has_member(typename, membername)</code>: takes two arguments, type name
 and member name and returns true if the type has the specified
 member, you can specify external dependencies to use with
 <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
-<p><code>has_members(typename, membername1, membername2, ...)</code> takes at
+<p><code>has_members(typename, membername1, membername2, ...)</code>: takes at
 least two arguments, type name and one or more member names, returns
 true if the type has all the specified members, you can specify
 external dependencies to use with <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
-<p><code>has_multi_arguments(arg1, arg2, arg3, ...)</code> is the same as
+<p><code>has_multi_arguments(arg1, arg2, arg3, ...)</code> <em>(since 0.37.0)</em>: the same as
 <code>has_argument</code> but takes multiple arguments and uses them all in a
-single compiler invocation, available since 0.37.0.</p>
+single compiler invocation.</p>
 </li>
 <li>
-<p><code>has_multi_link_arguments(arg1, arg2, arg3, ...)</code> <em>(added 0.46.0)</em>
-is the same as <code>has_link_argument</code> but takes multiple arguments and
+<p><code>has_multi_link_arguments(arg1, arg2, arg3, ...)</code> <em>(since 0.46.0)</em>:
+the same as <code>has_link_argument</code> but takes multiple arguments and
 uses them all in a single compiler invocation.</p>
 </li>
 <li>
-<p><code>has_type(typename)</code> returns true if the specified token is a type,
+<p><code>has_type(typename)</code>: returns true if the specified token is a type,
 you can specify external dependencies to use with <code>dependencies</code>
 keyword argument.</p>
 </li>
 <li>
-<p><code>links(code)</code> returns true if the code fragment given in the
+<p><code>links(code)</code>: returns true if the code fragment given in the
 positional argument compiles and links, you can specify external
 dependencies to use with <code>dependencies</code> keyword argument, <code>code</code> can
 be either a string containing source code or a <code>file</code> object
 pointing to the source code.</p>
 </li>
 <li>
-<p><code>run(code)</code> attempts to compile and execute the given code fragment,
+<p><code>run(code)</code>: attempts to compile and execute the given code fragment,
 returns a run result object, you can specify external dependencies
 to use with <code>dependencies</code> keyword argument, <code>code</code> can be either a
 string containing source code or a <code>file</code> object pointing to the
 source code.</p>
 </li>
 <li>
-<p><code>symbols_have_underscore_prefix()</code> returns <code>true</code> if the C symbol
-mangling is one underscore (<code>_</code>) prefixed to the symbol, available
-since 0.37.0.</p>
+<p><code>symbols_have_underscore_prefix()</code> <em>(since 0.37.0)</em>: returns <code>true</code>
+if the C symbol mangling is one underscore (<code>_</code>) prefixed to the symbol.</p>
 </li>
 <li>
-<p><code>sizeof(typename, ...)</code> returns the size of the given type
+<p><code>sizeof(typename, ...)</code>: returns the size of the given type
 (e.g. <code>'int'</code>) or -1 if the type is unknown, to add includes set
 them in the <code>prefix</code> keyword argument, you can specify external
 dependencies to use with <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
-<p><code>version()</code> returns the compiler's version number as a string.</p>
+<p><code>version()</code>: returns the compiler's version number as a string.</p>
 </li>
 <li>
-<p><code>has_function_attribute(name)</code> <em>(added in 0.48.0)</em> returns <code>true</code> if the
+<p><code>has_function_attribute(name)</code> <em>(since 0.48.0)</em>: returns <code>true</code> if the
 compiler supports the GNU style (<code>__attribute__(...)</code>) <code>name</code>. This is
 preferable to manual compile checks as it may be optimized for compilers that
 do not support such attributes.
@@ -2335,7 +2325,7 @@ do not support such attributes.
 supported attributes.</p>
 </li>
 <li>
-<p><code>get_supported_function_attributes(list_of_names)</code> <em>(added in 0.48.0)</em>
+<p><code>get_supported_function_attributes(list_of_names)</code> <em>(since 0.48.0)</em>:
 returns an array containing any names that are supported GCC style
 attributes. Equivalent to <code>has_function_attribute</code> was called on each of them
 individually.</p>
@@ -2344,31 +2334,30 @@ individually.</p>
 <p>The following keyword arguments can be used:</p>
 <ul>
 <li>
-<p><code>args</code> can be used to pass a list of compiler arguments that are
+<p><code>args</code>: used to pass a list of compiler arguments that are
 required to find the header or symbol. For example, you might need
 to pass the include path <code>-Isome/path/to/header</code> if a header is not
-in the default include path. In versions newer than 0.38.0 you
-should use the <code>include_directories</code> keyword described below. You
-may also want to pass a library name <code>-lfoo</code> for <code>has_function</code> to
-check for a function. Supported by all methods except <code>get_id</code>,
-<code>version</code>, and <code>find_library</code>.</p>
+in the default include path. <em>(since 0.38.0)</em> you should use the
+<code>include_directories</code> keyword described below. You may also want to
+pass a library name <code>-lfoo</code> for <code>has_function</code> to check for a function.
+Supported by all methods except <code>get_id</code>, <code>version</code>, and <code>find_library</code>.</p>
 </li>
 <li>
-<p><code>include_directories</code> specifies extra directories for header
-searches. <em>(added 0.38.0)</em></p>
+<p><code>include_directories</code> <em>(since 0.38.0)</em>: specifies extra directories for
+header searches.</p>
 </li>
 <li>
-<p><code>name</code> the name to use for printing a message about the compiler
+<p><code>name</code>: the name to use for printing a message about the compiler
 check. Supported by the methods <code>compiles()</code>, <code>links()</code>, and
 <code>run()</code>. If this keyword argument is not passed to those methods, no
 message will be printed about the check.</p>
 </li>
 <li>
-<p><code>no_builtin_args</code> when set to true, the compiler arguments controlled
+<p><code>no_builtin_args</code>: when set to true, the compiler arguments controlled
 by built-in configuration options are not added.</p>
 </li>
 <li>
-<p><code>prefix</code> can be used to add #includes and other things that are
+<p><code>prefix</code>: adds #includes and other things that are
 required for the symbol to be declared. System definitions should be
 passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
 some symbols to be exposed on Linux, and it should be passed via
@@ -2398,8 +2387,8 @@ cross-compiling. In that case you need to use a specs file. See:
 <a href="Reference-manual.html#shared_module">shared module</a>.</p>
 <ul>
 <li>
-<p><code>extract_all_objects()</code> is same as <code>extract_objects</code> but returns all
-object files generated by this target. Since 0.46.0 keyword argument
+<p><code>extract_all_objects()</code>: is same as <code>extract_objects</code> but returns all
+object files generated by this target. <em>(since 0.46.0)</em> keyword argument
 <code>recursive</code> must be set to <code>true</code> to also return objects passed to
 the <code>object</code> argument of this target. By default only objects built
 for this target are returned to maintain backward compatibility with
@@ -2407,7 +2396,7 @@ previous versions.  The default will eventually be changed to <code>true</code>
 in a future version.</p>
 </li>
 <li>
-<p><code>extract_objects(source1, source2, ...)</code> takes as its arguments
+<p><code>extract_objects(source1, source2, ...)</code>: takes as its arguments
 a number of source files as <a href="Reference-manual.html#string-object"><code>string</code></a> or
 <a href="Reference-manual.html#files"><code>files()</code></a> and returns an opaque value representing the
 object files generated for those source files. This is typically used
@@ -2416,19 +2405,19 @@ some source files with custom flags. To use the object file(s)
 in another build target, use the <code>objects:</code> keyword argument.</p>
 </li>
 <li>
-<p><code>full_path()</code> returns a full path pointing to the result target file.
+<p><code>full_path()</code>: returns a full path pointing to the result target file.
 NOTE: In most cases using the object itself will do the same job as
 this and will also allow Meson to setup inter-target dependencies
 correctly. Please file a bug if that doesn't work for you.</p>
 </li>
 <li>
-<p><code>private_dir_include()</code> returns a opaque value that works like
+<p><code>private_dir_include()</code>: returns a opaque value that works like
 <code>include_directories</code> but points to the private directory of this
 target, usually only needed if an another target needs to access
 some generated internal headers of this target</p>
 </li>
 <li>
-<p><code>name()</code> <em>Since 0.54.0</em>, returns the target name.</p>
+<p><code>name()</code> <em>(since 0.54.0)</em>: returns the target name.</p>
 </li>
 </ul>
 <h3 id="configuration-data-object">
@@ -2440,23 +2429,22 @@ more in-depth description can be found in the <a href="Configuration.html">the c
 page</a> It has three methods:</p>
 <ul>
 <li>
-<p><code>get(varname, default_value)</code> returns the value of <code>varname</code>, if the
+<p><code>get(varname, default_value)</code>: returns the value of <code>varname</code>, if the
 value has not been set returns <code>default_value</code> if it is defined
-<em>(added 0.38.0)</em> and errors out if not</p>
+<em>(since 0.38.0)</em> and errors out if not</p>
 </li>
 <li>
-<p><code>get_unquoted(varname, default_value)</code> returns the value of <code>varname</code>
-but without surrounding double quotes (<code>"</code>). If the value has not been
-set returns <code>default_value</code> if it is defined and errors out if not.
-Available since 0.44.0</p>
+<p><code>get_unquoted(varname, default_value)</code> <em>(since 0.44.0)</em>: returns the value
+of <code>varname</code> but without surrounding double quotes (<code>"</code>). If the value has
+not been set returns <code>default_value</code> if it is defined and errors out if not.</p>
 </li>
 <li>
-<p><code>has(varname)</code>, returns <code>true</code> if the specified variable is set</p>
+<p><code>has(varname)</code>: returns <code>true</code> if the specified variable is set</p>
 </li>
 <li>
-<p><code>merge_from(other)</code> takes as argument a different configuration data
-object and copies all entries from that object to the current
-object, available since 0.42.0</p>
+<p><code>merge_from(other)</code> <em>(since 0.42.0)</em>: takes as argument a different
+configuration data object and copies all entries from that object to
+the current.</p>
 </li>
 <li>
 <p><code>set(varname, value)</code>, sets a variable to a given value</p>
@@ -2482,22 +2470,22 @@ cause a syntax error.</p>
 contains a target with the following methods:</p>
 <ul>
 <li>
-<p><code>full_path()</code> returns a full path pointing to the result target file
+<p><code>full_path()</code>: returns a full path pointing to the result target file
 NOTE: In most cases using the object itself will do the same job as
 this and will also allow Meson to setup inter-target dependencies
 correctly. Please file a bug if that doesn't work for you.
-<em>Since 0.54.0</em> it can be also called on indexes objects:
+<em>(since 0.54.0)</em> It can be also called on indexes objects:
 <code>custom_targets[i].full_path()</code>.</p>
 </li>
 <li>
-<p><code>[index]</code> returns an opaque object that references this target, and
+<p><code>[index]</code>: returns an opaque object that references this target, and
 can be used as a source in other targets. When it is used as such it
 will make that target depend on this custom target, but the only
 source added will be the one that corresponds to the index of the
 custom target's output argument.</p>
 </li>
 <li>
-<p><code>to_list()</code> <em>Since 0.54.0</em>, returns a list of opaque objects that references
+<p><code>to_list()</code> <em>(since 0.54.0)</em>: returns a list of opaque objects that references
 this target, and can be used as a source in other targets. This can be used to
 iterate outputs with <code>foreach</code> loop.</p>
 </li>
@@ -2508,54 +2496,54 @@ iterate outputs with <code>foreach</code> loop.</p>
 an external dependency with the following methods:</p>
 <ul>
 <li>
-<p><code>found()</code> which returns whether the dependency was found</p>
+<p><code>found()</code>: returns whether the dependency was found.</p>
 </li>
 <li>
-<p><code>name()</code> <em>(Added 0.48.0)</em> returns the name of the dependency that was
+<p><code>name()</code> <em>(since 0.48.0)</em>: returns the name of the dependency that was
 searched. Returns <code>internal</code> for dependencies created with
 <code>declare_dependency()</code>.</p>
 </li>
 <li>
-<p><code>get_pkgconfig_variable(varname)</code> <em>(Added 0.36.0)</em> will get the
+<p><code>get_pkgconfig_variable(varname)</code> <em>(since 0.36.0)</em>: gets the
 pkg-config variable specified, or, if invoked on a non pkg-config
-dependency, error out. <em>(Added 0.44.0)</em> You can also redefine a
+dependency, error out. <em>(since 0.44.0)</em> You can also redefine a
 variable by passing a list to the <code>define_variable</code> parameter
 that can affect the retrieved variable: <code>['prefix', '/'])</code>.
-<em>(Added 0.45.0)</em> A warning is issued if the variable is not defined,
+<em>(since 0.45.0)</em> A warning is issued if the variable is not defined,
 unless a <code>default</code> parameter is specified.</p>
 </li>
 <li>
-<p><code>get_configtool_variable(varname)</code> <em>(Added 0.44.0)</em> will get the
+<p><code>get_configtool_variable(varname)</code> <em>(since 0.44.0)</em>: gets the
 command line argument from the config tool (with <code>--</code> prepended), or,
 if invoked on a non config-tool dependency, error out.</p>
 </li>
 <li>
-<p><code>type_name()</code> which returns a string describing the type of the
+<p><code>type_name()</code>: returns a string describing the type of the
 dependency, the most common values are <code>internal</code> for deps created
 with <code>declare_dependency()</code> and <code>pkgconfig</code> for system dependencies
 obtained with Pkg-config.</p>
 </li>
 <li>
-<p><code>version()</code> is the version number as a string, for example <code>1.2.8</code>.
+<p><code>version()</code>: the version number as a string, for example <code>1.2.8</code>.
 <code>unknown</code> if the dependency provider doesn't support determining the
 version.</p>
 </li>
 <li>
-<p><code>include_type()</code> returns whether the value set by the <code>include_type</code> kwarg</p>
+<p><code>include_type()</code>: returns whether the value set by the <code>include_type</code> kwarg</p>
 </li>
 <li>
-<p><code>as_system(value)</code> returns a copy of the dependency object, which has changed
+<p><code>as_system(value)</code>: returns a copy of the dependency object, which has changed
 the value of <code>include_type</code> to <code>value</code>. The <code>value</code> argument is optional and
 defaults to <code>'preserve'</code>.</p>
 </li>
 <li>
-<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, sources : false)</code> <em>(Added 0.46.0)</em> returns
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, sources : false)</code> <em>(since 0.46.0)</em>: returns
 a new dependency object with the same name, version, found status,
 type name, and methods as the object that called it. This new
 object will only inherit other attributes from its parent as
 controlled by keyword arguments.</p>
 <p>If the parent has any dependencies, those will be applied to the new
-partial dependency with the same rules. So , given:</p>
+partial dependency with the same rules. So, given:</p>
 <pre><code class="language-meson">dep1 = declare_dependency(compile_args : '-Werror=foo', link_with : 'libfoo')
 dep2 = declare_dependency(compile_args : '-Werror=bar', dependencies : dep1)
 dep3 = dep2.partial_dependency(compile_args : true)
@@ -2576,13 +2564,13 @@ not working correctly.</p>
 </li>
 <li>
 <p><code>get_variable(cmake : str, pkgconfig : str, configtool : str, internal: str, default_value : str, pkgconfig_define : [str, str])</code>
-<em>(Added in 0.51.0)</em> A generic variable getter method, which replaces the
+<em>(since 0.51.0)</em>: a generic variable getter method, which replaces the
 get_<em>type</em>_variable methods. This allows one to get the variable
 from a dependency without knowing specifically how that dependency
 was found. If default_value is set and the value cannot be gotten
 from the object then default_value is returned, if it is not set
 then an error is raised.</p>
-<p><em>New in 0.54.0, the <code>internal</code> keyword</em></p>
+<p><em>(since 0.54.0)</em> added <code>internal</code> keyword.</p>
 </li>
 </ul>
 <h3 id="disabler-object">
@@ -2594,8 +2582,7 @@ statement evaluation to immediately short circuit to return a disabler
 object. A disabler object has one method:</p>
 <ul>
 <li>
-<code>found()</code>, always returns <code>false</code>
-</li>
+<code>found()</code>: always returns <code>false</code>.</li>
 </ul>
 <h3 id="external-program-object">
 <code>external program</code> object</h3>
@@ -2604,17 +2591,16 @@ contains an external (i.e. not built as part of this project) program
 and has the following methods:</p>
 <ul>
 <li>
-<p><code>found()</code> which returns whether the executable was found</p>
+<p><code>found()</code>: returns whether the executable was found.</p>
 </li>
 <li>
-<p><code>path()</code> which returns a string pointing to the script or executable
+<p><code>path()</code>: <em>(since 0.55.0)</em> <strong>(deprecated)</strong> use <code>full_path()</code> instead.
+Returns a string pointing to the script or executable
 <strong>NOTE:</strong> You should not need to use this method. Passing the object
-itself should work in all cases. For example: <code>run_command(obj, arg1, arg2)</code>
-<em>Since 0.55.0</em> this method has been deprecated in favor of <code>full_path()</code> for
-consistency with other returned objects.</p>
+itself should work in all cases. For example: <code>run_command(obj, arg1, arg2)</code>.</p>
 </li>
 <li>
-<p><code>full_path()</code> <em>Since 0.55.0</em> which returns a string pointing to the script or
+<p><code>full_path()</code> (<em>since 0.55.0</em>): which returns a string pointing to the script or
 executable <strong>NOTE:</strong> You should not need to use this method. Passing the object
 itself should work in all cases. For example: <code>run_command(obj, arg1, arg2)</code>.</p>
 </li>
@@ -2627,7 +2613,7 @@ during tests. It should be passed as the <code>env</code> keyword argument to
 tests and other functions. It has the following methods.</p>
 <ul>
 <li>
-<p><code>append(varname, value1, value2, ...)</code> appends the given values to
+<p><code>append(varname, value1, value2, ...)</code>: appends the given values to
 the old value of the environment variable, e.g.  <code>env.append('FOO', 'BAR', 'BAZ', separator : ';')</code> produces <code>BOB;BAR;BAZ</code> if <code>FOO</code> had
 the value <code>BOB</code> and plain <code>BAR;BAZ</code> if the value was not defined. If
 the separator is not specified explicitly, the default path
@@ -2635,11 +2621,11 @@ separator for the host operating system will be used, i.e. ';' for
 Windows and ':' for UNIX/POSIX systems.</p>
 </li>
 <li>
-<p><code>prepend(varname, value1, value2, ...)</code> is the same as <code>append</code>
-except that it writes to the beginning of the variable</p>
+<p><code>prepend(varname, value1, value2, ...)</code>: same as <code>append</code>
+except that it writes to the beginning of the variable.</p>
 </li>
 <li>
-<p><code>set(varname, value1, value2)</code> sets the environment variable
+<p><code>set(varname, value1, value2)</code>: sets the environment variable
 specified in the first argument to the values in the second argument
 joined by the separator, e.g.  <code>env.set('FOO', 'BAR'),</code> sets envvar
 <code>FOO</code> to value <code>BAR</code>. See <code>append()</code> above for how separators work.</p>
@@ -2654,14 +2640,14 @@ contains an external (i.e. not built as part of this project)
 library. This object has the following methods:</p>
 <ul>
 <li>
-<p><code>found()</code> which returns whether the library was found.</p>
+<p><code>found()</code>: returns whether the library was found.</p>
 </li>
 <li>
-<p><code>type_name()</code> <em>(added 0.48.0)</em> which returns a string describing
+<p><code>type_name()</code> <em>(since 0.48.0)</em>: returns a string describing
 the type of the dependency, which will be <code>library</code> in this case.</p>
 </li>
 <li>
-<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> <em>(Added 0.46.0)</em> returns
+<p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, source : false)</code> <em>(since 0.46.0)</em>: returns
 a new dependency object with the same name, version, found status,
 type name, and methods as the object that called it. This new
 object will only inherit other attributes from its parent as
@@ -2669,19 +2655,19 @@ controlled by keyword arguments.</p>
 </li>
 </ul>
 <h3 id="feature-option-object">Feature option object</h3>
+<p><em>(since 0.47.0)</em></p>
 <p>The following methods are defined for all <a href="Build-options.html#features"><code>feature</code> options</a>:</p>
 <ul>
 <li>
-<code>enabled()</code> returns whether the feature was set to <code>'enabled'</code>
+<code>enabled()</code>: returns whether the feature was set to <code>'enabled'</code>
 </li>
 <li>
-<code>disabled()</code> returns whether the feature was set to <code>'disabled'</code>
+<code>disabled()</code>: returns whether the feature was set to <code>'disabled'</code>
 </li>
 <li>
-<code>auto()</code> returns whether the feature was set to <code>'auto'</code>
+<code>auto()</code>: returns whether the feature was set to <code>'auto'</code>
 </li>
 </ul>
-<p>Feature options are available since 0.47.0.</p>
 <h3 id="generator-object">
 <code>generator</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#generator"><code>generator()</code></a> and contains a
@@ -2689,7 +2675,7 @@ generator that is used to transform files from one type to another by
 an executable (e.g. <code>idl</code> files into source code and headers).</p>
 <ul>
 <li>
-<code>process(list_of_files, ...)</code> takes a list of files, causes them to
+<code>process(list_of_files, ...)</code>: takes a list of files, causes them to
 be processed and returns an object containing the result which can
 then, for example, be passed into a build target definition. The
 keyword argument <code>extra_args</code>, if specified, will be used to replace
@@ -2706,11 +2692,11 @@ directory. The most common value for this is
 opaque object representing it.</p>
 <ul>
 <li>
-<p><code>found()</code> <em>(added 0.48.0)</em> which returns whether the subproject was
+<p><code>found()</code> <em>(since 0.48.0)</em>: returns whether the subproject was
 successfully setup</p>
 </li>
 <li>
-<p><code>get_variable(name, fallback)</code> fetches the specified variable from
+<p><code>get_variable(name, fallback)</code>: fetches the specified variable from
 inside the subproject. This is useful to, for instance, get a
 <a href="Reference-manual.html#declare_dependency">declared dependency</a> from the
 <a href="Subprojects.html">subproject</a>.</p>
@@ -2726,15 +2712,15 @@ sample piece of code with <a href="Reference-manual.html#compiler-object"><code>
 <a href="Reference-manual.html#run_command"><code>run_command()</code></a>. It has the following methods:</p>
 <ul>
 <li>
-<code>compiled()</code> if true, the compilation succeeded, if false it did not
+<code>compiled()</code>: if true, the compilation succeeded, if false it did not
 and the other methods return unspecified data. This is only available
 for <code>compiler.run()</code> results.</li>
 <li>
-<code>returncode()</code> the return code of executing the compiled binary</li>
+<code>returncode()</code>: the return code of executing the compiled binary</li>
 <li>
-<code>stderr()</code> the standard error produced when the command was run</li>
+<code>stderr()</code>: the standard error produced when the command was run</li>
 <li>
-<code>stdout()</code> the standard out produced when the command was run</li>
+<code>stdout()</code>: the standard out produced when the command was run</li>
 </ul>
 
     </div>
@@ -2764,7 +2750,7 @@ for <code>compiler.run()</code> results.</li>
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Reference-manual.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/Reference-manual.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">

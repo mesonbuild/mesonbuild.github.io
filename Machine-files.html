@@ -195,10 +195,65 @@ environments</a>.</p>
 <h2 id="sections">Sections</h2>
 <p>The following sections are allowed:</p>
 <ul>
+<li>constants</li>
 <li>binaries</li>
 <li>paths</li>
 <li>properties</li>
 </ul>
+<h3 id="constants">constants</h3>
+<p><em>Since 0.55.0</em></p>
+<p>String and list concatenation is supported using the <code>+</code> operator, joining paths
+is supported using the <code>/</code> operator.
+Entries defined in the <code>[constants]</code> section can be used in any other section
+(they are always parsed first), entries in any other section can be used only
+within that same section and only after it has been defined.</p>
+<pre><code class="language-ini">[constants]
+toolchain = '/toolchain'
+common_flags = ['--sysroot=' + toolchain / 'sysroot']
+
+[properties]
+c_args = common_flags + ['-DSOMETHING']
+cpp_args = c_args + ['-DSOMETHING_ELSE']
+
+[binaries]
+c = toolchain / 'gcc'
+</code></pre>
+<p>This can be useful with cross file composition as well. A generic cross file
+could be composed with a platform specific file where constants are defined:</p>
+<pre><code class="language-ini"># aarch64.ini
+[constants]
+arch = 'aarch64-linux-gnu'
+</code></pre>
+<pre><code class="language-ini"># cross.ini
+[binaries]
+c = arch + '-gcc'
+cpp = arch + '-g++'
+strip = arch + '-strip'
+pkgconfig = arch + '-pkg-config'
+...
+</code></pre>
+<p>This can be used as <code>meson setup --cross-file aarch64.ini --cross-file cross.ini builddir</code>.</p>
+<p>Note that file composition happens before the parsing of values. The example
+below results in <code>b</code> being <code>'HelloWorld'</code>:</p>
+<pre><code class="language-ini"># file1.ini:
+[constants]
+a = 'Foo'
+b = a + 'World'
+</code></pre>
+<pre><code class="language-ini">#file2.ini:
+[constants]
+a = 'Hello'
+</code></pre>
+<p>The example below results in an error when file1.ini is included before file2.ini
+because <code>b</code> would be defined before <code>a</code>:</p>
+<pre><code class="language-ini"># file1.ini:
+[constants]
+b = a + 'World'
+</code></pre>
+<pre><code class="language-ini">#file2.ini:
+[constants]
+a = 'Hello'
+</code></pre>
 <h3 id="binaries">Binaries</h3>
 <p>The binaries section contains a list of binaries. These can be used
 internally by meson, or by the <code>find_program</code> function:</p>
@@ -303,7 +358,7 @@ just 12 native files.</p>
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Machine-files.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/Machine-files.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">

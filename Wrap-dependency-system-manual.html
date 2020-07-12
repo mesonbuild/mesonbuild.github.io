@@ -246,17 +246,8 @@ revision = head
 <li>
 <code>directory</code> - name of the subproject root directory, defaults to the name of the wrap.</li>
 </ul>
-<h3 id="specific-to-wrapfile">Specific to wrap-file</h3>
+<p>Since <em>0.55.0</em> those can be used in all wrap types, they were previously reserved to <code>wrap-file</code>:</p>
 <ul>
-<li>
-<code>source_url</code> - download url to retrieve the wrap-file source archive</li>
-<li>
-<code>source_fallback_url</code> - fallback URL to be used when download from <code>source_url</code> fails <em>Since: 0.55.0</em>
-</li>
-<li>
-<code>source_filename</code> - filename of the downloaded source archive</li>
-<li>
-<code>source_hash</code> - sha256 checksum of the downloaded source archive</li>
 <li>
 <code>patch_url</code> - download url to retrieve an optional overlay archive</li>
 <li>
@@ -270,6 +261,18 @@ revision = head
 <code>patch_directory</code> - <em>Since 0.55.0</em> Overlay directory, alternative to <code>patch_filename</code> in the case
 files are local instead of a downloaded archive. The directory must be placed in
 <code>subprojects/packagefiles</code>.</li>
+</ul>
+<h3 id="specific-to-wrapfile">Specific to wrap-file</h3>
+<ul>
+<li>
+<code>source_url</code> - download url to retrieve the wrap-file source archive</li>
+<li>
+<code>source_fallback_url</code> - fallback URL to be used when download from <code>source_url</code> fails <em>Since: 0.55.0</em>
+</li>
+<li>
+<code>source_filename</code> - filename of the downloaded source archive</li>
+<li>
+<code>source_hash</code> - sha256 checksum of the downloaded source archive</li>
 <li>
 <code>lead_directory_missing</code> - for <code>wrap-file</code> create the leading
 directory name. Needed when the source file does not have a leading
@@ -293,7 +296,7 @@ of downloading the file, even if <code>--wrap-mode</code> option is set to
 valid value (such as a git tag) for the VCS's <code>checkout</code> command, or
 (for git) <code>head</code> to track upstream's default branch. Required.</li>
 </ul>
-<h2 id="specific-to-wrapgit">Specific to wrap-git</h2>
+<h3 id="specific-to-wrapgit">Specific to wrap-git</h3>
 <ul>
 <li>
 <code>depth</code> - shallowly clone the repository to X number of commits. Note
@@ -326,8 +329,81 @@ it inside your own source tree, especially if it contains hundreds of
 thousands of lines of code. Once you have a working build definition,
 just zip up the Meson build files (and others you have changed) and
 put them somewhere where you can download them.</p>
-<p>Meson build patches are only supported for wrap-file mode. When using
-wrap-git, the repository must contain all Meson build definitions.</p>
+<p>Prior to <em>0.55.0</em> Meson build patches were only supported for wrap-file mode.
+When using wrap-git, the repository must contain all Meson build definitions.
+Since <em>0.55.0</em> Meson build patches are supported for any wrap modes, including
+wrap-git.</p>
+<h2 id="provide-section">
+<code>provide</code> section</h2>
+<p>*Since <em>0.55.0</em></p>
+<p>Wrap files can define the dependencies it provides in the <code>[provide]</code> section.</p>
+<pre><code class="language-ini">[provide]
+dependency_names = foo-1.0
+</code></pre>
+<p>When a wrap file provides the dependency <code>foo-1.0</code>, as above, any call to
+<code>dependency('foo-1.0')</code> will automatically fallback to that subproject even if
+no <code>fallback</code> keyword argument is given. A wrap file named <code>foo.wrap</code> implicitly
+provides the dependency name <code>foo</code> even when the <code>[provide]</code> section is missing.</p>
+<p>Optional dependencies, like <code>dependency('foo-1.0', required: get_option('foo_opt'))</code>
+where <code>foo_opt</code> is a feature option set to <code>auto</code>, will not fallback to the
+subproject defined in the wrap file, for 2 reasons:</p>
+<ul>
+<li>It allows for looking the dependency in other ways first, for example using
+<code>cc.find_library('foo')</code>, and only fallback if that fails:</li>
+</ul>
+<pre><code class="language-meson"># this won't use fallback defined in foo.wrap
+foo_dep = dependency('foo-1.0', required: false)
+if not foo_dep.found()
+  foo_dep = cc.find_library('foo', has_headers: 'foo.h', required: false)
+  if not foo_dep.found()
+    # This will use the fallback
+    foo_dep = dependency('foo-1.0')
+    # or
+    foo_dep = dependency('foo-1.0', required: false, fallback: 'foo')
+  endif
+endif
+</code></pre>
+<ul>
+<li>Sometimes not-found dependency is preferable to a fallback when the feature is
+not explicitly requested by the user. In that case
+<code>dependency('foo-1.0', required: get_option('foo_opt'))</code> will only fallback
+when the user sets <code>foo_opt</code> to <code>enabled</code> instead of <code>auto</code>.</li>
+</ul>
+<p>If it is desired to fallback for an optional dependency, the <code>fallback</code> keyword
+argument must be passed explicitly. For example
+<code>dependency('foo-1.0', required: get_option('foo_opt'), fallback: 'foo')</code> will
+use the fallback even when <code>foo_opt</code> is set to <code>auto</code>.</p>
+<p>This mechanism assumes the subproject calls <code>meson.override_dependency('foo-1.0', foo_dep)</code>
+so Meson knows which dependency object should be used as fallback. Since that
+method was introduced in version <em>0.54.0</em>, as a transitional aid for projects
+that do not yet make use of it the variable name can be provided in the wrap file
+with entries in the format <code>foo-1.0 = foo_dep</code>.</p>
+<p>For example when using a recent enough version of glib that uses
+<code>meson.override_dependency()</code> to override <code>glib-2.0</code>, <code>gobject-2.0</code> and <code>gio-2.0</code>,
+a wrap file would look like:</p>
+<pre><code class="language-ini">[wrap-git]
+url=https://gitlab.gnome.org/GNOME/glib.git
+revision=glib-2-62
+
+[provide]
+dependency_names = glib-2.0, gobject-2.0, gio-2.0
+</code></pre>
+<p>With older version of glib dependency variable names need to be specified:</p>
+<pre><code class="language-ini">[wrap-git]
+url=https://gitlab.gnome.org/GNOME/glib.git
+revision=glib-2-62
+
+[provide]
+glib-2.0=glib_dep
+gobject-2.0=gobject_dep
+gio-2.0=gio_dep
+</code></pre>
+<p>Programs can also be provided by wrap files, with the <code>program_names</code> key:</p>
+<pre><code class="language-ini">[provide]
+program_names = myprog, otherprog
+</code></pre>
+<p>With such wrap file, <code>find_program('myprog')</code> will automatically fallback to use
+the subproject, assuming it uses <code>meson.override_find_program('myprog')</code>.</p>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>Wraps provide a convenient way of obtaining a project into your subproject directory.
 Then you use it as a regular subproject (see <a href="Subprojects.html">subprojects</a>).</p>
@@ -392,7 +468,7 @@ many dependencies ready to use. You can read more about WrapDB <a href="Using-th
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/Wrap-dependency-system-manual.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/Wrap-dependency-system-manual.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">

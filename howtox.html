@@ -281,7 +281,7 @@ execute permissions, the generated file will have them too.</p>
 <p>Then issue the following commands.</p>
 <pre><code class="language-console">$ meson compile
 $ meson test
-$ ninja coverage-html (or coverage-xml)
+$ meson compile coverage-html (or coverage-xml)
 </code></pre>
 <p>The coverage report can be found in the meson-logs subdirectory.</p>
 <p><em>New in 0.55.0</em> llvm-cov support for use with clang</p>
@@ -305,11 +305,11 @@ sanitizer will abort executables which have bugs so they show up as
 test failures.</p>
 <h2 id="use-clang-static-analyzer">Use Clang static analyzer</h2>
 <p>Install scan-build and configure your project. Then do this:</p>
-<pre><code class="language-console">$ ninja scan-build
+<pre><code class="language-console">$ meson compile scan-build
 </code></pre>
 <p>You can use the <code>SCANBUILD</code> environment variable to choose the
 scan-build executable.</p>
-<pre><code class="language-console">$ SCANBUILD=&lt;your exe&gt; ninja scan-build
+<pre><code class="language-console">$ SCANBUILD=&lt;your exe&gt; meson compile scan-build
 </code></pre>
 <h2 id="use-profile-guided-optimization">Use profile guided optimization</h2>
 <p>Using profile guided optimization with GCC is a two phase
@@ -395,7 +395,7 @@ executable(
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson//edit/master/docs/markdown/howtox.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/howtox.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">
