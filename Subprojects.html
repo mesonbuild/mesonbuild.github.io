@@ -365,6 +365,30 @@ if the dependency has already been downloaded.</p>
 <p>This is useful when your project has many fallback dependencies,
 but you only want to build against the library sources for a few
 of them.</p>
+<p><strong>Warning</strong>: This could lead to mixing system and subproject version of the
+same library in the same process. Take this case as example:</p>
+<ul>
+<li>Libraries <code>glib-2.0</code> and <code>gstreamer-1.0</code> are installed on your system.</li>
+<li>
+<code>gstreamer-1.0</code> depends on <code>glib-2.0</code>, pkg-config file <code>gstreamer-1.0.pc</code>
+has <code>Requires: glib-2.0</code>.</li>
+<li>In your application build definition you do:
+<pre><code class="language-meson">executable('app', ...,
+  dependencies: [
+    dependency('glib-2.0', fallback: 'glib'),
+    dependency('gstreamer-1.0', fallback: 'gstreamer')],
+)
+</code></pre>
+</li>
+<li>You configure with <code>--force-fallback-for=glib</code>.
+This result in linking to two different versions of library <code>glib-2.0</code>
+because <code>dependency('glib-2.0', fallback: 'glib')</code> will return the
+subproject dependency, but <code>dependency('gstreamer-1.0', fallback: 'gstreamer')</code>
+will not fallback and return the system dependency, including <code>glib-2.0</code>
+library. To avoid that situation, every dependency that itself depend on
+<code>glib-2.0</code> must also be forced to fallback, in this case with
+<code>--force-fallback-for=glib,gsteamer</code>.</li>
+</ul>
 </li>
 </ul>
 <h2 id="download-subprojects">Download subprojects</h2>
