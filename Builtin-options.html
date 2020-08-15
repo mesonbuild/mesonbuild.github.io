@@ -197,7 +197,7 @@ these can be set by passing to <code>meson</code> (aka <code>meson setup</code>)
 these ways: <code>--option=value</code>, <code>--option value</code>, <code>-Doption=value</code>, or
 by setting them inside <code>default_options</code> of <code>project()</code> in your <code>meson.build</code>.</p>
 <p>For legacy reasons <code>--warnlevel</code> is the cli argument for the <code>warning_level</code> option.</p>
-<p>They can also be edited after setup using <code>meson configure</code>.</p>
+<p>They can also be edited after setup using <code>meson configure -Doption=value</code>.</p>
 <p>Installation options are all relative to the prefix, except:</p>
 <ul>
 <li>When the prefix is <code>/usr</code>: <code>sysconfdir</code> defaults to <code>/etc</code>, <code>localstatedir</code> defaults to <code>/var</code>, and <code>sharedstatedir</code> defaults to <code>/var/lib</code>
@@ -301,6 +301,7 @@ for details.</p>
 <th> Default value</th>
 <th> Description</th>
 <th> Is per machine</th>
+<th> Is per subproject</th>
 </tr>
 </thead>
 <tbody>
@@ -309,11 +310,13 @@ for details.</p>
 <td> auto</td>
 <td> Override value of all 'auto' features</td>
 <td> no</td>
+<td> no</td>
 </tr>
 <tr>
 <td> backend {ninja, vs,<br>vs2010, vs2015, vs2017, vs2019, xcode}</td>
 <td> ninja</td>
 <td> Backend to use</td>
+<td> no</td>
 <td> no</td>
 </tr>
 <tr>
@@ -321,11 +324,13 @@ for details.</p>
 <td> debug</td>
 <td>  Build type to use</td>
 <td> no</td>
+<td> no</td>
 </tr>
 <tr>
 <td> debug</td>
 <td> true</td>
 <td> Debug</td>
+<td> no</td>
 <td> no</td>
 </tr>
 <tr>
@@ -333,11 +338,13 @@ for details.</p>
 <td> shared</td>
 <td> Default library type</td>
 <td> no</td>
+<td> yes</td>
 </tr>
 <tr>
 <td> errorlogs</td>
 <td> true</td>
 <td> Whether to print the logs from failing tests.</td>
+<td> no</td>
 <td> no</td>
 </tr>
 <tr>
@@ -345,11 +352,13 @@ for details.</p>
 <td> 022</td>
 <td> Default umask to apply on permissions of installed files</td>
 <td> no</td>
+<td> no</td>
 </tr>
 <tr>
 <td> layout {mirror,flat}</td>
 <td> mirror</td>
 <td> Build directory layout</td>
+<td> no</td>
 <td> no</td>
 </tr>
 <tr>
@@ -357,23 +366,27 @@ for details.</p>
 <td> 0</td>
 <td> Optimization level</td>
 <td> no</td>
+<td> no</td>
 </tr>
 <tr>
 <td> pkg_config_path {OS separated path}</td>
 <td> ''</td>
 <td> Additional paths for pkg-config to search before builtin paths</td>
 <td> yes</td>
+<td> no</td>
 </tr>
 <tr>
 <td> cmake_prefix_path</td>
 <td> []</td>
 <td> Additional prefixes for cmake to search before builtin paths</td>
 <td> yes</td>
+<td> no</td>
 </tr>
 <tr>
 <td> stdsplit</td>
 <td> true</td>
 <td> Split stdout and stderr in test logs</td>
+<td> no</td>
 <td> no</td>
 </tr>
 <tr>
@@ -381,11 +394,13 @@ for details.</p>
 <td> false</td>
 <td> Strip targets on install</td>
 <td> no</td>
+<td> no</td>
 </tr>
 <tr>
 <td> unity {on, off, subprojects}</td>
 <td> off</td>
 <td> Unity build</td>
+<td> no</td>
 <td> no</td>
 </tr>
 <tr>
@@ -393,29 +408,34 @@ for details.</p>
 <td> 4</td>
 <td> Unity file block size</td>
 <td> no</td>
+<td> no</td>
 </tr>
 <tr>
 <td> warning_level {0, 1, 2, 3}</td>
 <td> 1</td>
 <td> Set the warning level. From 0 = none to 3 = highest</td>
 <td> no</td>
+<td> yes</td>
 </tr>
 <tr>
 <td> werror</td>
 <td> false</td>
 <td> Treat warnings as errors</td>
 <td> no</td>
+<td> yes</td>
 </tr>
 <tr>
 <td> wrap_mode {default, nofallback,<br>nodownload, forcefallback}</td>
 <td> default</td>
 <td> Wrap mode to use</td>
 <td> no</td>
+<td> no</td>
 </tr>
 <tr>
 <td> force_fallback_for</td>
 <td> []</td>
 <td> Force fallback for those dependencies</td>
+<td> no</td>
 <td> no</td>
 </tr>
 </tbody>
@@ -745,6 +765,22 @@ the command line, as there was no <code>build.</code> prefix. Similarly named fi
 the <code>[properties]</code> section of the cross file would effect cross compilers, but
 the code paths were fairly different allowing differences in behavior to crop
 out.</p>
+<h2 id="specifying-options-per-subproject">Specifying options per subproject</h2>
+<p>Since <em>0.54.0</em> <code>default_library</code> and <code>werror</code> built-in options can be defined
+per subproject. This is useful for example when building shared libraries in the
+main project, but static link a subproject, or when the main project must build
+with no warnings but some subprojects cannot.</p>
+<p>Most of the time this would be used either by the parent project by setting
+subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>),
+or by the user using the command line <code>-Dfoo:default_library=static</code>.</p>
+<p>The value is overriden in this order:</p>
+<ul>
+<li>Value from parent project</li>
+<li>Value from subproject's default_options if set</li>
+<li>Value from subproject() default_options if set</li>
+<li>Value from command line if set</li>
+</ul>
+<p>Since 0.56.0 <code>warning_level</code> can also be defined per subproject.</p>
 
     </div>
         

@@ -347,6 +347,19 @@ is_fbsd = target.to_lower().contains('freebsd')
 is_x86 = target.startswith('x86') # boolean value 'true'
 is_bsd = target.to_lower().endswith('bsd') # boolean value 'true'
 </code></pre>
+<h4 id="substring">.substring()</h4>
+<p>Since 0.56.0, you can extract a substring from a string.</p>
+<pre><code class="language-meson"># Similar to the Python str[start:end] syntax
+target = 'x86_FreeBSD'
+platform = target.substring(0, 3) # prefix string value 'x86'
+system = target.substring(4) # suffix string value 'FreeBSD'
+</code></pre>
+<p>The method accepts negative values where negative <code>start</code> is relative to the end of
+string <code>len(string) - start</code> as well as negative <code>end</code>.</p>
+<pre><code class="language-meson">string = 'foobar'
+target.substring(-5, -3) # =&gt; 'oo'
+target.substring(1, -1) # =&gt; 'ooba'
+</code></pre>
 <h4 id="split-join">.split(), .join()</h4>
 <pre><code class="language-meson"># Similar to the Python str.split()
 components = 'a b   c d '.split()

@@ -216,7 +216,9 @@ int main(int argc, char **argv) {
 <pre><code class="language-meson">project('tutorial', 'c')
 executable('demo', 'main.c')
 </code></pre>
-<p>That is all. We are now ready to build our application. First we need
+<p>That is all. Note that unlike Autotools you <a href="FAQ.html#do-i-need-to-add-my-headers-to-the-sources-list-like-in-autotools">do not need to add any source
+headers to the list of sources</a>.</p>
+<p>We are now ready to build our application. First we need
 to initialize the build by going into the source directory and issuing
 the following commands.</p>
 <pre><code class="language-console">$ meson builddir
@@ -269,6 +271,11 @@ libraries.</p>
 gtkdep = dependency('gtk+-3.0')
 executable('demo', 'main.c', dependencies : gtkdep)
 </code></pre>
+<p>If your app needs to use multiple libraries, you need to use separate
+<a href="Reference-manual.html#dependency"><code>dependency()</code></a> calls for each, like so:</p>
+<pre><code class="language-meson">gtkdeps = [dependency('gtk+-3.0'), dependency('gtksourceview-3.0')]
+</code></pre>
+<p>We don't need it for the current example.</p>
 <p>Now we are ready to build. The thing to notice is that we do <em>not</em>
 need to recreate our build directory, run any sort of magical commands
 or the like. Instead we just type the exact same command as if we were

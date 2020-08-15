@@ -402,6 +402,13 @@ as <code>MESON_EXE_WRAPPER="emulator --script"</code>.</p>
 <ul>
 <li>prints the AST of a meson.build as JSON</li>
 </ul>
+<h2 id="backendvs-now-matches-db_vscrtfrom_buildtype-behaviour-in-the-ninja-backend">
+<code>--backend=vs</code> now matches <code>-Db_vscrt=from_buildtype</code> behaviour in the Ninja backend</h2>
+<p>When <code>--buildtype=debugoptimized</code> is used with the Ninja backend, the VS CRT
+option used is <code>/MD</code>, which is the <a href="https://mesonbuild.com/Builtin-options.html#b_vscrt-from_buildtype">behaviour documented for all
+backends</a>.
+However, the Visual Studio backend was pass <code>/MT</code> in that case, which is inconsistent.</p>
+<p>If you need to use the MultiThreaded CRT, you should explicitly pass <code>-Db_vscrt=mt</code></p>
 
     </div>
         

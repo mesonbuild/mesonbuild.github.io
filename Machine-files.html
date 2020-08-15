@@ -192,6 +192,29 @@ $('body').removeClass('no-script');
 documentation on the common values used by both, for the specific values of
 one or the other see the <a href="Cross-compilation.html">cross compilation</a> and <a href="Native-environments.html">native
 environments</a>.</p>
+<h2 id="data-types">Data Types</h2>
+<p>There are four basic data types in a machine file:</p>
+<ul>
+<li>strings</li>
+<li>arrays</li>
+<li>booleans</li>
+<li>integers</li>
+</ul>
+<p>A string is specified single quoted:</p>
+<pre><code class="language-ini">[section]
+option1 = 'false'
+option2 = '2'
+</code></pre>
+<p>An array is enclosed in square brackets, and must consist of strings or booleans</p>
+<pre><code class="language-ini">[section]
+option = ['value']
+</code></pre>
+<p>A boolean must be either <code>true</code> or <code>false</code>, and unquoted.</p>
+<pre><code class="language-ini">option = false
+</code></pre>
+<p>An integer must be either an unquoted numeric constant;</p>
+<pre><code class="language-ini">option = 42
+</code></pre>
 <h2 id="sections">Sections</h2>
 <p>The following sections are allowed:</p>
 <ul>
@@ -199,9 +222,11 @@ environments</a>.</p>
 <li>binaries</li>
 <li>paths</li>
 <li>properties</li>
+<li>project options</li>
+<li>built-in options</li>
 </ul>
 <h3 id="constants">constants</h3>
-<p><em>Since 0.55.0</em></p>
+<p><em>Since 0.56.0</em></p>
 <p>String and list concatenation is supported using the <code>+</code> operator, joining paths
 is supported using the <code>/</code> operator.
 Entries defined in the <code>[constants]</code> section can be used in any other section
@@ -256,13 +281,14 @@ a = 'Hello'
 </code></pre>
 <h3 id="binaries">Binaries</h3>
 <p>The binaries section contains a list of binaries. These can be used
-internally by meson, or by the <code>find_program</code> function:</p>
+internally by meson, or by the <code>find_program</code> function.</p>
+<p>These values must be either strings or an array of strings</p>
 <p>Compilers and linkers are defined here using <code>&lt;lang&gt;</code> and <code>&lt;lang&gt;_ld</code>.
 <code>&lt;lang&gt;_ld</code> is special because it is compiler specific. For compilers like
 gcc and clang which are used to invoke the linker this is a value to pass to
 their "choose the linker" argument (-fuse-ld= in this case). For compilers
 like MSVC and Clang-Cl, this is the path to a linker for meson to invoke,
-such as <code>link.exe</code> or <code>lld-link.exe</code>. Support for ls is <em>new in 0.53.0</em></p>
+such as <code>link.exe</code> or <code>lld-link.exe</code>. Support for <code>ld</code> is <em>new in 0.53.0</em></p>
 <p><em>changed in 0.53.1</em> the <code>ld</code> variable was replaced by <code>&lt;lang&gt;_ld</code>, because it
 *regressed a large number of projects. in 0.53.0 the <code>ld</code> variable was used
 instead.</p>
@@ -273,8 +299,8 @@ sed = 'C:\\program files\\gnu\\sed.exe'
 llvm-config = '/usr/lib/llvm8/bin/llvm-config'
 </code></pre>
 <p>Cross example:</p>
-<pre><code class="language-ini">c = '/usr/bin/i586-mingw32msvc-gcc'
-cpp = '/usr/bin/i586-mingw32msvc-g++'
+<pre><code class="language-ini">c = ['ccache', '/usr/bin/i586-mingw32msvc-gcc']
+cpp = ['ccache', '/usr/bin/i586-mingw32msvc-g++']
 c_ld = 'gold'
 cpp_ld = 'gold'
 ar = '/usr/i586-mingw32msvc/bin/ar'
@@ -296,8 +322,9 @@ pkgconfig = '/usr/bin/i586-mingw32msvc-pkg-config'
 <li>wx-config (or wx-3.0-config or wx-config-gtk)</li>
 </ul>
 <h3 id="paths-and-directories">Paths and Directories</h3>
+<p><em>Deprecated in 0.56.0</em> use the built-in section instead.</p>
 <p>As of 0.50.0 paths and directories such as libdir can be defined in the native
-file in a paths section</p>
+and cross files in a paths section. These should be strings.</p>
 <pre><code class="language-ini">[paths]
 libdir = 'mylibdir'
 prefix = '/my prefix'
@@ -310,16 +337,60 @@ command line will override any options in the native file. For example, passing
 <p><em>New in native files in 0.54.0</em>, always in cross files.</p>
 <p>In addition to special data that may be specified in cross files, this
 section may contain random key value pairs accessed using the
-<code>meson.get_external_property()</code></p>
-<h2 id="properties1">Properties</h2>
-<p><em>New for native files in 0.54.0</em></p>
-<p>The properties section can contain any variable you like, and is accessed via
-<code>meson.get_external_property</code>, or <code>meson.get_cross_property</code>.</p>
+<code>meson.get_external_property()</code>, or <code>meson.get_cross_property()</code>.</p>
+<p><em>Changed in 0.56.0</em> putting <code>&lt;lang&gt;_args</code> and <code>&lt;lang&gt;_link_args</code> in the
+properties section has been deprecated, and should be put in the built-in
+options section.</p>
+<h3 id="project-specific-options">Project specific options</h3>
+<p><em>New in 0.56.0</em></p>
+<p>Path options are not allowed, those must be set in the <code>[paths]</code> section.</p>
+<p>Being able to set project specific options in a cross or native file can be
+done using the <code>[project options]</code> section of the specific file (if doing a
+cross build the options from the native file will be ignored)</p>
+<p>For setting options in subprojects use the <code>[&lt;subproject&gt;:project options]</code>
+section instead.</p>
+<pre><code class="language-ini">[project options]
+build-tests = true
+
+[zlib:project options]
+build-tests = false
+</code></pre>
+<h3 id="meson-builtin-options">Meson built-in options</h3>
+<p>Meson built-in options can be set the same way:</p>
+<pre><code class="language-ini">[built-in options]
+c_std = 'c99'
+</code></pre>
+<p>You can set some meson built-in options on a per-subproject basis, such as
+<code>default_library</code> and <code>werror</code>. The order of precedence is:</p>
+<ol>
+<li>Command line</li>
+<li>Machine file</li>
+<li>Build system definitions</li>
+</ol>
+<pre><code class="language-ini">[zlib:built-in options]
+default_library = 'static'
+werror = false
+</code></pre>
+<p>Options set on a per-subproject basis will inherit the
+option from the parent if the parent has a setting but the subproject
+doesn't, even when there is a default set meson language.</p>
+<pre><code class="language-ini">[built-in options]
+default_library = 'static'
+</code></pre>
+<p>will make subprojects use default_library as static.</p>
+<p>Some options can be set on a per-machine basis (in other words, the value of
+the build machine can be different than the host machine in a cross compile).
+In these cases the values from both a cross file and a native file are used.</p>
+<p>An incomplete list of options is:</p>
+<ul>
+<li>pkg_config_path</li>
+<li>cmake_prefix_path</li>
+</ul>
 <h2 id="loading-multiple-machine-files">Loading multiple machine files</h2>
 <p>Native files allow layering (cross files can be layered since meson 0.52.0).
-More than one native file can be loaded, with values from a previous file being
+More than one file can be loaded, with values from a previous file being
 overridden by the next. The intention of this is not overriding, but to allow
-composing native files. This composition is done by passing the command line
+composing files. This composition is done by passing the command line
 argument multiple times:</p>
 <pre><code class="language-console">meson setup builddir/ --cross-file first.ini --cross-file second.ini --cross-file thrid.ini
 </code></pre>

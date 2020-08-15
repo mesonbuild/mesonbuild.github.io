@@ -2026,6 +2026,10 @@ array.</p>
 specified as the argument</p>
 </li>
 <li>
+<p><code>substring(start,end)</code> <em>(since 0.56.0)</em>: returns a substring specified from start to end.
+Both <code>start</code> and <code>end</code> arguments are optional, so, for example, <code>'foobar'.substring()</code> will return <code>'foobar'</code>.</p>
+</li>
+<li>
 <p><code>strip()</code>: removes whitespace at the beginning and end of the string.
 <em>(since 0.43.0)</em> Optionally can take one positional string argument,
 and all characters in that string will be stripped.</p>
@@ -2363,7 +2367,7 @@ passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
 some symbols to be exposed on Linux, and it should be passed via
 <code>args</code> keyword argument, see below). Supported by the methods
 <code>sizeof</code>, <code>has_type</code>, <code>has_function</code>, <code>has_member</code>, <code>has_members</code>,
-<code>check_header</code>, <code>has_header</code>, <code>has_header_symbol</code>.</p>
+<code>check_header</code>, <code>has_header</code>, <code>has_header_symbol</code>, <code>get_define</code></p>
 </li>
 </ul>
 <p><strong>Note:</strong> These compiler checks do not use compiler arguments added with
