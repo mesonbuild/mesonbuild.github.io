@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
 <link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
 
@@ -35,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -399,13 +400,21 @@ library instead of using the one provided by the compiler. Meson has
 built-in support for switching standard libraries transparently. The
 invocation to use in your cross file is the following:</p>
 <pre><code class="language-ini">[properties]
-c_stdlib = ['mylibc', 'mylibc_dep'] # Subproject name, dependency name
+c_stdlib = ['mylibc', 'mylibc_dep'] # Subproject name, variable name
 </code></pre>
 <p>This specifies that C standard library is provided in the Meson
 subproject <code>mylibc</code> in internal dependency variable <code>mylibc_dep</code>. It
 is used on every cross built C target in the entire source tree
 (including subprojects) and the standard library is disabled. The
 build definitions of these targets do not need any modification.</p>
+<p>Note that it is supported for any language, not only <code>c</code>, using <code>&lt;lang&gt;_stdlib</code>
+property.</p>
+<p>Since <em>0.56.0</em> the variable name parameter is no longer required as long as the
+subproject calls <code>meson.override_dependency('c_stdlib', mylibc_dep)</code>.
+The above example becomes:</p>
+<pre><code class="language-ini">[properties]
+c_stdlib = 'mylibc'
+</code></pre>
 <h2 id="changing-cross-file-settings">Changing cross file settings</h2>
 <p>Cross file settings are only read when the build directory is set up
 the first time. Any changes to them after the fact will be
