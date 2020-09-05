@@ -306,7 +306,7 @@ optional arguments:
 <h3 id="compile">compile</h3>
 <p><em>(since 0.54.0)</em></p>
 <pre><code>$ meson compile [-h] [--clean] [-C BUILDDIR] [-j JOBS] [-l LOAD_AVERAGE]
-                [--verbose] [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
+                [-v] [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
                 [TARGET [TARGET ...]]
 </code></pre>
 <p>Builds a default or a specified target of a configured meson project.</p>
@@ -326,7 +326,7 @@ optional arguments:
   -l LOAD_AVERAGE, --load-average LOAD_AVERAGE
                                         The system load average to try to
                                         maintain (if supported).
-  --verbose                             Show more verbose output.
+  -v, --verbose                         Show more verbose output.
   --ninja-args NINJA_ARGS               Arguments to pass to `ninja` (applied
                                         only on `ninja` backend).
   --vs-args VS_ARGS                     Arguments to pass to `msbuild` (applied
