@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>External Project module</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Keyval-module.html">Keyval</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="External-Project-module.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="external-project-module">External Project module</h1>
+<p><strong>Note</strong>: the functionality of this module is governed by <a href="Mixing-build-systems.html">Meson's
+rules on mixing build systems</a>.</p>
+<p><em>This is an experimental module, API could change.</em></p>
+<p>This module allows building code that uses build systems other than Meson. This
+module is intended to be used to build Autotools subprojects as fallback if the
+dependency couldn't be found on the system (e.g. too old distro version).</p>
+<p>The project will be compiled out-of-tree inside Meson's build directory. The
+project will also be installed inside Meson's build directory using make's
+<a href="https://www.gnu.org/prep/standards/html_node/DESTDIR.html"><code>DESTDIR</code></a>
+feature. During project installation step, that DESTDIR will be copied verbatim
+into the desired location.</p>
+<p>External subprojects can use libraries built by Meson (main project, or other
+subprojects) using pkg-config, thanks to <code>*-uninstalled.pc</code> files generated by
+<a href="Pkgconfig-module.html"><code>pkg.generate()</code></a>.</p>
+<p>External build system requirements:</p>
+<ul>
+<li>Must support out-of-tree build. The configure script will be invoked with the
+current workdir inside Meson's build directory and not subproject's top source
+directory.</li>
+<li>Configure script must generate a <code>Makefile</code> in the current workdir.</li>
+<li>Configure script must take common directories like prefix, libdir, etc, as
+command line arguments.</li>
+<li>Configure script must support common environment variable like CFLAGS, CC, etc.</li>
+<li>Compilation step must detect when a reconfigure is needed, and do it
+transparently.</li>
+</ul>
+<p>Known limitations:</p>
+<ul>
+<li>Executables from external projects cannot be used uninstalled, because they
+would need its libraries to be installed in the final location. This is why
+there is no <code>find_program()</code> method.</li>
+<li>The configure script must generate a <code>Makefile</code>, other build systems are not
+yet supported.</li>
+<li>When cross compiling, if <code>PKG_CONFIG_SYSROOT_DIR</code> is set in environment or
+<code>sys_root</code> in the cross file properties, the external subproject will not be
+able to find dependencies built by meson using pkg-config. The reason is
+pkg-config and pkgconf both prepend the sysroot path to <code>-I</code> and <code>-L</code> arguments
+from <code>-uninstalled.pc</code> files. This is arguably a bug that could be fixed in
+future version of pkg-config/pkgconf.</li>
+</ul>
+<p><em>Added 0.56.0</em></p>
+<h2 id="functions">Functions</h2>
+<h3 id="add_project"><code>add_project()</code></h3>
+<p>This function should be called at the root directory of a project using another
+build system. Usually in a <code>meson.build</code> file placed in the top directory of a
+subproject, but could be also in any subdir.</p>
+<p>Its first positional argument is the name of the configure script to be
+executed (e.g. <code>configure</code> or <code>autogen.sh</code>), that file must be in the current
+directory and executable.</p>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>configure_options</code>: An array of strings to be passed as arguments to the
+configure script. Some special tags will be replaced by Meson before passing
+them to the configure script: <code>@PREFIX@</code>, <code>@LIBDIR@</code> and <code>@INCLUDEDIR@</code>.
+Note that <code>libdir</code> and <code>includedir</code> paths are relative to <code>prefix</code> in Meson
+but some configure scripts requires absolute path, in that case they can be
+passed as <code>'--libdir=@PREFIX@/@LIBDIR@'</code>.</li>
+<li>
+<code>cross_configure_options</code>: Extra options appended to <code>configure_options</code> only
+when cross compiling. special tag <code>@HOST@</code> will be replaced by
+<code>'{}-{}-{}'.format(host_machine.cpu_family(), build_machine.system(), host_machine.system()</code>.
+If omitted it defaults to <code>['--host=@HOST@']</code>.</li>
+<li>
+<code>verbose</code>: If set to <code>true</code> the output of sub-commands ran to configure, build
+and install the project will be printed onto Meson's stdout.</li>
+<li>
+<code>env</code> : environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>,
+a dictionary, or an <a href="Reference-manual.html#environment-object"><code>environment()</code> object</a>.</li>
+</ul>
+<p>Returns an <a href="External-Project-module.html#ExternalProject_object"><code>ExternalProject</code></a> object</p>
+<h2 id="externalproject-object">
+<code>ExternalProject</code> object</h2>
+<h3 id="methods">Methods</h3>
+<h4 id="dependencylibname"><code>dependency(libname)</code></h4>
+<p>Return a dependency object that can be used to build targets against a library
+from the external project.</p>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>subdir</code> path relative to <code>includedir</code> to be added to the header search path.</li>
+</ul>
+<h2 id="example-mesonbuild-file-for-a-subproject">Example <code>meson.build</code> file for a subproject</h2>
+<pre><code class="language-meson">project('My Autotools Project', 'c',
+  meson_version : '&gt;=0.56.0',
+)
+
+mod = import('unstable_external_project')
+
+p = mod.add_project('configure',
+  configure_options : ['--prefix=@PREFIX@',
+                       '--libdir=@LIBDIR@',
+                       '--incdir=@INCLUDEDIR@',
+                       '--enable-foo',
+                      ],
+)
+
+mylib_dep = p.dependency('mylib')
+</code></pre>
+<h2 id="using-wrap-file">Using wrap file</h2>
+<p>Most of the time the project will be built as a subproject, and fetched using
+a <code>.wrap</code> file. In that case the simple <code>meson.build</code> file needed to build the
+subproject can be provided by adding <code>patch_directory=mysubproject</code> line
+in the wrap file, and place the build definition file at
+<code>subprojects/packagefiles/mysubproject/meson.build</code>.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/External-Project-module.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

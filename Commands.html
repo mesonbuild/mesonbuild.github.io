@@ -307,6 +307,7 @@ optional arguments:
 <p><em>(since 0.54.0)</em></p>
 <pre><code>$ meson compile [-h] [--clean] [-C BUILDDIR] [-j JOBS] [-l LOAD_AVERAGE]
                 [-v] [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
+                [--xcode-args XCODE_ARGS]
                 [TARGET [TARGET ...]]
 </code></pre>
 <p>Builds a default or a specified target of a configured meson project.</p>
@@ -331,6 +332,8 @@ optional arguments:
                                         only on `ninja` backend).
   --vs-args VS_ARGS                     Arguments to pass to `msbuild` (applied
                                         only on `vs` backend).
+  --xcode-args XCODE_ARGS               Arguments to pass to `xcodebuild`
+                                        (applied only on `xcode` backend).
 </code></pre>
 <p><code>--verbose</code> argument is available since 0.55.0.</p>
 <h4 id="targets">Targets</h4>

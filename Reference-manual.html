@@ -1368,17 +1368,21 @@ summary({'Some boolean': false,
 <pre><code class="language-meson">    void project(project_name, list_of_languages, ...)
 </code></pre>
 <p>The first argument to this function must be a string defining the name
-of this project. It is followed by programming languages that the
-project uses. Supported values for languages are <code>c</code>, <code>cpp</code> (for
-<code>C++</code>), <code>cuda</code>, <code>d</code>, <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>),
-<code>vala</code> and <code>rust</code>. <em>(since 0.40.0)</em> The list of languages
-is optional.</p>
+of this project.</p>
 <p>The project name can be any string you want, it's not used for
 anything except descriptive purposes. However since it is written to
 e.g. the dependency manifest is usually makes sense to have it be the
 same as the project tarball or pkg-config name. So for example you
 would probably want to use the name <em>libfoobar</em> instead of <em>The Foobar
 Library</em>.</p>
+<p>It may be followed by the list of programming languages that the project uses.</p>
+<p><em>(since 0.40.0)</em> The list of languages is optional.</p>
+<p>These languages may be used both for <code>native: false</code> (the default) (host
+machine) targets and for <code>native: true</code> (build machine) targets. <em>(since
+0.56.0)</em> The build machine compilers for the specified languages are not
+required.</p>
+<p>Supported values for languages are <code>c</code>, <code>cpp</code> (for <code>C++</code>), <code>cuda</code>, <code>d</code>,
+<code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>), <code>vala</code> and <code>rust</code>.</p>
 <p>Project supports the following keyword arguments.</p>
 <ul>
 <li>
@@ -2236,28 +2240,27 @@ provided by the standard library or a library passed in with the
 <code>dependencies</code> keyword argument.</p>
 </li>
 <li>
-<p><code>check_header</code> <em>(since 0.47.0)</em>: returns true if the specified header is <em>usable</em> with
-the specified prefix, dependencies, and arguments.
-You can specify external dependencies to use with <code>dependencies</code>
-keyword argument and extra code to put above the header test with
-the <code>prefix</code> keyword. In order to look for headers in a specific
-directory you can use <code>args : '-I/extra/include/dir</code>, but this
-should only be used in exceptional cases for includes that can't be
-detected via pkg-config and passed via <code>dependencies</code>. <em>(since 0.50.0)</em> The
-<code>required</code> keyword argument can be used to abort if the header cannot be
-found.</p>
+<p><code>check_header(header_name)</code> <em>(since 0.47.0)</em>: returns true if the
+specified header is <em>usable</em> with the specified prefix,
+dependencies, and arguments. You can specify external dependencies
+to use with <code>dependencies</code> keyword argument and extra code to put
+above the header test with the <code>prefix</code> keyword. In order to look
+for headers in a specific directory you can use <code>args : '-I/extra/include/dir</code>, but this should only be used in exceptional
+cases for includes that can't be detected via pkg-config and passed
+via <code>dependencies</code>. <em>(since 0.50.0)</em> The <code>required</code> keyword argument
+can be used to abort if the header cannot be found.</p>
 </li>
 <li>
-<p><code>has_header</code>: returns true if the specified header <em>exists</em>, and is
-faster than <code>check_header()</code> since it only does a pre-processor check.
-You can specify external dependencies to use with <code>dependencies</code>
-keyword argument and extra code to put above the header test with
-the <code>prefix</code> keyword. In order to look for headers in a specific
-directory you can use <code>args : '-I/extra/include/dir</code>, but this
-should only be used in exceptional cases for includes that can't be
-detected via pkg-config and passed via <code>dependencies</code>. <em>(since 0.50.0)</em> The
-<code>required</code> keyword argument can be used to abort if the header cannot be
-found.</p>
+<p><code>has_header(header_name)</code>: returns true if the specified header
+<em>exists</em>, and is faster than <code>check_header()</code> since it only does a
+pre-processor check. You can specify external dependencies to use
+with <code>dependencies</code> keyword argument and extra code to put above the
+header test with the <code>prefix</code> keyword. In order to look for headers
+in a specific directory you can use <code>args : '-I/extra/include/dir</code>,
+but this should only be used in exceptional cases for includes that
+can't be detected via pkg-config and passed via <code>dependencies</code>.
+<em>(since 0.50.0)</em> The <code>required</code> keyword argument can be used to
+abort if the header cannot be found.</p>
 </li>
 <li>
 <p><code>has_header_symbol(headername, symbolname)</code>: detects
@@ -2540,6 +2543,14 @@ version.</p>
 <p><code>as_system(value)</code>: returns a copy of the dependency object, which has changed
 the value of <code>include_type</code> to <code>value</code>. The <code>value</code> argument is optional and
 defaults to <code>'preserve'</code>.</p>
+</li>
+<li>
+<p><code>as_link_whole()</code> <em>Since 0.56.0</em> Only dependencies created with
+<code>declare_dependency()</code>, returns a copy of the dependency object with all
+link_with arguments changed to link_whole. This is useful for example for
+fallback dependency from a subproject built with <code>default_library=static</code>.
+Note that all <code>link_with</code> objects must be static libraries otherwise an error
+will be raised when trying to <code>link_whole</code> a shared library.</p>
 </li>
 <li>
 <p><code>partial_dependency(compile_args : false, link_args : false, links : false, includes : false, sources : false)</code> <em>(since 0.46.0)</em>: returns
