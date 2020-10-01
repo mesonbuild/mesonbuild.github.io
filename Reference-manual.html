@@ -554,6 +554,9 @@ than one outputs are specified, the behavior is the same as
 <p><em>(since 0.47.0)</em> The <code>depfile</code> keyword argument also accepts the <code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#custom-target-object">object methods section</a> below.</p>
+<p><strong>Note:</strong> Assuming that <code>command:</code> is executed by a POSIX <code>sh</code> shell is not
+portable, notably to Windows. Instead, consider using a <code>native: true</code>
+<a href="Reference-manual.html#executable">executable()</a>, or a python script.</p>
 <h3 id="declare_dependency">declare_dependency()</h3>
 <pre><code class="language-meson">    dependency_object declare_dependency(...)
 </code></pre>
@@ -872,7 +875,10 @@ creating the final list.</p>
 </code></pre>
 <p><code>program_name1</code> here is a string that can be an executable or script
 to be searched for in <code>PATH</code>, or a script in the current source
-directory.</p>
+directory. The search order is: program overrides (set via meson.override_find_program());
+subprojects (if wrap_mode is set to <code>forcefallback</code>); your project's source tree;
+$PATH; the python3 libdir if your command starts with <code>python3</code> and finally
+subprojects again, if wrap_mode is set to anything but <code>nofallback</code>.</p>
 <p><em>(since 0.37.0)</em> <code>program_name2</code> and later positional arguments are used as fallback
 strings to search for. This is meant to be used for cases where the
 program may have many alternative names, such as <code>foo</code> and
@@ -1829,18 +1835,26 @@ or <code>xcode</code>.</p>
 </li>
 <li>
 <p><code>build_root()</code>: returns a string with the absolute path to the build
-root directory. Note: this function will return the build root of
-the parent project if called from a subproject, which is usually
-not what you want. Try using <code>current_build_dir()</code>.</p>
+root directory. <em>(deprecated since 0.56.0)</em>: this function will return the
+build root of the parent project if called from a subproject, which is usually
+not what you want. Try using <code>current_build_dir()</code> or <code>project_build_root()</code>.</p>
 </li>
 <li>
 <p><code>source_root()</code>: returns a string with the absolute path to the
 source root directory. Note: you should use the <code>files()</code> function
 to refer to files in the root source directory instead of
-constructing paths manually with <code>meson.source_root()</code>. This
-function will return the source root of the parent project if called
-from a subproject, which is usually not what you want. Try using
-<code>current_source_dir()</code>.</p>
+constructing paths manually with <code>meson.source_root()</code>.
+<em>(deprecated since 0.56.0)</em>: This function will return the source root of the
+parent project if called from a subproject, which is usually not what you want.
+Try using <code>current_source_dir()</code> or <code>project_source_root()</code>.</p>
+</li>
+<li>
+<p><code>project_build_root()</code> <em>(since 0.56.0)</em>: returns a string with the absolute path
+to the build root directory of the current (sub)project.</p>
+</li>
+<li>
+<p><code>project_source_root()</code> <em>(since 0.56.0)</em>: returns a string with the absolute path
+to the source root directory of the current (sub)project.</p>
 </li>
 <li>
 <p><code>current_build_dir()</code>: returns a string with the absolute path to the
@@ -2119,6 +2133,9 @@ given as argument, <code>false</code> otherwise</p>
 argument if it is present in the dictionary, or the optional
 fallback value given as the second argument. If a single argument
 was given and the key was not found, causes a fatal error</p>
+</li>
+<li>
+<p><code>keys()</code>: returns an array of keys in the dictionary</p>
 </li>
 </ul>
 <p>You can also iterate over dictionaries with the <a href="Syntax.html#foreach-statements"><code>foreach</code>

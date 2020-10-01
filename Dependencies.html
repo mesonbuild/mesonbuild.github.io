@@ -442,6 +442,9 @@ language-specific, you must specify the requested language using the
 <code>dependency('hdf5', language: 'fortran')</code> for the Fortran HDF5 headers and libraries</li>
 </ul>
 <p>Meson uses pkg-config to find HDF5. The standard low-level HDF5 function and the <code>HL</code> high-level HDF5 functions are linked for each language.</p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
+<p><em>New in 0.56.0</em> the <code>config-tool</code> method.
+<em>New in 0.56.0</em> the dependencies now return proper dependency types and <code>get_variable</code> and similar methods should work as expected.</p>
 <h2 id="libwmf">libwmf</h2>
 <p><em>(added 0.44.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
@@ -628,6 +631,13 @@ operating system without pkg-config support. The new System finder can be used
 on these OSes to link with the bundled version.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>cmake</code>, or <code>system</code>.</p>
 <p><em>New in 0.54.0</em> the <code>system</code> method.</p>
+<h2 id="curses">Curses</h2>
+<p><em>(Since 0.54.0)</em></p>
+<p>Curses (and ncurses) are a cross platform pain in the butt. Meson wraps up
+these dependencies in the <code>curses</code> dependency. This covers both <code>ncurses</code>
+(preferred) and other curses implementations.</p>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>config-tool</code>, or <code>system</code>.</p>
+<p><em>New in 0.56.0</em> The <code>config-tool</code> and <code>system</code> methods.</p>
 <hr>
 <a name="footnote1">1</a>: They may appear to be case-insensitive, if the
     underlying file system happens to be case-insensitive.
