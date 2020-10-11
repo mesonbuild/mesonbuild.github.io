@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -759,8 +759,9 @@ build dir, but which will be removed on install</li>
 source files in IDEs that group files by targets (such as Visual
 Studio)</li>
 <li>
-<code>gui_app</code>: when set to true flags this target as a GUI application on
-platforms where this makes a difference (e.g. Windows).</li>
+<code>gui_app</code>: when set to true flags this target as a GUI application
+on platforms where this makes a differerence, <strong>deprecated</strong> since
+0.56.0, use <code>win_subsystem</code> instead.</li>
 <li>
 <code>link_args</code>: flags to use during linking. You can use UNIX-style
 flags here for all platforms.</li>
@@ -860,6 +861,11 @@ in the D programming language</li>
 <li>
 <code>native</code>: is a boolean controlling whether the target is compiled for the
 build or host machines. Defaults to false, building for the host machine.</li>
+<li>
+<code>win_subsystem</code> <em>(since 0.56.0)</em> specifies the subsystem type to use
+on the Windows platform. Typical values include <code>console</code> for text
+mode programs and <code>windows</code> for gui apps. The value can also contain
+version specification such as <code>windows,6.0'. See [MSDN documentation](https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem) for the full list. The default value is</code>console`.</li>
 </ul>
 <p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always
 flattened, which means you can freely nest and add lists while
@@ -874,11 +880,33 @@ creating the final list.</p>
 <pre><code class="language-meson">    program find_program(program_name1, program_name2, ...)
 </code></pre>
 <p><code>program_name1</code> here is a string that can be an executable or script
-to be searched for in <code>PATH</code>, or a script in the current source
-directory. The search order is: program overrides (set via meson.override_find_program());
-subprojects (if wrap_mode is set to <code>forcefallback</code>); your project's source tree;
-$PATH; the python3 libdir if your command starts with <code>python3</code> and finally
-subprojects again, if wrap_mode is set to anything but <code>nofallback</code>.</p>
+to be searched for in <code>PATH</code> or other places inside the project.
+The search order is:</p>
+<ol>
+<li>Program overrides set via <a href="Reference-manual.html#meson-object"><code>meson.override_find_program()</code></a>
+</li>
+<li>
+<a href="Wrap-dependency-system-manual.html#provide-section"><code>[provide]</code> sections</a>
+in subproject wrap files, if <a href="Builtin-options.html#core-options"><code>wrap_mode</code></a> is
+set to <code>forcefallback</code>
+</li>
+<li>
+<a href="Machine-files.html#binaries"><code>[binaries]</code> section</a> in your machine files</li>
+<li>Directories provided using the <code>dirs:</code> kwarg (see below)</li>
+<li>Project's source tree relative to the current subdir
+<ul>
+<li>If you use the return value of <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>, the
+current subdir inside the build tree is used instead</li>
+</ul>
+</li>
+<li>
+<code>PATH</code> environment variable</li>
+<li>
+<a href="Wrap-dependency-system-manual.html#provide-section"><code>[provide]</code> sections</a> in
+subproject wrap files, if <a href="Builtin-options.html#core-options"><code>wrap_mode</code></a> is
+set to anything other than <code>nofallback</code>
+</li>
+</ol>
 <p><em>(since 0.37.0)</em> <code>program_name2</code> and later positional arguments are used as fallback
 strings to search for. This is meant to be used for cases where the
 program may have many alternative names, such as <code>foo</code> and
@@ -2536,11 +2564,13 @@ variable by passing a list to the <code>define_variable</code> parameter
 that can affect the retrieved variable: <code>['prefix', '/'])</code>.
 <em>(since 0.45.0)</em> A warning is issued if the variable is not defined,
 unless a <code>default</code> parameter is specified.</p>
+<p><em>(Deprecated since 0.56.0</em>) use <code>get_variable(pkgconfig : ...)</code> instead</p>
 </li>
 <li>
 <p><code>get_configtool_variable(varname)</code> <em>(since 0.44.0)</em>: gets the
 command line argument from the config tool (with <code>--</code> prepended), or,
 if invoked on a non config-tool dependency, error out.</p>
+<p><em>(Deprecated since 0.56.0</em>) use <code>get_variable(configtool : ...)</code> instead</p>
 </li>
 <li>
 <p><code>type_name()</code>: returns a string describing the type of the

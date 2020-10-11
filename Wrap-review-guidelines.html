@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -195,8 +195,19 @@ check in the review. If some item is not met it does not mean that the
 package is rejected. What should be done will be determined on a
 case-by-case basis. Similarly meeting all these requirements does not
 guarantee that the package will get accepted. Use common sense.</p>
-<p>The review process is partially automated by the <a href="Wrap-maintainer-tools.html">mesonwrap</a>
-<code>review</code> tool.</p>
+<h2 id="setting-up-the-tools">Setting up the tools</h2>
+<p>The <a href="https://github.com/mesonbuild/mesonwrap">mesonwrap repository</a> provides tools
+to maintain the WrapDB. Read-only features such can be used by anyone without Meson admin rights.</p>
+<h2 id="personal-access-token">Personal access token</h2>
+<p>Some tools require access to the Github API.
+A <a href="https://github.com/settings/tokens">personal access token</a> may be required
+if the freebie Github API quota is exhausted. <code>public_repo</code> scope is required
+for write operations.</p>
+<pre><code>$ cat ~/.config/mesonwrap.ini
+[mesonwrap]
+github_token = &lt;github token&gt;
+</code></pre>
+<h2 id="reviewing-code">Reviewing code</h2>
 <pre><code>mesonwrap review zlib --pull-request=1 [--approve]
 </code></pre>
 <p>Since not every check can be automated please pay attention to the following during the review:</p>
@@ -219,6 +230,13 @@ See <a href="https://github.com/mesonbuild/mesonwrap/issues/125">the issue</a>.<
 <h2 id="approval">Approval</h2>
 <p>If the code looks good use the <code>--approve</code> flag to merge it.
 The tool automatically creates a release.</p>
+<p>If you need to create a release manually (because, for example, a MR
+was merged by hand), the command to do it is the following:</p>
+<pre><code class="language-shell">mesonwrap publish reponame version
+</code></pre>
+<p>An example invocation would look like this:</p>
+<pre><code class="language-shell">mesonwrap publish expat 2.2.9
+</code></pre>
 
     </div>
         
