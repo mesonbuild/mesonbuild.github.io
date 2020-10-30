@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -427,7 +427,7 @@ for details.</p>
 <td> yes</td>
 </tr>
 <tr>
-<td> wrap_mode {default, nofallback,<br>nodownload, forcefallback}</td>
+<td> wrap_mode {default, nofallback,<br>nodownload, forcefallback, nopromote}</td>
 <td> default</td>
 <td> Wrap mode to use</td>
 <td> no</td>
@@ -580,22 +580,23 @@ platforms or with all compilers:</p>
 <tr>
 <td> b_vscrt</td>
 <td> from_buildtype</td>
-<td> none, md, mdd, mt, mtd, from_buildtype</td>
-<td> VS runtime library to use (since 0.48.0)</td>
+<td> none, md, mdd, mt, mtd, from_buildtype, static_from_buildtype</td>
+<td> VS runtime library to use (since 0.48.0) (static_from_buildtype since 0.56.0)</td>
 </tr>
 </tbody>
 </table>
 <p>The value of <code>b_sanitize</code> can be one of: <code>none</code>, <code>address</code>, <code>thread</code>,
 <code>undefined</code>, <code>memory</code>, <code>address,undefined</code>.</p>
 <p><a name="b_vscrt-from_buildtype"></a>
-The default value of <code>b_vscrt</code> is <code>from_buildtype</code>. In that case, the following
-table is used internally to pick the CRT compiler arguments based on the value
-of the <code>buildtype</code> option:</p>
+The default value of <code>b_vscrt</code> is <code>from_buildtype</code>. The following table is used
+internally to pick the CRT compiler arguments for <code>from_buildtype</code> or
+<code>static_from_buildtype</code> <em>(since 0.56)</em> based on the value of the <code>buildtype</code> option:</p>
 <table>
 <thead>
 <tr>
 <th> buildtype</th>
-<th> Visual Studio CRT</th>
+<th> from_buildtype</th>
+<th> static_from_buildtype</th>
 </tr>
 </thead>
 <tbody>
@@ -603,24 +604,33 @@ of the <code>buildtype</code> option:</p>
 <td> debug</td>
 <td> <code>/MDd</code>
 </td>
+<td> <code>/MTd</code>
+</td>
 </tr>
 <tr>
 <td> debugoptimized</td>
 <td> <code>/MD</code>
+</td>
+<td> <code>/MT</code>
 </td>
 </tr>
 <tr>
 <td> release</td>
 <td> <code>/MD</code>
 </td>
+<td> <code>/MT</code>
+</td>
 </tr>
 <tr>
 <td> minsize</td>
 <td> <code>/MD</code>
 </td>
+<td> <code>/MT</code>
+</td>
 </tr>
 <tr>
 <td> custom</td>
+<td> error!</td>
 <td> error!</td>
 </tr>
 </tbody>

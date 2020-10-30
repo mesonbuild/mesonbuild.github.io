@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.56.0</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Keyval-module.html">Keyval</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Release-notes-for-0-56-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="new-features">New features</h1>
+<h2 id="python-35-support-will-be-dropped-in-the-next-release">Python 3.5 support will be dropped in the next release</h2>
+<p>The final <a href="https://www.python.org/dev/peps/pep-0478/#id4">Python 3.5 release was 3.5.10 in September</a>.
+This release series is now End-of-Life (EOL). The only LTS distribution that
+still only ships Python 3.5 is Ubuntu 16.04, which will be
+<a href="https://ubuntu.com/about/release-cycle">EOL in April 2021</a>.</p>
+<p>Python 3.6 has numerous features that we find useful such as improved support
+for the <code>typing</code> module, f-string support, and better integration with the
+<code>pathlib</code> module.</p>
+<p>As a result, we will begin requiring Python 3.6 or newer in Meson 0.57, which
+is the next release. Starting with Meson 0.56, we now print a <code>NOTICE:</code> when
+a <code>meson</code> command is run on Python 3.5 to inform users about this. This notice
+has also been backported into the 0.55.2 stable release.</p>
+<h2 id="meson-test-can-now-filter-tests-by-subproject">
+<code>meson test</code> can now filter tests by subproject</h2>
+<p>You could always specify a list of tests to run by passing the names as
+arguments to <code>meson test</code>. If there were multiple tests with that name (in the
+same project or different subprojects), all of them would be run. Now you can:</p>
+<ol>
+<li>Run all tests with the specified name from a specific subproject: <code>meson test subprojname:testname</code>
+</li>
+<li>Run all tests defined in a specific subproject: <code>meson test subprojectname:</code>
+</li>
+</ol>
+<p>As before, these can all be specified multiple times and mixed:</p>
+<pre><code class="language-sh"># Run:
+# * All tests called 'name1' or 'name2' and
+# * All tests called 'name3' in subproject 'bar' and
+# * All tests in subproject 'foo'
+$ meson test name1 name2 bar:name3 foo:
+</code></pre>
+<h2 id="native-build-machine-compilers-not-always-required-by-project">Native (build machine) compilers not always required by <code>project()</code>
+</h2>
+<p>When cross-compiling, native (build machine) compilers for the languages
+specified in <code>project()</code> are not required, if no targets use them.</p>
+<h2 id="new-extra_files-key-in-target-introspection">New <code>extra_files</code> key in target introspection</h2>
+<p>The target introspection (<code>meson introspect --targets</code>, <code>intro-targets.json</code>)
+now has the new <code>extra_files</code> key which lists all files specified via the
+<code>extra_files</code> kwarg of a build target (see <code>executable()</code>, etc.)</p>
+<h2 id="preliminary-aix-support">Preliminary AIX support</h2>
+<p>AIX is now supported when compiling with gcc. A number of features are not
+supported yet. For example, only gcc is supported (not xlC). Archives with both
+32-bit and 64-bit dynamic libraries are not generated automatically. The rpath
+includes both the build and install rpath, no attempt is made to change the
+rpath at install time. Most advanced features (eg. link_whole) are not
+supported yet.</p>
+<h2 id="wraps-from-subprojects-are-automatically-promoted">Wraps from subprojects are automatically promoted</h2>
+<p>It is not required to promote wrap files for subprojects into the main project
+any more. When configuring a subproject, meson will look for any wrap file or
+directory in the subproject's <code>subprojects/</code> directory and add them into the
+global list of available subprojects, to be used by any future <code>subproject()</code>
+call or <code>dependency()</code> fallback. If a subproject with the same name already exists,
+the new wrap file or directory is ignored. That means that the main project can
+always override any subproject's wrap files by providing their own, it also means
+the ordering in which subprojects are configured matters, if 2 subprojects provide
+foo.wrap only the one from the first subproject to be configured will be used.</p>
+<p>This new behavior can be disabled by passing <code>--wrap-mode=nopromote</code>.</p>
+<h2 id="mesonbuild_root-and-mesonsource_root-are-deprecated">
+<code>meson.build_root()</code> and <code>meson.source_root()</code> are deprecated</h2>
+<p>Those function are common source of issue when used in a subproject because they
+point to the parent project root which is rarely what is expected and is a
+violation of subproject isolation.</p>
+<p><code>meson.current_source_dir()</code> and <code>meson.current_build_dir()</code> should be used instead
+and have been available in all Meson versions. New functions <code>meson.project_source_root()</code>
+and <code>meson.project_build_root()</code> have been added in Meson 0.56.0 to get the root
+of the current (sub)project.</p>
+<h2 id="depas_link_whole"><code>dep.as_link_whole()</code></h2>
+<p>Dependencies created with <code>declare_dependency()</code> now has new method <code>as_link_whole()</code>.
+It returns a copy of the dependency object with all link_with arguments changed
+to link_whole. This is useful for example for fallback dependency from a
+subproject built with <code>default_library=static</code>.</p>
+<pre><code class="language-meson">somelib = static_library('somelib', ...)
+dep = declare_dependency(..., link_with: somelib)
+library('someotherlib', ..., dependencies: dep.as_link_whole())
+</code></pre>
+<h2 id="add-support-for-all-windows-subsystem-types">Add support for all Windows subsystem types</h2>
+<p>It is now possible to build things like Windows kernel drivers with
+the new <code>win_subsystem</code> keyword argument. This replaces the old
+<code>gui_app</code> keyword argument, which is now deprecated. You should update
+your project to use the new style like this:</p>
+<pre><code class="language-meson"># Old way
+executable(..., gui_app: 'true')
+# New way
+executable(..., win_subsystem: 'windows')
+</code></pre>
+<p>The argument supports versioning <a href="https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem">as described on MSDN
+documentation</a>.
+Thus to build a Windows kernel driver with a specific version you'd
+write something like this:</p>
+<pre><code class="language-meson">executable(..., win_subsystem: 'native,6.02')
+</code></pre>
+<h2 id="added-nvidia-hpc-sdk-compilers">Added NVidia HPC SDK compilers</h2>
+<p>Added support for <code>nvidia_hpc</code> NVidia HPC SDK compilers, which are currently in public beta testing.</p>
+<h2 id="project-and-builtin-options-can-be-set-in-native-or-cross-files">Project and built-in options can be set in native or cross files</h2>
+<p>A new set of sections has been added to the cross and native files, <code>[project options]</code> and <code>[&lt;subproject_name&gt;:project options]</code>, where <code>subproject_name</code>
+is the name of a subproject. Any options that are allowed in the project can
+be set from this section. They have the lowest precedent, and will be
+overwritten by command line arguments.</p>
+<pre><code class="language-meson">option('foo', type : 'string', value : 'foo')
+</code></pre>
+<pre><code class="language-ini">[project options]
+foo = 'other val'
+</code></pre>
+<pre><code class="language-console">meson build --native-file my.ini
+</code></pre>
+<p>Will result in the option foo having the value <code>other val</code>,</p>
+<pre><code class="language-console">meson build --native-file my.ini -Dfoo='different val'
+</code></pre>
+<p>Will result in the option foo having the value <code>different val</code>,</p>
+<p>Subproject options are assigned like this:</p>
+<pre><code class="language-ini">[zlib:project options]
+foo = 'some val'
+</code></pre>
+<p>Additionally meson level options can be set in the same way, using the
+<code>[built-in options]</code> section.</p>
+<pre><code class="language-ini">[built-in options]
+c_std = 'c99'
+</code></pre>
+<p>These options can also be set on a per-subproject basis, although only
+<code>default_library</code> and <code>werror</code> can currently be set:</p>
+<pre><code class="language-ini">[zlib:built-in options]
+default_library = 'static'
+</code></pre>
+<h2 id="unstablekeyval-is-now-stable-keyval">
+<code>unstable-keyval</code> is now stable <code>keyval</code>
+</h2>
+<p>The <code>unstable-keyval</code> has been renamed to <code>keyval</code> and now promises stability
+guarantees.</p>
+<p>Meson will print a warning when you load an <code>unstable-</code> module that has been
+stabilised (so <code>unstable-keyval</code> is still accepted for example).</p>
+<h2 id="cmake-subproject-cross-compilation-support">CMake subproject cross compilation support</h2>
+<p>Meson now supports cross compilation for CMake subprojects. Meson will try to
+automatically guess most of the required CMake toolchain variables from existing
+entries in the cross and native files. These variables will be stored in an
+automatically generate CMake toolchain file in the build directory. The
+remaining variables that can't be guessed can be added by the user in the
+new <code>[cmake]</code> cross/native file section.</p>
+<h2 id="machine-file-keys-are-stored-case-sensitive">Machine file keys are stored case sensitive</h2>
+<p>Previous the keys were always lowered, which worked fine for the values that
+were allowed in the machine files. With the addition of per-project options
+we need to make these sensitive to case, as the options in meson_options.txt
+are sensitive to case already.</p>
+<h2 id="consistency-between-declare_dependency-and-pkgconfiggenerate-variables">Consistency between <code>declare_dependency()</code> and <code>pkgconfig.generate()</code> variables</h2>
+<p>The <code>variables</code> keyword argument in <code>declare_dependency()</code> used to only support
+dictionary and <code>pkgconfig.generate()</code> only list of strings. They now both support
+dictionary and list of strings in the format <code>'name=value'</code>. This makes easier
+to share a common set of variables for both:</p>
+<pre><code class="language-meson">vars = {'foo': 'bar'}
+dep = declare_dependency(..., variables: vars)
+pkg.generate(..., variables: vars)
+</code></pre>
+<h2 id="qt5-compile_translations-now-supports-qresource-preprocessing">Qt5 compile_translations now supports qresource preprocessing</h2>
+<p>When using qtmod.preprocess() in combination with qtmod.compile_translations()
+to embed translations using rcc, it is no longer required to do this:</p>
+<pre><code class="language-meson">ts_files = ['list', 'of', 'files']
+qtmod.compile_translations(ts_files)
+# lang.qrc also contains the duplicated list of files
+lang_cpp = qtmod.preprocess(qresources: 'lang.qrc')
+</code></pre>
+<p>Instead, use:</p>
+<pre><code class="language-meson">lang_cpp = qtmod.compile_translations(qresource: 'lang.qrc')
+</code></pre>
+<p>which will automatically detect and generate the needed compile_translations
+targets.</p>
+<h2 id="controlling-subproject-dependencies-with-dependencyallow_fallback-">Controlling subproject dependencies with  <code>dependency(allow_fallback: ...)</code>
+</h2>
+<p>As an alternative to the <code>fallback</code> keyword argument to <code>dependency</code>,
+you may use <code>allow_fallback</code>, which accepts a boolean value. If <code>true</code>
+and the dependency is not found on the system, Meson will fallback
+to a subproject that provides this dependency, even if the dependency
+is optional. If <code>false</code>, Meson will not fallback even if a subproject
+provides this dependency.</p>
+<h2 id="custom-standard-library">Custom standard library</h2>
+<ul>
+<li>It is not limited to cross builds any more, <code>&lt;lang&gt;_stdlib</code> property can be
+set in native files.</li>
+<li>The variable name parameter is no longer required as long as the subproject
+calls <code>meson.override_dependency('c_stdlib', mylibc_dep)</code>.</li>
+</ul>
+<h2 id="improvements-for-the-builtin-curses-dependency">Improvements for the builtin curses dependency</h2>
+<p>This method has been extended to use config-tools, and a fallback to
+find_library for lookup as well as pkg-config.</p>
+<h2 id="hdf5-dependency-improvements">HDF5 dependency improvements</h2>
+<p>HDF5 has been improved so that the internal representations have been split.
+This allows selecting pkg-config and config-tool dependencies separately.
+Both work as proper dependencies of their type, so <code>get_variable</code> and similar
+now work correctly.</p>
+<p>It has also been fixed to use the selected compiler for the build instead of
+the default compiler.</p>
+<h2 id="external-projects">External projects</h2>
+<p>A new experimental module <code>unstable_external_project</code> has been added to build
+code using other build systems than Meson. Currently only supporting projects
+with a configure script that generates Makefiles.</p>
+<pre><code class="language-meson">project('My Autotools Project', 'c',
+  meson_version : '&gt;=0.56.0',
+)
+
+mod = import('unstable_external_project')
+
+p = mod.add_project('configure',
+  configure_options : ['--prefix=@PREFIX@',
+                       '--libdir=@LIBDIR@',
+                       '--incdir=@INCLUDEDIR@',
+                       '--enable-foo',
+                      ],
+)
+
+mylib_dep = p.dependency('mylib')
+</code></pre>
+<h2 id="per-subproject-warning_level-option">Per subproject <code>warning_level</code> option</h2>
+<p><code>warning_level</code> can now be defined per subproject, in the same way as
+<code>default_library</code> and <code>werror</code>.</p>
+<h2 id="meson-subprojects-command">
+<code>meson subprojects</code> command</h2>
+<p>A new <code>--types</code> argument has been added to all subcommands to run the command only
+on wraps with the specified types. For example this command will only print <code>Hello</code>
+for each git subproject: <code>meson subprojects foreach --types git echo "Hello"</code>.
+Multiple types can be set as comma separated list e.g. <code>--types git,file</code>.</p>
+<p>Subprojects with no wrap file are now taken into account as well. This happens
+for example for subprojects configured as git submodule, or downloaded manually
+by the user and placed into the <code>subprojects/</code> directory.</p>
+<p>The <code>checkout</code> subcommand now always stash any pending changes before switching
+branch. Note that <code>update</code> subcommand was already stashing changes before updating
+the branch.</p>
+<p>If the command fails on any subproject the execution continues with other
+subprojects, but at the end an error code is now returned.</p>
+<p>The <code>update</code> subcommand has been reworked:</p>
+<ul>
+<li>In the case the URL of <code>origin</code> is different as the <code>url</code> set in wrap file,
+the subproject will not be updated unless <code>--reset</code> is specified (see below).</li>
+<li>In the case a subproject directory exists and is not a git repository but has
+a <code>[wrap-git]</code>, meson used to run git commands that would wrongly apply to the
+main project. It now skip the subproject unless <code>--reset</code> is specified (see below).</li>
+<li>The <code>--rebase</code> behaviour is now the default for consistency: it was
+already rebasing when current branch and revision are the same, it is
+less confusing to rebase when they are different too.</li>
+<li>Add <code>--reset</code> mode that checkout the new branch and hard reset that
+branch to remote commit. This new mode guarantees that every
+subproject are exactly at the wrap's revision. In addition the URL of <code>origin</code>
+is updated in case it changed in the wrap file. If the subproject directory is
+not a git repository but has a <code>[wrap-git]</code> the directory is deleted and the
+new repository is cloned.</li>
+<li>Local changes are always stashed first to avoid any data loss. In the
+worst case scenario the user can always check reflog and stash list to
+rollback.</li>
+</ul>
+<h2 id="added-compcert-c-compiler">Added CompCert C compiler</h2>
+<p>Added experimental support for the <a href="https://github.com/AbsInt/CompCert">CompCert formally-verified C compiler</a>. The current state of the implementation is good enough to build the <a href="https://github.com/picolibc/picolibc">picolibc project</a> with CompCert, but might still need additional adjustments for other projects.</p>
+<h2 id="dependencies-listed-in-test-and-benchmark-introspection">Dependencies listed in test and benchmark introspection</h2>
+<p>The introspection data for tests and benchmarks now includes the target
+ids for executables and built files that are needed by the test.  IDEs can
+use this feature to update the build more quickly before running a test.</p>
+<h2 id="include_type-support-for-the-cmake-subproject-object-dependency-method">
+<code>include_type</code> support for the CMake subproject object dependency method</h2>
+<p>The <code>dependency()</code> method of the CMake subproject object now also supports the
+<code>include_type</code> kwarg which is similar to the sane kwarg in the <code>dependency()</code>
+function.</p>
+<h2 id="deprecate-dependencyget_pkgconfig_variable-and-dependencyget_configtool_variable">Deprecate Dependency.get_pkgconfig_variable and Dependency.get_configtool_variable</h2>
+<p>These have been replaced with the more versatile <code>get_variable()</code> method
+already, and shouldn't be used anymore.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/Release-notes-for-0.56.0.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

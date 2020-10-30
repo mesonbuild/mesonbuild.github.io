@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -225,6 +225,7 @@ option = ['value']
 <li>binaries</li>
 <li>paths</li>
 <li>properties</li>
+<li>cmake</li>
 <li>project options</li>
 <li>built-in options</li>
 </ul>
@@ -344,6 +345,56 @@ section may contain random key value pairs accessed using the
 <p><em>Changed in 0.56.0</em> putting <code>&lt;lang&gt;_args</code> and <code>&lt;lang&gt;_link_args</code> in the
 properties section has been deprecated, and should be put in the built-in
 options section.</p>
+<h4 id="supported-properties">Supported properties</h4>
+<p>This is a non exhaustive list of supported variables in the <code>[properties]</code>
+section.</p>
+<ul>
+<li>
+<code>cmake_toolchain_file</code> specifies an absoulte path to an already existing
+CMake toolchain file that will be loaded with <code>include()</code> as the last
+instruction of the automatically generated CMake toolchain file from meson.
+(<em>new in 0.56.0</em>)</li>
+<li>
+<code>cmake_defaults</code> is a boolean that specifies whether meson should automatically
+generate default toolchain varaibles from other sections (<code>binaries</code>,
+<code>host_machine</code>, etc.) in the machine file. Defaults are always overwritten
+by variables set in the <code>[cmake]</code> section. The default is <code>true</code>. (<em>new in 0.56.0</em>)</li>
+<li>
+<code>cmake_skip_compiler_test</code> is an enum that specifies when meson should
+automatically generate toolchain variables to skip the CMake compiler
+sanity checks. This only has an effect if <code>cmake_defaults</code> is <code>true</code>.
+Supported values are <code>always</code>, <code>never</code>, <code>dep_only</code>. The default is <code>dep_only</code>.
+(<em>new in 0.56.0</em>)</li>
+<li>
+<code>cmake_use_exe_wrapper</code> is a boolean that controlls whether to use the
+<code>exe_wrapper</code> specified in <code>[binaries]</code> to run generated executables in CMake
+subprojects. This setting has no effect if the <code>exe_wrapper</code> was not specified.
+The default value is <code>true</code>. (<em>new in 0.56.0</em>)</li>
+</ul>
+<h3 id="cmake-variables">CMake variables</h3>
+<p><em>New in 0.56.0</em></p>
+<p>All variables set in the <code>[cmake]</code> section will be added to the generate CMake
+toolchain file used for both CMake dependencies and CMake subprojects. The type
+of each entry must be either a string or a list of strings.</p>
+<p><strong>Note:</strong> All occurances of <code>\</code> in the value of all keys will be replaced with
+a <code>/</code> since CMake has a lot of issues with correctly escaping <code>\</code> when
+dealing with variables (even in cases where a path in <code>CMAKE_C_COMPILER</code>
+is correctly escaped, CMake will still trip up internaly for instance)</p>
+<pre><code>      A custom toolchain file should be used (via the `cmake_toolchain_file`
+      property) if `\` support is required.
+</code></pre>
+<pre><code class="language-ini">[cmake]
+
+CMAKE_C_COMPILER    = '/usr/bin/gcc'
+CMAKE_CXX_COMPILER  = 'C:\\user\\bin\\g++'
+CMAKE_SOME_VARIABLE = ['some', 'value with spaces']
+</code></pre>
+<p>For instance, the <code>[cmake]</code> section from above will generate the following
+code in the CMake toolchain file:</p>
+<pre><code class="language-cmake">set(CMAKE_C_COMPILER    "/usr/bin/gcc")
+set(CMAKE_C_COMPILER    "C:/usr/bin/g++")
+set(CMAKE_SOME_VARIABLE "some" "value with spaces")
+</code></pre>
 <h3 id="project-specific-options">Project specific options</h3>
 <p><em>New in 0.56.0</em></p>
 <p>Path options are not allowed, those must be set in the <code>[paths]</code> section.</p>

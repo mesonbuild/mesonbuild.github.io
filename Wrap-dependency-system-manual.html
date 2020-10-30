@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -370,10 +370,11 @@ not explicitly requested by the user. In that case
 <code>dependency('foo-1.0', required: get_option('foo_opt'))</code> will only fallback
 when the user sets <code>foo_opt</code> to <code>enabled</code> instead of <code>auto</code>.</li>
 </ul>
-<p>If it is desired to fallback for an optional dependency, the <code>fallback</code> keyword
-argument must be passed explicitly. For example
-<code>dependency('foo-1.0', required: get_option('foo_opt'), fallback: 'foo')</code> will
-use the fallback even when <code>foo_opt</code> is set to <code>auto</code>.</p>
+<p>If it is desired to fallback for an optional dependency, the <code>fallback</code>
+or <code>allow_fallback</code> keyword arguments must be passed explicitly. <em>Since
+0.56.0</em>, <code>dependency('foo-1.0', required: get_option('foo_opt'), allow_fallback: true)</code> will use the fallback even when <code>foo_opt</code> is set
+to <code>auto</code>.  On version <em>0.55.0</em> the same effect could be achieved with
+<code>dependency('foo-1.0', required: get_option('foo_opt'), fallback: 'foo')</code>.</p>
 <p>This mechanism assumes the subproject calls <code>meson.override_dependency('foo-1.0', foo_dep)</code>
 so Meson knows which dependency object should be used as fallback. Since that
 method was introduced in version <em>0.54.0</em>, as a transitional aid for projects

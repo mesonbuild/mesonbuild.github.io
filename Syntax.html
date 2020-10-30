@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -358,8 +358,8 @@ system = target.substring(4) # suffix string value 'FreeBSD'
 <p>The method accepts negative values where negative <code>start</code> is relative to the end of
 string <code>len(string) - start</code> as well as negative <code>end</code>.</p>
 <pre><code class="language-meson">string = 'foobar'
-target.substring(-5, -3) # =&gt; 'oo'
-target.substring(1, -1) # =&gt; 'ooba'
+string.substring(-5, -3) # =&gt; 'oo'
+string.substring(1, -1) # =&gt; 'ooba'
 </code></pre>
 <h4 id="split-join">.split(), .join()</h4>
 <pre><code class="language-meson"># Similar to the Python str.split()

@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -253,22 +253,6 @@ Updated zlib to branch 1.2.8 revision 4
 <p>Wraptool can do other things besides these. Documentation for these
 can be found in the command line help, which can be accessed by
 <code>meson wrap --help</code>.</p>
-<h2 id="promoting-dependencies">Promoting dependencies</h2>
-<p>Meson will only search for subprojects from the top level
-<code>subprojects</code> directory. If you have subprojects that themselves have
-subprojects, you must transfer them to the top level. This can be done
-by going to your source root and issuing a promotion command.</p>
-<pre><code>meson wrap promote projname
-</code></pre>
-<p>This will cause Meson to go through your entire project tree, find an
-embedded subproject and copy it to the top level.</p>
-<p>If there are multiple embedded copies of a subproject, Meson will not
-try to guess which one you want. Instead it will print all the
-possibilities. You can then manually select which one to promote by
-writing it out fully.</p>
-<pre><code>meson wrap promote subprojects/s1/subprojects/projname
-</code></pre>
-<p>This functionality was added in Meson release 0.45.0.</p>
 
     </div>
         

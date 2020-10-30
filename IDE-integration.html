@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -274,6 +274,7 @@ for one target is defined as follows:</p>
     "filename": ["list", "of", "generated", "files"],
     "build_by_default": true / false,
     "target_sources": [],
+    "extra_files": ["/path/to/file1.hpp", "/path/to/file2.hpp"],
     "installed": true / false,
 }
 </code></pre>
@@ -283,6 +284,8 @@ If one file in <code>filename</code> is not installed, its corresponding install
 is set to <code>null</code>.</p>
 <p>The <code>subproject</code> key specifies the name of the subproject this target was
 defined in, or <code>null</code> if the target was defined in the top level project.</p>
+<p><em>(New in 0.56.0)</em> The <code>extra_files</code> key lists all files specified via the
+<code>extra_files</code> kwarg of a build target. See <a href="Reference-manual.html#executable"><code>executable()</code></a>.</p>
 <p>A target usually generates only one file. However, it is possible for custom
 targets to have multiple outputs.</p>
 <h3 id="target-sources">Target sources</h3>

@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -656,7 +656,12 @@ Commands:
 </code></pre>
 <p>Run tests for the configure meson project.</p>
 <pre><code>positional arguments:
-  args                                  Optional list of tests to run
+  args                                  Optional list of test names to run.
+                                        "testname" to run all tests with that
+                                        name, "subprojname:testname" to
+                                        specifically run "testname" from
+                                        "subprojname", "subprojname:" to run all
+                                        tests defined by "subprojname".
 
 optional arguments:
   -h, --help                            show this help message and exit

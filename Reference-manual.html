@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -590,7 +590,7 @@ that should be built before sources including them are built)</li>
 <li>
 <code>variables</code> <em>(since 0.54.0)</em>: a dictionary of arbitrary strings, this is meant to be used
 in subprojects where special variables would be provided via cmake or
-pkg-config.</li>
+pkg-config. <em>since 0.56.0</em> it can also be a list of <code>'key=value'</code> strings.</li>
 </ul>
 <h3 id="dependency">dependency()</h3>
 <pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
@@ -600,8 +600,33 @@ system) with the given name with <code>pkg-config</code> and <a href="Dependenci
 CMake</a> if <code>pkg-config</code> fails. Additionally,
 frameworks (OSX only) and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection
 logic</a>
-are also supported. This function supports the following keyword
-arguments:</p>
+are also supported.</p>
+<p>Dependencies can also be resolved in two other ways:</p>
+<ul>
+<li>
+<p>if the same name was used in a <code>meson.override_dependency</code> prior to
+the call to <code>dependency</code>, the overriding dependency will be returned
+unconditionally; that is, the overriding dependency will be used
+independent of whether an external dependency is installed in the system.
+Typically, <code>meson.override_dependency</code> will have been used by a
+subproject.</p>
+</li>
+<li>
+<p>by a fallback subproject which, if needed, will be brought into the current
+build specification as if <a href="Reference-manual.html#subproject"><code>subproject()</code></a> had been called.
+The subproject can be specified with the <code>fallback</code> argument.  Alternatively,
+if the <code>fallback</code> argument is absent, <em>since 0.55.0</em> Meson can
+automatically identify a subproject as a fallback if a wrap file
+<a href="Wrap-dependency-system-manual.html#provide-section">provides</a> the
+dependency, or if a subproject has the same name as the dependency.
+In the latter case, the subproject must use <code>meson.override_dependency</code> to
+specify the replacement, or Meson will report a hard error.  See the
+<a href="Wrap-dependency-system-manual.html#provide-section">Wrap documentation</a>
+for more details.  This automatic search can be controlled using the
+<code>allow_fallback</code> keyword argument.</p>
+</li>
+</ul>
+<p>This function supports the following keyword arguments:</p>
 <ul>
 <li>
 <code>default_options</code> <em>(since 0.37.0)</em>: an array of default option values
@@ -610,25 +635,31 @@ that override those set in the subproject's <code>meson_options.txt</code>
 effect when Meson is run for the first time, and command line
 arguments override any default options in build files)</li>
 <li>
-<code>fallback</code>: specifies a subproject fallback to use in case the
-dependency is not found in the system. The value is an array
-<code>['subproj_name', 'subproj_dep']</code> where the first value is the name
+<code>allow_fallback</code> (boolean argument, <em>since 0.56.0</em>): specifies whether Meson
+should automatically pick a fallback subproject in case the dependency
+is not found in the system.  If <code>true</code> and the dependency is not found
+on the system, Meson will fallback to a subproject that provides this
+dependency. If <code>false</code>, Meson will not fallback even if a subproject
+provides this dependency.  By default, Meson will do so if <code>required</code>
+is <code>true</code> or  <a href="Build-options.html#features"><code>enabled</code></a>; see the <a href="Wrap-dependency-system-manual.html#provide-section">Wrap
+documentation</a>
+for more details.</li>
+<li>
+<code>fallback</code> (string or array argument): manually specifies a subproject
+fallback to use in case the dependency is not found in the system.
+This is useful if the automatic search is not applicable or if you
+want to support versions of Meson older than 0.55.0.  If the value is an
+array <code>['subproj_name', 'subproj_dep']</code>, the first value is the name
 of the subproject and the second is the variable name in that
 subproject that contains a dependency object such as the return
 value of <a href="Reference-manual.html#declare_dependency"><code>declare_dependency</code></a> or
 <a href="Reference-manual.html#dependency"><code>dependency()</code></a>, etc. Note that this means the
 fallback dependency may be a not-found dependency, in which
 case the value of the <code>required:</code> kwarg will be obeyed.
-<em>(since 0.54.0)</em> <code>'subproj_dep'</code> argument can be omitted in the case the
-subproject used <code>meson.override_dependency('dependency_name', subproj_dep)</code>.
-In that case, the <code>fallback</code> keyword argument can be a single string instead
-of a list of 2 strings. <em>Since 0.55.0</em> the <code>fallback</code> keyword argument can be
-omitted when there is a wrap file or a directory with the same <code>dependency_name</code>,
-and subproject registered the dependency using
-<code>meson.override_dependency('dependency_name', subproj_dep)</code>, or when the wrap
-file has <code>dependency_name</code> in its <code>[provide]</code> section.
-See <a href="Wrap-dependency-system-manual.html#provide-section">Wrap documentation</a>
-for more details.</li>
+<em>Since 0.54.0</em> the value can be a single string, the subproject name;
+in this case the subproject must use
+<code>meson.override_dependency('dependency_name', subproj_dep)</code>
+to specify the dependency object used in the superproject.</li>
 <li>
 <code>language</code> <em>(since 0.42.0)</em>: defines what language-specific
 dependency to find if it's available for multiple languages.</li>
@@ -865,7 +896,9 @@ build or host machines. Defaults to false, building for the host machine.</li>
 <code>win_subsystem</code> <em>(since 0.56.0)</em> specifies the subsystem type to use
 on the Windows platform. Typical values include <code>console</code> for text
 mode programs and <code>windows</code> for gui apps. The value can also contain
-version specification such as <code>windows,6.0'. See [MSDN documentation](https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem) for the full list. The default value is</code>console`.</li>
+version specification such as <code>windows,6.0</code>. See <a href="https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem">MSDN
+documentation</a>
+for the full list. The default value is <code>console</code>.</li>
 </ul>
 <p>The list of <code>sources</code>, <code>objects</code>, and <code>dependencies</code> is always
 flattened, which means you can freely nest and add lists while
