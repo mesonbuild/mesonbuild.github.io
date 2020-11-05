@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -269,7 +269,8 @@ executable('myprog', 'main.cpp', 'myclass.cpp', moc_files,
            dependencies : qt5_dep)
 </code></pre>
 <p>Sometimes, translations are embedded inside the binary using qresource files.
-In this case the ts files do not need to be explicitly listed. For example:</p>
+In this case the ts files do not need to be explicitly listed, but will be
+inferred from the built qm files listed in the qresource file. For example:</p>
 <pre><code class="language-meson">qt5 = import('qt5')
 qt5_dep = dependency('qt5', modules: ['Core', 'Gui'])
 lang_cpp = qt5.compile_translations(qresource: 'lang.qrc')
