@@ -1463,12 +1463,14 @@ the master project, settings in subprojects are ignored. Project
 specific options are used normally even in subprojects.</p>
 </li>
 <li>
-<p><code>license</code>: takes a string or array of strings describing the
-license(s) the code is under. Usually this would be something like
-<code>license : 'GPL2+'</code>, but if the code has multiple licenses you can
-specify them as an array like this: <code>license : ['proprietary', 'GPL3']</code>. Note that the text is informal and is only written to
-the dependency manifest. Meson does not do any license validation,
-you are responsible for verifying that you abide by all licensing
+<p><code>license</code>: takes a string or array of strings describing the license(s) the
+code is under. To avoid ambiguity it is recommended to use a standardized
+license identifier from the <a href="https://spdx.org/licenses/">SPDX license list</a>.
+Usually this would be something like <code>license : 'GPL-2.0-or-later'</code>, but if
+the code has multiple licenses you can specify them as an array like this:
+<code>license : ['proprietary', 'GPL-3.0-only']</code>. Note that the text is informal
+and is only written to the dependency manifest. Meson does not do any license
+validation, you are responsible for verifying that you abide by all licensing
 terms. You can access the value in your Meson build files with
 <code>meson.project_license()</code>.</p>
 </li>
@@ -2526,6 +2528,12 @@ not been set returns <code>default_value</code> if it is defined and errors out 
 </li>
 <li>
 <p><code>has(varname)</code>: returns <code>true</code> if the specified variable is set</p>
+</li>
+<li>
+<p><code>keys()</code><em>(since 0.57.0)</em>: returns an array of keys of
+the configuration data object.</p>
+<p>You can iterate over this array with the <a href="Syntax.html#foreach-statements"><code>foreach</code>
+statement</a>.</p>
 </li>
 <li>
 <p><code>merge_from(other)</code> <em>(since 0.42.0)</em>: takes as argument a different
