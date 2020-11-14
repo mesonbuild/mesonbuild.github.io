@@ -190,58 +190,70 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="adding-new-projects-to-wrapdb">Adding new projects to WrapDB</h1>
 <h2 id="how-it-works">How it works</h2>
-<p>Each wrap repository has a master branch with only one initial commit and <em>no</em> wrap files.
-And that is the only commit ever made on that branch.</p>
-<p>For every release of a project a new branch is created. The new branch is named after the
-the upstream release number (e.g. <code>1.0.0</code>). This branch holds a wrap file for
-this particular release.</p>
-<p>There are two types of wraps on WrapDB - regular wraps and wraps with Meson build
-definition patches. A wrap file in a repository on WrapDB must have a name <code>upstream.wrap</code>.</p>
-<p>Wraps with Meson build definition patches work in much the same way as Debian:
-we take the unaltered upstream source package and add a new build system to it as a patch.
-These build systems are stored as Git repositories on GitHub. They only contain build definition files.
-You may also think of them as an overlay to upstream source.</p>
-<p>Whenever a new commit is pushed into GitHub's project branch, a new wrap is generated
-with an incremented version number. All the old releases remain unaltered.
-New commits are always done via GitHub merge requests and must be reviewed by
-someone other than the submitter.</p>
-<p>Note that your Git repo with wrap must not contain the subdirectory of the source
-release. That gets added automatically by the service. You also must not commit
-any source code from the original tarball into the wrap repository.</p>
+<p>Each wrap repository has a master branch with only one initial commit
+and <em>no</em> wrap files. And that is the only commit ever made on that
+branch.</p>
+<p>For every release of a project a new branch is created. The new branch
+is named after the the upstream release number (e.g. <code>1.0.0</code>). This
+branch holds a wrap file for this particular release.</p>
+<p>There are two types of wraps on WrapDB - regular wraps and wraps with
+Meson build definition patches. A wrap file in a repository on WrapDB
+must have a name <code>upstream.wrap</code>.</p>
+<p>Wraps with Meson build definition patches work in much the same way as
+Debian: we take the unaltered upstream source package and add a new
+build system to it as a patch. These build systems are stored as Git
+repositories on GitHub. They only contain build definition files. You
+may also think of them as an overlay to upstream source.</p>
+<p>Whenever a new commit is pushed into GitHub's project branch, a new
+wrap is generated with an incremented version number. All the old
+releases remain unaltered. New commits are always done via GitHub
+merge requests and must be reviewed by someone other than the
+submitter.</p>
+<p>Note that your Git repo with wrap must not contain the subdirectory of
+the source release. That gets added automatically by the service. You
+also must not commit any source code from the original tarball into
+the wrap repository.</p>
 <h2 id="choosing-the-repository-name">Choosing the repository name</h2>
 <p>Wrapped subprojects are used much like external dependencies. Thus
 they should have the same name as the upstream projects.</p>
 <p>NOTE: Repo names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
-<p>If the project provides a pkg-config file, then the repository name should be
-the same as the pkg-config name. Usually this is the name of the
-project, such as <code>libpng</code>. Sometimes it is slightly different,
+<p>If the project provides a pkg-config file, then the repository name
+should be the same as the pkg-config name. Usually this is the name of
+the project, such as <code>libpng</code>. Sometimes it is slightly different,
 however. As an example the libogg project's chosen pkg-config name is
 <code>ogg</code> instead of <code>libogg</code>, which is the reason why the repository is
 named plain <code>ogg</code>.</p>
-<p>If there is no a pkg-config file, the name the project uses/promotes should be used,
-lowercase only (Catch2 -&gt; catch2).</p>
+<p>If there is no a pkg-config file, the name the project uses/promotes
+should be used, lowercase only (Catch2 -&gt; catch2).</p>
 <p>If the project name is too generic or ambiguous (e.g. <code>benchmark</code>),
-consider using <code>organization-project</code> naming format (e.g. <code>google-benchmark</code>).</p>
+consider using <code>organization-project</code> naming format (e.g.
+<code>google-benchmark</code>).</p>
 <h2 id="how-to-contribute-a-new-wrap">How to contribute a new wrap</h2>
-<p>If the project already uses Meson build system, then only a wrap file - <code>upstream.wrap</code>
-should be provided. In other case a Meson build definition patch - a set of <code>meson.build</code>
-files - should be also provided.</p>
+<p>If the project already uses Meson build system, then only a wrap file</p>
+<ul>
+<li>
+<code>upstream.wrap</code> should be provided. In other case a Meson build
+definition patch - a set of <code>meson.build</code> files - should be also
+provided.</li>
+</ul>
 <h3 id="request-a-new-repository">Request a new repository</h3>
-<p>Create an issue on the <a href="https://github.com/mesonbuild/wrapdb/issues">wrapdb bug tracker</a>
-using <em>Title</em> and <em>Description</em> below as a template.</p>
+<p>Create an issue on the <a href="https://github.com/mesonbuild/wrapdb/issues">wrapdb bug
+tracker</a> using <em>Title</em>
+and <em>Description</em> below as a template.</p>
 <p><em>Title:</em> <code>new wrap: &lt;project_name&gt;</code></p>
 <p><em>Description:</em></p>
 <pre><code>upstream url: &lt;link_to_updastream&gt;
 version: &lt;version_you_have_a_wrap_for&gt;
 </code></pre>
-<p>Wait until the new repository or branch is created. A link to the new repository or branch
-will be posted in a comment to this issue.</p>
-<p>NOTE: Requesting a branch is not necessary. WrapDB maintainer can create the branch and
-modify the PR accordingly if the project repository exists.</p>
+<p>Wait until the new repository or branch is created. A link to the new
+repository or branch will be posted in a comment to this issue.</p>
+<p>NOTE: Requesting a branch is not necessary. WrapDB maintainer can
+create the branch and modify the PR accordingly if the project
+repository exists.</p>
 <h3 id="creating-the-wrap-contents">Creating the wrap contents</h3>
-<p>Setting up the contents might seem a bit counterintuitive at
-first. Just remember that the outcome needs to have one (and only one)
-commit that has all the build definition files (i.e. <code>meson.build</code> and
+<p>Setting up the contents might seem a bit counterintuitive at first.
+Just remember that the outcome needs to have one (and only one) commit
+that has all the build definition files (i.e. <code>meson.build</code> and
 <code>meson_options.txt</code> files) and <em>nothing else</em>. It is good practice to
 have this commit in a branch whose name matches the release as
 described above.</p>
@@ -275,6 +287,21 @@ following command on most unix-like operating systems:</p>
 <p>Under macOS the command is the following:</p>
 <pre><code>shasum -a 256 path/to/libfoo-1.0.0.tar.gz
 </code></pre>
+<p>Next you need to add the entries that define what dependencies the
+current project provides. This is important, as it is what makes
+Meson's automatic dependency resolver work. It is done by adding a
+<code>provide</code> entry at the end of the <code>upstream.wrap</code> file. Using the Ogg
+library as an example, this is what it would look like:</p>
+<pre><code class="language-ini">[provide]
+ogg = ogg_dep
+</code></pre>
+<p>The <code>ogg</code> part on the left refers to the dependency name, which should
+be the same as its Pkg-Config name. <code>ogg_dep</code> on the right refers to
+the variable in the build definitions that provides the dependency.
+Most commonly it holds the result of a <code>declare_dependency</code> call. If a
+variable of that name is not defined, Meson will exit with a hard
+error. For further details see <a href="Wrap-dependency-system-manual.html">the main Wrap
+manual</a>.</p>
 <p>Now you can create the build files and work on them until the project
 builds correctly.</p>
 <pre><code>${EDITOR} meson.build meson_options.txt
