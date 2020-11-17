@@ -206,11 +206,15 @@ to ensure that it will always be working and usable. All commits go through
 a pull-request process that runs CI and tests several platforms.</p>
 <h2 id="installing-meson-with-pip">Installing Meson with pip</h2>
 <p>Meson is available in the <a href="https://pypi.python.org/pypi/meson/">Python Package Index</a> and can be installed with
-<code>pip3 install meson</code> which requires root and will install it system-wide.</p>
+<code>sudo pip3 install meson</code> which requires root and will install it system-wide.</p>
+<p>If you have downloaded a copy of the meson sources already, you can install it
+with <code>sudo pip3 install path/to/source/root/</code>.</p>
 <p>Alternatively, you can use <code>pip3 install --user meson</code> which will install it
 for your user and does not require any special privileges. This will install
 the package in <code>~/.local/</code>, so you will have to add <code>~/.local/bin</code> to your
-<code>PATH</code>.</p>
+<code>PATH</code>, and <code>sudo meson install</code> will be completely broken since the
+program will not be available to root. Only use a user copy of meson if you
+do not care about installing projects as root.</p>
 <h2 id="installing-meson-and-ninja-with-the-msi-installer">Installing Meson and Ninja with the MSI installer</h2>
 <p>We provide an MSI installer on the <a href="https://github.com/mesonbuild/meson/releases">GitHub release page</a> that can be used to
 install both Meson and Ninja at once for Windows. It also contains an embedded
