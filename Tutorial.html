@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -205,8 +205,11 @@ as Windows and macOS, but you need to install the needed dependencies.</p>
 <p>Let's start with the most basic of programs, the classic hello
 example. First we create a file <code>main.c</code> which holds the source. It
 looks like this.</p>
-<pre><code class="language-c">#include&lt;stdio.h&gt;
+<pre><code class="language-c">#include &lt;stdio.h&gt;
 
+//
+// main is where all program execution starts
+//
 int main(int argc, char **argv) {
   printf("Hello there.\n");
   return 0;
@@ -222,7 +225,7 @@ headers to the list of sources</a>.</p>
 <p>We are now ready to build our application. First we need
 to initialize the build by going into the source directory and issuing
 the following commands.</p>
-<pre><code class="language-console">$ meson builddir
+<pre><code class="language-console">$ meson setup builddir
 </code></pre>
 <p>We create a separate build directory to hold all of the compiler
 output. Meson is different from some other build systems in that it
@@ -260,17 +263,40 @@ $ meson compile
 create a graphical window instead. We'll use the
 <a href="https://gtk.org">GTK+</a> widget toolkit. First we edit the main file to
 use GTK+. The new version looks like this.</p>
-<pre><code class="language-c">#include&lt;gtk/gtk.h&gt;
+<pre><code class="language-c">
+#include &lt;gtk/gtk.h&gt;
 
-int main(int argc, char **argv) {
-  GtkWidget *win;
-  gtk_init(&amp;argc, &amp;argv);
-  win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title(GTK_WINDOW(win), "Hello there");
-  g_signal_connect(win, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-  gtk_widget_show(win);
-  gtk_main();
-}
+//
+// Should provided the active view for a GTK application 
+//
+static void activate(GtkApplication* app, gpointer user_data)
+{
+  GtkWidget *window;
+  GtkWidget *label;
+
+  window = gtk_application_window_new (app);
+  label = gtk_label_new("Hello GNOME!");
+  gtk_container_add (GTK_CONTAINER (window), label);
+  gtk_window_set_title(GTK_WINDOW (window), "Welcome to GNOME");
+  gtk_window_set_default_size(GTK_WINDOW (window), 200, 100);
+  gtk_widget_show_all(window);
+} // end of function activate
+
+//
+// main is where all program execution starts
+//
+int main(int argc, char **argv)
+{
+  GtkApplication *app;
+  int status;
+
+  app = gtk_application_new(NULL, G_APPLICATION_FLAGS_NONE);
+  g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
+  status = g_application_run(G_APPLICATION(app), argc, argv);
+  g_object_unref(app);
+
+  return status;
+} // end of function main
 </code></pre>
 <p>Then we edit the Meson file, instructing it to find and use the GTK+
 libraries.</p>

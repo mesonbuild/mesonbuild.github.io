@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -314,6 +314,10 @@ it automatically.</p>
 <p>Support for adding additional <code>COMPONENTS</code> for the CMake <code>find_package</code> lookup
 is provided with the <code>components</code> kwarg (<em>introduced in 0.54.0</em>). All specified
 componets will be passed directly to <code>find_package(COMPONENTS)</code>.</p>
+<p>Support for packages which require a specified version for CMake
+<code>find_package</code> to succeed is provided with the <code>cmake_package_version</code> kwarg
+(<em>introduced in 0.57.0</em>). The specified <code>cmake_package_version</code> will be
+passed directly as the second parameter to <code>find_package</code>.</p>
 <p>It is also possible to reuse existing <code>Find&lt;name&gt;.cmake</code> files with the
 <code>cmake_module_path</code> property. Using this property is equivalent to setting the
 <code>CMAKE_MODULE_PATH</code> variable in CMake. The path(s) given to <code>cmake_module_path</code>

@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -203,13 +203,13 @@ from Meson altogether.</p>
 <h2 id="functions">Functions</h2>
 <h3 id="nvcc_arch_flags"><code>nvcc_arch_flags()</code></h3>
 <p><em>Since: 0.50.0</em></p>
-<pre><code class="language-meson">cuda.nvcc_arch_flags(nvcc_or_version, ...,
+<pre><code class="language-meson">cuda.nvcc_arch_flags(cuda_version_string, ...,
                      detected: string_or_array)
 </code></pre>
 <p>Returns a list of <code>-gencode</code> flags that should be passed to <code>cuda_args:</code> in
 order to compile a "fat binary" for the architectures/compute capabilities
 enumerated in the positional argument(s). The flags shall be acceptable to
-the NVCC compiler object <code>nvcc_or_version</code>, or its version string.</p>
+an NVCC with CUDA Toolkit version string <code>cuda_version_string</code>.</p>
 <p>A set of architectures and/or compute capabilities may be specified by:</p>
 <ul>
 <li>The single positional argument <code>'All'</code>, <code>'Common'</code> or <code>'Auto'</code>
@@ -258,14 +258,6 @@ mixed with architecture names or compute capabilities. Their interpretation is:<
 </tr>
 </tbody>
 </table>
-<p>As a special case, when <code>nvcc_arch_flags()</code> is invoked with</p>
-<ul>
-<li>an NVCC <code>compiler</code> object <code>nvcc</code>,</li>
-<li>
-<code>'Auto'</code> mode and</li>
-<li>no <code>detected:</code> keyword,</li>
-</ul>
-<p>Meson uses <code>nvcc</code>'s architecture auto-detection results.</p>
 <p>The supported architecture names and their corresponding compute capabilities
 are:</p>
 <table>
@@ -331,6 +323,11 @@ are:</p>
 </td>
 <td> 7.5</td>
 </tr>
+<tr>
+<td> <code>'Ampere'</code>
+</td>
+<td> 8.0, 8.6</td>
+</tr>
 </tbody>
 </table>
 <p>Examples:</p>
@@ -382,7 +379,7 @@ cuda.nvcc_arch_flags(nvcc, 'All')
 function <code>CUDA_SELECT_NVCC_ARCH_FLAGS(out_variable, [list of CUDA compute architectures])</code></p>
 <h3 id="nvcc_arch_readable"><code>nvcc_arch_readable()</code></h3>
 <p><em>Since: 0.50.0</em></p>
-<pre><code class="language-meson">cuda.nvcc_arch_readable(nvcc_or_version, ...,
+<pre><code class="language-meson">cuda.nvcc_arch_readable(cuda_version_string, ...,
                         detected: string_or_array)
 </code></pre>
 <p>Has precisely the same interface as <a href="Cuda-module.html#nvcc_arch_flags"><code>nvcc_arch_flags()</code></a>,
@@ -390,7 +387,7 @@ but rather than returning a list of flags, it returns a "readable" list of
 architectures that will be compiled for. The output of this function is solely
 intended for informative message printing.</p>
 <pre><code>archs    = '3.0 3.5 5.0+PTX'
-readable = cuda.nvcc_arch_readable(nvcc, archs)
+readable = cuda.nvcc_arch_readable('10.0', archs)
 message('Building for architectures ' + ' '.join(readable))
 </code></pre>
 <p>This will print</p>
@@ -400,10 +397,10 @@ message('Building for architectures ' + ' '.join(readable))
 <code>CUDA_SELECT_NVCC_ARCH_FLAGS(out_variable, [list of CUDA compute architectures])</code></p>
 <h3 id="min_driver_version"><code>min_driver_version()</code></h3>
 <p><em>Since: 0.50.0</em></p>
-<pre><code class="language-meson">cuda.min_driver_version(nvcc_or_version)
+<pre><code class="language-meson">cuda.min_driver_version(cuda_version_string)
 </code></pre>
 <p>Returns the minimum NVIDIA proprietary driver version required, on the host
-system, by kernels compiled with the given NVCC compiler or its version string.</p>
+system, by kernels compiled with a CUDA Toolkit with the given version string.</p>
 <p>The output of this function is generally intended for informative message
 printing, but could be used for assertions or to conditionally enable
 features known to exist within the minimum NVIDIA driver required.</p>
