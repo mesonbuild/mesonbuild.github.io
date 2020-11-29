@@ -397,7 +397,10 @@ header files and the library to link with.</p>
 keyword added to include the project VAPI directory. This is not added
 automatically by <code>add_project_arguments()</code>.</p>
 <h3 id="working-with-the-vala-preprocessor">Working with the Vala Preprocessor</h3>
-<p>Passing arguments to <a href="https://wiki.gnome.org/Projects/Vala/Manual/Preprocessor">Vala's preprocessor</a> requires specifying the language as <code>c</code>.  For example, the following statement sets the preprocessor symbol <code>FUSE_USE_VERSION</code> to the value <code>26</code>:</p>
+<p>Passing arguments to <a href="https://wiki.gnome.org/Projects/Vala/Manual/Preprocessor">Vala's preprocessor</a> requires specifying the language as <code>vala</code>.  For example, the following statement sets the preprocessor symbol <code>USE_FUSE</code>:</p>
+<pre><code class="language-meson">add_project_arguments('-D', 'USE_FUSE', language: 'vala')
+</code></pre>
+<p>If you need to pass an argument to the C pre-processor then specify the language as c. For example to set FUSE_USE_VERSION to 26 use:</p>
 <pre><code class="language-meson">add_project_arguments('-DFUSE_USE_VERSION=26', language: 'c')
 </code></pre>
 <h2 id="building-libraries">Building libraries</h2>

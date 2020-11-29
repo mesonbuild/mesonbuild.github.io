@@ -199,6 +199,11 @@ each space is replaced by an underscore (<code>_</code>) character, and the firs
 each word written in lowercase. It is the most common naming convention used
 in Meson build scripts as identifiers for variable.</p>
 <p>Let say you would like to refer to your executable so something like <code>my_exe</code>.</p>
+<h2 id="dependency-usage">Dependency usage</h2>
+<p>The <code>dependency</code> function is the recommended way to handle dependencies. If your wrap files
+have the necessary <code>[provide]</code> entries, everything will work automatically both when
+compiling your own and when using system dependencies.</p>
+<p>You should only need <code>subproject</code> when you need to extract non dependencies/programs.</p>
 <h2 id="naming-options">Naming options</h2>
 <p>There are two ways of naming project options. As an example for
 booleans the first one is <code>foo</code> and the second one is
