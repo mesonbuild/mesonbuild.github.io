@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -1618,10 +1618,16 @@ arguments are otherwise the same as for <a href="Reference-manual.html#library">
 has one argument the others don't have:</p>
 <ul>
 <li>
-<code>pic</code> <em>(since 0.36.0)</em>: builds the library as positional
+<p><code>pic</code> <em>(since 0.36.0)</em>: builds the library as positional
 independent code (so it can be linked into a shared library). This
 option has no effect on Windows and OS X since it doesn't make
-sense on Windows and PIC cannot be disabled on OS X.</li>
+sense on Windows and PIC cannot be disabled on OS X.</p>
+</li>
+<li>
+<p><code>prelink</code> <em>since0.57.0</em>: if <code>true</code> the object files in the target
+will be prelinked, meaning that it will contain only one prelinked
+object file rather than the individual object files.</p>
+</li>
 </ul>
 <h3 id="subdir">subdir()</h3>
 <pre><code class="language-meson">    void subdir(dir_name, ...)
@@ -2854,7 +2860,7 @@ for <code>compiler.run()</code> results.</li>
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson//edit/master/docs/builddir/markdown/Reference-manual.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/builddir/markdown/Reference-manual.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">
