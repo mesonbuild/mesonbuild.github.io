@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -249,7 +249,8 @@ generated file. The strings must be in the form <code>name=value</code> and may
 reference other pkgconfig variables,
 e.g. <code>datadir=${prefix}/share</code>. The names <code>prefix</code>, <code>libdir</code> and
 <code>includedir</code> are reserved and may not be used. <em>Since 0.56.0</em> it can also be a
-dictionary.</li>
+dictionary but ordering of Meson dictionaries are not guaranteed, which could
+cause issues when some variables reference other variables.</li>
 <li>
 <code>version</code> a string describing the version of this library, used to set the
 <code>Version:</code> field. (<em>since 0.46.0</em>) Defaults to the project version if unspecified.</li>
