@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>The Absolute Beginner's Guide to Installing and Using Meson</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+			<li>
+				<a href="CMake-module.html">CMake</a>
+			</li>
+					<li>
+				<a href="Cuda-module.html">CUDA</a>
+			</li>
+					<li>
+				<a href="Dlang-module.html">Dlang</a>
+			</li>
+					<li>
+				<a href="Fs-module.html">Filesystem</a>
+			</li>
+					<li>
+				<a href="Gnome-module.html">GNOME</a>
+			</li>
+					<li>
+				<a href="Hotdoc-module.html">Hotdoc</a>
+			</li>
+					<li>
+				<a href="i18n-module.html">i18n</a>
+			</li>
+					<li>
+				<a href="Icestorm-module.html">Icestorm</a>
+			</li>
+					<li>
+				<a href="Keyval-module.html">Keyval</a>
+			</li>
+					<li>
+				<a href="Pkgconfig-module.html">Pkgconfig</a>
+			</li>
+					<li>
+				<a href="Python-module.html">Python</a>
+			</li>
+					<li>
+				<a href="Python-3-module.html">Python 3</a>
+			</li>
+					<li>
+				<a href="Qt4-module.html">Qt4</a>
+			</li>
+					<li>
+				<a href="Qt5-module.html">Qt5</a>
+			</li>
+					<li>
+				<a href="RPM-module.html">RPM</a>
+			</li>
+					<li>
+				<a href="SourceSet-module.html">SourceSet</a>
+			</li>
+					<li>
+				<a href="Windows-module.html">Windows</a>
+			</li>
+			</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="SimpleStart.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="the-absolute-beginners-guide-to-installing-and-using-meson">The Absolute Beginner's Guide to Installing and Using Meson</h1>
+<p>This page is meant for people who are new to using Meson and possibly
+even to compiling C and/or C++ code in general. It is meant to contain
+one simple way of getting your build environment up and running. If
+you are more experienced and have your own preferred way of installing
+and using development software, feel free to use that instead. This
+guide only deals with Linux, Windows and macOS platforms. If you use
+some other platform, such as one of the BSDs, you probably already
+know how to install development tools on it (probably better than we
+do, even).</p>
+<p>There are three phases to getting a development environment running.</p>
+<ol>
+<li>Installing a compiler toolchain</li>
+<li>Installing Meson</li>
+<li>Creating a project and building it</li>
+</ol>
+<h2 id="installing-a-compiler-toolchain">Installing a compiler toolchain</h2>
+<h3 id="linux">Linux</h3>
+<p>All Linux distributions provide easy access to development tools.
+Typically you need to open a terminal and execute one command, which
+depends on your distro.</p>
+<ul>
+<li>Debian, Ubuntu and derivatives: <code>sudo apt install build-essential</code>
+</li>
+<li>Fedora, Centos, RHEL and derivatives: <code>sudo dnf install gcc-c++</code>
+</li>
+<li>Arch: <code>sudo pacman -S gcc</code>
+</li>
+</ul>
+<h3 id="windows">Windows</h3>
+<p>The most common development toolchain on Windows is Visual Studio,
+which can be downloaded from <a href="https://visualstudio.microsoft.com/">the Visual Studio web
+site</a>. Select the Community
+version unless you have bought a license.</p>
+<p><img src="images/win_dlvs.png" alt="Download page of Visual Studio" id="download-page-of-visual-studio"></p>
+<p>Download the installer and run it. When you are given a list of things
+to install, select <em>Desktop development with C++</em>. This installs both
+a C and a C++ compiler.</p>
+<p><img src="images/win_installvs.png" alt="Installing the Visual Studio compilers" id="installing-the-visual-studio-compilers"></p>
+<p>Once the installer finishes the compiler toolchain is ready to use.</p>
+<h3 id="macos">macOS</h3>
+<p>On macOS the development toolchain must be installed via the Mac app
+store. Search for an app called XCode and install it.</p>
+<p><img src="images/osx_xcode.png" alt="App store page for XCode" id="app-store-page-for-xcode"></p>
+<p><em>Note:</em> Installing XCode is not sufficient by itself. You also need to
+start XCode' GUI application once. This will make XCode download and
+install more files that are needed for compilation.</p>
+<h2 id="installing-meson">Installing Meson</h2>
+<h3 id="linux1">Linux</h3>
+<p>Installing Meson is just as simple as installing the compiler toolchain.</p>
+<ul>
+<li>Debian, Ubuntu and derivatives: <code>sudo apt install meson ninja-build</code>
+</li>
+<li>Fedora, Centos, RHEL and derivatives: <code>sudo dnf install meson ninja-build</code>
+</li>
+<li>Arch: <code>sudo pacman -S meson</code>
+</li>
+</ul>
+<h3 id="windows1">Windows</h3>
+<p>Meson provides a standard Windows <code>.msi</code> installer that can be
+downloaded from <a href="https://github.com/mesonbuild/meson/releases">the Releases
+page</a>.</p>
+<p><img src="images/win_downloadmeson.png" alt="Meson installed download" id="meson-installed-download"></p>
+<p>Download and run it to install all the necessary bits. You can verify
+that your installation is working by running the Visual Studio
+developer tools command prompt that can be found in the start menu.</p>
+<p><img src="images/win_vstoolsprompt.png" alt="Devtool prompt" id="devtool-prompt"></p>
+<p>You should be able to run both <code>meson</code> and <code>ninja</code> and query their
+versions.</p>
+<p><img src="images/win_working.png" alt="A working Windows install" id="a-working-windows-install"></p>
+<h3 id="macos1">macOS</h3>
+<p>Due to the way Apple has set things up, getting macOS working is a bit
+more complicated. The first thing you need to do is to install the
+newest version of Python 3 <a href="https://www.python.org/downloads/mac-osx/">from the project's web
+site</a>.</p>
+<p><img src="images/osx_download.png" alt="Downloading the Python for macOS installer" id="downloading-the-python-for-macos-installer"></p>
+<p>Once you have a working Python you can install the necessary bits
+using Python's Pip package manager.</p>
+<pre><code>pip install --user meson ninja
+</code></pre>
+<p>This will install the necessary files in your home directory, but
+sadly they are not directly usable. You need to add the directory they
+are written to in the system's <code>PATH</code> environment variable so the
+programs can be used directly from the terminal. This requires editing
+a text configuration file.</p>
+<p>The correct file to edit depends on which shell you are currently
+using. If you have an old macOS install it is probably Bash and the
+file you need to edit is <code>.bash_profile</code>. If, on the other hand, you
+have a new macOS install then you are probably using Zsh and the file
+to edit is <code>.zshrc</code>. In either case the file should be in your home
+directory.</p>
+<p>For Bash the line you need to add is this:</p>
+<pre><code>PATH=$PATH:/Users/username/Library/Python/3.9/bin
+</code></pre>
+<p>whereas for Zsh it is this:</p>
+<pre><code>export PATH=$PATH:/Users/username/Library/Python/3.9/bin
+</code></pre>
+<p>In both case you need to change the values for <code>username</code> and <code>3.9</code>.
+The former needs to be substituted with your Unix username while the
+latter needs to contain the actual Python version you installed.</p>
+<p>Once this is done close the terminal application and start it again.
+Now you should be able to run the <code>meson</code> command.</p>
+<p><img src="images/osx_working.png" alt="A working macOS install" id="a-working-macos-install"></p>
+<h2 id="running-meson">Running Meson</h2>
+<p>Start a terminal application. On Windows you have to use the Visual
+Studio Developer Tools Command Prompt as discussed above, because the
+compilers are only available in that terminal. You also need to change
+into your home directory (Linux and macOS terminals start in the home
+directory by default).</p>
+<pre><code>cd \users\username
+</code></pre>
+<p>Create a new directory to hold your project.</p>
+<pre><code>mkdir testproject
+cd testproject
+</code></pre>
+<p>Use Meson to create and build a new sample project.</p>
+<pre><code>meson init --name testproject --build
+</code></pre>
+<p>This will create a project skeleton for you and compile it. The result
+is put in the <code>build</code> subdirectory and can be run directly from there.</p>
+<pre><code>build/testproject
+</code></pre>
+<p><img src="images/linux_alldone.png" alt="All finished and ready to go" id="all-finished-and-ready-to-go"></p>
+<p>The project is now ready for development. You can edit the code with
+any editor and it is rebuilt by going in the <code>build</code> subdirectory and
+executing the <code>meson compile</code> command.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/builddir/markdown/SimpleStart.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
