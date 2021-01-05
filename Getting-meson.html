@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -189,65 +189,71 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="getting-meson">Getting meson</h1>
-<p>Meson is implemented in Python 3, and requires 3.5 or newer. If your operating
-system provides a package manager, you should install it with that. For
-platforms that don't have a package manager, you need to download it from
-<a href="https://www.python.org/downloads/">Python's home page</a>. See below for <a href="Getting-meson.html#platformspecific-install-quirks">platform-specific Python3
-quirks</a>.</p>
+<p>Meson is implemented in Python 3, and requires 3.6 or newer. If your
+operating system provides a package manager, you should install it
+with that. For platforms that don't have a package manager, you need
+to download it from <a href="https://www.python.org/downloads/">Python's home page</a>. See below for
+<a href="Getting-meson.html#platformspecific-install-quirks">platform-specific Python3 quirks</a>.</p>
 <h2 id="downloading-meson">Downloading Meson</h2>
-<p>Meson releases can be downloaded from the <a href="https://github.com/mesonbuild/meson/releases">GitHub release page</a>, and you can
-run <code>./meson.py</code> from inside a release or the git repository itself without
-doing anything special.</p>
-<p>On Windows, if you did not install Python with the installer options that make
-Python scripts executable, you will have to run <code>python /path/to/meson.py</code>,
-where <code>python</code> is Python 3.5 or newer.</p>
-<p>The newest development code can be obtained directly from <a href="https://github.com/mesonbuild/meson">Git</a>, and we strive
-to ensure that it will always be working and usable. All commits go through
-a pull-request process that runs CI and tests several platforms.</p>
+<p>Meson releases can be downloaded from the <a href="https://github.com/mesonbuild/meson/releases">GitHub release page</a>, and
+you can run <code>./meson.py</code> from inside a release or the git repository
+itself without doing anything special.</p>
+<p>On Windows, if you did not install Python with the installer options
+that make Python scripts executable, you will have to run <code>python /path/to/meson.py</code>, where <code>python</code> is Python 3.6 or newer.</p>
+<p>The newest development code can be obtained directly from <a href="https://github.com/mesonbuild/meson">Git</a>, and
+we strive to ensure that it will always be working and usable. All
+commits go through a pull-request process that runs CI and tests
+several platforms.</p>
 <h2 id="installing-meson-with-pip">Installing Meson with pip</h2>
-<p>Meson is available in the <a href="https://pypi.python.org/pypi/meson/">Python Package Index</a> and can be installed with
-<code>sudo pip3 install meson</code> which requires root and will install it system-wide.</p>
-<p>If you have downloaded a copy of the meson sources already, you can install it
-with <code>sudo pip3 install path/to/source/root/</code>.</p>
-<p>Alternatively, you can use <code>pip3 install --user meson</code> which will install it
-for your user and does not require any special privileges. This will install
-the package in <code>~/.local/</code>, so you will have to add <code>~/.local/bin</code> to your
-<code>PATH</code>, and <code>sudo meson install</code> will be completely broken since the
-program will not be available to root. Only use a user copy of meson if you
-do not care about installing projects as root.</p>
+<p>Meson is available in the <a href="https://pypi.python.org/pypi/meson/">Python Package Index</a> and can be installed
+with <code>sudo pip3 install meson</code> which requires root and will install it
+system-wide.</p>
+<p>If you have downloaded a copy of the meson sources already, you can
+install it with <code>sudo pip3 install path/to/source/root/</code>.</p>
+<p>Alternatively, you can use <code>pip3 install --user meson</code> which will
+install it for your user and does not require any special
+privileges. This will install the package in <code>~/.local/</code>, so you will
+have to add <code>~/.local/bin</code> to your <code>PATH</code>, and <code>sudo meson install</code>
+will be completely broken since the program will not be available to
+root. Only use a user copy of meson if you do not care about
+installing projects as root.</p>
 <h2 id="installing-meson-and-ninja-with-the-msi-installer">Installing Meson and Ninja with the MSI installer</h2>
-<p>We provide an MSI installer on the <a href="https://github.com/mesonbuild/meson/releases">GitHub release page</a> that can be used to
-install both Meson and Ninja at once for Windows. It also contains an embedded
-copy of Python, so scripts that use the <a href="Python-module.html">Python module</a> and
-do not have any external dependencies will continue to work as expected.</p>
-<p>Please note that this is a new feature, so bug reports are expected and welcome!</p>
+<p>We provide an MSI installer on the <a href="https://github.com/mesonbuild/meson/releases">GitHub release page</a> that can be
+used to install both Meson and Ninja at once for Windows. It also
+contains an embedded copy of Python, so scripts that use the <a href="Python-module.html">Python
+module</a> and do not have any external dependencies
+will continue to work as expected.</p>
+<p>Please note that this is a new feature, so bug reports are expected
+and welcome!</p>
 <h2 id="dependencies">Dependencies</h2>
-<p>In the most common case, you will need the <a href="https://ninja-build.org/">Ninja executable</a> for using the
-<code>ninja</code> backend, which is the default in Meson. This backend can be used on all
-platforms and with all toolchains, including GCC, Clang, Visual Studio, MinGW,
-ICC, ARMCC, etc.</p>
-<p>You can use the version provided by your package manager if possible, otherwise
-download the binary executable from the <a href="https://github.com/ninja-build/ninja/releases">Ninja project's release
-page</a>.</p>
-<p>If you will only use the Visual Studio backend (<code>--backend=vs</code>) to generate
-Visual Studio solutions on Windows or the XCode backend (<code>--backend=xcode</code>) to
-generate XCode projects on macOS, you do not need Ninja.</p>
+<p>In the most common case, you will need the <a href="https://ninja-build.org/">Ninja executable</a> for
+using the <code>ninja</code> backend, which is the default in Meson. This backend
+can be used on all platforms and with all toolchains, including GCC,
+Clang, Visual Studio, MinGW, ICC, ARMCC, etc.</p>
+<p>You can use the version provided by your package manager if possible,
+otherwise download the binary executable from the <a href="https://github.com/ninja-build/ninja/releases">Ninja project's
+release page</a>.</p>
+<p>If you will only use the Visual Studio backend (<code>--backend=vs</code>) to
+generate Visual Studio solutions on Windows or the XCode backend
+(<code>--backend=xcode</code>) to generate XCode projects on macOS, you do not
+need Ninja.</p>
 <h1 id="platformspecific-install-quirks">Platform-specific install quirks</h1>
 <h2 id="windows-python3-quirks">Windows Python3 quirks</h2>
-<p>When installing Python 3, it is highly recommended (but not required) that you
-select the installer options as follows:</p>
+<p>When installing Python 3, it is highly recommended (but not required)
+that you select the installer options as follows:</p>
 <p><img src="images/py3-install-1.png" alt="installer step 1" title="Enable 'Add Python 3.6 to PATH' and click 'Customize installation'" id="installer-step-1">
 <img src="images/py3-install-2.png" alt="installer step 2" title="Optional Features: ensure 'pip' is enabled" id="installer-step-2">
 <img src="images/py3-install-3.png" alt="installer step 3" title="Advanced Options: enable 'Install for all users'" id="installer-step-3"></p>
-<p>With this, you will have <code>python</code> and <code>pip</code> in <code>PATH</code>, and you can install
-Meson with pip. You will also be able to directly run <code>meson</code> in any shell on
-Windows instead of having to run <code>py -3</code> with the full path to the <code>meson.py</code>
-script.</p>
+<p>With this, you will have <code>python</code> and <code>pip</code> in <code>PATH</code>, and you can
+install Meson with pip. You will also be able to directly run <code>meson</code>
+in any shell on Windows instead of having to run <code>py -3</code> with the full
+path to the <code>meson.py</code> script.</p>
 <h2 id="msys2-python3-quirks">MSYS2 Python3 quirks</h2>
-<p>If you are using MSYS2 on Windows as your development environment, please make
-sure that you <strong>do not use</strong> the <code>msys/python</code> package to provide Python 3. Use
-either <code>mingw32/mingw-w64-i686-python3</code> or <code>mingw64/mingw-w64-x86_64-python3</code>
-depending on which MinGW target you are building for.</p>
+<p>If you are using MSYS2 on Windows as your development environment,
+please make sure that you <strong>do not use</strong> the <code>msys/python</code> package to
+provide Python 3. Use either <code>mingw32/mingw-w64-i686-python3</code> or
+<code>mingw64/mingw-w64-x86_64-python3</code> depending on which MinGW target you
+are building for.</p>
 
     </div>
         
