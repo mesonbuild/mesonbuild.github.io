@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -90,58 +90,61 @@ $('body').removeClass('no-script');
     Modules <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" id="modules-menu">
-			<li>
-				<a href="CMake-module.html">CMake</a>
-			</li>
-					<li>
-				<a href="Cuda-module.html">CUDA</a>
-			</li>
-					<li>
-				<a href="Dlang-module.html">Dlang</a>
-			</li>
-					<li>
-				<a href="Fs-module.html">Filesystem</a>
-			</li>
-					<li>
-				<a href="Gnome-module.html">GNOME</a>
-			</li>
-					<li>
-				<a href="Hotdoc-module.html">Hotdoc</a>
-			</li>
-					<li>
-				<a href="i18n-module.html">i18n</a>
-			</li>
-					<li>
-				<a href="Icestorm-module.html">Icestorm</a>
-			</li>
-					<li>
-				<a href="Keyval-module.html">Keyval</a>
-			</li>
-					<li>
-				<a href="Pkgconfig-module.html">Pkgconfig</a>
-			</li>
-					<li>
-				<a href="Python-module.html">Python</a>
-			</li>
-					<li>
-				<a href="Python-3-module.html">Python 3</a>
-			</li>
-					<li>
-				<a href="Qt4-module.html">Qt4</a>
-			</li>
-					<li>
-				<a href="Qt5-module.html">Qt5</a>
-			</li>
-					<li>
-				<a href="RPM-module.html">RPM</a>
-			</li>
-					<li>
-				<a href="SourceSet-module.html">SourceSet</a>
-			</li>
-					<li>
-				<a href="Windows-module.html">Windows</a>
-			</li>
-			</ul>
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+	</ul>
 </li>
 <li class="dropdown">
 	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -200,7 +203,7 @@ The most common workflow is to run <a href="Commands.html#setup"><code>setup</co
 <p>For the full list of all available options for a specific command use the following syntax:
 <code>meson COMMAND --help</code></p>
 <h3 id="configure">configure</h3>
-<pre><code>$ meson configure [-h] [--prefix PREFIX] [--bindir BINDIR]
+<pre><code class="language-inc">$ meson configure [-h] [--prefix PREFIX] [--bindir BINDIR]
                   [--datadir DATADIR] [--includedir INCLUDEDIR]
                   [--infodir INFODIR] [--libdir LIBDIR]
                   [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
@@ -226,7 +229,7 @@ The most common workflow is to run <a href="Commands.html#setup"><code>setup</co
                   [builddir]
 </code></pre>
 <p>Changes options of a configured meson project.</p>
-<pre><code>positional arguments:
+<pre><code class="language-inc">positional arguments:
   builddir
 
 optional arguments:
@@ -305,13 +308,13 @@ optional arguments:
 </code></pre>
 <h3 id="compile">compile</h3>
 <p><em>(since 0.54.0)</em></p>
-<pre><code>$ meson compile [-h] [--clean] [-C BUILDDIR] [-j JOBS] [-l LOAD_AVERAGE]
+<pre><code class="language-inc">$ meson compile [-h] [--clean] [-C BUILDDIR] [-j JOBS] [-l LOAD_AVERAGE]
                 [-v] [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
                 [--xcode-args XCODE_ARGS]
                 [TARGET ...]
 </code></pre>
 <p>Builds a default or a specified target of a configured meson project.</p>
-<pre><code>positional arguments:
+<pre><code class="language-inc">positional arguments:
   TARGET                                Targets to build. Target has the
                                         following format: [PATH_TO_TARGET/]TARGE
                                         T_NAME[:TARGET_TYPE].
@@ -373,11 +376,11 @@ optional arguments:
 </code></pre>
 <h3 id="dist">dist</h3>
 <p><em>(since 0.52.0)</em></p>
-<pre><code>$ meson dist [-h] [-C WD] [--formats {gztar,xztar,zip}]
+<pre><code class="language-inc">$ meson dist [-h] [-C WD] [--formats {gztar,xztar,zip}]
              [--include-subprojects] [--no-tests]
 </code></pre>
 <p>Generates a release archive from the current source tree.</p>
-<pre><code>optional arguments:
+<pre><code class="language-inc">optional arguments:
   -h, --help                   show this help message and exit
   -C WD                        directory to cd into before running
   --formats {gztar,xztar,zip}  Comma separated list of archive types to create.
@@ -392,14 +395,14 @@ optional arguments:
 </code></pre>
 <h3 id="init">init</h3>
 <p><em>(since 0.45.0)</em></p>
-<pre><code>$ meson init [-h] [-C WD] [-n NAME] [-e EXECUTABLE] [-d DEPS]
+<pre><code class="language-inc">$ meson init [-h] [-C WD] [-n NAME] [-e EXECUTABLE] [-d DEPS]
              [-l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust}] [-b]
              [--builddir BUILDDIR] [-f] [--type {executable,library}]
              [--version VERSION]
              [sourcefile ...]
 </code></pre>
 <p>Creates a basic set of build files based on a template.</p>
-<pre><code>positional arguments:
+<pre><code class="language-inc">positional arguments:
   sourcefile                            source files. default: all recognized
                                         files in current directory
 
@@ -427,7 +430,7 @@ optional arguments:
 <pre><code>meson init -C sourcedir
 </code></pre>
 <h3 id="introspect">introspect</h3>
-<pre><code>$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
+<pre><code class="language-inc">$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
                    [--buildsystem-files] [--dependencies]
                    [--scan-dependencies] [--installed] [--projectinfo]
                    [--targets] [--tests]
@@ -436,7 +439,7 @@ optional arguments:
                    [builddir]
 </code></pre>
 <p>Displays information about a configured meson project.</p>
-<pre><code>positional arguments:
+<pre><code class="language-inc">positional arguments:
   builddir                              The build directory
 
 optional arguments:
@@ -469,10 +472,10 @@ optional arguments:
 </code></pre>
 <h3 id="install">install</h3>
 <p><em>(since 0.47.0)</em></p>
-<pre><code>$ meson install [-h] [-C WD] [--no-rebuild] [--only-changed] [--quiet]
+<pre><code class="language-inc">$ meson install [-h] [-C WD] [--no-rebuild] [--only-changed] [--quiet]
 </code></pre>
 <p>Installs the project to the prefix specified in <a href="Commands.html#setup"><code>setup</code></a>.</p>
-<pre><code>optional arguments:
+<pre><code class="language-inc">optional arguments:
   -h, --help      show this help message and exit
   -C WD           directory to cd into before running
   --no-rebuild    Do not rebuild before installing.
@@ -489,11 +492,11 @@ optional arguments:
 </code></pre>
 <h3 id="rewrite">rewrite</h3>
 <p><em>(since 0.50.0)</em></p>
-<pre><code>$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
+<pre><code class="language-inc">$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
                 {target,kwargs,default-options,command} ...
 </code></pre>
 <p>Modifies the meson project.</p>
-<pre><code>optional arguments:
+<pre><code class="language-inc">optional arguments:
   -h, --help                            show this help message and exit
   -s SRCDIR, --sourcedir SRCDIR         Path to source directory.
   -V, --verbose                         Enable verbose output
@@ -510,7 +513,7 @@ Rewriter commands:
 </code></pre>
 <p>See <a href="Rewriter.html">the meson file rewriter documentation</a> for more info.</p>
 <h3 id="setup">setup</h3>
-<pre><code>$ meson setup [-h] [--prefix PREFIX] [--bindir BINDIR] [--datadir DATADIR]
+<pre><code class="language-inc">$ meson setup [-h] [--prefix PREFIX] [--bindir BINDIR] [--datadir DATADIR]
               [--includedir INCLUDEDIR] [--infodir INFODIR]
               [--libdir LIBDIR] [--libexecdir LIBEXECDIR]
               [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
@@ -537,7 +540,7 @@ Rewriter commands:
 </code></pre>
 <p>Configures a build directory for the meson project.</p>
 <p>This is the default meson command (invoked if there was no COMMAND supplied).</p>
-<pre><code>positional arguments:
+<pre><code class="language-inc">positional arguments:
   builddir
   sourcedir
 
@@ -626,10 +629,10 @@ optional arguments:
 </code></pre>
 <h3 id="subprojects">subprojects</h3>
 <p><em>(since 0.49.0)</em></p>
-<pre><code>$ meson subprojects [-h] {update,checkout,download,foreach} ...
+<pre><code class="language-inc">$ meson subprojects [-h] {update,checkout,download,foreach} ...
 </code></pre>
 <p>Manages subprojects of the meson project.</p>
-<pre><code>optional arguments:
+<pre><code class="language-inc">optional arguments:
   -h, --help                          show this help message and exit
 
 Commands:
@@ -645,7 +648,7 @@ Commands:
                                       directory.
 </code></pre>
 <h3 id="test">test</h3>
-<pre><code>$ meson test [-h] [--repeat REPEAT] [--no-rebuild] [--gdb]
+<pre><code class="language-inc">$ meson test [-h] [--repeat REPEAT] [--no-rebuild] [--gdb]
              [--gdb-path GDB_PATH] [--list] [--wrapper WRAPPER] [-C WD]
              [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
              [--print-errorlogs] [--benchmark] [--logbase LOGBASE]
@@ -655,7 +658,7 @@ Commands:
              [args ...]
 </code></pre>
 <p>Run tests for the configure meson project.</p>
-<pre><code>positional arguments:
+<pre><code class="language-inc">positional arguments:
   args                                  Optional list of test names to run.
                                         "testname" to run all tests with that
                                         name, "subprojname:testname" to
@@ -703,10 +706,10 @@ optional arguments:
 <pre><code>meson test -C builddir specific_test_1 specific_test_2
 </code></pre>
 <h3 id="wrap">wrap</h3>
-<pre><code>$ meson wrap [-h] {list,search,install,update,info,status,promote} ...
+<pre><code class="language-inc">$ meson wrap [-h] {list,search,install,update,info,status,promote} ...
 </code></pre>
 <p>An utility to manage WrapDB dependencies.</p>
-<pre><code>optional arguments:
+<pre><code class="language-inc">optional arguments:
   -h, --help                            show this help message and exit
 
 Commands:
@@ -751,7 +754,7 @@ Commands:
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson/edit/master/docs/builddir/markdown/Commands.md" data-hotdoc-role="edit-button">Edit on github</a>
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Commands.md" data-hotdoc-role="edit-button">Edit on github</a>
 
 	</div>
 		<div id="toc-wrapper">
