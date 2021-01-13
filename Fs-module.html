@@ -233,7 +233,7 @@ fs.is_absolute('foo/bar')  # false, even if ./foo/bar exists
 </code></pre>
 <h3 id="hash">hash</h3>
 <p>The <code>fs.hash(filename, hash_algorithm)</code> method returns a string containing
-the hexidecimal <code>hash_algorithm</code> digest of a file.
+the hexadecimal <code>hash_algorithm</code> digest of a file.
 <code>hash_algorithm</code> is a string; the available hash algorithms include:
 md5, sha1, sha224, sha256, sha384, sha512.</p>
 <h3 id="size">size</h3>
@@ -248,7 +248,7 @@ If path1 or path2 do not exist, <code>false</code> is returned.</p>
 <pre><code class="language-meson">x = 'foo.txt'
 y = 'sub/../foo.txt'
 z = 'bar.txt'  # a symlink pointing to foo.txt
-j = 'notafile.txt'  # non-existant file
+j = 'notafile.txt'  # non-existent file
 
 fs.is_samepath(x, y)  # true
 fs.is_samepath(x, z)  # true
@@ -257,7 +257,7 @@ fs.is_samepath(x, j)  # false
 p = 'foo/bar'
 q = 'foo/bar/baz/..'
 r = 'buz'  # a symlink pointing to foo/bar
-s = 'notapath'  # non-existant directory
+s = 'notapath'  # non-existent directory
 
 fs.is_samepath(p, q)  # true
 fs.is_samepath(p, r)  # true

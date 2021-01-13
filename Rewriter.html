@@ -266,6 +266,10 @@ general command for setting or removing kwargs is:</p>
 <li>project (the function ID must be <code>/</code> since project() can only be called once)</li>
 </ul>
 <p>For more information see the help output of the rewrite kwargs command.</p>
+<p>Note msys bash may expand <code>/</code> to a path. Passing <code>//</code> will be converted to
+<code>/</code> by msys bash but in order to keep usage shell-agnostic, the rewrite command
+also allows <code>//</code> as the function ID such that it will work in both msys bash
+and other shells.</p>
 <h3 id="setting-the-project-default-options">Setting the project default options</h3>
 <p>For setting and deleting default options, use the following command:</p>
 <pre><code class="language-bash">meson rewrite default-options {set/delete} &lt;opt1&gt; &lt;value1&gt; &lt;opt2&gt; &lt;value2&gt; ...

@@ -353,13 +353,13 @@ options section.</p>
 section.</p>
 <ul>
 <li>
-<code>cmake_toolchain_file</code> specifies an absoulte path to an already existing
+<code>cmake_toolchain_file</code> specifies an absolute path to an already existing
 CMake toolchain file that will be loaded with <code>include()</code> as the last
 instruction of the automatically generated CMake toolchain file from meson.
 (<em>new in 0.56.0</em>)</li>
 <li>
 <code>cmake_defaults</code> is a boolean that specifies whether meson should automatically
-generate default toolchain varaibles from other sections (<code>binaries</code>,
+generate default toolchain variables from other sections (<code>binaries</code>,
 <code>host_machine</code>, etc.) in the machine file. Defaults are always overwritten
 by variables set in the <code>[cmake]</code> section. The default is <code>true</code>. (<em>new in 0.56.0</em>)</li>
 <li>
@@ -369,7 +369,7 @@ sanity checks. This only has an effect if <code>cmake_defaults</code> is <code>t
 Supported values are <code>always</code>, <code>never</code>, <code>dep_only</code>. The default is <code>dep_only</code>.
 (<em>new in 0.56.0</em>)</li>
 <li>
-<code>cmake_use_exe_wrapper</code> is a boolean that controlls whether to use the
+<code>cmake_use_exe_wrapper</code> is a boolean that controls whether to use the
 <code>exe_wrapper</code> specified in <code>[binaries]</code> to run generated executables in CMake
 subprojects. This setting has no effect if the <code>exe_wrapper</code> was not specified.
 The default value is <code>true</code>. (<em>new in 0.56.0</em>)</li>
@@ -379,7 +379,7 @@ The default value is <code>true</code>. (<em>new in 0.56.0</em>)</li>
 <p>All variables set in the <code>[cmake]</code> section will be added to the generate CMake
 toolchain file used for both CMake dependencies and CMake subprojects. The type
 of each entry must be either a string or a list of strings.</p>
-<p><strong>Note:</strong> All occurances of <code>\</code> in the value of all keys will be replaced with
+<p><strong>Note:</strong> All occurrences of <code>\</code> in the value of all keys will be replaced with
 a <code>/</code> since CMake has a lot of issues with correctly escaping <code>\</code> when
 dealing with variables (even in cases where a path in <code>CMAKE_C_COMPILER</code>
 is correctly escaped, CMake will still trip up internaly for instance)</p>

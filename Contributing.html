@@ -390,8 +390,14 @@ are independent of each other and can be combined as needed.</p>
 </code></pre>
 <h4 id="env">env</h4>
 <p>The <code>env</code> key contains a dictionary which specifies additional
-environment variables to be set during the configure step of the test. <code>@ROOT@</code>
-is replaced with the absolute path of the source directory.</p>
+environment variables to be set during the configure step of the test.</p>
+<p>There is some basic support for configuring the string with the <code>@&lt;VAR&gt;@</code> syntax:</p>
+<ul>
+<li>
+<code>@ROOT@</code>: absolute path of the source directory</li>
+<li>
+<code>@PATH@</code>: current value of the <code>PATH</code> env variable</li>
+</ul>
 <h4 id="installed">installed</h4>
 <p>The <code>installed</code> dict contains a list of dicts, describing which files are expected
 to be installed. Each dict contains the following keys:</p>
@@ -494,7 +500,7 @@ current platform. The following values are currently supported:</p>
   "type": "shared_lib", "file": "usr/lib/lib", "version": "1.2.3.",
 }
 </code></pre>
-<p>This will be applied appropriatly per platform. On windows this expects <code>lib.dll</code> and <code>lib-1.dll</code>. on MacOS it expects <code>liblib.dylib</code> and <code>liblib.1.dylib</code>. On other Unices it expects <code>liblib.so</code>, <code>liblib.so.1</code>, and <code>liblib.so.1.2.3</code>.</p>
+<p>This will be applied appropriately per platform. On windows this expects <code>lib.dll</code> and <code>lib-1.dll</code>. on MacOS it expects <code>liblib.dylib</code> and <code>liblib.1.dylib</code>. On other Unices it expects <code>liblib.so</code>, <code>liblib.so.1</code>, and <code>liblib.so.1.2.3</code>.</p>
 <p>If the <code>platform</code> key is present, the installed file entry is only considered if
 the platform matches. The following values for <code>platform</code> are currently supported:</p>
 <table>
