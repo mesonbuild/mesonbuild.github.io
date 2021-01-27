@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -584,6 +584,43 @@ look like this:</p>
 <pre><code>meson -Dcpp_eh=none -Dcpp_rtti=false &lt;other options&gt;
 </code></pre>
 <p>The RTTI option is only available since Meson version 0.53.0.</p>
+<h2 id="should-i-check-for-buildtype-or-individual-options-like-debug-in-my-build-files">Should I check for <code>buildtype</code> or individual options like <code>debug</code> in my build files?</h2>
+<p>This depends highly on what you actually need to happen. The
+´buildtype` option is meant do describe the current build's
+<em>intent</em>. That is, what it will be used for. Individual options are
+for determining what the exact state is. This becomes clearer with a
+few examples.</p>
+<p>Suppose you have a source file that is known to miscompile when using
+<code>-O3</code> and requires a workaround. Then you'd write something like this:</p>
+<pre><code class="language-meson">if get_option('optimization') == '3'
+    add_project_arguments('-DOPTIMIZATION_WORKAROUND', ...)
+endif
+</code></pre>
+<p>On the other hand if your project has extra logging and sanity checks
+that you would like to be enabled during the day to day development
+work (which uses the <code>debug</code> buildtype), you'd do this instead:</p>
+<pre><code class="language-meson">if get_option('buildtype') == 'debug'
+    add_project_arguments('-DENABLE_EXTRA_CHECKS', ...)
+endif
+</code></pre>
+<p>In this way the extra options are automatically used during
+development but are not compiled in release builds. Note that (since
+Meson 0.57.0) you can set optimization to, say, 2 in your debug builds
+if you want to. If you tried to set this flag based on optimization
+level, it would fail in this case.</p>
+<h2 id="how-do-i-use-a-library-before-declaring-it">How do I use a library before declaring it?</h2>
+<p>This is valid (and good) code:</p>
+<pre><code>libA = library('libA', 'fileA.cpp', link_with : [])
+libB = library('libB', 'fileB.cpp', link_with : [libA])
+</code></pre>
+<p>But there is currently no way to get something like this to work:</p>
+<pre><code>libB = library('libB', 'fileB.cpp', link_with : [libA])
+libA = library('libA', 'fileA.cpp', link_with : [])
+</code></pre>
+<p>This means that you HAVE to write your <code>library(...)</code> calls in the order that the
+dependencies flow. While ideas to make arbitrary orders possible exist, they were
+rejected because reordering the <code>library(...)</code> calls was considered the "proper"
+way. See <a href="https://github.com/mesonbuild/meson/issues/8178">here</a> for the discussion.</p>
 
     </div>
         

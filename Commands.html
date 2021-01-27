@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -219,7 +219,7 @@ The most common workflow is to run <a href="Commands.html#setup"><code>setup</co
                   [--stdsplit] [--strip] [--unity {on,off,subprojects}]
                   [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}]
                   [--werror]
-                  [--wrap-mode {default,nofallback,nodownload,forcefallback}]
+                  [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR]
                   [--pkg-config-path PKG_CONFIG_PATH]
                   [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
@@ -272,7 +272,7 @@ optional arguments:
   --warnlevel {0,1,2,3}                 Compiler warning level to use (default:
                                         1).
   --werror                              Treat warnings as errors
-  --wrap-mode {default,nofallback,nodownload,forcefallback}
+  --wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}
                                         Wrap mode (default: default).
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
@@ -527,7 +527,7 @@ Rewriter commands:
               [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
               [--stdsplit] [--strip] [--unity {on,off,subprojects}]
               [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}] [--werror]
-              [--wrap-mode {default,nofallback,nodownload,forcefallback}]
+              [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR]
               [--pkg-config-path PKG_CONFIG_PATH]
               [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
@@ -584,7 +584,7 @@ optional arguments:
   --warnlevel {0,1,2,3}                 Compiler warning level to use (default:
                                         1).
   --werror                              Treat warnings as errors
-  --wrap-mode {default,nofallback,nodownload,forcefallback}
+  --wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}
                                         Wrap mode (default: default).
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
@@ -692,7 +692,8 @@ optional arguments:
                                         Define a multiplier for test timeout,
                                         for example when running tests in
                                         particular conditions they might take
-                                        more time to execute.
+                                        more time to execute. (&lt;= 0 to disable
+                                        timeout)
   --setup SETUP                         Which test setup to use.
   --test-args TEST_ARGS                 Arguments to pass to the specified
                                         test(s) or all tests

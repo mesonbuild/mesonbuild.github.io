@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -229,6 +229,21 @@ tests steps of generated packages. It can be used to not waste time
 for example when done in CI that already does its own testing.</p>
 <p>So with <code>--no-tests</code> you can tell Meson "Do not build and test generated
 packages.".</p>
+<h2 id="release-a-subproject-separately">Release a subproject separately</h2>
+<p><em>Since 0.57.0</em> the <code>meson dist</code> command can now create a distribution tarball
+for a subproject in the same git repository as the main project. This can be
+useful if parts of the project (e.g. libraries) can be built and distributed
+separately. In that case they can be moved into <code>subprojects/mysub</code> and running
+<code>meson dist</code> in that directory will now create a tarball containing only the
+source code from that subdir and not the rest of the main project or other
+subprojects.</p>
+<p>For example:</p>
+<pre><code class="language-sh">git clone https://github.com/myproject
+cd myproject/subprojects/mysubproject
+meson builddir
+meson dist -C builddir
+</code></pre>
+<p>This produces <code>builddir/meson-dist/mysubproject-1.0.tar.xz</code> tarball.</p>
 
     </div>
         
