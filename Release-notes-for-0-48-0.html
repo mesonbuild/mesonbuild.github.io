@@ -197,8 +197,8 @@ $('body').removeClass('no-script');
 use, such as <em>debug</em> and <em>minsize</em>. There is also a <em>plain</em> type that
 adds nothing by default but instead makes it the user's responsibility
 to add everything by hand. This works but is a bit tedious.</p>
-<p>In this release we have added new new options to manually toggle
-e.g. optimization levels and debug info so those can be changed
+<p>In this release we have added new new options to manually toggle e.g.
+optimization levels and debug info so those can be changed
 independently of other options. For example by default the debug
 buildtype has no optmization enabled at all. If you wish to use GCC's
 <code>-Og</code> instead, you could set it with the following command:</p>
@@ -209,9 +209,10 @@ Visual Studio C runtime to use. By default it uses the debug runtime
 DLL debug builds and release DLL for release builds but this can be
 manually changed with the new base option <code>b_vscrt</code>.</p>
 <h2 id="meson-warns-if-two-calls-to-configure_file-write-to-the-same-file">Meson warns if two calls to <code>configure_file()</code> write to the same file</h2>
-<p>If two calls to <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>
-write to the same file Meson will print a <code>WARNING:</code> message during
-configuration. For example:</p>
+<p>If two calls to
+<a href="Reference-manual.html#configure_file"><code>configure_file()</code></a> write to the
+same file Meson will print a <code>WARNING:</code> message during configuration.
+For example:</p>
 <pre><code class="language-meson">project('configure_file', 'cpp')
 
 configure_file(
@@ -255,16 +256,16 @@ that take a long time to exeute. Without setting this, the user does
 not receive any feedback about what the program is doing.</p>
 <h2 id="dependencyversion-now-applies-to-all-dependency-types">
 <code>dependency(version:)</code> now applies to all dependency types</h2>
-<p>Previously, version constraints were only enforced for dependencies found using
-the pkg-config dependency provider.  These constraints now apply to dependencies
-found using any dependency provider.</p>
-<p>Some combinations of dependency, host and method do not currently support
-discovery of the version.  In these cases, the dependency will not be found if a
-version constraint is applied, otherwise the <code>version()</code> method for the
-dependency object will return <code>'unknown'</code>.</p>
-<p>(If discovering the version in one of these combinations is important to you,
-and a method exists to determine the version in that case, please file an issue
-with as much information as possible.)</p>
+<p>Previously, version constraints were only enforced for dependencies
+found using the pkg-config dependency provider. These constraints now
+apply to dependencies found using any dependency provider.</p>
+<p>Some combinations of dependency, host and method do not currently
+support discovery of the version. In these cases, the dependency will
+not be found if a version constraint is applied, otherwise the
+<code>version()</code> method for the dependency object will return <code>'unknown'</code>.</p>
+<p>(If discovering the version in one of these combinations is important
+to you, and a method exists to determine the version in that case,
+please file an issue with as much information as possible.)</p>
 <h2 id="python3-module-is-deprecated">python3 module is deprecated</h2>
 <p>A generic module <code>python</code> has been added in Meson <code>0.46.0</code> and has a superset of
 the features implemented by the previous <code>python3</code> module.</p>
@@ -293,16 +294,16 @@ target. An example usage would go like this:</p>
 meson.add_dist_script('dist_cleanup.py')
 </code></pre>
 <h2 id="fatal-warnings">Fatal warnings</h2>
-<p>A new command line option has been added: <code>--fatal-meson-warnings</code>. When enabled, any
-warning message printed by Meson will be fatal and raise an exception. It is
-intended to be used by developers and CIs to easily catch deprecation warnings,
-or any other potential issues.</p>
+<p>A new command line option has been added: <code>--fatal-meson-warnings</code>.
+When enabled, any warning message printed by Meson will be fatal and
+raise an exception. It is intended to be used by developers and CIs to
+easily catch deprecation warnings, or any other potential issues.</p>
 <h2 id="helper-methods-added-for-checking-gnu-style-attributes-__attribute__">Helper methods added for checking GNU style attributes: <code>__attribute__(...)</code>
 </h2>
-<p>A set of new helpers have been added to the C and C++ compiler objects for
-checking GNU style function attributes. These are not just simpler to use, they
-may be optimized to return fast on compilers that don't support these
-attributes. Currently this is true for MSVC.</p>
+<p>A set of new helpers have been added to the C and C++ compiler objects
+for checking GNU style function attributes. These are not just simpler
+to use, they may be optimized to return fast on compilers that don't
+support these attributes. Currently this is true for MSVC.</p>
 <pre><code class="language-meson">cc = meson.get_compiler('c')
 if cc.has_function_attribute('aligned')
    add_project_arguments('-DHAVE_ALIGNED', language : 'c')
@@ -320,10 +321,11 @@ endforeach
 </code></pre>
 <h2 id="gnomegenerate_gir-now-optionally-accepts-multiple-libraries">
 <code>gnome.generate_gir()</code> now optionally accepts multiple libraries</h2>
-<p>The GNOME module can now generate a single gir for multiple libraries, which
-is something <code>g-ir-scanner</code> supported, but had not been exposed yet.</p>
-<p>gnome.generate_gir() will now accept multiple positional arguments, if none
-of these arguments are an <code>Executable</code> instance.</p>
+<p>The GNOME module can now generate a single gir for multiple libraries,
+which is something <code>g-ir-scanner</code> supported, but had not been exposed
+yet.</p>
+<p>gnome.generate_gir() will now accept multiple positional arguments, if
+none of these arguments are an <code>Executable</code> instance.</p>
 <h2 id="hotdoc-module">Hotdoc module</h2>
 <p>A new module has been written to ease generation of
 <a href="https://hotdoc.github.io/">hotdoc</a> based documentation. It supports
@@ -372,11 +374,12 @@ add_project_arguments(..., native : true)
 # Added only to cross compilations, not used in native compilations.
 add_project_arguments(..., native : false)
 </code></pre>
-<p>Also remember that cross compilation is a property of each
-target. There can be target that are compiled with the native compiler
-and some which are compiled with the cross compiler.</p>
+<p>Also remember that cross compilation is a property of each target.
+There can be target that are compiled with the native compiler and
+some which are compiled with the cross compiler.</p>
 <p>Unfortunately this change is backwards incompatible and may cause some
-projects to fail building. However this should be very rare in practice.</p>
+projects to fail building. However this should be very rare in
+practice.</p>
 <h2 id="more-flexible-override_find_program">More flexible <code>override_find_program()</code>.</h2>
 <p>It is now possible to pass an <code>executable</code> to
 <code>override_find_program()</code> if the overridden program is not used during
@@ -388,20 +391,23 @@ that also provide a tool like protoc.</p>
 <p>Now, by default <code>shared_library()</code> sets <code>-compatibility_version</code> and
 <code>-current_version</code> of a macOS dylib using the <code>soversion</code>.</p>
 <p>This can be overridden by using the <code>darwin_versions:</code> kwarg to
-<a href="Reference-manual.html#shared_library"><code>shared_library()</code></a>. As usual, you can
-also pass this kwarg to <code>library()</code> or <code>build_target()</code> and it will be used in
-the appropriate circumstances.</p>
+<a href="Reference-manual.html#shared_library"><code>shared_library()</code></a>. As usual,
+you can also pass this kwarg to <code>library()</code> or <code>build_target()</code> and it
+will be used in the appropriate circumstances.</p>
 <h2 id="version-comparison">Version comparison</h2>
-<p><code>dependency(version:)</code> and other version constraints now handle versions
-containing non-numeric characters better, comparing versions using the rpmvercmp
-algorithm (as using the <code>pkg-config</code> autoconf macro <code>PKG_CHECK_MODULES</code> does).</p>
-<p>This is a breaking change for exact comparison constraints which rely on the
-previous comparison behaviour of extending the compared versions with <code>'0'</code>
-elements, up to the same length of <code>'.'</code>-separated elements.</p>
-<p>For example, a version of <code>'0.11.0'</code> would previously match a version constraint
-of <code>'==0.11'</code>, but no longer does, being instead considered strictly greater.</p>
-<p>Instead, use a version constraint which exactly compares with the precise
-version required, e.g. <code>'==0.11.0'</code>.</p>
+<p><code>dependency(version:)</code> and other version constraints now handle
+versions containing non-numeric characters better, comparing versions
+using the rpmvercmp algorithm (as using the <code>pkg-config</code> autoconf
+macro <code>PKG_CHECK_MODULES</code> does).</p>
+<p>This is a breaking change for exact comparison constraints which rely
+on the previous comparison behaviour of extending the compared
+versions with <code>'0'</code> elements, up to the same length of <code>'.'</code>-separated
+elements.</p>
+<p>For example, a version of <code>'0.11.0'</code> would previously match a version
+constraint of <code>'==0.11'</code>, but no longer does, being instead considered
+strictly greater.</p>
+<p>Instead, use a version constraint which exactly compares with the
+precise version required, e.g. <code>'==0.11.0'</code>.</p>
 <h2 id="keyword-argument-for-gnu-symbol-visibility">Keyword argument for GNU symbol visibility</h2>
 <p>Build targets got a new keyword, <code>gnu_symbol_visibility</code> that controls
 how symbols are exported from shared libraries. This is most commonly
@@ -417,12 +423,14 @@ files get exported.</p>
 </code></pre>
 <h2 id="subproject-function-now-supports-the-required-kwarg">
 <code>subproject()</code> function now supports the <code>required:</code> kwarg</h2>
-<p>This allows you to declare an optional subproject. You can now call <code>found()</code>
-on the return value of the <code>subproject()</code> call to see if the subproject is
-available before calling <code>get_variable()</code> to fetch information from it.</p>
+<p>This allows you to declare an optional subproject. You can now call
+<code>found()</code> on the return value of the <code>subproject()</code> call to see if the
+subproject is available before calling <code>get_variable()</code> to fetch
+information from it.</p>
 <h2 id="dependency-objects-now-support-the-name-method">
 <code>dependency()</code> objects now support the <code>.name()</code> method</h2>
-<p>You can now fetch the name of the dependency that was searched like so:</p>
+<p>You can now fetch the name of the dependency that was searched like
+so:</p>
 <pre><code class="language-meson">glib_dep = dependency('glib-2.0')
 ...
 message("dependency name is " + glib_dep.name())

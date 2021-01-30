@@ -236,13 +236,13 @@ contain strings that are in the given list. The array may be
 empty. The <code>value</code> parameter specifies the default value of the option
 and if it is unset then the values of <code>choices</code> will be used as the
 default.</p>
-<p>As of 0.47.0 -Dopt= and -Dopt=[] both pass an empty list, before this -Dopt=
-would pass a list with an empty string.</p>
+<p>As of 0.47.0 -Dopt= and -Dopt=[] both pass an empty list, before this
+-Dopt= would pass a list with an empty string.</p>
 <p>This type is available since version 0.44.0</p>
 <h3 id="features">Features</h3>
-<p>A <code>feature</code> option has three states: <code>enabled</code>, <code>disabled</code> or <code>auto</code>. It is intended
-to be passed as value for the <code>required</code> keyword argument of most functions.
-Currently supported in
+<p>A <code>feature</code> option has three states: <code>enabled</code>, <code>disabled</code> or <code>auto</code>.
+It is intended to be passed as value for the <code>required</code> keyword
+argument of most functions. Currently supported in
 <a href="Reference-manual.html#dependency"><code>dependency()</code></a>,
 <a href="Reference-manual.html#compiler-object"><code>find_library()</code></a>,
 <a href="Reference-manual.html#find_program"><code>find_program()</code></a> and
@@ -255,10 +255,11 @@ Currently supported in
 <li>
 <code>disabled</code> do not look for the dependency and always return 'not-found'.</li>
 </ul>
-<p>When getting the value of this type of option using <code>get_option()</code>, a special
-<a href="Reference-manual.html#feature-option-object">feature option object</a>
-is returned instead of the string representation of the option's value.
-This object can be passed to <code>required</code>:</p>
+<p>When getting the value of this type of option using <code>get_option()</code>, a
+special <a href="Reference-manual.html#feature-option-object">feature option
+object</a> is returned instead
+of the string representation of the option's value. This object can be
+passed to <code>required</code>:</p>
 <pre><code class="language-meson">d = dependency('foo', required : get_option('myfeature'))
 if d.found()
   app = executable('myapp', 'main.c', dependencies : [d])
@@ -276,13 +277,14 @@ returning a boolean and taking no argument:</p>
   # ...
 endif
 </code></pre>
-<p>If the value of a <code>feature</code> option is set to <code>auto</code>, that value is overridden by
-the global <code>auto_features</code> option (which defaults to <code>auto</code>). This is intended
-to be used by packagers who want to have full control on which dependencies are
-required and which are disabled, and not rely on build-deps being installed
-(at the right version) to get a feature enabled. They could set
-<code>auto_features=enabled</code> to enable all features and disable explicitly only the
-few they don't want, if any.</p>
+<p>If the value of a <code>feature</code> option is set to <code>auto</code>, that value is
+overridden by the global <code>auto_features</code> option (which defaults to
+<code>auto</code>). This is intended to be used by packagers who want to have
+full control on which dependencies are required and which are
+disabled, and not rely on build-deps being installed (at the right
+version) to get a feature enabled. They could set
+<code>auto_features=enabled</code> to enable all features and disable explicitly
+only the few they don't want, if any.</p>
 <p>This type is available since version 0.47.0</p>
 <h2 id="using-build-options">Using build options</h2>
 <pre><code class="language-meson">optval = get_option('opt_name')
@@ -333,19 +335,21 @@ project which also has an option called <code>some_option</code>, then calling
 <code>yield</code> is <code>false</code>, <code>get_option</code> returns the value of the subproject's
 option.</p>
 <h2 id="builtin-build-options">Built-in build options</h2>
-<p>There are a number of <a href="https://mesonbuild.com/Builtin-options.html">built-in options</a>. To get the current list execute <code>meson configure</code> in the build directory.</p>
+<p>There are a number of <a href="https://mesonbuild.com/Builtin-options.html">built-in options</a>. To get the
+current list execute <code>meson configure</code> in the build directory.</p>
 <h3 id="visual-studio">Visual Studio</h3>
 <h4 id="startup-project">Startup project</h4>
-<p>The backend_startup_project option can be set to define the default project
-that will be executed with the "Start debugging F5" action in visual studio.
-It should be the same name as an executable target name.</p>
+<p>The <code>backend_startup_project</code> option can be set to define the default
+project that will be executed with the "Start debugging F5" action in
+visual studio. It should be the same name as an executable target
+name.</p>
 <pre><code class="language-meson">project('my_project', 'c', default_options: ['backend_startup_project=my_exe'])
 executable('my_exe', ...)
 </code></pre>
 <h3 id="ninja">Ninja</h3>
 <h4 id="max-links">Max links</h4>
-<p>The backend_max_links can be set to limit the number of processes that ninja
-will use to link.</p>
+<p>The <code>backend_max_links</code> can be set to limit the number of processes
+that ninja will use to link.</p>
 
     </div>
         

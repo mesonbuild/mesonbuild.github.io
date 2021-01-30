@@ -207,15 +207,16 @@ now give a dictionary.</p>
 <h2 id="alias_target">alias_target</h2>
 <pre><code class="language-meson">runtarget alias_target(target_name, dep1, ...)
 </code></pre>
-<p>This function creates a new top-level target. Like all top-level targets, this
-integrates with the selected backend. For instance, with Ninja you can
-run it as <code>ninja target_name</code>. This is a dummy target that does not execute any
-command, but ensures that all dependencies are built. Dependencies can be any
-build target (e.g. return value of executable(), custom_target(), etc)</p>
+<p>This function creates a new top-level target. Like all top-level
+targets, this integrates with the selected backend. For instance, with
+Ninja you can run it as <code>ninja target_name</code>. This is a dummy target
+that does not execute any command, but ensures that all dependencies
+are built. Dependencies can be any build target (e.g. return value of
+executable(), custom_target(), etc)</p>
 <h2 id="enhancements-to-the-pkg_config_path-argument">Enhancements to the pkg_config_path argument</h2>
-<p>Setting sys_root in the [properties] section of your cross file will now set
-PKG_CONFIG_SYSROOT_DIR automatically for host system dependencies when
-cross compiling.</p>
+<p>Setting sys_root in the [properties] section of your cross file will
+now set PKG_CONFIG_SYSROOT_DIR automatically for host system
+dependencies when cross compiling.</p>
 <h2 id="the-meson-test-program-now-accepts-an-additional-gdbpath-argument-to-specify-the-gdb-binary">The meson test program now accepts an additional "--gdb-path" argument to specify the GDB binary</h2>
 <p><code>meson test --gdb testname</code> invokes GDB with the specific test case. However, sometimes GDB is not in the path or a GDB replacement is wanted.
 Therefore, a <code>--gdb-path</code> argument was added to specify which binary is executed (per default <code>gdb</code>):</p>
@@ -223,11 +224,12 @@ Therefore, a <code>--gdb-path</code> argument was added to specify which binary 
 $ meson test --gdb --gdb-path cgdb testname
 </code></pre>
 <h2 id="better-support-for-illumos-and-solaris">Better support for illumos and Solaris</h2>
-<p>illumos (and hopefully Solaris) support has been dramatically improved, and one
-can reasonably expect projects to compile.</p>
+<p>illumos (and hopefully Solaris) support has been dramatically
+improved, and one can reasonably expect projects to compile.</p>
 <h2 id="splitting-of-compilerget_function_attributevisibility">Splitting of Compiler.get_function_attribute('visibility')</h2>
-<p>On macOS there is no <code>protected</code> visibility, which results in the visbility
-check always failing. 0.52.0 introduces two changes to improve this situation:</p>
+<p>On macOS there is no <code>protected</code> visibility, which results in the
+visbility check always failing. 0.52.0 introduces two changes to
+improve this situation:</p>
 <ol>
 <li>the "visibility" check no longer includes "protected"</li>
 <li>a new set of "split" checks are introduced which check for a single
@@ -249,9 +251,9 @@ generate its own target.</p>
 <h2 id="add-blocks-dependency">Add blocks dependency</h2>
 <p>Add <code>dependency('blocks')</code> to use the Clang blocks extension.</p>
 <h2 id="mesons-builtin-b_lundef-is-now-supported-on-macos">Meson's builtin b_lundef is now supported on macOS</h2>
-<p>This has always been possible, but there are some additional restrictions on
-macOS (mainly do to Apple only features). With the linker internal
-re-architecture this has become possible</p>
+<p>This has always been possible, but there are some additional
+restrictions on macOS (mainly do to Apple only features). With the
+linker internal re-architecture this has become possible</p>
 <h2 id="compiler-and-dynamic-linker-representation-split">Compiler and dynamic linker representation split</h2>
 <p>0.52.0 inclues a massive refactor of the representaitons of compilers to
 tease apart the representations of compilers and dynamic linkers (ld). This
@@ -272,28 +274,30 @@ complement the existing <code>all_sources()</code> method.</p>
 
 python run_project_tests.py --only fortran python3
 </code></pre>
-<p>This assists Meson development by only running the tests for the portion of Meson being worked on during local development.</p>
+<p>This assists Meson development by only running the tests for the
+portion of Meson being worked on during local development.</p>
 <h2 id="experimental-webassembly-support-via-emscripten">Experimental Webassembly support via Emscripten</h2>
 <p>Meson now supports compiling code to Webassembly using the Emscripten
 compiler. As with most things regarding Webassembly, this support is
 subject to change.</p>
 <h2 id="version-check-in-find_program">Version check in <code>find_program()</code>
 </h2>
-<p>A new <code>version</code> keyword argument has been added to <code>find_program</code> to specify
-the required version. See <a href="Release-notes-for-0-52-0.html#dependency"><code>dependency()</code></a> for argument format.
-The version of the program is determined by running <code>program_name --version</code>
-command. If stdout is empty it fallbacks to stderr. If the output contains more
-text than simply a version number, only the first occurrence of numbers separated
-by dots is kept. If the output is more complicated than that, the version
-checking will have to be done manually using <a href="Release-notes-for-0-52-0.html#run_command"><code>run_command()</code></a>.</p>
+<p>A new <code>version</code> keyword argument has been added to <code>find_program</code> to
+specify the required version. See <a href="Release-notes-for-0-52-0.html#dependency"><code>dependency()</code></a> for
+argument format. The version of the program is determined by running
+<code>program_name --version</code> command. If stdout is empty it fallbacks to
+stderr. If the output contains more text than simply a version number,
+only the first occurrence of numbers separated by dots is kept. If the
+output is more complicated than that, the version checking will have
+to be done manually using <a href="Release-notes-for-0-52-0.html#run_command"><code>run_command()</code></a>.</p>
 <h2 id="added-vs_module_defs-to-shared_module">Added <code>vs_module_defs</code> to <code>shared_module()</code>
 </h2>
 <p>Like <code>shared_library()</code>, <code>shared_module()</code> now accepts
 <code>vs_module_defs</code> argument for controlling symbol exports, etc.</p>
 <h2 id="improved-support-for-static-libraries">Improved support for static libraries</h2>
-<p>Static libraries had numerous shortcomings in the past, especially when using
-uninstalled static libraries. This release brings many internal changes in the
-way they are handled, including:</p>
+<p>Static libraries had numerous shortcomings in the past, especially
+when using uninstalled static libraries. This release brings many
+internal changes in the way they are handled, including:</p>
 <ul>
 <li>
 <code>link_whole:</code> of static libraries. In the example below, lib2 used to miss
@@ -322,10 +326,10 @@ from the <code>.pc</code> file because the <code>link_with:</code> has been prom
 lib2 = both_libraries(sources, link_with : lib1, install : true)
 pkg.generate(lib2)
 </code></pre>
-<p>Many projects have been using <code>extract_all_objects()</code> to work around those issues,
-and hopefully those hacks could now be removed. Since this is a pretty large
-change, please double check if your static libraries behave correctly, and
-report any regression.</p>
+<p>Many projects have been using <code>extract_all_objects()</code> to work around
+those issues, and hopefully those hacks could now be removed. Since
+this is a pretty large change, please double check if your static
+libraries behave correctly, and report any regression.</p>
 <h2 id="enhancements-to-the-kconfig-module">Enhancements to the kconfig module</h2>
 <p><code>kconfig.load()</code> may now accept a <code>configure_file()</code> as input file.</p>
 <h2 id="added-include_type-kwarg-to-dependency">Added <code>include_type</code> kwarg to <code>dependency</code>
@@ -334,9 +338,9 @@ report any regression.</p>
 values <code>'preserve'</code>, <code>'system'</code> and <code>'non-system'</code>. If it is set to <code>'system'</code>,
 all include directories of the dependency are marked as system dependencies.</p>
 <p>The default value of <code>include_type</code> is <code>'preserve'</code>.</p>
-<p>Additionally, it is also possible to check and change the <code>include_type</code>
-state of an existing dependency object with the new <code>include_type()</code> and
-<code>as_system()</code> methods.</p>
+<p>Additionally, it is also possible to check and change the
+<code>include_type</code> state of an existing dependency object with the new
+<code>include_type()</code> and <code>as_system()</code> methods.</p>
 <h2 id="enhancements-to-configure_file">Enhancements to <code>configure_file()</code>
 </h2>
 <p><code>input:</code> now accepts multiple input file names for <code>command:</code>-configured file.</p>
@@ -357,22 +361,23 @@ list all the additional files the configure target depends on.</p>
 <p>No native flag is the same as <code>native: false</code></p>
 </li>
 </ul>
-<p>This further simplifies behavior to match the "build vs host" decision done in
-last release with <code>c_args</code> vs <code>build_c_args</code>. The underlying motivation in both
-cases is to execute the same commands whether the overall build is native or
-cross.</p>
+<p>This further simplifies behavior to match the "build vs host" decision
+done in last release with <code>c_args</code> vs <code>build_c_args</code>. The underlying
+motivation in both cases is to execute the same commands whether the
+overall build is native or cross.</p>
 <h2 id="allow-checking-if-a-variable-is-a-disabler">Allow checking if a variable is a disabler</h2>
 <p>Added the function <code>is_disabler(var)</code>. Returns true if a variable is a disabler
 and false otherwise.</p>
 <h2 id="gtkdoccheck-support">gtkdoc-check support</h2>
-<p><code>gnome.gtkdoc()</code> now has a <code>check</code> keyword argument. If <code>true</code> runs it will run
-<code>gtkdoc-check</code> when running unit tests. Note that this has the downside of
-rebuilding the doc for each build, which is often very slow. It usually should
-be enabled only in CI.</p>
+<p><code>gnome.gtkdoc()</code> now has a <code>check</code> keyword argument. If <code>true</code> runs it
+will run <code>gtkdoc-check</code> when running unit tests. Note that this has
+the downside of rebuilding the doc for each build, which is often very
+slow. It usually should be enabled only in CI.</p>
 <h2 id="gnomegtkdoc-returns-target-object">
 <code>gnome.gtkdoc()</code> returns target object</h2>
-<p><code>gnome.gtkdoc()</code> now returns a target object that can be passed as dependency to
-other targets using generated doc files (e.g. in <code>content_files</code> of another doc).</p>
+<p><code>gnome.gtkdoc()</code> now returns a target object that can be passed as
+dependency to other targets using generated doc files (e.g. in
+<code>content_files</code> of another doc).</p>
 <h2 id="dist-is-now-a-top-level-command">Dist is now a top level command</h2>
 <p>Previously creating a source archive could only be done with <code>ninja dist</code>. Starting with this release Meson provides a top level <code>dist</code>
 that can be invoked directly. It also has a command line option to

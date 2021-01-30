@@ -197,17 +197,20 @@ build files</a> and built-in options that are either
 universal options, base options, compiler options.</p>
 <h2 id="universal-options">Universal options</h2>
 <p>A list of these options can be found by running <code>meson --help</code>. All
-these can be set by passing <code>-Doption=value</code> to <code>meson</code> (aka <code>meson setup</code>), or
-by setting them inside <code>default_options</code> of <code>project()</code> in your <code>meson.build</code>.
-Some options can also be set by <code>--option=value</code>, or <code>--option value</code>--- a list
-is shown by running <code>meson setup --help</code>.</p>
-<p>For legacy reasons <code>--warnlevel</code> is the cli argument for the <code>warning_level</code> option.</p>
+these can be set by passing <code>-Doption=value</code> to <code>meson</code> (aka <code>meson setup</code>), or by setting them inside <code>default_options</code> of <code>project()</code> in
+your <code>meson.build</code>. Some options can also be set by <code>--option=value</code>,
+or <code>--option value</code>--- a list is shown by running <code>meson setup --help</code>.</p>
+<p>For legacy reasons <code>--warnlevel</code> is the cli argument for the
+<code>warning_level</code> option.</p>
 <p>They can also be edited after setup using <code>meson configure -Doption=value</code>.</p>
 <p>Installation options are all relative to the prefix, except:</p>
 <ul>
-<li>When the prefix is <code>/usr</code>: <code>sysconfdir</code> defaults to <code>/etc</code>, <code>localstatedir</code> defaults to <code>/var</code>, and <code>sharedstatedir</code> defaults to <code>/var/lib</code>
-</li>
-<li>When the prefix is <code>/usr/local</code>: <code>localstatedir</code> defaults to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/var/local/lib</code>
+<li>When the prefix is <code>/usr</code>: <code>sysconfdir</code> defaults to <code>/etc</code>,</li>
+<li>
+<code>localstatedir</code> defaults to <code>/var</code>, and <code>sharedstatedir</code> defaults to</li>
+<li>
+<code>/var/lib</code> When the prefix is <code>/usr/local</code>: <code>localstatedir</code> defaults</li>
+<li>to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/var/local/lib</code>
 </li>
 </ul>
 <h3 id="directories">Directories</h3>
@@ -287,18 +290,19 @@ is shown by running <code>meson setup --help</code>.</p>
 </tr>
 </tbody>
 </table>
-<p><code>prefix</code> defaults to <code>C:/</code> on Windows, and <code>/usr/local</code> otherwise. You should always
-override this value.</p>
-<p><code>libdir</code> is automatically detected based on your platform, it should be
-correct when doing "native" (build machine == host machine) compilation. For
-cross compiles meson will try to guess the correct libdir, but it may not be
-accurate, especially on Linux where different distributions have different
-defaults. Using a <a href="Cross-compilation.html#defining-the-environment">cross file</a>,
-particularly the paths section may be necessary.</p>
+<p><code>prefix</code> defaults to <code>C:/</code> on Windows, and <code>/usr/local</code> otherwise. You
+should always override this value.</p>
+<p><code>libdir</code> is automatically detected based on your platform, it should
+be correct when doing "native" (build machine == host machine)
+compilation. For cross compiles meson will try to guess the correct
+libdir, but it may not be accurate, especially on Linux where
+different distributions have different defaults. Using a <a href="Cross-compilation.html#defining-the-environment">cross
+file</a>, particularly the
+paths section may be necessary.</p>
 <h3 id="core-options">Core options</h3>
-<p>Options that are labeled "per machine" in the table are set per machine. See
-the <a href="Builtin-options.html#specifying-options-per-machine">specifying options per machine</a> section
-for details.</p>
+<p>Options that are labeled "per machine" in the table are set per
+machine. See the <a href="Builtin-options.html#specifying-options-per-machine">specifying options per
+machine</a> section for details.</p>
 <table>
 <thead>
 <tr>
@@ -445,13 +449,13 @@ for details.</p>
 </tr>
 </tbody>
 </table>
-<p><a name="build-type-options"></a>
-For setting optimization levels and toggling debug, you can either set the
-<code>buildtype</code> option, or you can set the <code>optimization</code> and <code>debug</code> options which
-give finer control over the same. Whichever you decide to use, the other will
-be deduced from it. For example, <code>-Dbuildtype=debugoptimized</code> is the same as
-<code>-Ddebug=true -Doptimization=2</code> and vice-versa. This table documents the
-two-way mapping:</p>
+<p><a name="build-type-options"></a> For setting optimization levels and
+toggling debug, you can either set the <code>buildtype</code> option, or you can
+set the <code>optimization</code> and <code>debug</code> options which give finer control
+over the same. Whichever you decide to use, the other will be deduced
+from it. For example, <code>-Dbuildtype=debugoptimized</code> is the same as
+<code>-Ddebug=true -Doptimization=2</code> and vice-versa. This table documents
+the two-way mapping:</p>
 <table>
 <thead>
 <tr>
@@ -490,14 +494,15 @@ two-way mapping:</p>
 </table>
 <p>All other combinations of <code>debug</code> and <code>optimization</code> set <code>buildtype</code> to <code>'custom'</code>.</p>
 <h2 id="base-options">Base options</h2>
-<p>These are set in the same way as universal options, either by <code>-Doption=value</code>,
-or by setting them inside <code>default_options</code> of <code>project()</code> in your <code>meson.build</code>.
-However, they cannot be shown in the
-output of <code>meson --help</code> because they depend on both the current platform and
-the compiler that will be selected. The only way to see them is to setup
-a builddir and then run <code>meson configure</code> on it with no options.</p>
-<p>The following options are available. Note that they may not be available on all
-platforms or with all compilers:</p>
+<p>These are set in the same way as universal options, either by
+<code>-Doption=value</code>, or by setting them inside <code>default_options</code> of
+<code>project()</code> in your <code>meson.build</code>. However, they cannot be shown in
+the output of <code>meson --help</code> because they depend on both the current
+platform and the compiler that will be selected. The only way to see
+them is to setup a builddir and then run <code>meson configure</code> on it with
+no options.</p>
+<p>The following options are available. Note that they may not be
+available on all platforms or with all compilers:</p>
 <table>
 <thead>
 <tr>
@@ -590,10 +595,11 @@ platforms or with all compilers:</p>
 </table>
 <p>The value of <code>b_sanitize</code> can be one of: <code>none</code>, <code>address</code>, <code>thread</code>,
 <code>undefined</code>, <code>memory</code>, <code>address,undefined</code>.</p>
-<p><a name="b_vscrt-from_buildtype"></a>
-The default value of <code>b_vscrt</code> is <code>from_buildtype</code>. The following table is used
-internally to pick the CRT compiler arguments for <code>from_buildtype</code> or
-<code>static_from_buildtype</code> <em>(since 0.56)</em> based on the value of the <code>buildtype</code> option:</p>
+<p><a name="b_vscrt-from_buildtype"></a> The default value of <code>b_vscrt</code>
+is <code>from_buildtype</code>. The following table is used internally to pick
+the CRT compiler arguments for <code>from_buildtype</code> or
+<code>static_from_buildtype</code> <em>(since 0.56)</em> based on the value of the
+<code>buildtype</code> option:</p>
 <table>
 <thead>
 <tr>
@@ -640,17 +646,18 @@ internally to pick the CRT compiler arguments for <code>from_buildtype</code> or
 </table>
 <h3 id="notes-about-apple-bitcode-support">Notes about Apple Bitcode support</h3>
 <p><code>b_bitcode</code> will pass <code>-fembed-bitcode</code> while compiling and will pass
-<code>-Wl,-bitcode_bundle</code> while linking. These options are incompatible with
-<code>b_asneeded</code>, so that option will be silently disabled.</p>
-<p><a href="Reference-manual.html#shared_module">Shared modules</a> will not have bitcode
-embedded because <code>-Wl,-bitcode_bundle</code> is incompatible with both <code>-bundle</code> and
-<code>-Wl,-undefined,dynamic_lookup</code> which are necessary for shared modules to work.</p>
+<code>-Wl,-bitcode_bundle</code> while linking. These options are incompatible
+with <code>b_asneeded</code>, so that option will be silently disabled.</p>
+<p><a href="Reference-manual.html#shared_module">Shared modules</a> will not have
+bitcode embedded because <code>-Wl,-bitcode_bundle</code> is incompatible with
+both <code>-bundle</code> and <code>-Wl,-undefined,dynamic_lookup</code> which are necessary
+for shared modules to work.</p>
 <h2 id="compiler-options">Compiler options</h2>
 <p>Same caveats as base options above.</p>
-<p>The following options are available. They can be set by passing <code>-Doption=value</code>
-to <code>meson</code>. Note that both the options themselves and
-the possible values they can take will depend on the target platform or
-compiler being used:</p>
+<p>The following options are available. They can be set by passing
+<code>-Doption=value</code> to <code>meson</code>. Note that both the options themselves and
+the possible values they can take will depend on the target platform
+or compiler being used:</p>
 <table>
 <thead>
 <tr>
@@ -747,50 +754,53 @@ compiler being used:</p>
 </tr>
 </tbody>
 </table>
-<p>The default values of <code>c_winlibs</code> and <code>cpp_winlibs</code> are in compiler-specific
-argument forms, but the libraries are: kernel32, user32, gdi32, winspool,
-shell32, ole32, oleaut32, uuid, comdlg32, advapi32.</p>
-<p>All these <code>&lt;lang&gt;_*</code> options are specified per machine. See below in the
-<a href="Builtin-options.html#specifying-options-per-machine">specifying options per machine</a> section on
-how to do this in cross builds.</p>
-<p>When using MSVC, <code>cpp_eh=none</code> will result in no exception flags being passed,
-while the <code>cpp_eh=[value]</code> will result in <code>/EH[value]</code>.
-Since <em>0.51.0</em> <code>cpp_eh=default</code> will result in <code>/EHsc</code> on MSVC. When using
-gcc-style compilers, nothing is passed (allowing exceptions to work), while
-<code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
-<p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control the
-value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other c/c++
-compiler supports this option.</p>
+<p>The default values of <code>c_winlibs</code> and <code>cpp_winlibs</code> are in
+compiler-specific argument forms, but the libraries are: kernel32,
+user32, gdi32, winspool, shell32, ole32, oleaut32, uuid, comdlg32,
+advapi32.</p>
+<p>All these <code>&lt;lang&gt;_*</code> options are specified per machine. See below in
+the <a href="Builtin-options.html#specifying-options-per-machine">specifying options per machine</a>
+section on how to do this in cross builds.</p>
+<p>When using MSVC, <code>cpp_eh=none</code> will result in no exception flags being
+passed, while the <code>cpp_eh=[value]</code> will result in <code>/EH[value]</code>. Since
+<em>0.51.0</em> <code>cpp_eh=default</code> will result in <code>/EHsc</code> on MSVC. When using
+gcc-style compilers, nothing is passed (allowing exceptions to work),
+while <code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
+<p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control
+the value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other
+c/c++ compiler supports this option.</p>
 <h2 id="specifying-options-per-machine">Specifying options per machine</h2>
-<p>Since <em>0.51.0</em>, some options are specified per machine rather than globally for
-all machine configurations. Prefixing the option with <code>build.</code> just affects the
-build machine configuration, while unprefixed just affects the host machine
-configuration, respectively. For example:</p>
+<p>Since <em>0.51.0</em>, some options are specified per machine rather than
+globally for all machine configurations. Prefixing the option with
+<code>build.</code> just affects the build machine configuration, while
+unprefixed just affects the host machine configuration, respectively.
+For example:</p>
 <ul>
 <li>
-<p><code>build.pkg_config_path</code> controls the paths pkg-config will search for just
-<code>native: true</code> dependencies (build machine).</p>
+<p><code>build.pkg_config_path</code> controls the paths pkg-config will search
+for just <code>native: true</code> dependencies (build machine).</p>
 </li>
 <li>
-<p><code>pkg_config_path</code> controls the paths pkg-config will search for just
-<code>native: false</code> dependencies (host machine).</p>
+<p><code>pkg_config_path</code> controls the paths pkg-config will search for
+just <code>native: false</code> dependencies (host machine).</p>
 </li>
 </ul>
-<p>This is useful for cross builds. In the native builds, build = host, and the
-unprefixed option alone will suffice.</p>
-<p>Prior to <em>0.51.0</em>, these options just effected native builds when specified on
-the command line, as there was no <code>build.</code> prefix. Similarly named fields in
-the <code>[properties]</code> section of the cross file would effect cross compilers, but
-the code paths were fairly different allowing differences in behavior to crop
-out.</p>
+<p>This is useful for cross builds. In the native builds, build = host,
+and the unprefixed option alone will suffice.</p>
+<p>Prior to <em>0.51.0</em>, these options just effected native builds when
+specified on the command line, as there was no <code>build.</code> prefix.
+Similarly named fields in the <code>[properties]</code> section of the cross file
+would effect cross compilers, but the code paths were fairly different
+allowing differences in behavior to crop out.</p>
 <h2 id="specifying-options-per-subproject">Specifying options per subproject</h2>
-<p>Since <em>0.54.0</em> <code>default_library</code> and <code>werror</code> built-in options can be defined
-per subproject. This is useful for example when building shared libraries in the
-main project, but static link a subproject, or when the main project must build
-with no warnings but some subprojects cannot.</p>
-<p>Most of the time this would be used either by the parent project by setting
-subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>),
-or by the user using the command line <code>-Dfoo:default_library=static</code>.</p>
+<p>Since <em>0.54.0</em> <code>default_library</code> and <code>werror</code> built-in options can be
+defined per subproject. This is useful for example when building
+shared libraries in the main project, but static link a subproject, or
+when the main project must build with no warnings but some subprojects
+cannot.</p>
+<p>Most of the time this would be used either by the parent project by
+setting subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>), or by the user using the
+command line <code>-Dfoo:default_library=static</code>.</p>
 <p>The value is overridden in this order:</p>
 <ul>
 <li>Value from parent project</li>

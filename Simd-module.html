@@ -194,12 +194,13 @@ $('body').removeClass('no-script');
         <h1 id="unstable-simd-module">Unstable SIMD module</h1>
 <p>This module provides helper functionality to build code with SIMD instructions.
 Available since 0.42.0.</p>
-<p><strong>Note</strong>: this module is unstable. It is only provided as a technology preview.
-Its API may change in arbitrary ways between releases or it might be removed
-from Meson altogether.</p>
+<p><strong>Note</strong>: this module is unstable. It is only provided as a technology
+preview. Its API may change in arbitrary ways between releases or it
+might be removed from Meson altogether.</p>
 <h2 id="usage">Usage</h2>
-<p>This module is designed for the use case where you have an algorithm with one
-or more SIMD implementation and you choose which one to use at runtime.</p>
+<p>This module is designed for the use case where you have an algorithm
+with one or more SIMD implementation and you choose which one to use
+at runtime.</p>
 <p>The module provides one method, <code>check</code>, which is used like this:</p>
 <pre><code>rval = simd.check('mysimds',
   mmx : 'simd_mmx.c',
@@ -214,19 +215,20 @@ or more SIMD implementation and you choose which one to use at runtime.</p>
   neon : 'simd_neon.c',
   compiler : cc)
 </code></pre>
-<p>Here the individual files contain the accelerated versions of the functions
-in question. The <code>compiler</code> keyword argument takes the compiler you are
-going to use to compile them. The function returns an array with two values.
-The first value is a bunch of libraries that contain the compiled code. Any
-SIMD code that the compiler can't compile (for example, Neon instructions on
-an x86 machine) are ignored. You should pass this value to the desired target
-using <code>link_with</code>. The second value is a <code>configuration_data</code> object that
-contains true for all the values that were supported. For example if the
-compiler did support sse2 instructions, then the object would have <code>HAVE_SSE2</code>
-set to 1.</p>
+<p>Here the individual files contain the accelerated versions of the
+functions in question. The <code>compiler</code> keyword argument takes the
+compiler you are going to use to compile them. The function returns an
+array with two values. The first value is a bunch of libraries that
+contain the compiled code. Any SIMD code that the compiler can't
+compile (for example, Neon instructions on an x86 machine) are
+ignored. You should pass this value to the desired target using
+<code>link_with</code>. The second value is a <code>configuration_data</code> object that
+contains true for all the values that were supported. For example if
+the compiler did support sse2 instructions, then the object would have
+<code>HAVE_SSE2</code> set to 1.</p>
 <p>Generating code to detect the proper instruction set at runtime is
-straightforward. First you create a header with the configuration object and
-then a chooser function that looks like this:</p>
+straightforward. First you create a header with the configuration
+object and then a chooser function that looks like this:</p>
 <pre><code>void (*fptr)(type_of_function_here)  = NULL;
 
 #if HAVE_NEON
@@ -246,9 +248,9 @@ if(fptr == NULL) {
     fptr = default_function;
 }
 </code></pre>
-<p>Each source file provides two functions, the <code>xxx_available</code> function to query
-whether the CPU currently in use supports the instruction set and
-<code>xxx_accelerated_function</code> that is the corresponding accelerated
+<p>Each source file provides two functions, the <code>xxx_available</code> function
+to query whether the CPU currently in use supports the instruction set
+and <code>xxx_accelerated_function</code> that is the corresponding accelerated
 implementation.</p>
 <p>At the end of this function the function pointer points to the fastest
 available implementation and can be invoked to do the computation.</p>

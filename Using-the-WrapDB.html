@@ -192,9 +192,23 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="using-the-wrapdb">Using the WrapDB</h1>
-<p>The Wrap database is a web service that provides Meson build definitions to projects that do not have it natively. Using it is simple. The service can be found <a href="https://wrapdb.mesonbuild.com">here</a>.</p>
-<p>The front page lists all projects that are on the service. Select the one you want and click it. The detail page lists available versions by branch and revision id. The branch names come from upstream releases and revision ids are version numbers internal to the database. Whenever the packaging is updated a new revision is released to the service a new revision with a bigger revision id is added. Usually you want to select the newest branch with the highest revision id.</p>
-<p>You can get the actual wrap file which tells Meson how to fetch the project by clicking on the download link on the page. As an example, the wrap file for <a href="https://wrapdb.mesonbuild.com/v1/projects/zlib/1.2.8/4/get_wrap">zlib-1.2.8, revision 4</a> looks like this. You can find detailed documentation about it in <a href="Wrap-dependency-system-manual.html">the Wrap manual</a>.</p>
+<p>The Wrap database is a web service that provides Meson build
+definitions to projects that do not have it natively. Using it is
+simple. The service can be found
+<a href="https://wrapdb.mesonbuild.com">here</a>.</p>
+<p>The front page lists all projects that are on the service. Select the
+one you want and click it. The detail page lists available versions by
+branch and revision id. The branch names come from upstream releases
+and revision ids are version numbers internal to the database.
+Whenever the packaging is updated a new revision is released to the
+service a new revision with a bigger revision id is added. Usually you
+want to select the newest branch with the highest revision id.</p>
+<p>You can get the actual wrap file which tells Meson how to fetch the
+project by clicking on the download link on the page. As an example,
+the wrap file for <a href="https://wrapdb.mesonbuild.com/v1/projects/zlib/1.2.8/4/get_wrap">zlib-1.2.8, revision
+4</a>
+looks like this. You can find detailed documentation about it in <a href="Wrap-dependency-system-manual.html">the
+Wrap manual</a>.</p>
 <pre><code>[wrap-file]
 directory = zlib-1.2.8
 
@@ -206,12 +220,17 @@ patch_url = https://wrapdb.mesonbuild.com/v1/projects/zlib/1.2.8/4/get_zip
 patch_filename = zlib-1.2.8-4-wrap.zip
 patch_hash = 2327a42c8f73a4289ee8c9cd4abc43b324d0decc28d6e609e927f0a50321af4a
 </code></pre>
-<p>Add this file to your project with the name <code>subprojects/zlib.wrap</code>. Then you can use it in your <code>meson.build</code> file with this directive:</p>
+<p>Add this file to your project with the name <code>subprojects/zlib.wrap</code>.
+Then you can use it in your <code>meson.build</code> file with this directive:</p>
 <pre><code>zproj = subproject('zlib')
 </code></pre>
-<p>When Meson encounters this it will automatically download, unpack and patch the source files.</p>
+<p>When Meson encounters this it will automatically download, unpack and
+patch the source files.</p>
 <h2 id="contributing-build-definitions">Contributing build definitions</h2>
-<p>The contents of the Wrap database are tracked in git repos of the <a href="https://github.com/mesonbuild">Mesonbuild project</a>. The actual process is simple and described in <a href="Adding-new-projects-to-wrapdb.html">submission documentation</a>.</p>
+<p>The contents of the Wrap database are tracked in git repos of the
+<a href="https://github.com/mesonbuild">Mesonbuild project</a>. The actual
+process is simple and described in <a href="Adding-new-projects-to-wrapdb.html">submission
+documentation</a>.</p>
 
     </div>
         

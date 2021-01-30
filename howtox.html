@@ -199,28 +199,31 @@ almost all other compilers.</p>
 <p>When first running Meson, set it in an environment variable.</p>
 <pre><code class="language-console">$ CC=mycc meson &lt;options&gt;
 </code></pre>
-<p>Note that environment variables like <code>CC</code> only works in native builds. The <code>CC</code>
-refers to the compiler for the host platform, that is the compiler used to
-compile programs that run on the machine we will eventually install the project
-on. The compiler used to build things that run on the machine we do the
-building can be specified with <code>CC_FOR_BUILD</code>. You can use it in cross builds.</p>
-<p>Note that environment variables are never the idiomatic way to do anything with
-Meson, however. It is better to use the native and cross files. And the tools
-for the host platform in cross builds can only be specified with a cross file.</p>
-<p>There is a table of all environment variables supported <a href="Reference-tables.html#compiler-and-linker-selection-variables">Here</a></p>
+<p>Note that environment variables like <code>CC</code> only works in native builds.
+The <code>CC</code> refers to the compiler for the host platform, that is the
+compiler used to compile programs that run on the machine we will
+eventually install the project on. The compiler used to build things
+that run on the machine we do the building can be specified with
+<code>CC_FOR_BUILD</code>. You can use it in cross builds.</p>
+<p>Note that environment variables are never the idiomatic way to do
+anything with Meson, however. It is better to use the native and cross
+files. And the tools for the host platform in cross builds can only be
+specified with a cross file.</p>
+<p>There is a table of all environment variables supported
+<a href="Reference-tables.html#compiler-and-linker-selection-variables">Here</a></p>
 <h2 id="set-linker">Set linker</h2>
 <p><em>New in 0.53.0</em></p>
-<p>Like the compiler, the linker is selected via the <code>&lt;compiler variable&gt;_LD</code>
-environment variable, or through the <code>&lt;compiler entry&gt;_ld</code> entry in a native
-or cross file. You must be aware of whether you're using a compiler that
-invokes the linker itself (most compilers including GCC and Clang) or a
-linker that is invoked directly (when using MSVC or compilers that act like
-it, including Clang-Cl). With the former <code>c_ld</code> or <code>CC_LD</code> should be the value
-to pass to the compiler's special argument (such as <code>-fuse-ld</code> with clang and
-gcc), with the latter it should be an executable, such as <code>lld-link.exe</code>.</p>
-<p><em>NOTE</em> In meson 0.53.0 the <code>ld</code> entry in the cross/native file and the <code>LD</code>
-environment variable were used, this resulted in a large number of regressions
-and was changed in 0.53.1 to <code>&lt;lang&gt;_ld</code> and <code>&lt;comp variable&gt;_LD</code>.</p>
+<p>Like the compiler, the linker is selected via the <code>&lt;compiler variable&gt;_LD</code> environment variable, or through the <code>&lt;compiler entry&gt;_ld</code> entry in a native or cross file. You must be aware of
+whether you're using a compiler that invokes the linker itself (most
+compilers including GCC and Clang) or a linker that is invoked
+directly (when using MSVC or compilers that act like it, including
+Clang-Cl). With the former <code>c_ld</code> or <code>CC_LD</code> should be the value to
+pass to the compiler's special argument (such as <code>-fuse-ld</code> with clang
+and gcc), with the latter it should be an executable, such as
+<code>lld-link.exe</code>.</p>
+<p><em>NOTE</em> In meson 0.53.0 the <code>ld</code> entry in the cross/native file and the
+<code>LD</code> environment variable were used, this resulted in a large number
+of regressions and was changed in 0.53.1 to <code>&lt;lang&gt;_ld</code> and <code>&lt;comp variable&gt;_LD</code>.</p>
 <pre><code class="language-console">$ CC=clang CC_LD=lld meson &lt;options&gt;
 </code></pre>
 <p>or</p>
@@ -231,7 +234,8 @@ and was changed in 0.53.1 to <code>&lt;lang&gt;_ld</code> and <code>&lt;comp var
 c = 'clang'
 c_ld = 'lld'
 </code></pre>
-<p>There is a table of all environment variables supported <a href="Reference-tables.html#compiler-and-linker-selection-variables">Here</a></p>
+<p>There is a table of all environment variables supported
+<a href="Reference-tables.html#compiler-and-linker-selection-variables">Here</a></p>
 <h2 id="set-default-cc-language-version">Set default C/C++ language version</h2>
 <pre><code class="language-meson">project('myproj', 'c', 'cpp',
         default_options : ['c_std=c11', 'cpp_std=c++11'])
@@ -248,8 +252,8 @@ executable(..., dependencies : thread_dep)
 </code></pre>
 <h2 id="set-extra-compiler-and-linker-flags-from-the-outside-when-eg-building-distro-packages">Set extra compiler and linker flags from the outside (when e.g. building distro packages)</h2>
 <p>The behavior is the same as with other build systems, with environment
-variables during first invocation. Do not use these when you need to rebuild
-the source</p>
+variables during first invocation. Do not use these when you need to
+rebuild the source</p>
 <pre><code class="language-console">$ CFLAGS=-fsomething LDFLAGS=-Wl,--linker-flag meson &lt;options&gt;
 </code></pre>
 <h2 id="use-an-argument-only-with-a-specific-compiler">Use an argument only with a specific compiler</h2>
@@ -343,9 +347,10 @@ executable(..., dependencies : m_dep)
 <pre><code class="language-meson">executable(..., install : true, install_dir : get_option('libexecdir'))
 </code></pre>
 <h2 id="use-existing-findnamecmake-files">Use existing <code>Find&lt;name&gt;.cmake</code> files</h2>
-<p>Meson can use the CMake <code>find_package()</code> ecosystem if CMake is installed.
-To find a dependency with custom <code>Find&lt;name&gt;.cmake</code>, set the <code>cmake_module_path</code>
-property to the path in your project where the CMake scripts are stored.</p>
+<p>Meson can use the CMake <code>find_package()</code> ecosystem if CMake is
+installed. To find a dependency with custom <code>Find&lt;name&gt;.cmake</code>, set
+the <code>cmake_module_path</code> property to the path in your project where the
+CMake scripts are stored.</p>
 <p>Example for a <code>FindCmakeOnlyDep.cmake</code> in a <code>cmake</code> subdirectory:</p>
 <pre><code class="language-meson">cm_dep = dependency('CmakeOnlyDep', cmake_module_path : 'cmake')
 </code></pre>

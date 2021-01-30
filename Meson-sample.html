@@ -196,33 +196,55 @@ $('body').removeClass('no-script');
 <pre><code class="language-meson">project('simple', 'c')
 executable('myexe', 'source.c')
 </code></pre>
-<p>All Meson build definitions begin with the <code>project</code> command. It specifies the name of the project and what programming languages it uses. Here the project is called <em>simple</em> and it uses only the C programming language. All strings are single-quoted.</p>
-<p>On the next line we define a <em>build target</em>, in this case an executable called <em>myexe</em>. It consists of one source file. This is all the code that a user needs to write to compile an executable with Meson.</p>
-<p>Variables are fully supported. The above code snippet could also have been declared like this.</p>
+<p>All Meson build definitions begin with the <code>project</code> command. It
+specifies the name of the project and what programming languages it
+uses. Here the project is called <em>simple</em> and it uses only the C
+programming language. All strings are single-quoted.</p>
+<p>On the next line we define a <em>build target</em>, in this case an
+executable called <em>myexe</em>. It consists of one source file. This is all
+the code that a user needs to write to compile an executable with
+Meson.</p>
+<p>Variables are fully supported. The above code snippet could also have
+been declared like this.</p>
 <pre><code class="language-meson">project('simple', 'c')
 src = 'source.c'
 executable('myexe', src)
 </code></pre>
-<p>Most executables consist of more than one source file. The easiest way to deal with this is to put them in an array.</p>
+<p>Most executables consist of more than one source file. The easiest way
+to deal with this is to put them in an array.</p>
 <pre><code class="language-meson">project('simple', 'c')
 src = ['source1.c', 'source2.c', 'source3.c']
 executable('myexe', src)
 </code></pre>
-<p>Meson also supports the notion of <em>keyword arguments</em>. Indeed most arguments to functions can only be passed using them. The above snippet could be rewritten like this.</p>
+<p>Meson also supports the notion of <em>keyword arguments</em>. Indeed most
+arguments to functions can only be passed using them. The above
+snippet could be rewritten like this.</p>
 <pre><code class="language-meson">project('simple', 'c')
 src = ['source1.c', 'source2.c', 'source3.c']
 executable('myexe', sources : src)
 </code></pre>
-<p>These two formats are equivalent and choosing one over the other is mostly a question of personal preference.</p>
-<p>The <code>executable</code> command actually returns an <em>executable object</em>, which represents the given build target. It can be passed on to other functions, like this.</p>
+<p>These two formats are equivalent and choosing one over the other is
+mostly a question of personal preference.</p>
+<p>The <code>executable</code> command actually returns an <em>executable object</em>,
+which represents the given build target. It can be passed on to other
+functions, like this.</p>
 <pre><code class="language-meson">project('simple', 'c')
 src = ['source1.c', 'source2.c', 'source3.c']
 exe = executable('myexe', src)
 test('simple test', exe)
 </code></pre>
-<p>Here we create a unit test called <em>simple test</em>, and which uses the built executable. When the tests are run with the <code>meson test</code> command, the built executable is run. If it returns zero, the test passes. A non-zero return value indicates an error, which Meson will then report to the user.</p>
+<p>Here we create a unit test called <em>simple test</em>, and which uses the
+built executable. When the tests are run with the <code>meson test</code>
+command, the built executable is run. If it returns zero, the test
+passes. A non-zero return value indicates an error, which Meson will
+then report to the user.</p>
 <h2 id="a-note-to-visual-studio-users">A note to Visual Studio users</h2>
-<p>There's a slight terminology difference between Meson and Visual Studio. A Meson <em>project</em> is the equivalent to a Visual Studio <em>solution</em>. That is, the topmost thing that encompasses all things to be built. A Visual Studio <em>project</em> on the other hand is the equivalent of a Meson top level build target, such as an executable or a shared library.</p>
+<p>There's a slight terminology difference between Meson and Visual
+Studio. A Meson <em>project</em> is the equivalent to a Visual Studio
+<em>solution</em>. That is, the topmost thing that encompasses all things to
+be built. A Visual Studio <em>project</em> on the other hand is the
+equivalent of a Meson top level build target, such as an executable or
+a shared library.</p>
 
     </div>
         

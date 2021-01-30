@@ -242,12 +242,12 @@ way.</p>
 <p>You want to embed and statically link every dependency you can
 (especially C++ dependencies). Meson's <a href="Wrap-dependency-system-manual.html">Wrap package
 manager</a> might be of use here. This
-is equivalent to what you would do on Windows, OSX, Android
-etc. Sometimes static linking is not possible. In these cases you need
-to copy the .so files inside your package. Let's use SDL2 as an
-example. First we download and install it as usual giving it our
-custom install prefix (that is, <code>./configure --prefix=${HOME}/devroot</code>). This makes Meson's dependency detector
-pick it up automatically.</p>
+is equivalent to what you would do on Windows, OSX, Android etc.
+Sometimes static linking is not possible. In these cases you need to
+copy the .so files inside your package. Let's use SDL2 as an example.
+First we download and install it as usual giving it our custom install
+prefix (that is, <code>./configure --prefix=${HOME}/devroot</code>). This makes
+Meson's dependency detector pick it up automatically.</p>
 <h2 id="building-and-installing">Building and installing</h2>
 <p>Building happens in much the same way as normally. There are just two
 things to note. First, you must tell GCC to link the C++ standard

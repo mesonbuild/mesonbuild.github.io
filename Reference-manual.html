@@ -233,9 +233,9 @@ because that works even when you project is used as a subproject.</p>
 <h3 id="add_languages">add_languages()</h3>
 <pre><code class="language-meson">  bool add_languages(*langs*)
 </code></pre>
-<p>Add programming languages used by the project. Equivalent to having them in the
-<code>project</code> declaration. This function is usually used to add languages that are
-only used under some conditions, like this:</p>
+<p>Add programming languages used by the project. Equivalent to having
+them in the <code>project</code> declaration. This function is usually used to
+add languages that are only used under some conditions, like this:</p>
 <pre><code class="language-meson">project('foobar', 'c')
 if compiling_for_osx
   add_languages('objc')
@@ -305,11 +305,12 @@ build dir.</p>
 <pre><code class="language-meson">runtarget alias_target(target_name, dep1, ...)
 </code></pre>
 <p><em>(since 0.52.0)</em></p>
-<p>This function creates a new top-level target. Like all top-level targets, this
-integrates with the selected backend. For instance, with you can
-run it as <code>meson compile target_name</code>. This is a dummy target that does not execute any
-command, but ensures that all dependencies are built. Dependencies can be any
-build target (e.g. return value of <a href="Reference-manual.html#executable">executable()</a>, custom_target(), etc)</p>
+<p>This function creates a new top-level target. Like all top-level
+targets, this integrates with the selected backend. For instance, with
+you can run it as <code>meson compile target_name</code>. This is a dummy target
+that does not execute any command, but ensures that all dependencies
+are built. Dependencies can be any build target (e.g. return value of
+<a href="Reference-manual.html#executable">executable()</a>, custom_target(), etc)</p>
 <h3 id="assert">assert()</h3>
 <pre><code class="language-meson">    void assert(*condition*, *message*)
 </code></pre>
@@ -320,20 +321,21 @@ statement instead.</p>
 <pre><code class="language-meson">    void benchmark(name, executable, ...)
 </code></pre>
 <p>Creates a benchmark item that will be run when the benchmark target is
-run. The behavior of this function is identical to <a href="Reference-manual.html#test"><code>test()</code></a> except for:</p>
+run. The behavior of this function is identical to <a href="Reference-manual.html#test"><code>test()</code></a>
+except for:</p>
 <ul>
 <li>benchmark() has no <code>is_parallel</code> keyword because benchmarks are not run in parallel</li>
 <li>benchmark() does not automatically add the <code>MALLOC_PERTURB_</code> environment variable</li>
 </ul>
-<p><em>Note:</em> Prior to 0.52.0 benchmark would warn that <code>depends</code> and <code>priority</code>
-were unsupported, this is incorrect.</p>
+<p><em>Note:</em> Prior to 0.52.0 benchmark would warn that <code>depends</code> and
+<code>priority</code> were unsupported, this is incorrect.</p>
 <h3 id="both_libraries">both_libraries()</h3>
 <pre><code class="language-meson">    buildtarget = both_libraries(library_name, list_of_sources, ...)
 </code></pre>
 <p><em>(since 0.46.0)</em></p>
-<p>Builds both a static and shared library with the given
-sources. Positional and keyword arguments are otherwise the same as
-for <a href="Reference-manual.html#library"><code>library</code></a>. Source files will be compiled only once and
+<p>Builds both a static and shared library with the given sources.
+Positional and keyword arguments are otherwise the same as for
+<a href="Reference-manual.html#library"><code>library</code></a>. Source files will be compiled only once and
 object files will be reused to build both shared and static libraries,
 unless <code>b_staticpic</code> user option or <code>pic</code> argument are set to false in
 which case sources will be compiled twice.</p>
@@ -386,8 +388,8 @@ passed to it.</p>
 to the <code>configuration:</code> keyword argument, it takes a template file as
 the <code>input:</code> (optional) and produces the <code>output:</code> (required) by
 substituting values from the configuration data as detailed in <a href="Configuration.html">the
-configuration file documentation</a>. <em>(since 0.49.0)</em> A
-dictionary can be passed instead of a
+configuration file documentation</a>. <em>(since 0.49.0)</em>
+A dictionary can be passed instead of a
 <a href="Reference-manual.html#configuration_data"><code>configuration_data()</code></a> object.</p>
 <p>When a list of strings is passed to the <code>command:</code> keyword argument,
 it takes any source or configured file as the <code>input:</code> and assumes
@@ -561,12 +563,13 @@ than one outputs are specified, the behavior is the same as
 <li>
 <code>@PRIVATE_DIR@</code> <em>(since 0.50.1)</em>: path to a directory where the custom target must store all its intermediate files.</li>
 </ul>
-<p><em>(since 0.47.0)</em> The <code>depfile</code> keyword argument also accepts the <code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions.</p>
+<p><em>(since 0.47.0)</em> The <code>depfile</code> keyword argument also accepts the
+<code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#custom-target-object">object methods section</a> below.</p>
-<p><strong>Note:</strong> Assuming that <code>command:</code> is executed by a POSIX <code>sh</code> shell is not
-portable, notably to Windows. Instead, consider using a <code>native: true</code>
-<a href="Reference-manual.html#executable">executable()</a>, or a python script.</p>
+<p><strong>Note:</strong> Assuming that <code>command:</code> is executed by a POSIX <code>sh</code> shell
+is not portable, notably to Windows. Instead, consider using a
+<code>native: true</code> <a href="Reference-manual.html#executable">executable()</a>, or a python script.</p>
 <h3 id="declare_dependency">declare_dependency()</h3>
 <pre><code class="language-meson">    dependency_object declare_dependency(...)
 </code></pre>
@@ -717,11 +720,11 @@ add CMake <code>COMPONENTS</code> for the <code>find_package</code> lookup)</li>
 <code>disabler</code> <em>(since 0.49.0)</em>: if <code>true</code> and the dependency couldn't be found,
 returns a <a href="Reference-manual.html#disabler-object">disabler object</a> instead of a not-found dependency.</li>
 </ul>
-<p>If dependency_name is <code>''</code>, the dependency is always not found.  So
+<p>If dependency_name is <code>''</code>, the dependency is always not found. So
 with <code>required: false</code>, this always returns a dependency object for
 which the <code>found()</code> method returns <code>false</code>, and which can be passed
 like any other dependency to the <code>dependencies:</code> keyword argument of a
-<code>build_target</code>.  This can be used to implement a dependency which is
+<code>build_target</code>. This can be used to implement a dependency which is
 sometimes not required e.g. in some branches of a conditional, or with
 a <code>fallback:</code> kwarg, can be used to declare an optional dependency
 that only looks in the specified subproject, and only if that's
@@ -767,12 +770,12 @@ and use them accordingly. For instance, sources (<code>.c</code>, <code>.cpp</co
 libraries (<code>.so</code>, <code>.dll</code>, etc) will be linked.</p>
 <p>With the Ninja backend, Meson will create a build-time <a href="https://ninja-build.org/manual.html#ref_dependencies">order-only
 dependency</a> on
-all generated input files, including unknown files. This is needed
-to bootstrap the generation of the real dependencies in the
-<a href="https://ninja-build.org/manual.html#ref_headers">depfile</a>
-generated by your compiler to determine when to rebuild sources.
-Ninja relies on this dependency file for all input files, generated
-and non-generated. The behavior is similar for other backends.</p>
+all generated input files, including unknown files. This is needed to
+bootstrap the generation of the real dependencies in the
+<a href="https://ninja-build.org/manual.html#ref_headers">depfile</a> generated
+by your compiler to determine when to rebuild sources. Ninja relies on
+this dependency file for all input files, generated and non-generated.
+The behavior is similar for other backends.</p>
 <p>Executable supports the following keyword arguments. Note that just
 like the positional arguments above, these keyword arguments can also
 be passed to <a href="Reference-manual.html#library">shared and static libraries</a>.</p>
@@ -994,9 +997,9 @@ names.</p>
 <p>Meson will also autodetect scripts with a shebang line and run them
 with the executable/interpreter specified in it both on Windows
 (because the command invocator will reject the command otherwise) and
-Unixes (if the script file does not have the executable bit
-set). Hence, you <em>must not</em> manually add the interpreter while using
-this script as part of a list of commands.</p>
+Unixes (if the script file does not have the executable bit set).
+Hence, you <em>must not</em> manually add the interpreter while using this
+script as part of a list of commands.</p>
 <p>If you need to check for a program in a non-standard location, you can
 just pass an absolute path to <code>find_program</code>, e.g.</p>
 <pre><code class="language-meson">setcap = find_program('setcap', '/usr/sbin/setcap', '/sbin/setcap', required : false)
@@ -1239,8 +1242,7 @@ An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.</li>
 </code></pre>
 <p>Installs the specified man files from the source tree into system's
 man directory during the install step. This directory can be
-overridden by specifying it with the <code>install_dir</code> keyword
-argument.</p>
+overridden by specifying it with the <code>install_dir</code> keyword argument.</p>
 <p>Accepts the following keywords:</p>
 <ul>
 <li>
@@ -1248,9 +1250,14 @@ argument.</p>
 format and optionally the owner/uid and group/gid for the installed files.
 An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.</li>
 </ul>
-<p><em>(since 0.49.0)</em> <a href="https://mesonbuild.com/Release-notes-for-0-49-0.html#manpages-are-no-longer-compressed-implicitly">manpages are no longer compressed implicitly</a>.</p>
+<p><em>(since 0.49.0)</em> <a href="https://mesonbuild.com/Release-notes-for-0-49-0.html#manpages-are-no-longer-compressed-implicitly">manpages are no longer compressed
+implicitly</a>.</p>
 <h3 id="install_subdir">install_subdir()</h3>
-<pre><code class="language-meson">    void install_subdir(subdir_name, install_dir : ..., exclude_files : ..., exclude_directories : ..., strip_directory : ...)
+<pre><code class="language-meson">    void install_subdir(subdir_name,
+                        install_dir : ...,
+                        exclude_files : ...,
+                        exclude_directories : ...,
+                        strip_directory : ...)
 </code></pre>
 <p>Installs the entire given subdirectory and its contents from the
 source tree to the location specified by the keyword argument
@@ -1377,8 +1384,8 @@ them for the default behaviour for each platform.</p>
 <pre><code class="language-meson">    void message(text)
 </code></pre>
 <p>This function prints its argument to stdout.</p>
-<p><em>(since 0.54.0)</em> Can take more than one argument that will be separated by
-space.</p>
+<p><em>(since 0.54.0)</em> Can take more than one argument that will be
+separated by space.</p>
 <h3 id="warning">warning()</h3>
 <pre><code class="language-meson">    void warning(text)
 </code></pre>
@@ -1394,10 +1401,11 @@ space.</p>
 <p>This function is used to summarize build configuration at the end of the build
 process. This function provides a way for projects (and subprojects) to report
 this information in a clear way.</p>
-<p>The content is a series of key/value pairs grouped into sections. If the section
-keyword argument is omitted, those key/value pairs are implicitly grouped into a section
-with no title. key/value pairs can optionally be grouped into a dictionary,
-but keep in mind that dictionaries does not guarantee ordering. <code>key</code> must be string,
+<p>The content is a series of key/value pairs grouped into sections. If
+the section keyword argument is omitted, those key/value pairs are
+implicitly grouped into a section with no title. key/value pairs can
+optionally be grouped into a dictionary, but keep in mind that
+dictionaries does not guarantee ordering. <code>key</code> must be string,
 <code>value</code> can be:</p>
 <ul>
 <li>an integer, boolean or string</li>
@@ -1405,9 +1413,10 @@ but keep in mind that dictionaries does not guarantee ordering. <code>key</code>
 <em>since 0.57.0</em> an external program or a dependency</li>
 <li>a list of those.</li>
 </ul>
-<p><code>summary()</code> can be called multiple times as long as the same section/key
-pair doesn't appear twice. All sections will be collected and printed at
-the end of the configuration in the same order as they have been called.</p>
+<p><code>summary()</code> can be called multiple times as long as the same
+section/key pair doesn't appear twice. All sections will be collected
+and printed at the end of the configuration in the same order as they
+have been called.</p>
 <p>Keyword arguments:</p>
 <ul>
 <li>
@@ -1460,10 +1469,10 @@ would probably want to use the name <em>libfoobar</em> instead of <em>The Foobar
 Library</em>.</p>
 <p>It may be followed by the list of programming languages that the project uses.</p>
 <p><em>(since 0.40.0)</em> The list of languages is optional.</p>
-<p>These languages may be used both for <code>native: false</code> (the default) (host
-machine) targets and for <code>native: true</code> (build machine) targets. <em>(since
-0.56.0)</em> The build machine compilers for the specified languages are not
-required.</p>
+<p>These languages may be used both for <code>native: false</code> (the default)
+(host machine) targets and for <code>native: true</code> (build machine) targets.
+<em>(since 0.56.0)</em> The build machine compilers for the specified
+languages are not required.</p>
 <p>Supported values for languages are <code>c</code>, <code>cpp</code> (for <code>C++</code>), <code>cuda</code>, <code>d</code>,
 <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>), <code>vala</code> and <code>rust</code>.</p>
 <p>Project supports the following keyword arguments.</p>
@@ -1506,14 +1515,16 @@ subproject dir and it is set in the top level Meson file.</p>
 <li>
 <p><code>version</code>: which is a free form string describing the version of
 this project. You can access the value in your Meson build files
-with <code>meson.project_version()</code>.</p>
+with <code>meson.project_version()</code>. Since 0.57.0 this can also be a
+<code>File</code> object pointing to a file that contains exactly one line of
+text.</p>
 </li>
 </ul>
 <h3 id="run_command">run_command()</h3>
 <pre><code class="language-meson">    runresult run_command(command, list_of_args, ...)
 </code></pre>
-<p>Runs the command specified in positional arguments.  <code>command</code> can be
-a string, or the output of <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
+<p>Runs the command specified in positional arguments. <code>command</code> can be a
+string, or the output of <a href="Reference-manual.html#find_program"><code>find_program()</code></a>,
 <a href="Reference-manual.html#files"><code>files()</code></a> or <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>, or <a href="Reference-manual.html#compiler-object">a
 compiler object</a>.</p>
 <p>Returns <a href="Reference-manual.html#run-result-object">an opaque object</a> containing the result
@@ -1539,10 +1550,10 @@ environment juggling. <em>(since 0.52.0)</em> A dictionary is also accepted.</li
 </code></pre>
 <p>This function creates a new top-level target that runs a specified
 command with the specified arguments. Like all top-level targets, this
-integrates with the selected backend. For instance, you can
-run it as <code>meson compile target_name</code>. Note that a run target produces no
-output as far as Meson is concerned. It is only meant for tasks such
-as running a code formatter or flashing an external device's firmware
+integrates with the selected backend. For instance, you can run it as
+<code>meson compile target_name</code>. Note that a run target produces no output
+as far as Meson is concerned. It is only meant for tasks such as
+running a code formatter or flashing an external device's firmware
 with a built file.</p>
 <p>The command is run from an <em>unspecified</em> directory, and Meson will set
 three environment variables <code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code>
@@ -1667,14 +1678,14 @@ recurse in the subdir if they all return <code>true</code> when queried with
 <h3 id="subdir_done">subdir_done()</h3>
 <pre><code class="language-meson">    subdir_done()
 </code></pre>
-<p>Stops further interpretation of the meson script file from the point of
-the invocation. All steps executed up to this point are valid and will
-be executed by meson. This means that all targets defined before the call
-of <code>subdir_done</code> will be build.</p>
-<p>If the current script was called by <code>subdir</code> the execution returns to the
-calling directory and continues as if the script had reached the end.
-If the current script is the top level script meson configures the project
-as defined up to this point.</p>
+<p>Stops further interpretation of the meson script file from the point
+of the invocation. All steps executed up to this point are valid and
+will be executed by meson. This means that all targets defined before
+the call of <code>subdir_done</code> will be build.</p>
+<p>If the current script was called by <code>subdir</code> the execution returns to
+the calling directory and continues as if the script had reached the
+end. If the current script is the top level script meson configures
+the project as defined up to this point.</p>
 <p>Example:</p>
 <pre><code class="language-meson">project('example exit', 'cpp')
 executable('exe1', 'exe1.cpp')
@@ -1724,28 +1735,29 @@ argument to <a href="Reference-manual.html#dependency"><code>dependency()</code>
 </code></pre>
 <p>Defines a test to run with the test harness. Takes two positional
 arguments, the first is the name of the test and the second is the
-executable to run.  The executable can be an <a href="Reference-manual.html#build-target-object">executable build target
+executable to run. The executable can be an <a href="Reference-manual.html#build-target-object">executable build target
 object</a> returned by
 <a href="Reference-manual.html#executable"><code>executable()</code></a> or an <a href="Reference-manual.html#external-program-object">external program
 object</a> returned by
 <a href="Reference-manual.html#find_program"><code>find_program()</code></a>.</p>
-<p><em>(since 0.55.0)</em> When cross compiling, if an exe_wrapper is needed and defined
-the environment variable <code>MESON_EXE_WRAPPER</code> will be set to the string value
-of that wrapper (implementation detail: using <code>mesonlib.join_args</code>). Test
-scripts may use this to run cross built binaries. If your test needs
-<code>MESON_EXE_WRAPPER</code> in cross build situations it is your responsibility to
-return code 77 to tell the harness to report "skip".</p>
+<p><em>(since 0.55.0)</em> When cross compiling, if an exe_wrapper is needed and
+defined the environment variable <code>MESON_EXE_WRAPPER</code> will be set to
+the string value of that wrapper (implementation detail: using
+<code>mesonlib.join_args</code>). Test scripts may use this to run cross built
+binaries. If your test needs <code>MESON_EXE_WRAPPER</code> in cross build
+situations it is your responsibility to return code 77 to tell the
+harness to report "skip".</p>
 <p>By default, environment variable
 <a href="http://man7.org/linux/man-pages/man3/mallopt.3.html"><code>MALLOC_PERTURB_</code></a>
 is automatically set by <code>meson test</code> to a random value between 1..255.
 This can help find memory leaks on configurations using glibc,
-including with non-GCC compilers. However, this can have a performance impact,
-and may fail a test due to external libraries whose internals are out of the
-user's control. To check if this feature is causing an expected runtime crash,
-disable the feature by temporarily setting environment variable
-<code>MALLOC_PERTURB_=0</code>. While it's preferable to only temporarily disable this
-check, if a project requires permanent disabling of this check
-in meson.build do like:</p>
+including with non-GCC compilers. However, this can have a performance
+impact, and may fail a test due to external libraries whose internals
+are out of the user's control. To check if this feature is causing an
+expected runtime crash, disable the feature by temporarily setting
+environment variable <code>MALLOC_PERTURB_=0</code>. While it's preferable to
+only temporarily disable this check, if a project requires permanent
+disabling of this check in meson.build do like:</p>
 <pre><code class="language-meson">nomalloc = environment({'MALLOC_PERTURB_': '0'})
 
 test(..., env: nomalloc, ...)
@@ -1849,10 +1861,10 @@ result to <code>output</code>. This method returns a
 <a href="Reference-manual.html#custom_target"><code>custom_target</code></a> object that (as usual) should be
 used to signal dependencies if other targets use the file outputted
 by this.</p>
-<p>For example, if you generate a header with this and want to use that in
-a build target, you must add the return value to the sources of that
-build target. Without that, Meson will not know the order in which to
-build the targets.</p>
+<p>For example, if you generate a header with this and want to use that
+in a build target, you must add the return value to the sources of
+that build target. Without that, Meson will not know the order in
+which to build the targets.</p>
 <p>If you desire more specific behavior than what this command provides,
 you should use <code>custom_target</code>.</p>
 <h2 id="builtin-objects">Built-in objects</h2>
@@ -2485,11 +2497,12 @@ some symbols to be exposed on Linux, and it should be passed via
 <code>check_header</code>, <code>has_header</code>, <code>has_header_symbol</code>, <code>get_define</code></p>
 </li>
 </ul>
-<p><strong>Note:</strong> These compiler checks do not use compiler arguments added with
-<code>add_*_arguments()</code>, via <code>-Dlang_args</code> on the command-line, or through
-<code>CFLAGS</code>/<code>LDFLAGS</code>, etc in the environment. Hence, you can trust that
-the tests will be fully self-contained, and won't fail because of custom
-flags added by other parts of the build file or by users.</p>
+<p><strong>Note:</strong> These compiler checks do not use compiler arguments added
+with <code>add_*_arguments()</code>, via <code>-Dlang_args</code> on the command-line, or
+through <code>CFLAGS</code>/<code>LDFLAGS</code>, etc in the environment. Hence, you can
+trust that the tests will be fully self-contained, and won't fail
+because of custom flags added by other parts of the build file or by
+users.</p>
 <p>Note that if you have a single prefix with all your dependencies, you
 might find it easier to append to the environment variables
 <code>C_INCLUDE_PATH</code> with GCC/Clang and <code>INCLUDE</code> with MSVC to expand the
@@ -2500,10 +2513,10 @@ cross-compiling. In that case you need to use a specs file. See:
 <a href="http://www.mingw.org/wiki/SpecsFileHOWTO">http://www.mingw.org/wiki/SpecsFileHOWTO</a></p>
 <h3 id="build-target-object">
 <code>build target</code> object</h3>
-<p>A build target is either an <a href="Reference-manual.html#executable">executable</a>,
-<a href="Reference-manual.html#shared_library">shared library</a>, <a href="Reference-manual.html#static_library">static library</a>,
-<a href="Reference-manual.html#both_libraries">both shared and static library</a> or
-<a href="Reference-manual.html#shared_module">shared module</a>.</p>
+<p>A build target is either an <a href="Reference-manual.html#executable">executable</a>, <a href="Reference-manual.html#shared_library">shared
+library</a>, <a href="Reference-manual.html#static_library">static library</a>, <a href="Reference-manual.html#both_libraries">both
+shared and static library</a> or <a href="Reference-manual.html#shared_module">shared
+module</a>.</p>
 <ul>
 <li>
 <p><code>extract_all_objects()</code>: is same as <code>extract_objects</code> but returns all

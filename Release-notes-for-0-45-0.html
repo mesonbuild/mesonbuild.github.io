@@ -252,9 +252,9 @@ com/mesonbuild/two.pb.cc
 </code></pre>
 <h2 id="b_ndebug-ifrelease">b_ndebug : if-release</h2>
 <p>The value <code>if-release</code> can be given for the <code>b_ndebug</code> project option.</p>
-<p>This will make the <code>NDEBUG</code> pre-compiler macro to be defined for release
-type builds as if the <code>b_ndebug</code> project option had had the value <code>true</code>
-defined for it.</p>
+<p>This will make the <code>NDEBUG</code> pre-compiler macro to be defined for
+release type builds as if the <code>b_ndebug</code> project option had had the
+value <code>true</code> defined for it.</p>
 <h2 id="install_data-defaults-to-datadirprojectname">
 <code>install_data()</code> defaults to <code>{datadir}/{projectname}</code>
 </h2>
@@ -274,9 +274,9 @@ values. It can be specified like this in the <code>meson_options.txt</code> file
 returns a list of all licenses for the project.</p>
 <h2 id="rust-crosscompilation">Rust cross-compilation</h2>
 <p>Cross-compilation is now supported for Rust targets. Like other
-cross-compilers, the Rust binary must be specified in your cross
-file. It should specify a <code>--target</code> (as installed by <code>rustup target</code>)
-and a custom linker pointing to your C cross-compiler. For example:</p>
+cross-compilers, the Rust binary must be specified in your cross file.
+It should specify a <code>--target</code> (as installed by <code>rustup target</code>) and a
+custom linker pointing to your C cross-compiler. For example:</p>
 <pre><code class="language-ini">[binaries]
 c = '/usr/bin/arm-linux-gnueabihf-gcc-7'
 rust = [
@@ -291,8 +291,8 @@ rust = [
 dependency library, and any crates of the same name in <code>rustc</code>'s
 private sysroot.</p>
 <h2 id="project-templates">Project templates</h2>
-<p>Meson ships with predefined project templates. To start a new project from
-scratch, simply go to an empty directory and type:</p>
+<p>Meson ships with predefined project templates. To start a new project
+from scratch, simply go to an empty directory and type:</p>
 <pre><code>meson init --name=myproject --type=executable --language=c
 </code></pre>
 <h2 id="improve-test-setup-selection">Improve test setup selection</h2>
@@ -309,9 +309,11 @@ where the current test itself has been defined, one can use just</p>
 <p>In the latter case every (sub)project must have a test setup <code>some_setup</code>
 defined in it.</p>
 <h2 id="can-use-custom-targets-as-windows-resource-files">Can use custom targets as Windows resource files</h2>
-<p>The <code>compile_resources()</code> function of the <code>windows</code> module can now be used on custom targets as well as regular files.</p>
+<p>The <code>compile_resources()</code> function of the <code>windows</code> module can now be
+used on custom targets as well as regular files.</p>
 <h2 id="can-promote-dependencies-with-wrap-command">Can promote dependencies with wrap command</h2>
-<p>The <code>promote</code> command makes it easy to copy nested dependencies to the top level.</p>
+<p>The <code>promote</code> command makes it easy to copy nested dependencies to the
+top level.</p>
 <pre><code>meson wrap promote scommon
 </code></pre>
 <p>This will search the project tree for a subproject called <code>scommon</code>

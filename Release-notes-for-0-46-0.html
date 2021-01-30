@@ -193,38 +193,41 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
 <h2 id="allow-early-return-from-a-script">Allow early return from a script</h2>
-<p>Added the function <code>subdir_done()</code>. Its invocation exits the current script at
-the point of invocation. All previously invoked build targets and commands are
-build/executed. All following ones are ignored. If the current script was
-invoked via <code>subdir()</code> the parent script continues normally.</p>
+<p>Added the function <code>subdir_done()</code>. Its invocation exits the current
+script at the point of invocation. All previously invoked build
+targets and commands are build/executed. All following ones are
+ignored. If the current script was invoked via <code>subdir()</code> the parent
+script continues normally.</p>
 <h2 id="log-output-slightly-changed">Log output slightly changed</h2>
 <p>The format of some human-readable diagnostic messages has changed in
 minor ways. In case you are parsing these messages, you may need to
 adjust your code.</p>
 <h2 id="arm-compiler-for-c-and-cpp">ARM compiler for C and CPP</h2>
-<p>Cross-compilation is now supported for ARM targets using ARM compiler - ARMCC.
-The current implementation does not support shareable libraries.
-The default extension of the output is .axf.
-The environment path should be set properly for the ARM compiler executables.
-The '--cpu' option with the appropriate target type should be mentioned
-in the cross file as shown in the snippet below.</p>
+<p>Cross-compilation is now supported for ARM targets using ARM compiler</p>
+<ul>
+<li>ARMCC. The current implementation does not support shareable
+libraries. The default extension of the output is .axf. The
+environment path should be set properly for the ARM compiler
+executables. The '--cpu' option with the appropriate target type
+should be mentioned in the cross file as shown in the snippet below.</li>
+</ul>
 <pre><code class="language-ini">[properties]
 c_args      = ['--cpu=Cortex-M0plus']
 cpp_args    = ['--cpu=Cortex-M0plus']
 
 </code></pre>
 <h2 id="building-both-shared-and-static-libraries">Building both shared and static libraries</h2>
-<p>A new function <code>both_libraries()</code> has been added to build both shared and static
-libraries at the same time. Source files will be compiled only once and object
-files will be reused to build both shared and static libraries, unless
-<code>b_staticpic</code> user option or <code>pic:</code> keyword argument are set to false in which
-case sources will be compiled twice.</p>
+<p>A new function <code>both_libraries()</code> has been added to build both shared
+and static libraries at the same time. Source files will be compiled
+only once and object files will be reused to build both shared and
+static libraries, unless <code>b_staticpic</code> user option or <code>pic:</code> keyword
+argument are set to false in which case sources will be compiled
+twice.</p>
 <p>The returned <code>buildtarget</code> object always represents the shared library.</p>
 <h2 id="compiler-object-can-now-be-passed-to-run_command">Compiler object can now be passed to run_command()</h2>
-<p>This can be used to run the current compiler with the specified arguments
-to obtain additional information from it.
-One of the use cases is to get the location of development files for the
-GCC plugins:</p>
+<p>This can be used to run the current compiler with the specified
+arguments to obtain additional information from it. One of the use
+cases is to get the location of development files for the GCC plugins:</p>
 <pre><code class="language-meson">cc = meson.get_compiler('c')
 result = run_command(cc, '-print-file-name=plugin')
 plugin_dev_path = result.stdout().strip()
@@ -234,21 +237,21 @@ plugin_dev_path = result.stdout().strip()
 <p><code>declare_dependency()</code> now supports the <code>link_whole:</code> keyword argument which
 transparently works for build targets which use that dependency.</p>
 <h2 id="old-command-names-are-now-errors">Old command names are now errors</h2>
-<p>The old executable names <code>mesonintrospect</code>, <code>mesonconf</code>, <code>mesonrewriter</code>
-and <code>mesontest</code> have been deprecated for a long time. Starting from
-this version they no longer do anything but instead always error
-out. All functionality is available as subcommands in the main <code>meson</code>
-binary.</p>
+<p>The old executable names <code>mesonintrospect</code>, <code>mesonconf</code>,
+<code>mesonrewriter</code> and <code>mesontest</code> have been deprecated for a long time.
+Starting from this version they no longer do anything but instead
+always error out. All functionality is available as subcommands in the
+main <code>meson</code> binary.</p>
 <h2 id="meson-and-meson-configure-now-accept-the-same-arguments">Meson and meson configure now accept the same arguments</h2>
-<p>Previously meson required that builtin arguments (like prefix) be passed as
-<code>--prefix</code> to <code>meson</code> and <code>-Dprefix</code> to <code>meson configure</code>. <code>meson</code> now accepts -D
-form like <code>meson configure</code> has. <code>meson configure</code> also accepts the <code>--prefix</code>
-form, like <code>meson</code> has.</p>
+<p>Previously meson required that builtin arguments (like prefix) be
+passed as <code>--prefix</code> to <code>meson</code> and <code>-Dprefix</code> to <code>meson configure</code>.
+<code>meson</code> now accepts -D form like <code>meson configure</code> has. <code>meson configure</code> also accepts the <code>--prefix</code> form, like <code>meson</code> has.</p>
 <h2 id="recursively-extract-objects">Recursively extract objects</h2>
-<p>The <code>recursive:</code> keyword argument has been added to <code>extract_all_objects()</code>. When set
-to <code>true</code> it will also return objects passed to the <code>objects:</code> argument of this
-target. By default only objects built for this target are returned to maintain
-backward compatibility with previous versions. The default will eventually be
+<p>The <code>recursive:</code> keyword argument has been added to
+<code>extract_all_objects()</code>. When set to <code>true</code> it will also return
+objects passed to the <code>objects:</code> argument of this target. By default
+only objects built for this target are returned to maintain backward
+compatibility with previous versions. The default will eventually be
 changed to <code>true</code> in a future version.</p>
 <pre><code class="language-meson">lib1 = static_library('a', 'source.c', objects : 'prebuilt.o')
 lib2 = static_library('b', objects : lib1.extract_all_objects(recursive : true))
@@ -277,8 +280,9 @@ a program in the same way as above:</p>
 meson.override_find_program('mycodegen', prog_script)
 </code></pre>
 <h2 id="new-functions-has_link_argument-and-friends">New functions: has_link_argument() and friends</h2>
-<p>A new set of methods has been added to <a href="Reference-manual.html#compiler-object">compiler objects</a>
-to test if the linker supports given arguments.</p>
+<p>A new set of methods has been added to <a href="Reference-manual.html#compiler-object">compiler
+objects</a> to test if the linker
+supports given arguments.</p>
 <ul>
 <li><code>has_link_argument()</code></li>
 <li><code>has_multi_link_arguments()</code></li>
@@ -294,7 +298,7 @@ directory called "help" in these cases.</subcommand></subcommand></p>
 <p>A feature to generate a meson.build file compiling given C/C++ source
 files into a single executable has been added to "meson init". By
 default, it will take all recognizable source files in the current
-directory.  You can also specify a list of dependencies with the -d
+directory. You can also specify a list of dependencies with the -d
 flag and automatically invoke a build with the -b flag to check if the
 code builds with those dependencies.</p>
 <p>For example,</p>
@@ -322,8 +326,9 @@ files. Here's how you install and rename the following files:</p>
 </code></pre>
 <h2 id="support-for-lcc-compiler-for-e2k-elbrus-architecture">Support for lcc compiler for e2k (Elbrus) architecture</h2>
 <p>In this version, a support for lcc compiler for Elbrus processors
-based on <a href="https://en.wikipedia.org/wiki/Elbrus_2000">e2k microarchitecture</a>
-has been added.</p>
+based on <a href="https://en.wikipedia.org/wiki/Elbrus_2000">e2k
+microarchitecture</a> has been
+added.</p>
 <p>Examples of such CPUs:</p>
 <ul>
 <li>
@@ -346,36 +351,41 @@ but, in is not strictly compatible with gcc as of current version.</p>
 <p>So every noted difference is properly handled now in meson.</p>
 <h2 id="string-escape-character-sequence-update">String escape character sequence update</h2>
 <p>Single-quoted strings in meson have been taught the same set of escape
-sequences as in Python. It is therefore now possible to use arbitrary bytes in
-strings, like for example <code>NUL</code> (<code>\0</code>) and other ASCII control characters. See
-the chapter about <a href="Syntax.html#strings"><em>Strings</em> in <em>Syntax</em></a> for more
-details.</p>
-<p>Potential backwards compatibility issue: Any valid escape sequence according to
-the new rules will be interpreted as an escape sequence instead of the literal
-characters. Previously only the following escape sequences were supported in
-single-quote strings: <code>\'</code>, <code>\\</code> and <code>\n</code>.</p>
-<p>Note that the behaviour of triple-quoted (multiline) strings has not changed.
-They behave like raw strings and do not support any escape sequences.</p>
+sequences as in Python. It is therefore now possible to use arbitrary
+bytes in strings, like for example <code>NUL</code> (<code>\0</code>) and other ASCII
+control characters. See the chapter about <a href="Syntax.html#strings"><em>Strings</em> in
+<em>Syntax</em></a> for more details.</p>
+<p>Potential backwards compatibility issue: Any valid escape sequence
+according to the new rules will be interpreted as an escape sequence
+instead of the literal characters. Previously only the following
+escape sequences were supported in single-quote strings: <code>\'</code>, <code>\\</code>
+and <code>\n</code>.</p>
+<p>Note that the behaviour of triple-quoted (multiline) strings has not
+changed. They behave like raw strings and do not support any escape
+sequences.</p>
 <h2 id="new-forcefallback-wrap-mode">New <code>forcefallback</code> wrap mode</h2>
-<p>A new wrap mode was added, <code>--wrap-mode=forcefallback</code>. When this is set,
-dependencies for which a fallback was provided will always use it, even
-if an external dependency exists and satisfies the version requirements.</p>
+<p>A new wrap mode was added, <code>--wrap-mode=forcefallback</code>. When this is
+set, dependencies for which a fallback was provided will always use
+it, even if an external dependency exists and satisfies the version
+requirements.</p>
 <h2 id="relaxing-of-target-name-requirements">Relaxing of target name requirements</h2>
-<p>In earlier versions of Meson you could only have one target of a given name for each type.
-For example you could not have two executables named <code>foo</code>. This requirement is now
-relaxed so that you can have multiple targets with the same name, as long as they are in
-different subdirectories.</p>
-<p>Note that projects that have multiple targets with the same name can not be built with
-the <code>flat</code> layout or any backend that writes outputs in the same directory.</p>
+<p>In earlier versions of Meson you could only have one target of a given
+name for each type. For example you could not have two executables
+named <code>foo</code>. This requirement is now relaxed so that you can have
+multiple targets with the same name, as long as they are in different
+subdirectories.</p>
+<p>Note that projects that have multiple targets with the same name can
+not be built with the <code>flat</code> layout or any backend that writes outputs
+in the same directory.</p>
 <h2 id="addition-of-openmp-dependency">Addition of OpenMP dependency</h2>
-<p>An OpenMP dependency (<code>openmp</code>) has been added that encapsulates the various
-flags used by compilers to enable OpenMP and checks for the existence of the
-<code>omp.h</code> header. The <code>language</code> keyword may be passed to force the use of a
-specific compiler for the checks.</p>
+<p>An OpenMP dependency (<code>openmp</code>) has been added that encapsulates the
+various flags used by compilers to enable OpenMP and checks for the
+existence of the <code>omp.h</code> header. The <code>language</code> keyword may be passed
+to force the use of a specific compiler for the checks.</p>
 <h2 id="added-new-partial_dependency-method-to-dependencies-and-libraries">Added new partial_dependency method to dependencies and libraries</h2>
-<p>It is now possible to use only part of a dependency in a target. This allows,
-for example, to only use headers with convenience libraries to avoid linking
-to the same library multiple times.</p>
+<p>It is now possible to use only part of a dependency in a target. This
+allows, for example, to only use headers with convenience libraries to
+avoid linking to the same library multiple times.</p>
 <pre><code class="language-meson">dep = dependency('xcb')
 
 helper = static_library(
@@ -390,18 +400,21 @@ final = shared_library(
   dependencyes : dep,
 )
 </code></pre>
-<p>A partial dependency will have the same name version as the full dependency it
-is derived from, as well as any values requested.</p>
+<p>A partial dependency will have the same name version as the full
+dependency it is derived from, as well as any values requested.</p>
 <h2 id="improved-generation-of-pkgconfig-files-for-static-only-libraries">Improved generation of pkg-config files for static only libraries.</h2>
-<p>Previously pkg-config files generated by the pkgconfig modules for static libraries
-with dependencies could only be used in a dependencies with <code>static: true</code>.</p>
-<p>Now the generated file contains the needed dependencies libraries directly within
-<code>Requires</code> and <code>Libs</code> for build static libraries passed via the <code>libraries</code> keyword
-argument.</p>
-<p>Projects that install both a static and a shared version of a library should use
-the result of <a href="Reference-manual.html#both_libraries"><code>both_libraries()</code></a> to the
-pkg-config file generator or use <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>
-for more complicated setups.</p>
+<p>Previously pkg-config files generated by the pkgconfig modules for
+static libraries with dependencies could only be used in a
+dependencies with <code>static: true</code>.</p>
+<p>Now the generated file contains the needed dependencies libraries
+directly within <code>Requires</code> and <code>Libs</code> for build static libraries
+passed via the <code>libraries</code> keyword argument.</p>
+<p>Projects that install both a static and a shared version of a library
+should use the result of
+<a href="Reference-manual.html#both_libraries"><code>both_libraries()</code></a> to the
+pkg-config file generator or use
+<a href="Reference-manual.html#configure_file"><code>configure_file()</code></a> for more
+complicated setups.</p>
 <h2 id="improvements-to-pkgconfig-module">Improvements to pkgconfig module</h2>
 <p>A <code>StaticLibrary</code> or <code>SharedLibrary</code> object can optionally be passed
 as first positional argument of the <code>generate()</code> method. If one is provided a
@@ -418,18 +431,19 @@ default value will be provided for all required fields of the pc file:</p>
 <pre><code class="language-meson">pkgconfig.generate(mylib)
 </code></pre>
 <h2 id="pkgconfiggenerate-requires-parameters-nonstring-arguments">pkgconfig.generate() requires parameters non-string arguments</h2>
-<p><code>pkgconfig.generate()</code> <code>requires:</code> and <code>requires_private:</code> keyword arguments
-now accept pkgconfig-dependencies and libraries that pkgconfig-files were
-generated for.</p>
+<p><code>pkgconfig.generate()</code> <code>requires:</code> and <code>requires_private:</code> keyword
+arguments now accept pkgconfig-dependencies and libraries that
+pkgconfig-files were generated for.</p>
 <h2 id="generic-python-module">Generic python module</h2>
-<p>Meson now has is a revamped and generic (python 2 and 3) version of the python3
-module. With <a href="Python-module.html">this new interface</a>, projects can now fully
-specify the version of python they want to build against / install sources to,
-and can do so against multiple major or minor versions in parallel.</p>
+<p>Meson now has is a revamped and generic (python 2 and 3) version of
+the python3 module. With <a href="Python-module.html">this new interface</a>,
+projects can now fully specify the version of python they want to
+build against / install sources to, and can do so against multiple
+major or minor versions in parallel.</p>
 <h2 id="test-now-supports-the-depends-keyword-argument">test() now supports the <code>depends:</code> keyword argument</h2>
-<p>Build targets and custom targets can be listed in the <code>depends:</code> keyword argument
-of test function. These targets will be built before test is run even if they have
-<code>build_by_default : false</code>.</p>
+<p>Build targets and custom targets can be listed in the <code>depends:</code>
+keyword argument of test function. These targets will be built before
+test is run even if they have <code>build_by_default : false</code>.</p>
 
     </div>
         

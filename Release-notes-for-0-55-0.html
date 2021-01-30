@@ -194,13 +194,14 @@ $('body').removeClass('no-script');
         <h1 id="new-features">New features</h1>
 <h2 id="rpath-removal-now-more-careful">rpath removal now more careful</h2>
 <p>On Linux-like systems, meson adds rpath entries to allow running apps
-in the build tree, and then removes those build-time-only
-rpath entries when installing.  Rpath entries may also come
-in via LDFLAGS and via .pc files.  Meson used to remove those
-latter rpath entries by accident, but is now more careful.</p>
+in the build tree, and then removes those build-time-only rpath
+entries when installing. Rpath entries may also come in via LDFLAGS
+and via .pc files. Meson used to remove those latter rpath entries by
+accident, but is now more careful.</p>
 <h2 id="added-ability-to-specify-targets-in-meson-compile">Added ability to specify targets in <code>meson compile</code>
 </h2>
-<p>It's now possible to specify targets in <code>meson compile</code>, which will result in building only the requested targets.</p>
+<p>It's now possible to specify targets in <code>meson compile</code>, which will
+result in building only the requested targets.</p>
 <p>Usage: <code>meson compile [TARGET [TARGET...]]</code>
 <code>TARGET</code> has the following syntax: <code>[PATH/]NAME[:TYPE]</code>.
 <code>NAME</code>: name of the target from <code>meson.build</code> (e.g. <code>foo</code> from <code>executable('foo', ...)</code>).
@@ -214,10 +215,10 @@ executable('bar', ...)
 </code></pre>
 <p>can be invoked with <code>meson compile foo:shared_library foo:static_library bar</code>.</p>
 <h2 id="test-protocol-for-gtest">Test protocol for gtest</h2>
-<p>Due to the popularity of Gtest (google test) among C and C++ developers meson
-now supports a special protocol for gtest. With this protocol meson injects
-arguments to gtests to output JUnit, reads that JUnit, and adds the output to
-the JUnit it generates.</p>
+<p>Due to the popularity of Gtest (google test) among C and C++
+developers meson now supports a special protocol for gtest. With this
+protocol meson injects arguments to gtests to output JUnit, reads that
+JUnit, and adds the output to the JUnit it generates.</p>
 <h2 id="mesonadd__script-methods-accept-new-types">meson.add_*_script methods accept new types</h2>
 <p>All three (<code>add_install_script</code>, <code>add_dist_script</code>, and
 <code>add_postconf_script</code>) now accept ExternalPrograms (as returned by
@@ -230,18 +231,18 @@ meson.add_dist_script(find_program('foo'), files('bar'))
 meson.add_postconf_script(find_program('foo'), files('bar'))
 </code></pre>
 <p>The install script variant is also able to accept custom_targets,
-custom_target indexes, and build targets (executables, libraries), and can
-use built executables a the script to run</p>
+custom_target indexes, and build targets (executables, libraries), and
+can use built executables a the script to run</p>
 <pre><code class="language-meson">installer = executable('installer', ...)
 meson.add_install_script(installer, ...)
 meson.add_install_script('foo.py', installer)
 </code></pre>
 <h2 id="machine-file-constants">Machine file constants</h2>
-<p>Native and cross files now support string and list concatenation using the <code>+</code>
-operator, and joining paths using the <code>/</code> operator.
-Entries defined in the <code>[constants]</code> section can be used in any other section.
-An entry defined in any other section can be used only within that same section and only
-after it has been defined.</p>
+<p>Native and cross files now support string and list concatenation using
+the <code>+</code> operator, and joining paths using the <code>/</code> operator. Entries
+defined in the <code>[constants]</code> section can be used in any other section.
+An entry defined in any other section can be used only within that
+same section and only after it has been defined.</p>
 <pre><code class="language-ini">[constants]
 toolchain = '/toolchain'
 common_flags = ['--sysroot=' + toolchain + '/sysroot']
@@ -254,21 +255,22 @@ cpp_args = c_args + ['-DSOMETHING_ELSE']
 c = toolchain + '/gcc'
 </code></pre>
 <h2 id="configure-cmake-subprojects-with-mesonsubproject_options">Configure CMake subprojects with meson.subproject_options</h2>
-<p>Meson now supports passing configuration options to CMake and overriding
-certain build details extracted from the CMake subproject.</p>
+<p>Meson now supports passing configuration options to CMake and
+overriding certain build details extracted from the CMake subproject.</p>
 <p>The new CMake configuration options object is very similar to the
-<a href="Reference-manual.html#configuration-data-object">configuration data object</a> object
-returned by <a href="Reference-manual.html#configuration_data"><code>configuration_data</code></a>. It
+<a href="Reference-manual.html#configuration-data-object">configuration data
+object</a> object returned
+by <a href="Reference-manual.html#configuration_data"><code>configuration_data</code></a>. It
 is generated by the <code>subproject_options</code> function</p>
-<p>All configuration options have to be set <em>before</em> the subproject is configured
-and must be passed to the <code>subproject</code> method via the <code>options</code> key. Altering
-the configuration object won't have any effect on previous <code>cmake.subproject</code>
-calls.</p>
-<p><strong>Note:</strong> The <code>cmake_options</code> kwarg for the <code>subproject</code> function is now
-deprecated since it is replaced by the new <code>options</code> system.</p>
+<p>All configuration options have to be set <em>before</em> the subproject is
+configured and must be passed to the <code>subproject</code> method via the
+<code>options</code> key. Altering the configuration object won't have any effect
+on previous <code>cmake.subproject</code> calls.</p>
+<p><strong>Note:</strong> The <code>cmake_options</code> kwarg for the <code>subproject</code> function is
+now deprecated since it is replaced by the new <code>options</code> system.</p>
 <h2 id="find_program-fixes-when-the-program-has-been-overridden-by-executable">find_program: Fixes when the program has been overridden by executable</h2>
-<p>When a program has been overridden by an executable, the returned object of
-find_program() had some issues:</p>
+<p>When a program has been overridden by an executable, the returned
+object of find_program() had some issues:</p>
 <pre><code class="language-meson"># In a subproject:
 exe = executable('foo', ...)
 meson.override_find_program('foo', exe)
@@ -291,33 +293,35 @@ but only when needed to avoid command line length limits.</p>
 <h2 id="unstablekconfig-module-renamed-to-unstablekeyval">
 <code>unstable-kconfig</code> module renamed to <code>unstable-keyval</code>
 </h2>
-<p>The <code>unstable-kconfig</code> module is now renamed to <code>unstable-keyval</code>.
-We expect this module to become stable once it has some usage experience,
+<p>The <code>unstable-kconfig</code> module is now renamed to <code>unstable-keyval</code>. We
+expect this module to become stable once it has some usage experience,
 specifically in the next or the following release</p>
 <h2 id="fatal-warnings-in-gnomegenerate_gir">Fatal warnings in <code>gnome.generate_gir()</code>
 </h2>
-<p><code>gnome.generate_gir()</code> now has <code>fatal_warnings</code> keyword argument to abort when
-a warning is produced. This is useful for example in CI environment where it's
-important to catch potential issues.</p>
+<p><code>gnome.generate_gir()</code> now has <code>fatal_warnings</code> keyword argument to
+abort when a warning is produced. This is useful for example in CI
+environment where it's important to catch potential issues.</p>
 <h2 id="b_ndebug-support-for-d-language-compilers">b_ndebug support for D language compilers</h2>
 <p>D Language compilers will now set -release/--release/-frelease (depending on
 the compiler) when the b_ndebug flag is set.</p>
 <h2 id="meson-test-now-produces-junit-xml-from-results">Meson test now produces JUnit xml from results</h2>
-<p>Meson will now generate a JUnit compatible XML file from test results. it
-will be in the meson-logs directory and is called testlog.junit.xml.</p>
+<p>Meson will now generate a JUnit compatible XML file from test results.
+it will be in the meson-logs directory and is called
+testlog.junit.xml.</p>
 <h2 id="config-tool-based-dependencies-no-longer-search-path-for-cross-compiling">Config tool based dependencies no longer search PATH for cross compiling</h2>
-<p>Before 0.55.0 config tool based dependencies (llvm-config, cups-config, etc),
-would search system $PATH if they weren't defined in the cross file. This has
-been a source of bugs and has been deprecated. It is now removed, config tool
-binaries must be specified in the cross file now or the dependency will not
-be found.</p>
+<p>Before 0.55.0 config tool based dependencies (llvm-config,
+cups-config, etc), would search system $PATH if they weren't defined
+in the cross file. This has been a source of bugs and has been
+deprecated. It is now removed, config tool binaries must be specified
+in the cross file now or the dependency will not be found.</p>
 <h2 id="rename-has_exe_wrapper-can_run_host_binaries">Rename has_exe_wrapper -&gt; can_run_host_binaries</h2>
-<p>The old name was confusing as it didn't really match the behavior of the
-function. The old name remains as an alias (the behavior hasn't changed), but
-is now deprecated.</p>
+<p>The old name was confusing as it didn't really match the behavior of
+the function. The old name remains as an alias (the behavior hasn't
+changed), but is now deprecated.</p>
 <h2 id="string-concatenation-in-meson_optionstxt">String concatenation in meson_options.txt</h2>
-<p>It is now possible to use string concatenation (with the <code>+</code> opperator) in the
-meson_options.txt file. This allows splitting long option descriptions.</p>
+<p>It is now possible to use string concatenation (with the <code>+</code>
+opperator) in the meson_options.txt file. This allows splitting long
+option descriptions.</p>
 <pre><code class="language-meson">option(
   'testoption',
   type : 'string',
@@ -327,63 +331,71 @@ meson_options.txt file. This allows splitting long option descriptions.</p>
 )
 </code></pre>
 <h2 id="wrap-fallback-url">Wrap fallback URL</h2>
-<p>Wrap files can now define <code>source_fallback_url</code> and <code>patch_fallback_url</code> to be
-used in case the main server is temporaly down.</p>
+<p>Wrap files can now define <code>source_fallback_url</code> and
+<code>patch_fallback_url</code> to be used in case the main server is temporaly
+down.</p>
 <h2 id="clang-coverage-support">Clang coverage support</h2>
-<p>llvm-cov is now used to generate coverage information when clang is used as
-the compiler.</p>
+<p>llvm-cov is now used to generate coverage information when clang is
+used as the compiler.</p>
 <h2 id="local-wrap-source-and-patch-files">Local wrap source and patch files</h2>
-<p>It is now possible to use the <code>patch_filename</code> and <code>source_filename</code> value in a
-<code>.wrap</code> file without <code>*_url</code> to specify a local source / patch file. All local
-files must be located in the <code>subprojects/packagefiles</code> directory. The <code>*_hash</code>
-entries are optional with this setup.</p>
+<p>It is now possible to use the <code>patch_filename</code> and <code>source_filename</code>
+value in a <code>.wrap</code> file without <code>*_url</code> to specify a local source /
+patch file. All local files must be located in the
+<code>subprojects/packagefiles</code> directory. The <code>*_hash</code> entries are
+optional with this setup.</p>
 <h2 id="local-wrap-patch-directory">Local wrap patch directory</h2>
-<p>Wrap files can now specify <code>patch_directory</code> instead of <code>patch_filename</code> in the
-case overlay files are local. Every files in that directory, and subdirectories,
-will be copied to the subproject directory. This can be used for example to add
-<code>meson.build</code> files to a project not using Meson build system upstream.
-The patch directory must be placed in <code>subprojects/packagefiles</code> directory.</p>
+<p>Wrap files can now specify <code>patch_directory</code> instead of
+<code>patch_filename</code> in the case overlay files are local. Every files in
+that directory, and subdirectories, will be copied to the subproject
+directory. This can be used for example to add <code>meson.build</code> files to
+a project not using Meson build system upstream. The patch directory
+must be placed in <code>subprojects/packagefiles</code> directory.</p>
 <h2 id="patch-on-all-wrap-types">Patch on all wrap types</h2>
-<p><code>patch_*</code> keys are not limited to <code>wrap-file</code> any more, they can be specified for
-all wrap types.</p>
+<p><code>patch_*</code> keys are not limited to <code>wrap-file</code> any more, they can be
+specified for all wrap types.</p>
 <h2 id="link_language-argument-added-to-all-targets">link_language argument added to all targets</h2>
-<p>Previously the <code>link_language</code> argument was only supposed to be allowed in
-executables, because the linker used needs to be the linker for the language
-that implements the main function. Unfortunately it didn't work in that case,
-and, even worse, if it had been implemented properly it would have worked for
-<em>all</em> targets. In 0.55.0 this restriction has been removed, and the bug fixed.
-It now is valid for <code>executable</code> and all derivative of <code>library</code>.</p>
+<p>Previously the <code>link_language</code> argument was only supposed to be
+allowed in executables, because the linker used needs to be the linker
+for the language that implements the main function. Unfortunately it
+didn't work in that case, and, even worse, if it had been implemented
+properly it would have worked for <em>all</em> targets. In 0.55.0 this
+restriction has been removed, and the bug fixed. It now is valid for
+<code>executable</code> and all derivative of <code>library</code>.</p>
 <h2 id="meson-dist-notests">meson dist --no-tests</h2>
-<p><code>meson dist</code> has a new option <code>--no-tests</code> to skip build and tests of generated
-packages. It can be used to not waste time for example when done in CI that
-already does its own testing.</p>
+<p><code>meson dist</code> has a new option <code>--no-tests</code> to skip build and tests of
+generated packages. It can be used to not waste time for example when
+done in CI that already does its own testing.</p>
 <h2 id="force-fallback-for">Force fallback for</h2>
-<p>A newly-added <code>--force-fallback-for</code> command line option can now be used to
-force fallback for specific subprojects.</p>
+<p>A newly-added <code>--force-fallback-for</code> command line option can now be
+used to force fallback for specific subprojects.</p>
 <p>Example:</p>
 <pre><code>meson builddir/ --force-fallback-for=foo,bar
 </code></pre>
 <h2 id="implicit-dependency-fallback">Implicit dependency fallback</h2>
-<p><code>dependency('foo')</code> now automatically fallback if the dependency is not found on
-the system but a subproject wrap file or directory exists with the same name.</p>
-<p>That means that simply adding <code>subprojects/foo.wrap</code> is enough to add fallback
-to any <code>dependency('foo')</code> call. It is however requires that the subproject call
-<code>meson.override_dependency('foo', foo_dep)</code> to specify which dependency object
-should be used for <code>foo</code>.</p>
+<p><code>dependency('foo')</code> now automatically fallback if the dependency is
+not found on the system but a subproject wrap file or directory exists
+with the same name.</p>
+<p>That means that simply adding <code>subprojects/foo.wrap</code> is enough to add
+fallback to any <code>dependency('foo')</code> call. It is however requires that
+the subproject call <code>meson.override_dependency('foo', foo_dep)</code> to
+specify which dependency object should be used for <code>foo</code>.</p>
 <h2 id="wrap-file-provide-section">Wrap file <code>provide</code> section</h2>
-<p>Wrap files can define the dependencies it provides in the <code>[provide]</code> section.
-When <code>foo.wrap</code> provides the dependency <code>foo-1.0</code> any call do <code>dependency('foo-1.0')</code>
-will automatically fallback to that subproject even if no <code>fallback</code> keyword
-argument is given. See <a href="Wrap-dependency-system-manual.html#provide_section">Wrap documentation</a>.</p>
+<p>Wrap files can define the dependencies it provides in the <code>[provide]</code>
+section. When <code>foo.wrap</code> provides the dependency <code>foo-1.0</code> any call do
+<code>dependency('foo-1.0')</code> will automatically fallback to that subproject
+even if no <code>fallback</code> keyword argument is given. See <a href="Wrap-dependency-system-manual.html#provide_section">Wrap
+documentation</a>.</p>
 <h2 id="find_program-fallback">
 <code>find_program()</code> fallback</h2>
-<p>When a program cannot be found on the system but a wrap file has its name in the
-<code>[provide]</code> section, that subproject will be used as fallback.</p>
+<p>When a program cannot be found on the system but a wrap file has its
+name in the <code>[provide]</code> section, that subproject will be used as
+fallback.</p>
 <h2 id="test-scripts-are-given-the-exe-wrapper-if-needed">Test scripts are given the exe wrapper if needed</h2>
-<p>Meson will now set the <code>MESON_EXE_WRAPPER</code> as the properly wrapped and joined
-representation. For Unix-like OSes this means python's shelx.join, on Windows
-an implementation that attempts to properly quote windows argument is used.
-This allow wrapper scripts to run test binaries, instead of just skipping.</p>
+<p>Meson will now set the <code>MESON_EXE_WRAPPER</code> as the properly wrapped and
+joined representation. For Unix-like OSes this means python's
+shelx.join, on Windows an implementation that attempts to properly
+quote windows argument is used. This allow wrapper scripts to run test
+binaries, instead of just skipping.</p>
 <p>for example, if the wrapper is <code>['emulator', '--script']</code>, it will be passed
 as <code>MESON_EXE_WRAPPER="emulator --script"</code>.</p>
 <h2 id="added-ability-to-specify-backend-arguments-in-meson-compile">Added ability to specify backend arguments in <code>meson compile</code>
@@ -394,11 +406,13 @@ as <code>MESON_EXE_WRAPPER="emulator --script"</code>.</p>
   --vs-args VS_ARGS          Arguments to pass to `msbuild` (applied only on `vs` backend).
 </code></pre>
 <p>These arguments use the following syntax:</p>
-<p>If you only pass a single string, then it is considered to have all values separated by commas. Thus invoking the following command:</p>
+<p>If you only pass a single string, then it is considered to have all
+values separated by commas. Thus invoking the following command:</p>
 <pre><code>$ meson compile --ninja-args=-n,-d,explain
 </code></pre>
 <p>would add <code>-n</code>, <code>-d</code> and <code>explain</code> arguments to ninja invocation.</p>
-<p>If you need to have commas or spaces in your string values, then you need to pass the value with proper shell quoting like this:</p>
+<p>If you need to have commas or spaces in your string values, then you
+need to pass the value with proper shell quoting like this:</p>
 <pre><code>$ meson compile "--ninja-args=['a,b', 'c d']"
 </code></pre>
 <h2 id="introspection-api-changes">Introspection API changes</h2>
@@ -408,11 +422,14 @@ as <code>MESON_EXE_WRAPPER="emulator --script"</code>.</p>
 </ul>
 <h2 id="backendvs-now-matches-db_vscrtfrom_buildtype-behaviour-in-the-ninja-backend">
 <code>--backend=vs</code> now matches <code>-Db_vscrt=from_buildtype</code> behaviour in the Ninja backend</h2>
-<p>When <code>--buildtype=debugoptimized</code> is used with the Ninja backend, the VS CRT
-option used is <code>/MD</code>, which is the <a href="https://mesonbuild.com/Builtin-options.html#b_vscrt-from_buildtype">behaviour documented for all
+<p>When <code>--buildtype=debugoptimized</code> is used with the Ninja backend, the
+VS CRT option used is <code>/MD</code>, which is the <a href="https://mesonbuild.com/Builtin-options.html#b_vscrt-from_buildtype">behaviour documented for
+all
 backends</a>.
-However, the Visual Studio backend was pass <code>/MT</code> in that case, which is inconsistent.</p>
-<p>If you need to use the MultiThreaded CRT, you should explicitly pass <code>-Db_vscrt=mt</code></p>
+However, the Visual Studio backend was pass <code>/MT</code> in that case, which
+is inconsistent.</p>
+<p>If you need to use the MultiThreaded CRT, you should explicitly pass
+<code>-Db_vscrt=mt</code></p>
 
     </div>
         

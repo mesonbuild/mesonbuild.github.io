@@ -225,71 +225,73 @@ three machines are the same. Simple so far.</p>
 suppose you are on a 64 bit OSX machine and you are cross compiling a
 binary that will run on a 32 bit ARM Linux board. In this case your
 <em>build machine</em> is 64 bit OSX, your <em>host machine</em> is 32 bit ARM Linux
-and your <em>target machine</em> is irrelevant (but defaults to the same value
-as the <em>host machine</em>). This should be quite understandable as well.</p>
-<p>The usual mistake in this case is to call the OSX system the <em>host</em> and
-the ARM Linux board the <em>target</em>. That's because these were their actual
-names when the cross-compiler itself was compiled!  Let's assume the
-cross-compiler was created on OSX too. When that happened the <em>build</em>
-and <em>host machines</em> were the same OSX and different from the ARM Linux
-<em>target machine</em>.</p>
+and your <em>target machine</em> is irrelevant (but defaults to the same
+value as the <em>host machine</em>). This should be quite understandable as
+well.</p>
+<p>The usual mistake in this case is to call the OSX system the <em>host</em>
+and the ARM Linux board the <em>target</em>. That's because these were their
+actual names when the cross-compiler itself was compiled! Let's assume
+the cross-compiler was created on OSX too. When that happened the
+<em>build</em> and <em>host machines</em> were the same OSX and different from the
+ARM Linux <em>target machine</em>.</p>
 <p>In a nutshell, the typical mistake assumes that the terms <em>build</em>,
 <em>host</em> and <em>target</em> refer to some fixed positions whereas they're
 actually relative to where the current compiler is running. Think of
-<em>host</em> as a <em>child</em> of the current compiler and <em>target</em> as an optional
-<em>grand-child</em>. Compilers don't change their terminology when they're
-creating another compiler, that would at the very least make their user
-interface much more complex.</p>
-<p>The most complicated case is when you cross-compile a cross
-compiler. As an example you can, on a Linux machine, generate a cross
-compiler that runs on Windows but produces binaries on MIPS Linux. In
-this case <em>build machine</em> is x86 Linux, <em>host machine</em> is x86 Windows
-and <em>target machine</em> is MIPS Linux. This setup is known as the
-<a href="https://en.wikipedia.org/wiki/Cross_compiler#Canadian_Cross">Canadian
-Cross</a>. As
-a side note, be careful when reading cross compilation articles on
+<em>host</em> as a <em>child</em> of the current compiler and <em>target</em> as an
+optional <em>grand-child</em>. Compilers don't change their terminology when
+they're creating another compiler, that would at the very least make
+their user interface much more complex.</p>
+<p>The most complicated case is when you cross-compile a cross compiler.
+As an example you can, on a Linux machine, generate a cross compiler
+that runs on Windows but produces binaries on MIPS Linux. In this case
+<em>build machine</em> is x86 Linux, <em>host machine</em> is x86 Windows and
+<em>target machine</em> is MIPS Linux. This setup is known as the <a href="https://en.wikipedia.org/wiki/Cross_compiler#Canadian_Cross">Canadian
+Cross</a>.
+As a side note, be careful when reading cross compilation articles on
 Wikipedia or the net in general. It is very common for them to get
 build, host and target mixed up, even in consecutive sentences, which
 can leave you puzzled until you figure it out.</p>
-<p>Again note that when you cross-compile something,
-the 3 systems (<em>build</em>, <em>host</em>, and <em>target</em>) used when
-building the cross compiler don't align with the ones used when
-building something with that newly-built cross compiler. To take our
-Canadian Cross scenario from above (for full generality), since its
-<em>host machine</em> is x86 Windows, the <em>build machine</em> of anything we
-build with it is <em>x86 Windows</em>. And since its <em>target machine</em> is MIPS
-Linux, the <em>host machine</em> of anything we build with it is <em>MIPS
-Linux</em>. Only the <em>target machine</em> of whatever we build with it can be
-freely chosen by us, say if we want to build another cross compiler
-that runs on MIPS Linux and targets Aarch64 iOS. As this example
-hopefully makes clear to you, the machine names are relative and
-shifted over to the left by one position.</p>
+<p>Again note that when you cross-compile something, the 3 systems
+(<em>build</em>, <em>host</em>, and <em>target</em>) used when building the cross compiler
+don't align with the ones used when building something with that
+newly-built cross compiler. To take our Canadian Cross scenario from
+above (for full generality), since its <em>host machine</em> is x86 Windows,
+the <em>build machine</em> of anything we build with it is <em>x86 Windows</em>. And
+since its <em>target machine</em> is MIPS Linux, the <em>host machine</em> of
+anything we build with it is <em>MIPS Linux</em>. Only the <em>target machine</em>
+of whatever we build with it can be freely chosen by us, say if we
+want to build another cross compiler that runs on MIPS Linux and
+targets Aarch64 iOS. As this example hopefully makes clear to you, the
+machine names are relative and shifted over to the left by one
+position.</p>
 <p>If you did not understand all of the details, don't worry. For most
-people it takes a while to wrap their head around these
-concepts. Don't panic, it might take a while to click, but you will
-get the hang of it eventually.</p>
+people it takes a while to wrap their head around these concepts.
+Don't panic, it might take a while to click, but you will get the hang
+of it eventually.</p>
 <h2 id="defining-the-environment">Defining the environment</h2>
 <p>Meson requires you to write a cross build definition file. It defines
 various properties of the cross build environment. The cross file
 consists of different sections.</p>
 <p>There are a number of options shared by cross and native files,
-<a href="Machine-files.html">here</a>. It is assumed that you have read that section already,
-as this documentation will only call out options specific to cross files.</p>
+<a href="Machine-files.html">here</a>. It is assumed that you have read that
+section already, as this documentation will only call out options
+specific to cross files.</p>
 <h3 id="binaries">Binaries</h3>
 <pre><code class="language-ini">[binaries]
 exe_wrapper = 'wine' # A command used to run generated executables.
 </code></pre>
-<p>The <code>exe_wrapper</code> option defines a <em>wrapper command</em> that can be used to run
-executables for this host. In this case we can use Wine, which runs Windows
-applications on Linux. Other choices include running the application with
-qemu or a hardware simulator. If you have this kind of a wrapper, these lines
-are all you need to write. Meson will automatically use the given wrapper
-when it needs to run host binaries. This happens e.g. when running the
-project's test suite.</p>
+<p>The <code>exe_wrapper</code> option defines a <em>wrapper command</em> that can be used
+to run executables for this host. In this case we can use Wine, which
+runs Windows applications on Linux. Other choices include running the
+application with qemu or a hardware simulator. If you have this kind
+of a wrapper, these lines are all you need to write. Meson will
+automatically use the given wrapper when it needs to run host
+binaries. This happens e.g. when running the project's test suite.</p>
 <h3 id="properties">Properties</h3>
 <p>In addition to the properties allowed in <a href="Machine-files.html#properties">all machine
-files</a>, the cross file may contain specific
-information about the cross compiler or the host machine. It looks like this:</p>
+files</a>, the cross file may contain
+specific information about the cross compiler or the host machine. It
+looks like this:</p>
 <pre><code class="language-ini">[properties]
 sizeof_int = 4
 sizeof_wchar_t = 4
@@ -305,20 +307,22 @@ sys_root = '/some/path'
 pkg_config_libdir = '/some/path/lib/pkgconfig'
 </code></pre>
 <p>In most cases you don't need the size and alignment settings, Meson
-will detect all these by compiling and running some sample
-programs. If your build requires some piece of data that is not listed
-here, Meson will stop and write an error message describing how to fix
-the issue. If you need extra compiler arguments to be used during
-cross compilation you can set them with <code>[langname]_args = [args]</code>. Just remember to specify the args as an array and not as a
-single string (i.e. not as <code>'-DCROSS=1 -DSOMETHING=3'</code>).</p>
-<p><em>Since 0.52.0</em> The <code>sys_root</code> property may point to the root of the host
-system path (the system that will run the compiled binaries). This is used
-internally by Meson to set the PKG_CONFIG_SYSROOT_DIR environment variable
-for pkg-config. If this is unset the host system is assumed to share a root
-with the build system.</p>
-<p><em>Since 0.54.0</em> The pkg_config_libdir property may point to a list of path used
-internally by Meson to set the PKG_CONFIG_LIBDIR environment variable for pkg-config.
-This prevents pkg-config from searching cross dependencies in system directories.</p>
+will detect all these by compiling and running some sample programs.
+If your build requires some piece of data that is not listed here,
+Meson will stop and write an error message describing how to fix the
+issue. If you need extra compiler arguments to be used during cross
+compilation you can set them with <code>[langname]_args = [args]</code>. Just
+remember to specify the args as an array and not as a single string
+(i.e. not as <code>'-DCROSS=1 -DSOMETHING=3'</code>).</p>
+<p><em>Since 0.52.0</em> The <code>sys_root</code> property may point to the root of the
+host system path (the system that will run the compiled binaries).
+This is used internally by Meson to set the PKG_CONFIG_SYSROOT_DIR
+environment variable for pkg-config. If this is unset the host system
+is assumed to share a root with the build system.</p>
+<p><em>Since 0.54.0</em> The pkg_config_libdir property may point to a list of
+path used internally by Meson to set the PKG_CONFIG_LIBDIR environment
+variable for pkg-config. This prevents pkg-config from searching cross
+dependencies in system directories.</p>
 <p>One important thing to note, if you did not define an <code>exe_wrapper</code> in
 the previous section, is that Meson will make a best-effort guess at
 whether it can run the generated binaries on the build machine. It
@@ -352,20 +356,21 @@ endian = 'little'
 purposes. The corresponding target definition would look the same but
 have <code>target_machine</code> in the header. These values are available in
 your Meson scripts. There are three predefined variables called,
-surprisingly, <code>build_machine</code>, <code>host_machine</code> and
-<code>target_machine</code>. Determining the operating system of your host
-machine is simply a matter of calling <code>host_machine.system()</code>.</p>
-<p>There are two different values for the CPU. The first one is <code>cpu_family</code>. It
-is a general type of the CPU. This should have a value from <a href="Reference-tables.html#cpu-families">the CPU Family
-table</a>. <em>Note</em> that meson does not add
-<code>el</code> to end cpu_family value for little endian systems. Big endian and little
-endian mips are both just <code>mips</code>, with the <code>endian</code> field set approriately.</p>
-<p>The second value is <code>cpu</code> which is
-a more specific subtype for the CPU. Typical values for a <code>x86</code> CPU family
-might include <code>i386</code> or <code>i586</code> and for <code>arm</code> family <code>armv5</code> or <code>armv7hl</code>.
-Note that CPU type strings are very system dependent. You might get a
-different value if you check its value on the same machine but with different
-operating systems.</p>
+surprisingly, <code>build_machine</code>, <code>host_machine</code> and <code>target_machine</code>.
+Determining the operating system of your host machine is simply a
+matter of calling <code>host_machine.system()</code>.</p>
+<p>There are two different values for the CPU. The first one is
+<code>cpu_family</code>. It is a general type of the CPU. This should have a
+value from <a href="Reference-tables.html#cpu-families">the CPU Family table</a>.
+<em>Note</em> that meson does not add <code>el</code> to end cpu_family value for little
+endian systems. Big endian and little endian mips are both just
+<code>mips</code>, with the <code>endian</code> field set approriately.</p>
+<p>The second value is <code>cpu</code> which is a more specific subtype for the
+CPU. Typical values for a <code>x86</code> CPU family might include <code>i386</code> or
+<code>i586</code> and for <code>arm</code> family <code>armv5</code> or <code>armv7hl</code>. Note that CPU type
+strings are very system dependent. You might get a different value if
+you check its value on the same machine but with different operating
+systems.</p>
 <p>If you do not define your host machine, it is assumed to be the build
 machine. Similarly if you do not specify target machine, it is assumed
 to be the host machine.</p>
@@ -392,8 +397,8 @@ host_int_size  = host_compiler.sizeof('int')
 <h2 id="mixing-host-and-build-targets">Mixing host and build targets</h2>
 <p>Sometimes you need to build a tool which is used to generate source
 files. These are then compiled for the actual target. For this you
-would want to build some targets with the system's native
-compiler. This requires only one extra keyword argument.</p>
+would want to build some targets with the system's native compiler.
+This requires only one extra keyword argument.</p>
 <pre><code class="language-meson">native_exe = executable('mygen', 'mygen.c', native : true)
 </code></pre>
 <p>You can then take <code>native_exe</code> and use it as part of a generator rule or anything else you might want.</p>
@@ -420,11 +425,11 @@ c_stdlib = 'mylibc'
 </code></pre>
 <h2 id="changing-cross-file-settings">Changing cross file settings</h2>
 <p>Cross file settings are only read when the build directory is set up
-the first time. Any changes to them after the fact will be
-ignored. This is the same as regular compiles where you can't change
-the compiler once a build tree has been set up. If you need to edit
-your cross file, then you need to wipe your build tree and recreate it
-from scratch.</p>
+the first time. Any changes to them after the fact will be ignored.
+This is the same as regular compiles where you can't change the
+compiler once a build tree has been set up. If you need to edit your
+cross file, then you need to wipe your build tree and recreate it from
+scratch.</p>
 <h2 id="custom-data">Custom data</h2>
 <p>You can store arbitrary data in <code>properties</code> and access them from your
 Meson files. As an example if you cross file has this:</p>
@@ -436,24 +441,26 @@ somekey = 'somevalue'
 # myvar now has the value 'somevalue'
 </code></pre>
 <h2 id="cross-file-locations">Cross file locations</h2>
-<p>As of version 0.44.0 meson supports loading cross files from system locations
-(except on Windows).  This will be $XDG_DATA_DIRS/meson/cross, or if
-XDG_DATA_DIRS is undefined, then /usr/local/share/meson/cross and
-/usr/share/meson/cross will be tried in that order, for system wide cross
-files. User local files can be put in $XDG_DATA_HOME/meson/cross, or
-~/.local/share/meson/cross if that is undefined.</p>
+<p>As of version 0.44.0 meson supports loading cross files from system
+locations (except on Windows). This will be
+$XDG_DATA_DIRS/meson/cross, or if XDG_DATA_DIRS is undefined, then
+/usr/local/share/meson/cross and /usr/share/meson/cross will be tried
+in that order, for system wide cross files. User local files can be
+put in $XDG_DATA_HOME/meson/cross, or ~/.local/share/meson/cross if
+that is undefined.</p>
 <p>The order of locations tried is as follows:</p>
 <ul>
 <li>A file relative to the local dir</li>
 <li>The user local location</li>
 <li>The system wide locations in order</li>
 </ul>
-<p>Distributions are encouraged to ship cross files either with
-their cross compiler toolchain packages or as a standalone package, and put
+<p>Distributions are encouraged to ship cross files either with their
+cross compiler toolchain packages or as a standalone package, and put
 them in one of the system paths referenced above.</p>
-<p>These files can be loaded automatically without adding a path to the cross
-file. For example, if a ~/.local/share/meson/cross contains a file called x86-linux,
-then the following command would start a cross build using that cross files:</p>
+<p>These files can be loaded automatically without adding a path to the
+cross file. For example, if a ~/.local/share/meson/cross contains a
+file called x86-linux, then the following command would start a cross
+build using that cross files:</p>
 <pre><code class="language-sh">meson builddir/ --cross-file x86-linux
 </code></pre>
 

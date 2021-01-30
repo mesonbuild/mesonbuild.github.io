@@ -216,7 +216,8 @@ remove them.</p>
 <li>Must include a project test under <code>test cases/</code>, or if that's not
 possible or if the test requires a special environment, it must go
 into <code>run_unittests.py</code>.</li>
-<li>Must be registered with the <a href="Release-notes-for-0-47-0.html#feature-detection-based-on-meson_version-in-project">FeatureChecks framework</a>
+<li>Must be registered with the <a href="Release-notes-for-0-47-0.html#feature-detection-based-on-meson_version-in-project">FeatureChecks
+framework</a>
 that will warn the user if they try to use a new feature while
 targeting an older meson version.</li>
 <li>Needs a release note snippet inside <code>docs/markdown/snippets/</code> with
@@ -332,12 +333,14 @@ external program in the common directory, such as a code generator, it
 should be implemented as a Python script. The goal of test projects is
 also to provide sample projects that end users can use as a base for
 their own projects.</p>
-<p>All project tests follow the same pattern: they are configured, compiled, tests
-are run and finally install is run. Passing means that configuring, building and
-tests succeed and that installed files match those expected.</p>
-<p>Any tests that require more thorough analysis, such as checking that certain
-compiler arguments can be found in the command line or that the generated
-pkg-config files actually work should be done with a unit test.</p>
+<p>All project tests follow the same pattern: they are configured,
+compiled, tests are run and finally install is run. Passing means that
+configuring, building and tests succeed and that installed files match
+those expected.</p>
+<p>Any tests that require more thorough analysis, such as checking that
+certain compiler arguments can be found in the command line or that
+the generated pkg-config files actually work should be done with a
+unit test.</p>
 <p>Additionally:</p>
 <ul>
 <li>
@@ -345,8 +348,8 @@ pkg-config files actually work should be done with a unit test.</p>
 <code>--cross-file</code> and <code>--native-file</code> options, respectively.</p>
 </li>
 <li>
-<p><code>mlog.cmd_ci_include()</code> can be called from anywhere inside meson to capture the
-contents of an additional file into the CI log on failure.</p>
+<p><code>mlog.cmd_ci_include()</code> can be called from anywhere inside meson to
+capture the contents of an additional file into the CI log on failure.</p>
 </li>
 </ul>
 <p>Projects needed by unit tests are in the <code>test cases/unit</code>
@@ -492,17 +495,27 @@ current platform. The following values are currently supported:</p>
 </tr>
 </tbody>
 </table>
-<p>The <code>shared_lib</code> and <code>pdb</code> types takes an optional additional parameter, <code>version</code>, this is us a string in <code>X.Y.Z</code> format that will be applied to the library. Each version to be tested must have a single version. The harness will apply this correctly per platform:</p>
-<p><code>pdb</code> takes an optional <code>language</code> argument. This determines which compiler/linker should generate the pdb file. Because it's possible to mix compilers that do and don't generate pdb files (dmd's optlink doesn't). Currently this is only needed when mixing D and C code.</p>
+<p>The <code>shared_lib</code> and <code>pdb</code> types takes an optional additional
+parameter, <code>version</code>, this is us a string in <code>X.Y.Z</code> format that will
+be applied to the library. Each version to be tested must have a
+single version. The harness will apply this correctly per platform:</p>
+<p><code>pdb</code> takes an optional <code>language</code> argument. This determines which
+compiler/linker should generate the pdb file. Because it's possible to
+mix compilers that do and don't generate pdb files (dmd's optlink
+doesn't). Currently this is only needed when mixing D and C code.</p>
 <pre><code class="language-json">{
   "type": "shared_lib", "file": "usr/lib/lib",
   "type": "shared_lib", "file": "usr/lib/lib", "version": "1",
   "type": "shared_lib", "file": "usr/lib/lib", "version": "1.2.3.",
 }
 </code></pre>
-<p>This will be applied appropriately per platform. On windows this expects <code>lib.dll</code> and <code>lib-1.dll</code>. on MacOS it expects <code>liblib.dylib</code> and <code>liblib.1.dylib</code>. On other Unices it expects <code>liblib.so</code>, <code>liblib.so.1</code>, and <code>liblib.so.1.2.3</code>.</p>
-<p>If the <code>platform</code> key is present, the installed file entry is only considered if
-the platform matches. The following values for <code>platform</code> are currently supported:</p>
+<p>This will be applied appropriately per platform. On windows this
+expects <code>lib.dll</code> and <code>lib-1.dll</code>. on MacOS it expects <code>liblib.dylib</code>
+and <code>liblib.1.dylib</code>. On other Unices it expects <code>liblib.so</code>,
+<code>liblib.so.1</code>, and <code>liblib.so.1.2.3</code>.</p>
+<p>If the <code>platform</code> key is present, the installed file entry is only
+considered if the platform matches. The following values for
+<code>platform</code> are currently supported:</p>
 <table>
 <thead>
 <tr>
@@ -536,18 +549,21 @@ the platform matches. The following values for <code>platform</code> are current
 </tbody>
 </table>
 <h4 id="matrix">matrix</h4>
-<p>The <code>matrix</code> section can be used to define a test matrix to run project tests
-with different meson options.</p>
-<p>In the <code>options</code> dict, all possible options and their values are specified. Each
-key in the <code>options</code> dict is a meson option. It stores a list of all potential
-values in a dict format, which allows to skip specific values based on the current
-environment.</p>
-<p>Each value must contain the <code>val</code> key for the value of the option. <code>null</code> can be
-used for adding matrix entries without the current option.</p>
-<p>Additionally, the <code>skip_on_env</code> key can be used to specify a list of environment
-variables. If at least one environment variable in <code>skip_on_env</code> is present, all
-matrix entries containing this value are skipped.</p>
-<p>Similarly, the <code>compilers</code> key can be used to define a mapping of compilers to languages that are required for this value.</p>
+<p>The <code>matrix</code> section can be used to define a test matrix to run
+project tests with different meson options.</p>
+<p>In the <code>options</code> dict, all possible options and their values are
+specified. Each key in the <code>options</code> dict is a meson option. It stores
+a list of all potential values in a dict format, which allows to skip
+specific values based on the current environment.</p>
+<p>Each value must contain the <code>val</code> key for the value of the option.
+<code>null</code> can be used for adding matrix entries without the current
+option.</p>
+<p>Additionally, the <code>skip_on_env</code> key can be used to specify a list of
+environment variables. If at least one environment variable in
+<code>skip_on_env</code> is present, all matrix entries containing this value are
+skipped.</p>
+<p>Similarly, the <code>compilers</code> key can be used to define a mapping of
+compilers to languages that are required for this value.</p>
 <pre><code class="language-json">{
   "compilers": {
     "c": "gcc",
@@ -556,10 +572,11 @@ matrix entries containing this value are skipped.</p>
   }
 }
 </code></pre>
-<p>Specific option combinations can be excluded with the <code>exclude</code> section. It should
-be noted that <code>exclude</code> does not require exact matches. Instead, any matrix entry
-containing all option value combinations in <code>exclude</code> will be excluded. Thus
-an empty dict (<code>{}</code>) to will match <strong>all</strong> elements in the test matrix.</p>
+<p>Specific option combinations can be excluded with the <code>exclude</code>
+section. It should be noted that <code>exclude</code> does not require exact
+matches. Instead, any matrix entry containing all option value
+combinations in <code>exclude</code> will be excluded. Thus an empty dict (<code>{}</code>)
+to will match <strong>all</strong> elements in the test matrix.</p>
 <p>The above example will produce the following matrix entries:</p>
 <ul>
 <li><code>opt1=abc</code></li>
@@ -575,23 +592,26 @@ an empty dict (<code>{}</code>) to will match <strong>all</strong> elements in t
 <li><code>libdir</code></li>
 </ul>
 <h4 id="tools">tools</h4>
-<p>This section specifies a dict of tool requirements in a simple key-value format.
-If a tool is specified, it has to be present in the environment, and the version
-requirement must be fulfilled. Otherwise, the entire test is skipped (including
-every element in the test matrix).</p>
+<p>This section specifies a dict of tool requirements in a simple
+key-value format. If a tool is specified, it has to be present in the
+environment, and the version requirement must be fulfilled. Otherwise,
+the entire test is skipped (including every element in the test
+matrix).</p>
 <h4 id="stdout">stdout</h4>
-<p>The <code>stdout</code> key contains a list of dicts, describing the expected stdout.</p>
+<p>The <code>stdout</code> key contains a list of dicts, describing the expected
+stdout.</p>
 <p>Each dict contains the following keys:</p>
 <ul>
 <li><code>line</code></li>
 <li>
 <code>match</code> (optional)</li>
 </ul>
-<p>Each item in the list is matched, in order, against the remaining actual stdout
-lines, after any previous matches. If the actual stdout is exhausted before
-every item in the list is matched, the expected output has not been seen, and
-the test has failed.</p>
-<p>The <code>match</code> element of the dict determines how the <code>line</code> element is matched:</p>
+<p>Each item in the list is matched, in order, against the remaining
+actual stdout lines, after any previous matches. If the actual stdout
+is exhausted before every item in the list is matched, the expected
+output has not been seen, and the test has failed.</p>
+<p>The <code>match</code> element of the dict determines how the <code>line</code> element is
+matched:</p>
 <table>
 <thead>
 <tr>
@@ -613,8 +633,9 @@ the test has failed.</p>
 </tbody>
 </table>
 <h3 id="skipping-integration-tests">Skipping integration tests</h3>
-<p>Meson uses several continuous integration testing systems that have slightly
-different interfaces for indicating a commit should be skipped.</p>
+<p>Meson uses several continuous integration testing systems that have
+slightly different interfaces for indicating a commit should be
+skipped.</p>
 <p>Continuous integration systems currently used:</p>
 <ul>
 <li>
@@ -627,7 +648,8 @@ runs Flake8 (<a href="Contributing.html#python-coding-style">see below</a>)</li>
 <p>To promote consistent naming policy, use:</p>
 <ul>
 <li>
-<code>[skip ci]</code> in the commit title if you want to disable all integration tests</li>
+<code>[skip ci]</code> in the commit title if you want to disable all
+integration tests</li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <p>The <code>docs</code> directory contains the full documentation that will be used
@@ -709,7 +731,8 @@ boolean variable <code>flipflop</code>. Then you could do this:</p>
 <p>This piece of code would never converge. Every Meson run would change
 the value of the option and thus the output you get out of this build
 definition would be random.</p>
-<p>Meson does not permit this by forbidding these sorts of covert channels.</p>
+<p>Meson does not permit this by forbidding these sorts of covert
+channels.</p>
 <p>There is one exception to this rule. Users can call into external
 commands with <code>run_command</code>. If the output of that command does not
 behave like a pure function, this problem arises. Meson does not try

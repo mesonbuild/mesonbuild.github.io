@@ -203,15 +203,16 @@ each word written in lowercase. It is the most common naming convention used
 in Meson build scripts as identifiers for variable.</p>
 <p>Let say you would like to refer to your executable so something like <code>my_exe</code>.</p>
 <h2 id="dependency-usage">Dependency usage</h2>
-<p>The <code>dependency</code> function is the recommended way to handle dependencies. If your wrap files
-have the necessary <code>[provide]</code> entries, everything will work automatically both when
-compiling your own and when using system dependencies.</p>
+<p>The <code>dependency</code> function is the recommended way to handle
+dependencies. If your wrap files have the necessary <code>[provide]</code>
+entries, everything will work automatically both when compiling your
+own and when using system dependencies.</p>
 <p>You should only need <code>subproject</code> when you need to extract non dependencies/programs.</p>
 <h2 id="naming-options">Naming options</h2>
 <p>There are two ways of naming project options. As an example for
-booleans the first one is <code>foo</code> and the second one is
-<code>enable-foo</code>. The former style is recommended, because in Meson
-options have strong type, rather than being just strings.</p>
+booleans the first one is <code>foo</code> and the second one is <code>enable-foo</code>.
+The former style is recommended, because in Meson options have strong
+type, rather than being just strings.</p>
 <p>You should try to name options the same as is common in other
 projects. This is especially important for yielding options, because
 they require that both the parent and subproject options have the same
@@ -225,10 +226,10 @@ much as possible. Keep them in the cross file instead. This adds
 portability, since all changes needed to compile to a different
 platform are isolated in one place.</p>
 <h1 id="sorting-source-paths">Sorting source paths</h1>
-<p>The source file arrays should all be sorted. This makes it easier to spot
-errors and often reduces merge conflicts. Furthermore, the paths should be
-sorted with a natural sorting algorithm, so that numbers are sorted in an
-intuitive way (<code>1, 2, 3, 10, 20</code> instead of <code>1, 10, 2, 20, 3</code>).</p>
+<p>The source file arrays should all be sorted. This makes it easier to
+spot errors and often reduces merge conflicts. Furthermore, the paths
+should be sorted with a natural sorting algorithm, so that numbers are
+sorted in an intuitive way (<code>1, 2, 3, 10, 20</code> instead of <code>1, 10, 2, 20, 3</code>).</p>
 <p>Numbers should also be sorted before characters (<code>a111</code> before <code>ab0</code>).
 Furthermore, strings should be sorted case insensitive.</p>
 <p>Additionally, if a path contains a directory it should be sorted before

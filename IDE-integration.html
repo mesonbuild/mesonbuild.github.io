@@ -192,26 +192,28 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="ide-integration">IDE integration</h1>
-<p>Meson has exporters for Visual Studio and XCode, but writing a custom backend
-for every IDE out there is not a scalable approach. To solve this problem,
-Meson provides an API that makes it easy for any IDE or build tools to
-integrate Meson builds and provide an experience comparable to a solution
-native to the IDE.</p>
+<p>Meson has exporters for Visual Studio and XCode, but writing a custom
+backend for every IDE out there is not a scalable approach. To solve
+this problem, Meson provides an API that makes it easy for any IDE or
+build tools to integrate Meson builds and provide an experience
+comparable to a solution native to the IDE.</p>
 <p>All the resources required for such a IDE integration can be found in
 the <code>meson-info</code> directory in the build directory.</p>
-<p>The first thing to do when setting up a Meson project in an IDE is to select
-the source and build directories. For this example we assume that the source
-resides in an Eclipse-like directory called <code>workspace/project</code> and the build
-tree is nested inside it as <code>workspace/project/build</code>. First, we initialize
-Meson by running the following command in the source directory.</p>
+<p>The first thing to do when setting up a Meson project in an IDE is to
+select the source and build directories. For this example we assume
+that the source resides in an Eclipse-like directory called
+<code>workspace/project</code> and the build tree is nested inside it as
+<code>workspace/project/build</code>. First, we initialize Meson by running the
+following command in the source directory.</p>
 <pre><code>meson builddir
 </code></pre>
 <p>With this command meson will configure the project and also generate
-introspection information that is stored in <code>intro-*.json</code> files in the
-<code>meson-info</code> directory. The introspection dump will be automatically updated
-when meson is (re)configured, or the build options change. Thus, an IDE can
-watch for changes in this directory to know when something changed. Note that
-<code>meson-info.json</code> guaranteed to be the last file written.</p>
+introspection information that is stored in <code>intro-*.json</code> files in
+the <code>meson-info</code> directory. The introspection dump will be
+automatically updated when meson is (re)configured, or the build
+options change. Thus, an IDE can watch for changes in this directory
+to know when something changed. Note that <code>meson-info.json</code> guaranteed
+to be the last file written.</p>
 <p>The <code>meson-info</code> directory should contain the following files:</p>
 <table>
 <thead>
@@ -263,11 +265,12 @@ watch for changes in this directory to know when something changed. Note that
 </tr>
 </tbody>
 </table>
-<p>The content of the JSON files is further specified in the remainder of this document.</p>
+<p>The content of the JSON files is further specified in the remainder of
+this document.</p>
 <h2 id="the-targets-section">The <code>targets</code> section</h2>
-<p>The most important file for an IDE is probably <code>intro-targets.json</code>. Here each
-target with its sources and compiler parameters is specified. The JSON format
-for one target is defined as follows:</p>
+<p>The most important file for an IDE is probably <code>intro-targets.json</code>.
+Here each target with its sources and compiler parameters is
+specified. The JSON format for one target is defined as follows:</p>
 <pre><code class="language-json">{
     "name": "Name of the target",
     "id": "The internal ID meson uses",
@@ -281,20 +284,22 @@ for one target is defined as follows:</p>
     "installed": true / false,
 }
 </code></pre>
-<p>If the key <code>installed</code> is set to <code>true</code>, the key <code>install_filename</code> will also
-be present. It stores the installation location for each file in <code>filename</code>.
-If one file in <code>filename</code> is not installed, its corresponding install location
-is set to <code>null</code>.</p>
-<p>The <code>subproject</code> key specifies the name of the subproject this target was
-defined in, or <code>null</code> if the target was defined in the top level project.</p>
-<p><em>(New in 0.56.0)</em> The <code>extra_files</code> key lists all files specified via the
-<code>extra_files</code> kwarg of a build target. See <a href="Reference-manual.html#executable"><code>executable()</code></a>.</p>
-<p>A target usually generates only one file. However, it is possible for custom
-targets to have multiple outputs.</p>
+<p>If the key <code>installed</code> is set to <code>true</code>, the key <code>install_filename</code>
+will also be present. It stores the installation location for each
+file in <code>filename</code>. If one file in <code>filename</code> is not installed, its
+corresponding install location is set to <code>null</code>.</p>
+<p>The <code>subproject</code> key specifies the name of the subproject this target
+was defined in, or <code>null</code> if the target was defined in the top level
+project.</p>
+<p><em>(New in 0.56.0)</em> The <code>extra_files</code> key lists all files specified via
+the <code>extra_files</code> kwarg of a build target. See
+<a href="Reference-manual.html#executable"><code>executable()</code></a>.</p>
+<p>A target usually generates only one file. However, it is possible for
+custom targets to have multiple outputs.</p>
 <h3 id="target-sources">Target sources</h3>
-<p>The <code>intro-targets.json</code> file also stores a list of all source objects of the
-target in the <code>target_sources</code>. With this information, an IDE can provide code
-completion for all source files.</p>
+<p>The <code>intro-targets.json</code> file also stores a list of all source objects
+of the target in the <code>target_sources</code>. With this information, an IDE
+can provide code completion for all source files.</p>
 <pre><code class="language-json">{
     "language": "language ID",
     "compiler": ["The", "compiler", "command"],
@@ -303,11 +308,11 @@ completion for all source files.</p>
     "generated_sources": ["list", "of", "all", "source", "files", "that", "where", "generated", "somewhere", "else"]
 }
 </code></pre>
-<p>It should be noted that the compiler parameters stored in the <code>parameters</code>
-differ from the actual parameters used to compile the file. This is because
-the parameters are optimized for the usage in an IDE to provide autocompletion
-support, etc. It is thus not recommended to use this introspection information
-for actual compilation.</p>
+<p>It should be noted that the compiler parameters stored in the
+<code>parameters</code> differ from the actual parameters used to compile the
+file. This is because the parameters are optimized for the usage in an
+IDE to provide autocompletion support, etc. It is thus not recommended
+to use this introspection information for actual compilation.</p>
 <h3 id="possible-values-for-type">Possible values for <code>type</code>
 </h3>
 <p>The following table shows all valid types for a target.</p>
@@ -358,11 +363,11 @@ for actual compilation.</p>
 </tbody>
 </table>
 <h3 id="using-targets-without-a-build-directory">Using <code>--targets</code> without a build directory</h3>
-<p>It is also possible to get most targets without a build directory. This can be
-done by running <code>meson introspect --targets /path/to/meson.build</code>.</p>
-<p>The generated output is similar to running the introspection with a build
-directory or reading the <code>intro-targets.json</code>. However, there are some key
-differences:</p>
+<p>It is also possible to get most targets without a build directory.
+This can be done by running <code>meson introspect --targets /path/to/meson.build</code>.</p>
+<p>The generated output is similar to running the introspection with a
+build directory or reading the <code>intro-targets.json</code>. However, there
+are some key differences:</p>
 <ul>
 <li>The paths in <code>filename</code> now are <em>relative</em> to the future build directory</li>
 <li>The <code>install_filename</code> key is completely missing</li>
@@ -376,15 +381,16 @@ differences:</p>
 </ul>
 </li>
 </ul>
-<p>There is no guarantee that the sources list in <code>target_sources</code> is correct.
-There might be differences, due to internal limitations. It is also not
-guaranteed that all targets will be listed in the output. It might even be
-possible that targets are listed, which won't exist when meson is run normally.
-This can happen if a target is defined inside an if statement.
-Use this feature with care.</p>
+<p>There is no guarantee that the sources list in <code>target_sources</code> is
+correct. There might be differences, due to internal limitations. It
+is also not guaranteed that all targets will be listed in the output.
+It might even be possible that targets are listed, which won't exist
+when meson is run normally. This can happen if a target is defined
+inside an if statement. Use this feature with care.</p>
 <h2 id="build-options">Build Options</h2>
-<p>The list of all build options (build type, warning level, etc.) is stored in
-the <code>intro-buildoptions.json</code> file. Here is the JSON format for each option.</p>
+<p>The list of all build options (build type, warning level, etc.) is
+stored in the <code>intro-buildoptions.json</code> file. Here is the JSON format
+for each option.</p>
 <pre><code class="language-json">{
     "name": "name of the option",
     "description": "the description",
@@ -402,8 +408,8 @@ the <code>intro-buildoptions.json</code> file. Here is the JSON format for each 
 <li>integer</li>
 <li>array</li>
 </ul>
-<p>For the type <code>combo</code> the key <code>choices</code> is also present. Here all valid values
-for the option are stored.</p>
+<p>For the type <code>combo</code> the key <code>choices</code> is also present. Here all valid
+values for the option are stored.</p>
 <p>The possible values for <code>section</code> are:</p>
 <ul>
 <li>core</li>
@@ -414,8 +420,8 @@ for the option are stored.</p>
 <li>user</li>
 <li>test</li>
 </ul>
-<p>The <code>machine</code> key specifies the machine configuration for the option. Possible
-values are:</p>
+<p>The <code>machine</code> key specifies the machine configuration for the option.
+Possible values are:</p>
 <ul>
 <li>any</li>
 <li>host</li>
@@ -423,21 +429,22 @@ values are:</p>
 </ul>
 <p>To set the options, use the <code>meson configure</code> command.</p>
 <p>Since Meson 0.50.0 it is also possible to get the default buildoptions
-without a build directory by providing the root <code>meson.build</code> instead of a
-build directory to <code>meson introspect --buildoptions</code>.</p>
-<p>Running <code>--buildoptions</code> without a build directory produces the same output as
-running it with a freshly configured build directory.</p>
-<p>However, this behavior is not guaranteed if subprojects are present. Due to
-internal limitations all subprojects are processed even if they are never used
-in a real meson run. Because of this options for the subprojects can differ.</p>
+without a build directory by providing the root <code>meson.build</code> instead
+of a build directory to <code>meson introspect --buildoptions</code>.</p>
+<p>Running <code>--buildoptions</code> without a build directory produces the same
+output as running it with a freshly configured build directory.</p>
+<p>However, this behavior is not guaranteed if subprojects are present.
+Due to internal limitations all subprojects are processed even if they
+are never used in a real meson run. Because of this options for the
+subprojects can differ.</p>
 <h2 id="the-dependencies-section">The dependencies section</h2>
 <p>The list of all <em>found</em> dependencies can be acquired from
-<code>intro-dependencies.json</code>. Here, the name, version, compiler and linker
-arguments for a dependency are listed.</p>
+<code>intro-dependencies.json</code>. Here, the name, version, compiler and
+linker arguments for a dependency are listed.</p>
 <h3 id="scanning-for-dependecie-with-scandependencies">Scanning for dependecie with <code>--scan-dependencies</code>
 </h3>
-<p>It is also possible to get most dependencies used without a build directory.
-This can be done by running <code>meson introspect --scan-dependencies /path/to/meson.build</code>.</p>
+<p>It is also possible to get most dependencies used without a build
+directory. This can be done by running <code>meson introspect --scan-dependencies /path/to/meson.build</code>.</p>
 <p>The output format is as follows:</p>
 <pre><code class="language-json">[
   {
@@ -449,25 +456,26 @@ This can be done by running <code>meson introspect --scan-dependencies /path/to/
   }
 ]
 </code></pre>
-<p>The <code>required</code> keyword specifies whether the dependency is marked as required
-in the <code>meson.build</code> (all dependencies are required by default). The
-<code>conditional</code> key indicates whether the <code>dependency()</code> function was called
-inside a conditional block. In a real meson run these dependencies might not be
-used, thus they <em>may</em> not be required, even if the <code>required</code> key is set. The
-<code>has_fallback</code> key just indicates whether a fallback was directly set in the
-<code>dependency()</code> function. The <code>version</code> key always contains a list of version
-requirements from the <code>meson.build</code> and <strong>not</strong> the actual version of the
-dependency on disc. The version list is empty if no version was specified
-in the <code>meson.build</code>.</p>
+<p>The <code>required</code> keyword specifies whether the dependency is marked as
+required in the <code>meson.build</code> (all dependencies are required by
+default). The <code>conditional</code> key indicates whether the <code>dependency()</code>
+function was called inside a conditional block. In a real meson run
+these dependencies might not be used, thus they <em>may</em> not be required,
+even if the <code>required</code> key is set. The <code>has_fallback</code> key just
+indicates whether a fallback was directly set in the <code>dependency()</code>
+function. The <code>version</code> key always contains a list of version
+requirements from the <code>meson.build</code> and <strong>not</strong> the actual version of
+the dependency on disc. The version list is empty if no version was
+specified in the <code>meson.build</code>.</p>
 <h2 id="tests">Tests</h2>
-<p>Compilation and unit tests are done as usual by running the <code>meson compile</code> and
-<code>meson test</code> commands. A JSON formatted result log can be found in
-<code>workspace/project/builddir/meson-logs/testlog.json</code>.</p>
-<p>When these tests fail, the user probably wants to run the failing test in a
-debugger. To make this as integrated as possible, extract the tests from the
-<code>intro-tests.json</code> and <code>intro-benchmarks.json</code> files. This provides you with
-all the information needed to run the test: what command to execute, command
-line arguments, environment variable settings and how to process the output.</p>
+<p>Compilation and unit tests are done as usual by running the <code>meson compile</code> and <code>meson test</code> commands. A JSON formatted result log can be
+found in <code>workspace/project/builddir/meson-logs/testlog.json</code>.</p>
+<p>When these tests fail, the user probably wants to run the failing test
+in a debugger. To make this as integrated as possible, extract the
+tests from the <code>intro-tests.json</code> and <code>intro-benchmarks.json</code> files.
+This provides you with all the information needed to run the test:
+what command to execute, command line arguments, environment variable
+settings and how to process the output.</p>
 <pre><code class="language-json">{
     "name": "name of the test",
     "workdir": "the working directory (can be null)",
@@ -484,12 +492,12 @@ line arguments, environment variable settings and how to process the output.</p>
 }
 </code></pre>
 <p>The <code>depends</code> entry <em>(since 0.56.0)</em> contains target ids; they can be
-looked up in the targets introspection data.  The executable
-pointed to by <code>cmd</code> is also included in the entry, as are any
-arguments to the test that are build products.</p>
+looked up in the targets introspection data. The executable pointed to
+by <code>cmd</code> is also included in the entry, as are any arguments to the
+test that are build products.</p>
 <h2 id="build-system-files">Build system files</h2>
-<p>It is also possible to get Meson build files used in your current project. This
-can be done by running <code>meson introspect --buildsystem-files /path/to/builddir</code>.</p>
+<p>It is also possible to get Meson build files used in your current
+project. This can be done by running <code>meson introspect --buildsystem-files /path/to/builddir</code>.</p>
 <p>The output format is as follows:</p>
 <pre><code class="language-json">[
     "/Path/to/the/targets/meson.build",
@@ -498,13 +506,15 @@ can be done by running <code>meson introspect --buildsystem-files /path/to/build
 ]
 </code></pre>
 <h1 id="programmatic-interface">Programmatic interface</h1>
-<p>Meson also provides the <code>meson introspect</code> for project introspection via the
-command line. Use <code>meson introspect -h</code> to see all available options.</p>
-<p>This API can also work without a build directory for the <code>--projectinfo</code> command.</p>
+<p>Meson also provides the <code>meson introspect</code> for project introspection
+via the command line. Use <code>meson introspect -h</code> to see all available
+options.</p>
+<p>This API can also work without a build directory for the
+<code>--projectinfo</code> command.</p>
 <h1 id="ast-of-a-mesonbuild">AST of a <code>meson.build</code>
 </h1>
-<p>Since meson <em>0.55.0</em> it is possible to dump the AST of a <code>meson.build</code> as a JSON
-object. The interface for this is <code>meson introspect --ast /path/to/meson.build</code>.</p>
+<p>Since meson <em>0.55.0</em> it is possible to dump the AST of a <code>meson.build</code>
+as a JSON object. The interface for this is <code>meson introspect --ast /path/to/meson.build</code>.</p>
 <p>Each node of the AST has at least the following entries:</p>
 <table>
 <thead>
@@ -682,9 +692,10 @@ object. The interface for this is <code>meson introspect --ast /path/to/meson.bu
 </tr>
 </tbody>
 </table>
-<p>We do not guarantee the stability of this format since it is heavily linked to
-the internal Meson AST. However, breaking changes (removal of a node type or the
-removal of a key) are unlikely and will be announced in the release notes.</p>
+<p>We do not guarantee the stability of this format since it is heavily
+linked to the internal Meson AST. However, breaking changes (removal
+of a node type or the removal of a key) are unlikely and will be
+announced in the release notes.</p>
 <h1 id="existing-integrations">Existing integrations</h1>
 <ul>
 <li><a href="https://wiki.gnome.org/Apps/Builder">Gnome Builder</a></li>

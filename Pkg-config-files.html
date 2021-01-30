@@ -192,7 +192,14 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="pkg-config-files">Pkg config files</h1>
-<p><a href="https://en.wikipedia.org/wiki/Pkg-config">Pkg-config</a> is a way for shared libraries to declare the compiler flags needed to use them. There are two different ways of generating Pkg-config files in Meson. The first way is to build them manually with the <code>configure_file</code> command. The second way is to use Meson's built in Pkg-config file generator. The difference between the two is that the latter is very simple and meant for basic use cases. The former should be used when you need to provide a more customized solution.</p>
+<p><a href="https://en.wikipedia.org/wiki/Pkg-config">Pkg-config</a> is a way for
+shared libraries to declare the compiler flags needed to use them.
+There are two different ways of generating Pkg-config files in Meson.
+The first way is to build them manually with the <code>configure_file</code>
+command. The second way is to use Meson's built in Pkg-config file
+generator. The difference between the two is that the latter is very
+simple and meant for basic use cases. The former should be used when
+you need to provide a more customized solution.</p>
 <p>In this document we describe the simple generator approach. It is used in the following way.</p>
 <pre><code class="language-meson">pkg = import('pkgconfig')
 libs = ...     # the library/libraries users need to link against
@@ -204,8 +211,10 @@ pkg.generate(libraries : libs,
              filebase : 'simple',
              description : 'A simple demo library.')
 </code></pre>
-<p>This causes a file called <code>simple.pc</code> to be created and placed into the install directory during the install phase.</p>
-<p>More information on the pkg-config module and the parameters can be found on the <a href="Pkgconfig-module.html">pkgconfig-module</a> page.</p>
+<p>This causes a file called <code>simple.pc</code> to be created and placed into
+the install directory during the install phase.</p>
+<p>More information on the pkg-config module and the parameters can be
+found on the <a href="Pkgconfig-module.html">pkgconfig-module</a> page.</p>
 
     </div>
         

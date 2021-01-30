@@ -193,28 +193,30 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
 <h2 id="allow-early-return-from-a-script">Allow early return from a script</h2>
-<p>Added the function <code>subdir_done()</code>. Its invocation exits the current script at
-the point of invocation. All previously invoked build targets and commands are
-build/executed. All following ones are ignored. If the current script was
-invoked via <code>subdir()</code> the parent script continues normally.</p>
+<p>Added the function <code>subdir_done()</code>. Its invocation exits the current
+script at the point of invocation. All previously invoked build
+targets and commands are build/executed. All following ones are
+ignored. If the current script was invoked via <code>subdir()</code> the parent
+script continues normally.</p>
 <h2 id="concatenate-string-literals-returned-from-get_define">Concatenate string literals returned from <code>get_define()</code>
 </h2>
-<p>After obtaining the value of a preprocessor symbol consecutive string literals
-are merged into a single string literal.
-For example a preprocessor symbol's value <code>"ab" "cd"</code> is returned as <code>"abcd"</code>.</p>
+<p>After obtaining the value of a preprocessor symbol consecutive string
+literals are merged into a single string literal. For example a
+preprocessor symbol's value <code>"ab" "cd"</code> is returned as <code>"abcd"</code>.</p>
 <h2 id="arm-compilerversion-6-for-c-and-cpp">ARM compiler(version 6) for C and CPP</h2>
 <p>Cross-compilation is now supported for ARM targets using ARM compiler
-version 6 - ARMCLANG.  The required ARMCLANG compiler options for
+version 6 - ARMCLANG. The required ARMCLANG compiler options for
 building a shareable library are not included in the current Meson
 implementation for ARMCLANG support, so it can not build shareable
-libraries.  This current Meson implementation for ARMCLANG support can
-not build assembly files with arm syntax (we need to use armasm instead
-of ARMCLANG for the <code>.s</code> files with this syntax) and only supports GNU
-syntax.</p>
-<p>The default extension of the executable output is <code>.axf</code>.
-The environment path should be set properly for the ARM compiler executables.
-The <code>--target</code>, <code>-mcpu</code> options with the appropriate values should be mentioned
-in the cross file as shown in the snippet below.</p>
+libraries. This current Meson implementation for ARMCLANG support can
+not build assembly files with arm syntax (we need to use armasm
+instead of ARMCLANG for the <code>.s</code> files with this syntax) and only
+supports GNU syntax.</p>
+<p>The default extension of the executable output is <code>.axf</code>. The
+environment path should be set properly for the ARM compiler
+executables. The <code>--target</code>, <code>-mcpu</code> options with the appropriate
+values should be mentioned in the cross file as shown in the snippet
+below.</p>
 <pre><code class="language-ini">[properties]
 c_args      = ['--target=arm-arm-none-eabi', '-mcpu=cortex-m0plus']
 cpp_args    = ['--target=arm-arm-none-eabi', '-mcpu=cortex-m0plus']
@@ -227,50 +229,52 @@ if users want to use it, they need to add the required arguments
 explicitly from cross-file(<code>c_args</code>/<code>cpp_args</code>) or some other way.</li>
 </ul>
 <h2 id="new-base-build-option-for-llvm-apple-bitcode-support">New base build option for LLVM (Apple) bitcode support</h2>
-<p>When building with clang on macOS, you can now build your static and shared
-binaries with embedded bitcode by enabling the <code>b_bitcode</code> <a href="Builtin-options.html#base-options">base
-option</a> by passing <code>-Db_bitcode=true</code> to
-Meson.</p>
-<p>This is better than passing the options manually in the environment since Meson
-will automatically disable conflicting options such as <code>b_asneeded</code>, and will
-disable bitcode support on targets that don't support it such as
-<code>shared_module()</code>.</p>
-<p>Since this requires support in the linker, it is currently only enabled when
-using Apple ld. In the future it can be extended to clang on other platforms
-too.</p>
+<p>When building with clang on macOS, you can now build your static and
+shared binaries with embedded bitcode by enabling the <code>b_bitcode</code>
+<a href="Builtin-options.html#base-options">base option</a> by passing
+<code>-Db_bitcode=true</code> to Meson.</p>
+<p>This is better than passing the options manually in the environment
+since Meson will automatically disable conflicting options such as
+<code>b_asneeded</code>, and will disable bitcode support on targets that don't
+support it such as <code>shared_module()</code>.</p>
+<p>Since this requires support in the linker, it is currently only
+enabled when using Apple ld. In the future it can be extended to clang
+on other platforms too.</p>
 <h2 id="new-compiler-check-check_header">New compiler check: <code>check_header()</code>
 </h2>
-<p>The existing compiler check <code>has_header()</code> only checks if the header exists,
-either with the <code>__has_include</code> C++11 builtin, or by running the pre-processor.</p>
-<p>However, sometimes the header you are looking for is unusable on some platforms
-or with some compilers in a way that is only detectable at compile-time. For
-such cases, you should use <code>check_header()</code> which will include the header and
-run a full compile.</p>
-<p>Note that <code>has_header()</code> is much faster than <code>check_header()</code>, so it should be
-used whenever possible.</p>
+<p>The existing compiler check <code>has_header()</code> only checks if the header
+exists, either with the <code>__has_include</code> C++11 builtin, or by running
+the pre-processor.</p>
+<p>However, sometimes the header you are looking for is unusable on some
+platforms or with some compilers in a way that is only detectable at
+compile-time. For such cases, you should use <code>check_header()</code> which
+will include the header and run a full compile.</p>
+<p>Note that <code>has_header()</code> is much faster than <code>check_header()</code>, so it
+should be used whenever possible.</p>
 <h2 id="new-action-copy-for-configure_file">New action <code>copy:</code> for <code>configure_file()</code>
 </h2>
 <p>In addition to the existing actions <code>configuration:</code> and <code>command:</code>,
-<a href="Reference-manual.html#configure_file"><code>configure_file()</code></a> now accepts a keyword
-argument <code>copy:</code> which specifies a new action to copy the file specified with
-the <code>input:</code> keyword argument to a file in the build directory with the name
-specified with the <code>output:</code> keyword argument.</p>
-<p>These three keyword arguments are, as before, mutually exclusive. You can only
-do one action at a time.</p>
+<a href="Reference-manual.html#configure_file"><code>configure_file()</code></a> now accepts a
+keyword argument <code>copy:</code> which specifies a new action to copy the file
+specified with the <code>input:</code> keyword argument to a file in the build
+directory with the name specified with the <code>output:</code> keyword argument.</p>
+<p>These three keyword arguments are, as before, mutually exclusive. You
+can only do one action at a time.</p>
 <h2 id="new-keyword-argument-encoding-for-configure_file">New keyword argument <code>encoding:</code> for <code>configure_file()</code>
 </h2>
-<p>Add a new keyword to <a href="Reference-manual.html#configure_file"><code>configure_file()</code></a>
-that allows the developer to specify the input and output file encoding. The
+<p>Add a new keyword to
+<a href="Reference-manual.html#configure_file"><code>configure_file()</code></a> that allows
+the developer to specify the input and output file encoding. The
 default value is the same as before: UTF-8.</p>
-<p>In the past, Meson would not handle non-UTF-8/ASCII files correctly, and in the
-worst case would try to coerce it to UTF-8 and mangle the data. UTF-8 is the
-standard encoding now, but sometimes it is necessary to process files that use
-a different encoding.</p>
+<p>In the past, Meson would not handle non-UTF-8/ASCII files correctly,
+and in the worst case would try to coerce it to UTF-8 and mangle the
+data. UTF-8 is the standard encoding now, but sometimes it is
+necessary to process files that use a different encoding.</p>
 <p>For additional details see <a href="https://github.com/mesonbuild/meson/pull/3135">#3135</a>.</p>
 <h2 id="new-keyword-argument-output_format-for-configure_file">New keyword argument <code>output_format:</code> for <code>configure_file()</code>
 </h2>
-<p>When called without an input file, <code>configure_file</code> generates a
-C header file by default. A keyword argument was added to allow
+<p>When called without an input file, <code>configure_file</code> generates a C
+header file by default. A keyword argument was added to allow
 specifying the output format, for example for use with nasm or yasm:</p>
 <pre><code class="language-meson">conf = configuration_data()
 conf.set('FOO', 1)
@@ -284,19 +288,20 @@ configure_file('config.asm',
 <p>The <code>depfile</code> keyword argument to <code>custom_target</code> now accepts the <code>@BASENAME@</code>
 and <code>@PLAINNAME@</code> substitutions.</p>
 <h2 id="deprecated-build_always-for-custom-targets">Deprecated <code>build_always:</code> for custom targets</h2>
-<p>Setting <code>build_always</code> to <code>true</code> for a custom target not only marks the target
-to be always considered out of date, but also adds it to the set of default
-targets. This option is therefore deprecated and the new option
-<code>build_always_stale</code> is introduced.</p>
-<p><code>build_always_stale</code> <em>only</em> marks the target to be always considered out of
-date, but does not add it to the set of default targets. The old behaviour can
-be achieved by combining <code>build_always_stale</code> with <code>build_by_default</code>.</p>
+<p>Setting <code>build_always</code> to <code>true</code> for a custom target not only marks
+the target to be always considered out of date, but also adds it to
+the set of default targets. This option is therefore deprecated and
+the new option <code>build_always_stale</code> is introduced.</p>
+<p><code>build_always_stale</code> <em>only</em> marks the target to be always considered
+out of date, but does not add it to the set of default targets. The
+old behaviour can be achieved by combining <code>build_always_stale</code> with
+<code>build_by_default</code>.</p>
 <p>The documentation has been updated accordingly.</p>
 <h2 id="new-builtin-object-type-dictionary">New built-in object type: dictionary</h2>
-<p>Meson dictionaries use a syntax similar to python's dictionaries,
-but have a narrower scope: they are immutable, keys can only
-be string literals, and initializing a dictionary with duplicate
-keys causes a fatal error.</p>
+<p>Meson dictionaries use a syntax similar to python's dictionaries, but
+have a narrower scope: they are immutable, keys can only be string
+literals, and initializing a dictionary with duplicate keys causes a
+fatal error.</p>
 <p>Example usage:</p>
 <pre><code class="language-meson">d = {'foo': 42, 'bar': 'baz'}
 
@@ -308,14 +313,15 @@ foreach key, value : d
 endforeach
 </code></pre>
 <h2 id="array-options-treat-dopt-and-dopt-as-equivalent">Array options treat <code>-Dopt=</code> and <code>-Dopt=[]</code> as equivalent</h2>
-<p>Prior to this change passing -Dopt= to an array opt would be interpreted as
-<code>['']</code> (an array with an empty string), now <code>-Dopt=</code> is the same as <code>-Dopt=[]</code>, an
-empty list.</p>
+<p>Prior to this change passing -Dopt= to an array opt would be
+interpreted as <code>['']</code> (an array with an empty string), now <code>-Dopt=</code> is
+the same as <code>-Dopt=[]</code>, an empty list.</p>
 <h2 id="feature-detection-based-on-meson_version-in-project">Feature detection based on <code>meson_version:</code> in <code>project()</code>
 </h2>
-<p>Meson will now print a <code>WARNING:</code> message during configuration if you use
-a function or a keyword argument that was added in a meson version that's newer
-than the version specified inside <code>project()</code>. For example:</p>
+<p>Meson will now print a <code>WARNING:</code> message during configuration if you
+use a function or a keyword argument that was added in a meson version
+that's newer than the version specified inside <code>project()</code>. For
+example:</p>
 <pre><code class="language-meson">project('featurenew', meson_version: '&gt;=0.43')
 
 cdata = configuration_data()
@@ -339,20 +345,20 @@ WARNING: Project specifies a minimum meson_version '&gt;=0.43' which conflicts w
  * 0.44.0: {'configuration_data.get_unquoted()'}
 </code></pre>
 <h2 id="new-type-of-build-option-for-features">New type of build option for features</h2>
-<p>A new type of <a href="Build-options.html#features">option called <code>feature</code></a> can be
-defined in <code>meson_options.txt</code> for the traditional <code>enabled / disabled / auto</code>
-tristate. The value of this option can be passed to the <code>required</code> keyword
-argument of functions <code>dependency()</code>, <code>find_library()</code>, <code>find_program()</code> and
-<code>add_languages()</code>.</p>
-<p>A new global option <code>auto_features</code> has been added to override the value of all
-<code>auto</code> features. It is intended to be used by packagers to have full control on
-which feature must be enabled or disabled.</p>
+<p>A new type of <a href="Build-options.html#features">option called <code>feature</code></a> can
+be defined in <code>meson_options.txt</code> for the traditional <code>enabled / disabled / auto</code> tristate. The value of this option can be passed to
+the <code>required</code> keyword argument of functions <code>dependency()</code>,
+<code>find_library()</code>, <code>find_program()</code> and <code>add_languages()</code>.</p>
+<p>A new global option <code>auto_features</code> has been added to override the
+value of all <code>auto</code> features. It is intended to be used by packagers
+to have full control on which feature must be enabled or disabled.</p>
 <h2 id="new-options-to-gnomegdbus_codegen">New options to <code>gnome.gdbus_codegen()</code>
 </h2>
-<p>You can now pass additional arguments to gdbus-codegen using the <code>extra_args</code>
-keyword. This is the same for the other gnome function calls.</p>
-<p>Meson now automatically adds autocleanup support to the generated code. This
-can be modified by setting the autocleanup keyword.</p>
+<p>You can now pass additional arguments to gdbus-codegen using the
+<code>extra_args</code> keyword. This is the same for the other gnome function
+calls.</p>
+<p>Meson now automatically adds autocleanup support to the generated
+code. This can be modified by setting the autocleanup keyword.</p>
 <p>For example:</p>
 <pre><code class="language-meson">sources += gnome.gdbus_codegen('com.mesonbuild.Test',
   'com.mesonbuild.Test.xml',
@@ -369,15 +375,17 @@ is similar to how <code>meson test</code> already works.</p>
 </code></pre>
 <h2 id="install_mode-keyword-argument-extended-to-all-installable-targets">
 <code>install_mode:</code> keyword argument extended to all installable targets</h2>
-<p>It is now possible to pass an <code>install_mode</code> argument to all installable targets,
-such as <code>executable()</code>, libraries, headers, man pages and custom/generated
-targets.</p>
-<p>The <code>install_mode</code> argument can be used to specify the file mode in symbolic
-format and optionally the owner/uid and group/gid for the installed files.</p>
+<p>It is now possible to pass an <code>install_mode</code> argument to all
+installable targets, such as <code>executable()</code>, libraries, headers, man
+pages and custom/generated targets.</p>
+<p>The <code>install_mode</code> argument can be used to specify the file mode in
+symbolic format and optionally the owner/uid and group/gid for the
+installed files.</p>
 <h2 id="new-builtin-option-install_umask-with-a-default-value-022">New built-in option <code>install_umask</code> with a default value 022</h2>
-<p>This umask is used to define the default permissions of files and directories
-created in the install tree. Files will preserve their executable mode, but the
-exact permissions will obey the <code>install_umask</code>.</p>
+<p>This umask is used to define the default permissions of files and
+directories created in the install tree. Files will preserve their
+executable mode, but the exact permissions will obey the
+<code>install_umask</code>.</p>
 <p>The <code>install_umask</code> can be overridden in the meson command-line:</p>
 <pre><code class="language-console">$ meson --install-umask=027 builddir/
 </code></pre>
@@ -385,8 +393,8 @@ exact permissions will obey the <code>install_umask</code>.</p>
 <pre><code class="language-meson">project('myproject', 'c',
   default_options : ['install_umask=027'])
 </code></pre>
-<p>To disable the <code>install_umask</code>, set it to <code>preserve</code>, in which case permissions
-are copied from the files in their origin.</p>
+<p>To disable the <code>install_umask</code>, set it to <code>preserve</code>, in which case
+permissions are copied from the files in their origin.</p>
 <h2 id="octal-and-binary-string-literals">Octal and binary string literals</h2>
 <p>Octal and binary integer literals can now be used in build and option files.</p>
 <pre><code class="language-meson">int_493 = 0o755
@@ -394,23 +402,25 @@ int_1365 = 0b10101010101
 </code></pre>
 <h2 id="new-keyword-arguments-check-and-capture-for-run_command">New keyword arguments: 'check' and 'capture' for <code>run_command()</code>
 </h2>
-<p>If <code>check:</code> is <code>true</code>, then the configuration will fail if the command returns a
-non-zero exit status. The default value is <code>false</code> for compatibility reasons.</p>
-<p><code>run_command()</code> used to always capture the output and stored it for use in
-build files. However, sometimes the stdout is in a binary format which is meant
-to be discarded. For that case, you can now set the <code>capture:</code> keyword argument
-to <code>false</code>.</p>
+<p>If <code>check:</code> is <code>true</code>, then the configuration will fail if the command
+returns a non-zero exit status. The default value is <code>false</code> for
+compatibility reasons.</p>
+<p><code>run_command()</code> used to always capture the output and stored it for
+use in build files. However, sometimes the stdout is in a binary
+format which is meant to be discarded. For that case, you can now set
+the <code>capture:</code> keyword argument to <code>false</code>.</p>
 <h2 id="windows-resource-files-dependencies">Windows resource files dependencies</h2>
 <p>The <code>compile_resources()</code> function of the <code>windows</code> module now takes
 the <code>depend_files:</code> and <code>depends:</code> keywords.</p>
-<p>When using binutils's <code>windres</code>, dependencies on files <code>#include</code>'d by the
-preprocessor are now automatically tracked.</p>
+<p>When using binutils's <code>windres</code>, dependencies on files <code>#include</code>'d by
+the preprocessor are now automatically tracked.</p>
 <h2 id="polkit-support-for-privileged-installation">Polkit support for privileged installation</h2>
-<p>When running <code>install</code>, if installation fails with a permission error and
-<code>pkexec</code> is available, Meson will attempt to use it to spawn a permission
-dialog for privileged installation and retry the installation.</p>
-<p>If <code>pkexec</code> is not available, the old behaviour is retained and you will need
-to explicitly run the install step with <code>sudo</code>.</p>
+<p>When running <code>install</code>, if installation fails with a permission error
+and <code>pkexec</code> is available, Meson will attempt to use it to spawn a
+permission dialog for privileged installation and retry the
+installation.</p>
+<p>If <code>pkexec</code> is not available, the old behaviour is retained and you
+will need to explicitly run the install step with <code>sudo</code>.</p>
 
     </div>
         

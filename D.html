@@ -199,25 +199,29 @@ file for D looks like this:</p>
 executable('myapp', 'app.d')
 </code></pre>
 <h2 id="conditional-compilation"><a href="https://dlang.org/spec/version.html">Conditional compilation</a></h2>
-<p>If you are using the <a href="https://dlang.org/spec/version.html#version-specification">version()</a> feature for conditional compilation,
-you can use it using the <code>d_module_versions</code> target property:</p>
+<p>If you are using the
+<a href="https://dlang.org/spec/version.html#version-specification">version()</a>
+feature for conditional compilation, you can use it using the
+<code>d_module_versions</code> target property:</p>
 <pre><code class="language-meson">project('myapp', 'd')
 executable('myapp', 'app.d', d_module_versions: ['Demo', 'FeatureA'])
 </code></pre>
-<p>For debugging, <a href="https://dlang.org/spec/version.html#debug">debug()</a> conditions are compiled automatically in debug builds, and extra identifiers can be added with the <code>d_debug</code> argument:</p>
+<p>For debugging, <a href="https://dlang.org/spec/version.html#debug">debug()</a>
+conditions are compiled automatically in debug builds, and extra
+identifiers can be added with the <code>d_debug</code> argument:</p>
 <pre><code class="language-meson">project('myapp', 'd')
 executable('myapp', 'app.d', d_debug: [3, 'DebugFeatureA'])
 </code></pre>
 <h2 id="using-embedded-unittests">Using embedded unittests</h2>
-<p>If you are using embedded <a href="https://dlang.org/spec/unittest.html">unittest functions</a>, your source code needs
-to be compiled twice, once in regular
-mode, and once with unittests active. This is done by setting the
-<code>d_unittest</code> target property to <code>true</code>.
-Meson will only ever pass the respective compiler's <code>-unittest</code> flag,
-and never have the compiler generate an empty main function.
-If you need that feature in a portable way, create an empty <code>main()</code>
-function for unittests yourself, since the GNU D compiler
-does not have this feature.</p>
+<p>If you are using embedded <a href="https://dlang.org/spec/unittest.html">unittest
+functions</a>, your source code
+needs to be compiled twice, once in regular mode, and once with
+unittests active. This is done by setting the <code>d_unittest</code> target
+property to <code>true</code>. Meson will only ever pass the respective
+compiler's <code>-unittest</code> flag, and never have the compiler generate an
+empty main function. If you need that feature in a portable way,
+create an empty <code>main()</code> function for unittests yourself, since the
+GNU D compiler does not have this feature.</p>
 <p>This is an example for using D unittests with Meson:</p>
 <pre><code class="language-meson">project('myapp_tested', 'd')
 
@@ -258,13 +262,13 @@ pkgc.generate(name: 'mylib',
 install_subdir('src/mylib/', install_dir: 'include/d/mylib/')
 </code></pre>
 <p>It is important to make the D sources install in a subdirectory in the
-include path, in this case <code>/usr/include/d/mylib/mylib</code>.
-All D compilers include the <code>/usr/include/d</code> directory by default, and
-if your library would be installed into <code>/usr/include/d/mylib</code>, there
-is a high chance that, when you compile your project again on a
-machine where you installed it, the compiler will prefer the old
-installed include over the new version in the source tree, leading to
-very confusing errors.</p>
+include path, in this case <code>/usr/include/d/mylib/mylib</code>. All D
+compilers include the <code>/usr/include/d</code> directory by default, and if
+your library would be installed into <code>/usr/include/d/mylib</code>, there is
+a high chance that, when you compile your project again on a machine
+where you installed it, the compiler will prefer the old installed
+include over the new version in the source tree, leading to very
+confusing errors.</p>
 <p>This is an example of how to use the D library we just built and
 installed in an application:</p>
 <pre><code class="language-meson">project('myapp', 'd')
@@ -279,10 +283,12 @@ ABI is not stable across compilers and their versions, and mixing
 compilers will lead to problems.</p>
 <h1 id="integrating-with-dub">Integrating with DUB</h1>
 <p>DUB is a fully integrated build system for D, but it is also a way to
-provide dependencies. Adding dependencies from the <a href="https://code.dlang.org/">D package registry</a>
-is pretty straight forward. You can find how to do this in
-<a href="Dependencies.html#some-notes-on-dub">Dependencies</a>. You can also automatically
-generate a <code>dub.json</code> file as explained in <a href="Dlang-module.html#generate_dub_file">Dlang</a>.</p>
+provide dependencies. Adding dependencies from the <a href="https://code.dlang.org/">D package
+registry</a> is pretty straight forward. You can
+find how to do this in
+<a href="Dependencies.html#some-notes-on-dub">Dependencies</a>. You can also
+automatically generate a <code>dub.json</code> file as explained in
+<a href="Dlang-module.html#generate_dub_file">Dlang</a>.</p>
 
     </div>
         

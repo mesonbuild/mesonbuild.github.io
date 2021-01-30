@@ -193,16 +193,17 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
 <h2 id="added-cmake_module_path-and-cmake_args-to-dependency">Added <code>cmake_module_path</code> and <code>cmake_args</code> to dependency</h2>
-<p>The CMake dependency backend can now make use of existing <code>Find&lt;name&gt;.cmake</code>
-files by setting the <code>CMAKE_MODULE_PATH</code> with the new <code>dependency()</code> property
-<code>cmake_module_path</code>. The paths given to <code>cmake_module_path</code> should be relative
-to the project source directory.</p>
-<p>Furthermore the property <code>cmake_args</code> was added to give CMake additional
-parameters.</p>
+<p>The CMake dependency backend can now make use of existing
+<code>Find&lt;name&gt;.cmake</code> files by setting the <code>CMAKE_MODULE_PATH</code> with the
+new <code>dependency()</code> property <code>cmake_module_path</code>. The paths given to
+<code>cmake_module_path</code> should be relative to the project source
+directory.</p>
+<p>Furthermore the property <code>cmake_args</code> was added to give CMake
+additional parameters.</p>
 <h2 id="added-pgi-compiler-support">Added PGI compiler support</h2>
 <p>Nvidia / PGI C, C++ and Fortran
 <a href="https://www.pgroup.com/products/community.htm">no-cost</a> compilers are
-now supported.  They have been tested on Linux so far.</p>
+now supported. They have been tested on Linux so far.</p>
 <h2 id="fortran-coarray">Fortran Coarray</h2>
 <p>Fortran 2008 / 2018 coarray support was added via <code>dependency('coarray')</code></p>
 <h2 id="libdir-defaults-to-lib-when-cross-compiling">Libdir defaults to <code>lib</code> when cross compiling</h2>
@@ -230,8 +231,10 @@ command:</p>
 <code>python3</code> module provide this method, but the new <code>python</code> module did
 not.</p>
 <h2 id="fix-ninja-console-log-from-generators-with-multiple-output-nodes">Fix ninja console log from generators with multiple output nodes</h2>
-<p>This resolves <a href="https://github.com/mesonbuild/meson/issues/4760">issue #4760</a>
-where a generator with multiple output nodes printed an empty string to the console</p>
+<p>This resolves <a href="https://github.com/mesonbuild/meson/issues/4760">issue
+#4760</a> where a
+generator with multiple output nodes printed an empty string to the
+console</p>
 <h2 id="introspect-buildoptions-can-now-be-used-without-configured-build-directory">
 <code>introspect --buildoptions</code> can now be used without configured build directory</h2>
 <p>It is now possible to run <code>meson introspect --buildoptions /path/to/meson.build</code>
@@ -254,26 +257,28 @@ expand it so that a declaration like this:</p>
 executable(..., include_directories: foo_inc)
 </code></pre>
 <h2 id="fortran-submodule-support">Fortran submodule support</h2>
-<p>Initial support for Fortran <code>submodule</code> was added, where the submodule is in
-the same or different file than the parent <code>module</code>.
-The submodule hierarchy specified in the source Fortran code <code>submodule</code>
-statements are used by Meson to resolve source file dependencies.
-For example:</p>
+<p>Initial support for Fortran <code>submodule</code> was added, where the submodule
+is in the same or different file than the parent <code>module</code>. The
+submodule hierarchy specified in the source Fortran code <code>submodule</code>
+statements are used by Meson to resolve source file dependencies. For
+example:</p>
 <pre><code class="language-fortran">submodule (ancestor:parent) child
 </code></pre>
 <h2 id="add-subproject_dir-to-projectinfo-introspection-output">Add <code>subproject_dir</code> to <code>--projectinfo</code> introspection output</h2>
-<p>This allows applications interfacing with Meson (such as IDEs) to know about
-an overridden subproject directory.</p>
+<p>This allows applications interfacing with Meson (such as IDEs) to know
+about an overridden subproject directory.</p>
 <h2 id="find-library-with-its-headers">Find library with its headers</h2>
-<p>The <code>find_library()</code> method can now also verify if the library's headers are
-found in a single call, using the <code>has_header()</code> method internally.</p>
+<p>The <code>find_library()</code> method can now also verify if the library's
+headers are found in a single call, using the <code>has_header()</code> method
+internally.</p>
 <pre><code class="language-meson"># Aborts if the 'z' library is found but not its header file
 zlib = find_library('z', has_headers : 'zlib.h')
 # Returns not-found if the 'z' library is found but not its header file
 zlib = find_library('z', has_headers : 'zlib.h', required : false)
 </code></pre>
-<p>Any keyword argument with the <code>header_</code> prefix passed to <code>find_library()</code> will
-be passed to the <code>has_header()</code> method with the prefix removed.</p>
+<p>Any keyword argument with the <code>header_</code> prefix passed to
+<code>find_library()</code> will be passed to the <code>has_header()</code> method with the
+prefix removed.</p>
 <pre><code class="language-meson">libfoo = find_library('foo',
   has_headers : ['foo.h', 'bar.h'],
   header_prefix : '#include &lt;baz.h&gt;',
@@ -330,9 +335,9 @@ run_command('command', 'arg1', 'arg2', env: env)
 <p>The <code>extract_objects</code> function now supports File objects to tell it
 what to extract. Previously, file paths could only be passed as strings.</p>
 <h2 id="changed-the-json-format-of-the-introspection">Changed the JSON format of the introspection</h2>
-<p>All paths used in the meson introspection JSON format are now absolute. This
-affects the <code>filename</code> key in the targets introspection and the output of
-<code>--buildsystem-files</code>.</p>
+<p>All paths used in the meson introspection JSON format are now
+absolute. This affects the <code>filename</code> key in the targets introspection
+and the output of <code>--buildsystem-files</code>.</p>
 <p>Furthermore, the <code>filename</code> and <code>install_filename</code> keys in the targets
 introspection are now lists of strings with identical length.</p>
 <p>The <code>--target-files</code> option is now deprecated, since the same information
@@ -377,19 +382,19 @@ dependencies.</p>
   }
 ]
 </code></pre>
-<p>The <code>required</code> keyword specifies whether the dependency is marked as required
-in the <code>meson.build</code> (all dependencies are required by default). The
-<code>conditional</code> key indicates whether the <code>dependency()</code> function was called
-inside a conditional block. In a real meson run these dependencies might not be
-used, thus they <em>may</em> not be required, even if the <code>required</code> key is set. The
-<code>has_fallback</code> key just indicates whether a fallback was directly set in the
-<code>dependency()</code> function.</p>
+<p>The <code>required</code> keyword specifies whether the dependency is marked as
+required in the <code>meson.build</code> (all dependencies are required by
+default). The <code>conditional</code> key indicates whether the <code>dependency()</code>
+function was called inside a conditional block. In a real meson run
+these dependencies might not be used, thus they <em>may</em> not be required,
+even if the <code>required</code> key is set. The <code>has_fallback</code> key just
+indicates whether a fallback was directly set in the <code>dependency()</code>
+function.</p>
 <h2 id="introspect-targets-can-now-be-used-without-configured-build-directory">
 <code>introspect --targets</code> can now be used without configured build directory</h2>
-<p>It is now possible to run <code>meson introspect --targets /path/to/meson.build</code>
-without a configured build directory.</p>
-<p>The generated output is similar to running the introspection with a build
-directory. However, there are some key differences:</p>
+<p>It is now possible to run <code>meson introspect --targets /path/to/meson.build</code> without a configured build directory.</p>
+<p>The generated output is similar to running the introspection with a
+build directory. However, there are some key differences:</p>
 <ul>
 <li>The paths in <code>filename</code> now are <em>relative</em> to the future build directory</li>
 <li>The <code>install_filename</code> key is completely missing</li>
@@ -403,22 +408,23 @@ directory. However, there are some key differences:</p>
 </ul>
 </li>
 </ul>
-<p>There is no guarantee that the sources list in <code>target_sources</code> is correct.
-There might be differences, due to internal limitations. It is also not
-guaranteed that all targets will be listed in the output. It might even be
-possible that targets are listed, which won't exist when meson is run normally.
-This can happen if a target is defined inside an if statement.
-Use this feature with care.</p>
+<p>There is no guarantee that the sources list in <code>target_sources</code> is
+correct. There might be differences, due to internal limitations. It
+is also not guaranteed that all targets will be listed in the output.
+It might even be possible that targets are listed, which won't exist
+when meson is run normally. This can happen if a target is defined
+inside an if statement. Use this feature with care.</p>
 <h2 id="added-option-to-introspect-multiple-parameters-at-once">Added option to introspect multiple parameters at once</h2>
 <p>Meson introspect can now print the results of multiple introspection
-commands in a single call. The results are then printed as a single JSON
-object.</p>
+commands in a single call. The results are then printed as a single
+JSON object.</p>
 <p>The format for a single command was not changed to keep backward
 compatibility.</p>
-<p>Furthermore the option <code>-a,--all</code>, <code>-i,--indent</code> and <code>-f,--force-object-output</code>
-were added to print all introspection information in one go, format the
-JSON output (the default is still compact JSON) and force use the new
-output format, even if only one introspection command was given.</p>
+<p>Furthermore the option <code>-a,--all</code>, <code>-i,--indent</code> and
+<code>-f,--force-object-output</code> were added to print all introspection
+information in one go, format the JSON output (the default is still
+compact JSON) and force use the new output format, even if only one
+introspection command was given.</p>
 <p>A complete introspection dump is also stored in the <code>meson-info</code>
 directory. This dump will be (re)generated each time meson updates the
 configuration of the build directory.</p>
@@ -431,22 +437,23 @@ configuration of the build directory.</p>
 </ul>
 <h2 id="meson-configure-can-now-print-the-default-options-of-an-unconfigured-project">
 <code>meson configure</code> can now print the default options of an unconfigured project</h2>
-<p>With this release, it is also possible to get a list of all build options
-by invoking <code>meson configure</code> with the project source directory or
-the path to the root <code>meson.build</code>. In this case, meson will print the
-default values of all options.</p>
+<p>With this release, it is also possible to get a list of all build
+options by invoking <code>meson configure</code> with the project source
+directory or the path to the root <code>meson.build</code>. In this case, meson
+will print the default values of all options.</p>
 <h2 id="hdf5">HDF5</h2>
 <p>HDF5 support is added via pkg-config.</p>
 <h2 id="added-the-mesoninfojson-introspection-file">Added the <code>meson-info.json</code> introspection file</h2>
-<p>Meson now generates a <code>meson-info.json</code> file in the <code>meson-info</code> directory
-to provide introspection information about the latest meson run. This file
-is updated when the build configuration is changed and the build files are
-(re)generated.</p>
+<p>Meson now generates a <code>meson-info.json</code> file in the <code>meson-info</code>
+directory to provide introspection information about the latest meson
+run. This file is updated when the build configuration is changed and
+the build files are (re)generated.</p>
 <h2 id="new-kwarg-install-for-configure_file">New kwarg <code>install:</code> for <code>configure_file()</code>
 </h2>
-<p>Previously when using <code>configure_file()</code>, you could install the outputted file
-by setting the <code>install_dir:</code> keyword argument. Now, there is an explicit kwarg
-<code>install:</code> to enable/disable it. Omitting it will maintain the old behaviour.</p>
+<p>Previously when using <code>configure_file()</code>, you could install the
+outputted file by setting the <code>install_dir:</code> keyword argument. Now,
+there is an explicit kwarg <code>install:</code> to enable/disable it. Omitting
+it will maintain the old behaviour.</p>
 
     </div>
         

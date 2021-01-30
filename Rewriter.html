@@ -192,9 +192,9 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="meson-file-rewriter">Meson file rewriter</h1>
-<p>Since version 0.50.0, meson has the functionality to perform some basic
-modification on the <code>meson.build</code> files from the command line. The currently
-supported operations are:</p>
+<p>Since version 0.50.0, meson has the functionality to perform some
+basic modification on the <code>meson.build</code> files from the command line.
+The currently supported operations are:</p>
 <ul>
 <li>For build targets:
 <ul>
@@ -216,18 +216,19 @@ supported operations are:</p>
 </ul>
 </li>
 </ul>
-<p>The rewriter has both, a normal command line interface and a "script mode". The
-normal CLI is mostly designed for everyday use. The "script mode", on the
-other hand, is meant to be used by external programs (IDEs, graphical
-frontends, etc.)</p>
-<p>The rewriter itself is considered stable, however the user interface and the
-"script mode" API might change in the future. These changes may also break
-backwards comaptibility to older releases.</p>
+<p>The rewriter has both, a normal command line interface and a "script
+mode". The normal CLI is mostly designed for everyday use. The "script
+mode", on the other hand, is meant to be used by external programs
+(IDEs, graphical frontends, etc.)</p>
+<p>The rewriter itself is considered stable, however the user interface
+and the "script mode" API might change in the future. These changes
+may also break backwards comaptibility to older releases.</p>
 <p>We are also open to suggestions for API improvements.</p>
 <h2 id="using-the-rewriter">Using the rewriter</h2>
-<p>All rewriter functions are accessed via <code>meson rewrite</code>. The meson rewriter
-assumes that it is run inside the project root directory. If this isn't the
-case, use <code>--sourcedir</code> to specify the actual project source directory.</p>
+<p>All rewriter functions are accessed via <code>meson rewrite</code>. The meson
+rewriter assumes that it is run inside the project root directory. If
+this isn't the case, use <code>--sourcedir</code> to specify the actual project
+source directory.</p>
 <h3 id="adding-and-removing-sources">Adding and removing sources</h3>
 <p>The most common operations will probably be the adding and removing of source
 files to a build target. This can be easily done with:</p>
@@ -246,14 +247,16 @@ exe1 = executable('testExe', src)
 
 exe1 = executable('testExe', src)
 </code></pre>
-<p>In this case, <code>exe1</code> could also have been used for the target name. This is
-possible because the rewriter also searches for assignments and unique meson
-IDs, which can be acquired with introspection. If there are multiple targets
-with the same name, meson will do nothing and print an error message.</p>
-<p>For more information see the help output of the rewriter target command.</p>
+<p>In this case, <code>exe1</code> could also have been used for the target name.
+This is possible because the rewriter also searches for assignments
+and unique meson IDs, which can be acquired with introspection. If
+there are multiple targets with the same name, meson will do nothing
+and print an error message.</p>
+<p>For more information see the help output of the rewriter target
+command.</p>
 <h3 id="setting-the-project-version">Setting the project version</h3>
-<p>It is also possible to set kwargs of specific functions with the rewriter. The
-general command for setting or removing kwargs is:</p>
+<p>It is also possible to set kwargs of specific functions with the
+rewriter. The general command for setting or removing kwargs is:</p>
 <pre><code class="language-bash">meson rewrite kwargs {set/delete} &lt;function type&gt; &lt;function ID&gt; &lt;key1&gt; &lt;value1&gt; &lt;key2&gt; &lt;value2&gt; ...
 </code></pre>
 <p>For instance, setting the project version can be achieved with this command:</p>
@@ -266,18 +269,19 @@ general command for setting or removing kwargs is:</p>
 <li>project (the function ID must be <code>/</code> since project() can only be called once)</li>
 </ul>
 <p>For more information see the help output of the rewrite kwargs command.</p>
-<p>Note msys bash may expand <code>/</code> to a path. Passing <code>//</code> will be converted to
-<code>/</code> by msys bash but in order to keep usage shell-agnostic, the rewrite command
-also allows <code>//</code> as the function ID such that it will work in both msys bash
-and other shells.</p>
+<p>Note msys bash may expand <code>/</code> to a path. Passing <code>//</code> will be
+converted to <code>/</code> by msys bash but in order to keep usage
+shell-agnostic, the rewrite command also allows <code>//</code> as the function
+ID such that it will work in both msys bash and other shells.</p>
 <h3 id="setting-the-project-default-options">Setting the project default options</h3>
 <p>For setting and deleting default options, use the following command:</p>
 <pre><code class="language-bash">meson rewrite default-options {set/delete} &lt;opt1&gt; &lt;value1&gt; &lt;opt2&gt; &lt;value2&gt; ...
 </code></pre>
 <h2 id="limitations">Limitations</h2>
-<p>Rewriting a meson file is not guaranteed to keep the indentation of the modified
-functions. Additionally, comments inside a modified statement will be removed.
-Furthermore, all source files will be sorted alphabetically.</p>
+<p>Rewriting a meson file is not guaranteed to keep the indentation of
+the modified functions. Additionally, comments inside a modified
+statement will be removed. Furthermore, all source files will be
+sorted alphabetically.</p>
 <p>For instance adding <code>e.c</code> to srcs in the following code</p>
 <pre><code class="language-meson"># Important comment
 
@@ -305,9 +309,9 @@ srcs = [
 # COMMENT
 </code></pre>
 <h2 id="using-the-script-mode">Using the "script mode"</h2>
-<p>The "script mode" should be the preferred API for third party programs, since
-it offers more flexibility and higher API stability. The "scripts" are stored
-in JSON format and executed with <code>meson rewrite command &lt;JSON file or string&gt;</code>.</p>
+<p>The "script mode" should be the preferred API for third party
+programs, since it offers more flexibility and higher API stability.
+The "scripts" are stored in JSON format and executed with <code>meson rewrite command &lt;JSON file or string&gt;</code>.</p>
 <p>The JSON format is defined as follows:</p>
 <pre><code class="language-json">[
   {
@@ -366,12 +370,13 @@ function should be executed.</p>
   }
 }
 </code></pre>
-<p>For operation <code>delete</code>, the values of the <code>options</code> can be anything (including <code>null</code>)</p>
+<p>For operation <code>delete</code>, the values of the <code>options</code> can be anything
+(including <code>null</code>)</p>
 <h2 id="extracting-information">Extracting information</h2>
-<p>The rewriter also offers operation <code>info</code> for the types <code>target</code> and <code>kwargs</code>.
-When this operation is used, meson will print a JSON dump to stderr, containing
-all available information to the rewriter about the build target / function
-kwargs in question.</p>
+<p>The rewriter also offers operation <code>info</code> for the types <code>target</code> and
+<code>kwargs</code>. When this operation is used, meson will print a JSON dump to
+stderr, containing all available information to the rewriter about the
+build target / function kwargs in question.</p>
 <p>The output format is currently experimental and may change in the future.</p>
 
     </div>

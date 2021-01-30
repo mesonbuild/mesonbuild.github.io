@@ -222,8 +222,8 @@ value; identifying whether the compiler arguments use the same syntax as
 either <code>gcc</code> or <code>msvc</code>, or that its arguments are not like either. This should
 only be used to select the syntax of the arguments, such as those to test
 with <code>has_argument</code>.</p>
-<p>See <a href="Reference-tables.html#compiler-ids">reference tables</a> for a list of supported compiler
-ids and their argument type.</p>
+<p>See <a href="Reference-tables.html#compiler-ids">reference tables</a> for a list of
+supported compiler ids and their argument type.</p>
 <h2 id="does-code-compile">Does code compile?</h2>
 <p>Sometimes the only way to test the system is to try to compile some
 sample code and see if it works. For example, this can test that a
@@ -331,26 +331,26 @@ configuration files.</p>
 not be determined. Since version 0.31 it returns -1 if the size could
 not be determined.</p>
 <h2 id="does-a-function-exist">Does a function exist?</h2>
-<p>Just having a header doesn't say anything about its
-contents. Sometimes you need to explicitly check if some function
-exists. This is how we would check whether the function <code>open_memstream</code>
-exists in header <code>stdio.h</code></p>
+<p>Just having a header doesn't say anything about its contents.
+Sometimes you need to explicitly check if some function exists. This
+is how we would check whether the function <code>open_memstream</code> exists in
+header <code>stdio.h</code></p>
 <pre><code class="language-meson">if compiler.has_function('open_memstream', prefix : '#include &lt;stdio.h&gt;')
   # function exists, do whatever is required.
 endif
 </code></pre>
 <p>Note that, on macOS programs can be compiled targeting older macOS
 versions than the one that the program is compiled on. It can't be
-assumed that the OS version that is compiled on matches the OS
-version that the binary will run on.</p>
+assumed that the OS version that is compiled on matches the OS version
+that the binary will run on.</p>
 <p>Therefore when detecting function availability with <code>has_function</code>, it
 is important to specify the correct header in the prefix argument.</p>
 <p>In the example above, the function <code>open_memstream</code> is detected, which
-was introduced in macOS 10.13. When the user builds on macOS 10.13, but
-targeting macOS 10.11 (<code>-mmacosx-version-min=10.11</code>), this will correctly
-report the function as missing. Without the header however, it would lack
-the necessary availability information and incorrectly report the function
-as available.</p>
+was introduced in macOS 10.13. When the user builds on macOS 10.13,
+but targeting macOS 10.11 (<code>-mmacosx-version-min=10.11</code>), this will
+correctly report the function as missing. Without the header however,
+it would lack the necessary availability information and incorrectly
+report the function as available.</p>
 <h2 id="does-a-structure-contain-a-member">Does a structure contain a member?</h2>
 <p>Some platforms have different standard structures. Here's how one
 would check if a struct called <code>mystruct</code> from header <code>myheader.h</code>

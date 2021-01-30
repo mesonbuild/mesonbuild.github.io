@@ -194,32 +194,35 @@ $('body').removeClass('no-script');
         <h1 id="new-features">New features</h1>
 <h2 id="c-preprocessor-flag-handling">(C) Preprocessor flag handling</h2>
 <p>Meson previously stored <code>CPPFLAGS</code> and per-language compilation flags
-separately. (That latter would come from <code>CFLAGS</code>, <code>CXXFLAGS</code>, etc., along with
-<code>&lt;lang&gt;_args</code> options whether specified no the command-line interface (<code>-D..</code>),
-<code>meson.build</code> (<code>default_options</code>), or cross file (<code>[properties]</code>).) This was
-mostly unobservable, except for certain preprocessor-only checks like
-<code>check_header</code> would only use the preprocessor flags, leading to confusion if
-some <code>-isystem</code> was in <code>CFLAGS</code> but not <code>CPPFLAGS</code>. Now, they are lumped
-together, and <code>CPPFLAGS</code>, for the languages which are deemed to care to about,
-is just another source of compilation flags along with the others already
+separately. (That latter would come from <code>CFLAGS</code>, <code>CXXFLAGS</code>, etc.,
+along with <code>&lt;lang&gt;_args</code> options whether specified no the command-line
+interface (<code>-D..</code>), <code>meson.build</code> (<code>default_options</code>), or cross file
+(<code>[properties]</code>).) This was mostly unobservable, except for certain
+preprocessor-only checks like <code>check_header</code> would only use the
+preprocessor flags, leading to confusion if some <code>-isystem</code> was in
+<code>CFLAGS</code> but not <code>CPPFLAGS</code>. Now, they are lumped together, and
+<code>CPPFLAGS</code>, for the languages which are deemed to care to about, is
+just another source of compilation flags along with the others already
 listed.</p>
 <h2 id="sanity-checking-compilers-with-user-flags">Sanity checking compilers with user flags</h2>
-<p>Sanity checks previously only used user-specified flags for cross compilers, but
-now do in all cases.</p>
-<p>All compilers meson might decide to use for the build are "sanity checked"
-before other tests are run. This usually involves building simple executable and
-trying to run it. Previously user flags (compilation and/or linking flags) were
-used for sanity checking cross compilers, but not native compilers.  This is
-because such flags might be essential for a cross binary to succeed, but usually
-aren't for a native compiler.</p>
-<p>In recent releases, there has been an effort to minimize the special-casing of
-cross or native builds so as to make building more predictable in less-tested
-cases. Since this the user flags are necessary for cross, but not harmful for
-native, it makes more sense to use them in all sanity checks than use them in no
-sanity checks, so this is what we now do.</p>
+<p>Sanity checks previously only used user-specified flags for cross
+compilers, but now do in all cases.</p>
+<p>All compilers meson might decide to use for the build are "sanity
+checked" before other tests are run. This usually involves building
+simple executable and trying to run it. Previously user flags
+(compilation and/or linking flags) were used for sanity checking cross
+compilers, but not native compilers. This is because such flags might
+be essential for a cross binary to succeed, but usually aren't for a
+native compiler.</p>
+<p>In recent releases, there has been an effort to minimize the
+special-casing of cross or native builds so as to make building more
+predictable in less-tested cases. Since this the user flags are
+necessary for cross, but not harmful for native, it makes more sense
+to use them in all sanity checks than use them in no sanity checks, so
+this is what we now do.</p>
 <h2 id="new-sourceset-module">New <code>sourceset</code> module</h2>
 <p>A new module, <code>sourceset</code>, was added to help building many binaries
-from the same source files.  Source sets associate source files and
+from the same source files. Source sets associate source files and
 dependencies to keys in a <code>configuration_data</code> object or a dictionary;
 they then take multiple <code>configuration_data</code> objects or dictionaries,
 and compute the set of source files and dependencies for each of those
@@ -238,24 +241,25 @@ value <code>'shared_module'</code>.</p>
 <pre><code class="language-meson">shared_module(...)
 </code></pre>
 <h2 id="new-modules-kwarg-for-pythonfind_installation">New modules kwarg for python.find_installation</h2>
-<p>This mirrors the modules argument that some kinds of dependencies (such as
-qt, llvm, and cmake based dependencies) take, allowing you to check that a
-particular module is available when getting a python version.</p>
+<p>This mirrors the modules argument that some kinds of dependencies
+(such as qt, llvm, and cmake based dependencies) take, allowing you to
+check that a particular module is available when getting a python
+version.</p>
 <pre><code class="language-meson">py = import('python').find_installation('python3', modules : ['numpy'])
 </code></pre>
 <h2 id="support-for-the-intel-compiler-on-windows-icl">Support for the Intel Compiler on Windows (ICL)</h2>
-<p>Support has been added for ICL.EXE and ifort on windows. The support should be
-on part with ICC support on Linux/MacOS. The ICL C/C++ compiler behaves like
-Microsoft's CL.EXE rather than GCC/Clang like ICC does, and has a different id,
-<code>intel-cl</code> to differentiate it.</p>
+<p>Support has been added for ICL.EXE and ifort on windows. The support
+should be on part with ICC support on Linux/MacOS. The ICL C/C++
+compiler behaves like Microsoft's CL.EXE rather than GCC/Clang like
+ICC does, and has a different id, <code>intel-cl</code> to differentiate it.</p>
 <pre><code class="language-meson">cc = meson.get_compiler('c')
 if cc.get_id == 'intel-cl'
   add_project_argument('/Qfoobar:yes', language : 'c')
 endif
 </code></pre>
 <h2 id="added-basic-support-for-the-xtensa-cpu-toolchain">Added basic support for the Xtensa CPU toolchain</h2>
-<p>You can now use <code>xt-xcc</code>, <code>xt-xc++</code>, <code>xt-nm</code>, etc... on your cross compilation
-file and meson won't complain about an unknown toolchain.</p>
+<p>You can now use <code>xt-xcc</code>, <code>xt-xc++</code>, <code>xt-nm</code>, etc... on your cross
+compilation file and meson won't complain about an unknown toolchain.</p>
 <h2 id="dependency-objects-now-have-a-get_variable-method">Dependency objects now have a get_variable method</h2>
 <p>This is a generic replacement for type specific variable getters such as
 <code>ConfigToolDependency.get_configtool_variable</code> and
@@ -271,11 +275,13 @@ endif
 </code></pre>
 <h2 id="cmake-prefix-path-overrides">CMake prefix path overrides</h2>
 <p>When using pkg-config as a dependency resolver we can pass
-<code>-Dpkg_config_path=$somepath</code> to extend or overwrite where pkg-config will
-search for dependencies. Now cmake can do the same, as long as the dependency
-uses a ${Name}Config.cmake file (not a Find{$Name}.cmake file), by passing
-<code>-Dcmake_prefix_path=list,of,paths</code>. It is important that point this at the
-prefix that the dependency is installed into, not the cmake path.</p>
+<code>-Dpkg_config_path=$somepath</code> to extend or overwrite where pkg-config
+will search for dependencies. Now cmake can do the same, as long as
+the dependency uses a ${Name}Config.cmake file (not a
+Find{$Name}.cmake file), by passing
+<code>-Dcmake_prefix_path=list,of,paths</code>. It is important that point this
+at the prefix that the dependency is installed into, not the cmake
+path.</p>
 <p>If you have installed something to <code>/tmp/dep</code>, which has a layout like:</p>
 <pre><code>/tmp/dep/lib/cmake
 /tmp/dep/bin
@@ -303,7 +309,7 @@ the Fortran compiler:</p>
 <pre><code class="language-meson">executable(..., link_language : 'fortran')
 </code></pre>
 <p>A specific case this option fixes is where for example the main
-program is Fortran that calls C and/or C++ code.  The automatic
+program is Fortran that calls C and/or C++ code. The automatic
 language detection of Meson prioritizes C/C++, and so an compile-time
 error results like <code>undefined reference to main</code>, because the linker
 is C or C++ instead of Fortran, which is fixed by this per-target
@@ -312,10 +318,11 @@ override.</p>
 <p>The new module <code>unstable-kconfig</code> adds the ability to parse and use
 kconfig output files from <code>meson.build</code>.</p>
 <h2 id="add-new-meson-subprojects-foreach-command">Add new <code>meson subprojects foreach</code> command</h2>
-<p><code>meson subprojects</code> has learned a new <code>foreach</code> command which accepts a command
-with arguments and executes it in each subproject directory.</p>
-<p>For example this can be useful to check the status of subprojects (e.g. with
-<code>git status</code> or <code>git diff</code>) before performing other actions on them.</p>
+<p><code>meson subprojects</code> has learned a new <code>foreach</code> command which accepts
+a command with arguments and executes it in each subproject directory.</p>
+<p>For example this can be useful to check the status of subprojects
+(e.g. with <code>git status</code> or <code>git diff</code>) before performing other actions
+on them.</p>
 <h2 id="added-c17-and-c18-as-c_std-values-for-recent-gcc-and-clang-versions">Added c17 and c18 as c_std values for recent GCC and Clang Versions</h2>
 <p>For gcc version 8.0 and later, the values c17, c18, gnu17, and gnu18
 were added to the accepted values for built-in compiler option c_std.</p>
@@ -367,17 +374,18 @@ cg = generator(program_runner,
 </code></pre>
 <h2 id="specifying-options-per-mer-machine">Specifying options per mer machine</h2>
 <p>Previously, no cross builds were controllable from the command line.
-Machine-specific options like the pkg-config path and compiler options only
-affected native targets, that is to say all targets in native builds, and
-<code>native: true</code> targets in cross builds. Now, prefix the option with <code>build.</code> to
-affect build machine targets, and leave it unprefixed to affect host machine
-targets.</p>
-<p>For those trying to ensure native and cross builds to the same platform produced
-the same result, the old way was frustrating because very different invocations
-were needed to affect the same targets, if it was possible at all. Now, the same
-command line arguments affect the same targets everywhere --- Meson is closer to
-ignoring whether the "overall" build is native or cross, and just caring about
-whether individual targets are for the build or host machines.</p>
+Machine-specific options like the pkg-config path and compiler options
+only affected native targets, that is to say all targets in native
+builds, and <code>native: true</code> targets in cross builds. Now, prefix the
+option with <code>build.</code> to affect build machine targets, and leave it
+unprefixed to affect host machine targets.</p>
+<p>For those trying to ensure native and cross builds to the same
+platform produced the same result, the old way was frustrating because
+very different invocations were needed to affect the same targets, if
+it was possible at all. Now, the same command line arguments affect
+the same targets everywhere --- Meson is closer to ignoring whether
+the "overall" build is native or cross, and just caring about whether
+individual targets are for the build or host machines.</p>
 <h2 id="subprojectget_variable-now-accepts-a-fallback-argument">subproject.get_variable() now accepts a <code>fallback</code> argument</h2>
 <p>Similar to <code>get_variable</code>, a fallback argument can now be passed to
 <code>subproject.get_variable()</code>, it will be returned if the requested
@@ -386,21 +394,22 @@ variable name did not exist.</p>
 </code></pre>
 <h2 id="add-keyword-static-to-find_library">Add keyword <code>static</code> to <code>find_library</code>
 </h2>
-<p><code>find_library</code> has learned the <code>static</code> keyword. They keyword must be a boolean,
-where <code>true</code> only searches for static libraries and <code>false</code> only searches for
-dynamic/shared. Leaving the keyword unset will keep the old behavior of first
-searching for dynamic and then falling back to static.</p>
+<p><code>find_library</code> has learned the <code>static</code> keyword. They keyword must be
+a boolean, where <code>true</code> only searches for static libraries and <code>false</code>
+only searches for dynamic/shared. Leaving the keyword unset will keep
+the old behavior of first searching for dynamic and then falling back
+to static.</p>
 <h2 id="fortran-include-statements-recursively-parsed">Fortran <code>include</code> statements recursively parsed</h2>
 <p>While non-standard and generally not recommended, some legacy Fortran
-programs use <code>include</code> directives to inject code inline.  Since v0.51,
+programs use <code>include</code> directives to inject code inline. Since v0.51,
 Meson can handle Fortran <code>include</code> directives recursively.</p>
 <p>DO NOT list <code>include</code> files as sources for a target, as in general
-their syntax is not correct as a standalone target.  In general
+their syntax is not correct as a standalone target. In general
 <code>include</code> files are meant to be injected inline as if they were copy
 and pasted into the source file.</p>
 <p><code>include</code> was never standard and was superceded by Fortran 90 <code>module</code>.</p>
 <p>The <code>include</code> file is only recognized by Meson if it has a Fortran
-file suffix, such as <code>.f</code> <code>.F</code> <code>.f90</code> <code>.F90</code> or similar.  This is to
+file suffix, such as <code>.f</code> <code>.F</code> <code>.f90</code> <code>.F90</code> or similar. This is to
 avoid deeply nested scanning of large external legacy C libraries that
 only interface to Fortran by <code>include biglib.h</code> or similar.</p>
 <h2 id="cmake-subprojects">CMake subprojects</h2>

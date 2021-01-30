@@ -212,17 +212,17 @@ dependencies, because all current Vala applications use them.
 and <a href="https://developer.gnome.org/gobject/stable/">GObject</a> is used for the
 runtime type system.</p>
 <h2 id="using-libraries">Using libraries</h2>
-<p>Meson uses the <a href="Reference-manual.html#dependency"><code>dependency()</code></a> function to find
-the relevant VAPI, C headers and linker flags when it encounters a Vala source
-file in a build target. Vala needs a VAPI file and a C header or headers to use
-a library. The VAPI file helps map Vala code to the library's C programming
-interface. It is the
-<a href="https://www.freedesktop.org/wiki/Software/pkg-config/"><code>pkg-config</code></a> tool that
-makes finding these installed files all work seamlessly behind the scenes. When
-a <code>pkg-config</code> file doesn't exist for the library then the
-<a href="Reference-manual.html#find_library"><code>find_library()</code></a> method of the <a href="Reference-manual.html#compiler-object">compiler
-object</a> needs to be used. Examples are
-given later.</p>
+<p>Meson uses the <a href="Reference-manual.html#dependency"><code>dependency()</code></a>
+function to find the relevant VAPI, C headers and linker flags when it
+encounters a Vala source file in a build target. Vala needs a VAPI
+file and a C header or headers to use a library. The VAPI file helps
+map Vala code to the library's C programming interface. It is the
+<a href="https://www.freedesktop.org/wiki/Software/pkg-config/"><code>pkg-config</code></a>
+tool that makes finding these installed files all work seamlessly
+behind the scenes. When a <code>pkg-config</code> file doesn't exist for the
+library then the <a href="Reference-manual.html#find_library"><code>find_library()</code></a>
+method of the <a href="Reference-manual.html#compiler-object">compiler object</a>
+needs to be used. Examples are given later.</p>
 <p>Note Vala uses libraries that follow the C Application Binary Interface (C ABI).
 The library, however, could be written in C, Vala, Rust, Go, C++ or any other
 language that can generate a binary compatible with the C ABI and so provides C
@@ -250,22 +250,24 @@ sources = files('app.vala')
 
 executable('app_name', sources, dependencies: dependencies)
 </code></pre>
-<p>GTK+ is the graphical toolkit used by GNOME, elementary OS and other desktop
-environments. The binding to the library, the VAPI file, is distributed with
-Vala.</p>
-<p>Other libraries may have a VAPI that is distributed with the library itself.
-Such libraries will have their VAPI file installed along with their other
-development files. The VAPI is installed in Vala's standard search path and so
-works just as seamlessly using the <code>dependency()</code> function.</p>
+<p>GTK+ is the graphical toolkit used by GNOME, elementary OS and other
+desktop environments. The binding to the library, the VAPI file, is
+distributed with Vala.</p>
+<p>Other libraries may have a VAPI that is distributed with the library
+itself. Such libraries will have their VAPI file installed along with
+their other development files. The VAPI is installed in Vala's
+standard search path and so works just as seamlessly using the
+<code>dependency()</code> function.</p>
 <h3 id="targeting-a-version-of-glib">Targeting a version of GLib</h3>
-<p>Meson's <a href="Reference-manual.html#dependency"><code>dependency()</code></a> function allows a
-version check of a library. This is often used to check a minimum version is
-installed. When setting a minimum version of GLib, Meson will also pass this to
-the Vala compiler using the <code>--target-glib</code> option.</p>
-<p>This is needed when using GTK+'s user interface definition files with Vala's
-<code>[GtkTemplate]</code>, <code>[GtkChild]</code> and <code>[GtkCallback]</code> attributes. This requires
-<code>--target-glib 2.38</code>, or a newer version, to be passed to Vala. With Meson this
-is simply done with:</p>
+<p>Meson's <a href="Reference-manual.html#dependency"><code>dependency()</code></a> function
+allows a version check of a library. This is often used to check a
+minimum version is installed. When setting a minimum version of GLib,
+Meson will also pass this to the Vala compiler using the
+<code>--target-glib</code> option.</p>
+<p>This is needed when using GTK+'s user interface definition files with
+Vala's <code>[GtkTemplate]</code>, <code>[GtkChild]</code> and <code>[GtkCallback]</code> attributes.
+This requires <code>--target-glib 2.38</code>, or a newer version, to be passed
+to Vala. With Meson this is simply done with:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
 dependencies = [
@@ -278,9 +280,9 @@ sources = files('app.vala')
 
 executable('app_name', sources, dependencies: dependencies)
 </code></pre>
-<p>Using <code>[GtkTemplate]</code> also requires the GTK+ user interface definition files to
-be built in to the binary as GResources. For completeness, the next example
-shows this:</p>
+<p>Using <code>[GtkTemplate]</code> also requires the GTK+ user interface definition
+files to be built in to the binary as GResources. For completeness,
+the next example shows this:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
 dependencies = [
@@ -300,15 +302,16 @@ sources += import( 'gnome' ).compile_resources(
 executable('app_name', sources, dependencies: dependencies)
 </code></pre>
 <h3 id="adding-to-valas-search-path">Adding to Vala's search path</h3>
-<p>So far we have covered the cases where the VAPI file is either distributed with
-Vala or the library. A VAPI can also be included in the source files of your
-project. The convention is to put it in the <code>vapi</code> directory of your project.</p>
-<p>This is needed when a library does not have a VAPI or your project needs to link
-to another component in the project that uses the C ABI. For example if part of
-the project is written in C.</p>
-<p>The Vala compiler's <code>--vapidir</code> option is used to add the project directory to
-the VAPI search path. In Meson this is done with the <code>add_project_arguments()</code>
-function:</p>
+<p>So far we have covered the cases where the VAPI file is either
+distributed with Vala or the library. A VAPI can also be included in
+the source files of your project. The convention is to put it in the
+<code>vapi</code> directory of your project.</p>
+<p>This is needed when a library does not have a VAPI or your project
+needs to link to another component in the project that uses the C ABI.
+For example if part of the project is written in C.</p>
+<p>The Vala compiler's <code>--vapidir</code> option is used to add the project
+directory to the VAPI search path. In Meson this is done with the
+<code>add_project_arguments()</code> function:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
 vapi_dir = meson.current_source_dir() / 'vapi'
@@ -325,25 +328,27 @@ sources = files('app.vala')
 
 executable('app_name', sources, dependencies: dependencies)
 </code></pre>
-<p>If the VAPI is for an external library then make sure that the VAPI name
-corresponds to the pkg-config file name.</p>
-<p>The <a href="https://gitlab.gnome.org/GNOME/vala-extra-vapis"><code>vala-extra-vapis</code> repository</a>
-is a community maintained repository of VAPIs that are not distributed.
+<p>If the VAPI is for an external library then make sure that the VAPI
+name corresponds to the pkg-config file name.</p>
+<p>The <a href="https://gitlab.gnome.org/GNOME/vala-extra-vapis"><code>vala-extra-vapis</code>
+repository</a> is a
+community maintained repository of VAPIs that are not distributed.
 Developers use the repository to share early work on new bindings and
-improvements to existing bindings. So the VAPIs can frequently change. It is
-recommended VAPIs from this repository are copied in to your project's source
-files.</p>
-<p>This also works well for starting to write new bindings before they are shared
-with the <code>vala-extra-vapis</code> repository.</p>
+improvements to existing bindings. So the VAPIs can frequently change.
+It is recommended VAPIs from this repository are copied in to your
+project's source files.</p>
+<p>This also works well for starting to write new bindings before they
+are shared with the <code>vala-extra-vapis</code> repository.</p>
 <h3 id="libraries-without-pkgconfig-files">Libraries without pkg-config files</h3>
 <p>A library that does not have a corresponding pkg-config file may mean
-<code>dependency()</code> is unsuitable for finding the C and Vala interface files. In this
-case it is necessary to use the <code>find_library()</code> method of the compiler object.</p>
-<p>The first example uses Vala's POSIX binding. There is no pkg-config file because
-POSIX includes the standard C library on Unix systems. All that is needed is the
-VAPI file, <code>posix.vapi</code>. This is included with Vala and installed in Vala's
-standard search path. Meson just needs to be told to only find the library for
-the Vala compiler:</p>
+<code>dependency()</code> is unsuitable for finding the C and Vala interface
+files. In this case it is necessary to use the <code>find_library()</code> method
+of the compiler object.</p>
+<p>The first example uses Vala's POSIX binding. There is no pkg-config
+file because POSIX includes the standard C library on Unix systems.
+All that is needed is the VAPI file, <code>posix.vapi</code>. This is included
+with Vala and installed in Vala's standard search path. Meson just
+needs to be told to only find the library for the Vala compiler:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
 dependencies = [
@@ -356,10 +361,11 @@ sources = files('app.vala')
 
 executable('app_name', sources, dependencies: dependencies)
 </code></pre>
-<p>The next example shows how to link with a C library where no additional VAPI is
-needed. The standard maths functions are already bound in <code>glib-2.0.vapi</code>, but
-the GNU C library requires linking to the maths library separately. In this
-example Meson is told to find the library only for the C compiler:</p>
+<p>The next example shows how to link with a C library where no
+additional VAPI is needed. The standard maths functions are already
+bound in <code>glib-2.0.vapi</code>, but the GNU C library requires linking to
+the maths library separately. In this example Meson is told to find
+the library only for the C compiler:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
 dependencies = [
@@ -372,11 +378,12 @@ sources = files('app.vala')
 
 executable('app_name', sources, dependencies: dependencies)
 </code></pre>
-<p>The <code>required: false</code> means the build will continue when using another C library
-that does not separate the maths library. See <a href="howtox.html#add-math-library-lm-portably">Add math library (-lm)
-portably</a>.</p>
-<p>The final example shows how to use a library that does not have a pkg-config
-file and the VAPI is in the <code>vapi</code> directory of your project source files:</p>
+<p>The <code>required: false</code> means the build will continue when using another
+C library that does not separate the maths library. See <a href="howtox.html#add-math-library-lm-portably">Add math
+library (-lm) portably</a>.</p>
+<p>The final example shows how to use a library that does not have a
+pkg-config file and the VAPI is in the <code>vapi</code> directory of your
+project source files:</p>
 <pre><code class="language-meson">project('vala app', 'vala', 'c')
 
 vapi_dir = meson.current_source_dir() / 'vapi'
@@ -400,17 +407,21 @@ header files and the library to link with.</p>
 keyword added to include the project VAPI directory. This is not added
 automatically by <code>add_project_arguments()</code>.</p>
 <h3 id="working-with-the-vala-preprocessor">Working with the Vala Preprocessor</h3>
-<p>Passing arguments to <a href="https://wiki.gnome.org/Projects/Vala/Manual/Preprocessor">Vala's preprocessor</a> requires specifying the language as <code>vala</code>.  For example, the following statement sets the preprocessor symbol <code>USE_FUSE</code>:</p>
+<p>Passing arguments to <a href="https://wiki.gnome.org/Projects/Vala/Manual/Preprocessor">Vala's
+preprocessor</a>
+requires specifying the language as <code>vala</code>. For example, the following
+statement sets the preprocessor symbol <code>USE_FUSE</code>:</p>
 <pre><code class="language-meson">add_project_arguments('-D', 'USE_FUSE', language: 'vala')
 </code></pre>
-<p>If you need to pass an argument to the C pre-processor then specify the language as c. For example to set FUSE_USE_VERSION to 26 use:</p>
+<p>If you need to pass an argument to the C pre-processor then specify
+the language as c. For example to set FUSE_USE_VERSION to 26 use:</p>
 <pre><code class="language-meson">add_project_arguments('-DFUSE_USE_VERSION=26', language: 'c')
 </code></pre>
 <h2 id="building-libraries">Building libraries</h2>
 <h3 id="changing-c-header-and-vapi-names">Changing C header and VAPI names</h3>
-<p>Meson's <a href="Reference-manual.html#library"><code>library</code></a> target automatically outputs
-the C header and the VAPI. They can be renamed by setting the <code>vala_header</code> and
-<code>vala_vapi</code> arguments respectively:</p>
+<p>Meson's <a href="Reference-manual.html#library"><code>library</code></a> target automatically
+outputs the C header and the VAPI. They can be renamed by setting the
+<code>vala_header</code> and <code>vala_vapi</code> arguments respectively:</p>
 <pre><code class="language-meson">foo_lib = shared_library('foo', 'foo.vala',
                   vala_header: 'foo.h',
                   vala_vapi: 'foo-1.0.vapi',
@@ -418,22 +429,23 @@ the C header and the VAPI. They can be renamed by setting the <code>vala_header<
                   install: true,
                   install_dir: [true, true, true])
 </code></pre>
-<p>In this example, the second and third elements of the <code>install_dir</code> array
-indicate the destination with <code>true</code> to use default directories (i.e. <code>include</code>
-and <code>share/vala/vapi</code>).</p>
+<p>In this example, the second and third elements of the <code>install_dir</code>
+array indicate the destination with <code>true</code> to use default directories
+(i.e. <code>include</code> and <code>share/vala/vapi</code>).</p>
 <h3 id="gobject-introspection-and-language-bindings">GObject Introspection and language bindings</h3>
-<p>A 'binding' allows another programming language to use a library written in
-Vala. Because Vala uses the GObject type system as its runtime type system it is
-very easy to use introspection to generate a binding. A Meson build of a Vala
-library can generate the GObject introspection metadata. The metadata is then
-used in separate projects with <a href="https://wiki.gnome.org/Projects/Vala/LibraryWritingBindings">language specific
-tools</a> to generate
-a binding.</p>
-<p>The main form of metadata is a GObject Introspection Repository (GIR) XML file.
-GIRs are mostly used by languages that generate bindings at compile time.
-Languages that generate bindings at runtime mostly use a typelib file, which is
-generated from the GIR.</p>
-<p>Meson can generate a GIR as part of the build.  For a Vala library the
+<p>A 'binding' allows another programming language to use a library
+written in Vala. Because Vala uses the GObject type system as its
+runtime type system it is very easy to use introspection to generate a
+binding. A Meson build of a Vala library can generate the GObject
+introspection metadata. The metadata is then used in separate projects
+with <a href="https://wiki.gnome.org/Projects/Vala/LibraryWritingBindings">language specific
+tools</a> to
+generate a binding.</p>
+<p>The main form of metadata is a GObject Introspection Repository (GIR)
+XML file. GIRs are mostly used by languages that generate bindings at
+compile time. Languages that generate bindings at runtime mostly use a
+typelib file, which is generated from the GIR.</p>
+<p>Meson can generate a GIR as part of the build. For a Vala library the
 <code>vala_gir</code> option has to be set for the <code>library</code>:</p>
 <pre><code class="language-meson">foo_lib = shared_library('foo', 'foo.vala',
                   vala_gir: 'Foo-1.0.gir',
@@ -441,11 +453,11 @@ generated from the GIR.</p>
                   install: true,
                   install_dir: [true, true, true, true])
 </code></pre>
-<p>The <code>true</code> value in <code>install_dir</code> tells Meson to use the default directory (i.e.
-<code>share/gir-1.0</code> for GIRs). The fourth element in the <code>install_dir</code> array
-indicates where the GIR file will be installed.</p>
-<p>To then generate a typelib file use a custom target with the <code>g-ir-compiler</code>
-program and a dependency on the library:</p>
+<p>The <code>true</code> value in <code>install_dir</code> tells Meson to use the default
+directory (i.e. <code>share/gir-1.0</code> for GIRs). The fourth element in the
+<code>install_dir</code> array indicates where the GIR file will be installed.</p>
+<p>To then generate a typelib file use a custom target with the
+<code>g-ir-compiler</code> program and a dependency on the library:</p>
 <pre><code class="language-meson">g_ir_compiler = find_program('g-ir-compiler')
 custom_target('foo typelib', command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
               input: meson.current_build_dir() / 'Foo-1.0.gir',

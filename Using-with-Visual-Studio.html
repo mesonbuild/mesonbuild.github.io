@@ -192,13 +192,15 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="using-with-visual-studio">Using with Visual Studio</h1>
-<p>In order to generate Visual Studio projects, Meson needs to know the settings
-of your installed version of Visual Studio. The only way to get this
-information is to run Meson under the Visual Studio Command Prompt.</p>
-<p>You can always find the Visual Studio Command Prompt by searching from the
-Start Menu. However, the name is different for each Visual Studio version. With
-Visual Studio 2019, look for "x64 Native Tools Command Prompt for VS 2019".
-The next steps are <a href="https://mesonbuild.com/Running-Meson.html#configuring-the-build-directory">the same as always</a>:</p>
+<p>In order to generate Visual Studio projects, Meson needs to know the
+settings of your installed version of Visual Studio. The only way to
+get this information is to run Meson under the Visual Studio Command
+Prompt.</p>
+<p>You can always find the Visual Studio Command Prompt by searching from
+the Start Menu. However, the name is different for each Visual Studio
+version. With Visual Studio 2019, look for "x64 Native Tools Command
+Prompt for VS 2019". The next steps are <a href="https://mesonbuild.com/Running-Meson.html#configuring-the-build-directory">the same as
+always</a>:</p>
 <ol>
 <li>
 <code>cd</code> into your source directory</li>
@@ -207,9 +209,8 @@ The next steps are <a href="https://mesonbuild.com/Running-Meson.html#configurin
 <li>
 <code>meson compile -C builddir</code>, to compile your code. You can also use <code>ninja -C builddir</code> here if you are using the default Ninja backend.</li>
 </ol>
-<p>If you wish to generate Visual Studio project files, pass <code>--backend vs</code>.
-At the time of writing the Ninja backend is more mature than the VS backend so
-you might want to use it for serious work.</p>
+<p>If you wish to generate Visual Studio project files, pass <code>--backend vs</code>. At the time of writing the Ninja backend is more mature than the
+VS backend so you might want to use it for serious work.</p>
 <h1 id="using-clangcl-with-visual-studio">Using Clang-CL with Visual Studio</h1>
 <p><em>(new in 0.52.0)</em></p>
 <p>You will first need to get a copy of llvm+clang for Windows, such versions

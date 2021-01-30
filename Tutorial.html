@@ -223,8 +223,9 @@ int main(int argc, char **argv) {
 <pre><code class="language-meson">project('tutorial', 'c')
 executable('demo', 'main.c')
 </code></pre>
-<p>That is all. Note that unlike Autotools you <a href="FAQ.html#do-i-need-to-add-my-headers-to-the-sources-list-like-in-autotools">do not need to add any source
-headers to the list of sources</a>.</p>
+<p>That is all. Note that unlike Autotools you <a href="FAQ.html#do-i-need-to-add-my-headers-to-the-sources-list-like-in-autotools">do not need to add any
+source headers to the list of
+sources</a>.</p>
 <p>We are now ready to build our application. First we need
 to initialize the build by going into the source directory and issuing
 the following commands.</p>
@@ -270,7 +271,7 @@ use GTK+. The new version looks like this.</p>
 #include &lt;gtk/gtk.h&gt;
 
 //
-// Should provided the active view for a GTK application 
+// Should provided the active view for a GTK application
 //
 static void activate(GtkApplication* app, gpointer user_data)
 {
@@ -319,10 +320,9 @@ rebuilding our code without any build system changes.</p>
 <pre><code class="language-console">$ meson compile
 </code></pre>
 <p>Once you have set up your build directory the first time, you don't
-ever need to run the <code>meson</code> command again. You always just run
-<code>meson compile</code>. Meson will automatically detect when you have done changes to
-build definitions and will take care of everything so users don't have
-to care. In this case the following output is produced.</p>
+ever need to run the <code>meson</code> command again. You always just run <code>meson compile</code>. Meson will automatically detect when you have done changes
+to build definitions and will take care of everything so users don't
+have to care. In this case the following output is produced.</p>
 <pre><code>[1/1] Regenerating build files
 The Meson build system
  version: 0.13.0-research

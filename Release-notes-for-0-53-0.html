@@ -200,18 +200,20 @@ assert(fs.exists('important_file'),
        'The important file is missing.')
 </code></pre>
 <h2 id="meson-dist-includesubprojects">meson dist --include-subprojects</h2>
-<p><code>meson dist</code> command line now gained <code>--include-subprojects</code> command line option.
-When enabled, the source tree of all subprojects used by the current build will
-also be included in the final tarball. This is useful to distribute self contained
-tarball that can be built offline (i.e. <code>--wrap-mode=nodownload</code>).</p>
+<p><code>meson dist</code> command line now gained <code>--include-subprojects</code> command
+line option. When enabled, the source tree of all subprojects used by
+the current build will also be included in the final tarball. This is
+useful to distribute self contained tarball that can be built offline
+(i.e. <code>--wrap-mode=nodownload</code>).</p>
 <h2 id="added-new-meson-templates-for-dlang-rust-objectivec">Added new Meson templates for <code>Dlang</code>, <code>Rust</code>, <code>Objective-C</code>
 </h2>
 <p>Meson now ships with predefined project templates for <code>Dlang</code>,
 <code>Fortran</code>, <code>Rust</code>, <code>Objective-C</code>, and by passing the associated flags <code>d</code>,
 <code>fortran</code>, <code>rust</code>, <code>objc</code> to <code>meson init --language</code>.</p>
 <h2 id="add-a-new-summary-function">Add a new summary() function</h2>
-<p>A new function <a href="Reference-manual.html#summary"><code>summary()</code></a> has been added to
-summarize build configuration at the end of the build process.</p>
+<p>A new function <a href="Reference-manual.html#summary"><code>summary()</code></a> has been
+added to summarize build configuration at the end of the build
+process.</p>
 <p>Example:</p>
 <pre><code class="language-meson">project('My Project', version : '1.0')
 summary({'bindir': get_option('bindir'),
@@ -242,15 +244,18 @@ summary({'Some boolean': false,
                      True
 </code></pre>
 <h2 id="generic-overrider-for-dynamic-linker-selection">Generic Overrider for Dynamic Linker selection</h2>
-<p>Previous to meson 0.52.0 you set the dynamic linker using compiler specific
-flags passed via language flags and hoped things worked out. In meson 0.52.0
-meson started detecting the linker and making intelligent decisions about
-using it. Unfortunately this broke choosing a non-default linker.</p>
-<p>Now there is a generic mechanism for doing this. In 0.53.0, you can use the <code>LD</code>
-environment variable. <strong>In 0.53.1</strong> this was changed to <code>&lt;compiler_variable&gt;_LD</code>,
-such as <code>CC_LD</code>, <code>CXX_LD</code>, <code>D_LD</code>, etc due to regressions. The usual meson
-<a href="https://mesonbuild.com/Running-Meson.html#environment-variables">environment variable rules</a>
-apply. Alternatively, you can add the following to a cross or native file:</p>
+<p>Previous to meson 0.52.0 you set the dynamic linker using compiler
+specific flags passed via language flags and hoped things worked out.
+In meson 0.52.0 meson started detecting the linker and making
+intelligent decisions about using it. Unfortunately this broke
+choosing a non-default linker.</p>
+<p>Now there is a generic mechanism for doing this. In 0.53.0, you can
+use the <code>LD</code> environment variable. <strong>In 0.53.1</strong> this was changed to
+<code>&lt;compiler_variable&gt;_LD</code>, such as <code>CC_LD</code>, <code>CXX_LD</code>, <code>D_LD</code>, etc due
+to regressions. The usual meson <a href="https://mesonbuild.com/Running-Meson.html#environment-variables">environment variable
+rules</a>
+apply. Alternatively, you can add the following to a cross or native
+file:</p>
 <p>In 0.53.0:</p>
 <pre><code class="language-ini">[binaries]
 ld = 'gold'
@@ -267,10 +272,11 @@ c_ld = 'lld'
 <p>And meson will select the linker if possible.</p>
 <h2 id="fortran_std-option">
 <code>fortran_std</code> option</h2>
-<p><strong>new in 0.53.0</strong>
-Akin to the <code>c_std</code> and <code>cpp_std</code> options, the <code>fortran_std</code> option sets Fortran compilers to warn or error on non-Fortran standard code.
-Only the Gfortran and Intel Fortran compilers have support for this option.
-Other Fortran compilers ignore the <code>fortran_std</code> option.</p>
+<p><strong>new in 0.53.0</strong> Akin to the <code>c_std</code> and <code>cpp_std</code> options, the
+<code>fortran_std</code> option sets Fortran compilers to warn or error on
+non-Fortran standard code. Only the Gfortran and Intel Fortran
+compilers have support for this option. Other Fortran compilers ignore
+the <code>fortran_std</code> option.</p>
 <p>Supported values for <code>fortran_std</code> include:</p>
 <ul>
 <li>
@@ -285,14 +291,16 @@ Other Fortran compilers ignore the <code>fortran_std</code> option.</p>
 <code>f2018</code> for Fortran 2018 compliant code.</li>
 </ul>
 <h2 id="pythondependency-embed-kwarg">python.dependency() embed kwarg</h2>
-<p>Added the <code>embed</code> kwarg to the python module dependency function to select
-the python library that can be used to embed python into an application.</p>
+<p>Added the <code>embed</code> kwarg to the python module dependency function to
+select the python library that can be used to embed python into an
+application.</p>
 <h2 id="scalapack">Scalapack</h2>
 <p>added in <strong>0.53.0</strong>:</p>
 <pre><code class="language-meson">scalapack = dependency('scalapack')
 </code></pre>
-<p>Historically and through today, typical Scalapack setups have broken and incomplete pkg-config or
-FindScalapack.cmake. Meson handles finding Scalapack on setups including:</p>
+<p>Historically and through today, typical Scalapack setups have broken
+and incomplete pkg-config or FindScalapack.cmake. Meson handles
+finding Scalapack on setups including:</p>
 <ul>
 <li>Linux: Intel MKL or OpenMPI + Netlib</li>
 <li>MacOS: Intel MKL or OpenMPI + Netlib</li>
@@ -316,8 +324,8 @@ k = 'cd'
 d += {k : 43}
 </code></pre>
 <h2 id="improved-cmake-subprojects-support">Improved CMake subprojects support</h2>
-<p>With this release even more CMake projects are supported via
-<a href="CMake-module.html#cmake-subprojects">CMake subprojects</a> due to these internal
+<p>With this release even more CMake projects are supported via <a href="CMake-module.html#cmake-subprojects">CMake
+subprojects</a> due to these internal
 improvements:</p>
 <ul>
 <li>Use the CMake file API for CMake &gt;=3.14</li>
@@ -329,12 +337,13 @@ improvements:</p>
 <li>Object library support on Windows</li>
 </ul>
 <h2 id="compilerget_linker_id">compiler.get_linker_id()</h2>
-<p>since 0.53.0, <code>compiler.get_linker_id()</code> allows retrieving a lowercase name for the linker.
-Since each compiler family can typically use a variety of linkers depending on operating system,
-this helps users define logic for corner cases not otherwise easily handled.</p>
+<p>since 0.53.0, <code>compiler.get_linker_id()</code> allows retrieving a lowercase
+name for the linker. Since each compiler family can typically use a
+variety of linkers depending on operating system, this helps users
+define logic for corner cases not otherwise easily handled.</p>
 <h2 id="cuda-dependency">CUDA dependency</h2>
-<p>Native support for compiling and linking against the CUDA Toolkit using
-the <code>dependency</code> function:</p>
+<p>Native support for compiling and linking against the CUDA Toolkit
+using the <code>dependency</code> function:</p>
 <pre><code class="language-meson">project('CUDA test', 'cpp', meson_version: '&gt;= 0.53.0')
 exe = executable('prog', 'prog.cc', dependencies: dependency('cuda'))
 </code></pre>

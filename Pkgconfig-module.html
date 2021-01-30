@@ -270,9 +270,9 @@ pkg-config files in projects which also have architecture-dependent outputs.</li
 <li>
 <code>conflicts</code> (<em>since 0.36.0, incorrectly issued a warning prior to 0.54.0</em>) list of strings to be put in the <code>Conflicts</code> field.</li>
 </ul>
-<p>Since 0.46 a <code>StaticLibrary</code> or <code>SharedLibrary</code> object can optionally be passed
-as first positional argument. If one is provided a default value will be
-provided for all required fields of the pc file:</p>
+<p>Since 0.46 a <code>StaticLibrary</code> or <code>SharedLibrary</code> object can optionally
+be passed as first positional argument. If one is provided a default
+value will be provided for all required fields of the pc file:</p>
 <ul>
 <li>
 <code>install_dir</code> is set to <code>pkgconfig</code> folder in the same location than the provided library.</li>
@@ -281,18 +281,20 @@ provided for all required fields of the pc file:</p>
 <li>
 <code>name</code> is set to the library's name.</li>
 </ul>
-<p>Since 0.54.0 uninstalled pkg-config files are generated as well. They are
-located in <code>&lt;build dir&gt;/meson-uninstalled/</code>. It is sometimes
-useful to build projects against libraries built by meson without having to
-install them into a prefix. In order to do so, just set
+<p>Since 0.54.0 uninstalled pkg-config files are generated as well. They
+are located in <code>&lt;build dir&gt;/meson-uninstalled/</code>. It is sometimes
+useful to build projects against libraries built by meson without
+having to install them into a prefix. In order to do so, just set
 <code>PKG_CONFIG_PATH=&lt;builddir&gt;/meson-uninstalled</code> before building your
-application. That will cause pkg-config to prefer those <code>-uninstalled.pc</code> files
-and find libraries and headers from the meson builddir. This is an experimental
-feature provided on a best-effort basis, it might not work in all use-cases.</p>
+application. That will cause pkg-config to prefer those
+<code>-uninstalled.pc</code> files and find libraries and headers from the meson
+builddir. This is an experimental feature provided on a best-effort
+basis, it might not work in all use-cases.</p>
 <h3 id="implicit-dependencies">Implicit dependencies</h3>
-<p>The exact rules followed to find dependencies that are implicitly added into the
-pkg-config file have evolved over time. Here are the rules as of Meson <em>0.49.0</em>,
-previous versions might have slightly different behaviour.</p>
+<p>The exact rules followed to find dependencies that are implicitly
+added into the pkg-config file have evolved over time. Here are the
+rules as of Meson <em>0.49.0</em>, previous versions might have slightly
+different behaviour.</p>
 <ul>
 <li>Not found libraries or dependencies are ignored.</li>
 <li>Libraries and dependencies are private by default (i.e. added into

@@ -205,23 +205,25 @@ single command <em>(available since 0.52.0)</em>:</p>
 <pre><code class="language-sh">ninja dist
 </code></pre>
 <p>This creates a file called <code>projectname-version.tar.xz</code> in the build
-tree subdirectory <code>meson-dist</code>. This archive contains the full contents
-of the latest commit in revision control including all the submodules
-(recursively). All revision control metadata is removed. Meson then
-takes this archive and tests that it works by doing a full
+tree subdirectory <code>meson-dist</code>. This archive contains the full
+contents of the latest commit in revision control including all the
+submodules (recursively). All revision control metadata is removed.
+Meson then takes this archive and tests that it works by doing a full
 <code>compile</code> + <code>test</code> + <code>install</code> cycle. If all these pass, Meson will
 then create a <code>SHA-256</code> checksum file next to the archive.</p>
 <h2 id="autotools-dist-vs-meson-dist">Autotools dist VS Meson dist</h2>
 <p>Meson behaviour is different from Autotools. The Autotools "dist"
 target packages up the current source tree. Meson packages the latest
-revision control commit. The reason for this is that it prevents developers
-from doing accidental releases where the distributed archive does not match
-any commit in revision control (especially the one tagged for the release).</p>
+revision control commit. The reason for this is that it prevents
+developers from doing accidental releases where the distributed
+archive does not match any commit in revision control (especially the
+one tagged for the release).</p>
 <h2 id="include-subprojects-in-your-release">Include subprojects in your release</h2>
-<p>The <code>meson dist</code> command has <code>--include-subprojects</code> command line option.
-When enabled, the source tree of all subprojects used by the current build
-will also be included in the final tarball. This is useful to distribute
-self contained tarball that can be built offline (i.e. <code>--wrap-mode=nodownload</code>).</p>
+<p>The <code>meson dist</code> command has <code>--include-subprojects</code> command line
+option. When enabled, the source tree of all subprojects used by the
+current build will also be included in the final tarball. This is
+useful to distribute self contained tarball that can be built offline
+(i.e. <code>--wrap-mode=nodownload</code>).</p>
 <h2 id="skip-build-and-test-with-notests">Skip build and test with <code>--no-tests</code>
 </h2>
 <p>The <code>meson dist</code> command has a <code>--no-tests</code> option to skip build and

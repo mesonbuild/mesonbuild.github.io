@@ -199,12 +199,13 @@ package is rejected. What should be done will be determined on a
 case-by-case basis. Similarly meeting all these requirements does not
 guarantee that the package will get accepted. Use common sense.</p>
 <h2 id="setting-up-the-tools">Setting up the tools</h2>
-<p>The <a href="https://github.com/mesonbuild/mesonwrap">mesonwrap repository</a> provides tools
-to maintain the WrapDB. Read-only features such can be used by anyone without Meson admin rights.</p>
+<p>The <a href="https://github.com/mesonbuild/mesonwrap">mesonwrap repository</a>
+provides tools to maintain the WrapDB. Read-only features such can be
+used by anyone without Meson admin rights.</p>
 <h2 id="personal-access-token">Personal access token</h2>
-<p>Some tools require access to the Github API.
-A <a href="https://github.com/settings/tokens">personal access token</a> may be required
-if the freebie Github API quota is exhausted. <code>public_repo</code> scope is required
+<p>Some tools require access to the Github API. A <a href="https://github.com/settings/tokens">personal access
+token</a> may be required if the
+freebie Github API quota is exhausted. <code>public_repo</code> scope is required
 for write operations.</p>
 <pre><code>$ cat ~/.config/mesonwrap.ini
 [mesonwrap]
@@ -213,7 +214,8 @@ github_token = &lt;github token&gt;
 <h2 id="reviewing-code">Reviewing code</h2>
 <pre><code>mesonwrap review zlib --pull-request=1 [--approve]
 </code></pre>
-<p>Since not every check can be automated please pay attention to the following during the review:</p>
+<p>Since not every check can be automated please pay attention to the
+following during the review:</p>
 <ul>
 <li>Download link points to an authoritative upstream location.</li>
 <li>Version branch is created from master.</li>

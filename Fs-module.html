@@ -239,11 +239,12 @@ md5, sha1, sha224, sha256, sha384, sha512.</p>
 <h3 id="size">size</h3>
 <p>The <code>fs.size(filename)</code> method returns the size of the file in integer bytes.</p>
 <h3 id="is_samepath">is_samepath</h3>
-<p>The <code>fs.is_samepath(path1, path2)</code> returns boolean <code>true</code> if both paths resolve to the same path.
-For example, suppose path1 is a symlink and path2 is a relative path.
-If path1 can be resolved to path2, then <code>true</code> is returned.
-If path1 is not resolved to path2, <code>false</code> is returned.
-If path1 or path2 do not exist, <code>false</code> is returned.</p>
+<p>The <code>fs.is_samepath(path1, path2)</code> returns boolean <code>true</code> if both
+paths resolve to the same path. For example, suppose path1 is a
+symlink and path2 is a relative path. If <code>path1</code> can be resolved to
+<code>path2</code>, then <code>true</code> is returned. If <code>path1</code> is not resolved to
+<code>path2</code>, <code>false</code> is returned. If <code>path1</code> or <code>path2</code> do not exist,
+<code>false</code> is returned.</p>
 <p>Examples:</p>
 <pre><code class="language-meson">x = 'foo.txt'
 y = 'sub/../foo.txt'
@@ -264,10 +265,12 @@ fs.is_samepath(p, r)  # true
 fs.is_samepath(p, s)  # false
 </code></pre>
 <h2 id="filename-modification">Filename modification</h2>
-<p>The files need not actually exist yet for these path string manipulation methods.</p>
+<p>The files need not actually exist yet for these path string
+manipulation methods.</p>
 <h3 id="expanduser">expanduser</h3>
 <p><em>since 0.54.0</em></p>
-<p>A path string with a leading <code>~</code> is expanded to the user home directory</p>
+<p>A path string with a leading <code>~</code> is expanded to the user home
+directory</p>
 <p>Examples:</p>
 <pre><code class="language-meson">fs.expanduser('~')  # user home directory
 
@@ -275,8 +278,9 @@ fs.expanduser('~/foo')  # &lt;homedir&gt;/foo
 </code></pre>
 <h3 id="as_posix">as_posix</h3>
 <p><em>since 0.54.0</em></p>
-<p><code>fs.as_posix(path)</code> assumes a Windows path, even if on a Unix-like system.
-Thus, all <code>'\'</code> or <code>'\\'</code> are turned to '/', even if you meant to escape a character.</p>
+<p><code>fs.as_posix(path)</code> assumes a Windows path, even if on a Unix-like
+system. Thus, all <code>'\'</code> or <code>'\\'</code> are turned to '/', even if you meant
+to escape a character.</p>
 <p>Examples</p>
 <pre><code class="language-meson">fs.as_posix('\\') == '/'  # true
 fs.as_posix('\\\\') == '/'  # true
@@ -284,8 +288,8 @@ fs.as_posix('\\\\') == '/'  # true
 fs.as_posix('foo\\bar/baz') == 'foo/bar/baz'  # true
 </code></pre>
 <h3 id="replace_suffix">replace_suffix</h3>
-<p>The <code>replace_suffix</code> method is a <em>string manipulation</em> convenient for filename modifications.
-It allows changing the filename suffix like:</p>
+<p>The <code>replace_suffix</code> method is a <em>string manipulation</em> convenient for
+filename modifications. It allows changing the filename suffix like:</p>
 <h4 id="swap-suffix">swap suffix</h4>
 <pre><code class="language-meson">original = '/opt/foo.ini'
 new = fs.replace_suffix(original, '.txt')  # /opt/foo.txt
@@ -313,7 +317,8 @@ new = fs.parent('foo/bar/baz.dll')  # foo/bar
 </code></pre>
 <h3 id="stem">stem</h3>
 <p><em>since 0.54.0</em></p>
-<p>Returns the last component of the path, dropping the last part of the suffix</p>
+<p>Returns the last component of the path, dropping the last part of the
+suffix</p>
 <pre><code class="language-meson">fs.stem('foo/bar/baz.dll')  # baz
 fs.stem('foo/bar/baz.dll.a')  # baz.dll
 </code></pre>

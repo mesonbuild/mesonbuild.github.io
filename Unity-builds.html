@@ -192,14 +192,34 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="unity-builds">Unity builds</h1>
-<p>Unity builds are a technique for cutting down build times. The way it works is relatively straightforward. Suppose we have source files <code>src1.c</code>, <code>src2.c</code> and <code>src3.c</code>. Normally we would run the compiler three times, once for each file. In a unity build we instead compile all these sources in a single unit. The simplest approach is to create a new source file that looks like this.</p>
+<p>Unity builds are a technique for cutting down build times. The way it
+works is relatively straightforward. Suppose we have source files
+<code>src1.c</code>, <code>src2.c</code> and <code>src3.c</code>. Normally we would run the compiler
+three times, once for each file. In a unity build we instead compile
+all these sources in a single unit. The simplest approach is to create
+a new source file that looks like this.</p>
 <pre><code class="language-c">#include&lt;src1.c&gt;
 #include&lt;src2.c&gt;
 #include&lt;src3.c&gt;
 </code></pre>
-<p>This is then compiled rather than the individual files. The exact speedup depends on the code base, of course, but it is not uncommon to obtain more than 50% speedup in compile times. This happens even though the Unity build uses only one CPU whereas individual compiles can be run in parallel. Unity builds can also lead to faster code, because the compiler can do more aggressive optimizations (e.g. inlining).</p>
-<p>The downside is that incremental builds are as slow as full rebuilds (because that is what they are). Unity compiles also use more memory, which may become an issue in certain scenarios. There may also be some bugs in the source that need to be fixed before Unity compiles work. As an example, if both <code>src1.c</code> and <code>src2.c</code> contain a static function or variable of the same name, there will be a clash.</p>
-<p>Meson has built-in support for unity builds. To enable them, just pass <code>--unity on</code> on the command line or enable unity builds with the GUI. No code changes are necessary apart from the potential clash issue discussed above. Meson will automatically generate all the necessary inclusion files for you.</p>
+<p>This is then compiled rather than the individual files. The exact
+speedup depends on the code base, of course, but it is not uncommon to
+obtain more than 50% speedup in compile times. This happens even
+though the Unity build uses only one CPU whereas individual compiles
+can be run in parallel. Unity builds can also lead to faster code,
+because the compiler can do more aggressive optimizations (e.g.
+inlining).</p>
+<p>The downside is that incremental builds are as slow as full rebuilds
+(because that is what they are). Unity compiles also use more memory,
+which may become an issue in certain scenarios. There may also be some
+bugs in the source that need to be fixed before Unity compiles work.
+As an example, if both <code>src1.c</code> and <code>src2.c</code> contain a static function
+or variable of the same name, there will be a clash.</p>
+<p>Meson has built-in support for unity builds. To enable them, just pass
+<code>--unity on</code> on the command line or enable unity builds with the GUI.
+No code changes are necessary apart from the potential clash issue
+discussed above. Meson will automatically generate all the necessary
+inclusion files for you.</p>
 
     </div>
         

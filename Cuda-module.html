@@ -234,8 +234,9 @@ virtual architecture <code>X.Y</code> before binary generation for a newer archi
 <li>Lists of strings</li>
 <li>Space (<code></code>), comma (<code>,</code>) or semicolon (<code>;</code>)-separated strings</li>
 </ul>
-<p>The single-word architectural sets <code>'All'</code>, <code>'Common'</code> or <code>'Auto'</code> cannot be
-mixed with architecture names or compute capabilities. Their interpretation is:</p>
+<p>The single-word architectural sets <code>'All'</code>, <code>'Common'</code> or <code>'Auto'</code>
+cannot be mixed with architecture names or compute capabilities. Their
+interpretation is:</p>
 <table>
 <thead>
 <tr>
@@ -396,17 +397,19 @@ message('Building for architectures ' + ' '.join(readable))
 <p>This will print</p>
 <pre><code>Message: Building for architectures sm30 sm35 sm50 compute50
 </code></pre>
-<p><em>Note:</em> This function is intended to closely replicate CMake's FindCUDA module function
-<code>CUDA_SELECT_NVCC_ARCH_FLAGS(out_variable, [list of CUDA compute architectures])</code></p>
+<p><em>Note:</em> This function is intended to closely replicate CMake's
+FindCUDA module function <code>CUDA_SELECT_NVCC_ARCH_FLAGS(out_variable, [list of CUDA compute architectures])</code></p>
 <h3 id="min_driver_version"><code>min_driver_version()</code></h3>
 <p><em>Since: 0.50.0</em></p>
 <pre><code class="language-meson">cuda.min_driver_version(cuda_version_string)
 </code></pre>
-<p>Returns the minimum NVIDIA proprietary driver version required, on the host
-system, by kernels compiled with a CUDA Toolkit with the given version string.</p>
-<p>The output of this function is generally intended for informative message
-printing, but could be used for assertions or to conditionally enable
-features known to exist within the minimum NVIDIA driver required.</p>
+<p>Returns the minimum NVIDIA proprietary driver version required, on the
+host system, by kernels compiled with a CUDA Toolkit with the given
+version string.</p>
+<p>The output of this function is generally intended for informative
+message printing, but could be used for assertions or to conditionally
+enable features known to exist within the minimum NVIDIA driver
+required.</p>
 
     </div>
         

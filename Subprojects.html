@@ -209,8 +209,9 @@ this, only meson subprojects are described here.
 <a href="CMake-module.html#cmake-subprojects">CMake based subprojects</a> are also
 supported but not guaranteed to work.</p>
 <h2 id="a-subproject-example">A subproject example</h2>
-<p>Usually dependencies consist of some header files plus a library to link against.
-To declare this internal dependency use <code>declare_dependency</code> function.</p>
+<p>Usually dependencies consist of some header files plus a library to
+link against. To declare this internal dependency use
+<code>declare_dependency</code> function.</p>
 <p>As an example, suppose we have a simple project that provides a shared
 library. Its <code>meson.build</code> would look like this.</p>
 <pre><code class="language-meson">project('libsimple', 'c')
@@ -225,25 +226,28 @@ libsimple_dep = declare_dependency(include_directories : inc,
   link_with : libsimple)
 </code></pre>
 <h3 id="naming-convention-for-dependency-variables">Naming convention for dependency variables</h3>
-<p>Ideally the dependency variable name should be of <code>&lt;project_name&gt;_dep</code> form.
-This way one can just use it without even looking inside build definitions of that subproject.</p>
-<p>In cases where there are multiple dependencies need to be declared, the default one
-should be named as <code>&lt;project_name&gt;_dep</code> (e.g. <code>gtest_dep</code>), and others can have
-<code>&lt;project_name&gt;_&lt;other&gt;_&lt;name&gt;_dep</code> form (e.g. <code>gtest_main_dep</code> - gtest with main function).</p>
+<p>Ideally the dependency variable name should be of <code>&lt;project_name&gt;_dep</code>
+form. This way one can just use it without even looking inside build
+definitions of that subproject.</p>
+<p>In cases where there are multiple dependencies need to be declared,
+the default one should be named as <code>&lt;project_name&gt;_dep</code> (e.g.
+<code>gtest_dep</code>), and others can have <code>&lt;project_name&gt;_&lt;other&gt;_&lt;name&gt;_dep</code>
+form (e.g. <code>gtest_main_dep</code> - gtest with main function).</p>
 <p>There may be exceptions to these rules where common sense should be applied.</p>
 <h3 id="adding-variables-to-the-dependency">Adding variables to the dependency</h3>
 <p><em>New in 0.54.0</em></p>
-<p>In some cases a project may define special variables via pkg-config or cmake
-that a caller needs to know about. Meson provides a <code>dependency.get_variable</code>
-method to hide what kind of dependency is provided, and this is available to
-subprojects as well. Use the <code>variables</code> keyword to add a dict of strings:</p>
+<p>In some cases a project may define special variables via pkg-config or
+cmake that a caller needs to know about. Meson provides a
+<code>dependency.get_variable</code> method to hide what kind of dependency is
+provided, and this is available to subprojects as well. Use the
+<code>variables</code> keyword to add a dict of strings:</p>
 <pre><code class="language-meson">my_dep = declare_dependency(..., variables : {'var': 'value', 'number': '3'})
 </code></pre>
 <p>Which another project can access via:</p>
 <pre><code class="language-meson">var = my_dep.get_variable(internal : 'var', cmake : 'CMAKE_VAR')
 </code></pre>
-<p>The values of the dict must be strings, as pkg-config and cmake will return
-variables as strings.</p>
+<p>The values of the dict must be strings, as pkg-config and cmake will
+return variables as strings.</p>
 <h3 id="build-options-in-subproject">Build options in subproject</h3>
 <p>All Meson features of the subproject, such as project options keep
 working and can be set in the master project. There are a few
@@ -253,8 +257,8 @@ must not set global arguments because there is no way to do that
 reliably over multiple subprojects. To check whether you are running
 as a subproject, use the <code>is_subproject</code> function.</p>
 <h2 id="using-a-subproject">Using a subproject</h2>
-<p>All subprojects must be inside <code>subprojects</code> directory.
-The <code>subprojects</code> directory must be at the top level of your project.
+<p>All subprojects must be inside <code>subprojects</code> directory. The
+<code>subprojects</code> directory must be at the top level of your project.
 Subproject declaration must be in your top level <code>meson.build</code>.</p>
 <h3 id="a-simple-example">A simple example</h3>
 <p>Let's use <code>libsimple</code> as a subproject.</p>
@@ -315,11 +319,12 @@ executable('my_project',
   dependencies : libsimple_dep,
   install : true)
 </code></pre>
-<p>With this setup when libsimple is provided by the system, we use it. When
-that is not the case we use the embedded version (the one from subprojects).</p>
-<p>Note that <code>libsimple_dep</code> can point to an external or an internal dependency but
-you don't have to worry about their differences. Meson will take care
-of the details for you.</p>
+<p>With this setup when libsimple is provided by the system, we use it.
+When that is not the case we use the embedded version (the one from
+subprojects).</p>
+<p>Note that <code>libsimple_dep</code> can point to an external or an internal
+dependency but you don't have to worry about their differences. Meson
+will take care of the details for you.</p>
 <h3 id="subprojects-depending-on-other-subprojects">Subprojects depending on other subprojects</h3>
 <p>Subprojects can use other subprojects, but all subprojects must reside
 in the top level <code>subprojects</code> directory. Recursive use of subprojects
@@ -405,23 +410,22 @@ project will be used.</p>
 <h2 id="meson-subprojects-command">
 <code>meson subprojects</code> command</h2>
 <p><em>Since 0.49.0</em></p>
-<p><code>meson subprojects</code> has various subcommands to manage all subprojects. If the
-subcommand fails on any subproject the execution continues with other subprojects.
-All subcommands accept <code>--sourcedir</code> argument pointing to the root source dir
-of the main project.</p>
-<p><em>Since 0.56.0</em> all subcommands accept <code>--types &lt;file|git|hg|svn&gt;</code> argument to
-run the subcommands only on subprojects of the given types. Multiple types can
-be set as comma separated list e.g. <code>--types git,file</code>.</p>
-<p><em>Since 0.56.0</em> If the subcommand fails on any subproject an error code is returned
-at the end instead of retuning success.</p>
+<p><code>meson subprojects</code> has various subcommands to manage all subprojects.
+If the subcommand fails on any subproject the execution continues with
+other subprojects. All subcommands accept <code>--sourcedir</code> argument
+pointing to the root source dir of the main project.</p>
+<p><em>Since 0.56.0</em> all subcommands accept <code>--types &lt;file|git|hg|svn&gt;</code>
+argument to run the subcommands only on subprojects of the given
+types. Multiple types can be set as comma separated list e.g. <code>--types git,file</code>.</p>
+<p><em>Since 0.56.0</em> If the subcommand fails on any subproject an error code
+is returned at the end instead of retuning success.</p>
 <h3 id="download-subprojects">Download subprojects</h3>
 <p><em>Since 0.49.0</em></p>
-<p>Meson will automatically download needed subprojects during configure, unless
-<strong>--wrap-mode=nodownload</strong> option is passed. It is sometimes preferable to
-download all subprojects in advance, so the meson configure can be performed
-offline. The command-line <code>meson subprojects download</code> can be used for that, it
-will download all missing subprojects, but will not update already fetched
-subprojects.</p>
+<p>Meson will automatically download needed subprojects during configure,
+unless <strong>--wrap-mode=nodownload</strong> option is passed. It is sometimes
+preferable to download all subprojects in advance, so the meson
+configure can be performed offline. The command-line <code>meson subprojects download</code> can be used for that, it will download all
+missing subprojects, but will not update already fetched subprojects.</p>
 <h3 id="update-subprojects">Update subprojects</h3>
 <p><em>Since 0.49.0</em></p>
 <p>Once a subproject has been fetched, Meson will not update it automatically.
@@ -458,20 +462,20 @@ case the directory is deleted and the new repository is cloned.</li>
 </ul>
 <h3 id="start-a-topic-branch-across-all-git-subprojects">Start a topic branch across all git subprojects</h3>
 <p><em>Since 0.49.0</em></p>
-<p>The command-line <code>meson subprojects checkout &lt;branch_name&gt;</code> will checkout a
-branch, or create one with <code>-b</code> argument, in every git subprojects. This is
-useful when starting local changes across multiple subprojects. It is still your
-responsibility to commit and push in each repository where you made local
-changes.</p>
+<p>The command-line <code>meson subprojects checkout &lt;branch_name&gt;</code> will
+checkout a branch, or create one with <code>-b</code> argument, in every git
+subprojects. This is useful when starting local changes across
+multiple subprojects. It is still your responsibility to commit and
+push in each repository where you made local changes.</p>
 <p>To come back to the revision set in wrap file (i.e. master), just run
 <code>meson subprojects checkout</code> with no branch name.</p>
 <p><em>Since 0.56.0</em> any pending changes are now stashed before checkout a new branch.</p>
 <h3 id="execute-a-command-on-all-subprojects">Execute a command on all subprojects</h3>
 <p><em>Since 0.51.0</em></p>
 <p>The command-line <code>meson subprojects foreach &lt;command&gt; [...]</code> will
-execute a command in each subproject directory. For example this can be useful
-to check the status of subprojects (e.g. with <code>git status</code> or <code>git diff</code>) before
-performing other actions on them.</p>
+execute a command in each subproject directory. For example this can
+be useful to check the status of subprojects (e.g. with <code>git status</code>
+or <code>git diff</code>) before performing other actions on them.</p>
 <h2 id="why-must-all-subprojects-be-inside-a-single-directory">Why must all subprojects be inside a single directory?</h2>
 <p>There are several reasons.</p>
 <p>First of all, to maintain any sort of sanity, the system must prevent going

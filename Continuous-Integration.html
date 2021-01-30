@@ -226,8 +226,8 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson builddir &amp;&amp; meson test -C builddir; fi
 </code></pre>
 <h2 id="circleci-for-linux-with-docker">CircleCi for Linux (with Docker)</h2>
-<p><a href="https://circleci.com/">CircleCi</a> can work for spinning all of the Linux images you wish.
-Here's a sample <code>yml</code> file for use with that.</p>
+<p><a href="https://circleci.com/">CircleCi</a> can work for spinning all of the
+Linux images you wish. Here's a sample <code>yml</code> file for use with that.</p>
 <pre><code class="language-yaml">version: 2.1
 
 executors:
@@ -279,11 +279,14 @@ workflows:
       - meson_fedora_build
 </code></pre>
 <h2 id="appveyor-for-windows">AppVeyor for Windows</h2>
-<p>For CI on Windows, <a href="https://www.appveyor.com/">AppVeyor</a> has a wide selection of
-<a href="https://www.appveyor.com/docs/windows-images-software/">default configurations</a>.
-AppVeyor also has <a href="https://www.appveyor.com/docs/macos-images-software/">MacOS</a> and
-<a href="https://www.appveyor.com/docs/linux-images-software/">Linux</a> CI images.
-This is a sample <code>appveyor.yml</code> file for Windows with Visual Studio 2015 and 2017.</p>
+<p>For CI on Windows, <a href="https://www.appveyor.com/">AppVeyor</a> has a wide
+selection of <a href="https://www.appveyor.com/docs/windows-images-software/">default
+configurations</a>.
+AppVeyor also has
+<a href="https://www.appveyor.com/docs/macos-images-software/">MacOS</a> and
+<a href="https://www.appveyor.com/docs/linux-images-software/">Linux</a> CI
+images. This is a sample <code>appveyor.yml</code> file for Windows with Visual
+Studio 2015 and 2017.</p>
 <pre><code class="language-yaml">image: Visual Studio 2017
 
 environment:
@@ -326,7 +329,10 @@ test_script:
 <pre><code class="language-yaml"> - cmd: if %arch%==x86 (set QT_ROOT=C:\Qt\5.11\%compiler%) else (set QT_ROOT=C:\Qt\5.11\%compiler%_64)
 </code></pre>
 <p>And afterwards add <code>%QT_ROOT%\bin</code> to the <code>PATH</code> variable.</p>
-<p>You might have to adjust your build matrix as there are, for example, no msvc2017 32-bit builds. Visit the <a href="https://www.appveyor.com/docs/build-environment/">Build Environment</a> page in the AppVeyor docs for more details.</p>
+<p>You might have to adjust your build matrix as there are, for example,
+no msvc2017 32-bit builds. Visit the <a href="https://www.appveyor.com/docs/build-environment/">Build
+Environment</a> page in
+the AppVeyor docs for more details.</p>
 <h3 id="boost">Boost</h3>
 <p>The following statement is sufficient for meson to find Boost:</p>
 <pre><code class="language-yaml"> - cmd: set BOOST_ROOT=C:\Libraries\boost_1_67_0
@@ -355,10 +361,13 @@ script:
   - meson test -C builddir
 </code></pre>
 <h2 id="github-actions">GitHub Actions</h2>
-<p>GitHub Actions are distinct from Azure Pipelines in their workflow syntax.
-It can be easier to setup specific CI tasks in Actions than Pipelines, depending on the particular task.
-This is an example file: .github/workflows/ci_meson.yml  supposing the project is C-based, using GCC on Linux, Mac and Windows.
-The optional <code>on:</code> parameters only run this CI when the C code is changed--corresponding ci_python.yml might run only on "**.py" file changes.</p>
+<p>GitHub Actions are distinct from Azure Pipelines in their workflow
+syntax. It can be easier to setup specific CI tasks in Actions than
+Pipelines, depending on the particular task. This is an example file:
+.github/workflows/ci_meson.yml supposing the project is C-based, using
+GCC on Linux, Mac and Windows. The optional <code>on:</code> parameters only run
+this CI when the C code is changed--corresponding ci_python.yml might
+run only on "**.py" file changes.</p>
 <pre><code class="language-yml">name: ci_meson
 
 on:

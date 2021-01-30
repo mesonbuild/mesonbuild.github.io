@@ -193,13 +193,14 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
 <h2 id="emscripten-emcc-now-supports-threads">Emscripten (emcc) now supports threads</h2>
-<p>In addition to properly setting the compile and linker arguments, a new meson
-builtin has been added to control the PTHREAD_POOL_SIZE option,
-<code>-D&lt;lang&gt;_thread_count</code>, which may be set to any integer value greater than 0.
-If it set to 0 then the PTHREAD_POOL_SIZE option will not be passed.</p>
+<p>In addition to properly setting the compile and linker arguments, a
+new meson builtin has been added to control the PTHREAD_POOL_SIZE
+option, <code>-D&lt;lang&gt;_thread_count</code>, which may be set to any integer value
+greater than 0. If it set to 0 then the PTHREAD_POOL_SIZE option will
+not be passed.</p>
 <h2 id="introduce-dataonly-for-the-pkgconfig-module">Introduce dataonly for the pkgconfig module</h2>
-<p>This allows users to disable writing out the inbuilt variables to
-the pkg-config file as they might actually not be required.</p>
+<p>This allows users to disable writing out the inbuilt variables to the
+pkg-config file as they might actually not be required.</p>
 <p>One reason to have this is for architecture-independent pkg-config
 files in projects which also have architecture-dependent outputs.</p>
 <pre><code>pkgg.generate(
@@ -210,22 +211,25 @@ files in projects which also have architecture-dependent outputs.</p>
 )
 </code></pre>
 <h2 id="consistently-report-file-locations-relative-to-cwd">Consistently report file locations relative to cwd</h2>
-<p>The paths for filenames in error and warning locations are now consistently
-reported relative to the current working directory (when possible), or as
-absolute paths (when a relative path does not exist, e.g. a Windows path
-starting with a different drive letter to the current working directory).</p>
-<p>(The previous behaviour was to report a path relative to the source root for all
-warnings and most errors, and relative to cwd for certain parser errors)</p>
+<p>The paths for filenames in error and warning locations are now
+consistently reported relative to the current working directory (when
+possible), or as absolute paths (when a relative path does not exist,
+e.g. a Windows path starting with a different drive letter to the
+current working directory).</p>
+<p>(The previous behaviour was to report a path relative to the source
+root for all warnings and most errors, and relative to cwd for certain
+parser errors)</p>
 <h2 id="dependency-consistency">
 <code>dependency()</code> consistency</h2>
-<p>The first time a dependency is found, using <code>dependency('foo', ...)</code>, the return
-value is now cached. Any subsequent call will return the same value as long as
-version requested match, otherwise not-found dependency is returned. This means
-that if a system dependency is first found, it won't fallback to a subproject
-in a subsequent call any more and will rather return not-found instead if the
-system version does not match. Similarly, if the first call returns the subproject
-fallback dependency, it will also return the subproject dependency in a subsequent
-call even if no fallback is provided.</p>
+<p>The first time a dependency is found, using <code>dependency('foo', ...)</code>,
+the return value is now cached. Any subsequent call will return the
+same value as long as version requested match, otherwise not-found
+dependency is returned. This means that if a system dependency is
+first found, it won't fallback to a subproject in a subsequent call
+any more and will rather return not-found instead if the system
+version does not match. Similarly, if the first call returns the
+subproject fallback dependency, it will also return the subproject
+dependency in a subsequent call even if no fallback is provided.</p>
 <p>For example, if the system has <code>foo</code> version 1.0:</p>
 <pre><code class="language-meson"># d2 is set to foo_dep and not the system dependency, even without fallback argument.
 d1 = dependency('foo', version : '&gt;=2.0', required : false,
@@ -240,8 +244,8 @@ d2 = dependency('foo', version : '&gt;=2.0', required : false,
 <h2 id="override-dependency">Override <code>dependency()</code>
 </h2>
 <p>It is now possible to override the result of <code>dependency()</code> to point
-to any dependency object you want. The overriding is global and applies to
-every subproject from there on.</p>
+to any dependency object you want. The overriding is global and
+applies to every subproject from there on.</p>
 <p>For example, this subproject provides 2 libraries with version 2.0:</p>
 <pre><code class="language-meson">project(..., version : '2.0')
 
@@ -257,73 +261,80 @@ meson.override_dependency('bar', bar_dep)
 <pre><code class="language-meson">foo_dep = dependency('foo', version : '&gt;=2.0', fallback : ['foo', 'foo_dep'])
 bar_dep = dependency('bar')
 </code></pre>
-<p>This used to mix system 1.0 version and subproject 2.0 dependencies, but thanks
-to the override <code>bar_dep</code> is now set to the subproject's version instead.</p>
-<p>Another case this can be useful is to force a subproject to use a specific dependency.
-If the subproject does <code>dependency('foo')</code> but the main project wants to provide
-its own implementation of <code>foo</code>, it can for example call
-<code>meson.override_dependency('foo', declare_dependency(...))</code> before configuring the
-subproject.</p>
+<p>This used to mix system 1.0 version and subproject 2.0 dependencies,
+but thanks to the override <code>bar_dep</code> is now set to the subproject's
+version instead.</p>
+<p>Another case this can be useful is to force a subproject to use a
+specific dependency. If the subproject does <code>dependency('foo')</code> but
+the main project wants to provide its own implementation of <code>foo</code>, it
+can for example call <code>meson.override_dependency('foo', declare_dependency(...))</code> before configuring the subproject.</p>
 <h2 id="simplified-dependency-fallback">Simplified <code>dependency()</code> fallback</h2>
-<p>In the case a subproject <code>foo</code> calls <code>meson.override_dependency('foo-2.0', foo_dep)</code>,
-the parent project can omit the dependency variable name in fallback keyword
-argument: <code>dependency('foo-2.0', fallback : 'foo')</code>.</p>
+<p>In the case a subproject <code>foo</code> calls
+<code>meson.override_dependency('foo-2.0', foo_dep)</code>, the parent project
+can omit the dependency variable name in fallback keyword argument:
+<code>dependency('foo-2.0', fallback : 'foo')</code>.</p>
 <h2 id="backend-agnostic-compile-command">Backend agnostic compile command</h2>
-<p>A new <code>meson compile</code> command has been added to support backend agnostic
-compilation. It accepts two arguments, <code>-j</code> and <code>-l</code>, which are used if
-possible (<code>-l</code> does nothing with msbuild). A <code>-j</code> or <code>-l</code> value &lt; 1 lets the
-backend decide how many threads to use. For msbuild this means <code>-m</code>, for
-ninja it means passing no arguments.</p>
+<p>A new <code>meson compile</code> command has been added to support backend
+agnostic compilation. It accepts two arguments, <code>-j</code> and <code>-l</code>, which
+are used if possible (<code>-l</code> does nothing with msbuild). A <code>-j</code> or <code>-l</code>
+value &lt; 1 lets the backend decide how many threads to use. For msbuild
+this means <code>-m</code>, for ninja it means passing no arguments.</p>
 <pre><code class="language-console">meson builddir --backend vs
 meson compile -C builddir -j0  # this is the same as `msbuild builddir/my.sln -m`
 </code></pre>
 <pre><code class="language-console">meson builddir
 meson compile -C builddir -j3  # this is the same as `ninja -C builddir -j3`
 </code></pre>
-<p>Additionally <code>meson compile</code> provides a <code>--clean</code> switch to clean the project.</p>
+<p>Additionally <code>meson compile</code> provides a <code>--clean</code> switch to clean the
+project.</p>
 <p>A complete list of arguments is always documented via <code>meson compile --help</code></p>
 <h2 id="native-build-machine-compilers-not-always-required">Native (build machine) compilers not always required</h2>
 <p><code>add_languages()</code> gained a <code>native:</code> keyword, indicating if a native or cross
 compiler is to be used.</p>
-<p>For the benefit of existing simple build definitions which don't contain any
-<code>native: true</code> targets, without breaking backwards compatibility for build
-definitions which assume that the native compiler is available after
-<code>add_languages()</code>, if the <code>native:</code> keyword is absent the languages may be used
-for either the build or host machine, but are never required for the build
-machine.</p>
-<p>This changes the behaviour of the following meson fragment (when cross-compiling
-but a native compiler is not available) from reporting an error at
-<code>add_language</code> to reporting an error at <code>executable</code>.</p>
+<p>For the benefit of existing simple build definitions which don't
+contain any <code>native: true</code> targets, without breaking backwards
+compatibility for build definitions which assume that the native
+compiler is available after <code>add_languages()</code>, if the <code>native:</code>
+keyword is absent the languages may be used for either the build or
+host machine, but are never required for the build machine.</p>
+<p>This changes the behaviour of the following meson fragment (when
+cross-compiling but a native compiler is not available) from reporting
+an error at <code>add_language</code> to reporting an error at <code>executable</code>.</p>
 <pre><code>add_language('c')
 executable('main', 'main.c', native: true)
 </code></pre>
 <h2 id="summary-improvements">Summary improvements</h2>
-<p>A new <code>list_sep</code> keyword argument has been added to <code>summary()</code> function.
-If defined and the value is a list, elements will be separated by the provided
-string instead of being aligned on a new line.</p>
-<p>The automatic <code>subprojects</code> section now also print the number of warnings encountered
-during that subproject configuration, or the error message if the configuration failed.</p>
+<p>A new <code>list_sep</code> keyword argument has been added to <code>summary()</code>
+function. If defined and the value is a list, elements will be
+separated by the provided string instead of being aligned on a new
+line.</p>
+<p>The automatic <code>subprojects</code> section now also print the number of
+warnings encountered during that subproject configuration, or the
+error message if the configuration failed.</p>
 <h2 id="add-a-system-type-dependency-for-zlib">Add a system type dependency for zlib</h2>
-<p>This allows zlib to be detected on macOS and FreeBSD without the use of
-pkg-config or cmake, neither of which are part of the base install on those
-OSes (but zlib is).</p>
-<p>A side effect of this change is that <code>dependency('zlib')</code> also works with
-cmake instead of requiring <code>dependency('ZLIB')</code>.</p>
+<p>This allows zlib to be detected on macOS and FreeBSD without the use
+of pkg-config or cmake, neither of which are part of the base install
+on those OSes (but zlib is).</p>
+<p>A side effect of this change is that <code>dependency('zlib')</code> also works
+with cmake instead of requiring <code>dependency('ZLIB')</code>.</p>
 <h2 id="added-name-method">Added 'name' method</h2>
-<p>Build target objects (as returned by executable(), library(), ...) now have a name() method.</p>
+<p>Build target objects (as returned by executable(), library(), ...) now
+have a name() method.</p>
 <h2 id="new-option-quiet-to-meson-install">New option <code>--quiet</code> to <code>meson install</code>
 </h2>
-<p>Now you can run <code>meson install --quiet</code> and meson will not verbosely print
-every file as it is being installed. As before, the full log is always
-available inside the builddir in <code>meson-logs/install-log.txt</code>.</p>
-<p>When this option is passed, install scripts will have the environment variable
-<code>MESON_INSTALL_QUIET</code> set.</p>
-<p>Numerous speed-ups were also made for the install step, especially on Windows
-where it is now 300% to 1200% faster than before depending on your workload.</p>
+<p>Now you can run <code>meson install --quiet</code> and meson will not verbosely
+print every file as it is being installed. As before, the full log is
+always available inside the builddir in <code>meson-logs/install-log.txt</code>.</p>
+<p>When this option is passed, install scripts will have the environment
+variable <code>MESON_INSTALL_QUIET</code> set.</p>
+<p>Numerous speed-ups were also made for the install step, especially on
+Windows where it is now 300% to 1200% faster than before depending on
+your workload.</p>
 <h2 id="property-support-emscriptens-wasmld">Property support emscripten's wasm-ld</h2>
-<p>Before 0.54.0 we treated emscripten as both compiler and linker, which isn't
-really true. It does have a linker, called wasm-ld (meson's name is ld.wasm).
-This is a special version of clang's lld. This will now be detected properly.</p>
+<p>Before 0.54.0 we treated emscripten as both compiler and linker, which
+isn't really true. It does have a linker, called wasm-ld (meson's name
+is ld.wasm). This is a special version of clang's lld. This will now
+be detected properly.</p>
 <h2 id="skip-sanity-tests-when-cross-compiling">Skip sanity tests when cross compiling</h2>
 <p>For certain cross compilation environments it is not possible to
 compile a sanity check application. This can now be disabled by adding
@@ -331,10 +342,11 @@ the following entry to your cross file's <code>properties</code> section:</p>
 <pre><code>skip_sanity_check = true
 </code></pre>
 <h2 id="support-for-overiding-the-linker-with-ldc-and-gdc">Support for overiding the linker with ldc and gdc</h2>
-<p>LDC (the llvm D compiler) and GDC (The Gnu D Compiler) now honor D_LD linker
-variable (or d_ld in the cross file) and is able to pick different linkers.</p>
-<p>GDC supports all of the same values as GCC, LDC supports ld.bfd, ld.gold,
-ld.lld, ld64, link, and lld-link.</p>
+<p>LDC (the llvm D compiler) and GDC (The Gnu D Compiler) now honor D_LD
+linker variable (or d_ld in the cross file) and is able to pick
+different linkers.</p>
+<p>GDC supports all of the same values as GCC, LDC supports ld.bfd,
+ld.gold, ld.lld, ld64, link, and lld-link.</p>
 <h2 id="native-file-properties">Native file properties</h2>
 <p>As of Meson 0.54.0, the <code>--native-file nativefile.ini</code> can contain:</p>
 <ul>
@@ -342,31 +354,35 @@ ld.lld, ld64, link, and lld-link.</p>
 <li>paths</li>
 <li>properties</li>
 </ul>
-<p>which are defined and used the same way as in cross files.
-The <code>properties</code> are new for Meson 0.54.0, and are read like:</p>
+<p>which are defined and used the same way as in cross files. The
+<code>properties</code> are new for Meson 0.54.0, and are read like:</p>
 <pre><code class="language-meson">x = meson.get_external_property('foobar', 'foo')
 </code></pre>
-<p>where <code>foobar</code> is the property name, and the optional <code>foo</code> is the fallback string value.</p>
-<p>For cross-compiled projects, <code>get_external_property()</code> reads the cross-file unless <code>native: true</code> is specified.</p>
+<p>where <code>foobar</code> is the property name, and the optional <code>foo</code> is the
+fallback string value.</p>
+<p>For cross-compiled projects, <code>get_external_property()</code> reads the
+cross-file unless <code>native: true</code> is specified.</p>
 <h2 id="changed-the-signal-used-to-terminate-a-test-process-group">Changed the signal used to terminate a test process (group)</h2>
-<p>A test process (group) is now terminated via SIGTERM instead of SIGKILL
-allowing the signal to be handled. However, it is now the responsibility of
-the custom signal handler (if any) to ensure that any process spawned by the
-top-level test processes is correctly killed.</p>
+<p>A test process (group) is now terminated via SIGTERM instead of
+SIGKILL allowing the signal to be handled. However, it is now the
+responsibility of the custom signal handler (if any) to ensure that
+any process spawned by the top-level test processes is correctly
+killed.</p>
 <h2 id="dynamic-linker-environment-variables-actually-match-docs">Dynamic Linker environment variables actually match docs</h2>
-<p>The docs have always claimed that the Dynamic Linker environment variable
-should be <code>${COMPILER_VAR}_LD</code>, but that's only the case for about half of
-the variables. The other half are different. In 0.54.0 the variables match.
-The old variables are still supported, but are deprecated and raise a
-deprecation warning.</p>
+<p>The docs have always claimed that the Dynamic Linker environment
+variable should be <code>${COMPILER_VAR}_LD</code>, but that's only the case for
+about half of the variables. The other half are different. In 0.54.0
+the variables match. The old variables are still supported, but are
+deprecated and raise a deprecation warning.</p>
 <h2 id="per-subproject-default_library-and-werror-options">Per subproject <code>default_library</code> and <code>werror</code> options</h2>
-<p>The <code>default_library</code> and <code>werror</code> built-in options can now be defined per subproject.
-This is useful for example when building shared libraries in the main project,
-but static link a subproject, or when the main project must build with no warnings
-but some subprojects cannot.</p>
-<p>Most of the time this would be used either by the parent project by setting
-subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>),
-or by the user using the command line <code>-Dfoo:default_library=static</code>.</p>
+<p>The <code>default_library</code> and <code>werror</code> built-in options can now be defined
+per subproject. This is useful for example when building shared
+libraries in the main project, but static link a subproject, or when
+the main project must build with no warnings but some subprojects
+cannot.</p>
+<p>Most of the time this would be used either by the parent project by
+setting subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>), or by the user using the
+command line <code>-Dfoo:default_library=static</code>.</p>
 <p>The value is overridden in this order:</p>
 <ul>
 <li>Value from parent project</li>
@@ -375,39 +391,42 @@ or by the user using the command line <code>-Dfoo:default_library=static</code>.
 <li>Value from command line if set</li>
 </ul>
 <h2 id="environment-variables-with-cross-builds">Environment Variables with Cross Builds</h2>
-<p>Previously in Meson, variables like <code>CC</code> effected both the host and build
-platforms for native builds, but the just the build platform for cross builds.
-Now <code>CC_FOR_BUILD</code> is used for the build platform in cross builds.</p>
+<p>Previously in Meson, variables like <code>CC</code> effected both the host and
+build platforms for native builds, but the just the build platform for
+cross builds. Now <code>CC_FOR_BUILD</code> is used for the build platform in
+cross builds.</p>
 <p>This old behavior is inconsistent with the way Autotools works, which
 undermines the purpose of distro-integration that is the only reason
-environment variables are supported at all in Meson. The new behavior is not
-quite the same, but doesn't conflict: meson doesn't always repond to an
-environment when Autoconf would, but when it does it interprets it as Autotools
-would.</p>
+environment variables are supported at all in Meson. The new behavior
+is not quite the same, but doesn't conflict: meson doesn't always
+repond to an environment when Autoconf would, but when it does it
+interprets it as Autotools would.</p>
 <h2 id="added-pkg_config_libdir-property">Added 'pkg_config_libdir' property</h2>
-<p>Allows to define a list of folders used by pkg-config for a cross build
-and avoid a system directories use.</p>
+<p>Allows to define a list of folders used by pkg-config for a cross
+build and avoid a system directories use.</p>
 <h2 id="more-new-sample-meson-templates-for-java-cuda-and-more">More new sample Meson templates for (<code>Java</code>, <code>Cuda</code>, and more)</h2>
-<p>Meson now ships with predefined project templates for <code>Java</code>,
-<code>Cuda</code>, <code>Objective-C++</code>, and <code>C#</code>, we provided with associated
-values for corresponding languages, available for both library,
-and executable.</p>
+<p>Meson now ships with predefined project templates for <code>Java</code>, <code>Cuda</code>,
+<code>Objective-C++</code>, and <code>C#</code>, we provided with associated values for
+corresponding languages, available for both library, and executable.</p>
 <h2 id="ninja-version-requirement-bumped-to-17">Ninja version requirement bumped to 1.7</h2>
-<p>Meson now uses the <a href="https://ninja-build.org/manual.html#ref_outputs">Implicit outputs</a>
-feature of Ninja for some types of targets that have multiple outputs which may
+<p>Meson now uses the <a href="https://ninja-build.org/manual.html#ref_outputs">Implicit
+outputs</a> feature of
+Ninja for some types of targets that have multiple outputs which may
 not be listed on the command-line. This feature requires Ninja 1.7+.</p>
-<p>Note that the latest version of <a href="https://packages.ubuntu.com/search?keywords=ninja-build&amp;searchon=names&amp;suite=xenial-backports&amp;section=all">Ninja available in Ubuntu 16.04</a>
-(the oldest Ubuntu LTS at the time of writing) is 1.7.1. If your distro does
-not ship with a new-enough Ninja, you can download the latest release from
-Ninja's GitHub page: https://github.com/ninja-build/ninja/releases</p>
+<p>Note that the latest version of <a href="https://packages.ubuntu.com/search?keywords=ninja-build&amp;searchon=names&amp;suite=xenial-backports&amp;section=all">Ninja available in Ubuntu
+16.04</a>
+(the oldest Ubuntu LTS at the time of writing) is 1.7.1. If your
+distro does not ship with a new-enough Ninja, you can download the
+latest release from Ninja's GitHub page:
+https://github.com/ninja-build/ninja/releases</p>
 <h2 id="added-c-argument-to-meson-init-command">Added <code>-C</code> argument to <code>meson init</code> command</h2>
-<p>The meson init assumes that it is run inside the project
-root directory. If this isn't the case, you can now use
-<code>-C</code> to specify the actual project source directory.</p>
+<p>The meson init assumes that it is run inside the project root
+directory. If this isn't the case, you can now use <code>-C</code> to specify the
+actual project source directory.</p>
 <h2 id="more-than-one-argument-to-message-and-warning">More than one argument to <code>message()</code> and <code>warning()</code>
 </h2>
-<p>Arguments passed to <code>message()</code> and <code>warning()</code> will be printed separated by
-space.</p>
+<p>Arguments passed to <code>message()</code> and <code>warning()</code> will be printed
+separated by space.</p>
 <h2 id="added-has_tools-method-to-qt-module">Added <code>has_tools</code> method to qt module</h2>
 <p>It should be used to compile optional Qt code:</p>
 <pre><code class="language-meson">qt5 = import('qt5')
@@ -425,15 +444,16 @@ repository.</p>
 <h2 id="uninstalled-pkgconfig-files">Uninstalled pkg-config files</h2>
 <p><strong>Note</strong>: the functionality of this module is governed by <a href="Mixing-build-systems.html">Meson's
 rules on mixing build systems</a>.</p>
-<p>The <code>pkgconfig</code> module now generates uninstalled pc files as well. For any generated
-<code>foo.pc</code> file, an extra <code>foo-uninstalled.pc</code> file is placed into
-<code>&lt;builddir&gt;/meson-uninstalled</code>. They can be used to build applications against
-libraries built by meson without installing them, by pointing <code>PKG_CONFIG_PATH</code>
-to that directory. This is an experimental feature provided on a best-effort
-basis, it might not work in all use-cases.</p>
+<p>The <code>pkgconfig</code> module now generates uninstalled pc files as well. For
+any generated <code>foo.pc</code> file, an extra <code>foo-uninstalled.pc</code> file is
+placed into <code>&lt;builddir&gt;/meson-uninstalled</code>. They can be used to build
+applications against libraries built by meson without installing them,
+by pointing <code>PKG_CONFIG_PATH</code> to that directory. This is an
+experimental feature provided on a best-effort basis, it might not
+work in all use-cases.</p>
 <h2 id="cmake-find_package-components-support">CMake find_package COMPONENTS support</h2>
-<p>It is now possible to pass components to the CMake dependency backend via the
-new <code>components</code> kwarg in the <code>dependency</code> function.</p>
+<p>It is now possible to pass components to the CMake dependency backend
+via the new <code>components</code> kwarg in the <code>dependency</code> function.</p>
 <h2 id="added-microchip-xc16-c-compiler-support">Added Microchip XC16 C compiler support</h2>
 <p>Make sure compiler executables are setup correctly in your path
 Compiler is available from the Microchip website for free</p>
@@ -452,9 +472,10 @@ files each of which includes four source files. The old behaviour can
 be replicated by setting <code>unity_size</code> to a large value, such as 10000.</p>
 <h2 id="verbose-mode-for-meson-compile">Verbose mode for <code>meson compile</code>
 </h2>
-<p>The new option <code>--verbose</code> has been added to <code>meson compile</code> that will enable
-more verbose compilation logs. Note that for VS backend it means that logs will
-be less verbose by default (without <code>--verbose</code> option).</p>
+<p>The new option <code>--verbose</code> has been added to <code>meson compile</code> that will
+enable more verbose compilation logs. Note that for VS backend it
+means that logs will be less verbose by default (without <code>--verbose</code>
+option).</p>
 
     </div>
         
