@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -208,7 +208,7 @@ generic VS backend (<code>--backend=vs</code>) that autodetects the currently
 active VS version.</p>
 <h2 id="automatic-initialization-of-subprojects-that-are-git-submodules">Automatic initialization of subprojects that are git submodules</h2>
 <p>If you have a directory inside your subprojects directory (usually
-<code>subprojects/</code>) that is a git submodule, meson will automatically
+<code>subprojects/</code>) that is a git submodule, Meson will automatically
 initialize it if your build files refer to it. This will be done
 without needing a wrap file since git contains all the information
 needed.</p>
@@ -288,9 +288,9 @@ which changes a lot. This is enabled by setting the <code>unity</code> option to
 <p>Meson now sets the <code>MESONINTROSPECT</code> environment variable in addition
 to <code>MESON_SOURCE_ROOT</code> and other variables when running scripts. It is
 guaranteed to point to the correct <code>mesonintrospect</code> script, which is
-important when running meson uninstalled from git or when your <code>PATH</code>s
+important when running Meson uninstalled from git or when your <code>PATH</code>s
 may not be set up correctly.</p>
-<p>Specifically, the following meson functions will set it:
+<p>Specifically, the following Meson functions will set it:
 <code>meson.add_install_script()</code>, <code>meson.add_postconf_script()</code>,
 <code>run_command()</code>, <code>run_target()</code>.</p>
 

@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -207,7 +207,7 @@ listed.</p>
 <h2 id="sanity-checking-compilers-with-user-flags">Sanity checking compilers with user flags</h2>
 <p>Sanity checks previously only used user-specified flags for cross
 compilers, but now do in all cases.</p>
-<p>All compilers meson might decide to use for the build are "sanity
+<p>All compilers Meson might decide to use for the build are "sanity
 checked" before other tests are run. This usually involves building
 simple executable and trying to run it. Previously user flags
 (compilation and/or linking flags) were used for sanity checking cross
@@ -259,7 +259,7 @@ endif
 </code></pre>
 <h2 id="added-basic-support-for-the-xtensa-cpu-toolchain">Added basic support for the Xtensa CPU toolchain</h2>
 <p>You can now use <code>xt-xcc</code>, <code>xt-xc++</code>, <code>xt-nm</code>, etc... on your cross
-compilation file and meson won't complain about an unknown toolchain.</p>
+compilation file and Meson won't complain about an unknown toolchain.</p>
 <h2 id="dependency-objects-now-have-a-get_variable-method">Dependency objects now have a get_variable method</h2>
 <p>This is a generic replacement for type specific variable getters such as
 <code>ConfigToolDependency.get_configtool_variable</code> and
@@ -286,7 +286,7 @@ path.</p>
 <pre><code>/tmp/dep/lib/cmake
 /tmp/dep/bin
 </code></pre>
-<p>then invoke meson as <code>meson builddir/ -Dcmake_prefix_path=/tmp/dep</code></p>
+<p>then invoke Meson as <code>meson builddir/ -Dcmake_prefix_path=/tmp/dep</code></p>
 <h2 id="tests-that-should-fail-but-did-not-are-now-errors">Tests that should fail but did not are now errors</h2>
 <p>You can tag a test as needing to fail like this:</p>
 <pre><code class="language-meson">test('shoulfail', exe, should_fail: true)
@@ -415,7 +415,7 @@ only interface to Fortran by <code>include biglib.h</code> or similar.</p>
 <h2 id="cmake-subprojects">CMake subprojects</h2>
 <p>Meson can now directly consume CMake based subprojects with the
 CMake module.</p>
-<p>Using CMake subprojects is similar to using the "normal" meson
+<p>Using CMake subprojects is similar to using the "normal" Meson
 subprojects. They also have to be located in the <code>subprojects</code>
 directory.</p>
 <p>Example:</p>

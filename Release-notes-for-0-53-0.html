@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -244,15 +244,15 @@ summary({'Some boolean': false,
                      True
 </code></pre>
 <h2 id="generic-overrider-for-dynamic-linker-selection">Generic Overrider for Dynamic Linker selection</h2>
-<p>Previous to meson 0.52.0 you set the dynamic linker using compiler
+<p>Previous to Meson 0.52.0 you set the dynamic linker using compiler
 specific flags passed via language flags and hoped things worked out.
-In meson 0.52.0 meson started detecting the linker and making
+In version 0.52.0 Meson started detecting the linker and making
 intelligent decisions about using it. Unfortunately this broke
 choosing a non-default linker.</p>
 <p>Now there is a generic mechanism for doing this. In 0.53.0, you can
 use the <code>LD</code> environment variable. <strong>In 0.53.1</strong> this was changed to
 <code>&lt;compiler_variable&gt;_LD</code>, such as <code>CC_LD</code>, <code>CXX_LD</code>, <code>D_LD</code>, etc due
-to regressions. The usual meson <a href="https://mesonbuild.com/Running-Meson.html#environment-variables">environment variable
+to regressions. The usual Meson <a href="https://mesonbuild.com/Running-Meson.html#environment-variables">environment variable
 rules</a>
 apply. Alternatively, you can add the following to a cross or native
 file:</p>
@@ -269,7 +269,7 @@ c_ld = 'gold'
 c = 'clang'
 c_ld = 'lld'
 </code></pre>
-<p>And meson will select the linker if possible.</p>
+<p>And Meson will select the linker if possible.</p>
 <h2 id="fortran_std-option">
 <code>fortran_std</code> option</h2>
 <p><strong>new in 0.53.0</strong> Akin to the <code>c_std</code> and <code>cpp_std</code> options, the

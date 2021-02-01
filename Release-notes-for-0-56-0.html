@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -244,7 +244,7 @@ rpath, no attempt is made to change the rpath at install time. Most
 advanced features (eg. link_whole) are not supported yet.</p>
 <h2 id="wraps-from-subprojects-are-automatically-promoted">Wraps from subprojects are automatically promoted</h2>
 <p>It is not required to promote wrap files for subprojects into the main
-project any more. When configuring a subproject, meson will look for
+project any more. When configuring a subproject, Meson will look for
 any wrap file or directory in the subproject's <code>subprojects/</code>
 directory and add them into the global list of available subprojects,
 to be used by any future <code>subproject()</code> call or <code>dependency()</code>
@@ -314,7 +314,7 @@ foo = 'other val'
 <pre><code class="language-ini">[zlib:project options]
 foo = 'some val'
 </code></pre>
-<p>Additionally meson level options can be set in the same way, using the
+<p>Additionally Meson level options can be set in the same way, using the
 <code>[built-in options]</code> section.</p>
 <pre><code class="language-ini">[built-in options]
 c_std = 'c99'
@@ -436,7 +436,7 @@ other subprojects, but at the end an error code is now returned.</p>
 <li>In the case the URL of <code>origin</code> is different as the <code>url</code> set in wrap file,
 the subproject will not be updated unless <code>--reset</code> is specified (see below).</li>
 <li>In the case a subproject directory exists and is not a git repository but has
-a <code>[wrap-git]</code>, meson used to run git commands that would wrongly apply to the
+a <code>[wrap-git]</code>, Meson used to run git commands that would wrongly apply to the
 main project. It now skip the subproject unless <code>--reset</code> is specified (see below).</li>
 <li>The <code>--rebase</code> behaviour is now the default for consistency: it was
 already rebasing when current branch and revision are the same, it is

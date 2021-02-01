@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -219,7 +219,7 @@ into <code>run_unittests.py</code>.</li>
 <li>Must be registered with the <a href="Release-notes-for-0-47-0.html#feature-detection-based-on-meson_version-in-project">FeatureChecks
 framework</a>
 that will warn the user if they try to use a new feature while
-targeting an older meson version.</li>
+targeting an older Meson version.</li>
 <li>Needs a release note snippet inside <code>docs/markdown/snippets/</code> with
 a heading and a brief paragraph explaining what the feature does
 with an example.</li>
@@ -348,7 +348,7 @@ unit test.</p>
 <code>--cross-file</code> and <code>--native-file</code> options, respectively.</p>
 </li>
 <li>
-<p><code>mlog.cmd_ci_include()</code> can be called from anywhere inside meson to
+<p><code>mlog.cmd_ci_include()</code> can be called from anywhere inside Meson to
 capture the contents of an additional file into the CI log on failure.</p>
 </li>
 </ul>
@@ -550,9 +550,9 @@ considered if the platform matches. The following values for
 </table>
 <h4 id="matrix">matrix</h4>
 <p>The <code>matrix</code> section can be used to define a test matrix to run
-project tests with different meson options.</p>
+project tests with different Meson options.</p>
 <p>In the <code>options</code> dict, all possible options and their values are
-specified. Each key in the <code>options</code> dict is a meson option. It stores
+specified. Each key in the <code>options</code> dict is a Meson option. It stores
 a list of all potential values in a dict format, which allows to skip
 specific values based on the current environment.</p>
 <p>Each value must contain the <code>val</code> key for the value of the option.

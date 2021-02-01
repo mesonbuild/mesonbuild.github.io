@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -207,10 +207,10 @@ that the source resides in an Eclipse-like directory called
 following command in the source directory.</p>
 <pre><code>meson builddir
 </code></pre>
-<p>With this command meson will configure the project and also generate
+<p>With this command Meson will configure the project and also generate
 introspection information that is stored in <code>intro-*.json</code> files in
 the <code>meson-info</code> directory. The introspection dump will be
-automatically updated when meson is (re)configured, or the build
+automatically updated when Meson is (re)configured, or the build
 options change. Thus, an IDE can watch for changes in this directory
 to know when something changed. Note that <code>meson-info.json</code> guaranteed
 to be the last file written.</p>
@@ -231,12 +231,12 @@ to be the last file written.</p>
 <tr>
 <td> <code>intro-buildoptions.json</code>
 </td>
-<td> Contains a full list of meson configuration options for the project</td>
+<td> Contains a full list of Meson configuration options for the project</td>
 </tr>
 <tr>
 <td> <code>intro-buildsystem_files.json</code>
 </td>
-<td> Full list of all meson build files</td>
+<td> Full list of all Meson build files</td>
 </tr>
 <tr>
 <td> <code>intro-dependencies.json</code>
@@ -385,7 +385,7 @@ are some key differences:</p>
 correct. There might be differences, due to internal limitations. It
 is also not guaranteed that all targets will be listed in the output.
 It might even be possible that targets are listed, which won't exist
-when meson is run normally. This can happen if a target is defined
+when Meson is run normally. This can happen if a target is defined
 inside an if statement. Use this feature with care.</p>
 <h2 id="build-options">Build Options</h2>
 <p>The list of all build options (build type, warning level, etc.) is
@@ -435,7 +435,7 @@ of a build directory to <code>meson introspect --buildoptions</code>.</p>
 output as running it with a freshly configured build directory.</p>
 <p>However, this behavior is not guaranteed if subprojects are present.
 Due to internal limitations all subprojects are processed even if they
-are never used in a real meson run. Because of this options for the
+are never used in a real Meson run. Because of this options for the
 subprojects can differ.</p>
 <h2 id="the-dependencies-section">The dependencies section</h2>
 <p>The list of all <em>found</em> dependencies can be acquired from
@@ -459,7 +459,7 @@ directory. This can be done by running <code>meson introspect --scan-dependencie
 <p>The <code>required</code> keyword specifies whether the dependency is marked as
 required in the <code>meson.build</code> (all dependencies are required by
 default). The <code>conditional</code> key indicates whether the <code>dependency()</code>
-function was called inside a conditional block. In a real meson run
+function was called inside a conditional block. In a real Meson run
 these dependencies might not be used, thus they <em>may</em> not be required,
 even if the <code>required</code> key is set. The <code>has_fallback</code> key just
 indicates whether a fallback was directly set in the <code>dependency()</code>
@@ -513,7 +513,7 @@ options.</p>
 <code>--projectinfo</code> command.</p>
 <h1 id="ast-of-a-mesonbuild">AST of a <code>meson.build</code>
 </h1>
-<p>Since meson <em>0.55.0</em> it is possible to dump the AST of a <code>meson.build</code>
+<p>Since Meson <em>0.55.0</em> it is possible to dump the AST of a <code>meson.build</code>
 as a JSON object. The interface for this is <code>meson introspect --ast /path/to/meson.build</code>.</p>
 <p>Each node of the AST has at least the following entries:</p>
 <table>

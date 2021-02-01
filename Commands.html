@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -317,7 +317,7 @@ values (even if they were changed in <code>meson.build</code>).</p>
                 [--xcode-args XCODE_ARGS]
                 [TARGET ...]
 </code></pre>
-<p>Builds a default or a specified target of a configured meson project.</p>
+<p>Builds a default or a specified target of a configured Meson project.</p>
 <pre><code class="language-inc">positional arguments:
   TARGET                                Targets to build. Target has the
                                         following format: [PATH_TO_TARGET/]TARGE
@@ -446,7 +446,7 @@ optional arguments:
                    [-a] [-i] [-f]
                    [builddir]
 </code></pre>
-<p>Displays information about a configured meson project.</p>
+<p>Displays information about a configured Meson project.</p>
 <pre><code class="language-inc">positional arguments:
   builddir                              The build directory
 
@@ -481,14 +481,16 @@ optional arguments:
 <h3 id="install">install</h3>
 <p><em>(since 0.47.0)</em></p>
 <pre><code class="language-inc">$ meson install [-h] [-C WD] [--no-rebuild] [--only-changed] [--quiet]
+                [--destdir DESTDIR]
 </code></pre>
 <p>Installs the project to the prefix specified in <a href="Commands.html#setup"><code>setup</code></a>.</p>
 <pre><code class="language-inc">optional arguments:
-  -h, --help      show this help message and exit
-  -C WD           directory to cd into before running
-  --no-rebuild    Do not rebuild before installing.
-  --only-changed  Only overwrite files that are older than the copied file.
-  --quiet         Do not print every file that was installed.
+  -h, --help         show this help message and exit
+  -C WD              directory to cd into before running
+  --no-rebuild       Do not rebuild before installing.
+  --only-changed     Only overwrite files that are older than the copied file.
+  --quiet            Do not print every file that was installed.
+  --destdir DESTDIR  Sets or overrides DESTDIR environment. (Since 0.57.0)
 </code></pre>
 <p>See <a href="Installing.html">the installation documentation</a> for more info.</p>
 <h4 id="examples5">Examples:</h4>
@@ -503,7 +505,7 @@ optional arguments:
 <pre><code class="language-inc">$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
                 {target,kwargs,default-options,command} ...
 </code></pre>
-<p>Modifies the meson project.</p>
+<p>Modifies the Meson project.</p>
 <pre><code class="language-inc">optional arguments:
   -h, --help                            show this help message and exit
   -s SRCDIR, --sourcedir SRCDIR         Path to source directory.
@@ -519,7 +521,7 @@ Rewriter commands:
     default-options                     Modify the project default options
     command                             Execute a JSON array of commands
 </code></pre>
-<p>See <a href="Rewriter.html">the meson file rewriter documentation</a> for more info.</p>
+<p>See <a href="Rewriter.html">the Meson file rewriter documentation</a> for more info.</p>
 <h3 id="setup">setup</h3>
 <pre><code class="language-inc">$ meson setup [-h] [--prefix PREFIX] [--bindir BINDIR] [--datadir DATADIR]
               [--includedir INCLUDEDIR] [--infodir INFODIR]
@@ -546,8 +548,8 @@ Rewriter commands:
               [--reconfigure] [--wipe]
               [builddir] [sourcedir]
 </code></pre>
-<p>Configures a build directory for the meson project.</p>
-<p>This is the default meson command (invoked if there was no COMMAND supplied).</p>
+<p>Configures a build directory for the Meson project.</p>
+<p>This is the default Meson command (invoked if there was no COMMAND supplied).</p>
 <pre><code class="language-inc">positional arguments:
   builddir
   sourcedir
@@ -630,7 +632,7 @@ optional arguments:
                                         corrupted, or when rebuilding with a
                                         newer version of meson.
 </code></pre>
-<p>See <a href="Running-Meson.html#configuring-the-build-directory">meson introduction
+<p>See <a href="Running-Meson.html#configuring-the-build-directory">Meson introduction
 page</a> for more info.</p>
 <h4 id="examples6">Examples:</h4>
 <p>Configures <code>builddir</code> with default values:</p>
@@ -640,7 +642,7 @@ page</a> for more info.</p>
 <p><em>(since 0.49.0)</em></p>
 <pre><code class="language-inc">$ meson subprojects [-h] {update,checkout,download,foreach} ...
 </code></pre>
-<p>Manages subprojects of the meson project.</p>
+<p>Manages subprojects of the Meson project.</p>
 <pre><code class="language-inc">optional arguments:
   -h, --help                          show this help message and exit
 
@@ -666,7 +668,7 @@ Commands:
              [--test-args TEST_ARGS]
              [args ...]
 </code></pre>
-<p>Run tests for the configure meson project.</p>
+<p>Run tests for the configure Meson project.</p>
 <pre><code class="language-inc">positional arguments:
   args                                  Optional list of test names to run.
                                         "testname" to run all tests with that

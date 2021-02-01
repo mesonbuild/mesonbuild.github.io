@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -217,7 +217,7 @@ executable(), custom_target(), etc)</p>
 <p>Setting sys_root in the [properties] section of your cross file will
 now set PKG_CONFIG_SYSROOT_DIR automatically for host system
 dependencies when cross compiling.</p>
-<h2 id="the-meson-test-program-now-accepts-an-additional-gdbpath-argument-to-specify-the-gdb-binary">The meson test program now accepts an additional "--gdb-path" argument to specify the GDB binary</h2>
+<h2 id="the-meson-test-program-now-accepts-an-additional-gdbpath-argument-to-specify-the-gdb-binary">The Meson test program now accepts an additional "--gdb-path" argument to specify the GDB binary</h2>
 <p><code>meson test --gdb testname</code> invokes GDB with the specific test case. However, sometimes GDB is not in the path or a GDB replacement is wanted.
 Therefore, a <code>--gdb-path</code> argument was added to specify which binary is executed (per default <code>gdb</code>):</p>
 <pre><code class="language-console">$ meson test --gdb --gdb-path /my/special/location/for/gdb testname

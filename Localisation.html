@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -206,7 +206,7 @@ project root directory for all the localisation info.</p>
 <li>
 <code>POTFILES</code>: List of source files to scan for translatable strings.</li>
 <li>
-<code>meson.build</code>: Localization specific meson file</li>
+<code>meson.build</code>: Localization specific Meson file</li>
 </ul>
 <h3 id="linguas">LINGUAS</h3>
 <p>File with space separated list of languages. A sample LINGUAS might look like this.</p>
@@ -223,7 +223,7 @@ src/subdir/file3.c
 include/mything/somefile.h
 </code></pre>
 <h3 id="mesonbuild">meson.build</h3>
-<p>Localization specific meson file. It imports and uses the <code>i18n</code>
+<p>Localization specific Meson file. It imports and uses the <code>i18n</code>
 module. If not defined before it needs to define the <code>GETTEXT_PACKAGE</code>
 global.</p>
 <pre><code class="language-meson">i18n = import('i18n')

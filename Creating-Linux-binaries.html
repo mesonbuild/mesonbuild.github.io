@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -254,7 +254,7 @@ things to note. First, you must tell GCC to link the C++ standard
 library statically. If you don't then your app is guaranteed to break
 as different distros have binary-incompatible C++ libraries. The
 second thing is that you need to point your install prefix to some
-empty staging area. Here's the meson command to do that:</p>
+empty staging area. Here's the Meson command to do that:</p>
 <pre><code class="language-console">$ LDFLAGS=-static-libstdc++ meson --prefix=/tmp/myapp &lt;other args&gt;
 </code></pre>
 <p>The aim is to put the executable in <code>/tmp/myapp/bin</code> and shared

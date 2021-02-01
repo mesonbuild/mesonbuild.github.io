@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -221,7 +221,7 @@ Clang-Cl). With the former <code>c_ld</code> or <code>CC_LD</code> should be the
 pass to the compiler's special argument (such as <code>-fuse-ld</code> with clang
 and gcc), with the latter it should be an executable, such as
 <code>lld-link.exe</code>.</p>
-<p><em>NOTE</em> In meson 0.53.0 the <code>ld</code> entry in the cross/native file and the
+<p><em>NOTE</em> In Meson 0.53.0 the <code>ld</code> entry in the cross/native file and the
 <code>LD</code> environment variable were used, this resulted in a large number
 of regressions and was changed in 0.53.1 to <code>&lt;lang&gt;_ld</code> and <code>&lt;comp variable&gt;_LD</code>.</p>
 <pre><code class="language-console">$ CC=clang CC_LD=lld meson &lt;options&gt;

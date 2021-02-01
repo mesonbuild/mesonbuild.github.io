@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -194,7 +194,7 @@ $('body').removeClass('no-script');
         <h1 id="new-features">New features</h1>
 <h2 id="emscripten-emcc-now-supports-threads">Emscripten (emcc) now supports threads</h2>
 <p>In addition to properly setting the compile and linker arguments, a
-new meson builtin has been added to control the PTHREAD_POOL_SIZE
+new Meson builtin has been added to control the PTHREAD_POOL_SIZE
 option, <code>-D&lt;lang&gt;_thread_count</code>, which may be set to any integer value
 greater than 0. If it set to 0 then the PTHREAD_POOL_SIZE option will
 not be passed.</p>
@@ -297,7 +297,7 @@ compatibility for build definitions which assume that the native
 compiler is available after <code>add_languages()</code>, if the <code>native:</code>
 keyword is absent the languages may be used for either the build or
 host machine, but are never required for the build machine.</p>
-<p>This changes the behaviour of the following meson fragment (when
+<p>This changes the behaviour of the following Meson fragment (when
 cross-compiling but a native compiler is not available) from reporting
 an error at <code>add_language</code> to reporting an error at <code>executable</code>.</p>
 <pre><code>add_language('c')
@@ -322,7 +322,7 @@ with cmake instead of requiring <code>dependency('ZLIB')</code>.</p>
 have a name() method.</p>
 <h2 id="new-option-quiet-to-meson-install">New option <code>--quiet</code> to <code>meson install</code>
 </h2>
-<p>Now you can run <code>meson install --quiet</code> and meson will not verbosely
+<p>Now you can run <code>meson install --quiet</code> and Meson will not verbosely
 print every file as it is being installed. As before, the full log is
 always available inside the builddir in <code>meson-logs/install-log.txt</code>.</p>
 <p>When this option is passed, install scripts will have the environment
@@ -332,7 +332,7 @@ Windows where it is now 300% to 1200% faster than before depending on
 your workload.</p>
 <h2 id="property-support-emscriptens-wasmld">Property support emscripten's wasm-ld</h2>
 <p>Before 0.54.0 we treated emscripten as both compiler and linker, which
-isn't really true. It does have a linker, called wasm-ld (meson's name
+isn't really true. It does have a linker, called wasm-ld (Meson's name
 is ld.wasm). This is a special version of clang's lld. This will now
 be detected properly.</p>
 <h2 id="skip-sanity-tests-when-cross-compiling">Skip sanity tests when cross compiling</h2>
@@ -398,7 +398,7 @@ cross builds.</p>
 <p>This old behavior is inconsistent with the way Autotools works, which
 undermines the purpose of distro-integration that is the only reason
 environment variables are supported at all in Meson. The new behavior
-is not quite the same, but doesn't conflict: meson doesn't always
+is not quite the same, but doesn't conflict: Meson doesn't always
 repond to an environment when Autoconf would, but when it does it
 interprets it as Autotools would.</p>
 <h2 id="added-pkg_config_libdir-property">Added 'pkg_config_libdir' property</h2>
@@ -420,7 +420,7 @@ distro does not ship with a new-enough Ninja, you can download the
 latest release from Ninja's GitHub page:
 https://github.com/ninja-build/ninja/releases</p>
 <h2 id="added-c-argument-to-meson-init-command">Added <code>-C</code> argument to <code>meson init</code> command</h2>
-<p>The meson init assumes that it is run inside the project root
+<p>The Meson init assumes that it is run inside the project root
 directory. If this isn't the case, you can now use <code>-C</code> to specify the
 actual project source directory.</p>
 <h2 id="more-than-one-argument-to-message-and-warning">More than one argument to <code>message()</code> and <code>warning()</code>
@@ -447,7 +447,7 @@ rules on mixing build systems</a>.</p>
 <p>The <code>pkgconfig</code> module now generates uninstalled pc files as well. For
 any generated <code>foo.pc</code> file, an extra <code>foo-uninstalled.pc</code> file is
 placed into <code>&lt;builddir&gt;/meson-uninstalled</code>. They can be used to build
-applications against libraries built by meson without installing them,
+applications against libraries built by Meson without installing them,
 by pointing <code>PKG_CONFIG_PATH</code> to that directory. This is an
 experimental feature provided on a best-effort basis, it might not
 work in all use-cases.</p>

@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -287,7 +287,7 @@ Since they can be used interchangeably, the rest of the build
 definitions do not need to care which one it is. Meson will take care
 of all the work behind the scenes to make this work.</p>
 <h1 id="dependency-method">Dependency method</h1>
-<p>You can use the keyword <code>method</code> to let meson know what method to use
+<p>You can use the keyword <code>method</code> to let Meson know what method to use
 when searching for the dependency. The default value is <code>auto</code>.
 Additional dependencies methods are <code>pkg-config</code>, <code>config-tool</code>, <code>cmake</code>,
 <code>system</code>, <code>sysconfig</code>, <code>qmake</code>, <code>extraframework</code> and <code>dub</code>.</p>
@@ -308,10 +308,10 @@ use both the old-style <code>&lt;NAME&gt;_LIBRARIES</code> variables as well as
 imported targets.</p>
 <p>It is possible to manually specify a list of CMake targets that should
 be used with the <code>modules</code> property. However, this step is optional
-since meson tries to automatically guess the correct target based on
+since Meson tries to automatically guess the correct target based on
 the name of the dependency.</p>
 <p>Depending on the dependency it may be necessary to explicitly specify
-a CMake target with the <code>modules</code> property if meson is unable to guess
+a CMake target with the <code>modules</code> property if Meson is unable to guess
 it automatically.</p>
 <pre><code class="language-meson">    cmake_dep = dependency('ZLIB', method : 'cmake', modules : ['ZLIB::ZLIB'])
 </code></pre>
@@ -332,17 +332,17 @@ not stored in the project itself.</p>
 <p>Additional CMake parameters can be specified with the <code>cmake_args</code>
 property.</p>
 <h2 id="dub">Dub</h2>
-<p>Please understand that meson is only able to find dependencies that
+<p>Please understand that Meson is only able to find dependencies that
 exist in the local Dub repository. You need to manually fetch and
 build the target dependencies.</p>
 <p>For <code>urld</code>.</p>
 <pre><code>dub fetch urld
 dub build urld
 </code></pre>
-<p>Other thing you need to keep in mind is that both meson and Dub need
+<p>Other thing you need to keep in mind is that both Meson and Dub need
 to be using the same compiler. This can be achieved using Dub's
 <code>-compiler</code> argument and/or manually setting the <code>DC</code> environment
-variable when running meson.</p>
+variable when running Meson.</p>
 <pre><code>dub build urld --compiler=dmd
 DC="dmd" meson builddir
 </code></pre>
@@ -353,7 +353,7 @@ but these dependency names are matched case-insensitively. The
 recommended style is to write them in all lower-case.</p>
 <p>In some cases, more than one detection method exists, and the <code>method</code>
 keyword may be used to select a detection method to use. The <code>auto</code>
-method uses any checking mechanisms in whatever order meson thinks is
+method uses any checking mechanisms in whatever order Meson thinks is
 best.</p>
 <p>e.g. libwmf and CUPS provide both pkg-config and config-tool support.
 You can force one or another via the <code>method</code> keyword:</p>
@@ -474,7 +474,7 @@ versions would statically link, due to a quirk in <code>llvm-config</code>.</p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, or <code>cmake</code>.</p>
 <h3 id="modules-aka-components">Modules, a.k.a. Components</h3>
 <p>Meson wraps LLVM's concept of components in it's own modules concept.
-When you need specific components you add them as modules as meson
+When you need specific components you add them as modules as Meson
 will do the right thing:</p>
 <pre><code class="language-meson">llvm_dep = dependency('llvm', version : '&gt;= 4.0', modules : ['amdgpu'])
 </code></pre>
@@ -546,10 +546,10 @@ for OpenMP support.</p>
 <p><em>(added 0.51.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
 <h2 id="python3">Python3</h2>
-<p>Python3 is handled specially by meson:</p>
+<p>Python3 is handled specially by Meson:</p>
 <ol>
 <li>Meson tries to use <code>pkg-config</code>.</li>
-<li>If <code>pkg-config</code> fails meson uses a fallback:
+<li>If <code>pkg-config</code> fails Meson uses a fallback:
 <ul>
 <li>On Windows the fallback is the current <code>python3</code> interpreter.</li>
 <li>On OSX the fallback is a framework dependency from <code>/Library/Frameworks</code>.</li>

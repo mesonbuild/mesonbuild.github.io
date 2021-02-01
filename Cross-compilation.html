@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -362,7 +362,7 @@ matter of calling <code>host_machine.system()</code>.</p>
 <p>There are two different values for the CPU. The first one is
 <code>cpu_family</code>. It is a general type of the CPU. This should have a
 value from <a href="Reference-tables.html#cpu-families">the CPU Family table</a>.
-<em>Note</em> that meson does not add <code>el</code> to end cpu_family value for little
+<em>Note</em> that Meson does not add <code>el</code> to end cpu_family value for little
 endian systems. Big endian and little endian mips are both just
 <code>mips</code>, with the <code>endian</code> field set approriately.</p>
 <p>The second value is <code>cpu</code> which is a more specific subtype for the
@@ -441,7 +441,7 @@ somekey = 'somevalue'
 # myvar now has the value 'somevalue'
 </code></pre>
 <h2 id="cross-file-locations">Cross file locations</h2>
-<p>As of version 0.44.0 meson supports loading cross files from system
+<p>As of version 0.44.0 Meson supports loading cross files from system
 locations (except on Windows). This will be
 $XDG_DATA_DIRS/meson/cross, or if XDG_DATA_DIRS is undefined, then
 /usr/local/share/meson/cross and /usr/share/meson/cross will be tried

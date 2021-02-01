@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -319,7 +319,7 @@ the same as <code>-Dopt=[]</code>, an empty list.</p>
 <h2 id="feature-detection-based-on-meson_version-in-project">Feature detection based on <code>meson_version:</code> in <code>project()</code>
 </h2>
 <p>Meson will now print a <code>WARNING:</code> message during configuration if you
-use a function or a keyword argument that was added in a meson version
+use a function or a keyword argument that was added in a Meson version
 that's newer than the version specified inside <code>project()</code>. For
 example:</p>
 <pre><code class="language-meson">project('featurenew', meson_version: '&gt;=0.43')
@@ -386,7 +386,7 @@ installed files.</p>
 directories created in the install tree. Files will preserve their
 executable mode, but the exact permissions will obey the
 <code>install_umask</code>.</p>
-<p>The <code>install_umask</code> can be overridden in the meson command-line:</p>
+<p>The <code>install_umask</code> can be overridden in the Meson command-line:</p>
 <pre><code class="language-console">$ meson --install-umask=027 builddir/
 </code></pre>
 <p>A project can also override the default in the <code>project()</code> call:</p>

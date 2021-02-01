@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -243,7 +243,7 @@ Starting from this version they no longer do anything but instead
 always error out. All functionality is available as subcommands in the
 main <code>meson</code> binary.</p>
 <h2 id="meson-and-meson-configure-now-accept-the-same-arguments">Meson and meson configure now accept the same arguments</h2>
-<p>Previously meson required that builtin arguments (like prefix) be
+<p>Previously Meson required that builtin arguments (like prefix) be
 passed as <code>--prefix</code> to <code>meson</code> and <code>-Dprefix</code> to <code>meson configure</code>.
 <code>meson</code> now accepts -D form like <code>meson configure</code> has. <code>meson configure</code> also accepts the <code>--prefix</code> form, like <code>meson</code> has.</p>
 <h2 id="recursively-extract-objects">Recursively extract objects</h2>
@@ -348,9 +348,9 @@ but, in is not strictly compatible with gcc as of current version.</p>
 <li>some backend messages are produced in ru_RU.KOI8-R even if LANG=C;</li>
 <li>its preprocessor treats some characters differently.</li>
 </ul>
-<p>So every noted difference is properly handled now in meson.</p>
+<p>So every noted difference is properly handled now in Meson.</p>
 <h2 id="string-escape-character-sequence-update">String escape character sequence update</h2>
-<p>Single-quoted strings in meson have been taught the same set of escape
+<p>Single-quoted strings in Meson have been taught the same set of escape
 sequences as in Python. It is therefore now possible to use arbitrary
 bytes in strings, like for example <code>NUL</code> (<code>\0</code>) and other ASCII
 control characters. See the chapter about <a href="Syntax.html#strings"><em>Strings</em> in

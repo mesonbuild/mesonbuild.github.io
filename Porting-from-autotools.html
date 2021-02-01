@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -301,7 +301,7 @@ endif
 <pre><code class="language-meson">option('enable-dep11', type : 'boolean', value : true, description : 'enable DEP-11')
 </code></pre>
 <h2 id="makefileam">Makefile.am</h2>
-<p>Next step is <code>Makefile.am</code>. In meson you don't need to have other
+<p>Next step is <code>Makefile.am</code>. In Meson you don't need to have other
 file, you still use <code>meson.build</code>.</p>
 <h3 id="sub-directories">Sub directories</h3>
 <p><code>Makefile.am</code>:</p>
@@ -335,7 +335,7 @@ EXTRA_DIST =                                            \
         autogen.sh                                      \
         config.h
 </code></pre>
-<p>In Meson you don't need have <code>*CLEANFILES</code>, because in meson you are
+<p>In Meson you don't need have <code>*CLEANFILES</code>, because in Meson you are
 building in temporary directory (usually called <code>build</code>), you manually
 removing it. You also not need to use <code>EXTRA_DIST</code>, because you will
 make tarballs via <code>git archive</code> or something like this.</p>

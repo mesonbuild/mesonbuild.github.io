@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -201,7 +201,7 @@ format for simplicity.</p>
 available. This means that Meson must be invoked using the terminal.
 If you wish to use the MSVC compiler, you need to run Meson under
 "Visual Studio command prompt".</p>
-<p>All available meson commands are listed on the <a href="Commands.html">commands reference
+<p>All available Meson commands are listed on the <a href="Commands.html">commands reference
 page</a>.</p>
 <h2 id="configuring-the-build-directory">Configuring the build directory</h2>
 <p>Let us assume that we have a source tree that has a Meson build
@@ -213,7 +213,7 @@ meson setup builddir
 <p>We invoke Meson with the <code>setup</code> command, giving it the location of the build
 directory. Meson uses <a href="http://voices.canonical.com/jussi.pakkanen/2013/04/16/why-you-should-consider-using-separate-build-directories/">out of source
 builds</a>.</p>
-<p>Hint: The syntax of meson is <code>meson [command] [arguments] [options]</code>.
+<p>Hint: The syntax of Meson is <code>meson [command] [arguments] [options]</code>.
 The <code>setup</code> command takes a <code>builddir</code> and a <code>srcdir</code> argument. If no
 <code>srcdir</code> is given Meson will deduce the <code>srcdir</code> based on <code>pwd</code> and
 the location of <code>meson.build</code>.</p>
@@ -221,7 +221,7 @@ the location of <code>meson.build</code>.</p>
 corresponding build backend in the build directory. By default Meson
 generates a <em>debug build</em>, which turns on basic warnings and debug
 information and disables compiler optimizations.</p>
-<p>Additionally, the invocation can pass options to meson. The list of
+<p>Additionally, the invocation can pass options to Meson. The list of
 options is documented <a href="Builtin-options.html">here</a>.</p>
 <p>You can specify a different type of build with the <code>--buildtype</code> command line
 argument. It can have one of the following values.</p>
@@ -288,14 +288,14 @@ compile it in the usual way. A list of backends can be obtained with
 <code>meson setup --help</code>.</p>
 <h2 id="environment-variables">Environment variables</h2>
 <p>Sometimes you want to add extra compiler flags, this can be done by
-passing them in environment variables when calling meson. See <a href="Reference-tables.html#compiler-and-linker-flag-environment-variables">the
+passing them in environment variables when calling Meson. See <a href="Reference-tables.html#compiler-and-linker-flag-environment-variables">the
 reference
 tables</a>
 for a list of all the environment variables. Be aware however these
 environment variables are only used for the native compiler and will
 not affect the compiler used for cross-compiling, where the flags
 specified in the cross file will be used.</p>
-<p>Furthermore it is possible to stop meson from adding flags itself by
+<p>Furthermore it is possible to stop Meson from adding flags itself by
 using the <code>--buildtype=plain</code> option, in this case you must provide
 the full compiler and linker arguments needed.</p>
 <h2 id="building-from-the-source">Building from the source</h2>

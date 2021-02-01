@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -250,7 +250,7 @@ variable <code>MESON_TESTTHREADS</code> like this.</p>
 <p><em>(added in version 0.52.0)</em></p>
 <p>Tests can be assigned a priority that determines when a test is
 <em>started</em>. Tests with higher priority are started first, tests with
-lower priority started later. The default priority is 0, meson makes
+lower priority started later. The default priority is 0, Meson makes
 no guarantee on the ordering of tests with identical priority.</p>
 <pre><code class="language-meson">test('started second', t, priority : 0)
 test('started third', t, priority : -50)
@@ -275,7 +275,7 @@ this case is to exit the program with error code 99. Again, Meson will
 detect this and report these tests as <code>ERROR</code>, ignoring the setting of
 <code>should_fail</code>. This behavior was added in version 0.50.0.</p>
 <h2 id="testing-tool">Testing tool</h2>
-<p>The goal of the meson test tool is to provide a simple way to run
+<p>The goal of the Meson test tool is to provide a simple way to run
 tests in a variety of different ways. The tool is designed to be run
 in the build directory.</p>
 <p>The simplest thing to do is just to run all tests.</p>
@@ -362,8 +362,8 @@ harness is running</p>
 streamed out, and is written only once all tests complete running.</p>
 <p>When tests use the <code>tap</code> protocol each test will be recorded as a
 testsuite container, with each case named by the number of the result.</p>
-<p>When tests use the <code>gtest</code> protocol meson will inject arguments to the
-test to generate it's own JUnit XML, which meson will include as part
+<p>When tests use the <code>gtest</code> protocol Meson will inject arguments to the
+test to generate it's own JUnit XML, which Meson will include as part
 of this XML file.</p>
 <p><em>New in 0.55.0</em></p>
 

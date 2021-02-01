@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -260,7 +260,7 @@ machine, if <code>false</code>, for the host machine.</p>
 <p>If <code>native</code> is omitted, the languages may be used for either build or host
 machine, but are never required for the build machine.  (i.e. it is equivalent
 to <code>add_languages(*langs*, native: false, required: *required*) and add_languages(*langs*, native: true, required: false)</code>. This default behaviour
-may change to <code>native: false</code> in a future meson version.</p>
+may change to <code>native: false</code> in a future Meson version.</p>
 <h3 id="add_project_arguments">add_project_arguments()</h3>
 <pre><code class="language-meson">  void add_project_arguments(arg1, arg2, ...)
 </code></pre>
@@ -817,9 +817,9 @@ when this file changes.</li>
 <li>
 <code>link_language</code> <em>(since 0.51.0)</em> <em>(broken until 0.55.0)</em>: makes the linker for this
 target be for the specified language. It is generally unnecessary to set
-this, as meson will detect the right linker to use in most cases. There are
+this, as Meson will detect the right linker to use in most cases. There are
 only two cases where this is needed. One, your main function in an
-executable is not in the language meson picked, or second you want to force
+executable is not in the language Meson picked, or second you want to force
 a library to use only one ABI.</li>
 <li>
 <code>link_whole</code> <em>(since 0.40.0)</em>: links all contents of the given static libraries
@@ -1678,13 +1678,13 @@ recurse in the subdir if they all return <code>true</code> when queried with
 <h3 id="subdir_done">subdir_done()</h3>
 <pre><code class="language-meson">    subdir_done()
 </code></pre>
-<p>Stops further interpretation of the meson script file from the point
+<p>Stops further interpretation of the Meson script file from the point
 of the invocation. All steps executed up to this point are valid and
-will be executed by meson. This means that all targets defined before
+will be executed by Meson. This means that all targets defined before
 the call of <code>subdir_done</code> will be build.</p>
 <p>If the current script was called by <code>subdir</code> the execution returns to
 the calling directory and continues as if the script had reached the
-end. If the current script is the top level script meson configures
+end. If the current script is the top level script Meson configures
 the project as defined up to this point.</p>
 <p>Example:</p>
 <pre><code class="language-meson">project('example exit', 'cpp')
@@ -1897,7 +1897,11 @@ given as an argument to be run during the install step, this script
 will have the environment variables <code>MESON_SOURCE_ROOT</code>,
 <code>MESON_BUILD_ROOT</code>, <code>MESON_INSTALL_PREFIX</code>,
 <code>MESON_INSTALL_DESTDIR_PREFIX</code>, and <code>MESONINTROSPECT</code> set.
-All positional arguments are passed as parameters.</p>
+All positional arguments are passed as parameters.
+<em>since 0.57.0</em> <code>skip_if_destdir</code> boolean keyword argument (defaults to <code>false</code>)
+can be specified. If <code>true</code> the script will not be run if DESTDIR is set during
+installation. This is useful in the case the script updates system wide
+cache that is only needed when copying files into final destination.</p>
 <p><em>(since 0.54.0)</em> If <code>meson install</code> is called with the <code>--quiet</code> option, the
 environment variable <code>MESON_INSTALL_QUIET</code> will be set.</p>
 <p><em>(since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, <code>find_program</code>,

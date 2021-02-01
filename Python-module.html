@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -201,11 +201,11 @@ python installations, be they python 2 or 3.</p>
 </code></pre>
 <p>Find a python installation matching <code>name_or_path</code>.</p>
 <p>That argument is optional, if not provided then the returned python
-installation will be the one used to run meson.</p>
+installation will be the one used to run Meson.</p>
 <p>If provided, it can be:</p>
 <ul>
 <li>
-<p>A simple name, eg <code>python-2.7</code>, meson will look for an external program
+<p>A simple name, eg <code>python-2.7</code>, Meson will look for an external program
 named that way, using <a href="Reference-manual.html#find_program">find_program</a></p>
 </li>
 <li>
@@ -260,7 +260,7 @@ conventions of the target platform.</p>
 the addition of the following:</p>
 <ul>
 <li>
-<code>subdir</code>: By default, meson will install the extension module in
+<code>subdir</code>: By default, Meson will install the extension module in
 the relevant top-level location for the python installation, eg
 <code>/usr/lib/site-packages</code>. When subdir is passed to this method,
 it will be appended to that location. This keyword argument is
@@ -279,7 +279,7 @@ arguments as the standard <a href="Reference-manual.html#dependency">dependency<
 following keyword argument:</p>
 <ul>
 <li>
-<code>embed</code>: <em>(since 0.53.0)</em> If true, meson will try to find a python
+<code>embed</code>: <em>(since 0.53.0)</em> If true, Meson will try to find a python
 dependency that can be used for embedding python into an
 application.</li>
 </ul>

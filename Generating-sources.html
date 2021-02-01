@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -246,12 +246,12 @@ executable('myexe', ['main.c', foo_h], link_with : libfoo)
 </code></pre>
 <p>Each target that depends on a generated header should add that header
 to it's sources, as seen above with <code>libfoo</code> and <code>myexe</code>. This is
-because there is no way for meson or the backend to know that <code>myexe</code>
+because there is no way for Meson or the backend to know that <code>myexe</code>
 depends on <code>foo.h</code> just because <code>libfoo</code> does, it could be a private
 header.</p>
 <h3 id="generating-multiple-files-at-a-time">Generating multiple files at a time</h3>
 <p>Sometimes it makes sense for a single generator to create two or more
-files at a time, (perhaps a header and source file), meson has this
+files at a time, (perhaps a header and source file), Meson has this
 case covered as well. <code>custom_target</code>s can be indexed like a list to
 get each output file separately. The order is the same as the order of
 the output argument to <code>custom_target</code></p>

@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -236,7 +236,7 @@ Let's say the source files of the binary use the system headers
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 </code></pre>
-<p>And add this to meson:</p>
+<p>And add this to Meson:</p>
 <pre><code class="language-meson">executable('myexe', sources : sourcelist, c_pch : 'pch/myexe_pch.h')
 </code></pre>
 <p>That's all. You should note that your source files must <em>not</em> include

@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -290,14 +290,14 @@ a = 'Hello'
 </code></pre>
 <h3 id="binaries">Binaries</h3>
 <p>The binaries section contains a list of binaries. These can be used
-internally by meson, or by the <code>find_program</code> function.</p>
+internally by Meson, or by the <code>find_program</code> function.</p>
 <p>These values must be either strings or an array of strings</p>
 <p>Compilers and linkers are defined here using <code>&lt;lang&gt;</code> and <code>&lt;lang&gt;_ld</code>.
 <code>&lt;lang&gt;_ld</code> is special because it is compiler specific. For compilers
 like gcc and clang which are used to invoke the linker this is a value
 to pass to their "choose the linker" argument (-fuse-ld= in this
 case). For compilers like MSVC and Clang-Cl, this is the path to a
-linker for meson to invoke, such as <code>link.exe</code> or <code>lld-link.exe</code>.
+linker for Meson to invoke, such as <code>link.exe</code> or <code>lld-link.exe</code>.
 Support for <code>ld</code> is <em>new in 0.53.0</em></p>
 <p><em>changed in 0.53.1</em> the <code>ld</code> variable was replaced by <code>&lt;lang&gt;_ld</code>,
 *because it regressed a large number of projects. in 0.53.0 the <code>ld</code>
@@ -360,15 +360,15 @@ section.</p>
 <li>
 <code>cmake_toolchain_file</code> specifies an absolute path to an already existing
 CMake toolchain file that will be loaded with <code>include()</code> as the last
-instruction of the automatically generated CMake toolchain file from meson.
+instruction of the automatically generated CMake toolchain file from Meson.
 (<em>new in 0.56.0</em>)</li>
 <li>
-<code>cmake_defaults</code> is a boolean that specifies whether meson should automatically
+<code>cmake_defaults</code> is a boolean that specifies whether Meson should automatically
 generate default toolchain variables from other sections (<code>binaries</code>,
 <code>host_machine</code>, etc.) in the machine file. Defaults are always overwritten
 by variables set in the <code>[cmake]</code> section. The default is <code>true</code>. (<em>new in 0.56.0</em>)</li>
 <li>
-<code>cmake_skip_compiler_test</code> is an enum that specifies when meson should
+<code>cmake_skip_compiler_test</code> is an enum that specifies when Meson should
 automatically generate toolchain variables to skip the CMake compiler
 sanity checks. This only has an effect if <code>cmake_defaults</code> is <code>true</code>.
 Supported values are <code>always</code>, <code>never</code>, <code>dep_only</code>. The default is <code>dep_only</code>.
@@ -424,7 +424,7 @@ build-tests = false
 <pre><code class="language-ini">[built-in options]
 c_std = 'c99'
 </code></pre>
-<p>You can set some meson built-in options on a per-subproject basis,
+<p>You can set some Meson built-in options on a per-subproject basis,
 such as <code>default_library</code> and <code>werror</code>. The order of precedence is:</p>
 <ol>
 <li>Command line</li>
@@ -437,7 +437,7 @@ werror = false
 </code></pre>
 <p>Options set on a per-subproject basis will inherit the option from the
 parent if the parent has a setting but the subproject doesn't, even
-when there is a default set meson language.</p>
+when there is a default set Meson language.</p>
 <pre><code class="language-ini">[built-in options]
 default_library = 'static'
 </code></pre>
@@ -452,7 +452,7 @@ native file are used.</p>
 <li>cmake_prefix_path</li>
 </ul>
 <h2 id="loading-multiple-machine-files">Loading multiple machine files</h2>
-<p>Native files allow layering (cross files can be layered since meson
+<p>Native files allow layering (cross files can be layered since Meson
 0.52.0). More than one file can be loaded, with values from a previous
 file being overridden by the next. The intention of this is not
 overriding, but to allow composing files. This composition is done by

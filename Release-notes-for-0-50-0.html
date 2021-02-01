@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -243,7 +243,7 @@ without a configured build directory.</p>
 output as running it with a freshly configured build directory.</p>
 <p>However, this behavior is not guaranteed if subprojects are
 present. Due to internal limitations all subprojects are processed
-even if they are never used in a real meson run.  Because of this
+even if they are never used in a real Meson run.  Because of this
 options for the subprojects can differ.</p>
 <h2 id="include_directories-accepts-a-string">
 <code>include_directories</code> accepts a string</h2>
@@ -335,7 +335,7 @@ run_command('command', 'arg1', 'arg2', env: env)
 <p>The <code>extract_objects</code> function now supports File objects to tell it
 what to extract. Previously, file paths could only be passed as strings.</p>
 <h2 id="changed-the-json-format-of-the-introspection">Changed the JSON format of the introspection</h2>
-<p>All paths used in the meson introspection JSON format are now
+<p>All paths used in the Meson introspection JSON format are now
 absolute. This affects the <code>filename</code> key in the targets introspection
 and the output of <code>--buildsystem-files</code>.</p>
 <p>Furthermore, the <code>filename</code> and <code>install_filename</code> keys in the targets
@@ -385,7 +385,7 @@ dependencies.</p>
 <p>The <code>required</code> keyword specifies whether the dependency is marked as
 required in the <code>meson.build</code> (all dependencies are required by
 default). The <code>conditional</code> key indicates whether the <code>dependency()</code>
-function was called inside a conditional block. In a real meson run
+function was called inside a conditional block. In a real Meson run
 these dependencies might not be used, thus they <em>may</em> not be required,
 even if the <code>required</code> key is set. The <code>has_fallback</code> key just
 indicates whether a fallback was directly set in the <code>dependency()</code>
@@ -412,7 +412,7 @@ build directory. However, there are some key differences:</p>
 correct. There might be differences, due to internal limitations. It
 is also not guaranteed that all targets will be listed in the output.
 It might even be possible that targets are listed, which won't exist
-when meson is run normally. This can happen if a target is defined
+when Meson is run normally. This can happen if a target is defined
 inside an if statement. Use this feature with care.</p>
 <h2 id="added-option-to-introspect-multiple-parameters-at-once">Added option to introspect multiple parameters at once</h2>
 <p>Meson introspect can now print the results of multiple introspection
@@ -431,7 +431,7 @@ configuration of the build directory.</p>
 <p>Additionlly the format of <code>meson introspect target</code> was changed:</p>
 <ul>
 <li>New: the <code>sources</code> key. It stores the source files of a target and their compiler parameters.</li>
-<li>New: the <code>defined_in</code> key. It stores the meson file where a target is defined</li>
+<li>New: the <code>defined_in</code> key. It stores the Meson file where a target is defined</li>
 <li>New: the <code>subproject</code> key. It stores the name of the subproject where a target is defined.</li>
 <li>Added new target types (<code>jar</code>, <code>shared module</code>).</li>
 </ul>
@@ -439,13 +439,13 @@ configuration of the build directory.</p>
 <code>meson configure</code> can now print the default options of an unconfigured project</h2>
 <p>With this release, it is also possible to get a list of all build
 options by invoking <code>meson configure</code> with the project source
-directory or the path to the root <code>meson.build</code>. In this case, meson
+directory or the path to the root <code>meson.build</code>. In this case, Meson
 will print the default values of all options.</p>
 <h2 id="hdf5">HDF5</h2>
 <p>HDF5 support is added via pkg-config.</p>
 <h2 id="added-the-mesoninfojson-introspection-file">Added the <code>meson-info.json</code> introspection file</h2>
 <p>Meson now generates a <code>meson-info.json</code> file in the <code>meson-info</code>
-directory to provide introspection information about the latest meson
+directory to provide introspection information about the latest Meson
 run. This file is updated when the build configuration is changed and
 the build files are (re)generated.</p>
 <h2 id="new-kwarg-install-for-configure_file">New kwarg <code>install:</code> for <code>configure_file()</code>

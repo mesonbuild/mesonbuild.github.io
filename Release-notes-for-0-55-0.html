@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -193,7 +193,7 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
 <h2 id="rpath-removal-now-more-careful">rpath removal now more careful</h2>
-<p>On Linux-like systems, meson adds rpath entries to allow running apps
+<p>On Linux-like systems, Meson adds rpath entries to allow running apps
 in the build tree, and then removes those build-time-only rpath
 entries when installing. Rpath entries may also come in via LDFLAGS
 and via .pc files. Meson used to remove those latter rpath entries by
@@ -216,8 +216,8 @@ executable('bar', ...)
 <p>can be invoked with <code>meson compile foo:shared_library foo:static_library bar</code>.</p>
 <h2 id="test-protocol-for-gtest">Test protocol for gtest</h2>
 <p>Due to the popularity of Gtest (google test) among C and C++
-developers meson now supports a special protocol for gtest. With this
-protocol meson injects arguments to gtests to output JUnit, reads that
+developers Meson now supports a special protocol for gtest. With this
+protocol Meson injects arguments to gtests to output JUnit, reads that
 JUnit, and adds the output to the JUnit it generates.</p>
 <h2 id="mesonadd__script-methods-accept-new-types">meson.add_*_script methods accept new types</h2>
 <p>All three (<code>add_install_script</code>, <code>add_dist_script</code>, and
@@ -254,7 +254,7 @@ cpp_args = c_args + ['-DSOMETHING_ELSE']
 [binaries]
 c = toolchain + '/gcc'
 </code></pre>
-<h2 id="configure-cmake-subprojects-with-mesonsubproject_options">Configure CMake subprojects with meson.subproject_options</h2>
+<h2 id="configure-cmake-subprojects-with-mesonsubproject_options">Configure CMake subprojects with Meson.subproject_options</h2>
 <p>Meson now supports passing configuration options to CMake and
 overriding certain build details extracted from the CMake subproject.</p>
 <p>The new CMake configuration options object is very similar to the
@@ -276,10 +276,10 @@ exe = executable('foo', ...)
 meson.override_find_program('foo', exe)
 
 # In main project:
-# The version check was crashing meson.
+# The version check was crashing Meson.
 prog = find_program('foo', version : '&gt;=1.0')
 
-# This was crashing meson.
+# This was crashing Meson.
 message(prog.path())
 
 # New method to be consistent with built objects.
@@ -306,8 +306,8 @@ environment where it's important to catch potential issues.</p>
 the compiler) when the b_ndebug flag is set.</p>
 <h2 id="meson-test-now-produces-junit-xml-from-results">Meson test now produces JUnit xml from results</h2>
 <p>Meson will now generate a JUnit compatible XML file from test results.
-it will be in the meson-logs directory and is called
-testlog.junit.xml.</p>
+it will be in the <code>meson-logs</code> directory and is called
+<code>testlog.junit.xml</code>.</p>
 <h2 id="config-tool-based-dependencies-no-longer-search-path-for-cross-compiling">Config tool based dependencies no longer search PATH for cross compiling</h2>
 <p>Before 0.55.0 config tool based dependencies (llvm-config,
 cups-config, etc), would search system $PATH if they weren't defined
@@ -320,7 +320,7 @@ the function. The old name remains as an alias (the behavior hasn't
 changed), but is now deprecated.</p>
 <h2 id="string-concatenation-in-meson_optionstxt">String concatenation in meson_options.txt</h2>
 <p>It is now possible to use string concatenation (with the <code>+</code>
-opperator) in the meson_options.txt file. This allows splitting long
+opperator) in the <code>meson_options.txt</code> file. This allows splitting long
 option descriptions.</p>
 <pre><code class="language-meson">option(
   'testoption',
