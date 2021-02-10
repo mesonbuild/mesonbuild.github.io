@@ -295,6 +295,10 @@ in previous versions of Meson the test would fail with a timeout immediately.</l
 <code>is_default</code> <em>(since 0.49.0)</em>: a bool to set whether this is the default test setup.
 If <code>true</code>, the setup will be used whenever <code>meson test</code> is run
 without the <code>--setup</code> option.</li>
+<li>
+<code>exclude_suites</code> <em>(since 0.57.0)</em>: a list of test suites that should be
+excluded when using this setup.  Suites specified in the <code>--suite</code> option
+to <code>meson test</code> will always run, overriding <code>add_test_setup</code> if necessary.</li>
 </ul>
 <p>To use the test setup, run <code>meson test --setup=*name*</code> inside the
 build dir.</p>
@@ -1262,6 +1266,9 @@ implicitly</a>.</p>
 <p>Installs the entire given subdirectory and its contents from the
 source tree to the location specified by the keyword argument
 <code>install_dir</code>.</p>
+<p>If the subdirectory does not exist in the source tree, an empty directory is
+created in the specified location. <em>(since 0.45.0)</em> A newly created
+subdirectory may only be created in the keyword argument <code>install_dir</code>.</p>
 <p>The following keyword arguments are supported:</p>
 <ul>
 <li>
@@ -1306,6 +1313,10 @@ If <code>strip_directory=true</code> only the last component of the source path 
 <p><code>install_subdir('foo/bar', install_dir : 'share', strip_directory : true)</code> creates</p>
 <pre><code class="language-text">share/
   file1
+</code></pre>
+<p><code>install_subdir('new_directory', install_dir : 'share')</code> creates</p>
+<pre><code class="language-text">share/
+  new_directory/
 </code></pre>
 <h3 id="is_disabler">is_disabler()</h3>
 <pre><code class="language-meson">    bool is_disabler(var)
@@ -1570,6 +1581,11 @@ the first item will find that command in <code>PATH</code> and run it.</li>
 <code>depends</code> is a list of targets that this target depends on but which
 are not listed in the command array (because, for example, the
 script does file globbing internally)</li>
+<li>
+<code>env</code> <em>(since 0.57.0)</em>: environment variables to set, such as
+<code>{'NAME1': 'value1', 'NAME2': 'value2'}</code> or <code>['NAME1=value1', 'NAME2=value2']</code>,
+or an <a href="Reference-manual.html#environment-object"><code>environment()</code> object</a> which allows more
+sophisticated environment juggling.</li>
 </ul>
 <h3 id="set_variable">set_variable()</h3>
 <pre><code class="language-meson">    void set_variable(variable_name, value)
@@ -1884,12 +1900,12 @@ archived. Note that this runs the script file that is in the
 script file can not be found in the staging directory, it is a hard
 error. This command can only invoked from the main project, calling
 it from a subproject is a hard error. <em>(since 0.49.0)</em> Accepts multiple arguments
-for the fscript. <em>(since 0.54.0)</em> The <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>
+for the script. <em>(since 0.54.0)</em> The <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>
 environment variables are set when dist scripts are run.</p>
 <p><em>(since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, and <code>find_program</code>
 as well as strings.</p>
 <p><em>(since 0.57.0)</em> <code>file</code> objects and the output of <code>configure_file</code> may be
-*used as the <code>script_name</code> parameter.</p>
+used as the <code>script_name</code> parameter.</p>
 </li>
 <li>
 <p><code>add_install_script(script_name, arg1, arg2, ...)</code>: causes the script

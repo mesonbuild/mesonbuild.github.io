@@ -613,6 +613,24 @@ dependency to other targets using generated doc files (e.g. in
 module's HTML files will be installed. Usually used with
 <code>install_data</code> to install extra files, such as images, to the output
 directory.</p>
+<h3 id="gnomepost_install">gnome.post_install()</h3>
+<p><em>Since 0.57.0</em></p>
+<p>Post-install update of various system wide caches. Each script will be executed
+only once even if <code>gnome.post_install()</code> is called multiple times from multiple
+subprojects. If <code>DESTDIR</code> is specified during installation all scripts will be
+skipped.</p>
+<p>It takes the following keyword arguments:</p>
+<ul>
+<li>
+<code>glib_compile_schemas</code>: If set to <code>true</code>, update <code>gschemas.compiled</code> file in
+<code>&lt;prefix&gt;/&lt;datadir&gt;/glib-2.0/schemas</code>.</li>
+<li>
+<code>gio_querymodules</code>: List of directories relative to <code>prefix</code> where
+<code>giomodule.cache</code> file will be updated.</li>
+<li>
+<code>gtk_update_icon_cache</code>: If set to <code>true</code>, update <code>icon-theme.cache</code> file in
+<code>&lt;prefix&gt;/&lt;datadir&gt;/icons/hicolor</code>.</li>
+</ul>
 
     </div>
         

@@ -550,6 +550,20 @@ available on all platforms or with all compilers:</p>
 <td> Use link time optimization</td>
 </tr>
 <tr>
+<td> b_lto_threads</td>
+<td> 0</td>
+<td> Any integer*</td>
+<td> Use multiple threads for lto. <em>(Added in 0.57.0)</em>
+</td>
+</tr>
+<tr>
+<td> b_lto_mode</td>
+<td> default</td>
+<td> default, thin</td>
+<td> Select between lto modes, thin and default. <em>(Added in 0.57.0)</em>
+</td>
+</tr>
+<tr>
 <td> b_ndebug</td>
 <td> false</td>
 <td> true, false, if-release</td>
@@ -595,11 +609,15 @@ available on all platforms or with all compilers:</p>
 </table>
 <p>The value of <code>b_sanitize</code> can be one of: <code>none</code>, <code>address</code>, <code>thread</code>,
 <code>undefined</code>, <code>memory</code>, <code>address,undefined</code>.</p>
-<p><a name="b_vscrt-from_buildtype"></a> The default value of <code>b_vscrt</code>
-is <code>from_buildtype</code>. The following table is used internally to pick
-the CRT compiler arguments for <code>from_buildtype</code> or
-<code>static_from_buildtype</code> <em>(since 0.56)</em> based on the value of the
-<code>buildtype</code> option:</p>
+<ul>
+<li>&lt; 0 means disable, == 0 means automatic selection, &gt; 0 sets a specific number to use</li>
+</ul>
+<p>LLVM supports <code>thin</code> lto, for more discussion see <a href="https://clang.llvm.org/docs/ThinLTO.html">LLVM's documentation</a></p>
+<p><a name="b_vscrt-from_buildtype"></a>
+The default value of <code>b_vscrt</code> is <code>from_buildtype</code>. The following table is
+used internally to pick the CRT compiler arguments for <code>from_buildtype</code> or
+<code>static_from_buildtype</code> <em>(since 0.56)</em> based on the value of the <code>buildtype</code>
+option:</p>
 <table>
 <thead>
 <tr>

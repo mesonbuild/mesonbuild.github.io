@@ -322,6 +322,19 @@ suffix</p>
 <pre><code class="language-meson">fs.stem('foo/bar/baz.dll')  # baz
 fs.stem('foo/bar/baz.dll.a')  # baz.dll
 </code></pre>
+<h3 id="read">read</h3>
+<ul>
+<li>
+<code>read(path, encoding: 'utf-8')</code> <em>(since 0.57.0)</em>:
+return a <a href="Syntax.html#strings">string</a> with the contents of the given <code>path</code>.
+If the <code>encoding</code> keyword argument is not specified, the file specified by
+<code>path</code> is assumed to be utf-8 encoded. Binary files are not supported. The
+provided paths should be relative to the current <code>meson.current_source_dir()</code>
+or an absolute path outside the build directory is accepted. If the file
+specified by <code>path</code> changes, this will trigger Meson to reconfigure the
+project. If the file specified by <code>path</code> is a <code>files()</code> object it
+cannot refer to a built file.</li>
+</ul>
 
     </div>
         

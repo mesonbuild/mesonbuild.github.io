@@ -210,6 +210,48 @@ test target which calls that executable, using the rust test protocol.</p>
 that automatically.</p>
 <p>Additional, test only dependencies may be passed via the dependencies
 argument.</p>
+<h3 id="bindgen-input-string-buildtarget-string-buildtarget-output-strng-include_directories-include_directories-c_args-string-args-string">bindgen(*, input: string | BuildTarget | []string | []BuildTarget, output: strng, include_directories: []include_directories, c_args: []string, args: []string)</h3>
+<p>This function wraps bindgen to simplify creating rust bindings around C
+libraries. This has two advantages over hand-rolling ones own with a
+<code>generator</code> or <code>custom_target</code>:</p>
+<ul>
+<li>It handles <code>include_directories</code>, so one doesn't have to manually convert them to <code>-I...</code>
+</li>
+<li>It automatically sets up a depfile, making the results more reliable</li>
+</ul>
+<p>It takes the following keyword arguments</p>
+<ul>
+<li>input — A list of Files, Strings, or CustomTargets. The first element is
+the header bindgen will parse, additional elements are dependencies.</li>
+<li>output — the name of the output rust file</li>
+<li>include_directories — A list of <code>include_directories</code> objects, these are
+passed to clang as <code>-I</code> arguments</li>
+<li>c_args — A list of string arguments to pass to clang untouched</li>
+<li>args — A list of string arguments to pass to <code>bindgen</code> untouched.</li>
+</ul>
+<pre><code class="language-meson">rust = import('unstable-rust')
+
+inc = include_directories('..'¸ '../../foo')
+
+generated = rust.bindgen(
+    'myheader.h',
+    'generated.rs',
+    include_directories : [inc, include_directories('foo'),
+    args : ['--no-rustfmt-bindings'],
+    c_args : ['-DFOO=1'],
+)
+</code></pre>
+<p>If the header depeneds on generated headers, those headers must be passed to
+<code>bindgen</code> as well to ensure proper dependency ordering, static headers do not
+need to be passed, as a proper depfile is generated:</p>
+<pre><code class="language-meson">h1 = custom_target(...)
+h2 = custom_target(...)
+
+r1 = rust.bindgen(
+  [h1, h2],  # h1 includes h2,
+  'out.rs',
+)
+</code></pre>
 
     </div>
         
@@ -235,6 +277,7 @@ argument.</p>
 <div class="copyrights-description">
 		<p>
 				© 								2020, 
+				2021, 
 													       	Dylan Baker 				(<a href="mailto:dylan@pnwbakers.com">dylan@pnwbakers.com</a>)
 			</p>
 	</div>
