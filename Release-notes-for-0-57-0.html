@@ -271,7 +271,11 @@ Run Time Checking can be enabled by manually adding <code>/RTC1</code> or other 
 <p>If these are important issues for you and would like builtin toggle options,
 please file an issue in the Meson bug tracker.</p>
 <h2 id="buildtype-remains-even-if-dependent-options-are-changed">Buildtype remains even if dependent options are changed</h2>
-<p>Setting the <code>buildtype' option to a value sets the</code>debug<code>and</code>optimization<code>options to predefined values. Traditionally setting the options to other values would then change the buildtype to</code>custom<code>. This is confusing and means that you can't use, for example, debug level</code>g<code>in</code>debug` buildtype even though it would make sense under
+<p>Setting the <code>buildtype</code> option to a value sets the <code>debug</code> and
+<code>optimization</code> options to predefined values. Traditionally setting the
+options to other values would then change the buildtype to <code>custom</code>.
+This is confusing and means that you can't use, for example, debug
+level <code>g</code> in <code>debug</code> buildtype even though it would make sense under
 many circumstances.</p>
 <p>Starting with this release, the buildtype is only changed when the user
 explicitly sets it; setting the build type modifies the <code>debug</code> and
