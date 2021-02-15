@@ -203,7 +203,7 @@ character, it is removed.</p>
 <h2 id="support-for-reading-files-at-configuration-time-with-the-fs-module">Support for reading files at configuration time with the <code>fs</code> module</h2>
 <p>Reading text files during configuration is now supported. This can be done at
 any time after <code>project</code> has been called</p>
-<pre><code class="language-meson">project(myproject', 'c')
+<pre><code class="language-meson">project('myproject', 'c')
 license_text = run_command(
     find_program('python3'), '-c', 'print(open("COPYING").read())'
 ).stdout().strip()
@@ -220,7 +220,7 @@ configuration data is based on the data in COPYING</li>
 <li>It has extra overhead</li>
 </ol>
 <p><code>fs.read</code> replaces the above idiom thus:</p>
-<pre><code class="language-meson">project(myproject', 'c')
+<pre><code class="language-meson">project('myproject', 'c')
 fs = import('fs')
 license_text = fs.read('COPYING').strip()
 about_header = configuration_data()
