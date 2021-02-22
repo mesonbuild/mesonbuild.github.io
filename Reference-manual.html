@@ -566,6 +566,16 @@ than one outputs are specified, the behavior is the same as
 <code>@BASENAME@</code>: the input filename, with extension removed</li>
 <li>
 <code>@PRIVATE_DIR@</code> <em>(since 0.50.1)</em>: path to a directory where the custom target must store all its intermediate files.</li>
+<li>
+<code>@SOURCE_ROOT@</code>: the path to the root of the source tree. Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
+<li>
+<code>@BUILD_ROOT@</code>: the path to the root of the build tree. Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
+<li>
+<code>@CURRENT_SOURCE_DIR@</code>: this is the directory where the currently
+processed meson.build is located in.  Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
 </ul>
 <p><em>(since 0.47.0)</em> The <code>depfile</code> keyword argument also accepts the
 <code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions.</p>
@@ -1586,6 +1596,20 @@ script does file globbing internally)</li>
 <code>{'NAME1': 'value1', 'NAME2': 'value2'}</code> or <code>['NAME1=value1', 'NAME2=value2']</code>,
 or an <a href="Reference-manual.html#environment-object"><code>environment()</code> object</a> which allows more
 sophisticated environment juggling.</li>
+</ul>
+<p><em>Since 0.57.0</em> The template strings passed to <code>command</code> keyword arguments accept
+the following special substitutions:</p>
+<ul>
+<li>
+<code>@SOURCE_ROOT@</code>: the path to the root of the source tree. Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
+<li>
+<code>@BUILD_ROOT@</code>: the path to the root of the build tree. Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
+<li>
+<code>@CURRENT_SOURCE_DIR@</code> <em>Since 0.57.1</em>: this is the directory where the currently
+processed meson.build is located in. Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
 </ul>
 <h3 id="set_variable">set_variable()</h3>
 <pre><code class="language-meson">    void set_variable(variable_name, value)
