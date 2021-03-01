@@ -752,6 +752,8 @@ allowed by <code>--wrap-mode</code>.</p>
 <pre><code class="language-meson">    void error(message)
 </code></pre>
 <p>Print the argument string and halts the build process.</p>
+<p><em>(since 0.58.0)</em> Can take more than one argument that will be separated by
+space.</p>
 <h3 id="environment">environment()</h3>
 <pre><code class="language-meson">    environment_object environment(...)
 </code></pre>
@@ -1260,9 +1262,16 @@ overridden by specifying it with the <code>install_dir</code> keyword argument.<
 <p>Accepts the following keywords:</p>
 <ul>
 <li>
-<code>install_mode</code> <em>(since 0.47.0)</em>: can be used to specify the file mode in symbolic
+<p><code>install_mode</code> <em>(since 0.47.0)</em>: can be used to specify the file mode in symbolic
 format and optionally the owner/uid and group/gid for the installed files.
-An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.</li>
+An example value could be <code>['rwxr-sr-x', 'root', 'root']</code>.</p>
+</li>
+<li>
+<p><code>locale</code> <em>(since 0.58.0)</em>: can be used to specify the locale into which the
+man page will be installed within the manual page directory tree.
+An example manual might be <code>foo.fr.1</code> with a locale of <code>fr</code>, such
+that <code>{mandir}/{locale}/man{num}/foo.1</code> becomes the installed file.</p>
+</li>
 </ul>
 <p><em>(since 0.49.0)</em> <a href="https://mesonbuild.com/Release-notes-for-0-49-0.html#manpages-are-no-longer-compressed-implicitly">manpages are no longer compressed
 implicitly</a>.</p>
@@ -1432,6 +1441,8 @@ dictionaries does not guarantee ordering. <code>key</code> must be string,
 <li>an integer, boolean or string</li>
 <li>
 <em>since 0.57.0</em> an external program or a dependency</li>
+<li>
+<em>since 0.58.0</em> a feature option</li>
 <li>a list of those.</li>
 </ul>
 <p><code>summary()</code> can be called multiple times as long as the same
@@ -2030,9 +2041,9 @@ the "native" compiler if we're not.</p>
 </li>
 <li>
 <p><code>get_cross_property(propname, fallback_value)</code>:
-<em>Consider <code>get_external_property()</code> instead</em>. Returns the given
-property from a cross file, the optional fallback_value is returned
-if not cross compiling or the given property is not found.</p>
+<em>Deprecated since 0.58.0, use <code>get_external_property()</code> instead</em>.
+Returns the given property from a cross file, the optional fallback_value
+is returned if not cross compiling or the given property is not found.</p>
 </li>
 <li>
 <p><code>get_external_property(propname, fallback_value, native: true/false)</code>
@@ -2042,6 +2053,14 @@ The optional <code>native: true</code> forces retrieving a variable from the
 native file, even when cross-compiling.
 If <code>native: false</code> or not specified, variable is retrieved from the
 cross-file if cross-compiling, and from the native-file when not cross-compiling.</p>
+</li>
+<li>
+<p><code>has_external_property(propname, native: true/false)</code>
+<em>(since 0.58.0)</em>: checks whether the given property exist in a native or
+cross file. The optional <code>native: true</code> forces checking for the variable
+in the native file, even when cross-compiling.
+If <code>native: false</code> or not specified, the variable is checked for in the
+cross-file if cross-compiling, and in the native-file when not cross-compiling.</p>
 </li>
 <li>
 <p><code>can_run_host_binaries()</code> <em>(since 0.55.0)</em>: returns true if the build machine can run
