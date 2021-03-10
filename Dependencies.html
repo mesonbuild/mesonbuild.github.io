@@ -100,6 +100,9 @@ $('body').removeClass('no-script');
             <a href="Dlang-module.html">Dlang</a>
         </li>
         <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
             <a href="Fs-module.html">Filesystem</a>
         </li>
         <li>
@@ -299,6 +302,7 @@ Additional dependencies methods are <code>pkg-config</code>, <code>config-tool</
 <li><code>cmake</code></li>
 <li>
 <code>extraframework</code> (OSX only)</li>
+<li><code>system</code></li>
 </ol>
 <h2 id="cmake">CMake</h2>
 <p>Meson can use the CMake <code>find_package()</code> function to detect
@@ -380,6 +384,18 @@ in the cross file.</p>
 <pre><code class="language-meson">dep = dependency('appleframeworks', modules : 'foundation')
 </code></pre>
 <p>These dependencies can never be found for non-OSX hosts.</p>
+<h2 id="system">System</h2>
+<p>Some dependencies provide no valid methods for discovery, or do so only in
+some cases. Some examples of this are Zlib, which provides both pkg-config
+and cmake, except when it is part of the base OS image (such as in FreeBSD
+and macOS); OpenGL which has pkg-config on Unices from glvnd or mesa, but has
+no pkg-config on macOS and Windows.</p>
+<p>In these cases meson provides convenience wrappers in the form of <code>system</code>
+dependencies. Internally these dependencies do exactly what a user would do
+in the build system DSL or with a script, likely calling
+<code>compiler.find_library()</code>, setting <code>link_with</code> and <code>include_directories</code>. By
+putting these in meson upstream the barrier of using them is lowered, as
+projects using meson don't have to re-implement the logic.</p>
 <h2 id="blocks">Blocks</h2>
 <p>Enable support for Clang's blocks extension.</p>
 <pre><code class="language-meson">dep = dependency('blocks')

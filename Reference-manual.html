@@ -100,6 +100,9 @@ $('body').removeClass('no-script');
             <a href="Dlang-module.html">Dlang</a>
         </li>
         <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
             <a href="Fs-module.html">Filesystem</a>
         </li>
         <li>
@@ -1213,7 +1216,7 @@ to the prefix.</p>
 optionally the owner/uid and group/gid for the installed files. For
 example:</p>
 <p><code>install_mode: 'rw-r--r--'</code> for just the file mode</p>
-<p><code>install_mode: ['rw-r--r--', 'nobody', 'nobody']</code> for the file mode and the user/group</p>
+<p><code>install_mode: ['rw-r--r--', 'nobody', 'nogroup']</code> for the file mode and the user/group</p>
 <p><code>install_mode: ['rw-r-----', 0, 0]</code> for the file mode and uid/gid</p>
 </li>
 </ul>
@@ -2203,6 +2206,10 @@ manual</a> for usage info.</p>
 <li>
 <p><code>join(list_of_strings)</code>: the opposite of split, for example
 <code>'.'.join(['a', 'b', 'c']</code> yields <code>'a.b.c'</code>.</p>
+</li>
+<li>
+<p><code>replace('old_substr', 'new_str')</code>: replaces instances of <code>old_substr</code> in the
+string with <code>new_str</code> and returns a new string</p>
 </li>
 <li>
 <p><code>split(split_character)</code>: splits the string at the specified

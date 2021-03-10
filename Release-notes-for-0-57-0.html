@@ -100,6 +100,9 @@ $('body').removeClass('no-script');
             <a href="Dlang-module.html">Dlang</a>
         </li>
         <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
             <a href="Fs-module.html">Filesystem</a>
         </li>
         <li>
@@ -195,7 +198,7 @@ $('body').removeClass('no-script');
 <h2 id="project-version-can-be-specified-with-a-file">Project version can be specified with a file</h2>
 <p>Meson can be instructed to load a project's version string from an
 external file like this:</p>
-<pre><code class="language-meson">project('foo', 'c' version: files('VERSION'))
+<pre><code class="language-meson">project('foo', 'c', version: files('VERSION'))
 </code></pre>
 <p>The version file must contain exactly one line of text which will
 be used as the project's version. If the line ends in a newline

@@ -100,6 +100,9 @@ $('body').removeClass('no-script');
             <a href="Dlang-module.html">Dlang</a>
         </li>
         <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
             <a href="Fs-module.html">Filesystem</a>
         </li>
         <li>
@@ -319,6 +322,7 @@ int main (int argc, char ** argv) {
 above.  These strings can also be combined with the string formatting
 functionality described below.</p>
 <h3 id="string-formatting">String formatting</h3>
+<h4 id="format">.format()</h4>
 <p>Strings can be built using the string formatting functionality.</p>
 <pre><code class="language-meson">template = 'string: @0@, number: @1@, bool: @2@'
 res = template.format('text', 1, true)
@@ -326,9 +330,34 @@ res = template.format('text', 1, true)
 </code></pre>
 <p>As can be seen, the formatting works by replacing placeholders of type
 <code>@number@</code> with the corresponding argument.</p>
+<h4 id="format-strings">Format strings</h4>
+<p><em>(Added 0.58)</em></p>
+<p>Format strings can be used as a non-positional alternative to the
+string formatting functionality described above.</p>
+<pre><code class="language-meson">n = 10
+m = 'hi'
+
+s = f'int: @n@, string: @m@'
+# s now has the value 'int: 10, string: hi'
+</code></pre>
+<p>Currently only identity-expressions are supported inside of format
+strings, meaning you cannot use arbitrary Meson expressions inside of them.</p>
+<pre><code class="language-meson">n = 10
+m = 5
+
+# The following is not a valid format string
+s = f'result: @n + m@'
+</code></pre>
 <h3 id="string-methods">String methods</h3>
 <p>Strings also support a number of other methods that return transformed
 copies.</p>
+<h4 id="replace">.replace()</h4>
+<p>Since 0.58.0, you can replace a substring from a string.</p>
+<pre><code class="language-meson"># Replaces all instances of one substring with another
+s = 'semicolons;as;separators'
+s = s.replace('as', 'are')
+# 's' now has the value of 'semicolons;are;separators'
+</code></pre>
 <h4 id="strip">.strip()</h4>
 <pre><code class="language-meson"># Similar to the Python str.strip(). Removes leading/ending spaces and newlines
 define = ' -Dsomedefine '
