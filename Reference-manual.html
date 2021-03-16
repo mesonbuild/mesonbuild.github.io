@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -2126,6 +2126,19 @@ function call.</p>
 </li>
 <li>
 <p><code>version()</code>: return a string with the version of Meson.</p>
+</li>
+<li>
+<p><code>add_devenv()</code>: <em>(Since 0.58.0)</em> add an <a href="Reference-manual.html#environment"><code>environment()</code></a> object
+to the list of environments that will be applied when using <a href="Commands.html#devenv"><code>meson devenv</code></a>
+command line. This is useful for developpers who wish to use the project without
+installing it, it is often needed to set for example the path to plugins
+directory, etc. Alternatively, a list or dictionary can be passed as first
+argument.</p>
+<pre><code class="language-meson">devenv = environment()
+devenv.set('PLUGINS_PATH', meson.current_build_dir())
+...
+meson.add_devenv(devenv)
+</code></pre>
 </li>
 </ul>
 <h3 id="build_machine-object">

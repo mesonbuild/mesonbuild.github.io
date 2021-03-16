@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -750,6 +750,45 @@ Commands:
                                         project
 </code></pre>
 <p>See <a href="Using-wraptool.html">the WrapDB tool documentation</a> for more info.</p>
+<h3 id="devenv">devenv</h3>
+<p><em>(since 0.58.0)</em></p>
+<pre><code class="language-inc">$ meson devenv [-h] [-C WD] ...
+</code></pre>
+<p>Runs a command, or open interactive shell if no command is provided, with
+environment setup to run project from the build directory, without installation.</p>
+<p>We automatically handle <code>bash</code> and set <code>$PS1</code> accordingly. If the automatic <code>$PS1</code>
+override is not desired (maybe you have a fancy custom prompt), set the
+<code>$MESON_DISABLE_PS1_OVERRIDE</code> environment variable and use <code>$MESON_PROJECT_NAME</code>
+when setting the custom prompt, for example with a snippet like the following:</p>
+<pre><code class="language-bash">...
+if [[ -n "${MESON_PROJECT_NAME-}" ]];
+then
+  PS1+="[ ${MESON_PROJECT_NAME} ]"
+fi
+...
+</code></pre>
+<p>These variables are set in environment in addition to those set using <code>meson.add_devenv()</code>:</p>
+<ul>
+<li>
+<code>MESON_DEVENV</code> is defined to <code>'1'</code>.</li>
+<li>
+<code>MESON_PROJECT_NAME</code> is defined to the main project's name.</li>
+<li>
+<code>PKG_CONFIG_PATH</code> includes the directory where Meson generates <code>-uninstalled.pc</code>
+files.</li>
+<li>
+<code>PATH</code> includes every directory where there is an executable that would be
+installed into <code>bindir</code>. On windows it also includes every directory where there
+is a DLL needed to run those executables.</li>
+</ul>
+<pre><code class="language-inc">positional arguments:
+  command     Command to run in developer environment (default: interactive
+              shell)
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -C WD       directory to cd into before running
+</code></pre>
 
     </div>
         
