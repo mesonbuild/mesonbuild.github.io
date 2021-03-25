@@ -1921,6 +1921,31 @@ that build target. Without that, Meson will not know the order in
 which to build the targets.</p>
 <p>If you desire more specific behavior than what this command provides,
 you should use <code>custom_target</code>.</p>
+<h3 id="range">range()</h3>
+<pre><code class="language-meson">    rangeobject range(stop)
+    rangeobject range(start, stop[, step])
+</code></pre>
+<p><em>Since 0.58.0</em></p>
+<p>Return an opaque object that can be only be used in <code>foreach</code> statements.</p>
+<ul>
+<li>
+<code>start</code> must be integer greater or equal to 0. Defaults to 0.</li>
+<li>
+<code>stop</code> must be integer greater or equal to <code>start</code>.</li>
+<li>
+<code>step</code> must be integer greater or equal to 1. Defaults to 1.</li>
+</ul>
+<p>It cause the <code>foreach</code> loop to be called with the value from <code>start</code> included
+to <code>stop</code> excluded with an increment of <code>step</code> after each loop.</p>
+<pre><code class="language-meson"># Loop 15 times with i from 0 to 14 included.
+foreach i : range(15)
+   ...
+endforeach
+</code></pre>
+<p>The range object can also be assigned to a variable and indexed.</p>
+<pre><code class="language-meson">r = range(5, 10, 2)
+assert(r[2] == 9)
+</code></pre>
 <h2 id="builtin-objects">Built-in objects</h2>
 <p>These are built-in objects that are always available.</p>
 <h3 id="meson-object">
@@ -1936,14 +1961,25 @@ distribution source has been generated but before it is
 archived. Note that this runs the script file that is in the
 <em>staging</em> directory, not the one in the source directory. If the
 script file can not be found in the staging directory, it is a hard
-error. This command can only invoked from the main project, calling
-it from a subproject is a hard error. <em>(since 0.49.0)</em> Accepts multiple arguments
-for the script. <em>(since 0.54.0)</em> The <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>
-environment variables are set when dist scripts are run.</p>
-<p><em>(since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, and <code>find_program</code>
-as well as strings.</p>
-<p><em>(since 0.57.0)</em> <code>file</code> objects and the output of <code>configure_file</code> may be
-used as the <code>script_name</code> parameter.</p>
+error. The <code>MESON_DIST_ROOT</code> environment variables is set when dist scripts is
+run.
+<em>(since 0.49.0)</em> Accepts multiple arguments for the script.
+<em>(since 0.54.0)</em> The <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>
+environment variables are set when dist scripts are run. They are path to the
+root source and build directory of the main project, even when the script
+comes from a subproject.
+<em>(since 0.55.0)</em> The output of <code>configure_file</code>, <code>files</code>, and <code>find_program</code>
+as well as strings.
+<em>(since 0.57.0)</em> <code>file</code> objects and the output of <code>configure_file</code> may be
+used as the <code>script_name</code> parameter.
+<em>(since 0.58.0)</em> This command can be invoked from a subproject, it was a hard
+error in earlier versions. Subproject dist scripts will only be executed
+when running <code>meson dist --include-subprojects</code>. <code>MESON_PROJECT_SOURCE_ROOT</code>,
+<code>MESON_PROJECT_BUILD_ROOT</code> and <code>MESON_PROJECT_DIST_ROOT</code> environment
+variables are set when dist scripts are run. They are identical to
+<code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code> and <code>MESON_DIST_ROOT</code> for main project
+scripts, but for subproject scripts they have the path to the root of the
+subproject appended, usually <code>subprojects/&lt;subproject-name&gt;</code>.</p>
 </li>
 <li>
 <p><code>add_install_script(script_name, arg1, arg2, ...)</code>: causes the script
@@ -2793,14 +2829,19 @@ not working correctly.</p>
 </ul>
 </li>
 <li>
-<p><code>get_variable(cmake : str, pkgconfig : str, configtool : str, internal: str, default_value : str, pkgconfig_define : [str, str])</code>
+<p><code>get_variable(varname, cmake : str, pkgconfig : str, configtool : str, internal: str, default_value : str, pkgconfig_define : [str, str])</code>
 <em>(since 0.51.0)</em>: a generic variable getter method, which replaces the
 get_<em>type</em>_variable methods. This allows one to get the variable
 from a dependency without knowing specifically how that dependency
 was found. If default_value is set and the value cannot be gotten
 from the object then default_value is returned, if it is not set
-then an error is raised.</p>
-<p><em>(since 0.54.0)</em> added <code>internal</code> keyword.</p>
+then an error is raised.
+<em>(since 0.54.0)</em> added <code>internal</code> keyword.
+<em>(since 0.58.0)</em> added <code>varname</code> as first positional argument. It is used as
+default value for <code>cmake</code>, <code>pkgconfig</code>, <code>configtool</code> and <code>internal</code> keyword
+arguments. It is useful in the common case where <code>pkgconfig</code> and <code>internal</code>
+use the same variable name, in which case it's easier to write <code>dep.get_variable('foo')</code>
+instead of <code>dep.get_variable(pkgconfig: 'foo', internal: 'foo')</code>.</p>
 </li>
 </ul>
 <h3 id="disabler-object">
@@ -2861,8 +2902,17 @@ joined by the separator, e.g.  <code>env.set('FOO', 'BAR'),</code> sets envvar
 <code>FOO</code> to value <code>BAR</code>. See <code>append()</code> above for how separators work.</p>
 </li>
 </ul>
-<p><strong>Note:</strong> All these methods overwrite the previously-defined value(s)
-if called twice with the same <code>varname</code>.</p>
+<p><em>Since 0.58.0</em> <code>append()</code> and <code>prepend()</code> methods can be called multiple times
+on the same <code>varname</code>. Earlier Meson versions would warn and only the last
+operation took effect.</p>
+<pre><code class="language-meson">env = environment()
+
+# MY_PATH will be '0:1:2:3'
+env.set('MY_PATH', '1')
+env.append('MY_PATH', '2')
+env.append('MY_PATH', '3')
+env.prepend('MY_PATH', '0')
+</code></pre>
 <h3 id="external-library-object">
 <code>external library</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#find_library"><code>find_library()</code></a> and

@@ -780,6 +780,15 @@ files.</li>
 <code>PATH</code> includes every directory where there is an executable that would be
 installed into <code>bindir</code>. On windows it also includes every directory where there
 is a DLL needed to run those executables.</li>
+<li>
+<code>LD_LIBRARY_PATH</code> includes every directory where there is a shared library that
+would be installed into <code>libdir</code>. This allows to run system application using
+custom build of some libraries. For example running system GEdit when building
+GTK from git. On OSX the environment variable is <code>DYLD_LIBRARY_PATH</code> and
+<code>PATH</code> on Windows.</li>
+<li>
+<code>GI_TYPELIB_PATH</code> includes every directory where a GObject Introspection
+typelib is built. This is automatically set when using <code>gnome.generate_gir()</code>.</li>
 </ul>
 <pre><code class="language-inc">positional arguments:
   command     Command to run in developer environment (default: interactive
