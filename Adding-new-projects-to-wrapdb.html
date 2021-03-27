@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -337,6 +337,12 @@ one commit.</p>
 git commit -a --amend
 git push --force
 </code></pre>
+<h3 id="request-a-new-release-version-to-an-existing-repository">Request a new release version to an existing repository</h3>
+<p>Adding new releases to an existing repo is straightforward. All you
+need to do is to follow the rules discussed above but when you create
+the merge request, file it against the master branch. The repository
+reviewer will create the necessary branch and retarget your merge
+request accordingly.</p>
 <h2 id="what-is-done-by-wrapdb-maintainers">What is done by WrapDB maintainers</h2>
 <p><a href="Wrap-maintainer-tools.md">mesonwrap tools</a> must be used for the tasks
 below.</p>
@@ -365,7 +371,11 @@ to functionality. All such changes must be submitted to upstream. You
 may also host your own Git repo with the changes if you wish. The Wrap
 system has native support for Git subprojects.</p>
 <h2 id="reviewing-wraps">Reviewing wraps</h2>
-<p>See <a href="Wrap-review-guidelines.html">Wrap review guidelines</a>.</p>
+<p>See <a href="Wrap-review-guidelines.html">Wrap review guidelines</a>, especially
+the part about tooling that you can use to check for the most common
+problems yourself. Fixing all issues reported by the tool is a
+mandatory requirement for getting your MR accepted, so doing this
+proactively makes the review process smoother.</p>
 
     </div>
         
