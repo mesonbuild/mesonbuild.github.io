@@ -328,12 +328,21 @@ has native support for these with the <code>b_sanitize</code> option.</p>
 sanitizer will abort executables which have bugs so they show up as
 test failures.</p>
 <h2 id="use-clang-static-analyzer">Use Clang static analyzer</h2>
-<p>Install scan-build and configure your project. Then do this:</p>
-<pre><code class="language-console">$ meson compile scan-build
+<p>Install scan-build program, then do this:</p>
+<pre><code class="language-console">$ meson setup builddir
+$ ninja -C builddir scan-build
 </code></pre>
 <p>You can use the <code>SCANBUILD</code> environment variable to choose the
 scan-build executable.</p>
-<pre><code class="language-console">$ SCANBUILD=&lt;your exe&gt; meson compile scan-build
+<pre><code class="language-console">$ SCANBUILD=&lt;your exe&gt; ninja -C builddir scan-build
+</code></pre>
+<p>You can use it for passing arguments to scan-build program by
+creating a script, for example:</p>
+<pre><code class="language-sh">#!/bin/sh
+scan-build -v --status-bugs "$@"
+</code></pre>
+<p>And then pass it through the variable (remember to use absolute path):</p>
+<pre><code class="language-console">$ SCANBUILD=$(pwd)/my-scan-build.sh ninja -C builddir scan-build
 </code></pre>
 <h2 id="use-profile-guided-optimization">Use profile guided optimization</h2>
 <p>Using profile guided optimization with GCC is a two phase
