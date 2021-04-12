@@ -1695,8 +1695,7 @@ platforms, notably OSX.  Consider using a
 <pre><code class="language-meson">    buildtarget static_library(library_name, list_of_sources, ...)
 </code></pre>
 <p>Builds a static library with the given sources. Positional and keyword
-arguments are otherwise the same as for <a href="Reference-manual.html#library"><code>library</code></a>, but it
-has one argument the others don't have:</p>
+arguments are as for <a href="Reference-manual.html#library"><code>library</code></a>, as well as:</p>
 <ul>
 <li>
 <p><code>pic</code> <em>(since 0.36.0)</em>: builds the library as positional
@@ -2037,7 +2036,10 @@ or <code>xcode</code>.</p>
 <p><code>build_root()</code>: returns a string with the absolute path to the build
 root directory. <em>(deprecated since 0.56.0)</em>: this function will return the
 build root of the parent project if called from a subproject, which is usually
-not what you want. Try using <code>current_build_dir()</code> or <code>project_build_root()</code>.</p>
+not what you want. Try using <code>current_build_dir()</code> or <code>project_build_root()</code>.
+In the rare cases where the root of the main project is needed,
+use <code>global_build_root()</code> that has the same behaviour but with a more explicit
+name.</p>
 </li>
 <li>
 <p><code>source_root()</code>: returns a string with the absolute path to the
@@ -2046,7 +2048,10 @@ to refer to files in the root source directory instead of
 constructing paths manually with <code>meson.source_root()</code>.
 <em>(deprecated since 0.56.0)</em>: This function will return the source root of the
 parent project if called from a subproject, which is usually not what you want.
-Try using <code>current_source_dir()</code> or <code>project_source_root()</code>.</p>
+Try using <code>current_source_dir()</code> or <code>project_source_root()</code>.
+In the rare cases where the root of the main project is needed,
+use <code>global_source_root()</code> that has the same behaviour but with a more explicit
+name.</p>
 </li>
 <li>
 <p><code>project_build_root()</code> <em>(since 0.56.0)</em>: returns a string with the absolute path
@@ -2055,6 +2060,18 @@ to the build root directory of the current (sub)project.</p>
 <li>
 <p><code>project_source_root()</code> <em>(since 0.56.0)</em>: returns a string with the absolute path
 to the source root directory of the current (sub)project.</p>
+</li>
+<li>
+<p><code>global_build_root()</code> <em>(since 0.58.0)</em>: returns a string with the absolute path
+to the build root directory. This function will return the build root of the
+main project if called from a subproject, which is usually not what you want.
+It is usually preferable to use <code>current_build_dir()</code> or <code>project_build_root()</code>.</p>
+</li>
+<li>
+<p><code>global_source_root()</code> <em>(since 0.58.0)</em>: returns a string with the absolute path
+to the source root directory. This function will return the source root of the
+main project if called from a subproject, which is usually not what you want.
+It is usually preferable to use <code>current_source_dir()</code> or <code>project_source_root()</code>.</p>
 </li>
 <li>
 <p><code>current_build_dir()</code>: returns a string with the absolute path to the
