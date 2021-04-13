@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Obtendo o Meson</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Getting-meson_ptbr.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="obtendo-o-meson">Obtendo o Meson</h1>
+<p>Meson é implementado em Python 3, e requer a versão 3.6 ou mais nova.
+se o seu sistema operacional provê um gerenciador de pacotes, você deve
+instalar o Meson com ele. Para plataformas que não tem um gerenciador de
+pacotes, você precisa baixa-lo da <a href="https://www.python.org/downloads/">página inicial do Python</a>. Veja abaixo
+<a href="Getting-meson_ptbr.html#platformspecific-install-quirks">peculiaridades do Python3 específicas de plataformas</a>.</p>
+<h2 id="baixando-o-meson">Baixando o Meson</h2>
+<p><em>Releases</em> do Meson podem ser baixadas da [página de releases do GitHub]
+e você pode executar <code>./meson.py</code> de dentro do <em>release</em> ou do próprio repositório
+do git sem fazer nada de especial.</p>
+<p>No Windows, se você não instalar o Python com a opção do instalador que fazem
+os <em>scripts</em> Python executáveis, você vai ter que executar <code>python /path/to/meson.py</code>, onde <code>python</code> é o Python 3.6 ou mais novo.</p>
+<p>O código de desenvolvimento mais recente pode ser obtido diretamente do <a href="https://github.com/mesonbuild/meson">Git</a>,
+e nós lutamos para garatir que ele vai estar sempre funcionando e usável. Todos
+<em>commits</em> passam por um processo de <em>pull-request</em> que executa CI e testam diversas
+plataformas.</p>
+<h2 id="instalando-o-meson-com-o-pip">Instalando o Meson com o pip</h2>
+<p>O Meson está disponível no <a href="https://pypi.python.org/pypi/meson/">Indice de Pacotes do Python</a> e pode ser instalado com
+<code>sudo pip3 install meson</code> que requer root e vai instala-lo para todo o sistema.</p>
+<p>Se você já baixou uma cópia do código do Meson, você pode instalar com
+<code>sudo pip3 install path/to/source/root/</code>.</p>
+<p>Como alternativa, você pode usar o <code>pip3 install --user meson</code> que vai instalar
+o Meson para o seu usuário e não requer nenhum privilégio especial. Esse comando
+vai instalar o pacote em <code>~/.local/</code>, então você terá que adicionar <code>~/.local/bin</code>
+para o seu <code>PATH</code>, e <code>sudo meson install</code> vai estar completamente quebrado já que
+o programa não vai estar disponível para o root. Apeas use uma cópia de usuário do Meson
+se você não se importa sobre instalar os projetos como root.</p>
+<h2 id="instalando-o-meson-e-o-ninja-com-o-instalador-msi">Instalando o Meson e o Ninja com o instalador MSI</h2>
+<p>Nós provemos um instalador MSI na <a href="https://github.com/mesonbuild/meson/releases">página de <em>release</em> do GitHub</a> que pode ser usada
+para instalar tanto o Meson quanto o Ninja de uma vez para o Windows. O instalador também
+contém uma cópia integrada do Python, então scripts que usam o <a href="Python-module.html">módulo Python</a>
+e não tem nenhuma dependência externa vão continuar funcionando como esperado.</p>
+<p>Por favor, note que essa é uma funcionalidade nova, então relatórios de bugs são esperados e bem-vindos!</p>
+<h2 id="dependncias">Dependências</h2>
+<p>Na maioria dos casos comums, você vai precisar do <a href="https://ninja-build.org/">executável do Ninja</a> para usar o <em>backend</em> do <code>ninja</code>,
+que é o padrão no Meson. Esse <em>backend</em> pode ser usado em todas plataformas e com todas <strong>toolchains</strong>, incluindo o GCC,
+Clang, Visual Studio, MinGW, ICC, ARMCC, etc.</p>
+<p>Você deve usar a versão provida pelo seu gerenciador de pacotes se possível, caso contrário,
+baixe o binário executável da <a href="https://github.com/ninja-build/ninja/releases">página de <em>release</em> do projeto Ninja</a>.</p>
+<p>Se você apenas usa o <em>backend</em> do Visual Studio (<code>--backend=vs</code>) para gerar soluções do Visual Studio no Windows ou o
+<em>backend</em> do XCode (<code>--backend=xcode</code>) para gerar projetos no macOS, você não precisa do Ninja.</p>
+<h1 id="peculiaridades-de-instalao-especficas-de-plataformas">Peculiaridades de instalação específicas de plataformas</h1>
+<h2 id="peculiaridades-do-python-3-no-windows">Peculiaridades do Python 3 no Windows</h2>
+<p>Quando estiver instalando o Python 3, é altamente recomendável (mas não obrigatório)
+que você selecione as opções do instalador como a seguir:</p>
+<p><img src="images/py3-install-1.png" alt="passo 1 do instalador" title="Ative 'Add Python 3.6 to PATH' e clique em 'Customize installation'" id="passo-1-do-instalador"></p>
+<p><img src="images/py3-install-2.png" alt="passo 2 do instalador" title="Funcionalidade Opcional: garanta que 'pip' está ativado" id="passo-2-do-instalador"></p>
+<p><img src="images/py3-install-3.png" alt="passo 3 do instalador" title="Opções Avançadas: ative 'Instalar para todos usuários'" id="passo-3-do-instalador"></p>
+<p>Com isso, você terá o <code>python</code> e o <code>pip</code> no <code>PATH</code>, e você poderá instalar o Meson com o pip. Você também vai poder
+executar o comando <code>meson</code> em qualquer shell no Windows ao invés de ter que executar <code>py -3</code> com o caminho completo para
+o <em>script</em> <code>meson.py</code>.</p>
+<h2 id="peculiaridades-do-python-3-no-msys2">Peculiaridades do Python 3 no MSYS2</h2>
+<p>Se você está usando o MSYS2 no Windows como seu ambiente de desenvolvimento,
+por favor se certifique que você não esteja usando o pacote <code>msys/python</code> para
+fornecer o Python 3. Uso o <code>mingw32/mingw-w64-i686-python3</code> ou o
+If you are using MSYS2 on Windows as your development environment,
+please make sure that you <strong>do not use</strong> the <code>msys/python</code> package to
+provide Python 3. Use either <code>mingw32/mingw-w64-i686-python3</code> or <code>mingw64/mingw-w64-x86_64-python3</code>
+dependendo de para qual <em>target</em> do MinGW você está compilando.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Getting-meson_ptbr.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
