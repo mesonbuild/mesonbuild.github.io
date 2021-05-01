@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -615,8 +615,8 @@ must be include_directories objects or <em>(since 0.50.0)</em> plain strings</li
 <code>sources</code>: sources to add to targets (or generated header files
 that should be built before sources including them are built)</li>
 <li>
-<code>version</code>: the version of this dependency, such as <code>1.2.3</code>
-</li>
+<code>version</code>: the version of this dependency, such as <code>1.2.3</code>. Defaults to the
+project version.</li>
 <li>
 <code>variables</code> <em>(since 0.54.0)</em>: a dictionary of arbitrary strings, this is meant to be used
 in subprojects where special variables would be provided via cmake or
@@ -2274,8 +2274,8 @@ manual</a> for usage info.</p>
 <code>'.'.join(['a', 'b', 'c']</code> yields <code>'a.b.c'</code>.</p>
 </li>
 <li>
-<p><code>replace('old_substr', 'new_str')</code>: replaces instances of <code>old_substr</code> in the
-string with <code>new_str</code> and returns a new string</p>
+<p><code>replace('old_substr', 'new_str')</code> <em>(since 0.58.0)</em>: replaces instances of
+<code>old_substr</code> in the string with <code>new_str</code> and returns a new string</p>
 </li>
 <li>
 <p><code>split(split_character)</code>: splits the string at the specified

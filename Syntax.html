@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -219,8 +219,10 @@ values to two different variables.</p>
 var2 = 102
 </code></pre>
 <p>One important difference in how variables work in Meson is that all
-objects are immutable. This is different from, for example, how Python
-works.</p>
+objects are immutable. When you see an operation which appears like
+a mutation, actually a new object is created and assigned to the
+name. This is different from, for example, how Python works for
+objects, but similar to e.g. Python strings.</p>
 <pre><code class="language-meson">var1 = [1, 2, 3]
 var2 = var1
 var2 += [4]
