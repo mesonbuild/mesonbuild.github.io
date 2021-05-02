@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.58.0</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+" data-spy="scroll" data-target="#toc" data-offset="70">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Release-notes-for-0-58-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="new-features">New features</h1>
+<h2 id="new-mesonglobal_build_root-and-mesonglobal_source_root-methods">New <code>meson.global_build_root()</code> and <code>meson.global_source_root()</code> methods</h2>
+<p>Returns the root source and build directory of the main project.</p>
+<p>Those are direct replacement for <code>meson.build_root()</code> and <code>meson.source_root()</code>
+that have been deprecated since 0.56.0. In some rare occasions they could not be
+replaced by <code>meson.project_source_root()</code> or <code>meson.current_source_dir()</code>, in
+which case the new methods can now be used instead. Old methods are still
+deprecated because their names are not explicit enough and created many issues
+when a project is being used as a subproject.</p>
+<h2 id="developer-environment">Developer environment</h2>
+<p>New method <code>meson.add_devenv()</code> adds an <a href="Release-notes-for-0-58-0.html#environment"><code>environment()</code></a> object
+to the list of environments that will be applied when using <code>meson devenv</code>
+command line. This is useful for developpers who wish to use the project without
+installing it, it is often needed to set for example the path to plugins
+directory, etc. Alternatively, a list or dictionary can be passed as first
+argument.</p>
+<pre><code class="language-meson">devenv = environment()
+devenv.set('PLUGINS_PATH', meson.current_build_dir())
+...
+meson.add_devenv(devenv)
+</code></pre>
+<p>New command line has been added: <code>meson devenv -C builddir [&lt;command&gt;]</code>.
+It runs a command, or open interactive shell if no command is provided, with
+environment setup to run project from the build directory, without installation.</p>
+<p>These variables are set in environment in addition to those set using <code>meson.add_devenv()</code>:</p>
+<ul>
+<li>
+<code>MESON_DEVENV</code> is defined to <code>'1'</code>.</li>
+<li>
+<code>MESON_PROJECT_NAME</code> is defined to the main project's name.</li>
+<li>
+<code>PKG_CONFIG_PATH</code> includes the directory where Meson generates <code>-uninstalled.pc</code>
+files.</li>
+<li>
+<code>PATH</code> includes every directory where there is an executable that would be
+installed into <code>bindir</code>. On windows it also includes every directory where there
+is a DLL needed to run those executables.</li>
+<li>
+<code>LD_LIBRARY_PATH</code> includes every directory where there is a shared library that
+would be installed into <code>libdir</code>. This allows to run system application using
+custom build of some libraries. For example running system GEdit when building
+GTK from git. On OSX the environment variable is <code>DYLD_LIBRARY_PATH</code> and
+<code>PATH</code> on Windows.</li>
+<li>
+<code>GI_TYPELIB_PATH</code> includes every directory where a GObject Introspection
+typelib is built. This is automatically set when using <code>gnome.generate_gir()</code>.</li>
+</ul>
+<h2 id="pipe-no-longer-used-by-default">
+<code>-pipe</code> no longer used by default</h2>
+<p>Meson used to add the <code>-pipe</code> command line argument to all compilers
+that supported it, but no longer does. If you need this, then you can
+add it manually. However note that you should not do this unless you
+have actually measured that it provides performance improvements. In
+our tests we could not find a case where adding <code>-pipe</code> made
+compilation faster and using <code>-pipe</code> <a href="https://github.com/mesonbuild/meson/issues/8508">can cause sporadic build
+failures in certain
+cases</a>.</p>
+<h2 id="mesonadd_dist_script-allowd-in-subprojects">
+<code>meson.add_dist_script()</code> allowd in subprojects</h2>
+<p><code>meson.add_dist_script()</code> can now be invoked from a subproject, it was a hard
+error in earlier versions. Subproject dist scripts will only be executed
+when running <code>meson dist --include-subprojects</code>. <code>MESON_PROJECT_SOURCE_ROOT</code>,
+<code>MESON_PROJECT_BUILD_ROOT</code> and <code>MESON_PROJECT_DIST_ROOT</code> environment variables
+are set when dist scripts are run. They are identical to <code>MESON_SOURCE_ROOT</code>,
+<code>MESON_BUILD_ROOT</code> and <code>MESON_DIST_ROOT</code> for main project scripts, but for
+subproject scripts they have the path to the root of the subproject appended,
+usually <code>subprojects/&lt;subproject-name&gt;</code>.</p>
+<p>Note that existing dist scripts likely need to be modified to use those new
+environment variables instead of <code>MESON_DIST_ROOT</code> to work properly when used
+from a subproject.</p>
+<h2 id="do-not-add-custom-target-dir-to-header-path-if-implicit_include_directories-is-false">Do not add custom target dir to header path if <code>implicit_include_directories</code> is <code>false</code>
+</h2>
+<p>If you do the following:</p>
+<pre><code class="language-meson"># in some subdirectory
+gen_h = custom_target(...)
+# in some other directory
+executable('foo', 'foo.c', gen_h)
+</code></pre>
+<p>then the output directory of the custom target is automatically added
+to the header search path. This is convenient, but sometimes it can
+lead to problems. Starting with this version, the directory will no
+longer be put in the search path if the target has
+<code>implicit_include_directories: false</code>. In these cases you need to set
+up the path manually with <code>include_directories</code>.</p>
+<h2 id="multiple-append-and-prepend-in-environment-object">Multiple append() and prepend() in <code>environment()</code> object</h2>
+<p><code>append()</code> and <code>prepend()</code> methods can now be called multiple times
+on the same <code>varname</code>. Earlier Meson versions would warn and only the last
+opperation was taking effect.</p>
+<pre><code class="language-meson">env = environment()
+
+# MY_PATH will be '0:1:2:3'
+env.set('MY_PATH', '1')
+env.append('MY_PATH', '2')
+env.append('MY_PATH', '3')
+env.prepend('MY_PATH', '0')
+</code></pre>
+<h2 id="depget_variablevarname"><code>dep.get_variable(varname)</code></h2>
+<p><code>dep.get_variable()</code> now has <code>varname</code> as first positional argument.
+It is used as default value for <code>cmake</code>, <code>pkgconfig</code>, <code>configtool</code> and <code>internal</code>
+keyword arguments. It is useful in the common case where <code>pkgconfig</code> and <code>internal</code>
+use the same variable name, in which case it's easier to write <code>dep.get_variable('foo')</code>
+instead of <code>dep.get_variable(pkgconfig: 'foo', internal: 'foo')</code>.</p>
+<h2 id="clangformat-include-and-ignore-lists">clang-format include and ignore lists</h2>
+<p>When clang-format is installed and a <code>.clang-format</code> file is found at the main
+project's root source directory, Meson automatically adds a <code>clang-format</code> target
+that reformat all C and C++ files.</p>
+<p>It is now possible to restrict files to be reformatted with optional
+<code>.clang-format-include</code> and <code>.clang-format-ignore</code> files.</p>
+<p>The file <code>.clang-format-include</code> contains a list of patterns matching the files
+that will be reformatted. The <code>**</code> pattern matches this directory and all
+subdirectories recursively. Empty lines and lines starting with <code>#</code> are ignored.
+If <code>.clang-format-include</code> is not found, the pattern defaults to <code>**/*</code> which
+means all files recursively in the source directory but has the disadvantage to
+walk the whole source tree which could be slow in the case it contains lots of
+files.</p>
+<p>Example of <code>.clang-format-include</code> file:</p>
+<pre><code># All files in src/ and its subdirectories
+src/**/*
+
+# All files in include/ but not its subdirectories
+include/*
+</code></pre>
+<p>The file <code>.clang-format-ignore</code> contains a list of patterns matching the files
+that will be excluded. Files matching the include list (see above) that match
+one of the ignore pattern will not be reformatted. Unlike include patters, ignore
+patterns does not support <code>**</code> and a single <code>*</code> match any characters including
+path separators. Empty lines and lines starting with <code>#</code> are ignored.</p>
+<p>The build directory and file without a well known C or C++ suffix are always
+ignored.</p>
+<p>Example of <code>.clang-format-ignore</code> file:</p>
+<pre><code># Skip C++ files in src/ directory
+src/*.cpp
+</code></pre>
+<p>A new target <code>clang-format-check</code> has been added. It returns an error code if
+any file needs to be reformatted. This is intended to be used by CI.</p>
+<h2 id="introducing-format-strings-to-the-meson-language">Introducing format strings to the Meson language</h2>
+<p>In addition to the conventional <code>'A string @0@ to be formatted @1@'.format(n, m)</code>
+method of formatting strings in the Meson language, there's now the additional
+<code>f'A string @n@ to be formatted @m@'</code> notation that provides a non-positional
+and clearer alternative. Meson's format strings are currently restricted to
+identity-expressions, meaning <code>f'format @'m' + 'e'@'</code> will not parse.</p>
+<h2 id="skip-subprojects-installation">Skip subprojects installation</h2>
+<p>It is now possible to skip installation of some or all subprojects. This is
+useful when subprojects are internal dependencies static linked into the main
+project.</p>
+<p>By default all subprojects are still installed.</p>
+<ul>
+<li>
+<code>meson install -C builddir --skip-subprojects</code> installs only the main project.</li>
+<li>
+<code>meson install -C builddir --skip-subprojects foo,bar</code> installs the main project
+and all subprojects except for subprojects <code>foo</code> and <code>bar</code> if they are used.</li>
+</ul>
+<h2 id="string-replace">String <code>.replace()</code>
+</h2>
+<p>String objects now have a method called replace for replacing all instances of a
+substring in a string with another.</p>
+<pre><code class="language-meson">s = 'aaabbb'
+s = s.replace('aaa', 'bbb')
+# 's' is now 'bbbbbb'
+</code></pre>
+<h2 id="mesonget_cross_property-has-been-deprecated">
+<code>meson.get_cross_property()</code> has been deprecated</h2>
+<p>It's a pure subset of <code>meson.get_external_property</code>, and works strangely in
+host == build configurations, since it would be more accurately described as
+<code>get_host_property</code>.</p>
+<h2 id="new-range-function">New <code>range()</code> function</h2>
+<pre><code class="language-meson">    rangeobject range(stop)
+    rangeobject range(start, stop[, step])
+</code></pre>
+<p>Return an opaque object that can be only be used in <code>foreach</code> statements.</p>
+<ul>
+<li>
+<code>start</code> must be integer greater or equal to 0. Defaults to 0.</li>
+<li>
+<code>stop</code> must be integer greater or equal to <code>start</code>.</li>
+<li>
+<code>step</code> must be integer greater or equal to 1. Defaults to 1.</li>
+</ul>
+<p>It cause the <code>foreach</code> loop to be called with the value from <code>start</code> included
+to <code>stop</code> excluded with an increment of <code>step</code> after each loop.</p>
+<pre><code class="language-meson"># Loop 15 times with i from 0 to 14 included.
+foreach i : range(15)
+   ...
+endforeach
+</code></pre>
+<p>The range object can also be assigned to a variable and indexed.</p>
+<pre><code class="language-meson">r = range(5, 10, 2)
+assert(r[2] == 9)
+</code></pre>
+<h2 id="xcode-improvements">Xcode improvements</h2>
+<p>The Xcode backend has been much improved and should now we usable
+enough for day to day development.</p>
+<h2 id="use-fallback-from-wrap-file-when-force-fallback">Use fallback from wrap file when force fallback</h2>
+<p>Optional dependency like below will now fallback to the subproject
+defined in the wrap file in the case <code>wrap_mode</code> is set to <code>forcefallback</code>
+or <code>force_fallback_for</code> contains the subproject.</p>
+<pre><code class="language-meson"># required is false because we could fallback to cc.find_library(), but in the
+# forcefallback case this now configure the subproject.
+dep = dependency('foo-1.0', required: false)
+if not dep.found()
+  dep = cc.find_library('foo', has_headers: 'foo.h')
+endif
+</code></pre>
+<pre><code class="language-ini">[wrap-file]
+...
+[provide]
+dependency_names = foo-1.0
+</code></pre>
+<h2 id="error-with-multiple-arguments">
+<code>error()</code> with multiple arguments</h2>
+<p>Just like <code>warning()</code> and <code>message()</code>, <code>error()</code> can now take more than one
+argument that will be separated by space.</p>
+<h2 id="specify-man-page-locale-during-installation">Specify man page locale during installation</h2>
+<p>Locale directories can now be passed to <code>install_man</code>:</p>
+<pre><code class="language-meson"># instead of
+# install_data('foo.fr.1', install_dir: join_paths(get_option('mandir'), 'fr', 'man1'), rename: 'foo.1')`
+install_man('foo.fr.1', locale: 'fr')
+</code></pre>
+<h2 id="passing-custom_target-output-to-pkggenerate">Passing <code>custom_target()</code> output to <code>pkg.generate()</code>
+</h2>
+<p>It is now allowed to pass libraries generated by a <code>custom_target()</code> to
+pkg-config file generator. The output filename must have a known library extension
+such as <code>.a</code>, <code>.so</code>, etc.</p>
+<h2 id="jdk-system-dependency">JDK System Dependency</h2>
+<p>When building projects such as those interacting with the JNI, you need access
+to a few header files located in a Java installation. This system dependency
+will add the correct include paths to your target. It assumes that either
+<code>JAVA_HOME</code> will be set to a valid Java installation, or the default <code>javac</code> on
+your system is a located in the <code>bin</code> directory of a Java installation. Note:
+symlinks are resolved.</p>
+<pre><code class="language-meson">jdk = dependency('jdk', version : '&gt;=1.8')
+</code></pre>
+<p>Currently this system dependency only works on <code>linux</code>, <code>win32</code>, and <code>darwin</code>.
+This can easily be extended given the correct information about your compiler
+and platform in an issue.</p>
+<h2 id="meson-subprojects-update-reset-now-reextract-tarballs">
+<code>meson subprojects update --reset</code> now re-extract tarballs</h2>
+<p>When using <code>--reset</code> option, the source tree of <code>[wrap-file]</code> subprojects is now
+deleted and re-extracted from cached tarballs, or re-downloaded. This is because
+Meson has no way to know if the source tree or the wrap file has been modified,
+and <code>--reset</code> should guarantee that latest code is being used on next reconfigure.</p>
+<p>Use <code>--reset</code> with caution if you do local changes on non-git subprojects.</p>
+<h2 id="allow-using-generator-with-customtaget-or-index-of-customtarget">Allow using generator with CustomTaget or Index of CustomTarget.</h2>
+<p>Calling <code>generator.process()</code> with either a CustomTaget or Index of CustomTarget
+as files is now permitted.</p>
+<h2 id="qt-dependency-uses-a-factory">Qt Dependency uses a Factory</h2>
+<p>This separates the Pkg-config and QMake based discovery methods into two
+distinct classes in the backend. This allows using
+<code>dependency.get_variable()</code> and <code>dependency.get_pkg_config_variable()</code>, as
+well as being a cleaner implementation.</p>
+<h2 id="purge-subprojects-folder">Purge subprojects folder</h2>
+<p>It is now possible to purge a subprojects folder of artifacts created
+from wrap-based subprojects including anything in <code>packagecache</code>. This is useful
+when you want to return to a completely clean source tree or busting caches with
+stale patch directories or caches. By default the command will only print out
+what it is removing. You need to pass <code>--confirm</code> to the command for actual
+artifacts to be purged.</p>
+<p>By default all wrap-based subprojects will be purged.</p>
+<ul>
+<li>
+<code>meson subprojects purge</code> prints non-cache wrap artifacts which will be
+purged.</li>
+<li>
+<code>meson subprojects purge --confirm</code> purges non-cache wrap artifacts.</li>
+<li>
+<code>meson subprojects purge --confirm --include-cache</code> also removes the cache
+artifacts.</li>
+<li>
+<code>meson subprojects purge --confirm subproj1 subproj2</code> removes non-cache wrap
+artifacts associated with the listed subprojects.</li>
+</ul>
+<h2 id="check-if-native-or-crossfile-properties-exist">Check if native or cross-file properties exist</h2>
+<p>It is now possible to check whether a native property or a cross-file property
+exists with <code>meson.has_external_property('foo')</code>. This is useful if the
+property in question is a boolean and one wants to distinguish between
+"set" and "not provided" which can't be done the usual way by passing a
+fallback parameter to <code>meson.get_external_property()</code> in this particular case.</p>
+<h2 id="summary-accepts-features">
+<code>summary()</code> accepts features</h2>
+<p>Build feature options can be passed to <code>summary()</code> as the value to be printed.</p>
+<h2 id="address-sanitizer-support-for-visual-studio">Address sanitizer support for Visual Studio</h2>
+<p>The <code>b_sanitize</code> option for enabling Address sanitizer now works with
+the Visual Studio compilers. This requires <a href="https://devblogs.microsoft.com/cppblog/address-sanitizer-for-msvc-now-generally-available/">a sufficiently new version
+of Visual
+Studio</a>.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Release-notes-for-0.58.0.md" data-hotdoc-role="edit-button">Edit on github</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
