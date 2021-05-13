@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -370,12 +370,17 @@ at a minimum.</p>
 to functionality. All such changes must be submitted to upstream. You
 may also host your own Git repo with the changes if you wish. The Wrap
 system has native support for Git subprojects.</p>
-<h2 id="reviewing-wraps">Reviewing wraps</h2>
-<p>See <a href="Wrap-review-guidelines.html">Wrap review guidelines</a>, especially
-the part about tooling that you can use to check for the most common
-problems yourself. Fixing all issues reported by the tool is a
-mandatory requirement for getting your MR accepted, so doing this
-proactively makes the review process smoother.</p>
+<h2 id="passing-automatic-validation">Passing automatic validation</h2>
+<p>Every submitted wrap goes through an automated correctness review and
+passing it is a requirement for merging. Therefore it is highly
+recommended that you run the validation checks yourself so you can fix
+any issues faster.</p>
+<p>Instructions on how to install and run the review tool can be found on
+the <a href="Wrap-review-guidelines.html">Wrap review guidelines page</a>.  If your
+submission is merge request number 5 for a repository called <code>mylib</code>,
+then you'd run the following command:</p>
+<pre><code>mesonwrap review --pull-request 5 mylib
+</code></pre>
 
     </div>
         

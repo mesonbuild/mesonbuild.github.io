@@ -36,10 +36,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -197,7 +197,7 @@ $('body').removeClass('no-script');
         <h1 id="running-meson">Running Meson</h1>
 <p>There are two different ways of invoking Meson. First, you can run it
 directly from the source tree with the command
-<code>/path/to/source/meson.py</code>. Meson may also be installed in which case
+<code>/path/to/source/meson.py</code>. Second, Meson may also be installed in which case
 the command is simply <code>meson</code>. In this manual we only use the latter
 format for simplicity.</p>
 <p>At the time of writing only a command line version of Meson is
@@ -259,8 +259,8 @@ argument. It can have one of the following values.</p>
 </tbody>
 </table>
 <p>The build directory is mandatory. The reason for this is that it
-simplifies the build process immensely. Meson will not under any
-circumstances write files inside the source directory (if it does, it
+simplifies the build process immensely. Meson will not, under any
+circumstances, write files inside the source directory (if it does, it
 is a bug and should be fixed). This means that the user does not need
 to add a bunch of files to their revision control's ignore list. It
 also means that you can create arbitrarily many build directories for
@@ -280,10 +280,10 @@ Changing between different configurations is just a question of
 changing to the corresponding directory.</p>
 <p>Unless otherwise mentioned, all following command line invocations are
 meant to be run in the source directory.</p>
-<p>By default Meson will use the Ninja backend to build your project. If
+<p>By default, Meson will use the Ninja backend to build your project. If
 you wish to use any of the other backends, you need to pass the
 corresponding argument during configuration time. As an example, here
-is how you would use Meson to generate a Visual studio solution.</p>
+is how you would use Meson to generate a Visual Studio solution.</p>
 <pre><code class="language-sh">meson setup &lt;build dir&gt; --backend=vs
 </code></pre>
 <p>You can then open the generated solution with Visual Studio and
