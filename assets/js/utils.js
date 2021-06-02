@@ -109,7 +109,7 @@ utils.getLanguageCookie = (function () {
 });
 
 utils.setLanguageCookie = (function (language) {
-    document.cookie = "gi-language=" + language + "; path=/";
+    document.cookie = "gi-language=" + language + "; path=/;SameSite=Strict";
 });
 
 utils.HDContext = (class {

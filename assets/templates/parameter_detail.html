@@ -3,18 +3,21 @@
 <div class="symbol-detail">
 	<div>
 		<i><em><code>@name</code></em></i>
-		@if extra:
-			(
-			@for name, ex in extra.items():
-			@ex
-			@end
-			)
-		@end
-		–
-	</div>
-	@if detail:
-		@detail
-	@else:
-		<i>No description available</i>
-	@end
+@if extra:
+<span>(</span>\
+@for i, ex in enumerate(extra.values()):
+@if i != 0:
+, \
+@end
+@ex\
+@end
+<span>)</span>
+@end
+–
+</div>
+@if detail:
+@detail
+@else:
+<i>No description available</i>
+@end
 </div>

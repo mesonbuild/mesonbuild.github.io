@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"filename.idl.c","urls":[{"url":"Generating-sources.html#page-description","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"filename.idl.c","urls":[{"url":"Generating-sources.html#using-generator","node_type":"p","context":{"gi-language":["default"]}}]});

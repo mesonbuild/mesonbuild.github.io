@@ -11,15 +11,18 @@
 		<div class="symbol-detail">
 			<div>
 				<b>Returns</b>
-				@if (return_items[0].formatted_link or return_items[0].extension_contents):
-					(
-					@return_items[0].formatted_link
-					@for name, ex in return_items[0].extension_contents.items():
-					@ex
-					@end
-					)
-				@end
-				–
+@if (return_items[0].formatted_link or return_items[0].extension_contents):
+<span>(</span>\
+@return_items[0].formatted_link\
+@for i, ex in enumerate(return_items[0].extension_contents.values()):
+@if i != 0 or return_items[0].formatted_link:
+, \
+@end
+@ex\
+@end
+<span>)</span>
+@end
+–
 			</div>
 			@if return_items[0].formatted_doc:
 				@return_items[0].formatted_doc

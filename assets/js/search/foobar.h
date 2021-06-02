@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"foobar.h","urls":[{"url":"Gnome-module.html#page-description","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"foobar.h","urls":[{"url":"Gnome-module.html#gnomecompile_resources","node_type":"p","context":{"gi-language":["default"]}}]});

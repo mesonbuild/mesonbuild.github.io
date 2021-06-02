@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"X.Y","urls":[{"url":"Cuda-module.html#page-description","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"X.Y","urls":[{"url":"Cuda-module.html#nvcc_arch_flags","node_type":"p","context":{"gi-language":["default"]}}]});

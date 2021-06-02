@@ -27,14 +27,17 @@ function scroll_if_anchor(href, initial) {
 	if(href.indexOf("#") == 0) {
 		var $target = $(href.replace( /(:|\.|\[|\]|,)/g, "\\$1"));
 
+    if (!$target.length)
+      $target = $('a[name="' + href.substring(1) + '"]');
+
 		if($target.length) {
-			$('html, body').animate({ scrollTop: $target.offset().top - fromTop });
+			$('html, body').scrollTop($target.offset().top - 3 - fromTop);
 			if(!initial && history && "pushState" in history) {
 				history.pushState({}, document.title, window.location.pathname + href);
         update_url();
         return false;
 			}
-		}
+    }
   }
 
   update_url();
@@ -44,4 +47,7 @@ window.addEventListener('popstate', update_url);
 $(document).ready(function() {
   scroll_if_anchor(window.location.hash, true);
   $("body").on("click", "a[href]", scroll_if_anchor);
+  window.onhashchange = function() {
+    scroll_if_anchor(location.hash, false);
+  }
 });

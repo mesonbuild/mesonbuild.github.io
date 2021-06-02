@@ -155,9 +155,6 @@ function setupFilters() {
 		'stability': doCompareStability,
 		'deprecated': doCompareDeprecated};
 
-	var navSelector = '#toc';
-	var $myNav = $(navSelector);
-
 	var tags_hashtable = createTagsHashtable();
 	createTagsDropdown(tags_hashtable);
 	for (var key in tags_hashtable) {
@@ -166,7 +163,7 @@ function setupFilters() {
 			currentFilters[key] = $(this).hasClass('active');
 			$('#show-deprecated').click(function() {
 				currentFilters["deprecated"] = !$(this).hasClass('active');
-				mainEl.isotope({filter: isotopeFilter, transitionDuration: '0.5s'});
+        commit();
 			})
 		} else {
 			$('#' + key + '-menu a').click(function() {
@@ -176,7 +173,7 @@ function setupFilters() {
 				else
 					currentFilters[key] = $(this).text();
 
-				mainEl.isotope({filter: isotopeFilter, transitionDuration: '0.5s'});
+        commit();
 			});
 		}
 	}
@@ -215,10 +212,10 @@ function setupFilters() {
 		return res;
 	}
 
-	function isotopeFilter() {
-		if ($(this).hasClass('symbol_section')) {
+	function checkItemVisibility(item) {
+		if ($(item).hasClass('symbol_section')) {
 			res = false;
-			var next = $(this).nextUntil(".symbol_section");
+			var next = $(item).nextUntil(".symbol_section");
 
       if (next.length == 0) {
         res = true;
@@ -232,18 +229,27 @@ function setupFilters() {
 			return res;
 		}
 
-		return shouldBeVisible ($(this));
+		return shouldBeVisible ($(item));
 	}
 
-	var $grid = mainEl.isotope({
-		layoutMode: 'vertical',
-    transitionDuration: 0,
-		containerStyle: "position: relative; margin-left: 15px;",
-		filter: isotopeFilter,
-		animationOptions: {
-			duration: transitionDuration
-		},
-	});
+  function commit() {
+    mainEl.children().map(function () {
+      if (checkItemVisibility(this)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+
+	  var navSelector = '#toc';
+	  var $myNav = $(navSelector);
+		$("h1,h2,h3,h4,h5,h6").removeAttr("data-toc-skip");
+		$("h1:hidden,h2:hidden,h3:hidden,h4:hidden,h5:hidden,h6:hidden").attr("data-toc-skip", "true");
+		$myNav.empty();
+    if (main_larger_than_viewport()) {
+		  Toc.init({$nav: $myNav, depth: 3, $scope: $("#main")});
+    }
+  }
 
   if (utils.hd_context.extension == 'gi-extension')
     $(".gi-symbol-" + utils.hd_context.gi_language + " *[data-hotdoc-id]").each (function() {
@@ -256,11 +262,7 @@ function setupFilters() {
 
   $(".base_symbol_container").removeAttr("id");
 
-  $("h1,h2,h3,h4,h5,h6").removeAttr("data-toc-skip");
-  $("h1:hidden,h2:hidden,h3:hidden,h4:hidden,h5:hidden,h6:hidden").attr("data-toc-skip", "true");
-  if (main_larger_than_viewport()) {
-    Toc.init({$nav: $myNav, depth: 3, $scope: $("#main")});
-  }
+  commit();
 
 	/* Fix BASE anchors */
 	$("#toc a").each (function () {
@@ -268,6 +270,11 @@ function setupFilters() {
 		$(this).attr("href", utils.hd_context.rel_path + old_href);
 		$(this).attr("data-target", old_href);
 	});
+
+  $("body").scrollspy({
+    target: "#toc",
+    offset: 70,
+  });
 
 	anchors.options = {
 		visible: 'touch',
@@ -278,36 +285,5 @@ function setupFilters() {
 	$(".anchorjs-link").each (function () {
 		var old_href = $(this).attr("href");
 		$(this).attr("href", utils.hd_context.rel_path + old_href);
-	});
-
-	function layoutTimer(){
-
-		setTimeout(function(){
-			mainEl.isotope('layout');
-		}, transitionDuration);
-	}
-
-	layoutTimer();
-
-	$grid.on( 'arrangeComplete', function( event, filteredItems ) {
-		$("h1,h2,h3,h4,h5,h6").removeAttr("data-toc-skip");
-		$("h1:hidden,h2:hidden,h3:hidden,h4:hidden,h5:hidden,h6:hidden").attr("data-toc-skip", "true");
-		$myNav.empty();
-    if (main_larger_than_viewport()) {
-		  Toc.init({$nav: $myNav, depth: 3, $scope: $("#main")});
-    }
-	})
-
-	// Isotope messes with our anchors positions
-	var hash_index = window.location.href.indexOf("#");
-	if (hash_index != -1) {
-		var hash = window.location.href.substring(hash_index + 1);
-		location.hash = "#" + hash;
-	}
-
-	$("#content-column").attrchange(function(attrName) {
-		if (attrName=='class') {
-			layoutTimer();
-		}
 	});
 }

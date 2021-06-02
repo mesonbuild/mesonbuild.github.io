@@ -5,16 +5,19 @@
 		@if return_item.name:
 		<i><em><code>@return_item.name</code></em></i>
 		@end
-		\
-		@if (return_item.formatted_link or return_item.extension_contents):
-			(
-			@return_item.formatted_link
-			@for name, ex in return_item.extension_contents.items():
-			@ex
-			@end
-			)
-		@end
-		–
+\
+@if (return_item.formatted_link or return_item.extension_contents):
+<span>(</span>\
+@return_item.formatted_link
+@for i, ex in enumerate(return_item.extension_contents.values()):
+@if i != 0:
+, \
+@end
+@ex\
+@end
+<span>)</span>
+@end
+–
 	</div>
 	@if return_item.formatted_doc:
 		@return_item.formatted_doc

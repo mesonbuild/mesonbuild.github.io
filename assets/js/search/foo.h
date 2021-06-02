@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"foo.h","urls":[{"url":"Generating-sources.html#page-description","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"foo.h","urls":[{"url":"Generating-sources.html#generating-headers","node_type":"p","context":{"gi-language":["default"]}},{"url":"Generating-sources.html#generating-multiple-files-at-a-time","node_type":"p","context":{"gi-language":["default"]}}]});

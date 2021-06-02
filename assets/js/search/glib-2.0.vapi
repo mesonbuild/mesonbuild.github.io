@@ -1,0 +1,1 @@
+urls_downloaded_cb({"token":"glib-2.0.vapi","urls":[{"url":"Vala.html#libraries-without-pkgconfig-files","node_type":"p","context":{"gi-language":["default"]}}]});

@@ -86,4 +86,16 @@ $(document).ready(function() {
         $("." + utils.hd_context.gi_languages[i] + "-prototype").hide();
     }
   }
+
+  for (var i = 0; i < utils.hd_context.gi_languages.length; i++) {
+    if (utils.hd_context.gi_language != utils.hd_context.gi_languages[i]) {
+      $(".gi-lang-" + utils.hd_context.gi_languages[i]).hide();
+    }
+  }
+
+  for (var i = 0; i < utils.hd_context.gi_languages.length; i++) {
+    if (utils.hd_context.gi_language == utils.hd_context.gi_languages[i]) {
+      $(".gi-lang-" + utils.hd_context.gi_languages[i]).show();
+    }
+  }
 });
