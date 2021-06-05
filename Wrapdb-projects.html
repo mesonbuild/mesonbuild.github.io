@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Meson WrapDB packages</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Wrapdb-projects.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="meson-wrapdb-packages">Meson WrapDB packages</h1>
+<p>This is a list of projects that have either an upstream Meson build system, or a
+port maintained by the Meson team. <a href="Wrap-dependency-system-manual.html">They can be used by your project to provide
+its dependencies</a>.</p>
+<p>Use the command line <code>meson wrap install &lt;project&gt;</code> to install the wrap file of
+any of those projects into your project's <code>subprojects/</code> directory.
+See <a href="Using-wraptool.html">Meson command line documentation</a>.</p>
+<p>If you wish to add your own project into this list, please submit your wrap file
+in a <a href="https://github.com/mesonbuild/wrapdb">Pull Request</a>.
+See <a href="Adding-new-projects-to-wrapdb.html">Meson documentation</a>
+for more details.</p>
+<table>
+<thead>
+<tr>
+<th> Project</th>
+<th> Versions</th>
+<th> Provided dependencies</th>
+<th> Provided programs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> abseil-cpp</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/abseil-cpp_20210324.1-2/abseil-cpp.wrap">20210324.1-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/abseil-cpp_20210324.1-1/abseil-cpp.wrap">20210324.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/abseil-cpp_20200923.2-1/abseil-cpp.wrap">20200923.2-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/abseil-cpp_20200225.2-3/abseil-cpp.wrap">20200225.2-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/abseil-cpp_20200225.2-2/abseil-cpp.wrap">20200225.2-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/abseil-cpp_20200225.2-1/abseil-cpp.wrap">20200225.2-1</a>
+</td>
+<td> absl_base, absl_container, absl_debugging, absl_flags, absl_hash, absl_numeric, absl_random, absl_status, absl_strings, absl_synchronization, absl_time, absl_types</td>
+<td></td>
+</tr>
+<tr>
+<td> arduinocore-avr</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/arduinocore-avr_1.8.2-1/arduinocore-avr.wrap">1.8.2-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/arduinocore-avr_1.6.20-1/arduinocore-avr.wrap">1.6.20-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> bdwgc</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/bdwgc_7.6.8-1/bdwgc.wrap">7.6.8-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> box2d</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/box2d_2.4.1-1/box2d.wrap">2.4.1-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/box2d_2.3.1-7/box2d.wrap">2.3.1-7</a>, <a href="https://wrapdb.mesonbuild.com/v2/box2d_2.3.1-5/box2d.wrap">2.3.1-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/box2d_2.3.1-4/box2d.wrap">2.3.1-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/box2d_2.3.1-2/box2d.wrap">2.3.1-2</a>
+</td>
+<td> box2d</td>
+<td></td>
+</tr>
+<tr>
+<td> catch</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/catch_2.2.2-1/catch.wrap">2.2.2-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/catch_2.2.1-2/catch.wrap">2.2.1-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch_2.2.1-1/catch.wrap">2.2.1-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> catch2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/catch2_2.13.3-2/catch2.wrap">2.13.3-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/catch2_2.13.3-1/catch2.wrap">2.13.3-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch2_2.11.3-1/catch2.wrap">2.11.3-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch2_2.11.1-1/catch2.wrap">2.11.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch2_2.9.0-1/catch2.wrap">2.9.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch2_2.8.0-1/catch2.wrap">2.8.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch2_2.7.2-1/catch2.wrap">2.7.2-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch2_2.5.0-1/catch2.wrap">2.5.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/catch2_2.4.1-1/catch2.wrap">2.4.1-1</a>
+</td>
+<td> catch2</td>
+<td></td>
+</tr>
+<tr>
+<td> catchorg-clara</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/catchorg-clara_1.1.5-1/catchorg-clara.wrap">1.1.5-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> cereal</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/cereal_1.3.0-1/cereal.wrap">1.3.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/cereal_1.2.2-1/cereal.wrap">1.2.2-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> check</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/check_0.14.0-1/check.wrap">0.14.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> chipmunk</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/chipmunk_6.2.2-2/chipmunk.wrap">6.2.2-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/chipmunk_6.2.2-1/chipmunk.wrap">6.2.2-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> cmocka</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/cmocka_1.1.5-3/cmocka.wrap">1.1.5-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/cmocka_1.1.5-2/cmocka.wrap">1.1.5-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/cmocka_1.1.5-1/cmocka.wrap">1.1.5-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/cmocka_1.1.2-1/cmocka.wrap">1.1.2-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> cpputest</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/cpputest_4.0-1/cpputest.wrap">4.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> cpr</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/cpr_1.5.0-1/cpr.wrap">1.5.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/cpr_1.3.0-1/cpr.wrap">1.3.0-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> cxxopts</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/cxxopts_2.2.1-1/cxxopts.wrap">2.2.1-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/cxxopts_2.2.0-2/cxxopts.wrap">2.2.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/cxxopts_2.2.0-1/cxxopts.wrap">2.2.0-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> docopt</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/docopt_0.6.3-1/docopt.wrap">0.6.3-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> eigen</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/eigen_3.3.9-1/eigen.wrap">3.3.9-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/eigen_3.3.8-1/eigen.wrap">3.3.8-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/eigen_3.3.7-3/eigen.wrap">3.3.7-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/eigen_3.3.7-2/eigen.wrap">3.3.7-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/eigen_3.3.7-1/eigen.wrap">3.3.7-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/eigen_3.3.5-1/eigen.wrap">3.3.5-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/eigen_3.3.4-1/eigen.wrap">3.3.4-1</a>
+</td>
+<td> eigen3</td>
+<td></td>
+</tr>
+<tr>
+<td> emilk-loguru</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/emilk-loguru_2.1.0-2/emilk-loguru.wrap">2.1.0-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/emilk-loguru_2.1.0-1/emilk-loguru.wrap">2.1.0-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> enet</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/enet_1.3.13-4/enet.wrap">1.3.13-4</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/enet_1.3.13-2/enet.wrap">1.3.13-2</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> expat</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.9-3/expat.wrap">2.2.9-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.9-2/expat.wrap">2.2.9-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.9-1/expat.wrap">2.2.9-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.6-1/expat.wrap">2.2.6-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.5-5/expat.wrap">2.2.5-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.5-4/expat.wrap">2.2.5-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.5-3/expat.wrap">2.2.5-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/expat_2.2.5-1/expat.wrap">2.2.5-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> facil</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/facil_0.7.5-1/facil.wrap">0.7.5-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> flac</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/flac_1.3.3-1/flac.wrap">1.3.3-1</a></strong></big><br>
+</td>
+<td> flac</td>
+<td></td>
+</tr>
+<tr>
+<td> flatbuffers</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/flatbuffers_1.11.0-1/flatbuffers.wrap">1.11.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> fluidsynth</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/fluidsynth_2.2.0-1/fluidsynth.wrap">2.2.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/fluidsynth_2.1.8-1/fluidsynth.wrap">2.1.8-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/fluidsynth_2.1.7-1/fluidsynth.wrap">2.1.7-1</a>
+</td>
+<td> fluidsynth</td>
+<td></td>
+</tr>
+<tr>
+<td> fmt</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/fmt_7.1.3-1/fmt.wrap">7.1.3-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/fmt_7.0.1-1/fmt.wrap">7.0.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/fmt_6.2.0-2/fmt.wrap">6.2.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/fmt_6.2.0-1/fmt.wrap">6.2.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/fmt_6.0.0-1/fmt.wrap">6.0.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/fmt_5.3.0-1/fmt.wrap">5.3.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/fmt_5.2.1-1/fmt.wrap">5.2.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/fmt_5.2.0-1/fmt.wrap">5.2.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/fmt_4.1.0-1/fmt.wrap">4.1.0-1</a>
+</td>
+<td> fmt</td>
+<td></td>
+</tr>
+<tr>
+<td> freetype2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/freetype2_2.9.1-2/freetype2.wrap">2.9.1-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/freetype2_2.9.1-1/freetype2.wrap">2.9.1-1</a>
+</td>
+<td> freetype2</td>
+<td></td>
+</tr>
+<tr>
+<td> gdbm</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/gdbm_1.14.1-2/gdbm.wrap">1.14.1-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/gdbm_1.14.1-1/gdbm.wrap">1.14.1-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> glew</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/glew_2.1.0-3/glew.wrap">2.1.0-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/glew_2.1.0-2/glew.wrap">2.1.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/glew_2.1.0-1/glew.wrap">2.1.0-1</a>
+</td>
+<td> glew</td>
+<td></td>
+</tr>
+<tr>
+<td> glib</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/glib_2.68.1-1/glib.wrap">2.68.1-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/glib_2.66.7-1/glib.wrap">2.66.7-1</a>
+</td>
+<td> gthread-2.0, gobject-2.0, gmodule-no-export-2.0, gmodule-export-2.0, gmodule-2.0, glib-2.0, gio-2.0, gio-win32-2.0, gio-unix-2.0</td>
+<td> glib-genmarshal, glib-mkenums, glib-compile-schemas, glib-compile-resources, gio-querymodules, gdbus-codegen</td>
+</tr>
+<tr>
+<td> glm</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/glm_0.9.9.8-2/glm.wrap">0.9.9.8-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/glm_0.9.9.8-1/glm.wrap">0.9.9.8-1</a>
+</td>
+<td> glm</td>
+<td></td>
+</tr>
+<tr>
+<td> google-benchmark</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/google-benchmark_1.5.2-1/google-benchmark.wrap">1.5.2-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/google-benchmark_1.4.1-1/google-benchmark.wrap">1.4.1-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> google-brotli</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/google-brotli_1.0.7-1/google-brotli.wrap">1.0.7-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> google-snappy</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/google-snappy_1.1.7-2/google-snappy.wrap">1.1.7-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/google-snappy_1.1.7-1/google-snappy.wrap">1.1.7-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> google-woff2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/google-woff2_1.0.2-1/google-woff2.wrap">1.0.2-1</a></strong></big><br>
+</td>
+<td> libwoff2common, libwoff2dec, libwoff2enc</td>
+<td> woff2_decompress, woff2_compress, woff2_info</td>
+</tr>
+<tr>
+<td> gtest</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/gtest_1.10.0-1/gtest.wrap">1.10.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/gtest_1.8.1-1/gtest.wrap">1.8.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.8.0-5/gtest.wrap">1.8.0-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.8.0-4/gtest.wrap">1.8.0-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.8.0-3/gtest.wrap">1.8.0-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.8.0-2/gtest.wrap">1.8.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.8.0-1/gtest.wrap">1.8.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.7.0-5/gtest.wrap">1.7.0-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.7.0-4/gtest.wrap">1.7.0-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/gtest_1.7.0-2/gtest.wrap">1.7.0-2</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> hedley</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/hedley_11-1/hedley.wrap">11-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> hinnant-date</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/hinnant-date_3.0.0-1/hinnant-date.wrap">3.0.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/hinnant-date_2.4.1-1/hinnant-date.wrap">2.4.1-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> htslib</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/htslib_1.11-1/htslib.wrap">1.11-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/htslib_1.10.2-1/htslib.wrap">1.10.2-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/htslib_1.9-1/htslib.wrap">1.9-1</a>
+</td>
+<td> htslib</td>
+<td></td>
+</tr>
+<tr>
+<td> icu</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/icu_67.1-1/icu.wrap">67.1-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/icu_55.2-1/icu.wrap">55.2-1</a>
+</td>
+<td> icu-uc, icu-io, icu-i18n</td>
+<td></td>
+</tr>
+<tr>
+<td> imgui</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/imgui_1.81-1/imgui.wrap">1.81-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/imgui_1.80-1/imgui.wrap">1.80-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/imgui_1.79-2/imgui.wrap">1.79-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/imgui_1.79-1/imgui.wrap">1.79-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/imgui_1.78-2/imgui.wrap">1.78-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/imgui_1.78-1/imgui.wrap">1.78-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/imgui_1.76-2/imgui.wrap">1.76-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/imgui_1.76-1/imgui.wrap">1.76-1</a>
+</td>
+<td> imgui</td>
+<td></td>
+</tr>
+<tr>
+<td> imgui-sfml</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/imgui-sfml_2.3-1/imgui-sfml.wrap">2.3-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/imgui-sfml_2.1-1/imgui-sfml.wrap">2.1-1</a>
+</td>
+<td> imgui-sfml</td>
+<td></td>
+</tr>
+<tr>
+<td> inih</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/inih_r53-1/inih.wrap">r53-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/inih_r52-1/inih.wrap">r52-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/inih_r51-1/inih.wrap">r51-1</a>
+</td>
+<td> inih, inireader</td>
+<td></td>
+</tr>
+<tr>
+<td> jansson</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/jansson_2.11-3/jansson.wrap">2.11-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/jansson_2.11-2/jansson.wrap">2.11-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/jansson_2.11-1/jansson.wrap">2.11-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> json</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/json_3.2.0-1/json.wrap">3.2.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/json_2.1.1-1/json.wrap">2.1.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/json_2.0.5-1/json.wrap">2.0.5-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/json_2.0.3-1/json.wrap">2.0.3-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> json-c</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/json-c_0.13.1-1/json-c.wrap">0.13.1-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> jsoncpp</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/jsoncpp_1.8.4-1/jsoncpp.wrap">1.8.4-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> lame</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/lame_3.100-1/lame.wrap">3.100-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/lame_3.99.5-1/lame.wrap">3.99.5-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> libexif</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libexif_0.6.22-1/libexif.wrap">0.6.22-1</a></strong></big><br>
+</td>
+<td> libexif</td>
+<td></td>
+</tr>
+<tr>
+<td> libjpeg-turbo</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libjpeg-turbo_2.1.0-1/libjpeg-turbo.wrap">2.1.0-1</a></strong></big><br>
+</td>
+<td> libjpeg</td>
+<td></td>
+</tr>
+<tr>
+<td> liblbfgs</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/liblbfgs_1.10-1/liblbfgs.wrap">1.10-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> liblzma</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/liblzma_5.2.1-5/liblzma.wrap">5.2.1-5</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/liblzma_5.2.1-4/liblzma.wrap">5.2.1-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/liblzma_5.2.1-2/liblzma.wrap">5.2.1-2</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> libopenjp2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libopenjp2_2.3.1-3/libopenjp2.wrap">2.3.1-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/libopenjp2_2.3.1-1/libopenjp2.wrap">2.3.1-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> libpng</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.37-3/libpng.wrap">1.6.37-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.37-2/libpng.wrap">1.6.37-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.37-1/libpng.wrap">1.6.37-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.35-6/libpng.wrap">1.6.35-6</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.35-5/libpng.wrap">1.6.35-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.35-4/libpng.wrap">1.6.35-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.34-3/libpng.wrap">1.6.34-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.34-2/libpng.wrap">1.6.34-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.34-1/libpng.wrap">1.6.34-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.17-8/libpng.wrap">1.6.17-8</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.17-7/libpng.wrap">1.6.17-7</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.17-6/libpng.wrap">1.6.17-6</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.17-5/libpng.wrap">1.6.17-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.17-4/libpng.wrap">1.6.17-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/libpng_1.6.17-2/libpng.wrap">1.6.17-2</a>
+</td>
+<td> libpng</td>
+<td></td>
+</tr>
+<tr>
+<td> libsrtp2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libsrtp2_2.2.0-1/libsrtp2.wrap">2.2.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> libtiff</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libtiff_4.1.0-2/libtiff.wrap">4.1.0-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/libtiff_4.1.0-1/libtiff.wrap">4.1.0-1</a>
+</td>
+<td> libtiff-4</td>
+<td></td>
+</tr>
+<tr>
+<td> libtomcrypt</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libtomcrypt_1.17-1/libtomcrypt.wrap">1.17-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> libuv</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libuv_1.41.0-1/libuv.wrap">1.41.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/libuv_1.18.0-3/libuv.wrap">1.18.0-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/libuv_1.18.0-2/libuv.wrap">1.18.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/libuv_1.18.0-1/libuv.wrap">1.18.0-1</a>
+</td>
+<td> libuv</td>
+<td></td>
+</tr>
+<tr>
+<td> libwebsockets</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libwebsockets_4.0.13-1/libwebsockets.wrap">4.0.13-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> libxml2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.7-6/libxml2.wrap">2.9.7-6</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.7-5/libxml2.wrap">2.9.7-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.7-4/libxml2.wrap">2.9.7-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.7-3/libxml2.wrap">2.9.7-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.7-2/libxml2.wrap">2.9.7-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.7-1/libxml2.wrap">2.9.7-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.2-5/libxml2.wrap">2.9.2-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.2-4/libxml2.wrap">2.9.2-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/libxml2_2.9.2-2/libxml2.wrap">2.9.2-2</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> libxmlpp</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/libxmlpp_3.0.1-1/libxmlpp.wrap">3.0.1-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> lua</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/lua_5.3.6-2/lua.wrap">5.3.6-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/lua_5.3.6-1/lua.wrap">5.3.6-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/lua_5.3.0-6/lua.wrap">5.3.0-6</a>, <a href="https://wrapdb.mesonbuild.com/v2/lua_5.3.0-5/lua.wrap">5.3.0-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/lua_5.3.0-4/lua.wrap">5.3.0-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/lua_5.3.0-2/lua.wrap">5.3.0-2</a>
+</td>
+<td> lua-5.3</td>
+<td></td>
+</tr>
+<tr>
+<td> ludocode-mpack</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/ludocode-mpack_1.0-1/ludocode-mpack.wrap">1.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> lz4</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/lz4_1.9.3-1/lz4.wrap">1.9.3-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/lz4_1.9.2-1/lz4.wrap">1.9.2-1</a>
+</td>
+<td> liblz4</td>
+<td></td>
+</tr>
+<tr>
+<td> mdds</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/mdds_1.6.0-1/mdds.wrap">1.6.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> microsoft-gsl</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/microsoft-gsl_3.1.0-1/microsoft-gsl.wrap">3.1.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/microsoft-gsl_2.0.0-1/microsoft-gsl.wrap">2.0.0-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> miniz</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/miniz_2.1.0-2/miniz.wrap">2.1.0-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/miniz_2.1.0-1/miniz.wrap">2.1.0-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> mocklibc</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/mocklibc_1.0-2/mocklibc.wrap">1.0-2</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> mpdecimal</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/mpdecimal_2.5.0-2/mpdecimal.wrap">2.5.0-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/mpdecimal_2.5.0-1/mpdecimal.wrap">2.5.0-1</a>
+</td>
+<td> mpdec, mpdecpp</td>
+<td></td>
+</tr>
+<tr>
+<td> mt32emu</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/mt32emu_2.5.0-1/mt32emu.wrap">2.5.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/mt32emu_2.4.2-2/mt32emu.wrap">2.4.2-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/mt32emu_2.4.2-1/mt32emu.wrap">2.4.2-1</a>
+</td>
+<td> mt32emu</td>
+<td></td>
+</tr>
+<tr>
+<td> muellan-clipp</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/muellan-clipp_1.2.3-1/muellan-clipp.wrap">1.2.3-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nlohmann_json</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nlohmann_json_3.9.1-1/nlohmann_json.wrap">3.9.1-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/nlohmann_json_3.7.0-1/nlohmann_json.wrap">3.7.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/nlohmann_json_3.4.0-2/nlohmann_json.wrap">3.4.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/nlohmann_json_3.4.0-1/nlohmann_json.wrap">3.4.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/nlohmann_json_3.3.0-1/nlohmann_json.wrap">3.3.0-1</a>
+</td>
+<td> nlohmann_json</td>
+<td></td>
+</tr>
+<tr>
+<td> nng</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nng_1.3.2-2/nng.wrap">1.3.2-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/nng_1.3.2-1/nng.wrap">1.3.2-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-any-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-any-lite_0.2.0-1/nonstd-any-lite.wrap">0.2.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-byte-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-byte-lite_0.2.0-1/nonstd-byte-lite.wrap">0.2.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-expected-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-expected-lite_0.3.0-1/nonstd-expected-lite.wrap">0.3.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-observer-ptr-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-observer-ptr-lite_0.4.0-1/nonstd-observer-ptr-lite.wrap">0.4.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-optional-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-optional-lite_3.2.0-1/nonstd-optional-lite.wrap">3.2.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-span-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-span-lite_0.5.0-1/nonstd-span-lite.wrap">0.5.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-status-value-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-status-value-lite_1.1.0-1/nonstd-status-value-lite.wrap">1.1.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> nonstd-string-view-lite</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/nonstd-string-view-lite_1.3.0-1/nonstd-string-view-lite.wrap">1.3.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> ogg</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/ogg_1.3.2-7/ogg.wrap">1.3.2-7</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/ogg_1.3.2-6/ogg.wrap">1.3.2-6</a>, <a href="https://wrapdb.mesonbuild.com/v2/ogg_1.3.2-5/ogg.wrap">1.3.2-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/ogg_1.3.2-4/ogg.wrap">1.3.2-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/ogg_1.3.2-2/ogg.wrap">1.3.2-2</a>
+</td>
+<td> ogg</td>
+<td></td>
+</tr>
+<tr>
+<td> onqtam-doctest</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/onqtam-doctest_2.4.0-1/onqtam-doctest.wrap">2.4.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/onqtam-doctest_2.3.7-1/onqtam-doctest.wrap">2.3.7-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> openal-soft</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/openal-soft_1.21.0-1/openal-soft.wrap">1.21.0-1</a></strong></big><br>
+</td>
+<td> openal</td>
+<td></td>
+</tr>
+<tr>
+<td> openh264</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/openh264_1.7.0-1/openh264.wrap">1.7.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> pcg</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/pcg_0.98.1-2/pcg.wrap">0.98.1-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/pcg_0.98.1-1/pcg.wrap">0.98.1-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> pcre</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/pcre_8.37-1/pcre.wrap">8.37-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> pcre2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/pcre2_10.23-1/pcre2.wrap">10.23-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> protobuf</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/protobuf_3.12.2-2/protobuf.wrap">3.12.2-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/protobuf_3.12.2-1/protobuf.wrap">3.12.2-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/protobuf_3.5.1-3/protobuf.wrap">3.5.1-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/protobuf_3.5.1-2/protobuf.wrap">3.5.1-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/protobuf_3.5.0-4/protobuf.wrap">3.5.0-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/protobuf_3.5.0-3/protobuf.wrap">3.5.0-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/protobuf_3.5.0-2/protobuf.wrap">3.5.0-2</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> protobuf-c</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/protobuf-c_1.3.0-1/protobuf-c.wrap">1.3.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> pybind11</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/pybind11_2.6.1-1/pybind11.wrap">2.6.1-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/pybind11_2.6.0-1/pybind11.wrap">2.6.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/pybind11_2.3.0-2/pybind11.wrap">2.3.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/pybind11_2.3.0-1/pybind11.wrap">2.3.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/pybind11_2.2.4-1/pybind11.wrap">2.2.4-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/pybind11_2.2.3-1/pybind11.wrap">2.2.3-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/pybind11_2.2.2-1/pybind11.wrap">2.2.2-1</a>
+</td>
+<td> pybind11</td>
+<td></td>
+</tr>
+<tr>
+<td> quazip</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/quazip_0.7.3-1/quazip.wrap">0.7.3-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> rang</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/rang_2.0-1/rang.wrap">2.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> range-v3</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/range-v3_0.10.0-1/range-v3.wrap">0.10.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/range-v3_0.3.6-1/range-v3.wrap">0.3.6-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> rapidjson</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/rapidjson_1.1.0-1/rapidjson.wrap">1.1.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> rdkafka</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/rdkafka_1.5.2-1/rdkafka.wrap">1.5.2-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/rdkafka_1.5.0-1/rdkafka.wrap">1.5.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/rdkafka_1.4.4-1/rdkafka.wrap">1.4.4-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/rdkafka_1.4.0-1/rdkafka.wrap">1.4.0-1</a>
+</td>
+<td> rdkafka, rdkafka++</td>
+<td></td>
+</tr>
+<tr>
+<td> re2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/re2_20201101-1/re2.wrap">20201101-1</a></strong></big><br>
+</td>
+<td> re2</td>
+<td></td>
+</tr>
+<tr>
+<td> reflex</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/reflex_3.0.1-1/reflex.wrap">3.0.1-1</a></strong></big><br>
+</td>
+<td> reflex</td>
+<td></td>
+</tr>
+<tr>
+<td> rxcpp</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/rxcpp_4.1.0-1/rxcpp.wrap">4.1.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> sdl2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sdl2_2.0.12-2/sdl2.wrap">2.0.12-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/sdl2_2.0.12-1/sdl2.wrap">2.0.12-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/sdl2_2.0.3-6/sdl2.wrap">2.0.3-6</a>, <a href="https://wrapdb.mesonbuild.com/v2/sdl2_2.0.3-5/sdl2.wrap">2.0.3-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/sdl2_2.0.3-4/sdl2.wrap">2.0.3-4</a>
+</td>
+<td> sdl2</td>
+<td></td>
+</tr>
+<tr>
+<td> sdl2_image</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sdl2_image_2.0.5-2/sdl2_image.wrap">2.0.5-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/sdl2_image_2.0.5-1/sdl2_image.wrap">2.0.5-1</a>
+</td>
+<td> sdl2_image</td>
+<td></td>
+</tr>
+<tr>
+<td> sdl2_mixer</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sdl2_mixer_2.0.4-1/sdl2_mixer.wrap">2.0.4-1</a></strong></big><br>
+</td>
+<td> sdl2_mixer</td>
+<td></td>
+</tr>
+<tr>
+<td> sdl2_net</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sdl2_net_2.0.1-3/sdl2_net.wrap">2.0.1-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/sdl2_net_2.0.1-2/sdl2_net.wrap">2.0.1-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/sdl2_net_2.0.1-1/sdl2_net.wrap">2.0.1-1</a>
+</td>
+<td> sdl2_net</td>
+<td></td>
+</tr>
+<tr>
+<td> sdl2_ttf</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sdl2_ttf_2.0.12-3/sdl2_ttf.wrap">2.0.12-3</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/sdl2_ttf_2.0.12-2/sdl2_ttf.wrap">2.0.12-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/sdl2_ttf_2.0.12-1/sdl2_ttf.wrap">2.0.12-1</a>
+</td>
+<td> sdl2_ttf</td>
+<td></td>
+</tr>
+<tr>
+<td> sergiusthebest-plog</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sergiusthebest-plog_1.1.4-1/sergiusthebest-plog.wrap">1.1.4-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> sfml</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sfml_2.5.1-1/sfml.wrap">2.5.1-1</a></strong></big><br>
+</td>
+<td> sfml</td>
+<td></td>
+</tr>
+<tr>
+<td> spdlog</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/spdlog_1.8.5-1/spdlog.wrap">1.8.5-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/spdlog_1.8.2-1/spdlog.wrap">1.8.2-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_1.8.1-1/spdlog.wrap">1.8.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_1.8.0-1/spdlog.wrap">1.8.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_1.4.2-1/spdlog.wrap">1.4.2-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_1.3.1-1/spdlog.wrap">1.3.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_1.1.0-1/spdlog.wrap">1.1.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_0.17.0-2/spdlog.wrap">0.17.0-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_0.17.0-1/spdlog.wrap">0.17.0-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_0.16.3-1/spdlog.wrap">0.16.3-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spdlog_0.11.0-1/spdlog.wrap">0.11.0-1</a>
+</td>
+<td> spdlog</td>
+<td></td>
+</tr>
+<tr>
+<td> spng</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/spng_0.5.0-1/spng.wrap">0.5.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/spng_0.4.5-1/spng.wrap">0.4.5-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spng_0.4.4-1/spng.wrap">0.4.4-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spng_0.4.3-1/spng.wrap">0.4.3-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/spng_0.4.2-2/spng.wrap">0.4.2-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/spng_0.4.2-1/spng.wrap">0.4.2-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> sqlite3</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/sqlite3_3.34.1-1/sqlite3.wrap">3.34.1-1</a></strong></big><br>
+</td>
+<td> sqlite3</td>
+<td></td>
+</tr>
+<tr>
+<td> tclap</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/tclap_1.2.4-1/tclap.wrap">1.2.4-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/tclap_1.2.2-1/tclap.wrap">1.2.2-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/tclap_1.2.1-1/tclap.wrap">1.2.1-1</a>
+</td>
+<td> tclap</td>
+<td></td>
+</tr>
+<tr>
+<td> termbox</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/termbox_1.1.2-1/termbox.wrap">1.1.2-1</a></strong></big><br>
+</td>
+<td> termbox</td>
+<td></td>
+</tr>
+<tr>
+<td> tinyply</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/tinyply_2.2-1/tinyply.wrap">2.2-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/tinyply_2.1-2/tinyply.wrap">2.1-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/tinyply_2.1-1/tinyply.wrap">2.1-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/tinyply_2.0-1/tinyply.wrap">2.0-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> tinyxml2</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/tinyxml2_7.0.1-1/tinyxml2.wrap">7.0.1-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> trompeloeil</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/trompeloeil_39-1/trompeloeil.wrap">39-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/trompeloeil_38-1/trompeloeil.wrap">38-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> tronkko-dirent</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/tronkko-dirent_1.23.2-1/tronkko-dirent.wrap">1.23.2-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> turtle</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/turtle_1.3.2-1/turtle.wrap">1.3.2-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/turtle_1.3.1-1/turtle.wrap">1.3.1-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> unittest-cpp</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/unittest-cpp_2.0.0-1/unittest-cpp.wrap">2.0.0-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> utf8proc</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/utf8proc_2.6.0-1/utf8proc.wrap">2.6.0-1</a></strong></big><br>
+</td>
+<td> libutf8proc</td>
+<td></td>
+</tr>
+<tr>
+<td> utfcpp</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/utfcpp_2.3.5-1/utfcpp.wrap">2.3.5-1</a></strong></big><br>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> vorbis</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/vorbis_1.3.5-7/vorbis.wrap">1.3.5-7</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/vorbis_1.3.5-6/vorbis.wrap">1.3.5-6</a>, <a href="https://wrapdb.mesonbuild.com/v2/vorbis_1.3.5-5/vorbis.wrap">1.3.5-5</a>, <a href="https://wrapdb.mesonbuild.com/v2/vorbis_1.3.5-4/vorbis.wrap">1.3.5-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/vorbis_1.3.5-2/vorbis.wrap">1.3.5-2</a>
+</td>
+<td> vorbis, vorbisfile, vorbisenc</td>
+<td></td>
+</tr>
+<tr>
+<td> vulkan-headers</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/vulkan-headers_1.2.158-2/vulkan-headers.wrap">1.2.158-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/vulkan-headers_1.2.158-1/vulkan-headers.wrap">1.2.158-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/vulkan-headers_1.2.142-1/vulkan-headers.wrap">1.2.142-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> vulkan-validationlayers</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/vulkan-validationlayers_1.2.158-2/vulkan-validationlayers.wrap">1.2.158-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/vulkan-validationlayers_1.2.158-1/vulkan-validationlayers.wrap">1.2.158-1</a>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> wren</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/wren_0.4.0-1/wren.wrap">0.4.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/wren_0.3.0-1/wren.wrap">0.3.0-1</a>
+</td>
+<td> wren</td>
+<td></td>
+</tr>
+<tr>
+<td> xxhash</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/xxhash_0.8.0-1/xxhash.wrap">0.8.0-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/xxhash_0.6.5-1/xxhash.wrap">0.6.5-1</a>
+</td>
+<td> libxxhash</td>
+<td></td>
+</tr>
+<tr>
+<td> yajl</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/yajl_2.1.0-2/yajl.wrap">2.1.0-2</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/yajl_2.1.0-1/yajl.wrap">2.1.0-1</a>
+</td>
+<td> yajl</td>
+<td></td>
+</tr>
+<tr>
+<td> zlib</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.11-5/zlib.wrap">1.2.11-5</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.11-4/zlib.wrap">1.2.11-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.11-3/zlib.wrap">1.2.11-3</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.11-2/zlib.wrap">1.2.11-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.11-1/zlib.wrap">1.2.11-1</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.8-8/zlib.wrap">1.2.8-8</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.8-7/zlib.wrap">1.2.8-7</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.8-6/zlib.wrap">1.2.8-6</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.8-4/zlib.wrap">1.2.8-4</a>, <a href="https://wrapdb.mesonbuild.com/v2/zlib_1.2.8-2/zlib.wrap">1.2.8-2</a>
+</td>
+<td> zlib</td>
+<td></td>
+</tr>
+<tr>
+<td> zstd</td>
+<td> <big><strong><a href="https://wrapdb.mesonbuild.com/v2/zstd_1.4.5-1/zstd.wrap">1.4.5-1</a></strong></big><br><a href="https://wrapdb.mesonbuild.com/v2/zstd_1.3.3-2/zstd.wrap">1.3.3-2</a>, <a href="https://wrapdb.mesonbuild.com/v2/zstd_1.3.3-1/zstd.wrap">1.3.3-1</a>
+</td>
+<td> libzstd</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Wrapdb-projects.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
