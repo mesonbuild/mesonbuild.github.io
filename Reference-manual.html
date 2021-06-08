@@ -2963,15 +2963,62 @@ controlled by keyword arguments.</p>
 <p>The following methods are defined for all <a href="Build-options.html#features"><code>feature</code> options</a>:</p>
 <ul>
 <li>
-<code>enabled()</code>: returns whether the feature was set to <code>'enabled'</code>
+<p><code>enabled()</code>: returns whether the feature was set to <code>'enabled'</code></p>
 </li>
 <li>
-<code>disabled()</code>: returns whether the feature was set to <code>'disabled'</code>
+<p><code>disabled()</code>: returns whether the feature was set to <code>'disabled'</code></p>
 </li>
 <li>
-<code>auto()</code>: returns whether the feature was set to <code>'auto'</code>
+<p><code>auto()</code>: returns whether the feature was set to <code>'auto'</code></p>
+</li>
+<li>
+<p><code>allowed()</code> <em>(since 0.59.0)</em>: returns whether the feature was set to <code>'enabled'</code> or <code>'auto'</code></p>
+</li>
+<li>
+<p><code>disable_auto_if(value)</code> <em>(since 0.59.0)</em>: returns the feature, with
+<code>'auto'</code> converted to <code>'disabled'</code> if value is true.</p>
+<table>
+<thead>
+<tr>
+<th> Feature / Condition</th>
+<th> True</th>
+<th> False</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Enabled</td>
+<td> Enabled</td>
+<td> Enabled</td>
+</tr>
+<tr>
+<td> Disabled</td>
+<td> Disabled</td>
+<td> Disabled</td>
+</tr>
+<tr>
+<td> Auto</td>
+<td> Disabled</td>
+<td> Auto</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>require(value, error_message: '')</code> <em>(since 0.59.0)</em>: returns
+the object itself if the value is true; an error if the object is
+<code>'enabled'</code> and the value is false; a disabled feature if the object
+is <code>'auto'</code> or <code>'disabled'</code> and the value is false.</p>
 </li>
 </ul>
+<p><code>require</code> is useful to restrict the applicability of <code>'auto'</code> features,
+for example based on other features or on properties of the host machine:</p>
+<pre><code>if get_option('directx').require(host_machine.system() == 'windows',
+       error_message: 'DirectX only available on Windows').allowed() then
+  src += ['directx.c']
+  config.set10('HAVE_DIRECTX', 1)
+endif
+</code></pre>
 <h3 id="generator-object">
 <code>generator</code> object</h3>
 <p>This object is returned by <a href="Reference-manual.html#generator"><code>generator()</code></a> and contains a
