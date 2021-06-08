@@ -196,6 +196,9 @@ $('body').removeClass('no-script');
         <h1 id="fs-filesystem-module">FS (filesystem) module</h1>
 <p>This module provides functions to inspect the file system. It is
 available starting with version 0.53.0.</p>
+<p>Since 0.59.0, all functions accept <code>files()</code> objects if they can do something
+useful with them (this excludes <code>exists</code>, <code>is_dir</code>, <code>is_file</code>, <code>is_absolute</code>
+since a <code>files()</code> object is always the absolute path to an existing file).</p>
 <h2 id="file-lookup-rules">File lookup rules</h2>
 <p>Non-absolute paths are looked up relative to the directory where the
 current <code>meson.build</code> file is.</p>
@@ -217,12 +220,13 @@ that name exists on the file system.</p>
 <p>Takes a single string argument and returns true if an file with that
 name exists on the file system.</p>
 <h3 id="is_symlink">is_symlink</h3>
-<p>Takes a single string argument and returns true if the path pointed to
-by the string is a symbolic link.</p>
+<p>Takes a single string or (since 0.59.0) <code>files()</code> argument and returns true if
+the path pointed to by the string is a symbolic link.</p>
 <h2 id="file-parameters">File Parameters</h2>
 <h3 id="is_absolute">is_absolute</h3>
 <p><em>since 0.54.0</em></p>
-<p>Return a boolean indicating if the path string specified is absolute, WITHOUT expanding <code>~</code>.</p>
+<p>Return a boolean indicating if the path string or (since 0.59.0) <code>files()</code>
+specified is absolute, WITHOUT expanding <code>~</code>.</p>
 <p>Examples:</p>
 <pre><code class="language-meson">fs.is_absolute('~')   # false
 
