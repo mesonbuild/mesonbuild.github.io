@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -677,6 +677,26 @@ wraps up these dependencies in the <code>curses</code> dependency. This covers
 both <code>ncurses</code> (preferred) and other curses implementations.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>config-tool</code>, or <code>system</code>.</p>
 <p><em>New in 0.56.0</em> The <code>config-tool</code> and <code>system</code> methods.</p>
+<p>To define some of the the preprocessor symbols mentioned in the
+<a href="http://git.savannah.gnu.org/gitweb/?p=autoconf-archive.git;a=blob_plain;f=m4/ax_with_curses.m4">curses autoconf documentation</a>:</p>
+<pre><code class="language-meson">conf = configuration_data()
+check_headers = [
+	['ncursesw/menu.h', 'HAVE_NCURSESW_MENU_H'],
+	['ncurses/menu.h', 'HAVE_NCURSES_MENU_H'],
+	['menu.h', 'HAVE_MENU_H'],
+	['ncursesw/curses.h', 'HAVE_NCURSESW_CURSES_H'],
+	['ncursesw.h', 'HAVE_NCURSESW_H'],
+	['ncurses/curses.h', 'HAVE_NCURSES_CURSES_H'],
+	['ncurses.h', 'HAVE_NCURSES_H'],
+	['curses.h', 'HAVE_CURSES_H'],
+]
+
+foreach h : check_headers
+	if compiler.has_header(h.get(0))
+		conf.set(h.get(1), 1)
+	endif
+endforeach
+</code></pre>
 <hr>
 <a name="footnote1">1</a>: They may appear to be case-insensitive, if the
     underlying file system happens to be case-insensitive.
