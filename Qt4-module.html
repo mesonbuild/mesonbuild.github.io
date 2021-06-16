@@ -196,6 +196,171 @@ $('body').removeClass('no-script');
         <h1 id="qt4-module">Qt4 module</h1>
 <p>This module provides support for Qt4's <code>moc</code>, <code>uic</code> and <code>rcc</code>
 tools. It is used identically to the <a href="Qt5-module.html">Qt 5 module</a>.</p>
+<h2 id="compile_resources">compile_resources</h2>
+<p><em>New in 0.59.0</em></p>
+<p>Compiles Qt's resources collection files (.qrc) into c++ files for compilation.</p>
+<p>It takes no positional arguments, and the following keyword arguments:</p>
+<ul>
+<li>
+<code>name</code> (string | empty): if provided a single .cpp file will be generated,
+and the output of all qrc files will be combined in this file, otherwise
+each qrc file be written to it's own cpp file.</li>
+<li>
+<code>sources</code> (File | string)[]: A list of sources to be transpiled. Required,
+must have at least one source</li>
+<li>
+<code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-rcc</code>
+</li>
+<li>
+<code>method</code> string: The method to use to detect qt, see <code>dependency()</code> for more
+information.</li>
+</ul>
+<h2 id="compile_ui">compile_ui</h2>
+<p><em>New in 0.59.0</em></p>
+<p>Compiles Qt's ui files (.ui) into header files.</p>
+<p>It takes no positional arguments, and the following keyword arguments:</p>
+<ul>
+<li>
+<code>sources</code> (File | string)[]: A list of sources to be transpiled. Required,
+must have at least one source</li>
+<li>
+<code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-uic</code>
+</li>
+<li>
+<code>method</code> string: The method to use to detect qt, see <code>dependency()</code> for more
+information.</li>
+</ul>
+<h2 id="compile_moc">compile_moc</h2>
+<p><em>New in 0.59.0</em></p>
+<p>Compiles Qt's moc files (.moc) into header and/or source files. At least one of
+the keyword arguments <code>headers</code> and <code>sources</code> must be provided.</p>
+<p>It takes no positional arguments, and the following keyword arguments:</p>
+<ul>
+<li>
+<code>sources</code> (File | string)[]: A list of sources to be transpiled into .moc
+files for manual inclusion.</li>
+<li>
+<code>headers</code> (File | string)[]: A list of headers to be transpiled into .cpp files</li>
+<li>
+<code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-moc</code>
+</li>
+<li>
+<code>method</code> string: The method to use to detect qt, see <code>dependency()</code> for more
+information.</li>
+<li>
+<code>include_directories</code> IncludeDirectory[]: A list of <code>include_directory()</code>
+objects used when transpiling the .moc files</li>
+</ul>
+<h2 id="preprocess">preprocess</h2>
+<p>Consider using <code>compile_resources</code>, <code>compile_ui</code>, and <code>compile_moc</code> instead.</p>
+<p>Takes sources for moc, uic, and rcc, and converts them into c++ files for
+compilation.</p>
+<p>Has the following signature: <code>qt.preprocess(name: str | None, *sources: str)</code></p>
+<p>If the <code>name</code> parameter is passed then all of the rcc files will be wirtten to a single output file</p>
+<p>The variadic <code>sources</code> arguments have been deprecated since Meson 0.59.0, as has the <code>sources</code> keyword argument. These passed files unmodified through the preprocessor, don't do this, just add the output of the generator to another sources list:</p>
+<pre><code class="language-meson">sources = files('a.cpp', 'main.cpp', 'bar.c')
+sources += qt.preprocess(qresources : ['resources'])
+</code></pre>
+<p>This method takes the following keyword arguments:</p>
+<ul>
+<li>
+<code>qresources</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>rcc</code> compiler</li>
+<li>
+<code>ui_files</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>uic</code> compiler</li>
+<li>
+<code>moc_sources</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>moc</code> compiler the</li>
+<li>
+<code>moc_headers</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>moc</code> compiler. These will be converted into .cpp files</li>
+<li>
+<code>include_directories</code>, the directories to add to header search path for <code>moc</code> (optional)</li>
+<li>
+<code>moc_extra_arguments</code>, any additional arguments to <code>moc</code> (optional). Available since v0.44.0.</li>
+<li>
+<code>uic_extra_arguments</code>, any additional arguments to <code>uic</code> (optional). Available since v0.49.0.</li>
+<li>
+<code>rcc_extra_arguments</code>, any additional arguments to <code>rcc</code> (optional). Available since v0.49.0.</li>
+<li>
+<code>dependencies</code>, dependency objects needed by moc. Available since v0.48.0.</li>
+<li>
+<code>sources</code>, a list of extra sources, which are added to the output unchaged. Deprecated in 0.59.0</li>
+</ul>
+<p>It returns an array of targets and sources to pass to a compilation target.</p>
+<h2 id="compile_translations-since-v0440">compile_translations (since v0.44.0)</h2>
+<p>This method generates the necessary targets to build translation files with
+lrelease, it takes no positional arguments, and the following keyword arguments:</p>
+<ul>
+<li>
+<code>ts_files</code> (str | File)[], the list of input translation files produced by Qt's lupdate tool.</li>
+<li>
+<code>install</code> bool: when true, this target is installed during the install step (optional).</li>
+<li>
+<code>install_dir</code> string: directory to install to (optional).</li>
+<li>
+<code>build_by_default</code> bool: when set to true, to have this target be built by
+default, that is, when invoking <code>meson compile</code>; the default value is false
+(optional).</li>
+<li>
+<code>qresource</code> string: rcc source file to extract ts_files from; cannot be used
+with ts_files kwarg. Available since v0.56.0.</li>
+<li>
+<code>rcc_extra_arguments</code> string[]: any additional arguments to <code>rcc</code> (optional),
+when used with `qresource. Available since v0.56.0.</li>
+</ul>
+<p>Returns either: a list of custom targets for the compiled
+translations, or, if using a <code>qresource</code> file, a single custom target
+containing the processed source file, which should be passed to a main
+build target.</p>
+<h2 id="has_tools">has_tools</h2>
+<p>This method returns <code>true</code> if all tools used by this module are found,
+<code>false</code> otherwise.</p>
+<p>It should be used to compile optional Qt code:</p>
+<pre><code class="language-meson">qt5 = import('qt5')
+if qt5.has_tools(required: get_option('qt_feature'))
+  moc_files = qt5.preprocess(...)
+  ...
+endif
+</code></pre>
+<p>This method takes the following keyword arguments:</p>
+<ul>
+<li>
+<code>required</code> bool | FeatureOption: by default, <code>required</code> is set to <code>false</code>. If <code>required</code> is set to
+<code>true</code> or an enabled <a href="Build-options.html#features"><code>feature</code></a> and some tools are
+missing Meson will abort.</li>
+<li>
+<code>method</code> string: method used to find the Qt dependency (<code>auto</code> by default).</li>
+</ul>
+<p><em>Since: 0.54.0</em></p>
+<h2 id="dependencies">Dependencies</h2>
+<p>See <a href="Dependencies.html#qt4-qt5">Qt dependencies</a></p>
+<p>The 'modules' argument is used to include Qt modules in the project.
+See the Qt documentation for the <a href="http://doc.qt.io/qt-5/qtmodules.html">list of
+modules</a>.</p>
+<p>The 'private_headers' argument allows usage of Qt's modules private
+headers. (since v0.47.0)</p>
+<h2 id="example">Example</h2>
+<p>A simple example would look like this:</p>
+<pre><code class="language-meson">qt5 = import('qt5')
+qt5_dep = dependency('qt5', modules: ['Core', 'Gui'])
+inc = include_directories('includes')
+moc_files = qt5.compile_moc(headers : 'myclass.h',
+                            extra_arguments: ['-DMAKES_MY_MOC_HEADER_COMPILE'],
+                            include_directories: inc,
+                            dependencies: qt5_dep)
+translations = qt5.compile_translations(ts_files : 'myTranslation_fr.ts', build_by_default : true)
+executable('myprog', 'main.cpp', 'myclass.cpp', moc_files,
+           include_directories: inc,
+           dependencies : qt5_dep)
+</code></pre>
+<p>Sometimes, translations are embedded inside the binary using qresource
+files. In this case the ts files do not need to be explicitly listed,
+but will be inferred from the built qm files listed in the qresource
+file. For example:</p>
+<pre><code class="language-meson">qt5 = import('qt5')
+qt5_dep = dependency('qt5', modules: ['Core', 'Gui'])
+lang_cpp = qt5.compile_translations(qresource: 'lang.qrc')
+executable('myprog', 'main.cpp', lang_cpp,
+           dependencies: qt5_dep)
+</code></pre>
 
     </div>
         
