@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -254,7 +254,7 @@ files for manual inclusion.</li>
 <code>method</code> string: The method to use to detect qt, see <code>dependency()</code> for more
 information.</li>
 <li>
-<code>include_directories</code> IncludeDirectory[]: A list of <code>include_directory()</code>
+<code>include_directories</code> (string | IncludeDirectory)[]: A list of <code>include_directory()</code>
 objects used when transpiling the .moc files</li>
 </ul>
 <h2 id="preprocess">preprocess</h2>
@@ -270,25 +270,26 @@ sources += qt.preprocess(qresources : ['resources'])
 <p>This method takes the following keyword arguments:</p>
 <ul>
 <li>
-<code>qresources</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>rcc</code> compiler</li>
+<code>qresources</code> (string | File | CustomTarget | BuildTarget)[]: Passed to the RCC compiler</li>
 <li>
-<code>ui_files</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>uic</code> compiler</li>
+<code>ui_files</code>: (string | File | CustomTarget | BuilduTarget)[]: Passed the <code>uic</code> compiler</li>
 <li>
-<code>moc_sources</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>moc</code> compiler the</li>
+<code>moc_sources</code>: (string | File | CustomTarget | BuildTarget)[]: Passed the <code>moc</code> compiler the</li>
 <li>
-<code>moc_headers</code>: a list of strings, Files, Custom Targets, or Build Targets to pass the <code>moc</code> compiler. These will be converted into .cpp files</li>
+<code>moc_headers</code>: (string | File | CustomTarget | BuildTarget)[]: Passied the <code>moc</code> compiler. These will be converted into .cpp files</li>
 <li>
-<code>include_directories</code>, the directories to add to header search path for <code>moc</code> (optional)</li>
+<code>include_directories</code> (IncludeDirectories | string)[], the directories to add to header search path for <code>moc</code>
+</li>
 <li>
-<code>moc_extra_arguments</code>, any additional arguments to <code>moc</code> (optional). Available since v0.44.0.</li>
+<code>moc_extra_arguments</code> string[]: any additional arguments to <code>moc</code>. Since v0.44.0.</li>
 <li>
-<code>uic_extra_arguments</code>, any additional arguments to <code>uic</code> (optional). Available since v0.49.0.</li>
+<code>uic_extra_arguments</code> string[]: any additional arguments to <code>uic</code>. Since v0.49.0.</li>
 <li>
-<code>rcc_extra_arguments</code>, any additional arguments to <code>rcc</code> (optional). Available since v0.49.0.</li>
+<code>rcc_extra_arguments</code> string[]: any additional arguments to <code>rcc</code>. Since v0.49.0.</li>
 <li>
-<code>dependencies</code>, dependency objects needed by moc. Available since v0.48.0.</li>
+<code>dependencies</code> Dependency[]: dependency objects needed by moc. Available since v0.48.0.</li>
 <li>
-<code>sources</code>, a list of extra sources, which are added to the output unchaged. Deprecated in 0.59.0</li>
+<code>sources</code>: a list of extra sources, which are added to the output unchaged. Deprecated in 0.59.0.</li>
 </ul>
 <p>It returns an array of targets and sources to pass to a compilation target.</p>
 <h2 id="compile_translations-since-v0440">compile_translations (since v0.44.0)</h2>
