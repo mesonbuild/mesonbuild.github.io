@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
-<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -694,7 +694,9 @@ case the value of the <code>required:</code> kwarg will be obeyed.
 <em>Since 0.54.0</em> the value can be a single string, the subproject name;
 in this case the subproject must use
 <code>meson.override_dependency('dependency_name', subproj_dep)</code>
-to specify the dependency object used in the superproject.</li>
+to specify the dependency object used in the superproject.
+If the value is an empty list, it has the same effect as
+<code>allow_fallback: false</code>.</li>
 <li>
 <code>language</code> <em>(since 0.42.0)</em>: defines what language-specific
 dependency to find if it's available for multiple languages.</li>
