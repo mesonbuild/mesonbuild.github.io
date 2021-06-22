@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -2684,7 +2684,9 @@ a number of source files as <a href="Reference-manual.html#string-object"><code>
 object files generated for those source files. This is typically used
 to take single object files and link them to unit tests or to compile
 some source files with custom flags. To use the object file(s)
-in another build target, use the <code>objects:</code> keyword argument.</p>
+in another build target, use the <a href="Reference-manual.html#executable"><code>objects:</code></a> keyword
+argument or include them in the command line of a
+<a href="Reference-manual.html#custom_target"><code>custom_target</code></a>`.</p>
 </li>
 <li>
 <p><code>full_path()</code>: returns a full path pointing to the result target file.
