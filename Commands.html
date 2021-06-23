@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -797,6 +797,11 @@ GTK from git. On OSX the environment variable is <code>DYLD_LIBRARY_PATH</code> 
 <li>
 <code>GI_TYPELIB_PATH</code> includes every directory where a GObject Introspection
 typelib is built. This is automatically set when using <code>gnome.generate_gir()</code>.</li>
+<li>
+<code>GSETTINGS_SCHEMA_DIR</code> <em>Since 0.59.0</em> includes every directory where a GSettings
+schemas is compiled. This is automatically set when using <code>gnome.compile_schemas()</code>.
+Note that this requires GLib &gt;= 2.64 when <code>gnome.compile_schemas()</code> is used in
+more than one directory.</li>
 </ul>
 <pre><code class="language-inc">positional arguments:
   command     Command to run in developer environment (default: interactive
