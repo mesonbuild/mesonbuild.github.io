@@ -35,10 +35,10 @@
 
 <script src="assets/js/lines_around_headings.js"></script>
 
+<script src="assets/js/trie.js"></script>
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
-<script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
@@ -544,6 +544,11 @@ owner/uid and group/gid</li>
 <code>{'NAME1': 'value1', 'NAME2': 'value2'}</code> or <code>['NAME1=value1', 'NAME2=value2']</code>,
 or an <a href="Reference-manual.html#environment-object"><code>environment()</code> object</a> which allows more
 sophisticated environment juggling.</li>
+<li>
+<code>feed</code> <em>(since 0.59.0)</em>: there are some compilers that can't be told to read
+their input from a file and instead read it from standard input. When this
+argument is set to true, Meson feeds the input file to <code>stdin</code>. Note that
+your argument list may not contain <code>@INPUT@</code> when feed mode is active.</li>
 </ul>
 <p>The list of strings passed to the <code>command</code> keyword argument accept
 the following special string substitutions:</p>
