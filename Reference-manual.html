@@ -1155,14 +1155,15 @@ the variable does not exist, the variable <code>fallback</code> is stored to
 <code>res</code>instead. If a fallback is not specified, then attempting to read
 a non-existing variable will cause a fatal error.</p>
 <h3 id="import">import()</h3>
-<pre><code class="language-meson">    module_object import(module_name)
+<pre><code>  module_object import(string, required : bool | feature, disabler : bool)
 </code></pre>
-<p>Imports the given extension module. Returns an opaque object that can
-be used to call the methods of the module. Here's an example for a
-hypothetical <code>testmod</code> module.</p>
+<p>Imports the given extension module. Returns an object that can be used to call
+the methods of the module. Here's an example for a hypothetical <code>testmod</code>
+module.</p>
 <pre><code class="language-meson">    tmod = import('testmod')
     tmod.do_something()
 </code></pre>
+<p><em>Since 0.59.0</em> the required and disabler keyword arguments</p>
 <h3 id="include_directories">include_directories()</h3>
 <pre><code class="language-meson">    include_object include_directories(directory_names, ...)
 </code></pre>
@@ -3100,6 +3101,16 @@ for <code>compiler.run()</code> results.</li>
 <code>stderr()</code>: the standard error produced when the command was run</li>
 <li>
 <code>stdout()</code>: the standard out produced when the command was run</li>
+</ul>
+<h3 id="module-object">
+<code>module</code> object</h3>
+<p>Modules provide their own specific implementation methods, but all modules
+proivide the following methods:</p>
+<ul>
+<li>
+<code>bool found()</code>: returns True if the module was successfully imported,
+otherwise false. <em>Since 0.59.0</em>
+</li>
 </ul>
 
     </div>
