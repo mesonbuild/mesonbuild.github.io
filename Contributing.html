@@ -561,15 +561,13 @@ considered if the platform matches. The following values for
 project tests with different Meson options.</p>
 <p>In the <code>options</code> dict, all possible options and their values are
 specified. Each key in the <code>options</code> dict is a Meson option. It stores
-a list of all potential values in a dict format, which allows to skip
-specific values based on the current environment.</p>
+a list of all potential values in a dict format.</p>
 <p>Each value must contain the <code>val</code> key for the value of the option.
 <code>null</code> can be used for adding matrix entries without the current
 option.</p>
-<p>Additionally, the <code>skip_on_env</code> key can be used to specify a list of
-environment variables. If at least one environment variable in
-<code>skip_on_env</code> is present, all matrix entries containing this value are
-skipped.</p>
+<p>The <code>skip_on_env</code>, <code>skip_on_jobname</code> and <code>skip_on_os</code> keys (as described below)
+may be used in the value to skip that matrix entry, based on the current
+environment.</p>
 <p>Similarly, the <code>compilers</code> key can be used to define a mapping of
 compilers to languages that are required for this value.</p>
 <pre><code class="language-json">{
@@ -640,6 +638,22 @@ matched:</p>
 </tr>
 </tbody>
 </table>
+<h4 id="skip_on_env">skip_on_env</h4>
+<p>The <code>skip_on_env</code> key can be used to specify a list of environment variables. If
+at least one environment variable in the <code>skip_on_env</code> list is present, the test
+is skipped.</p>
+<h4 id="skip_on_jobname">skip_on_jobname</h4>
+<p>The <code>skip_on_jobname</code> key contains a list of strings. If the <code>MESON_CI_JOBNAME</code>
+environment variable is set, and any of them are a sub-string of it, the test is
+expected to be skipped (that is, it is expected that the test will output
+<code>MESON_SKIP_TEST</code>, because the CI environment is not one in which it can run,
+for whatever reason).</p>
+<p>The test is failed if it skips or runs unexpectedly.</p>
+<h4 id="skip_on_os">skip_on_os</h4>
+<p>The <code>skip_on_os</code> key can be used to specify a list of OS names (or their
+negations, prefixed with a <code>!</code>).  If at least one item in the <code>skip_on_os</code> list
+is matched, the test is expected to be skipped.</p>
+<p>The test is failed if it skips or runs unexpectedly.</p>
 <h3 id="skipping-integration-tests">Skipping integration tests</h3>
 <p>Meson uses several continuous integration testing systems that have
 slightly different interfaces for indicating a commit should be
