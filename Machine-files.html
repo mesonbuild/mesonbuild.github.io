@@ -206,7 +206,7 @@ specific values of one or the other see the <a href="Cross-compilation.html">cro
 compilation</a> and <a href="Native-environments.html">native
 environments</a>.</p>
 <p><em>Changed in 0.56.0</em> Keys within sections are now case sensitive. This
-*is required to make project options work correctly.</p>
+is required to make project options work correctly.</p>
 <h2 id="data-types">Data Types</h2>
 <p>There are four basic data types in a machine file:</p>
 <ul>
@@ -308,8 +308,8 @@ case). For compilers like MSVC and Clang-Cl, this is the path to a
 linker for Meson to invoke, such as <code>link.exe</code> or <code>lld-link.exe</code>.
 Support for <code>ld</code> is <em>new in 0.53.0</em></p>
 <p><em>changed in 0.53.1</em> the <code>ld</code> variable was replaced by <code>&lt;lang&gt;_ld</code>,
-*because it regressed a large number of projects. in 0.53.0 the <code>ld</code>
-*variable was used instead.</p>
+because it regressed a large number of projects. in 0.53.0 the <code>ld</code>
+variable was used instead.</p>
 <p>Native example:</p>
 <pre><code class="language-ini">c = '/usr/bin/clang'
 c_ld = 'lld'
@@ -411,7 +411,7 @@ CMAKE_SOME_VARIABLE = ['some', 'value with spaces']
 <p>For instance, the <code>[cmake]</code> section from above will generate the
 following code in the CMake toolchain file:</p>
 <pre><code class="language-cmake">set(CMAKE_C_COMPILER    "/usr/bin/gcc")
-set(CMAKE_C_COMPILER    "C:/usr/bin/g++")
+set(CMAKE_CXX_COMPILER  "C:/usr/bin/g++")
 set(CMAKE_SOME_VARIABLE "some" "value with spaces")
 </code></pre>
 <h3 id="project-specific-options">Project specific options</h3>
