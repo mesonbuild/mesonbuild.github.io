@@ -270,13 +270,13 @@ sources += qt.preprocess(qresources : ['resources'])
 <p>This method takes the following keyword arguments:</p>
 <ul>
 <li>
-<code>qresources</code> (string | File | CustomTarget | BuildTarget)[]: Passed to the RCC compiler</li>
+<code>qresources</code> (string | File)[]: Passed to the RCC compiler</li>
 <li>
-<code>ui_files</code>: (string | File | CustomTarget | BuilduTarget)[]: Passed the <code>uic</code> compiler</li>
+<code>ui_files</code>: (string | File | CustomTarget)[]: Passed the <code>uic</code> compiler</li>
 <li>
-<code>moc_sources</code>: (string | File | CustomTarget | BuildTarget)[]: Passed the <code>moc</code> compiler the</li>
+<code>moc_sources</code>: (string | File | CustomTarget)[]: Passed the <code>moc</code> compiler. These are converted into .moc files meant to be <code>#include</code>ed</li>
 <li>
-<code>moc_headers</code>: (string | File | CustomTarget | BuildTarget)[]: Passied the <code>moc</code> compiler. These will be converted into .cpp files</li>
+<code>moc_headers</code>: (string | File | CustomTarget)[]: Passied the <code>moc</code> compiler. These will be converted into .cpp files</li>
 <li>
 <code>include_directories</code> (IncludeDirectories | string)[], the directories to add to header search path for <code>moc</code>
 </li>
