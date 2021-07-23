@@ -215,6 +215,8 @@ changed). Meson will then use the specified compiler without Ccache.</p>
 <p>When doing a code coverage build, Meson will check for existence of
 the binaries <code>gcovr</code>, <code>lcov</code> and <code>genhtml</code>. If version 3.3 or higher
 of the first is found, targets called <em>coverage-text</em>, <em>coverage-xml</em>
+and <em>coverage-html</em> are generated. If version 4.2 or higher of the
+first is found, targets <em>coverage-text</em>, <em>coverage-xml</em>, <em>coverage-sonarqube</em>
 and <em>coverage-html</em> are generated. Alternatively, if the latter two
 are found, only the target <em>coverage-html</em> is generated. Coverage
 reports can then be produced simply by calling e.g. <code>meson compile coverage-xml</code>. As a convenience, a high-level <em>coverage</em> target is
