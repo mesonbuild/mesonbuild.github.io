@@ -272,6 +272,10 @@ packages. This is done with the <code>DESTDIR</code> environment variable and it
 is used just like with other build systems:</p>
 <pre><code class="language-console">$ DESTDIR=/path/to/staging/area meson install
 </code></pre>
+<p>Since <em>0.57.0</em> <code>--destdir</code> argument can be used instead of environment. In that
+case Meson will set <code>DESTDIR</code> into environment when runing install scripts.</p>
+<p>Since <em>0.60.0</em> <code>DESTDIR</code> and <code>--destdir</code> can be a path relative to build
+directory. An absolute path will be set into environment when executing scripts.</p>
 <h2 id="custom-install-behaviour">Custom install behaviour</h2>
 <p>Installation behaviour can be further customized using additional
 arguments.</p>

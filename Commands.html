@@ -518,6 +518,8 @@ optional arguments:
 <p>Install project to <code>$DESTDIR/prefix</code>:</p>
 <pre><code>DESTDIR=/path/to/staging/area meson install -C builddir
 </code></pre>
+<p>Since <em>0.60.0</em> <code>DESTDIR</code> and <code>--destdir</code> can be a path relative to build
+directory. An absolute path will be set into environment when executing scripts.</p>
 <h3 id="rewrite">rewrite</h3>
 <p><em>(since 0.50.0)</em></p>
 <pre><code class="language-inc">$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
