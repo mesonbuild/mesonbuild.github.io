@@ -201,102 +201,53 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="adding-new-projects-to-wrapdb">Adding new projects to WrapDB</h1>
 <h2 id="how-it-works">How it works</h2>
-<p>Each wrap repository has a master branch with only one initial commit
-and <em>no</em> wrap files. And that is the only commit ever made on that
-branch.</p>
-<p>For every release of a project a new branch is created. The new branch
-is named after the the upstream release number (e.g. <code>1.0.0</code>). This
-branch holds a wrap file for this particular release.</p>
+<p>New wraps must be submitted as a working subproject to the <a href="https://github.com/mesonbuild/wrapdb">wrapdb
+repository</a>.</p>
 <p>There are two types of wraps on WrapDB - regular wraps and wraps with
-Meson build definition patches. A wrap file in a repository on WrapDB
-must have a name <code>upstream.wrap</code>.</p>
+Meson build definition patches.</p>
 <p>Wraps with Meson build definition patches work in much the same way as
 Debian: we take the unaltered upstream source package and add a new
-build system to it as a patch. These build systems are stored as Git
-repositories on GitHub. They only contain build definition files. You
-may also think of them as an overlay to upstream source.</p>
-<p>Whenever a new commit is pushed into GitHub's project branch, a new
-wrap is generated with an incremented version number. All the old
-releases remain unaltered. New commits are always done via GitHub
-merge requests and must be reviewed by someone other than the
-submitter.</p>
+build system to it as a patch. These build systems are stored as a
+subdirectory of subprojects/packagefiles/. They only contain build
+definition files. You may also think of them as an overlay to upstream
+source.</p>
+<p>Wraps without Meson build definition patches only contain the wrap
+metadata describing how to fetch the project</p>
+<p>Whenever a new release is pushed into the wrapdb, a new tag is
+generated with an incremented version number, and a new release is
+added to the wrapdb API listing. All the old releases remain
+unaltered. New commits are always done via GitHub merge requests and
+must be reviewed by someone other than the submitter.</p>
 <p>Note that your Git repo with wrap must not contain the subdirectory of
 the source release. That gets added automatically by the service. You
 also must not commit any source code from the original tarball into
 the wrap repository.</p>
-<h2 id="choosing-the-repository-name">Choosing the repository name</h2>
+<h2 id="choosing-the-wrap-name">Choosing the wrap name</h2>
 <p>Wrapped subprojects are used much like external dependencies. Thus
 they should have the same name as the upstream projects.</p>
-<p>NOTE: Repo names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
-<p>If the project provides a pkg-config file, then the repository name
+<p>NOTE: Wrap names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
+<p>If the project provides a pkg-config file, then the wrap name
 should be the same as the pkg-config name. Usually this is the name of
 the project, such as <code>libpng</code>. Sometimes it is slightly different,
 however. As an example the libogg project's chosen pkg-config name is
-<code>ogg</code> instead of <code>libogg</code>, which is the reason why the repository is
+<code>ogg</code> instead of <code>libogg</code>, which is the reason why the wrap is
 named plain <code>ogg</code>.</p>
-<p>If there is no a pkg-config file, the name the project uses/promotes
+<p>If there is no pkg-config file, the name the project uses/promotes
 should be used, lowercase only (Catch2 -&gt; catch2).</p>
 <p>If the project name is too generic or ambiguous (e.g. <code>benchmark</code>),
 consider using <code>organization-project</code> naming format (e.g.
 <code>google-benchmark</code>).</p>
 <h2 id="how-to-contribute-a-new-wrap">How to contribute a new wrap</h2>
-<p>If the project already uses Meson build system, then only a wrap file</p>
-<ul>
-<li>
-<code>upstream.wrap</code> should be provided. In other case a Meson build
-definition patch - a set of <code>meson.build</code> files - should be also
-provided.</li>
-</ul>
-<h3 id="request-a-new-repository">Request a new repository</h3>
-<p><em>Note:</em> you should only do this if you have written the build files
-and want to contribute them for inclusion to WrapDB. The maintainers
-have only limited reesources and unfortunately can not take requests
-to write Meson build definitions for arbitrary projects.</p>
-<p>The submission starts by creating an issue on the <a href="https://github.com/mesonbuild/wrapdb/issues">wrapdb bug
-tracker</a> using <em>Title</em>
-and <em>Description</em> below as a template.</p>
-<p><em>Title:</em> <code>new wrap: &lt;project_name&gt;</code></p>
-<p><em>Description:</em></p>
-<pre><code>upstream url: &lt;link_to_updastream&gt;
-version: &lt;version_you_have_a_wrap_for&gt;
-</code></pre>
-<p>Wait until the new repository or branch is created. A link to the new
-repository or branch will be posted in a comment to this issue. After
-this you can createa a merge request in that repository for your build
-files.</p>
-<p>NOTE: Requesting a branch is not necessary. WrapDB maintainer can
-create the branch and modify the PR accordingly if the project
-repository exists.</p>
+<p>If the project already uses Meson build system, then only a wrap file
+<code>project.wrap</code> should be provided. In other case a Meson build
+definition patch - a set of <code>meson.build</code> files - should also be
+provided.</p>
 <h3 id="creating-the-wrap-contents">Creating the wrap contents</h3>
-<p>Setting up the contents might seem a bit counterintuitive at first.
-Just remember that the outcome needs to have one (and only one) commit
-that has all the build definition files (i.e. <code>meson.build</code> and
-<code>meson_options.txt</code> files) and <em>nothing else</em>. It is good practice to
-have this commit in a branch whose name matches the release as
-described above.</p>
-<p>First you need to fork the repository to your own page using GitHub's
-fork button. Then you can clone the repo to your local machine.</p>
-<pre><code>git clone git@github.com:yourusername/libfoo.git foo-wrap
-</code></pre>
-<p>Create a new branch for your work:</p>
-<pre><code>git checkout -b 1.0.0
-</code></pre>
-<p>If you are adding new changes to an existing branch, leave out the
-<code>-b</code> argument.</p>
-<p>Now you need to copy the source code for the original project to this
-directory. If you already have it extracted somewhere, you'd do
-something like this:</p>
-<pre><code>cd /path/to/source/extract/dir
-cp -r * /path/to/foo-wrap
-</code></pre>
-<p>Now all the files should be in the wrap directory. Do <em>not</em> add them
-to Git, though. Neither now or at any time during this process. The
-repo must contain only the newly created build files.</p>
-<p>New release branches require an <code>upstream.wrap</code> file, so create one if
+<p>New release branches require a <code>project.wrap</code> file, so create one if
 needed.</p>
 <pre><code>${EDITOR} upstream.wrap
 </code></pre>
-<p>The file format is simple, see any existing wrapdb repo for the
+<p>The file format is simple, see any existing wrapdb subproject for the
 content. The checksum is SHA-256 and can be calculated with the
 following command on most unix-like operating systems:</p>
 <pre><code>sha256sum path/to/libfoo-1.0.0.tar.gz
@@ -319,52 +270,36 @@ Most commonly it holds the result of a <code>declare_dependency</code> call. If 
 variable of that name is not defined, Meson will exit with a hard
 error. For further details see <a href="Wrap-dependency-system-manual.html">the main Wrap
 manual</a>.</p>
-<p>Now you can create the build files and work on them until the project
-builds correctly.</p>
+<p>Now you can create the build files, if the upstream project does not
+contain any, and work on them until the project builds correctly.
+Remember that all files go in the directory
+<code>subprojects/packagefiles/&lt;project-name&gt;</code>.</p>
 <pre><code>${EDITOR} meson.build meson_options.txt
 </code></pre>
-<p>When you are satisfied with the results, add the build files to Git
-and push the result to GitHub.</p>
+<p>In order to apply the locally added build files to the upstream
+release tarball, the <code>wrap-file</code> section must contain a
+<code>patch_directory</code> property naming the subdirectory in
+subprojects/packagefiles/ with the build files inside, as this is
+central to the way the wrapdb works. It will be used by the wrapdb
+meson.build, and when a release is created, the files from this
+directory will be converted into an archive and a patch_url will be
+added to the wrap file.</p>
+<p>When you are satisfied with the results, add the build files to Git, update
+releases.json as described in
+<a href="https://github.com/mesonbuild/wrapdb#readme">README.md</a>, and push the result
+to GitHub.</p>
 <pre><code>&lt;verify that your project builds and runs&gt;
-git add upstream.wrap meson.build
+git add releases.json subprojects/project.wrap subprojects/packagefiles/project/
 git commit -a -m 'Add wrap files for libfoo-1.0.0'
-git push -u origin 1.0.0
+git push -u origin libfoo
 </code></pre>
-<p>Now you should create a pull request on GitHub. Try to create it
-against the correct branch rather than master (<code>1.0.0</code> branch in this
-example). GitHub should do this automatically.</p>
-<p>If the branch doesn't exist file a pull request against master.
-WrapDB maintainers can fix it before merging.</p>
+<p>Now you should create a pull request on GitHub.</p>
 <p>If packaging review requires you to do changes, use the <code>--amend</code>
-argument to <code>commit</code> so that your branch will continue to have only
-one commit.</p>
+argument to <code>commit</code> so that your branch will have only one commit.</p>
 <pre><code>${EDITOR} meson.build
-git commit -a --amend
+git commit -u --amend
 git push --force
 </code></pre>
-<h3 id="request-a-new-release-version-to-an-existing-repository">Request a new release version to an existing repository</h3>
-<p>Adding new releases to an existing repo is straightforward. All you
-need to do is to follow the rules discussed above but when you create
-the merge request, file it against the master branch. The repository
-reviewer will create the necessary branch and retarget your merge
-request accordingly.</p>
-<h2 id="what-is-done-by-wrapdb-maintainers">What is done by WrapDB maintainers</h2>
-<p><a href="Wrap-maintainer-tools.md">mesonwrap tools</a> must be used for the tasks
-below.</p>
-<h3 id="adding-new-project-to-the-wrap-provider-service">Adding new project to the Wrap provider service</h3>
-<p>Each project gets its own repo. It is initialized like this:</p>
-<pre><code>mesonwrap new_repo --homepage=$HOMEPAGE --directory=$NEW_LOCAL_PROJECT_DIR $PROJECT_NAME
-</code></pre>
-<p>The command creates a new repository and uploads it to GitHub.</p>
-<p><code>--version</code> flag may be used to create a branch immediately.</p>
-<h3 id="adding-a-new-branch-to-an-existing-project">Adding a new branch to an existing project</h3>
-<p>Create a new branch whose name matches the upstream release number.</p>
-<pre><code>git checkout master
-git checkout -b 1.0.0
-git push origin 1.0.0
-(or from GitHub web page, remember to branch from master)
-</code></pre>
-<p>Branch names must fully match this regexp: <code>[a-z0-9._]+</code>.</p>
 <h2 id="changes-to-original-source">Changes to original source</h2>
 <p>The point of a wrap is to provide the upstream project with as few
 changes as possible. Most projects should not contain anything more
@@ -380,12 +315,16 @@ system has native support for Git subprojects.</p>
 passing it is a requirement for merging. Therefore it is highly
 recommended that you run the validation checks yourself so you can fix
 any issues faster.</p>
-<p>Instructions on how to install and run the review tool can be found on
-the <a href="Wrap-review-guidelines.html">Wrap review guidelines page</a>.  If your
-submission is merge request number 5 for a repository called <code>mylib</code>,
-then you'd run the following command:</p>
-<pre><code>mesonwrap review --pull-request 5 mylib
+<p>You can test the wrap itself with the following commands:</p>
+<pre><code>meson subprojects purge --confirm
+meson setup builddir/ -Dwraps=&lt;project-name&gt;
 </code></pre>
+<p>The first command is to ensure the wrap is correctly fetched from the
+latest packagefiles. The second command configures meson and selects a
+set of subprojects to enable.</p>
+<p>The Github project contains automatic CI on pushing to run the project
+and check the metadata for obvious mistakes. This can be checked from
+your fork before submitting a PR.</p>
 
     </div>
         
