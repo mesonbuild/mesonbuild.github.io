@@ -1930,6 +1930,12 @@ permitted.</p>
 <p>Defined tests can be run in a backend-agnostic way by calling
 <code>meson test</code> inside the build dir, or by using backend-specific
 commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
+<h3 id="unset_variable">unset_variable()</h3>
+<p><em>(since 0.60.0)</em></p>
+<pre><code class="language-meson">    void unset_variable(varname)
+</code></pre>
+<p>Unsets a variable. Referencing a variable which has been unset is an error until
+it has been set again.</p>
 <h3 id="vcs_tag">vcs_tag()</h3>
 <pre><code class="language-meson">    customtarget vcs_tag(...)
 </code></pre>
