@@ -246,7 +246,7 @@ files to <code>/etc</code> instead of <code>/usr/etc</code>. This can be accompl
 giving an absolute install path.</p>
 <pre><code class="language-meson">install_data(sources : 'foo.dat', install_dir : '/etc') # -&gt; /etc/foo.dat
 </code></pre>
-<h2 id="custom-install-behavior">Custom install behavior</h2>
+<h2 id="custom-install-script">Custom install script</h2>
 <p>Sometimes you need to do more than just install basic targets. Meson
 makes this easy by allowing you to specify a custom script to execute
 at install time. As an example, here is a script that generates an
@@ -285,22 +285,99 @@ only installing those files that have changed, you would run this
 command in the build tree:</p>
 <pre><code class="language-console">$ meson install --no-rebuild --only-changed
 </code></pre>
-<h2 id="finer-control-over-install-locations">Finer control over install locations</h2>
-<p>Sometimes it is necessary to only install a subsection of output files
-or install them in different directories. This can be done by
-specifying <code>install_dir</code> as an array rather than a single string. The
-array must have as many items as there are outputs and each entry
-specifies how the corresponding output file should be installed. For
-example:</p>
-<pre><code class="language-meson">custom_target(...
-    output: ['file1', 'file2', 'file3'],
-    install_dir: ['path1', false, 'path3'],
-    ...
-)
-</code></pre>
-<p>In this case <code>file1</code> would be installed to <code>/prefix/path1/file1</code>,
-<code>file2</code> would not be installed at all and <code>file3</code> would be installed
-to `/prefix/path3/file3'.</p>
+<h2 id="installation-tags">Installation tags</h2>
+<p><em>Since 0.60.0</em></p>
+<p>It is possible to install only a subset of the installable files using
+<code>meson install --tags tag1,tag2</code> command line. When <code>--tags</code> is specified, only
+files that have been tagged with one of the tags are going to be installed.</p>
+<p>This is intended to be used by packagers (e.g. distributions) who typically
+want to split <code>libfoo</code>, <code>libfoo-dev</code> and <code>libfoo-doc</code> packages. Instead of
+duplicating the list of installed files per category in each packaging system,
+it can be maintained in a single place, directly in upstream <code>meson.build</code> files.</p>
+<p>Meson sets predefined tags on some files. More tags are likely to be added over
+time, please help extending the list of well known categories.</p>
+<ul>
+<li>
+<code>devel</code>:
+<ul>
+<li>
+<code>static_library()</code>,</li>
+<li>
+<code>install_headers()</code>,</li>
+<li>
+<code>pkgconfig.generate()</code>,</li>
+<li>
+<code>gnome.generate_gir()</code> - <code>.gir</code> file,</li>
+<li>Files installed into <code>libdir</code> and with <code>.a</code> or <code>.pc</code> extension,</li>
+<li>File installed into <code>includedir</code>.</li>
+</ul>
+</li>
+<li>
+<code>runtime</code>:
+<ul>
+<li>
+<code>executable()</code>,</li>
+<li>
+<code>shared_library()</code>,</li>
+<li>
+<code>shared_module()</code>,</li>
+<li>
+<code>jar()</code>,</li>
+<li>Files installed into <code>bindir</code>.</li>
+<li>Files installed into <code>libdir</code> and with <code>.so</code> or <code>.dll</code> extension.</li>
+</ul>
+</li>
+<li>
+<code>python-runtime</code>:
+<ul>
+<li>
+<code>python.install_sources()</code>.</li>
+</ul>
+</li>
+<li>
+<code>man</code>:
+<ul>
+<li>
+<code>install_man()</code>.</li>
+</ul>
+</li>
+<li>
+<code>doc</code>:
+<ul>
+<li>
+<code>gnome.gtkdoc()</code>,</li>
+<li>
+<code>hotdoc.generate_doc()</code>.</li>
+</ul>
+</li>
+<li>
+<code>i18n</code>:
+<ul>
+<li>
+<code>i18n.gettext()</code>,</li>
+<li>
+<code>qt.compile_translations()</code>,</li>
+<li>Files installed into <code>localedir</code>.</li>
+</ul>
+</li>
+<li>
+<code>typelib</code>:
+<ul>
+<li>
+<code>gnome.generate_gir()</code> - <code>.typelib</code> file.</li>
+</ul>
+</li>
+</ul>
+<p>Custom installation tag can be set using the <code>install_tag</code> keyword argument
+on various functions such as <code>custom_target()</code>, <code>configure_file()</code>,
+<code>install_subdir()</code> and <code>install_data()</code>. See their respective documentation
+in the reference manual for details. It is recommended to use one of the
+predefined tags above when possible.</p>
+<p>Installable files that have not been tagged either automatically by Meson, or
+manually using <code>install_tag</code> keyword argument won't be installed when <code>--tags</code>
+is used. They are reported at the end of <code>&lt;builddir&gt;/meson-logs/meson-log.txt</code>,
+it is recommended to add missing <code>install_tag</code> to have a tag on each installable
+files.</p>
 
     </div>
         
