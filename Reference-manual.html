@@ -997,10 +997,6 @@ flattened, which means you can freely nest and add lists while
 creating the final list.</p>
 <p>The returned object also has methods that are documented in the
 <a href="Reference-manual.html#build-target-object">object methods section</a> below.</p>
-<h3 id="find_library">find_library()</h3>
-<p><em>(since 0.31.0)</em> <strong>(deprecated)</strong> Use <code>find_library()</code> method of
-<a href="Reference-manual.html#compiler-object">the compiler object</a> as obtained from
-<code>meson.get_compiler(lang)</code>.</p>
 <h3 id="find_program">find_program()</h3>
 <pre><code class="language-meson">    program find_program(program_name1, program_name2, ...)
 </code></pre>
@@ -3033,7 +3029,7 @@ env.prepend('MY_PATH', '0')
 </code></pre>
 <h3 id="external-library-object">
 <code>external library</code> object</h3>
-<p>This object is returned by <a href="Reference-manual.html#find_library"><code>find_library()</code></a> and
+<p>This object is returned by <a href="Reference-manual.html#compiler-object"><code>find_library()</code></a> and
 contains an external (i.e. not built as part of this project)
 library. This object has the following methods:</p>
 <ul>

@@ -252,7 +252,7 @@ c_ld = 'lld'
 <pre><code class="language-meson">executable(..., override_options : ['c_std=c11'])
 </code></pre>
 <h2 id="enable-threads">Enable threads</h2>
-<p>Lots of people seem to do this manually with <code>find_library('pthread')</code>
+<p>Lots of people seem to do this manually with <code>cc.find_library('pthread')</code>
 or something similar. Do not do that. It is not portable. Instead do
 this.</p>
 <pre><code class="language-meson">thread_dep = dependency('threads')
