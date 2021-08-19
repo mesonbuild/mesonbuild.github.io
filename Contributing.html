@@ -451,6 +451,11 @@ current platform. The following values are currently supported:</p>
 <td> No postprocessing, just use the provided path</td>
 </tr>
 <tr>
+<td> <code>python_file</code>
+</td>
+<td> Use the provided path while replacing the python directory.</td>
+</tr>
+<tr>
 <td> <code>dir</code>
 </td>
 <td> To include all files inside the directory (for generated docs, etc). The path must be a valid directory</td>
@@ -467,12 +472,22 @@ current platform. The following values are currently supported:</p>
 <td> For shared libraries, always written as <code>name</code>. The appropriate suffix and prefix are added by platform</td>
 </tr>
 <tr>
+<td> <code>python_lib</code>
+</td>
+<td> For python libraries, while replacing the python directory. The appropriate suffix is added by platform</td>
+</tr>
+<tr>
 <td> <code>pdb</code>
 </td>
 <td> For Windows PDB files. PDB entries are ignored on non Windows platforms</td>
 </tr>
 <tr>
 <td> <code>implib</code>
+</td>
+<td> For Windows import libraries. These entries are ignored on non Windows platforms</td>
+</tr>
+<tr>
+<td> <code>py_implib</code>
 </td>
 <td> For Windows import libraries. These entries are ignored on non Windows platforms</td>
 </tr>
@@ -488,7 +503,7 @@ current platform. The following values are currently supported:</p>
 </tr>
 </tbody>
 </table>
-<p>Except for the <code>file</code> and <code>expr</code> types, all paths should be provided <em>without</em> a suffix.</p>
+<p>Except for the <code>file</code>, <code>python_file</code> and <code>expr</code> types, all paths should be provided <em>without</em> a suffix.</p>
 <table>
 <thead>
 <tr>
@@ -518,6 +533,13 @@ current platform. The following values are currently supported:</p>
 parameter, <code>version</code>, this is us a string in <code>X.Y.Z</code> format that will
 be applied to the library. Each version to be tested must have a
 single version. The harness will apply this correctly per platform:</p>
+<p>The <code>python_file</code>, <code>python_lib</code>, and <code>py_implib</code> types have basic support for configuring the string with the <code>@&lt;VAR&gt;@</code> syntax:</p>
+<ul>
+<li>
+<code>@PYTHON_PLATLIB@</code>: python <code>get_install_dir</code> directory relative to prefix</li>
+<li>
+<code>@PYTHON_PURELIB@</code>: python <code>get_install_dir(pure: true)</code> directory relative to prefix</li>
+</ul>
 <p><code>pdb</code> takes an optional <code>language</code> argument. This determines which
 compiler/linker should generate the pdb file. Because it's possible to
 mix compilers that do and don't generate pdb files (dmd's optlink
