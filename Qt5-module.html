@@ -212,8 +212,9 @@ tools and steps required for Qt.</p>
 and the output of all qrc files will be combined in this file, otherwise
 each qrc file be written to it's own cpp file.</li>
 <li>
-<code>sources</code> (File | string)[]: A list of sources to be transpiled. Required,
-must have at least one source</li>
+<code>sources</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of sources to be transpiled. Required, must have at least one source
+<em>New in 0.60.0</em>: support for custom_target, custom_target_index, and generator_output.</li>
 <li>
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-rcc</code>
 </li>
@@ -227,8 +228,9 @@ information.</li>
 <p>It takes no positional arguments, and the following keyword arguments:</p>
 <ul>
 <li>
-<code>sources</code> (File | string)[]: A list of sources to be transpiled. Required,
-must have at least one source</li>
+<code>sources</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of sources to be transpiled. Required, must have at least one source
+<em>New in 0.60.0</em>: support for custom_target, custom_target_index, and generator_output.</li>
 <li>
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-uic</code>
 </li>
@@ -243,10 +245,13 @@ the keyword arguments <code>headers</code> and <code>sources</code> must be prov
 <p>It takes no positional arguments, and the following keyword arguments:</p>
 <ul>
 <li>
-<code>sources</code> (File | string)[]: A list of sources to be transpiled into .moc
-files for manual inclusion.</li>
+<code>sources</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of sources to be transpiled into .moc files for manual inclusion.
+<em>New in 0.60.0</em>: support for custom_target, custom_target_index, and generator_output.</li>
 <li>
-<code>headers</code> (File | string)[]: A list of headers to be transpiled into .cpp files</li>
+<code>headers</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of headers to be transpiled into .cpp files
+<em>New in 0.60.0</em>: support for custom_target, custom_target_index, and generator_output.</li>
 <li>
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-moc</code>
 </li>
@@ -297,7 +302,9 @@ sources += qt.preprocess(qresources : ['resources'])
 lrelease, it takes no positional arguments, and the following keyword arguments:</p>
 <ul>
 <li>
-<code>ts_files</code> (str | File)[], the list of input translation files produced by Qt's lupdate tool.</li>
+<code>ts_files</code> (File | string | custom_target | custom_target index | generator_output)[]:
+the list of input translation files produced by Qt's lupdate tool.
+<em>New in 0.60.0</em>: support for custom_target, custom_target_index, and generator_output.</li>
 <li>
 <code>install</code> bool: when true, this target is installed during the install step (optional).</li>
 <li>
