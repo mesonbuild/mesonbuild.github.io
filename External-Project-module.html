@@ -253,6 +253,9 @@ be executed (e.g. <code>configure</code>), that file must be in the current
 directory and executable. Note that if a bootstrap script is required
 (e.g. <code>autogen.sh</code> when building from git instead of tarball), it can
 be done using <code>run_command()</code> before calling <code>add_project()</code> method.</p>
+<p><em>Since 0.60.0</em> If the first positional argument is <code>'waf'</code>, special treatment
+is done for the <a href="https://waf.io/">waf</a> build system. The waf executable must be
+found either in the current directory, or in system <code>PATH</code>.</p>
 <p>Keyword arguments:</p>
 <ul>
 <li>
