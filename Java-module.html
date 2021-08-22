@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Java</title>
+<title>Java Module</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
@@ -191,7 +191,7 @@ $('body').removeClass('no-script');
 </nav>
 
 <main>
-<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Java.html" class="page_container" id="page-wrapper">
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Java-module.html" class="page_container" id="page-wrapper">
 <script src="assets/js/utils.js"></script>
 
 <div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
@@ -202,21 +202,17 @@ $('body').removeClass('no-script');
 <div id="body">
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
-        <h1 id="compiling-java-applications">Compiling Java applications</h1>
-<p>Meson has experimental support for compiling Java programs. The basic
-syntax consists of only one function and would be used like this:</p>
-<pre><code class="language-meson">project('javaprog', 'java')
-
-myjar = jar('mything', 'com/example/Prog.java',
-            main_class : 'com.example.Prog')
-
-test('javatest', myjar)
-</code></pre>
-<p>However note that Meson places limitations on how you lay out your code.</p>
+        <h1 id="java-module">Java Module</h1>
+<p><em>Added 0.60.0</em></p>
+<h2 id="functions">Functions</h2>
+<h3 id="generate_native_header"><code>generate_native_header()</code></h3>
+<p>This function will generate a header file for use in Java native module
+development by reading the supplied Java file for <code>native</code> method declarations.</p>
+<p>Keyword arguments:</p>
 <ul>
-<li>all Java files for a jar must be under the subdirectory the jar definition is in</li>
-<li>all Java files must be in paths specified by their package, e.g. a class called <code>com.example.Something</code> must be in a Java file situated at <code>com/example/Something.java</code>.</li>
-<li>Meson only deals with jar files, you cannot poke individual class files (unless you do so manually)</li>
+<li>
+<code>package</code>: The <a href="https://en.wikipedia.org/wiki/Java_package">package</a> of the
+file. If left empty, Meson will assume that there is no package.</li>
 </ul>
 
     </div>
@@ -246,7 +242,7 @@ test('javatest', myjar)
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Java.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Java-module.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
 
 	</div>
 		<div id="toc-wrapper">
