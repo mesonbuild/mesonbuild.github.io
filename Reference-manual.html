@@ -772,7 +772,9 @@ even if the dependency is not found. <em>(since 0.47.0)</em> The value of a
 <li>
 <code>static</code>: tells the dependency provider to try to get static
 libraries instead of dynamic ones (note that this is not supported
-by all dependency backends)</li>
+by all dependency backends)
+<em>Since 0.60.0</em> it also sets <code>default_library</code> option accordingly on the fallback
+subproject if it was not set explicitly in <code>default_options</code> keyword argument.</li>
 <li>
 <code>version</code> <em>(since 0.37.0)</em>: specifies the required version, a string containing a
 comparison operator followed by the version string, examples include
@@ -2240,7 +2242,10 @@ look it up on the system but instead return <code>dep_object</code>, which may e
 the result of <code>dependency()</code> or <code>declare_dependency()</code>. It takes optional
 <code>native</code> keyword arguments. Doing this in a subproject allows the parent
 project to retrieve the dependency without having to know the dependency
-variable name: <code>dependency(name, fallback : subproject_name)</code>.</p>
+variable name: <code>dependency(name, fallback : subproject_name)</code>.
+<em>Since 0.60.0</em> <code>static</code> boolean keyword argument can be specified to override
+static and/or shared dependencies separately. If not specified it is assumed
+<code>dep_object</code> follows <code>default_library</code> option value.</p>
 </li>
 <li>
 <p><code>project_version()</code>: returns the version string specified in
