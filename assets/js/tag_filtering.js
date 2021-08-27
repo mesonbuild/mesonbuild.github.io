@@ -179,6 +179,9 @@ function setupFilters() {
 	}
 
 	function shouldBeVisible(item) {
+    if ($(item).hasClass("hide-if-js"))
+      return false;
+
 		var item_tags = parseTags(item);
 
     if ($(item).hasClass("base_symbol_container"))
