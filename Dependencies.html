@@ -525,6 +525,11 @@ language.</p>
 <p><em>New in 0.56.0</em> the <code>config-tool</code> method.
 <em>New in 0.56.0</em> the dependencies now return proper dependency types
 and <code>get_variable</code> and similar methods should work as expected.</p>
+<h2 id="iconv">iconv</h2>
+<p><em>(added 0.60.0)</em></p>
+<p>Provides access to the <code>iconv</code> family of C functions. On systems where this is
+not built into libc, tries to find an external library providing them instead.</p>
+<p><code>method</code> may be <code>auto</code>, <code>builtin</code> or <code>system</code>.</p>
 <h2 id="intl">intl</h2>
 <p><em>(added 0.59.0)</em></p>
 <p>Provides access to the <code>*gettext</code> family of C functions. On systems where this
