@@ -224,6 +224,29 @@ py.extension_module(
     dependencies : dep_py,
 )
 </code></pre>
+<h2 id="c-intermediate-support">C++ intermediate support</h2>
+<p><em>(New in 0.60.0)</em></p>
+<p>An option has been added to control this, called <code>cython_language</code>. This can be
+either <code>'c'</code> or <code>'cpp'</code>.</p>
+<p>For those coming from setuptools/distutils, they will find two things. First,
+meson ignores <code># distutils: language = c++</code> inline directives. Second that Meson
+allows options only on a per-target granularity. This means that if you need to mix
+cython files being transpiled to C and to C++ you need two targets:</p>
+<pre><code class="language-meson">project('my project', 'cython')
+
+cython_cpp_lib = static_library(
+    'helper_lib',
+    'foo_cpp.pyx',  # will be transpiled to C++
+    override_options : ['cython_language=cpp'],
+)
+
+py.extension_module(
+    'foo',
+    'foo.pyx',  # will be transpiled to C
+    link_with : [cython_cpp_lib],
+    dependencies : dep_py,
+)
+</code></pre>
 
     </div>
         
