@@ -336,6 +336,14 @@ int main (int argc, char ** argv) {
 <p>These are raw strings that do not support the escape sequences listed
 above.  These strings can also be combined with the string formatting
 functionality described below.</p>
+<h3 id="string-index">String index</h3>
+<p>Stings support the indexing (<code>[&lt;num&gt;]</code>) operator. This operator allows (read
+only) acessing a specific character. The returned value is guaranteed to be
+a string of length 1.</p>
+<pre><code class="language-meson">foo = 'abcd'
+message(foo[1])  # Will print 'b'
+foo[2] = 'C'     # ERROR: Meson objects are immutable!
+</code></pre>
 <h3 id="string-formatting">String formatting</h3>
 <h4 id="format">.format()</h4>
 <p>Strings can be built using the string formatting functionality.</p>
