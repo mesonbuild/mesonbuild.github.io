@@ -2651,7 +2651,10 @@ keyword argument.</p>
 positional argument compiles and links, you can specify external
 dependencies to use with <code>dependencies</code> keyword argument, <code>code</code> can
 be either a string containing source code or a <code>file</code> object
-pointing to the source code.</p>
+pointing to the source code.  <em>Since 0.60.0</em>, if the <code>file</code> object's
+suffix does not match the compiler object's language, the compiler
+corresponding to the suffix is used to compile the source, while the
+target of the <code>links</code> method is used to link the resulting object file.</p>
 </li>
 <li>
 <p><code>run(code)</code>: attempts to compile and execute the given code fragment,
