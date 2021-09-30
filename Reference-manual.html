@@ -689,7 +689,7 @@ in subprojects where special variables would be provided via cmake or
 pkg-config. <em>since 0.56.0</em> it can also be a list of <code>'key=value'</code> strings.</li>
 </ul>
 <h3 id="dependency">dependency()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+<pre><code class="language-meson">    dependency_object dependency(*name1*, *name2*, ...)
 </code></pre>
 <p>Finds an external dependency (usually a library installed on your
 system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#cmake">with
@@ -697,6 +697,12 @@ CMake</a> if <code>pkg-config</code> fails. Additionally,
 frameworks (OSX only) and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection
 logic</a>
 are also supported.</p>
+<p><em>Since 0.60.0</em> more than one name can be provided, they will be tried in order
+and the first name to be found will be used. The fallback subproject will be
+used only if none of the names are found on the system. Once one of the name has
+been found, all other names are added into the cache so subsequent calls for any
+of those name will return the same value. This is useful in case a dependency
+could have different names, such as <code>png</code> and <code>libpng</code>.</p>
 <p>Dependencies can also be resolved in two other ways:</p>
 <ul>
 <li>
