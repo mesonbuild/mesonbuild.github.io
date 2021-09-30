@@ -478,8 +478,17 @@ defaults to utf-8. The supported encodings are those of python3, see
 <pre><code class="language-meson">    customtarget custom_target(*name*, ...)
 </code></pre>
 <p>Create a custom top level build target. The only positional argument
-is the name of this target and the keyword arguments are the
-following.</p>
+is the name of this target and cannot contain path separators (<code>/</code> or <code>\</code>).
+The name of custom target might not be used by every backends, for instance with
+the Ninja backend, <code>subdir/meson.build</code> containing the example below,
+<code>ninja -C builddir foo</code> or <code>ninja -C builddir subdir/foo</code> won't work,
+it is instead <code>ninja -C builddir subdir/file.txt</code>. Howerver, <code>meson compile subdir/foo</code>
+is accepted.</p>
+<pre><code class="language-meson">custom_target('foo', output: 'file.txt', ...)
+</code></pre>
+<p><em>Since 0.60.0</em> the name argument is optional and defaults to the basename of the first
+output (<code>file.txt</code> in the example above).</p>
+<p>These are all the supported keyword arguments:</p>
 <ul>
 <li>
 <p><code>build_by_default</code> <em>(since 0.38.0)</em>: causes, when set to true, to
