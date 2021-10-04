@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"a.b.c","urls":[{"url":"RefMan_elementary_str.html#strjoin","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"a.b.c","urls":[{"url":"Reference-manual_elementary_str.html#strjoin","node_type":"p","context":{"gi-language":["default"]}}]});

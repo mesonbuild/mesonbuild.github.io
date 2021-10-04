@@ -204,7 +204,7 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="reference-manual">Reference Manual</h1>
-<p>The <a href="RefMan.html">Reference Manual</a> is automatically generated out of YAML
+<p>The <a href="Reference-manual.html">Reference Manual</a> is automatically generated out of YAML
 files in <code>docs/yaml</code>. This allows the Meson project to enforce a consistent
 style of the Reference Manual and enables easier style changes to the generated
 Markdown files without touching the actual documentation.
@@ -227,16 +227,16 @@ the formatting here. If tags need to be placed (for instance, to include referen
 directly in code blocks), the <code>[[#&lt;remaining tag&gt;]]</code> syntax should be used.</p>
 <p>Examples:</p>
 <ul>
-<li>Functions: <a href="RefMan_functions.html#executable"><ins><code>executable()</code></ins></a>
+<li>Functions: <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>
 </li>
-<li>Methods: <a href="RefMan_builtin_meson.html#mesonversion"><ins><code>meson.version()</code></ins></a>
+<li>Methods: <a href="Reference-manual_builtin_meson.html#mesonversion"><ins><code>meson.version()</code></ins></a>
 </li>
-<li>Objects: <a href="RefMan_elementary_str.html"><ins><code>str</code></ins></a>
+<li>Objects: <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>
 </li>
 </ul>
 <p>Now the same in a code block:</p>
-<pre><code class="language-meson"><a href="RefMan_elementary_str.html"><ins>str</ins></a> <a href="RefMan_functions.html#executable"><ins><code>executable()</code></ins></a>('main', [
-    'file_@0@.cpp'.format(<a href="RefMan_builtin_meson.html#mesonversion"><ins>meson.version()</ins></a>)
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>('main', [
+    'file_@0@.cpp'.format(<a href="Reference-manual_builtin_meson.html#mesonversion"><ins>meson.version()</ins></a>)
 ])
 </code></pre>
 <h2 id="directory-structure">Directory structure</h2>
@@ -251,7 +251,7 @@ the YAML files are interpreted:</p>
 <li>
 <code>objects</code>: All Objects returned by functions and methods but <strong>not</strong> modules</li>
 <li>
-<code>functions</code>: All root meson functions (<a href="RefMan_functions.html#executable"><ins><code>executable()</code></ins></a>, <a href="RefMan_functions.html#project"><ins><code>project()</code></ins></a>, etc.)</li>
+<code>functions</code>: All root meson functions (<a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>, <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a>, etc.)</li>
 </ul>
 <p>Finally, modules are defined inside the <code>modules</code> subdirectory. Here, each
 module has its own directory. The module itself <strong>must</strong> be in a file called
@@ -273,7 +273,7 @@ description: |
   All other lines are not part of the brief and should document the function
 
   Here the full Markdown syntax is supported, such as links, `inline code`,
-  code blocks, and references to other parts of the Reference Manual: <a href="RefMan_elementary_str.html"><ins><code>str</code></ins></a>.
+  code blocks, and references to other parts of the Reference Manual: <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>.
 
   This is true for **all** description keys in all YAML files. Defining a
   description is **always** required.

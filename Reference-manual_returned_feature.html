@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>feature</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Reference-manual_returned_feature.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="feature-option-object-feature">Feature option object (<code>feature</code>)</h1>
+<p>Meson object representing a <a href="Build-options.html#features"><code>feature</code> options</a></p>
+<h2 id="returned-by">Returned by</h2>
+<p>Feature option object objects are returned by the following functions and methods:</p>
+<ul>
+<li><a href="Reference-manual_functions.html#get_option"><ins><code>get_option()</code></ins></a></li>
+<li><a href="Reference-manual_returned_feature.html#featuredisable_auto_if"><ins><code>feature.disable_auto_if()</code></ins></a></li>
+<li><a href="Reference-manual_returned_feature.html#featurerequire"><ins><code>feature.require()</code></ins></a></li>
+</ul>
+<h2 id="feature-option-object-methods">Feature option object methods</h2>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="featureallowed">feature.allowed()</h3>
+<p>Returns whether the feature was set to <code>'enabled'</code> or <code>'auto'</code></p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.59.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> allowed()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="featureauto">feature.auto()</h3>
+<p>Returns whether the feature was set to <code>'auto'</code></p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature1">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> auto()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="featuredisable_auto_if">feature.disable_auto_if()</h3>
+<p>Returns the feature, with <code>'auto'</code> converted to <code>'disabled'</code> if value is true.</p>
+<table>
+<thead>
+<tr>
+<th> Feature / Condition</th>
+<th> <code>value = true</code>
+</th>
+<th> <code>value = false</code>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Enabled</td>
+<td> Enabled</td>
+<td> Enabled</td>
+</tr>
+<tr>
+<td> Disabled</td>
+<td> Disabled</td>
+<td> Disabled</td>
+</tr>
+<tr>
+<td> Auto</td>
+<td> Disabled</td>
+<td> Auto</td>
+</tr>
+</tbody>
+</table>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature2">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.59.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns the feature, with `'auto'` converted to `'disabled'` if value is true
+<a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> disable_auto_if(
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # See the table above
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments">Arguments</h4>
+<p>The method <code>feature.disable_auto_if()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>See the table above</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="featuredisabled">feature.disabled()</h3>
+<p>Returns whether the feature was set to <code>'disabled'</code></p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> disabled()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="featureenabled">feature.enabled()</h3>
+<p>Returns whether the feature was set to <code>'enabled'</code></p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> enabled()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="featurerequire">feature.require()</h3>
+<p>Returns the object itself if the value is true; an error if the object is
+<code>'enabled'</code> and the value is false; a disabled feature if the object
+is <code>'auto'</code> or <code>'disabled'</code> and the value is false.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature5">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.59.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns the object itself if the value is true; an error if the object is
+<a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> require(
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # The value to check
+
+  # Keyword arguments:
+  <b>error_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example">Example</h4>
+<p><code>require</code> is useful to restrict the applicability of <code>'auto'</code> features,
+for example based on other features or on properties of the host machine:</p>
+<pre><code>if get_option('directx').require(host_machine.system() == 'windows',
+      error_message: 'DirectX only available on Windows').allowed() then
+  src += ['directx.c']
+  config.set10('HAVE_DIRECTX', 1)
+endif
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments1">Arguments</h4>
+<p>The method <code>feature.require()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The value to check</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>feature.require()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">error_message</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The error Message to print if the check fails</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  ''</code></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Reference-manual_returned_feature.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

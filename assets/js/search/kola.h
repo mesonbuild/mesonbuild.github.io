@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"kola.h","urls":[{"url":"RefMan_functions.html#example4","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"kola.h","urls":[{"url":"Reference-manual_functions.html#example4","node_type":"p","context":{"gi-language":["default"]}}]});

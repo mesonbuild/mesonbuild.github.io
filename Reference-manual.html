@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Reference manual</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Reference-manual.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="reference-manual">Reference manual</h1>
+<p>This is the root page of the Meson reference manual. All functions
+and methods are documented in detail in the following subpages:</p>
+<h2 id="elementary-types">Elementary types</h2>
+<ul>
+<li><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></li>
+<li>
+<a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+<ul>
+<li><a href="Reference-manual_elementary_bool.html#boolto_int"><ins><code>bool.to_int()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_bool.html#boolto_string"><ins><code>bool.to_string()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>
+<ul>
+<li><a href="Reference-manual_elementary_dict.html#dictget"><ins><code>dict.get()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_dict.html#dicthas_key"><ins><code>dict.has_key()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_dict.html#dictkeys"><ins><code>dict.keys()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a>
+<ul>
+<li><a href="Reference-manual_elementary_int.html#intis_even"><ins><code>int.is_even()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_int.html#intis_odd"><ins><code>int.is_odd()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_int.html#intto_string"><ins><code>int.to_string()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>
+<ul>
+<li><a href="Reference-manual_elementary_list.html#listcontains"><ins><code>list.contains()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_list.html#listget"><ins><code>list.get()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_list.html#listlength"><ins><code>list.length()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>
+<ul>
+<li><a href="Reference-manual_elementary_str.html#strcontains"><ins><code>str.contains()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strendswith"><ins><code>str.endswith()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strformat"><ins><code>str.format()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strjoin"><ins><code>str.join()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strreplace"><ins><code>str.replace()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strsplit"><ins><code>str.split()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strstartswith"><ins><code>str.startswith()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strstrip"><ins><code>str.strip()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strsubstring"><ins><code>str.substring()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strto_int"><ins><code>str.to_int()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strto_lower"><ins><code>str.to_lower()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strto_upper"><ins><code>str.to_upper()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strunderscorify"><ins><code>str.underscorify()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strversion_compare"><ins><code>str.version_compare()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a></li>
+</ul>
+<h2 id="functions">Functions</h2>
+<p>The following functions are available in build files. Click on each
+to see the description and usage. The objects returned by them are
+<a href="Reference-manual.html#returned-objects">listed here</a>.</p>
+<ul>
+<li><a href="Reference-manual_functions.html#add_global_arguments"><ins><code>add_global_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#add_global_link_arguments"><ins><code>add_global_link_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#add_languages"><ins><code>add_languages()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#add_project_arguments"><ins><code>add_project_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#add_project_link_arguments"><ins><code>add_project_link_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#add_test_setup"><ins><code>add_test_setup()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#alias_target"><ins><code>alias_target()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#assert"><ins><code>assert()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#benchmark"><ins><code>benchmark()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#both_libraries"><ins><code>both_libraries()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#configuration_data"><ins><code>configuration_data()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#declare_dependency"><ins><code>declare_dependency()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#disabler"><ins><code>disabler()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#environment"><ins><code>environment()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#error"><ins><code>error()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#generator"><ins><code>generator()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#get_option"><ins><code>get_option()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#get_variable"><ins><code>get_variable()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#import"><ins><code>import()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#install_headers"><ins><code>install_headers()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#install_man"><ins><code>install_man()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#install_subdir"><ins><code>install_subdir()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#is_disabler"><ins><code>is_disabler()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#is_variable"><ins><code>is_variable()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#jar"><ins><code>jar()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#join_paths"><ins><code>join_paths()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#library"><ins><code>library()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#range"><ins><code>range()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#run_command"><ins><code>run_command()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#run_target"><ins><code>run_target()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#set_variable"><ins><code>set_variable()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#subdir"><ins><code>subdir()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#subdir_done"><ins><code>subdir_done()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#subproject"><ins><code>subproject()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#summary"><ins><code>summary()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#test"><ins><code>test()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#unset_variable"><ins><code>unset_variable()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#vcs_tag"><ins><code>vcs_tag()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#warning"><ins><code>warning()</code></ins></a></li>
+</ul>
+<h2 id="builtin-objects">Builtin objects</h2>
+<p>These are built-in objects that are always available.</p>
+<ul>
+<li>
+<a href="Reference-manual_builtin_build_machine.html"><ins><code>build_machine</code></ins></a>
+<ul>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machinecpu"><ins><code>build_machine.cpu()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machinecpu_family"><ins><code>build_machine.cpu_family()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machineendian"><ins><code>build_machine.endian()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machinesystem"><ins><code>build_machine.system()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_builtin_host_machine.html"><ins><code>host_machine</code></ins></a></li>
+<li>
+<a href="Reference-manual_builtin_meson.html"><ins><code>meson</code></ins></a>
+<ul>
+<li><a href="Reference-manual_builtin_meson.html#mesonadd_devenv"><ins><code>meson.add_devenv()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonadd_dist_script"><ins><code>meson.add_dist_script()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonadd_install_script"><ins><code>meson.add_install_script()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonadd_postconf_script"><ins><code>meson.add_postconf_script()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonbackend"><ins><code>meson.backend()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonbuild_root"><ins><code>meson.build_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesoncan_run_host_binaries"><ins><code>meson.can_run_host_binaries()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesoncurrent_build_dir"><ins><code>meson.current_build_dir()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesoncurrent_source_dir"><ins><code>meson.current_source_dir()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonget_compiler"><ins><code>meson.get_compiler()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonget_cross_property"><ins><code>meson.get_cross_property()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonget_external_property"><ins><code>meson.get_external_property()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonglobal_build_root"><ins><code>meson.global_build_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonglobal_source_root"><ins><code>meson.global_source_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonhas_exe_wrapper"><ins><code>meson.has_exe_wrapper()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonhas_external_property"><ins><code>meson.has_external_property()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesoninstall_dependency_manifest"><ins><code>meson.install_dependency_manifest()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonis_cross_build"><ins><code>meson.is_cross_build()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonis_subproject"><ins><code>meson.is_subproject()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonis_unity"><ins><code>meson.is_unity()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonoverride_dependency"><ins><code>meson.override_dependency()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonoverride_find_program"><ins><code>meson.override_find_program()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_build_root"><ins><code>meson.project_build_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_license"><ins><code>meson.project_license()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_name"><ins><code>meson.project_name()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_source_root"><ins><code>meson.project_source_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_version"><ins><code>meson.project_version()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonsource_root"><ins><code>meson.source_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonversion"><ins><code>meson.version()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_builtin_target_machine.html"><ins><code>target_machine</code></ins></a></li>
+</ul>
+<h2 id="returned-objects">Returned objects</h2>
+<p>These are objects that can be returned by <a href="Reference-manual.html#functions">functions</a>
+or other methods.</p>
+<ul>
+<li><a href="Reference-manual_returned_alias_tgt.html"><ins><code>alias_tgt</code></ins></a></li>
+<li>
+<a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_both_libs.html#both_libsget_shared_lib"><ins><code>both_libs.get_shared_lib()</code></ins></a></li>
+<li><a href="Reference-manual_returned_both_libs.html#both_libsget_static_lib"><ins><code>both_libs.get_static_lib()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_build_tgt.html#build_tgtfound"><ins><code>build_tgt.found()</code></ins></a></li>
+<li><a href="Reference-manual_returned_build_tgt.html#build_tgtfull_path"><ins><code>build_tgt.full_path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_build_tgt.html#build_tgtname"><ins><code>build_tgt.name()</code></ins></a></li>
+<li><a href="Reference-manual_returned_build_tgt.html#build_tgtpath"><ins><code>build_tgt.path()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_cfg_data.html"><ins><code>cfg_data</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_dataget"><ins><code>cfg_data.get()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_dataget_unquoted"><ins><code>cfg_data.get_unquoted()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_datahas"><ins><code>cfg_data.has()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_datakeys"><ins><code>cfg_data.keys()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_datamerge_from"><ins><code>cfg_data.merge_from()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_dataset"><ins><code>cfg_data.set()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_dataset10"><ins><code>cfg_data.set10()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_dataset_quoted"><ins><code>cfg_data.set_quoted()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_compiler.html#compileralignment"><ins><code>compiler.alignment()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilercheck_header"><ins><code>compiler.check_header()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilercmd_array"><ins><code>compiler.cmd_array()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilercompiles"><ins><code>compiler.compiles()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilercompute_int"><ins><code>compiler.compute_int()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerfind_library"><ins><code>compiler.find_library()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerfirst_supported_argument"><ins><code>compiler.first_supported_argument()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerfirst_supported_link_argument"><ins><code>compiler.first_supported_link_argument()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_argument_syntax"><ins><code>compiler.get_argument_syntax()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_define"><ins><code>compiler.get_define()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_id"><ins><code>compiler.get_id()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_linker_id"><ins><code>compiler.get_linker_id()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_supported_arguments"><ins><code>compiler.get_supported_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_supported_function_attributes"><ins><code>compiler.get_supported_function_attributes()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_supported_link_arguments"><ins><code>compiler.get_supported_link_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_argument"><ins><code>compiler.has_argument()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_function"><ins><code>compiler.has_function()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_function_attribute"><ins><code>compiler.has_function_attribute()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_header_symbol"><ins><code>compiler.has_header_symbol()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_link_argument"><ins><code>compiler.has_link_argument()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_member"><ins><code>compiler.has_member()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_members"><ins><code>compiler.has_members()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_multi_arguments"><ins><code>compiler.has_multi_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_multi_link_arguments"><ins><code>compiler.has_multi_link_arguments()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerhas_type"><ins><code>compiler.has_type()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerlinks"><ins><code>compiler.links()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerrun"><ins><code>compiler.run()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilersizeof"><ins><code>compiler.sizeof()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilersymbols_have_underscore_prefix"><ins><code>compiler.symbols_have_underscore_prefix()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerversion"><ins><code>compiler.version()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_custom_idx.html#custom_idxfull_path"><ins><code>custom_idx.full_path()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>
+<ul>
+<li>[[custom_tgt.[index]]]</li>
+<li><a href="Reference-manual_returned_custom_tgt.html#custom_tgtfull_path"><ins><code>custom_tgt.full_path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_custom_tgt.html#custom_tgtto_list"><ins><code>custom_tgt.to_list()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_dep.html#depas_link_whole"><ins><code>dep.as_link_whole()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depas_system"><ins><code>dep.as_system()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depfound"><ins><code>dep.found()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depget_configtool_variable"><ins><code>dep.get_configtool_variable()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depget_variable"><ins><code>dep.get_variable()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depinclude_type"><ins><code>dep.include_type()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depname"><ins><code>dep.name()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#deppartial_dependency"><ins><code>dep.partial_dependency()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#deptype_name"><ins><code>dep.type_name()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depversion"><ins><code>dep.version()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_disabler.html#disablerfound"><ins><code>disabler.found()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_env.html#envappend"><ins><code>env.append()</code></ins></a></li>
+<li><a href="Reference-manual_returned_env.html#envprepend"><ins><code>env.prepend()</code></ins></a></li>
+<li><a href="Reference-manual_returned_env.html#envset"><ins><code>env.set()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a></li>
+<li>
+<a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_external_program.html#external_programfound"><ins><code>external_program.found()</code></ins></a></li>
+<li><a href="Reference-manual_returned_external_program.html#external_programfull_path"><ins><code>external_program.full_path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_external_program.html#external_programpath"><ins><code>external_program.path()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a></li>
+<li>
+<a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_feature.html#featureallowed"><ins><code>feature.allowed()</code></ins></a></li>
+<li><a href="Reference-manual_returned_feature.html#featureauto"><ins><code>feature.auto()</code></ins></a></li>
+<li><a href="Reference-manual_returned_feature.html#featuredisable_auto_if"><ins><code>feature.disable_auto_if()</code></ins></a></li>
+<li><a href="Reference-manual_returned_feature.html#featuredisabled"><ins><code>feature.disabled()</code></ins></a></li>
+<li><a href="Reference-manual_returned_feature.html#featureenabled"><ins><code>feature.enabled()</code></ins></a></li>
+<li><a href="Reference-manual_returned_feature.html#featurerequire"><ins><code>feature.require()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a></li>
+<li><a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a></li>
+<li>
+<a href="Reference-manual_returned_generator.html"><ins><code>generator</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a></li>
+<li><a href="Reference-manual_returned_jar.html"><ins><code>jar</code></ins></a></li>
+<li><a href="Reference-manual_returned_lib.html"><ins><code>lib</code></ins></a></li>
+<li>
+<a href="Reference-manual_returned_module.html"><ins><code>module</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_module.html#modulefound"><ins><code>module.found()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_returned_range.html"><ins><code>range</code></ins></a></li>
+<li><a href="Reference-manual_returned_run_tgt.html"><ins><code>run_tgt</code></ins></a></li>
+<li>
+<a href="Reference-manual_returned_runresult.html"><ins><code>runresult</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_runresult.html#runresultcompiled"><ins><code>runresult.compiled()</code></ins></a></li>
+<li><a href="Reference-manual_returned_runresult.html#runresultreturncode"><ins><code>runresult.returncode()</code></ins></a></li>
+<li><a href="Reference-manual_returned_runresult.html#runresultstderr"><ins><code>runresult.stderr()</code></ins></a></li>
+<li><a href="Reference-manual_returned_runresult.html#runresultstdout"><ins><code>runresult.stdout()</code></ins></a></li>
+</ul>
+</li>
+<li>
+<a href="Reference-manual_returned_subproject.html"><ins><code>subproject</code></ins></a>
+<ul>
+<li><a href="Reference-manual_returned_subproject.html#subprojectfound"><ins><code>subproject.found()</code></ins></a></li>
+<li><a href="Reference-manual_returned_subproject.html#subprojectget_variable"><ins><code>subproject.get_variable()</code></ins></a></li>
+</ul>
+</li>
+<li><a href="Reference-manual_returned_tgt.html"><ins><code>tgt</code></ins></a></li>
+</ul>
+<!-- The links used to be generated wit {>root_link}, but this is a bit hard to read  -->
+
+    </div>
+        
+
+
+
+
+		<div class="hide-if-js">
+
+<div id="subpages">
+	<p><b>Subpages:</b></p>
+	<div class="thumb-subpages">
+																															</div>
+							<p>
+			<a href="Reference-manual_builtin.html">Builtin objects</a>
+							– Builtin objects
+						</p>
+									<p>
+			<a href="Reference-manual_elementary.html">Elementary types</a>
+							– Elementary types
+						</p>
+									<p>
+			<a href="Reference-manual_functions.html">Functions</a>
+							– Meson functions
+						</p>
+									<p>
+			<a href="Reference-manual_returned.html">Returned objects</a>
+							– Returned objects
+						</p>
+			</div>
+
+</div>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Reference-manual.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>str</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Reference-manual_elementary_str.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="string-str">String (<code>str</code>)</h1>
+<p>All <a href="Syntax.html#strings">strings</a> have the following methods. Strings
+are immutable, all operations return their results as a new string.</p>
+<h2 id="returned-by">Returned by</h2>
+<p>String objects are returned by the following functions and methods:</p>
+<ul>
+<li><a href="Reference-manual_functions.html#get_option"><ins><code>get_option()</code></ins></a></li>
+<li><a href="Reference-manual_functions.html#join_paths"><ins><code>join_paths()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_bool.html#boolto_string"><ins><code>bool.to_string()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machinecpu"><ins><code>build_machine.cpu()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machinecpu_family"><ins><code>build_machine.cpu_family()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machineendian"><ins><code>build_machine.endian()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_build_machine.html#build_machinesystem"><ins><code>build_machine.system()</code></ins></a></li>
+<li><a href="Reference-manual_returned_build_tgt.html#build_tgtfull_path"><ins><code>build_tgt.full_path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_build_tgt.html#build_tgtname"><ins><code>build_tgt.name()</code></ins></a></li>
+<li><a href="Reference-manual_returned_build_tgt.html#build_tgtpath"><ins><code>build_tgt.path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_dataget"><ins><code>cfg_data.get()</code></ins></a></li>
+<li><a href="Reference-manual_returned_cfg_data.html#cfg_dataget_unquoted"><ins><code>cfg_data.get_unquoted()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_argument_syntax"><ins><code>compiler.get_argument_syntax()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_define"><ins><code>compiler.get_define()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_id"><ins><code>compiler.get_id()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerget_linker_id"><ins><code>compiler.get_linker_id()</code></ins></a></li>
+<li><a href="Reference-manual_returned_compiler.html#compilerversion"><ins><code>compiler.version()</code></ins></a></li>
+<li><a href="Reference-manual_returned_custom_idx.html#custom_idxfull_path"><ins><code>custom_idx.full_path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_custom_tgt.html#custom_tgtfull_path"><ins><code>custom_tgt.full_path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depget_configtool_variable"><ins><code>dep.get_configtool_variable()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depget_variable"><ins><code>dep.get_variable()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depinclude_type"><ins><code>dep.include_type()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depname"><ins><code>dep.name()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#deptype_name"><ins><code>dep.type_name()</code></ins></a></li>
+<li><a href="Reference-manual_returned_dep.html#depversion"><ins><code>dep.version()</code></ins></a></li>
+<li><a href="Reference-manual_returned_external_program.html#external_programfull_path"><ins><code>external_program.full_path()</code></ins></a></li>
+<li><a href="Reference-manual_returned_external_program.html#external_programpath"><ins><code>external_program.path()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_int.html#intto_string"><ins><code>int.to_string()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonbackend"><ins><code>meson.backend()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonbuild_root"><ins><code>meson.build_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesoncurrent_build_dir"><ins><code>meson.current_build_dir()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesoncurrent_source_dir"><ins><code>meson.current_source_dir()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonglobal_build_root"><ins><code>meson.global_build_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonglobal_source_root"><ins><code>meson.global_source_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_build_root"><ins><code>meson.project_build_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_name"><ins><code>meson.project_name()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_source_root"><ins><code>meson.project_source_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonproject_version"><ins><code>meson.project_version()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonsource_root"><ins><code>meson.source_root()</code></ins></a></li>
+<li><a href="Reference-manual_builtin_meson.html#mesonversion"><ins><code>meson.version()</code></ins></a></li>
+<li><a href="Reference-manual_returned_runresult.html#runresultstderr"><ins><code>runresult.stderr()</code></ins></a></li>
+<li><a href="Reference-manual_returned_runresult.html#runresultstdout"><ins><code>runresult.stdout()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strformat"><ins><code>str.format()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strjoin"><ins><code>str.join()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strreplace"><ins><code>str.replace()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strstrip"><ins><code>str.strip()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strsubstring"><ins><code>str.substring()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strto_lower"><ins><code>str.to_lower()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strto_upper"><ins><code>str.to_upper()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_str.html#strunderscorify"><ins><code>str.underscorify()</code></ins></a></li>
+</ul>
+<h2 id="string-methods">String methods</h2>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strcontains">str.contains()</h3>
+<p>Returns <code>true</code> if string contains the string specified as the argument.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns `true` if string contains the string specified as the argument
+<a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> contains(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>fragment</b>,     # The string fragment to check
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example">Example</h4>
+<pre><code class="language-meson">target = 'x86_FreeBSD'
+is_fbsd = target.to_lower().contains('freebsd')
+# is_fbsd now has the boolean value 'true'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments">Arguments</h4>
+<p>The method <code>str.contains()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fragment</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The string fragment to check</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strendswith">str.endswith()</h3>
+<p>Returns true if string ends with the string specified as the argument.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature1">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns true if string ends with the string specified as the argument
+<a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> endswith(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>fragment</b>,     # The string fragment to check
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example1">Example</h4>
+<pre><code class="language-meson">target = 'x86_FreeBSD'
+is_bsd = target.to_lower().endswith('bsd') # boolean value 'true'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments1">Arguments</h4>
+<p>The method <code>str.endswith()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fragment</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The string fragment to check</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strformat">str.format()</h3>
+<p>Strings can be built using the string formatting functionality.</p>
+<p>See <a href="Syntax.html#string-formatting">the Meson syntax entry</a> for more
+information.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature2">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Strings can be built using the string formatting functionality
+<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> format(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <b>fmt</b>,       # The string to format
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>value</b>...,  # The values to replace the @number@ placeholders in the format string
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example2">Example</h4>
+<pre><code class="language-meson">template = 'string: @0@, number: @1@, bool: @2@'
+res = template.format('text', 1, true)
+# res now has value 'string: text, number: 1, bool: true'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments2">Arguments</h4>
+<p>The method <code>str.format()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fmt</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The string to format.</p>
+<p>The formatting works by replacing placeholders of type <code>@number@</code> with
+the corresponding varargs.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Additionally, the
+method accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>value...</code>) of type <code><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
+<p>The values to replace the @number@ placeholders in the format string.</p>
+  <div style="margin: 0px; text-align: center;">
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strjoin">str.join()</h3>
+<p>The opposite of split,
+for example <code>'.'.join(['a', 'b', 'c']</code> yields <code>'a.b.c'</code>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># The opposite of split,
+<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> join(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>strings</b>...,  # The strings to join with the current string
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example3">Example</h4>
+<pre><code class="language-meson"># Similar to the Python str.join()
+output = ' '.join(['foo', 'bar'])
+# Output value is 'foo bar'
+pathsep = ':'
+path = pathsep.join(['/usr/bin', '/bin', '/usr/local/bin'])
+# path now has the value '/usr/bin:/bin:/usr/local/bin'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments3">Arguments</h4>
+<p>The
+method accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>strings...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
+<p>The strings to join with the current string.</p>
+<p>Before Meson <em>0.60.0</em> this function only accepts a single positional
+argument of the type [[list[str]]].</p>
+  <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strreplace">str.replace()</h3>
+<p>Search all occurences of <code>old</code> and and replace it with <code>new</code></p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.58.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Search all occurences of `old` and and replace it with `new`
+<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> replace(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>old</b>,     # The substring to search
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>new</b>,     # The replacement string
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example4">Example</h4>
+<pre><code class="language-meson"># Replaces all instances of one substring with another
+s = 'semicolons;as;separators'
+s = s.replace('as', 'are')
+# 's' now has the value of 'semicolons;are;separators'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments4">Arguments</h4>
+<p>The method <code>str.replace()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">old</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The substring to search</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">new</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The replacement string</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strsplit">str.split()</h3>
+<p>Splits the string at the specified character
+(or whitespace if not set) and returns the parts in an
+array.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature5">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Splits the string at the specified character
+<a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] split(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<b>split_string</b>],   # Specifies the character / substring where to split the string
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example5">Example</h4>
+<pre><code class="language-meson"># Similar to the Python str.split()
+components = 'a b   c d '.split()
+# components now has the value ['a', 'b', 'c', 'd']
+components = 'a b   c d '.split(' ')
+# components now has the value ['a', 'b', '', '', 'c', 'd', '']
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments5">Arguments</h4>
+<p>The method <code>str.split()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">split_string</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies the character / substring where to split the string.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strstartswith">str.startswith()</h3>
+<p>Returns true if string starts with the string specified as the argument.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns true if string starts with the string specified as the argument
+<a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> startswith(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>fragment</b>,     # The string fragment to check
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example6">Example</h4>
+<pre><code class="language-meson">target = 'x86_FreeBSD'
+is_x86 = target.startswith('x86') # boolean value 'true'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments6">Arguments</h4>
+<p>The method <code>str.startswith()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fragment</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The string fragment to check</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strstrip">str.strip()</h3>
+<p>Removes leading/ending spaces and newlines from the string.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature7">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Removes leading/ending spaces and newlines from the string
+<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> strip(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<b>strip_chars</b>],   # All characters in this string will be stripped
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example7">Example</h4>
+<pre><code class="language-meson"># Similar to the Python str.strip(). Removes leading/ending spaces and newlines
+define = ' -Dsomedefine '
+stripped_define = define.strip()
+# 'stripped_define' now has the value '-Dsomedefine'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments7">Arguments</h4>
+<p>The method <code>str.strip()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">strip_chars</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>All characters in this string will be stripped.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.43.0)</em></p>
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strsubstring">str.substring()</h3>
+<p>Returns a substring specified from <code>start</code> to <code>end</code>.
+Both <code>start</code> and <code>end</code> arguments are optional, so, for example, <code>'foobar'.substring()</code> will return <code>'foobar'</code>.</p>
+<p>The method accepts negative values where negative <code>start</code> is relative to the end of
+string <code>len(string) - start</code> as well as negative <code>end</code>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature8">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.56.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns a substring specified from `start` to `end`
+<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> substring(
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<b>start</b>],   # The start position
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<b>end</b>],     # The end position
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example8">Example</h4>
+<pre><code class="language-meson"># Similar to the Python str[start:end] syntax
+target = 'x86_FreeBSD'
+platform = target.substring(0, 3) # prefix string value 'x86'
+system = target.substring(4) # suffix string value 'FreeBSD'
+</code></pre>
+<p>Example with negative values:</p>
+<pre><code class="language-meson">string = 'foobar'
+string.substring(-5, -3) # =&gt; 'oo'
+string.substring(1, -1) # =&gt; 'ooba'
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments8">Arguments</h4>
+<p>The method <code>str.substring()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">start</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The start position</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">end</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The end position</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strto_int">str.to_int()</h3>
+<p>Converts the string to an int and throws an error if it can't be</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature9">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_int.html"><ins>int</ins></a> to_int()</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example9">Example</h4>
+<pre><code class="language-meson">version = '1'
+# Converts the string to an int and throws an error if it can't be
+ver_int = version.to_int()
+</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strto_lower">str.to_lower()</h3>
+<p>Converts all characters to lower case</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature10">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> to_lower()</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example10">Example</h4>
+<pre><code class="language-meson">target = 'x86_FreeBSD'
+lower = target.to_lower() # t now has the value 'x86_freebsd'
+</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strto_upper">str.to_upper()</h3>
+<p>Converts all characters to upper case</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature11">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> to_upper()</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example11">Example</h4>
+<pre><code class="language-meson">target = 'x86_FreeBSD'
+upper = target.to_upper() # t now has the value 'X86_FREEBSD'
+</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strunderscorify">str.underscorify()</h3>
+<p>Creates a string where every non-alphabetical non-number character is replaced with <code>_</code>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature12">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> underscorify()</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example12">Example</h4>
+<pre><code class="language-meson">name = 'Meson Docs.txt#Reference-manual'
+# Replaces all characters other than `a-zA-Z0-9` with `_` (underscore)
+# Useful for substituting into #defines, filenames, etc.
+underscored = name.underscorify()
+# underscored now has the value 'Meson_Docs_txt_Reference_manual'
+</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strversion_compare">str.version_compare()</h3>
+<p>Does semantic version comparison.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature13">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Does semantic version comparison
+<a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> version_compare(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>compare_string</b>,     # The string to compare to
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example13">Example</h4>
+<pre><code class="language-meson">version = '1.2.3'
+# Compare version numbers semantically
+is_new = version.version_compare('&gt;=2.0')
+# is_new now has the boolean value false
+# Supports the following operators: '&gt;', '&lt;', '&gt;=', '&lt;=', '!=', '==', '='
+</code></pre>
+<p>Meson version comparison conventions include:</p>
+<pre><code class="language-meson">'3.6'.version_compare('&gt;=3.6.0') == false
+</code></pre>
+<p>It is best to be unambiguous and specify the full revision level to compare.</p>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments9">Arguments</h4>
+<p>The method <code>str.version_compare()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">compare_string</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The string to compare to.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Reference-manual_elementary_str.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
