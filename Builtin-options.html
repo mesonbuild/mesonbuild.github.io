@@ -38,6 +38,7 @@
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
 <script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -679,7 +680,7 @@ option:</p>
 <p><code>b_bitcode</code> will pass <code>-fembed-bitcode</code> while compiling and will pass
 <code>-Wl,-bitcode_bundle</code> while linking. These options are incompatible
 with <code>b_asneeded</code>, so that option will be silently disabled.</p>
-<p><a href="Reference-manual.html#shared_module">Shared modules</a> will not have
+<p><a href="RefMan_functions.html#shared_module"><ins><code>shared_module()</code></ins></a>s will not have
 bitcode embedded because <code>-Wl,-bitcode_bundle</code> is incompatible with
 both <code>-bundle</code> and <code>-Wl,-undefined,dynamic_lookup</code> which are necessary
 for shared modules to work.</p>

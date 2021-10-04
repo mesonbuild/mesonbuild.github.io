@@ -38,6 +38,7 @@
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
 <script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -215,8 +216,7 @@ errortxt = r.stderr().strip()
 <p>Since 0.52.0, you can pass the command environment as a dictionary:</p>
 <pre><code class="language-meson">run_command('command', 'arg1', 'arg2', env: {'FOO': 'bar'})
 </code></pre>
-<p>Since 0.50.0, you can also pass the command
-<a href="Reference-manual.html#environment-object"><code>environment</code></a> object:</p>
+<p>Since 0.50.0, you can also pass the command <a href="RefMan_returned_env.html"><ins><code>env</code></ins></a> object:</p>
 <pre><code class="language-meson">env = environment()
 env.set('FOO', 'bar')
 run_command('command', 'arg1', 'arg2', env: env)

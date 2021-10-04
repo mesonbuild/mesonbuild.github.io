@@ -38,6 +38,7 @@
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
 <script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -323,7 +324,7 @@ joined = '/usr/local' / '/etc/name'      # =&gt; /etc/name
 joined = 'C:\\foo\\bar' / 'builddir'     # =&gt; C:/foo/bar/builddir
 joined = 'C:\\foo\\bar' / 'D:\\builddir' # =&gt; D:/builddir
 </code></pre>
-<p>Note that this is equivalent to using <a href="Reference-manual.html#join_paths"><code>join_paths()</code></a>,
+<p>Note that this is equivalent to using <a href="RefMan_functions.html#join_paths"><ins><code>join_paths()</code></ins></a>,
 which was obsoleted by this operator.</p>
 <h3 id="strings-running-over-multiple-lines">Strings running over multiple lines</h3>
 <p>Strings running over multiple lines can be declared with three single
@@ -392,6 +393,8 @@ stripped_define = define.strip()
 string = 'xyxHelloxyx'.strip('xy')
 # 'string' now has the value 'Hello'
 </code></pre>
+<p>Since 0.43.0, you can specify one positional string argument,
+and all characters in that string will be stripped.</p>
 <h4 id="to_upper-to_lower">.to_upper(), .to_lower()</h4>
 <pre><code class="language-meson">target = 'x86_FreeBSD'
 upper = target.to_upper() # t now has the value 'X86_FREEBSD'
@@ -531,7 +534,7 @@ my_dict = {'foo': 42, 'foo': 43}
 </code></pre>
 <p>Dictionaries are immutable and do not have a guaranteed order.</p>
 <p>Dictionaries are available since 0.47.0.</p>
-<p>Visit the <a href="Reference-manual.html#dictionary-object">Reference Manual</a> to read
+<p>Visit the <a href="RefMan_elementary_dict.html"><ins><code>dict</code></ins></a> objects page in the Reference Manual to read
 about the methods exposed by dictionaries.</p>
 <p>Since 0.49.0, you can check if a dictionary contains a key like this:</p>
 <pre><code class="language-meson">my_dict = {'foo': 42, 'bar': 43}

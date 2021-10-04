@@ -38,6 +38,7 @@
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
 <script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -223,7 +224,7 @@ dependencies, because all current Vala applications use them.
 and <a href="https://developer.gnome.org/gobject/stable/">GObject</a> is used for the
 runtime type system.</p>
 <h2 id="using-libraries">Using libraries</h2>
-<p>Meson uses the <a href="Reference-manual.html#dependency"><code>dependency()</code></a>
+<p>Meson uses the <a href="RefMan_functions.html#dependency"><ins><code>dependency()</code></ins></a>
 function to find the relevant VAPI, C headers and linker flags when it
 encounters a Vala source file in a build target. Vala needs a VAPI
 file and a C header or headers to use a library. The VAPI file helps
@@ -232,7 +233,7 @@ map Vala code to the library's C programming interface. It is the
 tool that makes finding these installed files all work seamlessly
 behind the scenes. When a <code>pkg-config</code> file doesn't exist for the
 library then the <code>find_library()</code>
-method of the <a href="Reference-manual.html#compiler-object">compiler object</a>
+method of the <a href="RefMan_returned_compiler.html"><ins><code>compiler</code></ins></a> object
 needs to be used. Examples are given later.</p>
 <p>Note Vala uses libraries that follow the C Application Binary Interface (C ABI).
 The library, however, could be written in C, Vala, Rust, Go, C++ or any other
@@ -270,7 +271,7 @@ their other development files. The VAPI is installed in Vala's
 standard search path and so works just as seamlessly using the
 <code>dependency()</code> function.</p>
 <h3 id="targeting-a-version-of-glib">Targeting a version of GLib</h3>
-<p>Meson's <a href="Reference-manual.html#dependency"><code>dependency()</code></a> function
+<p>Meson's <a href="RefMan_functions.html#dependency"><ins><code>dependency()</code></ins></a> function
 allows a version check of a library. This is often used to check a
 minimum version is installed. When setting a minimum version of GLib,
 Meson will also pass this to the Vala compiler using the
@@ -430,7 +431,7 @@ the language as c. For example to set FUSE_USE_VERSION to 26 use:</p>
 </code></pre>
 <h2 id="building-libraries">Building libraries</h2>
 <h3 id="changing-c-header-and-vapi-names">Changing C header and VAPI names</h3>
-<p>Meson's <a href="Reference-manual.html#library"><code>library</code></a> target automatically
+<p>Meson's <a href="RefMan_functions.html#library"><ins><code>library()</code></ins></a> target automatically
 outputs the C header and the VAPI. They can be renamed by setting the
 <code>vala_header</code> and <code>vala_vapi</code> arguments respectively:</p>
 <pre><code class="language-meson">foo_lib = shared_library('foo', 'foo.vala',

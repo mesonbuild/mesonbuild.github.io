@@ -38,6 +38,7 @@
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
 <script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -254,10 +255,10 @@ default.</p>
 <p>A <code>feature</code> option has three states: <code>enabled</code>, <code>disabled</code> or <code>auto</code>.
 It is intended to be passed as value for the <code>required</code> keyword
 argument of most functions. Currently supported in
-<a href="Reference-manual.html#dependency"><code>dependency()</code></a>,
-<a href="Reference-manual.html#compiler-object"><code>find_library()</code></a>,
-<a href="Reference-manual.html#find_program"><code>find_program()</code></a> and
-<a href="Reference-manual.html#add_languages"><code>add_languages()</code></a> functions.</p>
+<a href="RefMan_functions.html#dependency"><ins><code>dependency()</code></ins></a>,
+<a href="RefMan_returned_compiler.html#compilerfind_library"><ins><code>compiler.find_library()</code></ins></a>,
+<a href="RefMan_functions.html#find_program"><ins><code>find_program()</code></ins></a> and
+<a href="RefMan_functions.html#add_languages"><ins><code>add_languages()</code></ins></a> functions.</p>
 <ul>
 <li>
 <code>enabled</code> is the same as passing <code>required : true</code>.</li>
@@ -267,8 +268,7 @@ argument of most functions. Currently supported in
 <code>disabled</code> do not look for the dependency and always return 'not-found'.</li>
 </ul>
 <p>When getting the value of this type of option using <code>get_option()</code>, a
-special <a href="Reference-manual.html#feature-option-object">feature option
-object</a> is returned instead
+special <a href="RefMan_returned_feature.html"><ins><code>feature</code></ins></a> object is returned instead
 of the string representation of the option's value. This object can be
 passed to <code>required</code>:</p>
 <pre><code class="language-meson">d = dependency('foo', required : get_option('myfeature'))

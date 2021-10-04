@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>YAML Reference manual</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Yaml-RefMan.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="reference-manual">Reference Manual</h1>
+<p>The <a href="RefMan.html">Reference Manual</a> is automatically generated out of YAML
+files in <code>docs/yaml</code>. This allows the Meson project to enforce a consistent
+style of the Reference Manual and enables easier style changes to the generated
+Markdown files without touching the actual documentation.
+Additionally, multiple generation backends can be supported (besides the
+Markdown generator for mesonbuild.com).</p>
+<p>The generator that reads these YAML files is located in <code>docs/refman</code>, with the
+main executable being <code>docs/genrefman.py</code>.</p>
+<h2 id="linking-to-the-reference-manual">Linking to the Reference Manual</h2>
+<p>Links to the Reference Manual can be inserted <em>anywhere</em> in the Meson docs with
+tags like this: <code>[[&lt;tag&gt;]]</code>. This guarantees that links remain stable (even if
+the structure of the Reference Manual changes) and are uniformly formatted
+everywhere.</p>
+<p>To link to functions, the function name should be put into the tag:
+<code>[[&lt;func name&gt;]]</code>.
+Methods (for all kinds of objects, including modules) can be linked to like
+this: <code>[[&lt;object name&gt;.&lt;method name&gt;]]</code>.
+To link to objects themself, the <code>[[@&lt;object name&gt;]]</code> syntax can be used.</p>
+<p>These tags do <strong>not</strong> need to be put in inline code! A hotdoc extension handles
+the formatting here. If tags need to be placed (for instance, to include reference
+directly in code blocks), the <code>[[#&lt;remaining tag&gt;]]</code> syntax should be used.</p>
+<p>Examples:</p>
+<ul>
+<li>Functions: <a href="RefMan_functions.html#executable"><ins><code>executable()</code></ins></a>
+</li>
+<li>Methods: <a href="RefMan_builtin_meson.html#mesonversion"><ins><code>meson.version()</code></ins></a>
+</li>
+<li>Objects: <a href="RefMan_elementary_str.html"><ins><code>str</code></ins></a>
+</li>
+</ul>
+<p>Now the same in a code block:</p>
+<pre><code class="language-meson"><a href="RefMan_elementary_str.html"><ins>str</ins></a> <a href="RefMan_functions.html#executable"><ins><code>executable()</code></ins></a>('main', [
+    'file_@0@.cpp'.format(<a href="RefMan_builtin_meson.html#mesonversion"><ins>meson.version()</ins></a>)
+])
+</code></pre>
+<h2 id="directory-structure">Directory structure</h2>
+<p>The directory structure under <code>docs/yaml</code> is important, since it determines how
+the YAML files are interpreted:</p>
+<ul>
+<li>
+<code>builtins</code>: Documentation for builtin objects, such as <code>meson</code>
+</li>
+<li>
+<code>elementary</code>: Strings, lists, integers, void, etc.</li>
+<li>
+<code>objects</code>: All Objects returned by functions and methods but <strong>not</strong> modules</li>
+<li>
+<code>functions</code>: All root meson functions (<a href="RefMan_functions.html#executable"><ins><code>executable()</code></ins></a>, <a href="RefMan_functions.html#project"><ins><code>project()</code></ins></a>, etc.)</li>
+</ul>
+<p>Finally, modules are defined inside the <code>modules</code> subdirectory. Here, each
+module has its own directory. The module itself <strong>must</strong> be in a file called
+<code>module.yaml</code>. All objects returned by the module are then located next to this
+file.</p>
+<p>The name of the YAML files themself are ignored (with the exception of
+<code>module.yaml</code>) and carry no specific meaning. However, it is recommended to name
+the YAML files after the <code>name</code> entry of the object.</p>
+<p>All objects and functions whose name starts with a <code>_</code> are marked as private and
+are <em>not</em> exported in the final documents. The primary purpose of these files
+is to make inheriting functions and arguments easier.</p>
+<h1 id="yaml-schema">YAML schema</h1>
+<p>The YAML files themself are structured as follows:</p>
+<h2 id="functions">Functions</h2>
+<pre><code class="language-yaml">name: executable     # The name of the function                [required]
+returns: build_tgt   # Must be a `name` of an existing object  [required]
+description: |
+  The first line until the first dot of the description is the brief.
+  All other lines are not part of the brief and should document the function
+
+  Here the full Markdown syntax is supported, such as links, `inline code`,
+  code blocks, and references to other parts of the Reference Manual: <a href="RefMan_elementary_str.html"><ins><code>str</code></ins></a>.
+
+  This is true for **all** description keys in all YAML files. Defining a
+  description is **always** required.
+
+since:      0.42.0       # A valid Meson version
+deprecated: 100.99.0     # A valid Meson version
+
+example: |
+  Similar to `description`, but is put under a different section and should
+  contain an example.
+
+notes:
+- A list of notes that should stand out.
+- Should be used sparingly.
+- Notes are optional.
+
+warnings:
+- Similar to notes, but a warning
+- Warnings are also optional.
+
+
+# To avoid duplicating documentation / code, argument inheritence is supported with
+# the following optional keys:
+
+posargs_inherit: _build_target_base  # Use the posargs definition of `_build_target_base` here
+optargs_inherit: _build_target_base  # Use the optargs definition of `_build_target_base` here
+varargs_inherit: _build_target_base  # Use the varargs definition of `_build_target_base` here
+kwargs_inherit: _build_target_base   # Add all kwargs of `_build_target_base` to this function
+
+
+posargs:
+  arg_name:
+    type: bool | dep           # [required]
+    description: Some text.    # [required]
+    since: 0.42.0
+    deprecated: 100.99.0
+    default: false             # Is technically supported buy should **not** be used for posargs
+
+  another_arg:
+    ...
+
+optargs:
+  optional_arg:
+    type: int                  # [required]
+    description: Hello World   # [required]
+    since: 0.42.0
+    deprecated: 100.99.0
+    default: false             # Default values can make sense here
+
+  next_arg:
+    ...
+
+varargs:
+  name: Some name                # [required]
+  type: str | list[str | int]    # [required]
+  description: Some helpful text # [required]
+  since: 0.42.0
+  deprecated: 100.99.0
+  min_varargs: 1
+  max_varargs: 21
+
+
+kwargs:
+  kwarg_name:
+    type: str                      # [required]
+    description: Meson is great!   # [required]
+    since: 0.42.0
+    deprecated: 100.99.0
+    default: false
+    required: false                # Some kwargs may be required
+</code></pre>
+<h2 id="objects">Objects</h2>
+<pre><code class="language-yaml">name: build_tgt                       # [required]
+long_name: Build target               # [required]
+description: Just some description.   # [required]
+example: Same as for functions
+
+# Objects can be marked as containers. In this case they can be used in a `type`
+# like this `container[held | objects]`. Currently this only makes sense for
+# lists and dicts. There is almost no reason to set this to true for other objects.
+is_container: true
+
+since:      0.42.0
+deprecated: 100.99.0
+
+# Notes and warnings work the same as with functions
+notes:
+warnings:
+
+# Inheritance is also supported for objects. Here all methods from the parent
+# object are inherited. The trick with `_private` objects also works here
+# to help with more complex structures.
+extends: tgt
+
+# Methods are a list of functions (see the previous section).
+methods:
+- ...
+</code></pre>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Yaml-RefMan.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

@@ -38,6 +38,7 @@
 <script src="assets/js/prism-core.js"></script>
 <script src="assets/js/prism-autoloader.js"></script>
 <script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
 <script src="assets/js/trie.js"></script>
 
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -320,7 +321,7 @@ gtkdep = dependency('gtk+-3.0')
 executable('demo', 'main.c', dependencies : gtkdep)
 </code></pre>
 <p>If your app needs to use multiple libraries, you need to use separate
-<a href="Reference-manual.html#dependency"><code>dependency()</code></a> calls for each, like so:</p>
+<a href="RefMan_functions.html#dependency"><ins><code>dependency()</code></ins></a> calls for each, like so:</p>
 <pre><code class="language-meson">gtkdeps = [dependency('gtk+-3.0'), dependency('gtksourceview-3.0')]
 </code></pre>
 <p>We don't need it for the current example.</p>
