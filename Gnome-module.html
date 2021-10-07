@@ -541,8 +541,18 @@ library.</p>
 VAPI or Vala binaries.</p>
 <p><em>Added 0.36.0</em></p>
 <h3 id="gnomeyelp">gnome.yelp()</h3>
+<pre><code class="language-meson">  gnome.yelp(id: string, sources: ...string, sources: []string, media: []string,
+             languages: []string, symlink_media: bool = true): void
+</code></pre>
 <p>Installs help documentation using Yelp. The first argument is the
 project id.</p>
+<p>Additionally, sources can be passed as additional positional arguments. This
+was, however, undocumented and never officially supported. Due to a longstanding
+bug, passing sources as a keyword argument will result in the positional
+argument sources to be ignored. <em>since 0.60.0</em> A warning is raised in this case.</p>
+<p><em>Since 0.60.0</em> the use of the positional argument sources has been deprecated,
+and the "sources" keyword argument should be used instead. The passing of
+sources as positional arguments will be removed in the future.</p>
 <p>This also creates two targets for translations
 <code>help-$project-update-po</code> and <code>help-$project-pot</code>.</p>
 <ul>
