@@ -236,6 +236,8 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR]
+                  [--python.platlibdir PYTHON.PLATLIBDIR]
+                  [--python.purelibdir PYTHON.PURELIBDIR]
                   [--pkg-config-path PKG_CONFIG_PATH]
                   [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
                   [--cmake-prefix-path CMAKE_PREFIX_PATH]
@@ -292,6 +294,12 @@ optional arguments:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --python.platlibdir PYTHON.PLATLIBDIR
+                                        Directory for site-specific, platform-
+                                        specific files (default: ).
+  --python.purelibdir PYTHON.PURELIBDIR
+                                        Directory for site-specific, non-
+                                        platform-specific files (default: ).
   --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
                                         to search (default: []). (just for host
                                         machine)
@@ -567,6 +575,8 @@ Rewriter commands:
               [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR]
+              [--python.platlibdir PYTHON.PLATLIBDIR]
+              [--python.purelibdir PYTHON.PURELIBDIR]
               [--pkg-config-path PKG_CONFIG_PATH]
               [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
               [--cmake-prefix-path CMAKE_PREFIX_PATH]
@@ -627,6 +637,12 @@ optional arguments:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --python.platlibdir PYTHON.PLATLIBDIR
+                                        Directory for site-specific, platform-
+                                        specific files (default: ).
+  --python.purelibdir PYTHON.PURELIBDIR
+                                        Directory for site-specific, non-
+                                        platform-specific files (default: ).
   --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
                                         to search (default: []). (just for host
                                         machine)

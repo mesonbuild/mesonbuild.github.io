@@ -305,6 +305,8 @@ returns a <a href="Python-module.html#disabler-object">disabler object</a> inste
 <p>Install actual python sources (<code>.py</code>).</p>
 <p>All positional and keyword arguments are the same as for
 <a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a>, with the addition of the following:</p>
+<p><em>Since 0.60.0</em> <code>python.platlibdir</code> and <code>python.purelibdir</code> options can be used
+to control the default installation path. See <a href="Builtin-options.html#python-module">Python module options</a>.</p>
 <ul>
 <li>
 <p><code>pure</code>: On some platforms, architecture independent files are
@@ -330,6 +332,8 @@ to install only a subset of the files. By default it has the tag <code>python-ru
 directly, for example when using <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>.</p>
 <p>This function accepts no arguments, its keyword arguments are the same
 as <a href="Python-module.html#install_sources">install_sources()</a>.</p>
+<p><em>Since 0.60.0</em> <code>python.platlibdir</code> and <code>python.purelibdir</code> options can be used
+to control the default installation path. See <a href="Builtin-options.html#python-module">Python module options</a>.</p>
 <p><strong>Returns</strong>: A string</p>
 <h4 id="language_version"><code>language_version()</code></h4>
 <pre><code class="language-meson">string py_installation.language_version()

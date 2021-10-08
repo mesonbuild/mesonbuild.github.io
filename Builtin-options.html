@@ -848,6 +848,41 @@ command line <code>-Dfoo:default_library=static</code>.</p>
 <li>Value from command line if set</li>
 </ul>
 <p>Since 0.56.0 <code>warning_level</code> can also be defined per subproject.</p>
+<h2 id="module-options">Module options</h2>
+<p>Some Meson modules have built-in options. They can be set by prefixing the option
+name with the module name: <code>-D&lt;module&gt;.&lt;option&gt;=&lt;value&gt;</code> (e.g. <code>-Dpython.platlibdir=/foo</code>).</p>
+<h3 id="python-module">Python module</h3>
+<table>
+<thead>
+<tr>
+<th> Option</th>
+<th> Default value</th>
+<th> Possible values</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> platlibdir</td>
+<td></td>
+<td> Directory path</td>
+<td> Directory for site-specific, platform-specific files (Since 0.60.0)</td>
+</tr>
+<tr>
+<td> purelibdir</td>
+<td></td>
+<td> Directory path</td>
+<td> Directory for site-specific, non-platform-specific files  (Since 0.60.0)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Since 0.60.0</em> <code>python.platlibdir</code> and <code>python.purelibdir</code> options are used by
+python module methods <code>python.install_sources()</code> and <code>python.get_install_dir()</code>.
+By default Meson tries to detect the correct installation path, but make them
+relative to the installation <code>prefix</code>, which will often result in installed python
+modules to not be found by the interpreter unless <code>prefix</code> is <code>/usr</code> on Linux,
+or for example <code>C:\Python39</code> on Windows. These options can be absolute paths
+outside of <code>prefix</code>.</p>
 
     </div>
         
