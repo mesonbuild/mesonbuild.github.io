@@ -338,8 +338,8 @@ int main (int argc, char ** argv) {
 above.  These strings can also be combined with the string formatting
 functionality described below.</p>
 <h3 id="string-index">String index</h3>
-<p>Stings support the indexing (<code>[&lt;num&gt;]</code>) operator. This operator allows (read
-only) acessing a specific character. The returned value is guaranteed to be
+<p>Strings support the indexing (<code>[&lt;num&gt;]</code>) operator. This operator allows (read
+only) accessing a specific character. The returned value is guaranteed to be
 a string of length 1.</p>
 <pre><code class="language-meson">foo = 'abcd'
 message(foo[1])  # Will print 'b'
@@ -575,7 +575,7 @@ specified like this:</p>
 executable('progname',
   kwargs: d)
 </code></pre>
-<p>A single function can take keyword argumets both directly in the
+<p>A single function can take keyword arguments both directly in the
 function call and indirectly via the <code>kwargs</code> keyword argument. The
 only limitation is that it is a hard error to pass any particular key
 both as a direct and indirect argument.</p>

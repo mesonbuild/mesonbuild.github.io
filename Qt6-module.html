@@ -272,7 +272,7 @@ objects used when transpiling the .moc files</li>
 <p>Takes sources for moc, uic, and rcc, and converts them into c++ files for
 compilation.</p>
 <p>Has the following signature: <code>qt.preprocess(name: str | None, *sources: str)</code></p>
-<p>If the <code>name</code> parameter is passed then all of the rcc files will be wirtten to a single output file</p>
+<p>If the <code>name</code> parameter is passed then all of the rcc files will be written to a single output file</p>
 <p>The variadic <code>sources</code> arguments have been deprecated since Meson 0.59.0, as has the <code>sources</code> keyword argument. These passed files unmodified through the preprocessor, don't do this, just add the output of the generator to another sources list:</p>
 <pre><code class="language-meson">sources = files('a.cpp', 'main.cpp', 'bar.c')
 sources += qt.preprocess(qresources : ['resources'])
@@ -299,7 +299,7 @@ sources += qt.preprocess(qresources : ['resources'])
 <li>
 <code>dependencies</code> Dependency[]: dependency objects needed by moc. Available since v0.48.0.</li>
 <li>
-<code>sources</code>: a list of extra sources, which are added to the output unchaged. Deprecated in 0.59.0.</li>
+<code>sources</code>: a list of extra sources, which are added to the output unchanged. Deprecated in 0.59.0.</li>
 </ul>
 <p>It returns an array of targets and sources to pass to a compilation target.</p>
 <h2 id="compile_translations-since-v0440">compile_translations (since v0.44.0)</h2>

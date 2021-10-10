@@ -215,7 +215,7 @@ when a project is being used as a subproject.</p>
 <h2 id="developer-environment">Developer environment</h2>
 <p>New method <code>meson.add_devenv()</code> adds an <a href="Release-notes-for-0-58-0.html#environment"><code>environment()</code></a> object
 to the list of environments that will be applied when using <code>meson devenv</code>
-command line. This is useful for developpers who wish to use the project without
+command line. This is useful for developers who wish to use the project without
 installing it, it is often needed to set for example the path to plugins
 directory, etc. Alternatively, a list or dictionary can be passed as first
 argument.</p>
@@ -260,8 +260,8 @@ our tests we could not find a case where adding <code>-pipe</code> made
 compilation faster and using <code>-pipe</code> <a href="https://github.com/mesonbuild/meson/issues/8508">can cause sporadic build
 failures in certain
 cases</a>.</p>
-<h2 id="mesonadd_dist_script-allowd-in-subprojects">
-<code>meson.add_dist_script()</code> allowd in subprojects</h2>
+<h2 id="mesonadd_dist_script-allowed-in-subprojects">
+<code>meson.add_dist_script()</code> allowed in subprojects</h2>
 <p><code>meson.add_dist_script()</code> can now be invoked from a subproject, it was a hard
 error in earlier versions. Subproject dist scripts will only be executed
 when running <code>meson dist --include-subprojects</code>. <code>MESON_PROJECT_SOURCE_ROOT</code>,
@@ -290,7 +290,7 @@ up the path manually with <code>include_directories</code>.</p>
 <h2 id="multiple-append-and-prepend-in-environment-object">Multiple append() and prepend() in <code>environment()</code> object</h2>
 <p><code>append()</code> and <code>prepend()</code> methods can now be called multiple times
 on the same <code>varname</code>. Earlier Meson versions would warn and only the last
-opperation was taking effect.</p>
+operation was taking effect.</p>
 <pre><code class="language-meson">env = environment()
 
 # MY_PATH will be '0:1:2:3'

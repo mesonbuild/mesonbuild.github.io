@@ -402,7 +402,7 @@ list of strings.</p>
 <p><strong>Note:</strong> All occurrences of <code>\</code> in the value of all keys will be replaced with
 a <code>/</code> since CMake has a lot of issues with correctly escaping <code>\</code> when
 dealing with variables (even in cases where a path in <code>CMAKE_C_COMPILER</code>
-is correctly escaped, CMake will still trip up internaly for instance)</p>
+is correctly escaped, CMake will still trip up internally for instance)</p>
 <pre><code>      A custom toolchain file should be used (via the `cmake_toolchain_file`
       property) if `\` support is required.
 </code></pre>
@@ -472,7 +472,7 @@ native file are used.</p>
 file being overridden by the next. The intention of this is not
 overriding, but to allow composing files. This composition is done by
 passing the command line argument multiple times:</p>
-<pre><code class="language-console">meson setup builddir/ --cross-file first.ini --cross-file second.ini --cross-file thrid.ini
+<pre><code class="language-console">meson setup builddir/ --cross-file first.ini --cross-file second.ini --cross-file third.ini
 </code></pre>
 <p>In this case <code>first.ini</code> will be loaded, then <code>second.ini</code>, with
 values from <code>second.ini</code> replacing <code>first.ini</code>, and so on.</p>
