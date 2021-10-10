@@ -235,6 +235,11 @@ with the <code>search</code> command:</p>
 <pre><code>$ meson wrap search jpeg
 libjpeg
 </code></pre>
+<p>If a package is not found in the list of wraps, the <code>search</code> command
+will look in all the wrap dependencies:</p>
+<pre><code>$ meson wrap search glib-2.0
+Dependency glib-2.0 found in wrap glib
+</code></pre>
 <p>To determine which versions of libjpeg are available to install, issue
 the <code>info</code> command:</p>
 <pre><code>$ meson wrap info libjpeg
