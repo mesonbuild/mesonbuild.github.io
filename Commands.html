@@ -684,7 +684,9 @@ page</a> for more info.</p>
 </code></pre>
 <h3 id="subprojects">subprojects</h3>
 <p><em>(since 0.49.0)</em></p>
-<pre><code class="language-inc">$ meson subprojects [-h] {update,checkout,download,foreach,purge} ...
+<pre><code class="language-inc">$ meson subprojects [-h]
+                    {update,checkout,download,foreach,purge,packagefiles}
+                    ...
 </code></pre>
 <p>Manages subprojects of the Meson project. <em>Since 0.59.0</em> commands are run on
 multiple subprojects in parallel by default, use <code>--num-processes=1</code> if it is
@@ -693,7 +695,7 @@ not desired.</p>
   -h, --help                            show this help message and exit
 
 Commands:
-  {update,checkout,download,foreach,purge}
+  {update,checkout,download,foreach,purge,packagefiles}
     update                              Update all subprojects from wrap files
     checkout                            Checkout a branch (git only)
     download                            Ensure subprojects are fetched, even if
@@ -705,6 +707,7 @@ Commands:
                                         directory.
     purge                               Remove all wrap-based subproject
                                         artifacts
+    packagefiles                        Manage the packagefiles overlay
 </code></pre>
 <h3 id="test">test</h3>
 <pre><code class="language-inc">$ meson test [-h] [--repeat REPEAT] [--no-rebuild] [--gdb]
