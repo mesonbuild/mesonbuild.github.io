@@ -219,6 +219,12 @@ that make Python scripts executable, you will have to run <code>python /path/to/
 we strive to ensure that it will always be working and usable. All
 commits go through a pull-request process that runs CI and tests
 several platforms.</p>
+<h3 id="packing-meson-into-a-zipapp">Packing Meson into a zipapp</h3>
+<p>After downloading the release, you can create a standalone single-file
+executable for Meson by running the script:</p>
+<pre><code>./packaging/create_zipapp.py --outfile meson.pyz --interpreter '/usr/bin/env python3' &lt;source checkout&gt;
+</code></pre>
+<p>This uses python's native support for <a href="https://docs.python.org/3/library/zipapp.html">zipapp</a>.</p>
 <h2 id="installing-meson-with-pip">Installing Meson with pip</h2>
 <p>Meson is available in the <a href="https://pypi.python.org/pypi/meson/">Python Package Index</a> and can be installed
 with <code>pip3 install --user meson</code>. This does not require any special
