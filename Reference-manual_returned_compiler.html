@@ -905,6 +905,9 @@ some symbols to be exposed on Linux, and it should be passed via
 </div>
 <pre><code class="language-meson"># Tries to find the library specified in the positional argument
 <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> find_library(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>libname</b>,     # The library to find
+
+  # Keyword arguments:
   <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>dirs</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Additional directories to search in
@@ -918,7 +921,37 @@ some symbols to be exposed on Linux, and it should be passed via
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments4">Arguments</h4>
-<p>The method <code>compiler.find_library()</code>
+<p>The method <code>compiler.find_library()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">libname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The library to find.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>compiler.find_library()</code>
 accepts the following keyword arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -1930,7 +1963,7 @@ some symbols to be exposed on Linux, and it should be passed via
 </div>
 <pre><code class="language-meson"># Detects whether a particular symbol is declared in the specified header
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_header_symbol(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>heade</b>,      # The header to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>header</b>,     # The header to check
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>symbol</b>,     # The symbol to check
 
   # Keyword arguments:
@@ -1959,7 +1992,7 @@ some symbols to be exposed on Linux, and it should be passed via
     </thead>
     <tbody class="nomargin">
       <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">heade</code></td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
