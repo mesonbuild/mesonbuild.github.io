@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.60.0</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Release-notes-for-0-60-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="new-features">New features</h1>
+<h2 id="run_target-can-now-be-used-as-a-dependency">
+<code>run_target</code> can now be used as a dependency</h2>
+<p>A <code>run_target()</code> can now be saved in a variable and reused as a dependency in
+an <code>alias_target()</code>. This can be used to create custom alias rules that ensure
+multiple other targets are run, even if those targets don't produce output
+files.</p>
+<p>For example:</p>
+<pre><code>i18n = import('i18n')
+
+all_pot_targets = []
+
+foo_i18n = i18n.gettext('foo')
+
+all_pot_targets += foo_i18n[1]
+
+alias_target('all-pot', all_pot_targets)
+</code></pre>
+<h2 id="the-python-modules-dependency-method-no-longer-accepts-positional-arguments">The Python Modules dependency method no longer accepts positional arguments</h2>
+<p>Previously these were igrnoed with a warning, now they're a hard error.</p>
+<h2 id="unset_variable"><code>unset_variable()</code></h2>
+<p><code>unset_variable()</code> can be used to unset a variable. Reading a variable after
+calling <code>unset_variable()</code> will raise an exception unless the variable is set
+again.</p>
+<pre><code class="language-meson"># tests/meson.build
+tests = ['test1', 'test2']
+
+# ...
+
+unset_variable('tests')
+
+# tests is no longer usable until it is set again
+</code></pre>
+<h2 id="override-python-installation-paths">Override python installation paths</h2>
+<p>The <code>python</code> module now has options to control where modules are installed:</p>
+<ul>
+<li>python.platlibdir: Directory for site-specific, platform-specific files.</li>
+<li>python.purelibdir: Directory for site-specific, non-platform-specific files.</li>
+</ul>
+<p>Those options are used by python module methods <code>python.install_sources()</code> and
+<code>python.get_install_dir()</code>. By default Meson tries to detect the correct installation
+path, but make them relative to the installation <code>prefix</code>, which will often result
+in installed python modules to not be found by the interpreter unless <code>prefix</code>
+is <code>/usr</code> on Linux, or for example <code>C:\Python39</code> on Windows. These new options
+can be absolute paths outside of <code>prefix</code>.</p>
+<h2 id="new-subprojects-packagefiles-subcommand">New <code>subprojects packagefiles</code> subcommand</h2>
+<p>It is now possible to re-apply <code>meson.build</code> overlays (<code>patch_filename</code> or
+<code>patch_directory</code> in the wrap ini file) after a subproject was downloaded and
+set up, via <code>meson subprojects packagefiles --apply &lt;wrap-name&gt;</code>.</p>
+<p>It is also possible for <code>patch_directory</code> overlays in a <code>[wrap-file]</code>, to copy
+the packagefiles out of the subproject and back into <code>packagefiles/&lt;patch_directory&gt;/</code>
+via <code>meson subprojects packagefiles --save &lt;wrap-name&gt;</code>. This is useful for
+testing an edit in the subproject and then saving it back to the overlay which
+is checked into git.</p>
+<h2 id="deprecated-project-options">Deprecated project options</h2>
+<p>Project options declared in <code>meson_options.txt</code> can now be marked as deprecated
+and Meson will warn when user sets a value to it. It is also possible to deprecate
+only some of the choices, and map deprecated values to a new value.</p>
+<pre><code class="language-meson"># Option fully deprecated, it warns when any value is set.
+option('o1', type: 'boolean', deprecated: true)
+
+# One of the choices is deprecated, it warns only when 'a' is in the list of values.
+option('o2', type: 'array', choices: ['a', 'b'], deprecated: ['a'])
+
+# One of the choices is deprecated, it warns only when 'a' is in the list of values
+# and replace it by 'c'.
+option('o3', type: 'array', choices: ['a', 'b', 'c'], deprecated: {'a': 'c'})
+
+# A boolean option has been replaced by a feature, old true/false values are remapped.
+option('o4', type: 'feature', deprecated: {'true': 'enabled', 'false': 'disabled'})
+
+# A feature option has been replaced by a boolean, enabled/disabled/auto values are remapped.
+option('o5', type: 'boolean', deprecated: {'enabled': 'true', 'disabled': 'false', 'auto': 'false'})
+</code></pre>
+<h2 id="more-efficient-static-linking-of-uninstalled-libraries">More efficient static linking of uninstalled libraries</h2>
+<p>A somewhat common use case of <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> is to create uninstalled
+internal convenience libraries which are solely meant to be linked to other
+targets. Some build systems call these "object libraries". Meson's
+implementation does always create a static archive.</p>
+<p>This will now check to see if the static linker supports "thin archives"
+(archives which do not contain the actual object code, only references to their
+location on disk) and if so, use them to minimize space usage and speed up
+linking.</p>
+<h2 id="gnomeyelp-variadic-argument-deprecation">gnome.yelp variadic argument deprecation</h2>
+<p><code>gnome.yelp</code> previously allowed sources to be passed either as variadic
+arguments or as a keyword argument. If the keyword argument was given the
+variadic arguments would be silently ignored. This has changed in 0.60.0, the
+variadic form has been deprecated, and a warning is printed if both are given.</p>
+<h2 id="static-keyword-argument-to-mesonoverride_dependency">
+<code>static</code> keyword argument to <code>meson.override_dependency()</code>
+</h2>
+<p>It is now possible to override shared and/or static dependencies separately.
+When the <code>static</code> keyword argument is not specified in <code>dependency()</code>, the first
+override will be used (<code>static_dep</code> in the example below).</p>
+<pre><code class="language-meson">static_lib = static_library()
+static_dep = declare_dependency(link_with: static_lib)
+meson.override_dependency('foo', static_dep, static: true)
+
+shared_lib = shared_library()
+shared_dep = declare_dependency(link_with: shared_lib)
+meson.override_dependency('foo', shared_dep, static: false)
+
+# Returns static_dep
+dependency('foo')
+
+# Returns static_dep
+dependency('foo', static: true)
+
+# Returns shared_dep
+dependency('foo', static: false)
+</code></pre>
+<p>When the <code>static</code> keyword argument is not specified in <code>meson.override_dependency()</code>,
+the dependency is assumed to follow the value of <code>default_library</code> option.</p>
+<pre><code class="language-meson">dep = declare_dependency(...)
+meson.override_dependency('foo', dep)
+
+# Always works
+dependency('foo')
+
+# Works only if default_library is 'static' or 'both'
+dependency('foo', static: true)
+
+# Works only if default_library is 'shared' or 'both'
+dependency('foo', static: false)
+</code></pre>
+<h2 id="dependency-sets-default_library-on-fallback-subproject">
+<code>dependency()</code> sets <code>default_library</code> on fallback subproject</h2>
+<p>When the <code>static</code> keyword argument is set but <code>default_library</code> is missing in
+<code>default_options</code>, <code>dependency()</code> will set it when configuring fallback
+subproject. <code>dependency('foo', static: true)</code> is now equivalent to
+<code>dependency('foo', static: true, default_options: ['default_library=static'])</code>.</p>
+<h2 id="install_emptydir-function">install_emptydir function</h2>
+<p>It is now possible to define a directory which will be created during
+installation, without creating it as a side effect of installing files into it.
+This replaces custom <code>meson.add_install_script()</code> routines. For example:</p>
+<pre><code class="language-meson">meson.add_install_script('sh', '-c', 'mkdir -p "$DESTDIR/@0@"'.format(path))
+</code></pre>
+<p>can be replaced by:</p>
+<pre><code class="language-meson">install_emptydir(path)
+</code></pre>
+<p>and as a bonus this works reliably on Windows, prints a sensible progress
+message, will be uninstalled by <code>ninja uninstall</code>, etc.</p>
+<h2 id="cython-can-now-transpile-to-c-as-an-intermediate-language">Cython can now transpile to C++ as an intermediate language</h2>
+<p>Built-in cython support currently only allows C as an intermediate language, now
+C++ is also allowed. This can be set via the <code>cython_language</code> option, either on
+the command line, or in the meson.build files.</p>
+<pre><code class="language-meson">project(
+  'myproject',
+  'cython',
+  default_options : ['cython_language=cpp'],
+)
+</code></pre>
+<p>or on a per target basis with:</p>
+<pre><code class="language-meson">python.extension_module(
+  'mod',
+  'mod.pyx',
+  override_options : ['cython_language=cpp'],
+)
+</code></pre>
+<h2 id="new-custom-dependency-for-iconv">New custom dependency for iconv</h2>
+<pre><code>dependency('iconv')
+</code></pre>
+<p>will now check for the functionality of libiconv.so, but first check if it is
+provided in the libc (for example in glibc or musl libc on Linux).</p>
+<h2 id="unknown-options-are-now-always-fatal">Unknown options are now always fatal</h2>
+<p>Passing unknown options to "meson setup" or "meson configure" is now
+always fatal. That is, Meson will exit with an error code if this
+happens. Previous Meson versions only showed a warning message.</p>
+<h2 id="install-destdir-relative-to-build-directory">Install DESTDIR relative to build directory</h2>
+<p>When <code>DESTDIR</code> environment or <code>meson install --destdir</code> option is a relative path,
+it is now assumed to be relative to the build directory. An absolute path will be
+set into environment when executing scripts. It was undefined behavior in prior
+Meson versions but was working as relative to build directory most of the time.</p>
+<h2 id="java-module">Java Module</h2>
+<p>The Java module has been added to Meson. The Java module allows users to
+generate native header files without needing to use a <code>custom_target()</code>.</p>
+<pre><code class="language-meson">jmod = import('java')
+
+native_header = jmod.generate_native_header('File.java', package: 'com.mesonbuild')
+native_header_includes = include_directories('.')
+
+jdkjava = shared_module(
+  'jdkjava',
+  [native_header_includes, other_sources],
+  dependencies : [jdk],
+  include_directories : [native_header_includes]
+)
+</code></pre>
+<p>== Link tests can use sources for a different compiler ==</p>
+<p>Usually, the <code>links</code> method of the compiler object uses a single program
+invocation to do both compilation and linking.  Starting with this version,
+whenever the argument to <code>links</code> is a file, Meson will check if the file
+suffix matches the compiler object's language.  If they do not match,
+as in the following case:</p>
+<pre><code>cxx = meson.get_compiler('cpp')
+cxx.links(files('test.c'))
+</code></pre>
+<p>then Meson will separate compilation and linking.  In the above example
+<code>test.c</code> will be compiled with a C compiler and the resulting object file
+will be linked with a C++ compiler.  This makes it possible to detect
+misconfigurations of the compilation environment, for example when the
+C++ runtime is not compatible with the one expected by the C compiler.</p>
+<p>For this reason, passing file arguments with an unrecognized suffix to
+<code>links</code> will cause a warning.</p>
+<h2 id="relax-restrictions-of-strjoin">Relax restrictions of <code>str.join()</code>
+</h2>
+<p>Since 0.60.0, the <a href="Reference-manual_elementary_str.html#strjoin"><ins><code>str.join()</code></ins></a> method can take an arbitrary number of arguments
+instead of just one list. Additionally, all lists past to <a href="Reference-manual_elementary_str.html#strjoin"><ins><code>str.join()</code></ins></a> will now
+be flattened.</p>
+<h2 id="improvements-for-the-rustc-compiler">Improvements for the Rustc compiler</h2>
+<ul>
+<li>Werror now works, this set's <code>-D warnings</code>, which will cause rustc to error
+for every warning not explicitly disabled</li>
+<li>warning levels have been implemented</li>
+<li>support for meson's pic has been enabled</li>
+</ul>
+<h2 id="the-qt-modules-now-accept-generated-outputs-as-inputs-for-qtcompile_">The qt modules now accept generated outputs as inputs for qt.compile_*</h2>
+<p>This means you can uset <code>custom_target</code>, custom_target indices
+(<code>custom_target[0]</code>, for example), or the output of <code>generator.process</code> as
+inputs to the various <code>qt.compile_*</code> methods.</p>
+<pre><code class="language-meson">qt = import('qt5')
+
+ct = custom_target(...)
+
+out = qt.compile_ui(sources : ct)
+</code></pre>
+<h2 id="waf-support-in-externalproject-module">Waf support in external-project module</h2>
+<p>If the first argument is <code>'waf'</code>, special treatment is done for the
+<a href="https://waf.io/">waf</a> build system. The waf executable must be
+found either in the current directory, or in system <code>PATH</code>.</p>
+<h2 id="comparing-two-objects-with-different-types-is-now-an-error">Comparing two objects with different types is now an error</h2>
+<p>Using the <code>==</code> and <code>!=</code> operators to compare objects of different (for instance
+<code>[1] == 1</code>) types was deprecated and undefined behavior since 0.45.0 and is
+now a hard error.</p>
+<h2 id="installation-tags">Installation tags</h2>
+<p>It is now possible to install only a subset of the installable files using
+<code>meson install --tags tag1,tag2</code> command line.</p>
+<p>See <a href="Installing.html#installation-tags">documentation</a> for more details.</p>
+<h2 id="compilerunittest_args-has-been-removed">Compiler.unittest_args has been removed</h2>
+<p>It's never been documented, and it's been marked deprecated for a long time, so
+let's remove it.</p>
+<h2 id="dependencies-with-multiple-names">Dependencies with multiple names</h2>
+<p>More than one name can now be passed to <code>dependency()</code>, they will be tried in order
+and the first name to be found will be used. The fallback subproject will be
+used only if none of the names are found on the system. Once one of the name has
+been found, all other names are added into the cache so subsequent calls for any
+of those name will return the same value. This is useful in case a dependency
+could have different names, such as <code>png</code> and <code>libpng</code>.</p>
+<h2 id="i18n-module-now-returns-gettext-targets">i18n module now returns gettext targets</h2>
+<p><code>r = i18n.gettext('mydomain')</code> will now provide access to:</p>
+<ul>
+<li>a list of built .mo files</li>
+<li>the mydomain-pot maintainer target which updates .pot files</li>
+<li>the mydomain-update-po maintainer target which updates .po files</li>
+</ul>
+<h2 id="added-support-for-cla-sources-when-crosscompiling-with-the-c2000-toolchain">Added support for CLA sources when cross-compiling with the C2000 toolchain</h2>
+<p>Support for CLA sources has been added for cross-compilation with the C2000 toolchain.</p>
+<h2 id="support-for-clippydriver-as-a-rustc-wrapper">Support for clippy-driver as a rustc wrapper</h2>
+<p>Clippy is a popular linting tool for Rust, and is invoked in place of rustc as a
+wrapper. Unfortunately it doesn't proxy rustc's output, so we need to have a
+small wrapper around it so that Meson can correctly detect the underlying rustc,
+but still display clippy</p>
+<h2 id="force-visual-studio-environment-activation">Force Visual Studio environment activation</h2>
+<p>Since <code>0.59.0</code>, meson automatically activates Visual Studio environment on Windows
+for all its subcommands, but only if no other compilers (e.g. <code>gcc</code> or <code>clang</code>)
+are found, and silently continue if Visual Studio activation fails.</p>
+<p><code>meson setup --vsenv</code> command line argument can now be used to force Visual Studio
+activation even when other compilers are found. It also make Meson abort with an
+error message when activation fails. This is especially useful for Github Action
+because their Windows images have gcc in their PATH by default.</p>
+<p><code>--vsenv</code> is set by default when using <code>vs</code> backend.</p>
+<p>Only <code>setup</code>, <code>compile</code>, <code>dist</code> and <code>devenv</code> subcommands now activate Visual Studio.</p>
+<h2 id="msvc-compiler-now-assumes-utf8-source-code-by-default">MSVC compiler now assumes UTF-8 source code by default</h2>
+<p>Every project that uses UTF-8 source files had to add manually <code>/utf-8</code> C/C++
+compiler argument for MSVC otherwise they wouldn't work on non-English locale.
+Meson now switched the default to UTF-8 to be more consistent with all other
+compilers.</p>
+<p>This can be overridden but using <code>/source-charset</code>:</p>
+<pre><code class="language-meson">if cc.get_id() == 'msvc'
+  add_project_arguments('/source-charset:.XYZ', language: ['c', 'cpp'])
+endif
+</code></pre>
+<p>See Microsoft documentation for details:
+https://docs.microsoft.com/en-us/cpp/build/reference/source-charset-set-source-character-set.</p>
+<h2 id="add-support-for-find_library-in-emscripten">Add support for <code>find_library</code> in Emscripten</h2>
+<p>The <code>find_library</code> method can be used to find your own JavaScript
+libraries. The limitation is that they must have the file extension
+<code>.js</code>. Other library lookups will look up "native" libraries from the
+system like currently. A typical usage would look like this:</p>
+<pre><code class="language-meson">glue_lib = cc.find_library('gluefuncs.js',
+                           dirs: meson.current_source_dir())
+executable('prog', 'prog.c',
+           dependencies: glue_lib)
+</code></pre>
+<h2 id="optional-custom_target-name">Optional <code>custom_target()</code> name</h2>
+<p>The name argument is now optional and defaults to the basename of the first
+output.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Release-notes-for-0.60.0.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
