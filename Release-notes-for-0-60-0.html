@@ -222,7 +222,7 @@ all_pot_targets += foo_i18n[1]
 alias_target('all-pot', all_pot_targets)
 </code></pre>
 <h2 id="the-python-modules-dependency-method-no-longer-accepts-positional-arguments">The Python Modules dependency method no longer accepts positional arguments</h2>
-<p>Previously these were igrnoed with a warning, now they're a hard error.</p>
+<p>Previously these were ignored with a warning, now they're a hard error.</p>
 <h2 id="unset_variable"><code>unset_variable()</code></h2>
 <p><code>unset_variable()</code> can be used to unset a variable. Reading a variable after
 calling <code>unset_variable()</code> will raise an exception unless the variable is set
@@ -391,7 +391,7 @@ jdkjava = shared_module(
   include_directories : [native_header_includes]
 )
 </code></pre>
-<p>== Link tests can use sources for a different compiler ==</p>
+<h2 id="link-tests-can-use-sources-for-a-different-compiler">Link tests can use sources for a different compiler</h2>
 <p>Usually, the <code>links</code> method of the compiler object uses a single program
 invocation to do both compilation and linking.  Starting with this version,
 whenever the argument to <code>links</code> is a file, Meson will check if the file
