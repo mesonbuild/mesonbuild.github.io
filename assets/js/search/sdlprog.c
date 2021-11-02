@@ -1,1 +1,0 @@
-urls_downloaded_cb({"token":"sdlprog.c","urls":[{"url":"GuiTutorial.html#creating-the-sample-program","node_type":"p","context":{"gi-language":["default"]}},{"url":"GuiTutorial.html#upgrading-the-program-to-use-sdl","node_type":"p","context":{"gi-language":["default"]}}]});

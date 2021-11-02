@@ -709,6 +709,42 @@ tested, generally don't regress, and users are more likely to have domain
 knowledge about them. They also tend to have better tooling (such as
 autocompletion, linting, testing solutions), which make them a lower
 maintenance burden over time.</p>
+<h2 id="why-dont-the-arguments-passed-to-add_project_link_arguments-affect-anything">Why don't the arguments passed to <code>add_project_link_arguments</code> affect anything?</h2>
+<p>Given code like this:</p>
+<pre><code class="language-meson">add_project_link_arguments(['-Wl,-foo'], language : ['c'])
+executable(
+  'main',
+  'main.c',
+  'helper.cpp',
+)
+</code></pre>
+<p>One might be surprised to find that <code>-Wl,-foo</code> is <em>not</em> applied to the linkage
+of the <code>main</code> executable. In this Meson is working as expected, since meson will
+attempt to determine the correct linker to use automatically. This avoids
+situations like in autotools where dummy C++ sources have to be added to some
+compilation targets to get correct linkage. So in the above case the C++ linker
+is used, instead of the C linker, as <code>helper.cpp</code> likely cannot be linked using
+the C linker.</p>
+<p>Generally the best way to resolve this is to add the <code>cpp</code> language to the
+<code>add_project_link_arguments</code> call.</p>
+<pre><code class="language-meson">add_project_link_arguments(['-Wl,-foo'], language : ['c', 'cpp'])
+executable(
+  'main',
+  'main.c',
+  'helper.cpp',
+)
+</code></pre>
+<p>To force the use of the C linker anyway the <code>link_language</code> keyword argument can
+be used. Note that this can result in a compilation failure if there are symbols
+that the C linker cannot resolve.</p>
+<pre><code class="language-meson">add_project_link_arguments(['-Wl,-foo'], language : ['c'])
+executable(
+  'main',
+  'main.c',
+  'helper.cpp',
+  link_language : 'c',
+)
+</code></pre>
 
     </div>
         
