@@ -285,7 +285,7 @@ endif
 endif
 </code></pre>
 <h2 id="set-a-commands-output-to-configuration">Set a command's output to configuration</h2>
-<pre><code class="language-meson">txt = run_command('script', 'argument', check: true).stdout().strip()
+<pre><code class="language-meson">txt = run_command('script', 'argument').stdout().strip()
 cdata = configuration_data()
 cdata.set('SOMETHING', txt)
 configure_file(...)
