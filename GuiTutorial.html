@@ -241,23 +241,25 @@ int main(int argc, char **argv) {
   return 0;
 }
 </code></pre>
-<p>The build definition goes to a file called <code>meson.build</code> and looks like this:</p>
+<p>The build definition goes to a file called <code>meson.build</code> and looks
+like this:</p>
 <pre><code class="language-meson">project('sdldemo', 'c')
 
 executable('sdlprog', 'sdlprog.c')
 </code></pre>
 <p>With this done we can start the build with the following command:</p>
-<pre><code>meson build
+<pre><code>meson builddir
 </code></pre>
-<p>Here <code>build</code> is the <em>build directory</em>, everything that is generated
-during the build is put in that directory. When run, it should look like this.</p>
+<p>Here <code>builddir</code> is the <em>build directory</em>, everything that is generated
+during the build is put in that directory. When run, it should look
+like this.</p>
 <p><img src="images/sdltutorial_01.png" alt="Configuring the sample application" id="configuring-the-sample-application"></p>
 <p>The program is compiled with this:</p>
-<pre><code>meson compile -C build
+<pre><code>meson compile -C builddir
 </code></pre>
 <p>The <code>-C</code> argument tells Meson where the configured build directory is.</p>
 <p>The program will be in the build directory and can be run like this:</p>
-<pre><code>build\sdlprog
+<pre><code>builddir\sdlprog
 </code></pre>
 <p>The output should look like this.</p>
 <p><img src="images/sdltutorial_02.png" alt="Running the sample application" id="running-the-sample-application"></p>
@@ -302,7 +304,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 </code></pre>
-<p>Let's try to compile this by running <code>meson compile -C build</code> again.</p>
+<p>Let's try to compile this by running <code>meson compile -C builddir</code> again.</p>
 <p><img src="images/sdltutorial_03.png" alt="Building SDL app fails" id="building-sdl-app-fails"></p>
 <p>That fails. The reason for this is that we don't actually have SDL
 currently available. We need to obtain it somehow. In more technical
@@ -343,7 +345,7 @@ the system downloads and configures SDL2:</p>
 <p><img src="images/sdltutorial_06.png" alt="Running the sample application" id="running-the-sample-application2"></p>
 <h1 id="program-is-done">Program is done</h1>
 <p>Now we can run the application with</p>
-<pre><code>build\sdlprog
+<pre><code>builddir\sdlprog
 </code></pre>
 <p>The end result is a black SDL window.</p>
 <p><img src="images/sdltutorial_07.png" alt="Running the sample application" id="running-the-sample-application3"></p>
