@@ -908,16 +908,16 @@ some symbols to be exposed on Linux, and it should be passed via
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>libname</b>,     # The library to find
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>dirs</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Additional directories to search in
-  <b>disabler</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, this method will return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> on a failed check.
-  <b>has_headers</b>         : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # List of headers that must be found as well
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
-  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set `true`, Meson will abort with an error if the library could not
-  <b>static</b>              : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, the search is limited to static libraries only
+  <b>dirs</b>                       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Additional directories to search in
+  <b>disabler</b>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, this method will return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> on a failed check.
+  <b>has_headers</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # List of headers that must be found as well
+  <b>header_args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # When the `has_headers` kwarg is also used, this argument is passed to
+  <b>header_dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # When the `has_headers` kwarg is also used, this argument is passed to
+  <b>header_include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # When the `has_headers` kwarg is also used, this argument is passed to
+  <b>header_no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When the `has_headers` kwarg is also used, this argument is passed to
+  <b>header_prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # When the `has_headers` kwarg is also used, this argument is passed to
+  <b>required</b>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set `true`, Meson will abort with an error if the library could not
+  <b>static</b>                     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, the search is limited to static libraries only
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments4">Arguments</h4>
@@ -968,38 +968,6 @@ accepts the following keyword arguments:</p>
     </thead>
     <tbody class="nomargin">
       <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
-        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>Used to pass a list of compiler arguments.
-Defining include paths for headers not in the default include path
-via <code>-Isome/path/to/header</code> is generally supported, however, usually not
-recommended.</p>
-<p>This is because include directories can also be specified via the
-<code>include_directories</code> or the <code>dependency</code> kwarg (if present).
-The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
-        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>Additionally dependencies required for compiling and / or linking.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-      <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1037,8 +1005,11 @@ in those directories as well as the system directories.</p>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>List of headers that must be found as well.
-This is check is equivalent to checking each herader with an
+This check is equivalent to checking each header with a
 <a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a> call.</p>
+<p>When used, kwargs that <a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a> would accept can be
+passed here prefixed with <code>header_</code>, and will have the same effect on
+the header check.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1047,46 +1018,77 @@ This is check is equivalent to checking each herader with an
   </td>
       </tr>
       <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Extra directories for header searches.</p>
+<p>When the <code>has_headers</code> kwarg is also used, this argument is passed to
+<a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a> as <code>args</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.38.0)</em></p>
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.51.0)</em></p>
   </div>
   </td>
       </tr>
       <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_dependencies</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>When set to <code>true</code>, the compiler arguments controlled by built-in configuration options are not added.</p>
+<p>When the <code>has_headers</code> kwarg is also used, this argument is passed to
+<a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a> as <code>dependencies</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.51.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_include_directories</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When the <code>has_headers</code> kwarg is also used, this argument is passed to
+<a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a> as <code>include_directories</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.51.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_no_builtin_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When the <code>has_headers</code> kwarg is also used, this argument is passed to
+<a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a> as <code>no_builtin_args</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.51.0)</em></p>
   <p style="margin: 0px;"><code class="language-meson">default =
   false</code></p>
   </div>
   </td>
       </tr>
       <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+<p>When the <code>has_headers</code> kwarg is also used, this argument is passed to
+<a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins><code>compiler.has_header()</code></ins></a> as <code>prefix</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.51.0)</em></p>
   </div>
   </td>
       </tr>
