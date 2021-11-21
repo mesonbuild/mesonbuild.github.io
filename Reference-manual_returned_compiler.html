@@ -1135,8 +1135,9 @@ Setting this value to <code>false</code> (the default) will search for both shar
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="compilerfirst_supported_argument">compiler.first_supported_argument()</h3>
-<p>Given a list of strings, returns the first argument that passes the
-<a href="Reference-manual_returned_compiler.html#compilerhas_argument"><ins><code>compiler.has_argument()</code></ins></a> test or an empty array if none pass.</p>
+<p>Given a list of strings, returns a single-element list containing the first
+argument that passes the <a href="Reference-manual_returned_compiler.html#compilerhas_argument"><ins><code>compiler.has_argument()</code></ins></a> test or an empty array if
+none pass.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
@@ -1147,7 +1148,7 @@ Setting this value to <code>false</code> (the default) will search for both shar
 </div>
 </div>
 </div>
-<pre><code class="language-meson"># Given a list of strings, returns the first argument that passes the
+<pre><code class="language-meson"># Given a list of strings, returns a single-element list containing the first
 <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] first_supported_argument(
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>arg</b>...,  # The arguments to check
 )</code></pre>
