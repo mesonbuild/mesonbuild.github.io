@@ -8589,13 +8589,6 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <b>vs_module_defs</b>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                   # Specify a Microsoft module definition file for controlling symbol exports,
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Specifies the subsystem type to use
 )</code></pre>
-<div class="alert alert-info">
-  <strong>Note:</strong>
-<p>Linking to a shared module is not supported on some
-platforms, notably OSX. Consider using a
-<a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> instead, if you need to both
-<code>dlopen()</code> and link with a library.</p>
-</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments42">Arguments</h3>
 <p>The function <code>shared_library()</code> accepts the following positional arguments:</p>
@@ -9295,6 +9288,15 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <b>vs_module_defs</b>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                   # Specify a Microsoft module definition file for controlling symbol exports,
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Specifies the subsystem type to use
 )</code></pre>
+<div class="alert alert-info">
+  <strong>Note:</strong>
+<p><em>Linking to a shared module is deprecated, and will be an error in the future</em>.
+It used to be allowed because it was the only way to have a shared-library-like target that
+contained references to undefined symbols. However, since 0.40.0, the <code>override_options:</code>
+<a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a> keyword argument can be used to create such a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a>, and shared
+modules have other characteristics that make them incompatible with linking, such as a lack of
+SONAME. Linking to shared modules also does not work on some platforms, such as on macOS / iOS.</p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments43">Arguments</h3>
 <p>The function <code>shared_module()</code> accepts the following positional arguments:</p>
