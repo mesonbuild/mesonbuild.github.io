@@ -206,15 +206,15 @@ $('body').removeClass('no-script');
         <h1 id="external-commands">External commands</h1>
 <p>As a part of the software configuration, you may want to get extra
 data by running external commands. The basic syntax is the following.</p>
-<pre><code class="language-meson">r = run_command('command', 'arg1', 'arg2', 'arg3')
-if r.returncode() != 0
-  # it failed
-endif
+<pre><code class="language-meson">r = run_command('command', 'arg1', 'arg2', 'arg3', check: true)
 output = r.stdout().strip()
 errortxt = r.stderr().strip()
 </code></pre>
+<p>If <code>check: true</code> is given, meson will error out if <code>command</code> returns with a
+non-zero exit code. Alternatively, you can set <code>check: false</code> and get the exit
+code with <code>r.returncode()</code>.</p>
 <p>Since 0.52.0, you can pass the command environment as a dictionary:</p>
-<pre><code class="language-meson">run_command('command', 'arg1', 'arg2', env: {'FOO': 'bar'})
+<pre><code class="language-meson">run_command('command', 'arg1', 'arg2', env: {'FOO': 'bar'}, check: true)
 </code></pre>
 <p>Since 0.50.0, you can also pass the command <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object:</p>
 <pre><code class="language-meson">env = environment()
