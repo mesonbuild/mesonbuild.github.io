@@ -561,6 +561,9 @@ project id.</p>
 was, however, undocumented and never officially supported. Due to a longstanding
 bug, passing sources as a keyword argument will result in the positional
 argument sources to be ignored. <em>since 0.60.0</em> A warning is raised in this case.</p>
+<p><em>Since 0.43.0</em> if "languages" is not specified, a
+<a href="https://www.gnu.org/software/gettext/manual/html_node/po_002fLINGUAS.html">LINGUAS</a>
+file will be read instead.</p>
 <p><em>Since 0.60.0</em> the use of the positional argument sources has been deprecated,
 and the "sources" keyword argument should be used instead. The passing of
 sources as positional arguments will be removed in the future.</p>
@@ -568,7 +571,7 @@ sources as positional arguments will be removed in the future.</p>
 <code>help-$project-update-po</code> and <code>help-$project-pot</code>.</p>
 <ul>
 <li>
-<code>languages</code>: list of languages for translations</li>
+<code>languages</code>: <em>(deprecated since 0.43.0)</em> list of languages for translation, overrides the LINGUAS file</li>
 <li>
 <code>media</code>: list of media such as images</li>
 <li>
