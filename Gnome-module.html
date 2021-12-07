@@ -333,26 +333,35 @@ the typelib file into; can be false to disable installation</li>
 argument is the basename of the output files.</p>
 <ul>
 <li>
-<code>extra_args</code>: (<em>Added 0.42.0</em>) additional command line arguments to
-pass</li>
+<code>depends</code> [](BuildTarget | CustomTarget | CustomTargetIndex):
+passed directly to CustomTarget (<em>since 0.61.0</em>)</li>
+<li>
+<code>depend_files</code> [](str | File): Passed directly to CustomTarget (<em>since 0.61.0</em>)</li>
+<li>
+<code>extra_args</code>: (<em>Added 0.42.0</em>) additional command line arguments to pass</li>
+<li>
+<code>install_dir</code>: directory to install header to</li>
 <li>
 <code>install_header</code>: if true, install the generated header</li>
 <li>
 <code>install_dir</code>: directory to install header to</li>
 <li>
-<code>nostdinc</code>: if true, don't include the standard marshallers from
-glib</li>
+<code>install_header</code>: if true, install the generated header</li>
 <li>
-<code>internal</code>: if true, mark generated sources as internal to
-<code>glib-genmarshal</code> (<em>Requires GLib 2.54</em>)</li>
+<code>internal</code>: if true, mark generated sources as internal to <code>glib-genmarshal</code>
+(<em>Requires GLib 2.54</em>)</li>
+<li>
+<code>nostdinc</code>: if true, don't include the standard marshallers from glib</li>
 <li>
 <code>prefix</code>: the prefix to use for symbols</li>
 <li>
 <code>skip_source</code>: if true, skip source location comments</li>
 <li>
-<code>stdinc</code>: if true, include the standard marshallers from glib</li>
+<code>sources</code> []str <em>required</em>: List of string sources to consume</li>
 <li>
 <code>sources</code>: the list of sources to use as inputs</li>
+<li>
+<code>stdinc</code>: if true, include the standard marshallers from glib</li>
 <li>
 <code>valist_marshallers</code>: if true, generate va_list marshallers</li>
 </ul>
@@ -372,8 +381,8 @@ template with only minor tweaks, in which case the
 <code>gnome.mkenums_simple()</code> convenience method can be used instead.</p>
 <p>Note that if you <code>#include</code> the generated header in any of the sources
 for a build target, you must add the generated header to the build
-target's list of sources to codify the dependency. This is true for
-all generated sources, not just <code>mkenums</code>.</p>
+target's list of sources to codify the dependency. This is true for</p>
+<p>all generated sources, not just <code>mkenums</code>.</p>
 <ul>
 <li>
 <code>c_template</code>: template to use for generating the source</li>
