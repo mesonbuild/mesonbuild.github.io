@@ -208,18 +208,10 @@ $('body').removeClass('no-script');
 Windows.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="compile_resources">compile_resources</h3>
-<pre><code>  windows.compile_resources(...(string | File | CustomTarget | CustomTargetIndex),
-                            args: []string,
-                            depend_files: [](string | File),
-                            depends: [](BuildTarget | CustomTarget)
-                            include_directories: [](IncludeDirectories | string)): []CustomTarget
-</code></pre>
 <p>Compiles Windows <code>rc</code> files specified in the positional arguments.
-Returns a list of <code>CustomTarget</code> objects that you put in the list of sources for
-the target you want to have the resources in.</p>
-<p><em>Since 0.61.0</em> CustomTargetIndexs and CustomTargets with more than out output
-*may be used as positional arguments.</p>
-<p>This method has the following keyword arguments:</p>
+Returns an opaque object that you put in the list of sources for the
+target you want to have the resources in. This method has the
+following keyword argument.</p>
 <ul>
 <li>
 <code>args</code> lists extra arguments to pass to the resource compiler</li>

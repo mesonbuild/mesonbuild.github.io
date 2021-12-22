@@ -218,17 +218,6 @@ following functions will then be available as methods on the object
 with the name <code>gnome</code>. You can, of course, replace the name <code>gnome</code>
 with anything else.</p>
 <h3 id="gnomecompile_resources">gnome.compile_resources()</h3>
-<pre><code>    gnome.compile_resources(id: string, input_file: string | File,
-                            build_by_default: bool = false,
-                            c_name: string | None = None,
-                            dependencies: [](File, CustomTarget, CustomTargetIndex) = [],
-                            export: bool = false,
-                            extra_args: []string = [],
-                            gresource_bundle: bool = false,
-                            install_dir: string | None = None,
-                            source_dir: [string] = [],
-                            ): (CustomTarget, CustomTarget) | CustomTarget
-</code></pre>
 <p>This function compiles resources specified in an XML file into code
 that can be embedded inside the main binary. Similar a build target it
 takes two positional arguments. The first one is the name of the
@@ -315,10 +304,10 @@ e.g. <code>Gtk</code>
 <code>install</code>: if true, install the generated files</li>
 <li>
 <code>install_dir_gir</code>: (<em>Added 0.35.0</em>) which directory to install the
-gir file into; can be false to disable installation</li>
+gir file into</li>
 <li>
 <code>install_dir_typelib</code>: (<em>Added 0.35.0</em>) which directory to install
-the typelib file into; can be false to disable installation</li>
+the typelib file into</li>
 <li>
 <code>link_with</code>: list of libraries to link with</li>
 <li>
@@ -333,35 +322,26 @@ the typelib file into; can be false to disable installation</li>
 argument is the basename of the output files.</p>
 <ul>
 <li>
-<code>depends</code> [](BuildTarget | CustomTarget | CustomTargetIndex):
-passed directly to CustomTarget (<em>since 0.61.0</em>)</li>
-<li>
-<code>depend_files</code> [](str | File): Passed directly to CustomTarget (<em>since 0.61.0</em>)</li>
-<li>
-<code>extra_args</code>: (<em>Added 0.42.0</em>) additional command line arguments to pass</li>
-<li>
-<code>install_dir</code>: directory to install header to</li>
+<code>extra_args</code>: (<em>Added 0.42.0</em>) additional command line arguments to
+pass</li>
 <li>
 <code>install_header</code>: if true, install the generated header</li>
 <li>
 <code>install_dir</code>: directory to install header to</li>
 <li>
-<code>install_header</code>: if true, install the generated header</li>
+<code>nostdinc</code>: if true, don't include the standard marshallers from
+glib</li>
 <li>
-<code>internal</code>: if true, mark generated sources as internal to <code>glib-genmarshal</code>
-(<em>Requires GLib 2.54</em>)</li>
-<li>
-<code>nostdinc</code>: if true, don't include the standard marshallers from glib</li>
+<code>internal</code>: if true, mark generated sources as internal to
+<code>glib-genmarshal</code> (<em>Requires GLib 2.54</em>)</li>
 <li>
 <code>prefix</code>: the prefix to use for symbols</li>
 <li>
 <code>skip_source</code>: if true, skip source location comments</li>
 <li>
-<code>sources</code> []str <em>required</em>: List of string sources to consume</li>
+<code>stdinc</code>: if true, include the standard marshallers from glib</li>
 <li>
 <code>sources</code>: the list of sources to use as inputs</li>
-<li>
-<code>stdinc</code>: if true, include the standard marshallers from glib</li>
 <li>
 <code>valist_marshallers</code>: if true, generate va_list marshallers</li>
 </ul>
@@ -381,8 +361,8 @@ template with only minor tweaks, in which case the
 <code>gnome.mkenums_simple()</code> convenience method can be used instead.</p>
 <p>Note that if you <code>#include</code> the generated header in any of the sources
 for a build target, you must add the generated header to the build
-target's list of sources to codify the dependency. This is true for</p>
-<p>all generated sources, not just <code>mkenums</code>.</p>
+target's list of sources to codify the dependency. This is true for
+all generated sources, not just <code>mkenums</code>.</p>
 <ul>
 <li>
 <code>c_template</code>: template to use for generating the source</li>
@@ -570,9 +550,6 @@ project id.</p>
 was, however, undocumented and never officially supported. Due to a longstanding
 bug, passing sources as a keyword argument will result in the positional
 argument sources to be ignored. <em>since 0.60.0</em> A warning is raised in this case.</p>
-<p><em>Since 0.43.0</em> if "languages" is not specified, a
-<a href="https://www.gnu.org/software/gettext/manual/html_node/po_002fLINGUAS.html">LINGUAS</a>
-file will be read instead.</p>
 <p><em>Since 0.60.0</em> the use of the positional argument sources has been deprecated,
 and the "sources" keyword argument should be used instead. The passing of
 sources as positional arguments will be removed in the future.</p>
@@ -580,7 +557,7 @@ sources as positional arguments will be removed in the future.</p>
 <code>help-$project-update-po</code> and <code>help-$project-pot</code>.</p>
 <ul>
 <li>
-<code>languages</code>: <em>(deprecated since 0.43.0)</em> list of languages for translation, overrides the LINGUAS file</li>
+<code>languages</code>: list of languages for translations</li>
 <li>
 <code>media</code>: list of media such as images</li>
 <li>
