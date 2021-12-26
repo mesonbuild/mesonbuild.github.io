@@ -226,7 +226,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
                   [--sysconfdir SYSCONFDIR]
                   [--auto-features {enabled,disabled,auto}]
-                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,xcode}]
+                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -267,7 +267,7 @@ optional arguments:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,xcode}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
                                         Backend to use (default: ninja).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
@@ -335,7 +335,7 @@ values (even if they were changed in <code>meson.build</code>).</p>
 <pre><code class="language-inc">$ meson compile [-h] [--clean] [-C WD] [-j JOBS] [-l LOAD_AVERAGE] [-v]
                 [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
                 [--xcode-args XCODE_ARGS]
-                [TARGET [TARGET ...]]
+                [TARGET ...]
 </code></pre>
 <p>Builds a default or a specified target of a configured Meson project.</p>
 <pre><code class="language-inc">positional arguments:
@@ -424,10 +424,10 @@ different type, and a <code>bar</code> target:</p>
 <h3 id="init">init</h3>
 <p><em>(since 0.45.0)</em></p>
 <pre><code class="language-inc">$ meson init [-h] [-C WD] [-n NAME] [-e EXECUTABLE] [-d DEPS]
-             [-l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust}] [-b]
+             [-l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}] [-b]
              [--builddir BUILDDIR] [-f] [--type {executable,library}]
              [--version VERSION]
-             [sourcefile [sourcefile ...]]
+             [sourcefile ...]
 </code></pre>
 <p>Creates a basic set of build files based on a template.</p>
 <pre><code class="language-inc">positional arguments:
@@ -442,7 +442,7 @@ optional arguments:
   -e EXECUTABLE, --executable EXECUTABLE
                                         executable name. default: project name
   -d DEPS, --deps DEPS                  dependencies, comma-separated
-  -l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust}, --language {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust}
+  -l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}, --language {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}
                                         project language. default: autodetected
                                         based on source files
   -b, --build                           build after generation
@@ -462,7 +462,7 @@ optional arguments:
                    [--buildsystem-files] [--dependencies]
                    [--scan-dependencies] [--installed] [--install-plan]
                    [--projectinfo] [--targets] [--tests]
-                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,xcode}]
+                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
                    [-a] [-i] [-f]
                    [builddir]
 </code></pre>
@@ -487,7 +487,7 @@ optional arguments:
   --projectinfo                         Information about projects.
   --targets                             List top level targets.
   --tests                               List all unit tests.
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,xcode}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
                                         The backend to use for the
                                         --buildoptions introspection.
   -a, --all                             Print all available information.
@@ -565,7 +565,7 @@ Rewriter commands:
               [--mandir MANDIR] [--sbindir SBINDIR]
               [--sharedstatedir SHAREDSTATEDIR] [--sysconfdir SYSCONFDIR]
               [--auto-features {enabled,disabled,auto}]
-              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,xcode}]
+              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -609,7 +609,7 @@ optional arguments:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,xcode}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
                                         Backend to use (default: ninja).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
@@ -722,7 +722,7 @@ Commands:
              [--num-processes NUM_PROCESSES] [-v] [-q]
              [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
              [--test-args TEST_ARGS]
-             [args [args ...]]
+             [args ...]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
 <pre><code class="language-inc">positional arguments:

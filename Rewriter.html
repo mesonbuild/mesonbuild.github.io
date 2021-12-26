@@ -266,6 +266,13 @@ there are multiple targets with the same name, Meson will do nothing
 and print an error message.</p>
 <p>For more information see the help output of the rewriter target
 command.</p>
+<h3 id="adding-and-removing-extra_files">Adding and removing <code>extra_files</code>
+</h3>
+<p><em>Since 0.61.0</em></p>
+<p>In the same way you can add and remove source files from a target, you can modify a target's
+<code>extra_files</code> list:</p>
+<pre><code class="language-bash">meson rewrite target &lt;target name/id&gt; {add_extra_files/rm_extra_files} [list of extra files]
+</code></pre>
 <h3 id="setting-the-project-version">Setting the project version</h3>
 <p>It is also possible to set kwargs of specific functions with the
 rewriter. The general command for setting or removing kwargs is:</p>
@@ -349,7 +356,7 @@ function should be executed.</p>
 <pre><code class="language-json">{
   "type": "target",
   "target": "target ID/name/assignment variable",
-  "operation": "one of ['src_add', 'src_rm', 'target_rm', 'target_add', 'info']",
+  "operation": "one of ['src_add', 'src_rm', 'target_rm', 'target_add', 'extra_files_add', 'extra_files_rm', 'info']",
   "sources": ["list", "of", "source", "files", "to", "add, remove"],
   "subdir": "subdir where the new target should be added (only has an effect for operation 'tgt_add')",
   "target_type": "function name of the new target -- same as in the CLI (only has an effect for operation 'tgt_add')"
