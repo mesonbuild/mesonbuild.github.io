@@ -335,7 +335,7 @@ values (even if they were changed in <code>meson.build</code>).</p>
 <pre><code class="language-inc">$ meson compile [-h] [--clean] [-C WD] [-j JOBS] [-l LOAD_AVERAGE] [-v]
                 [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
                 [--xcode-args XCODE_ARGS]
-                [TARGET ...]
+                [TARGET [TARGET ...]]
 </code></pre>
 <p>Builds a default or a specified target of a configured Meson project.</p>
 <pre><code class="language-inc">positional arguments:
@@ -427,7 +427,7 @@ different type, and a <code>bar</code> target:</p>
              [-l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}] [-b]
              [--builddir BUILDDIR] [-f] [--type {executable,library}]
              [--version VERSION]
-             [sourcefile ...]
+             [sourcefile [sourcefile ...]]
 </code></pre>
 <p>Creates a basic set of build files based on a template.</p>
 <pre><code class="language-inc">positional arguments:
@@ -722,7 +722,7 @@ Commands:
              [--num-processes NUM_PROCESSES] [-v] [-q]
              [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
              [--test-args TEST_ARGS]
-             [args ...]
+             [args [args ...]]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
 <pre><code class="language-inc">positional arguments:
