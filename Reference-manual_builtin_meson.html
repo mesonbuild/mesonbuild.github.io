@@ -311,8 +311,8 @@ subproject appended, usually <code>subprojects/&lt;subproject-name&gt;</code>.</
 </div>
 <pre><code class="language-meson"># Causes the script given as argument to run during `dist`
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_dist_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>script_name</b>,     # The script to execute
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>arg</b>...,          # Additional arguments
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments1">Arguments</h4>
@@ -334,13 +334,12 @@ subproject appended, usually <code>subprojects/&lt;subproject-name&gt;</code>.</
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
 </td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The script to execute.</p>
-<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
-as well as strings are accepted.</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> as well as strings are accepted.</p>
 <p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -353,11 +352,10 @@ as well as strings are accepted.</p>
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p>Additionally, the
 method accepts between <code>0</code> and <code>infinity</code> variadic
-arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a></code>.</p>
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a></code>.</p>
 <p>Additional arguments</p>
 <p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
 as well as strings are accepted.</p>
-<p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
   <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
   </div>
@@ -434,8 +432,8 @@ easiest correct way to do this.</p>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The script to execute.</p>
-<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
-as well as strings are accepted.</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>, <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>,
+<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>, as well as strings are accepted.</p>
 <p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -450,9 +448,8 @@ as well as strings are accepted.</p>
 method accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a></code>.</p>
 <p>Additional arguments</p>
-<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
-as well as strings are accepted.</p>
-<p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>, <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>,
+<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>, as well as strings are accepted.</p>
   <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
   </div>
@@ -526,8 +523,8 @@ This script will have the environment variables
 </div>
 <pre><code class="language-meson"># Runs the given command after all project files have been generated
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_postconf_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>script_name</b>,     # The script to execute
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>arg</b>...,          # Additional arguments
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments3">Arguments</h4>
@@ -549,13 +546,12 @@ This script will have the environment variables
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
 </td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The script to execute.</p>
-<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
-as well as strings are accepted.</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> as well as strings are accepted.</p>
 <p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -568,11 +564,10 @@ as well as strings are accepted.</p>
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p>Additionally, the
 method accepts between <code>0</code> and <code>infinity</code> variadic
-arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a></code>.</p>
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a></code>.</p>
 <p>Additional arguments</p>
 <p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
 as well as strings are accepted.</p>
-<p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
   <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
   </div>
