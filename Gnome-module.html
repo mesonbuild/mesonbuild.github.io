@@ -564,8 +564,8 @@ VAPI or Vala binaries.</p>
 <pre><code class="language-meson">  gnome.yelp(id: string, sources: ...string, sources: []string, media: []string,
              languages: []string, symlink_media: bool = true): void
 </code></pre>
-<p>Installs help documentation using Yelp. The first argument is the
-project id.</p>
+<p>Installs help documentation for Yelp using itstool and gettext. The first
+argument is the project id.</p>
 <p>Additionally, sources can be passed as additional positional arguments. This
 was, however, undocumented and never officially supported. Due to a longstanding
 bug, passing sources as a keyword argument will result in the positional
