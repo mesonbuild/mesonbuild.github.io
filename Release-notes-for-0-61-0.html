@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.61.0</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Release-notes-for-0-61-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="new-features">New features</h1>
+<h2 id="backend_startup_project">backend_startup_project</h2>
+<p><code>backend_startup_project</code> will no longer erase the last project in a VS
+solution if it is not the specified project.</p>
+<h2 id="windowscompile_resources-customtarget">Windows.compile_resources CustomTarget</h2>
+<p>Previously the Windows module only accepted CustomTargets with one output, it
+now accepts them with more than one output, and creates a windows resource
+target for each output. Additionally it now accepts indexes of CustomTargets</p>
+<pre><code class="language-meson">
+ct = custom_target(
+  'multiple',
+  output : ['resource', 'another resource'],
+  ...
+)
+
+ct2 = custom_target(
+  'slice',
+  output : ['resource', 'not a resource'],
+  ...
+)
+
+resources = windows.compile_resources(ct, ct2[0])
+</code></pre>
+<h2 id="add-a-man-page-backend-to-refman">Add a man page backend to refman</h2>
+<p>The refman docs (function and object reference) can now be generated as a man
+page.</p>
+<h2 id="extract_objects-supports-generated-sources">
+<code>extract_objects()</code> supports generated sources</h2>
+<p>Custom targets or generated files (returned by <code>generator.process()</code>)
+can now be passed to <code>extract_objects()</code>.</p>
+<h2 id="python-36-support-will-be-dropped-in-the-next-release">Python 3.6 support will be dropped in the next release</h2>
+<p>The final <a href="https://www.python.org/dev/peps/pep-0494/#lifespan">Python 3.6 release was 3.6.15 in September</a>.
+This release series is now End-of-Life (EOL). The only LTS distribution that
+still ships Python 3.5 as the default Python is Ubuntu 18.04, which has Python
+3.8 available as well.</p>
+<p>Python 3.7 has various features that we find useful such as future annotations,
+the importlib.resources module, and dataclasses.</p>
+<p>As a result, we will begin requiring Python 3.7 or newer in Meson 0.62, which
+is the next release. Starting with Meson 0.61, we now print a <code>NOTICE:</code> when
+a <code>meson</code> command is run on Python 3.6 to inform users about this.</p>
+<h2 id="warning-if-check-kwarg-of-run_command-is-missing">Warning if check kwarg of run_command is missing</h2>
+<p>The <code>check</code> kwarg of <code>run_command</code> currently defaults to <code>false</code>.
+Because we want to change that, running</p>
+<pre><code class="language-meson">run_command('cmd')
+</code></pre>
+<p>now results in:</p>
+<pre><code class="language-text">WARNING: You should add the boolean check kwarg to the run_command call.
+         It currently defaults to false,
+         but it will default to true in future releases of meson.
+         See also: https://github.com/mesonbuild/meson/issues/9300
+</code></pre>
+<h2 id="meson-rewrite-can-modify-extra_files">
+<code>meson rewrite</code> can modify <code>extra_files</code>
+</h2>
+<p>The build script rewriter can now modify targets' <code>extra_files</code> lists,
+or create them if absent. It it used in the same way as with rewriting
+source lists:</p>
+<pre><code class="language-bash">meson rewrite target &lt;target name/id&gt; {add_extra_files/rm_extra_files} [list of extra files]
+</code></pre>
+<p>The rewriter's script mode also supports these actions:</p>
+<pre><code class="language-json">{
+  "type": "target",
+  "target": "&lt;target name&gt;",
+  "operation": "extra_files_add / extra_files_rm",
+  "sources": ["list", "of", "extra", "files", "to", "add, remove"],
+}
+</code></pre>
+<h2 id="meson-rewrite-target-target-info-outputs-targets-extra_files">
+<code>meson rewrite target &lt;target&gt; info</code> outputs <em>target</em>'s <code>extra_files</code>
+</h2>
+<p>Targets' <code>extra_files</code> lists are now included in the rewriter's target info dump
+as a list of file paths, in the same way <code>sources</code> are. This applies to both
+<code>meson rewrite</code> CLI and script mode.</p>
+<h2 id="visual-studio-2022-backend">Visual Studio 2022 backend</h2>
+<p>As Visual Studio 2022 is released recently, it's time to support the
+new version in Meson. This mainly includes the new "v143" platform tools.</p>
+<p>The usage is similar to other backends. For example</p>
+<pre><code class="language-meson">meson setup builddir --backend=vs2022
+</code></pre>
+<p>will configure "builddir" for projects compatible with Visual Studio 2022.</p>
+<h2 id="support-for-cmake-314-is-now-deprecated-for-cmake-subprojects">Support for CMake &lt;3.14 is now deprecated for CMake subprojects</h2>
+<p>In CMake 3.14, the File API was introduced and the old CMake server API was
+deprecated (and removed in CMake 3.20). Thus support for this API will also
+be removed from Meson in future releases.</p>
+<p>This deprecation only affects CMake subprojects.</p>
+<h2 id="added-support-for-sccache">Added support for sccache</h2>
+<p>Meson now supports <a href="https://github.com/mozilla/sccache">sccache</a> just
+like it has supported CCache. If both sccache and CCache are
+available, the autodetection logic prefers sccache.</p>
+<h2 id="install_symlink-function">install_symlink function</h2>
+<p>It is now possible to request for symbolic links to be installed during
+installation. The <code>install_symlink</code> function takes a positional argument to
+the link name, and installs a symbolic link pointing to <code>pointing_to</code> target.
+The link will be created under <code>install_dir</code> directory and cannot contain path
+separators.</p>
+<pre><code class="language-meson">install_symlink('target', pointing_to: '../bin/target', install_dir: '/usr/sbin')
+</code></pre>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Release-notes-for-0.61.0.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
