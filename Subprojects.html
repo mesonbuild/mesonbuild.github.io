@@ -311,7 +311,7 @@ executable('my_project',
 </code></pre>
 <p>Because this is such a common operation, Meson provides a shortcut for
 this use case.</p>
-<pre><code class="language-meson">dep = dependency('foo', fallback : [subproject_name, variable_name])
+<pre><code class="language-meson">dep = dependency('foo', fallback : ['subproject_name', 'variable_name'])
 </code></pre>
 <p>The <code>fallback</code> keyword argument takes two items, the name of the
 subproject and the name of the variable that holds the dependency. If
