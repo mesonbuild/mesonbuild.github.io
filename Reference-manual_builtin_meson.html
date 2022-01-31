@@ -203,6 +203,1304 @@ $('body').removeClass('no-script');
         <h1 id="meson-object-meson">Meson object (<code>meson</code>)</h1>
 <p>The <code>meson</code> object allows you to introspect various properties of the
 system. This object is always mapped in the <code>meson</code> variable.</p>
+<h2 id="meson-object-methods">Meson object methods</h2>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonadd_devenv">meson.add_devenv()</h3>
+<p>add an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object (returned by <a href="Reference-manual_functions.html#environment"><ins><code>environment()</code></ins></a>)
+to the list of environments that will be applied when using <a href="Commands.html#devenv"><code>meson devenv</code></a>
+command line.</p>
+<p>This is useful for developpers who wish to use the project without
+installing it, it is often needed to set for example the path to plugins
+directory, etc. Alternatively, a list or dictionary can be passed as first
+argument.</p>
+<pre><code class="language-meson">devenv = environment()
+devenv.set('PLUGINS_PATH', meson.current_build_dir())
+...
+meson.add_devenv(devenv)
+</code></pre>
+<p>After configuring and compiling that project, a terminal can be opened with
+the environment set:</p>
+<pre><code class="language-sh">$ meson devenv -C &lt;builddir&gt;
+$ echo $PLUGINS_PATH
+/path/to/source/subdir
+</code></pre>
+<p>See <a href="Commands.html#devenv"><code>meson devenv</code></a> command documentation for a list of
+environment variables that are set by default by Meson.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.58.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># add an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object (returned by <a href="Reference-manual_functions.html#environment"><ins><code>environment()</code></ins></a>)
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_devenv(
+  <a href="Reference-manual_returned_env.html"><ins>env</ins></a> <b>env</b>,     # The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments">Arguments</h4>
+<p>The method <code>meson.add_devenv()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">env</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonadd_dist_script">meson.add_dist_script()</h3>
+<p>Causes the script given as argument to run during <code>dist</code>
+operation after the
+distribution source has been generated but before it is
+archived. Note that this runs the script file that is in the
+<em>staging</em> directory, not the one in the source directory. If the
+script file can not be found in the staging directory, it is a hard
+error. The <code>MESON_DIST_ROOT</code> environment variables is set when dist scripts is
+run.</p>
+<p><em>(since 0.54.0)</em> The <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>
+environment variables are set when dist scripts are run. They are path to the
+root source and build directory of the main project, even when the script
+comes from a subproject.</p>
+<p><em>(since 0.58.0)</em> This command can be invoked from a subproject, it was a hard
+error in earlier versions. Subproject dist scripts will only be executed
+when running <code>meson dist --include-subprojects</code>. <code>MESON_PROJECT_SOURCE_ROOT</code>,
+<code>MESON_PROJECT_BUILD_ROOT</code> and <code>MESON_PROJECT_DIST_ROOT</code> environment
+variables are set when dist scripts are run. They are identical to
+<code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code> and <code>MESON_DIST_ROOT</code> for main project
+scripts, but for subproject scripts they have the path to the root of the
+subproject appended, usually <code>subprojects/&lt;subproject-name&gt;</code>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature1">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.48.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Causes the script given as argument to run during `dist`
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_dist_script(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments1">Arguments</h4>
+<p>The method <code>meson.add_dist_script()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
+</td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The script to execute.</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> as well as strings are accepted.</p>
+<p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Additionally, the
+method accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a></code>.</p>
+<p>Additional arguments</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
+as well as strings are accepted.</p>
+  <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonadd_install_script">meson.add_install_script()</h3>
+<p>Causes the script given as an argument to be run during the install step,
+this script  will have the environment variables <code>MESON_SOURCE_ROOT</code>,
+<code>MESON_BUILD_ROOT</code>, <code>MESON_INSTALL_PREFIX</code>,
+<code>MESON_INSTALL_DESTDIR_PREFIX</code>, and <code>MESONINTROSPECT</code> set.
+All positional arguments are passed as parameters.</p>
+<p><em>(since 0.54.0)</em> If <code>meson install</code> is called with the <code>--quiet</code> option, the
+environment variable <code>MESON_INSTALL_QUIET</code> will be set.</p>
+<p>Meson uses the <code>DESTDIR</code> environment variable as set by the
+inherited environment to determine the (temporary) installation
+location for files. Your install script must be aware of this while
+manipulating and installing files. The correct way to handle this is
+with the <code>MESON_INSTALL_DESTDIR_PREFIX</code> variable which is always set
+and contains <code>DESTDIR</code> (if set) and <code>prefix</code> joined together. This
+is useful because both are usually absolute paths and there are
+platform-specific edge-cases in joining two absolute paths.</p>
+<p>In case it is needed, <code>MESON_INSTALL_PREFIX</code> is also always set and
+has the value of the <code>prefix</code> option passed to Meson.</p>
+<p><code>MESONINTROSPECT</code> contains the path to the introspect command that
+corresponds to the <code>meson</code> executable that was used to configure the
+build. (This might be a different path than the first executable
+found in <code>PATH</code>.) It can be used to query build configuration. Note
+that the value will contain many parts, f.ex., it may be <code>python3 /path/to/meson.py introspect</code>. The user is responsible for splitting
+the string to an array if needed by splitting lexically like a UNIX
+shell would. If your script uses Python, <code>shlex.split()</code> is the
+easiest correct way to do this.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature2">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Causes the script given as an argument to be run during the install step,
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_install_script(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>arg</b>...,          # Additional arguments
+
+  # Keyword arguments:
+  <b>install_tag</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>   # A string used by the `meson install --tags` command
+  <b>skip_if_destdir</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will not be run if DESTDIR is set during installation
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments2">Arguments</h4>
+<p>The method <code>meson.add_install_script()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+</td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The script to execute.</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>, <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>,
+<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>, as well as strings are accepted.</p>
+<p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Additionally, the
+method accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a></code>.</p>
+<p>Additional arguments</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>, <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>,
+<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>, as well as strings are accepted.</p>
+  <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>meson.add_install_script()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_tag</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string used by the <code>meson install --tags</code> command
+to install only a subset of the files.
+By default the script has no install tag which means it is not being run when
+<code>meson install --tags</code> argument is specified.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">skip_if_destdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If <code>true</code> the script will not be run if DESTDIR is set during installation.
+This is useful in the case the script updates system wide
+cache that is only needed when copying files into final destination.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.57.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonadd_postconf_script">meson.add_postconf_script()</h3>
+<p>Runs the given command after all project files have been generated.
+This script will have the environment variables
+<code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code> set.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Runs the given command after all project files have been generated
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_postconf_script(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments3">Arguments</h4>
+<p>The method <code>meson.add_postconf_script()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
+</td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The script to execute.</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> as well as strings are accepted.</p>
+<p><em>(since 0.57.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects and the output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> may be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Additionally, the
+method accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a></code>.</p>
+<p>Additional arguments</p>
+<p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
+as well as strings are accepted.</p>
+  <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonbackend">meson.backend()</h3>
+<p>Returns a string representing the current backend:</p>
+<ul>
+<li><code>ninja</code></li>
+<li><code>vs2010</code></li>
+<li><code>vs2012</code></li>
+<li><code>vs2013</code></li>
+<li><code>vs2015</code></li>
+<li><code>vs2017</code></li>
+<li><code>vs2019</code></li>
+<li><code>vs2022</code></li>
+<li><code>xcode</code></li>
+</ul>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.37.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> backend()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonbuild_root">meson.build_root()</h3>
+<p>Returns a string with the absolute path to the build root directory.
+This function will return the
+build root of the parent project if called from a subproject, which is usually
+not what you want. Try using <a href="Reference-manual_builtin_meson.html#mesoncurrent_build_dir"><ins><code>meson.current_build_dir()</code></ins></a> or <a href="Reference-manual_builtin_meson.html#mesonproject_build_root"><ins><code>meson.project_build_root()</code></ins></a>.
+In the rare cases where the root of the main project is needed,
+use <a href="Reference-manual_builtin_meson.html#mesonglobal_build_root"><ins><code>meson.global_build_root()</code></ins></a> that has the same behaviour but with a more explicit
+name.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature5">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<div style="color: #ffa844">
+    <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+    <p style="margin: 0px;"><em>in 0.56.0</em></p>
+</div>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> build_root()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesoncan_run_host_binaries">meson.can_run_host_binaries()</h3>
+<p>Returns true if the build machine can run binaries compiled for the host.
+This returns <code>true</code> unless you are
+cross compiling, need a helper to run host binaries, and don't have one.
+For example when cross compiling from Linux to Windows, one can use <code>wine</code>
+as the helper.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.55.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> can_run_host_binaries()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesoncurrent_build_dir">meson.current_build_dir()</h3>
+<p>Returns a string with the absolute path to the current build directory.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature7">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> current_build_dir()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesoncurrent_source_dir">meson.current_source_dir()</h3>
+<p>Returns a string to the current source directory.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature8">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> current_source_dir()</code></pre>
+<div class="alert alert-info">
+  <strong>Note:</strong>
+<p><strong>You do not need to use this function!</strong></p>
+<p>When passing files from the current source directory to a function since
+that is the default. Also, you can use the <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> function to
+refer to files in the current or any other source directory instead
+of constructing paths manually with <a href="Reference-manual_builtin_meson.html#mesoncurrent_source_dir"><ins><code>meson.current_source_dir()</code></ins></a>.</p>
+</div>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonget_compiler">meson.get_compiler()</h3>
+<p>Returns a <a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a> object describing a compiler.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature9">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns a <a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a> object describing a compiler.
+<a href="Reference-manual_returned_compiler.html"><ins>compiler</ins></a> get_compiler(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>language</b>,     # The language of the compiler to return
+
+  # Keyword arguments:
+  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # When set to `true` Meson returns the compiler for the build
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments4">Arguments</h4>
+<p>The method <code>meson.get_compiler()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">language</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The language of the compiler to return.</p>
+<p>See our <a href="Reference-tables.html#language-arguments-parameter-names">list of supported languages</a>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>meson.get_compiler()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to <code>true</code> Meson returns the compiler for the build
+machine (the "native" compiler) and when <code>false</code> it returns the host
+compiler (the "cross" compiler). If <code>native</code> is omitted, Meson
+returns the "cross" compiler if we're currently cross-compiling and
+the "native" compiler if we're not.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonget_cross_property">meson.get_cross_property()</h3>
+<p>Returns the given property from a cross file, the optional fallback_value
+is returned if not cross compiling or the given property is not found.</p>
+<p>This method is replaced by <a href="Reference-manual_builtin_meson.html#mesonget_external_property"><ins><code>meson.get_external_property()</code></ins></a>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature10">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<div style="color: #ffa844">
+    <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+    <p style="margin: 0px;"><em>in 0.58.0</em></p>
+</div>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns the given property from a cross file, the optional fallback_value
+<a href="Reference-manual_elementary_any.html"><ins>any</ins></a> get_cross_property(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>propname</b>,           # Name of the property in the cross / native file
+  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<b>fallback_value</b>],   # Value to return if `propname` is not set in the machine file
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments5">Arguments</h4>
+<p>The method <code>meson.get_cross_property()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">propname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Name of the property in the cross / native file.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fallback_value</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Value to return if <code>propname</code> is not set in the machine file.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonget_external_property">meson.get_external_property()</h3>
+<p>Returns the given property from a native or cross file.
+The optional fallback_value is returned if the given property is not found.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature11">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.54.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns the given property from a native or cross file
+<a href="Reference-manual_elementary_any.html"><ins>any</ins></a> get_external_property(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>propname</b>,           # Name of the property in the cross / native file
+  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<b>fallback_value</b>],   # Value to return if `propname` is not set in the machine file
+
+  # Keyword arguments:
+  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Setting `native` to `true` forces retrieving a variable from the
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments6">Arguments</h4>
+<p>The method <code>meson.get_external_property()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">propname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Name of the property in the cross / native file.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fallback_value</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Value to return if <code>propname</code> is not set in the machine file.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>meson.get_external_property()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Setting <code>native</code> to <code>true</code> forces retrieving a variable from the
+native file, even when cross-compiling.
+If <code>native: false</code> or not specified, the variable is retrieved from the
+cross-file if cross-compiling, and from the native-file when not cross-compiling.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonglobal_build_root">meson.global_build_root()</h3>
+<p>Returns a string with the absolute path to the build root directory.
+This function will return the build root of the
+main project if called from a subproject, which is usually not what you want.
+It is usually preferable to use <a href="Reference-manual_builtin_meson.html#mesoncurrent_build_dir"><ins><code>meson.current_build_dir()</code></ins></a> or <a href="Reference-manual_builtin_meson.html#mesonproject_build_root"><ins><code>meson.project_build_root()</code></ins></a>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature12">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.58.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> global_build_root()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonglobal_source_root">meson.global_source_root()</h3>
+<p>Returns a string with the absolute path to the source root directory
+This function will return the source root of the
+main project if called from a subproject, which is usually not what you want.
+It is usually preferable to use <a href="Reference-manual_builtin_meson.html#mesoncurrent_source_dir"><ins><code>meson.current_source_dir()</code></ins></a> or <a href="Reference-manual_builtin_meson.html#mesonproject_source_root"><ins><code>meson.project_source_root()</code></ins></a>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature13">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.58.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> global_source_root()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonhas_exe_wrapper">meson.has_exe_wrapper()</h3>
+<p>Use <a href="Reference-manual_builtin_meson.html#mesoncan_run_host_binaries"><ins><code>meson.can_run_host_binaries()</code></ins></a> instead.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature14">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<div style="color: #ffa844">
+    <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+    <p style="margin: 0px;"><em>in 0.55.0</em></p>
+</div>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_exe_wrapper()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonhas_external_property">meson.has_external_property()</h3>
+<p>Checks whether the given property exist in a native or cross file.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature15">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.58.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Checks whether the given property exist in a native or cross file
+<a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_external_property(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>propname</b>,     # Name of the property in the cross / native file
+
+  # Keyword arguments:
+  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Setting `native` to `true` forces retrieving a variable from the
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments7">Arguments</h4>
+<p>The method <code>meson.has_external_property()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">propname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Name of the property in the cross / native file.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>meson.has_external_property()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Setting <code>native</code> to <code>true</code> forces retrieving a variable from the
+native file, even when cross-compiling.
+If <code>native: false</code> or not specified, the variable is retrieved from the
+cross-file if cross-compiling, and from the native-file when not cross-compiling.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesoninstall_dependency_manifest">meson.install_dependency_manifest()</h3>
+<p>Installs a manifest file
+containing a list of all subprojects, their versions and license
+files to the file name given as the argument.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature16">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Installs a manifest file
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> install_dependency_manifest(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>output_name</b>,     # Name of the manifest file to install
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments8">Arguments</h4>
+<p>The method <code>meson.install_dependency_manifest()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">output_name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Name of the manifest file to install</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonis_cross_build">meson.is_cross_build()</h3>
+<p>Returns <code>true</code> if the current build is a <a href="Cross-compilation.html">cross build</a> and <code>false</code> otherwise.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature17">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> is_cross_build()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonis_subproject">meson.is_subproject()</h3>
+<p>Returns <code>true</code> if the current project is being built as a subproject of some other project and <code>false</code> otherwise.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature18">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> is_subproject()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonis_unity">meson.is_unity()</h3>
+<p>Returns <code>true</code> when doing a <a href="Unity-builds.html">unity build</a> (multiple sources are combined before compilation to reduce build time) and <code>false</code> otherwise.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature19">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> is_unity()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonoverride_dependency">meson.override_dependency()</h3>
+<p>Specifies that whenever <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> with <code>name</code> is used, Meson should not
+look it up on the system but instead return <code>dep_object</code>, which may either be
+the result of <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> or <a href="Reference-manual_functions.html#declare_dependency"><ins><code>declare_dependency()</code></ins></a>.</p>
+<p>Doing this in a subproject allows the parent
+project to retrieve the dependency without having to know the dependency
+variable name: <code>dependency(name, fallback : subproject_name)</code>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature20">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.54.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Specifies that whenever <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> with `name` is used, Meson should not
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> override_dependency(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>name</b>,           # The name of the dependency to override
+  <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> <b>dep_object</b>,     # The dependency to set as the override for `name`
+
+  # Keyword arguments:
+  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If set to `true`, the dependency is always overwritten for the build machine
+  <b>static</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Used to override static and/or shared dependencies separately
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments9">Arguments</h4>
+<p>The method <code>meson.override_dependency()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The name of the dependency to override.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dep_object</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The dependency to set as the override for <code>name</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>meson.override_dependency()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to <code>true</code>, the dependency is always overwritten for the build machine.
+Otherwise, the dependency is overwritten for the host machine, which
+differs from the build machine when cross-compiling.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">static</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Used to override static and/or shared dependencies separately.
+If not specified it is assumed
+<code>dep_object</code> follows <code>default_library</code> option value.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonoverride_find_program">meson.override_find_program()</h3>
+<p>specifies that whenever <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> is used to find a program
+named <code>progname</code>, Meson should not look it up on the system but
+instead return <code>program</code>, which may either be the result of
+<a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>, <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> or <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.</p>
+<p><em>(since 0.55.0)</em> If a version
+check is passed to <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> for a program that has been overridden with
+an executable, the current project version is used.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature21">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.46.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># specifies that whenever <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> is used to find a program
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> override_find_program(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           <b>progname</b>,     # The name of the program to override
+  <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>program</b>,      # The program to set as the override for `progname`
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments10">Arguments</h4>
+<p>The method <code>meson.override_find_program()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">progname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The name of the program to override.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">program</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
+</td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The program to set as the override for <code>progname</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonproject_build_root">meson.project_build_root()</h3>
+<p>Returns a string with the absolute path to the build root directory of the current (sub)project.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature22">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.56.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> project_build_root()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonproject_license">meson.project_license()</h3>
+<p>Returns the array of licenses specified in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function call.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature23">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] project_license()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonproject_name">meson.project_name()</h3>
+<p>Returns the project name specified in the <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function call.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature24">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> project_name()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonproject_source_root">meson.project_source_root()</h3>
+<p>Returns a string with the absolute path to the source root directory of the current (sub)project.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature25">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.56.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> project_source_root()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonproject_version">meson.project_version()</h3>
+<p>Returns the version string specified in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function call.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature26">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> project_version()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonsource_root">meson.source_root()</h3>
+<p>Returns a string with the absolute path to the source root directory.</p>
+<p>This function will return the source root of the
+parent project if called from a subproject, which is usually not what you want.
+Try using <a href="Reference-manual_builtin_meson.html#mesoncurrent_source_dir"><ins><code>meson.current_source_dir()</code></ins></a> or <a href="Reference-manual_builtin_meson.html#mesonproject_source_root"><ins><code>meson.project_source_root()</code></ins></a>.
+In the rare cases where the root of the main project is needed,
+use <a href="Reference-manual_builtin_meson.html#mesonglobal_source_root"><ins><code>meson.global_source_root()</code></ins></a> that has the same behaviour but with a more explicit
+name.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature27">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<div style="color: #ffa844">
+    <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+    <p style="margin: 0px;"><em>in 0.56.0</em></p>
+</div>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> source_root()</code></pre>
+<div class="alert alert-info">
+  <strong>Note:</strong>
+<p>You should use the <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> function
+to refer to files in the root source directory instead of
+constructing paths manually with <a href="Reference-manual_builtin_meson.html#mesonsource_root"><ins><code>meson.source_root()</code></ins></a>.</p>
+</div>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonversion">meson.version()</h3>
+<p>Return a string with the version of Meson.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature28">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> version()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
 
     </div>
         

@@ -207,6 +207,68 @@ $('body').removeClass('no-script');
 <ul>
 <li><a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a></li>
 </ul>
+<h2 id="external-program-methods">External program methods</h2>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="external_programfound">external_program.found()</h3>
+<p>Returns whether the executable was found.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> found()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="external_programfull_path">external_program.full_path()</h3>
+<p>Returns a string pointing to the script or executable.</p>
+<p><strong>NOTE:</strong> You should not need to use this method. Passing the object itself
+should work in all cases.</p>
+<p>For example:</p>
+<pre><code class="language-meson">run_command(find_program('foo'), 'arg1', 'arg2')
+</code></pre>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature1">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.55.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> full_path()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="external_programpath">external_program.path()</h3>
+<p><em>Deprecated:</em> Use <a href="Reference-manual_returned_external_program.html#external_programfull_path"><ins><code>external_program.full_path()</code></ins></a> instead.</p>
+<p>Returns a string pointing to the script or executable.</p>
+<p><strong>NOTE:</strong> You should not need to use this method. Passing the object itself
+should work in all cases.</p>
+<p>For example:</p>
+<pre><code class="language-meson">run_command(find_program('foo'), 'arg1', 'arg2')
+</code></pre>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature2">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<div style="color: #ffa844">
+    <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+    <p style="margin: 0px;"><em>in 0.55.0</em></p>
+</div>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> path()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
 
     </div>
         

@@ -229,13 +229,14 @@ directly in code blocks), the <code>[[#&lt;remaining tag&gt;]]</code> syntax sho
 <ul>
 <li>Functions: <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>
 </li>
-<li>Methods: [[meson.version]]</li>
+<li>Methods: <a href="Reference-manual_builtin_meson.html#mesonversion"><ins><code>meson.version()</code></ins></a>
+</li>
 <li>Objects: <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>
 </li>
 </ul>
 <p>Now the same in a code block:</p>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>('main', [
-    'file_@0@.cpp'.format([[#meson.version]])
+    'file_@0@.cpp'.format(<a href="Reference-manual_builtin_meson.html#mesonversion"><ins>meson.version()</ins></a>)
 ])
 </code></pre>
 <h2 id="directory-structure">Directory structure</h2>

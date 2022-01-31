@@ -216,6 +216,189 @@ both shared and static library or shared module.</p>
 <li><a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a></li>
 <li><a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a></li>
 </ul>
+<h2 id="build-target-methods">Build target methods</h2>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_tgtextract_all_objects">build_tgt.extract_all_objects()</h3>
+<p>Acts the same as <code>extract_objects</code>, but returns all object files generated
+by this target.</p>
+<p>By default only objects built for this target are returned to maintain
+backward compatibility with previous versions.  The default value for the
+<code>recursive</code> kwarg will eventually be changed to <code>true</code> in a future version.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Acts the same as `extract_objects`, but returns all object files generated
+<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> extract_all_objects(
+  <b>recursive</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Also return objects passed to the `objects` argument of this target
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments">Arguments</h4>
+<p>The method <code>build_tgt.extract_all_objects()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">recursive</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Also return objects passed to the <code>objects</code> argument of this target.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.46.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_tgtextract_objects">build_tgt.extract_objects()</h3>
+<p>Returns an opaque value representing the object files generated for those
+source files. This is typically used to take single object files and link
+them to unit tests or to compile some source files with custom flags. To
+use the object file(s) in another build target, use the
+<code>objects:</code> keyword argument to a <a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a> or include them in the command
+line of a <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature1">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns an opaque value representing the object files generated for those
+<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> extract_objects(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>source</b>...,  # Source filenames for which the built objects should be extracted
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments1">Arguments</h4>
+<p>The
+method accepts between <code>1</code> and <code>infinity</code> variadic
+arguments (<code>source...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a></code>.</p>
+<p>Source filenames for which the built objects should be extracted.</p>
+  <div style="margin: 0px; text-align: center;">
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_tgtfound">build_tgt.found()</h3>
+<p>Always returns <code>true</code>. This function is meant to make executables
+objects feature compatible with <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> objects. This
+simplifies use-cases where an executable is used instead of
+an <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature2">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.59.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> found()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_tgtfull_path">build_tgt.full_path()</h3>
+<p>Returns a full path pointing to the result target file.
+<strong>NOTE:</strong> In most cases using the object itself will do the same job
+as this and will also allow Meson to setup inter-target dependencies
+correctly. Please file a bug if that doesn't work for you.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> full_path()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_tgtname">build_tgt.name()</h3>
+<p>Returns the name of the target.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.54.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> name()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_tgtpath">build_tgt.path()</h3>
+<p>Does the exact same as <a href="Reference-manual_returned_build_tgt.html#build_tgtfull_path"><ins><code>build_tgt.full_path()</code></ins></a>. <strong>NOTE</strong>: This
+function is solely kept for compatebility with <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> objects.
+It will be removed once the, also deprecated, corresponding <code>path()</code>
+function in the <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> object is removed.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature5">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.59.0)</em></p>
+<div style="color: #ffa844">
+    <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+    <p style="margin: 0px;"><em>in 0.59.0</em></p>
+</div>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> path()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_tgtprivate_dir_include">build_tgt.private_dir_include()</h3>
+<p>Returns a value that works like <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a>, but points to the
+private directory of this target. Usually only needed if an another target
+needs to access some generated internal headers of this target.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> private_dir_include()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
 
     </div>
         
