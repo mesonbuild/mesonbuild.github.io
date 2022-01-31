@@ -208,7 +208,10 @@ Markdown files without touching the actual documentation.
 Additionally, multiple generation backends can be supported (besides the
 Markdown generator for mesonbuild.com).</p>
 <p>The generator that reads these YAML files is located in <code>docs/refman</code>, with the
-main executable being <code>docs/genrefman.py</code>.</p>
+main executable being <code>docs/genrefman.py</code>.  By default <code>genrefman.py</code> will load
+the yaml manual using a strict subset of yaml at the cost of loading slowly.
+You may optionally disable all these safety checks using the <code>fastyaml</code> loader,
+which will significantly speed things up at the cost of being less correct.</p>
 <h2 id="linking-to-the-reference-manual">Linking to the Reference Manual</h2>
 <p>Links to the Reference Manual can be inserted <em>anywhere</em> in the Meson docs with
 tags like this: <code>[[&lt;tag&gt;]]</code>. This guarantees that links remain stable (even if
@@ -226,14 +229,13 @@ directly in code blocks), the <code>[[#&lt;remaining tag&gt;]]</code> syntax sho
 <ul>
 <li>Functions: <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>
 </li>
-<li>Methods: <a href="Reference-manual_builtin_meson.html#mesonversion"><ins><code>meson.version()</code></ins></a>
-</li>
+<li>Methods: [[meson.version]]</li>
 <li>Objects: <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>
 </li>
 </ul>
 <p>Now the same in a code block:</p>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>('main', [
-    'file_@0@.cpp'.format(<a href="Reference-manual_builtin_meson.html#mesonversion"><ins>meson.version()</ins></a>)
+    'file_@0@.cpp'.format([[#meson.version]])
 ])
 </code></pre>
 <h2 id="directory-structure">Directory structure</h2>
