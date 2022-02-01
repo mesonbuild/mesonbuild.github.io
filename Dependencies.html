@@ -479,6 +479,13 @@ foreach h : check_headers
   endif
 endforeach
 </code></pre>
+<h2 id="dl-libdl">dl (libdl)</h2>
+<p><em>(added 0.62.0)</em></p>
+<p>Provides access to the dynamic link interface (functions: dlopen,
+dlclose, dlsym and others). On systems where this is not built
+into libc (mostly glibc &lt; 2.34), tries to find an external library
+providing them instead.</p>
+<p><code>method</code> may be <code>auto</code>, <code>builtin</code> or <code>system</code>.</p>
 <h2 id="fortran-coarrays">Fortran Coarrays</h2>
 <p><em>(added 0.50.0)</em></p>
 <p>Coarrays are a Fortran language intrinsic feature, enabled by
