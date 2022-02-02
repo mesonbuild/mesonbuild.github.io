@@ -1020,6 +1020,7 @@ commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</co
   <b>should_fail</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # when true the test is considered passed if the
   <b>suite</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]               # `'label'` (or list of labels `['label1', 'label2']`)
   <b>timeout</b>     : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                           # the amount of seconds the test is allowed to run, a test
+  <b>verbose</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # if true, forces the test results to be logged as if `--verbose` was passed
   <b>workdir</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           # absolute path that will be used as the working directory
 )</code></pre>
 <div class="alert alert-info">
@@ -1231,6 +1232,22 @@ in previous versions of Meson the test would fail with a timeout immediately.</p
 <div style="margin: 0px; text-align: center;">
 <p style="margin: 0px;"><code class="language-meson">default =
 30</code></p>
+</div>
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">verbose</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+      <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
+<p>if true, forces the test results to be logged as if <code>--verbose</code> was passed
+to <code>meson test</code>.</p>
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
+<p style="margin: 0px;"><code class="language-meson">default =
+false</code></p>
 </div>
 </td>
     </tr>
@@ -11115,6 +11132,12 @@ disabling of this check in meson.build do like:</p>
 
 test(..., env: nomalloc, ...)
 </code></pre>
+<p>In addition to running individual executables as test cases, <code>test()</code>
+can also be used to invoke an external test harness.  In this case,
+it is best to use <code>verbose: true</code> <em>(since 0.62.0)</em> and, if supported
+by the external harness, <code>protocol: 'tap'</code> <em>(since 0.50.0)</em>.  This will
+ensure that Meson logs each subtest as it runs, instead of including
+the whole log at the end of the run.</p>
 <p>Defined tests can be run in a backend-agnostic way by calling
 <code>meson test</code> inside the build dir, or by using backend-specific
 commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
@@ -11142,6 +11165,7 @@ commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</co
   <b>should_fail</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # when true the test is considered passed if the
   <b>suite</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]               # `'label'` (or list of labels `['label1', 'label2']`)
   <b>timeout</b>     : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                           # the amount of seconds the test is allowed to run, a test
+  <b>verbose</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # if true, forces the test results to be logged as if `--verbose` was passed
   <b>workdir</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           # absolute path that will be used as the working directory
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -11364,6 +11388,22 @@ in previous versions of Meson the test would fail with a timeout immediately.</p
 <div style="margin: 0px; text-align: center;">
 <p style="margin: 0px;"><code class="language-meson">default =
 30</code></p>
+</div>
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">verbose</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+      <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
+<p>if true, forces the test results to be logged as if <code>--verbose</code> was passed
+to <code>meson test</code>.</p>
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
+<p style="margin: 0px;"><code class="language-meson">default =
+false</code></p>
 </div>
 </td>
     </tr>
