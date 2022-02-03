@@ -8201,16 +8201,19 @@ specific options are used normally even in subprojects.</p>
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Takes a string or array of strings describing the license(s) the code is under.
-To avoid ambiguity it is recommended to use a standardized
-license identifier from the <a href="https://spdx.org/licenses/">SPDX license list</a>.
-Usually this would be something like <code>license : 'GPL-2.0-or-later'</code>, but if
-the code has multiple licenses you can specify them as an array like this:
-<code>license : ['proprietary', 'GPL-3.0-only']</code>. Note that the text is informal
-and is only written to the dependency manifest. Meson does not do any license
-validation, you are responsible for verifying that you abide by all licensing
-terms. You can access the value in your Meson build files with
-<code>meson.project_license()</code>.</p>
+<p>Takes a string or array of strings describing the license(s) the code is under.</p>
+<p>This <em>should</em> be an <a href="https://spdx.dev/ids/">SPDX license expression</a>,
+using the standardized license identifier from the <a href="https://spdx.org/licenses/">SPDX license
+list</a>.  Usually this would be something like
+<code>license : 'GPL-2.0-or-later'</code>. If there are multiple licenses you can use the
+<code>AND</code> and <code>OR</code> operators to join them: <code>license : 'Apache-2.0 OR GPL-2.0'</code>.</p>
+<p>For backwards compatibility reasons you can also pass an array of
+licenses here. This is not recommended, as it is ambiguous: <code>license : ['Apache-2.0', 'GPL-2.0-only']</code> instead use an SPDX espression: <code>license : 'Apache-2.0 OR GPL-2.0-only'</code>, which makes it clear that the license
+mean OR, not AND.</p>
+<p>Note that the text is informal and is only written to the dependency
+manifest. Meson does not do any license validation, you are responsible
+for verifying that you abide by all licensing terms. You can access the
+value in your Meson build files with <code>meson.project_license()</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
