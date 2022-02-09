@@ -1659,9 +1659,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2455,9 +2456,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -4681,9 +4683,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5419,14 +5422,14 @@ from a single source file name.</p>
 <p>Obtains the value of the <a href="Build-options.html">project build option</a>
 specified in the positional argument.</p>
 <p>Note that the value returned for built-in options that end in <code>dir</code>
-such as <code>bindir</code> and <code>libdir</code> is always a path relative to (and
-inside) the <code>prefix</code>.</p>
-<p>The only exceptions are: <code>sysconfdir</code>, <code>localstatedir</code>, and
-<code>sharedstatedir</code> which will return the value passed during
-configuration as-is, which may be absolute, or relative to <code>prefix</code>.
-<a href="Installing.html"><code>install_dir</code> arguments</a> handles that as expected, but
-if you need the absolute path to one of these e.g. to use in a define
-etc., you should use <code>get_option('prefix') / get_option('localstatedir')</code></p>
+such as <code>bindir</code> and <code>libdir</code> is usually a path relative to (and
+inside) the <code>prefix</code> but you should not rely on that, as it can also
+be an absolute path [in some cases](Builtin-options.md#Universal options).
+<a href="Installing.html"><code>install_dir</code> arguments</a> handle that as expected
+but if you need an absolute path, e.g. to use in a define etc.,
+you should use the path concatenation operator like this:
+<code>get_option('prefix') / get_option('localstatedir')</code>.
+Never manually join paths as if they were strings.</p>
 <p>For options of type <code>feature</code> a
 <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a> option object
 is returned instead of a string.
@@ -6965,9 +6968,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7676,9 +7680,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9084,9 +9089,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9773,9 +9779,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10412,9 +10419,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
