@@ -142,6 +142,9 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -259,13 +262,12 @@ provided, and this is available to subprojects as well. Use the
 return variables as strings.</p>
 <h3 id="build-options-in-subproject">Build options in subproject</h3>
 <p>All Meson features of the subproject, such as project options keep
-working and <a href="Builtin-options.html#specifying-options-per-subproject">can be set in the master
-project</a>. There
-are a few limitations, the most important being that global compiler
-arguments must be set in the main project before calling subproject.
-Subprojects must not set global arguments because there is no way to
-do that reliably over multiple subprojects. To check whether you are
-running as a subproject, use <a href="Reference-manual_builtin_meson.html#mesonis_subproject"><ins><code>meson.is_subproject()</code></ins></a>.</p>
+working and can be set in the master project. There are a few
+limitations, the most important being that global compiler arguments
+must be set in the main project before calling subproject. Subprojects
+must not set global arguments because there is no way to do that
+reliably over multiple subprojects. To check whether you are running
+as a subproject, use the <code>is_subproject</code> function.</p>
 <h2 id="using-a-subproject">Using a subproject</h2>
 <p>All subprojects must be inside <code>subprojects</code> directory. The
 <code>subprojects</code> directory must be at the top level of your project.
@@ -312,7 +314,7 @@ executable('my_project',
 </code></pre>
 <p>Because this is such a common operation, Meson provides a shortcut for
 this use case.</p>
-<pre><code class="language-meson">dep = dependency('foo', fallback : ['subproject_name', 'variable_name'])
+<pre><code class="language-meson">dep = dependency('foo', fallback : [subproject_name, variable_name])
 </code></pre>
 <p>The <code>fallback</code> keyword argument takes two items, the name of the
 subproject and the name of the variable that holds the dependency. If
@@ -329,20 +331,9 @@ executable('my_project',
   dependencies : libsimple_dep,
   install : true)
 </code></pre>
-<p>You may change default <a href="Builtin-options.html#specifying-options-per-subproject">options of the
-subproject</a> by
-adding a keyword argument to the invocation. For example, to change the
-default library type:</p>
-<pre><code>libsimple_dep = dependency(
-  'libsimple',
-  fallback : ['libsimple', 'libsimple_dep'],
-  default_options: ['default_library=static']
-)
-</code></pre>
-<p>With this setup, when libsimple is provided by the system we use it and
-completely ignore subproject options (i.e. we link to a shared system
-library). When that is not the case, we use the embedded version (the
-one from subprojects).</p>
+<p>With this setup when libsimple is provided by the system, we use it.
+When that is not the case we use the embedded version (the one from
+subprojects).</p>
 <p>Note that <code>libsimple_dep</code> can point to an external or an internal
 dependency but you don't have to worry about their differences. Meson
 will take care of the details for you.</p>

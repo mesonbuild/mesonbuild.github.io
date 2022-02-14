@@ -142,6 +142,9 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -212,8 +215,7 @@ or <code>--option value</code>--- a list is shown by running <code>meson setup -
 <p>For legacy reasons <code>--warnlevel</code> is the cli argument for the
 <code>warning_level</code> option.</p>
 <p>They can also be edited after setup using <code>meson configure -Doption=value</code>.</p>
-<p>Installation options are usually relative to the prefix but it should
-not be relied on, since they can be absolute paths in the following cases:</p>
+<p>Installation options are all relative to the prefix, except:</p>
 <ul>
 <li>When the prefix is <code>/usr</code>: <code>sysconfdir</code> defaults to <code>/etc</code>,
 <code>localstatedir</code> defaults to <code>/var</code>, and <code>sharedstatedir</code> defaults to
@@ -222,7 +224,6 @@ not be relied on, since they can be absolute paths in the following cases:</p>
 <li>When the prefix is <code>/usr/local</code>: <code>localstatedir</code> defaults
 to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/var/local/lib</code>
 </li>
-<li>When an absolute path outside of prefix is provided by the user/distributor.</li>
 </ul>
 <h3 id="directories">Directories</h3>
 <table>
