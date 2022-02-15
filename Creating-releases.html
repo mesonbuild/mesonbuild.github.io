@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -243,6 +240,12 @@ tests steps of generated packages. It can be used to not waste time
 for example when done in CI that already does its own testing.</p>
 <p>So with <code>--no-tests</code> you can tell Meson "Do not build and test generated
 packages.".</p>
+<h2 id="use-allowdirty-to-override-error-when-git-repository-contains-uncommitted-changes">Use <code>--allow-dirty</code> to override error when git repository contains uncommitted changes</h2>
+<p><em>Since 0.62.0</em> Instead of emitting a warning when a repository contains
+uncommitted changes, Meson will produce an error message notifying the
+user and immediately exit. If <code>--allow-dirty</code> is given as an option to
+<code>meson dist</code>, a warning will be emitted instead and Meson will proceed
+as usual.</p>
 <h2 id="release-a-subproject-separately">Release a subproject separately</h2>
 <p><em>Since 0.57.0</em> the <code>meson dist</code> command can now create a distribution tarball
 for a subproject in the same git repository as the main project. This can be

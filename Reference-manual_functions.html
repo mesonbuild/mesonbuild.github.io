@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -1023,6 +1020,7 @@ commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</co
   <b>should_fail</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # when true the test is considered passed if the
   <b>suite</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]               # `'label'` (or list of labels `['label1', 'label2']`)
   <b>timeout</b>     : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                           # the amount of seconds the test is allowed to run, a test
+  <b>verbose</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # if true, forces the test results to be logged as if `--verbose` was passed
   <b>workdir</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           # absolute path that will be used as the working directory
 )</code></pre>
 <div class="alert alert-info">
@@ -1234,6 +1232,22 @@ in previous versions of Meson the test would fail with a timeout immediately.</p
 <div style="margin: 0px; text-align: center;">
 <p style="margin: 0px;"><code class="language-meson">default =
 30</code></p>
+</div>
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">verbose</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+      <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
+<p>if true, forces the test results to be logged as if <code>--verbose</code> was passed
+to <code>meson test</code>.</p>
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
+<p style="margin: 0px;"><code class="language-meson">default =
+false</code></p>
 </div>
 </td>
     </tr>
@@ -1645,9 +1659,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2441,9 +2456,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -4667,9 +4683,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5020,7 +5037,9 @@ with the executable/interpreter specified in it both on Windows
 (because the command invocator will reject the command otherwise) and
 Unixes (if the script file does not have the executable bit set).
 Hence, you <em>must not</em> manually add the interpreter while using this
-script as part of a list of commands.</p>
+script as part of a list of commands. Since <em>0.50.0</em> if the "python3"
+program is requested and it is not found in the system, Meson will return
+its current interpreter.</p>
 <p>If you need to check for a program in a non-standard location, you can
 just pass an absolute path to <code>find_program</code>, e.g.</p>
 <pre><code class="language-meson">setcap = find_program('setcap', '/usr/sbin/setcap', '/sbin/setcap', required : false)
@@ -5403,14 +5422,14 @@ from a single source file name.</p>
 <p>Obtains the value of the <a href="Build-options.html">project build option</a>
 specified in the positional argument.</p>
 <p>Note that the value returned for built-in options that end in <code>dir</code>
-such as <code>bindir</code> and <code>libdir</code> is always a path relative to (and
-inside) the <code>prefix</code>.</p>
-<p>The only exceptions are: <code>sysconfdir</code>, <code>localstatedir</code>, and
-<code>sharedstatedir</code> which will return the value passed during
-configuration as-is, which may be absolute, or relative to <code>prefix</code>.
-<a href="Installing.html"><code>install_dir</code> arguments</a> handles that as expected, but
-if you need the absolute path to one of these e.g. to use in a define
-etc., you should use <code>get_option('prefix') / get_option('localstatedir')</code></p>
+such as <code>bindir</code> and <code>libdir</code> is usually a path relative to (and
+inside) the <code>prefix</code> but you should not rely on that, as it can also
+be an absolute path [in some cases](Builtin-options.md#Universal options).
+<a href="Installing.html"><code>install_dir</code> arguments</a> handle that as expected
+but if you need an absolute path, e.g. to use in a define etc.,
+you should use the path concatenation operator like this:
+<code>get_option('prefix') / get_option('localstatedir')</code>.
+Never manually join paths as if they were strings.</p>
 <p>For options of type <code>feature</code> a
 <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a> option object
 is returned instead of a string.
@@ -6949,9 +6968,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7660,9 +7680,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8185,16 +8206,19 @@ specific options are used normally even in subprojects.</p>
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Takes a string or array of strings describing the license(s) the code is under.
-To avoid ambiguity it is recommended to use a standardized
-license identifier from the <a href="https://spdx.org/licenses/">SPDX license list</a>.
-Usually this would be something like <code>license : 'GPL-2.0-or-later'</code>, but if
-the code has multiple licenses you can specify them as an array like this:
-<code>license : ['proprietary', 'GPL-3.0-only']</code>. Note that the text is informal
-and is only written to the dependency manifest. Meson does not do any license
-validation, you are responsible for verifying that you abide by all licensing
-terms. You can access the value in your Meson build files with
-<code>meson.project_license()</code>.</p>
+<p>Takes a string or array of strings describing the license(s) the code is under.</p>
+<p>This <em>should</em> be an <a href="https://spdx.dev/ids/">SPDX license expression</a>,
+using the standardized license identifier from the <a href="https://spdx.org/licenses/">SPDX license
+list</a>.  Usually this would be something like
+<code>license : 'GPL-2.0-or-later'</code>. If there are multiple licenses you can use the
+<code>AND</code> and <code>OR</code> operators to join them: <code>license : 'Apache-2.0 OR GPL-2.0'</code>.</p>
+<p>For backwards compatibility reasons you can also pass an array of
+licenses here. This is not recommended, as it is ambiguous: <code>license : ['Apache-2.0', 'GPL-2.0-only']</code> instead use an SPDX espression: <code>license : 'Apache-2.0 OR GPL-2.0-only'</code>, which makes it clear that the license
+mean OR, not AND.</p>
+<p>Note that the text is informal and is only written to the dependency
+manifest. Meson does not do any license validation, you are responsible
+for verifying that you abide by all licensing terms. You can access the
+value in your Meson build files with <code>meson.project_license()</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9065,9 +9089,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9439,12 +9464,18 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
 )</code></pre>
 <div class="alert alert-info">
   <strong>Note:</strong>
-<p><em>Linking to a shared module is deprecated, and will be an error in the future</em>.
-It used to be allowed because it was the only way to have a shared-library-like target that
+<p><em>Linking to a shared module on platforms other than Android is deprecated, and will be an error
+in the future</em>.
+It was previously allowed because it was the only way to have a shared-library-like target that
 contained references to undefined symbols. However, since 0.40.0, the <code>override_options:</code>
-<a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a> keyword argument can be used to create such a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a>, and shared
-modules have other characteristics that make them incompatible with linking, such as a lack of
-SONAME. Linking to shared modules also does not work on some platforms, such as on macOS / iOS.</p>
+<a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a> keyword argument can be used to create such a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> by passing
+<code>override_options: 'b_lundef=false'</code>. Shared modules have other characteristics that make
+them incompatible with linking, such as a lack of SONAME.
+On macOS and iOS, linking to shared modules is disallowed by the linker, so we disallow it at
+configure time.
+On Android, if a shared module <code>foo</code> uses symbols from another shared module <code>bar</code>, <code>foo</code> must
+also be linked to <code>bar</code>. Hence, linking one shared module to another will always be allowed when
+building for Android.</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments44">Arguments</h3>
@@ -9754,9 +9785,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10393,9 +10425,10 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>override install directory for this file. The value is
-relative to the <code>prefix</code> specified. F.ex, if you want to install
-plugins into a subdir, you'd use something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11116,6 +11149,12 @@ disabling of this check in meson.build do like:</p>
 
 test(..., env: nomalloc, ...)
 </code></pre>
+<p>In addition to running individual executables as test cases, <code>test()</code>
+can also be used to invoke an external test harness.  In this case,
+it is best to use <code>verbose: true</code> <em>(since 0.62.0)</em> and, if supported
+by the external harness, <code>protocol: 'tap'</code> <em>(since 0.50.0)</em>.  This will
+ensure that Meson logs each subtest as it runs, instead of including
+the whole log at the end of the run.</p>
 <p>Defined tests can be run in a backend-agnostic way by calling
 <code>meson test</code> inside the build dir, or by using backend-specific
 commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
@@ -11143,6 +11182,7 @@ commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</co
   <b>should_fail</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # when true the test is considered passed if the
   <b>suite</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]               # `'label'` (or list of labels `['label1', 'label2']`)
   <b>timeout</b>     : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                           # the amount of seconds the test is allowed to run, a test
+  <b>verbose</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                          # if true, forces the test results to be logged as if `--verbose` was passed
   <b>workdir</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           # absolute path that will be used as the working directory
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -11365,6 +11405,22 @@ in previous versions of Meson the test would fail with a timeout immediately.</p
 <div style="margin: 0px; text-align: center;">
 <p style="margin: 0px;"><code class="language-meson">default =
 30</code></p>
+</div>
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">verbose</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+      <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
+<p>if true, forces the test results to be logged as if <code>--verbose</code> was passed
+to <code>meson test</code>.</p>
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
+<p style="margin: 0px;"><code class="language-meson">default =
+false</code></p>
 </div>
 </td>
     </tr>

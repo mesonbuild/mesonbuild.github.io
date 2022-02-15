@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -403,13 +400,15 @@ different type, and a <code>bar</code> target:</p>
 </code></pre>
 <h3 id="dist">dist</h3>
 <p><em>(since 0.52.0)</em></p>
-<pre><code class="language-inc">$ meson dist [-h] [-C WD] [--formats FORMATS] [--include-subprojects]
-             [--no-tests]
+<pre><code class="language-inc">$ meson dist [-h] [-C WD] [--allow-dirty] [--formats FORMATS]
+             [--include-subprojects] [--no-tests]
 </code></pre>
 <p>Generates a release archive from the current source tree.</p>
 <pre><code class="language-inc">optional arguments:
   -h, --help             show this help message and exit
   -C WD                  directory to cd into before running
+  --allow-dirty          Allow even when repository contains uncommitted
+                         changes.
   --formats FORMATS      Comma separated list of archive types to create.
                          Supports xztar (default), gztar, and zip.
   --include-subprojects  Include source code of subprojects that have been used

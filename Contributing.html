@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -381,7 +378,7 @@ subdirectory. They are not run as part of <code>./run_project_tests.py</code>.</
 <p>The (optional) <code>test.json</code> file, in the root of a test case, is used
 for configuring the test. All of the following root entries in the <code>test.json</code>
 are independent of each other and can be combined as needed.</p>
-<p>Exanple <code>test.json</code>:</p>
+<p>Example <code>test.json</code>:</p>
 <pre><code class="language-json">{
   "env": {
     "VAR": "VAL"
@@ -712,10 +709,12 @@ integration tests</li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <p>The <code>docs</code> directory contains the full documentation that will be used
-to generate <a href="http://mesonbuild.com">the Meson web site</a>. Every change
-in functionality must change the documentation pages. In most cases
-this means updating the reference documentation page but bigger
-changes might need changes in other documentation, too.</p>
+to generate <a href="http://mesonbuild.com">the Meson web site</a>. Line length
+in most cases should not exceed 70 characters (lines containing links
+or examples are usually exempt). Every change in functionality must
+change the documentation pages. In most cases this means updating the
+reference documentation page but bigger changes might need changes in
+other documentation, too.</p>
 <p>All new functionality needs to have a mention in the release
 notes. These features should be written in standalone files in the
 <code>docs/markdown/snippets</code> directory. The release manager will combine

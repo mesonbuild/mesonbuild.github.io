@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -211,7 +208,10 @@ Markdown files without touching the actual documentation.
 Additionally, multiple generation backends can be supported (besides the
 Markdown generator for mesonbuild.com).</p>
 <p>The generator that reads these YAML files is located in <code>docs/refman</code>, with the
-main executable being <code>docs/genrefman.py</code>.</p>
+main executable being <code>docs/genrefman.py</code>.  By default <code>genrefman.py</code> will load
+the yaml manual using a strict subset of yaml at the cost of loading slowly.
+You may optionally disable all these safety checks using the <code>fastyaml</code> loader,
+which will significantly speed things up at the cost of being less correct.</p>
 <h2 id="linking-to-the-reference-manual">Linking to the Reference Manual</h2>
 <p>Links to the Reference Manual can be inserted <em>anywhere</em> in the Meson docs with
 tags like this: <code>[[&lt;tag&gt;]]</code>. This guarantees that links remain stable (even if
