@@ -645,6 +645,8 @@ stdout.</p>
 <li><code>line</code></li>
 <li>
 <code>match</code> (optional)</li>
+<li>
+<code>count</code> (optional)</li>
 </ul>
 <p>Each item in the list is matched, in order, against the remaining
 actual stdout lines, after any previous matches. If the actual stdout
@@ -672,6 +674,9 @@ matched:</p>
 </tr>
 </tbody>
 </table>
+<p>The <code>count</code> element determines how many times the line is expected, and allowed,
+to be in the output. If unspecified, it must appear "any number of times, but at
+least once".</p>
 <h4 id="skip_on_env">skip_on_env</h4>
 <p>The <code>skip_on_env</code> key can be used to specify a list of environment variables. If
 at least one environment variable in the <code>skip_on_env</code> list is present, the test
