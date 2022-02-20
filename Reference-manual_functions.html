@@ -11010,7 +11010,7 @@ this information in a clear way.</p>
 the section keyword argument is omitted, those key/value pairs are
 implicitly grouped into a section with no title. key/value pairs can
 optionally be grouped into a dictionary, but keep in mind that
-dictionaries does not guarantee ordering. <code>key</code> must be string,
+dictionaries do not guarantee ordering. <code>key</code> must be string,
 <code>value</code> can be:</p>
 <ul>
 <li>an integer, boolean or string</li>
@@ -11039,8 +11039,13 @@ have been called.</p>
 </div>
 <pre><code class="language-meson"># This function is used to summarize build configuration at the end of the build
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> summary(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                                         <b>key</b>,       # The name of the new entry
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a>] <b>value</b>,     # The value to print for the `key`
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a>]] <b>key_or_dict</b>,     # The name of the new entry, or a dict containing multiple entries
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a>]           [<b>value</b>],         # The value to print for the `key`
+
+  # Keyword arguments:
+  <b>bool_yn</b>  : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Convert bool values to yes and no
+  <b>list_sep</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>   # The separator to use when printing list values in this summary
+  <b>section</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>   # The section to put this summary information under
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="example8">Example</h3>
@@ -11091,11 +11096,15 @@ summary({'Some boolean': false,
     </thead>
     <tbody class="nomargin">
       <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">key</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">key_or_dict</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>]]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>The name of the new entry</p>
+<p>The name of the new entry, or a dict containing multiple entries.  If a
+dict is passed it is equivalent to calling summary() once for each
+key-value pair.  Keep in mind that dictionaries do not guarantee
+ordering.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11108,7 +11117,67 @@ summary({'Some boolean': false,
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>The value to print for the <code>key</code></p>
+<p>The value to print for the <code>key</code>.  Only valid if <code>key_or_dict</code> is a str.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>summary()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">bool_yn</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Convert bool values to yes and no</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">list_sep</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The separator to use when printing list values in this summary.  If no
+separator is given, each list item will be printed on its own line.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.54.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">section</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The section to put this summary information under.  If the section keyword argument is omitted, key/value pairs are implicitly grouped into a section with no title.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11117,7 +11186,6 @@ summary({'Some boolean': false,
       </tr>
     </tbody>
   </table>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
