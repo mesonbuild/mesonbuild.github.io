@@ -862,6 +862,12 @@ name with the module name: <code>-D&lt;module&gt;.&lt;option&gt;=&lt;value&gt;</
 </thead>
 <tbody>
 <tr>
+<td> install_env</td>
+<td> prefix</td>
+<td> {auto,prefix,system,venv}</td>
+<td> Which python environment to install to (Since 0.62.0)</td>
+</tr>
+<tr>
 <td> platlibdir</td>
 <td></td>
 <td> Directory path</td>
@@ -882,6 +888,15 @@ relative to the installation <code>prefix</code>, which will often result in ins
 modules to not be found by the interpreter unless <code>prefix</code> is <code>/usr</code> on Linux,
 or for example <code>C:\Python39</code> on Windows. These options can be absolute paths
 outside of <code>prefix</code>.</p>
+<p><em>Since 0.62.0</em> The <code>python.install_env</code> option is used to detect the correct
+installation path. Setting to <code>system</code> will avoid making the paths relative to
+<code>prefix</code> and instead use the global site-packages of the selected python
+interpreter directly, even if it is a venv. Setting to <code>venv</code> will instead use
+the paths for the virtualenv the python found installation comes from (or fail
+if it is not a virtualenv).  Setting to <code>auto</code> will check if the found
+installation is a virtualenv, and use <code>venv</code> or <code>system</code> as appropriate (but
+never <code>prefix</code>). This option is mutually exclusive with the <code>platlibdir</code>/<code>purelibdir</code>.</p>
+<p>For backwards compatibility purposes, the default <code>install_env</code> is <code>prefix</code>.</p>
 
     </div>
         
