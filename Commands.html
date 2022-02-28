@@ -806,7 +806,7 @@ Commands:
 <p>See <a href="Using-wraptool.html">the WrapDB tool documentation</a> for more info.</p>
 <h3 id="devenv">devenv</h3>
 <p><em>(since 0.58.0)</em></p>
-<pre><code class="language-inc">$ meson devenv [-h] [-C WD] ...
+<pre><code class="language-inc">$ meson devenv [-h] [-C WD] [--dump] ...
 </code></pre>
 <p>Runs a command, or open interactive shell if no command is provided, with
 environment setup to run project from the build directory, without installation.</p>
@@ -848,14 +848,33 @@ typelib is built. This is automatically set when using <code>gnome.generate_gir(
 schemas is compiled. This is automatically set when using <code>gnome.compile_schemas()</code>.
 Note that this requires GLib &gt;= 2.64 when <code>gnome.compile_schemas()</code> is used in
 more than one directory.</li>
+<li>
+<code>PYTHONPATH</code> <em>Since 0.62.0</em> includes every directory where a python module is being
+installed using <a href="Python-module.html#install_sources"><code>python.install_sources()</code></a>
+and <a href="Python-module.html#extension_module"><code>python.extension_module()</code></a>. Python
+modules installed by other means, such as <code>install_data()</code> or <code>install_subdir()</code>,
+will not be included and should be added to <code>PYTHONPATH</code> manually using
+<a href="Reference-manual_builtin_meson.html#mesonadd_devenv"><code>meson.add_devenv()</code></a>.
+Note that when modules are installed into subdirectories the source tree
+layout must match the installed tree layout otherwise <code>import subdir.mod</code>
+cannot work.</li>
 </ul>
+<p>Since <em>Since 0.62.0</em> if bash-completion scripts are being installed and the
+shell is bash, they will be automatically sourced.</p>
+<p>Since <em>Since 0.62.0</em> when GDB helper scripts (*-gdb.py, *-gdb.gdb, and *-gdb.csm)
+are installed with a library name that matches one being built, Meson adds the
+needed auto-load commands into <code>&lt;builddir&gt;/.gdbinit</code> file. When running gdb from
+top build directory, that file is loaded by gdb automatically. In the case of
+python scripts that needs to load other python modules, <code>PYTHONPATH</code> may need
+to be modified using <code>meson.add_devenv()</code>.</p>
 <pre><code class="language-inc">positional arguments:
   command     Command to run in developer environment (default: interactive
               shell)
 
 optional arguments:
   -h, --help  show this help message and exit
-  -C WD       directory to cd into before running
+  -C WD       Directory to cd into before running
+  --dump      Only print required environment (Since 0.62.0)
 </code></pre>
 
     </div>

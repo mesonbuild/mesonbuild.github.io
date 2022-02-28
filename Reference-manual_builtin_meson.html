@@ -241,7 +241,11 @@ environment variables that are set by default by Meson.</p>
 </div>
 <pre><code class="language-meson"># add an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object (returned by <a href="Reference-manual_functions.html#environment"><ins><code>environment()</code></ins></a>)
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_devenv(
-  <a href="Reference-manual_returned_env.html"><ins>env</ins></a> <b>env</b>,     # The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
+  <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]] <b>env</b>,     # The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
+
+  # Keyword arguments:
+  <b>method</b>    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Must be one of 'set', 'prepend', or 'append'
+  <b>separator</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use for the initial values defined in
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -262,10 +266,13 @@ environment variables that are set by default by Meson.</p>
     <tbody class="nomargin">
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">env</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.</p>
+<p>The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
+Since <em>0.62.0</em> list of strings is allowed in dictionnary values. In that
+case values are joined using the separator.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -275,6 +282,56 @@ environment variables that are set by default by Meson.</p>
     </tbody>
   </table>
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>meson.add_devenv()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">method</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Must be one of 'set', 'prepend', or 'append'
+(defaults to 'set'). Controls if initial values defined in the first
+positional argument are prepended, appended or repace the current value
+of the environment variable.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">separator</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The separator to use for the initial values defined in
+the first positional argument. If not explicitly specified, the default
+path separator for the host operating system will be used, i.e. ';' for
+Windows and ':' for UNIX/POSIX systems.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
