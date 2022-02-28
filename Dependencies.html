@@ -693,11 +693,16 @@ or as an OSX framework.</p>
 <code>pkg-config</code>.</p>
 <h2 id="shaderc">Shaderc</h2>
 <p><em>(added 0.51.0)</em></p>
-<p>Shaderc currently does not ship with any means of detection.
-Nevertheless, Meson can try to detect it using <code>pkg-config</code>, but will
-default to looking for the appropriate library manually. If the
-<code>static</code> keyword argument is <code>true</code>, <code>shaderc_combined</code> is preferred.
-Otherwise, <code>shaderc_shared</code> is preferred. Note that it is not possible
+<p>Meson will first attempt to find shaderc using <code>pkg-config</code>. Upstream
+currently ships three different <code>pkg-config</code> files and by default will
+check them in this order: <code>shaderc</code>, <code>shaderc_combined</code>, and
+<code>shaderc_static</code>. If the <code>static</code> keyword argument is <code>true</code>, then
+Meson instead checks in this order: <code>shaderc_combined</code>, <code>shaderc_static</code>,
+and <code>shaderc</code>.</p>
+<p>If no <code>pkg-config</code> file is found, then Meson will try to detect the
+library manually. In this case, it will try to link against either
+<code>-lshaderc_shared</code> or <code>-lshaderc_combined</code>, preferring the latter
+if the static keyword argument is true. Note that it is not possible
 to obtain the shaderc version using this method.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <h2 id="threads">Threads</h2>
