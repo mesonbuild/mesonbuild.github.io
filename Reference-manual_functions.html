@@ -6061,7 +6061,7 @@ headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
   # Keyword arguments:
   <b>install_dir</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Where to install to
   <b>install_mode</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]  # Specify the file mode in symbolic format
-  <b>subdir</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Use the `subdir` in the `install_dir`
+  <b>subdir</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Install to the `subdir` subdirectory of the default includedir
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="example4">Example</h3>
@@ -6105,7 +6105,7 @@ accepts the following keyword arguments:</p>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Where to install to</p>
+<p>Where to install to.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -6133,7 +6133,8 @@ and optionally the owner/uid and group/gid for the installed files.</p>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Use the <code>subdir</code> in the <code>install_dir</code></p>
+<p>Install to the <code>subdir</code> subdirectory of the default includedir.</p>
+<p>Incompatible with the <code>install_dir</code> kwarg.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
