@@ -550,19 +550,27 @@ instead.</p>
 <p>Deprecated name for JNI. <code>dependency('jdk')</code> instead of <code>dependency('jni')</code>.</p>
 <h2 id="jni">JNI</h2>
 <p><em>(added 0.62.0)</em></p>
+<p><code>modules</code> is an optional list of strings containing any of <code>jvm</code> and <code>awt</code>.</p>
 <p>Provides access to compiling with the Java Native Interface (JNI). The lookup
 will first check if <code>JAVA_HOME</code> is set in the environment, and if not will use
 the resolved path of <code>javac</code>. Systems will usually link your preferred JDK to
 well known paths like <code>/usr/bin/javac</code> on Linux for instance. Using the path
 from <code>JAVA_HOME</code> or the resolved <code>javac</code>, this dependency will place the JDK
 installation's <code>include</code> directory and its platform-dependent subdirectory on
-the compiler's include path.</p>
-<pre><code class="language-meson">dep = dependency('jni', version: '&gt;= 1.8.0')
+the compiler's include path. If <code>modules</code> is non-empty, then the proper linker
+arguments will also be added.</p>
+<pre><code class="language-meson">dep = dependency('jni', version: '&gt;= 1.8.0', modules: ['jvm'])
 </code></pre>
 <p><strong>Note</strong>: Due to usage of a resolved path, upgrading the JDK may cause the
-various headers to not be found. In that case, please reconfigure the build
+various paths to not be found. In that case, please reconfigure the build
 directory. One workaround is to explicitly set <code>JAVA_HOME</code> instead of relying on
 the fallback <code>javac</code> resolved path behavior.</p>
+<p><strong>Note</strong>: Include paths might be broken on platforms other than <code>linux</code>,
+<code>windows</code>, <code>darwin</code>, and <code>sunos</code>. Please submit a PR or open an issue in this
+case.</p>
+<p><strong>Note</strong>: Use of the <code>modules</code> argument on a JDK <code>&lt;= 1.8</code> may be broken if your
+system is anything other than <code>x86_64</code>. Please submit a PR or open an issue in
+this case.</p>
 <h2 id="libgcrypt">libgcrypt</h2>
 <p><em>(added 0.49.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
