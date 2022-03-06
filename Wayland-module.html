@@ -230,32 +230,40 @@ executable('hw', 'main.c', xdg_shell, dependencies : wl_dep)
 )
 </code></pre>
 <p>This function requires one positional argument: the protocol base name.</p>
+<p>It takes the following keyword arguments:</p>
 <ul>
 <li>
 <code>state</code> Optional arg that specifies the current state of the protocol.
-Either stable, staging, or unstable.
-The default is stable.</li>
+Either <code>'stable'</code>, <code>'staging'</code>, or <code>'unstable'</code>. The default is <code>'stable'</code>.</li>
 <li>
-<code>version</code> The backwards incompatible version number.
-Required for staging or unstable. An error is raised for stable.</li>
+<code>version</code> The backwards incompatible version number as integer.
+Required for staging and unstable, but not allowed for stable.</li>
 </ul>
+<p><strong>Returns</strong>: a <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> that can be passed to <a href="Wayland-module.html#scan_xml">scan_xml</a></p>
 <h3 id="scan_xml">scan_xml</h3>
 <pre><code class="language-meson">generated = wl_mod.scan_xml(
   'my-protocol.xml',
-  side : 'client',
-  scope : 'private',
+  client : true,
+  server : true,
+  public : false,
 )
 </code></pre>
 <p>This function accepts one or more arguments of either string or file type.</p>
+<p>It takes the following keyword arguments:</p>
 <ul>
 <li>
-<code>side</code> Optional arg that specifies if client or server side code is generated.
-The default is client side.</li>
+<code>public</code> Optional arg that specifies the scope of the generated code.
+The default is false.</li>
 <li>
-<code>scope</code> Optional arg that specifies the scope of the generated code.
-Either public or private.
-The default is private.</li>
+<code>client</code> Optional arg that specifies if client side header file is
+generated. The default is true.</li>
+<li>
+<code>server</code> Optional arg that specifies if server side header file is
+generated. The default is false.</li>
 </ul>
+<p><strong>Returns</strong>: a list of <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> in the order source, client side header,
+server side header. Generated header files have the name
+<code>&lt;name&gt;-&lt;client|server&gt;-protocol.h</code>.</p>
 <h2 id="links">Links</h2>
 <ul>
 <li><a href="https://wayland.freedesktop.org/docs/html/">Official Wayland Documentation</a></li>
