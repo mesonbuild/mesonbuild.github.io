@@ -1329,6 +1329,7 @@ which case sources will be compiled twice.</p>
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # takes an array of strings in the same format as `project`'s `default_options`
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # If `true` the object files in the target will be prelinked,
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # A string specifying the soversion of this shared library,
   <b>version</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # A string specifying the version of this shared library,
@@ -1920,6 +1921,29 @@ object file rather than the individual object files.</p>
   </td>
       </tr>
       <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">sources</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a>
@@ -2089,6 +2113,7 @@ creating the final list.</p>
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Builds the library as positional independent code
   <b>pie</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Build a position-independent executable
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # If `true` the object files in the target will be prelinked,
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # A string specifying the soversion of this shared library,
   <b>target_type</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # The actual target to build
@@ -2738,6 +2763,29 @@ object file rather than the individual object files.</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.57.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
   </div>
   </td>
       </tr>
@@ -4391,6 +4439,7 @@ creating the final list.</p>
   <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                    # List of prebuilt object files (usually for third party
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # takes an array of strings in the same format as `project`'s `default_options`
   <b>pie</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Build a position-independent executable
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Specifies the subsystem type to use
 )</code></pre>
@@ -4978,6 +5027,29 @@ for this target only.</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
   </div>
   </td>
       </tr>
@@ -6717,6 +6789,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Controls whether the target is compiled for the build or host machines
   <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                    # List of prebuilt object files (usually for third party
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # takes an array of strings in the same format as `project`'s `default_options`
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Specifies the subsystem type to use
 )</code></pre>
@@ -7267,6 +7340,29 @@ for this target only.</p>
   </td>
       </tr>
       <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">sources</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a>
@@ -7407,6 +7503,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # takes an array of strings in the same format as `project`'s `default_options`
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # If `true` the object files in the target will be prelinked,
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # A string specifying the soversion of this shared library,
   <b>version</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # A string specifying the version of this shared library,
@@ -7994,6 +8091,29 @@ object file rather than the individual object files.</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.57.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
   </div>
   </td>
       </tr>
@@ -8816,6 +8936,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Controls whether the target is compiled for the build or host machines
   <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                    # List of prebuilt object files (usually for third party
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # takes an array of strings in the same format as `project`'s `default_options`
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # A string specifying the soversion of this shared library,
   <b>version</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # A string specifying the version of this shared library,
@@ -9376,6 +9497,29 @@ for this target only.</p>
   </td>
       </tr>
       <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">sources</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a>
@@ -9518,6 +9662,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Controls whether the target is compiled for the build or host machines
   <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                    # List of prebuilt object files (usually for third party
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # takes an array of strings in the same format as `project`'s `default_options`
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>vs_module_defs</b>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                   # Specify a Microsoft module definition file for controlling symbol exports,
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Specifies the subsystem type to use
@@ -10072,6 +10217,29 @@ for this target only.</p>
   </td>
       </tr>
       <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">sources</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a>
@@ -10174,6 +10342,7 @@ for the full list.</p>
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # takes an array of strings in the same format as `project`'s `default_options`
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                   # If `true` the object files in the target will be prelinked,
+  <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>  # Additional source files
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                    # Specifies the subsystem type to use
 )</code></pre>
@@ -10739,6 +10908,29 @@ object file rather than the individual object files.</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.57.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust proceedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.41.0)</em></p>
   </div>
   </td>
       </tr>
