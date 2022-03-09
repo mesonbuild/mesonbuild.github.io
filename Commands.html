@@ -463,6 +463,35 @@ optional arguments:
 <p>Create a project in <code>sourcedir</code>:</p>
 <pre><code>meson init -C sourcedir
 </code></pre>
+<h3 id="env2mfile">env2mfile</h3>
+<p><em>This command is experimental and subject to change.</em></p>
+<p><em>{Since 0.62.0}</em></p>
+<pre><code class="language-inc">$ meson env2mfile [-h] [--debarch DEBARCH] [--gccsuffix GCCSUFFIX] -o
+                  OUTFILE [--cross] [--native] [--system SYSTEM]
+                  [--cpu CPU] [--cpu-family CPU_FAMILY]
+                  [--endian {big,little}]
+</code></pre>
+<p>Create native and cross files from the current environment, typically
+by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.</p>
+<pre><code class="language-inc">optional arguments:
+  -h, --help               show this help message and exit
+  --debarch DEBARCH        The dpkg architecture to generate.
+  --gccsuffix GCCSUFFIX    A particular gcc version suffix if necessary.
+  -o OUTFILE               The output file.
+  --cross                  Generate a cross compilation file.
+  --native                 Generate a native compilation file.
+  --system SYSTEM          Define system for cross compilation.
+  --cpu CPU                Define cpu for cross compilation.
+  --cpu-family CPU_FAMILY  Define cpu family for cross compilation.
+  --endian {big,little}    Define endianness for cross compilation.
+</code></pre>
+<h4 id="examples4">Examples:</h4>
+<p>Autodetect the current cross build environment:</p>
+<pre><code>meson env2mfile --cross -o current_cross.txt --cpu=arm7a --cpu-family=arm --system=linux
+</code></pre>
+<p>Generate a cross build using Debian system information:</p>
+<pre><code>meson env2mfile --cross --debarch=armhf -o deb_arm_cross.txt
+</code></pre>
 <h3 id="introspect">introspect</h3>
 <pre><code class="language-inc">$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
                    [--buildsystem-files] [--dependencies]
@@ -502,7 +531,7 @@ optional arguments:
                                         multiple entries (even for 0 and 1
                                         introspection commands)
 </code></pre>
-<h4 id="examples4">Examples:</h4>
+<h4 id="examples5">Examples:</h4>
 <p>Display basic information about a configured project in <code>builddir</code>:</p>
 <pre><code>meson introspect builddir --projectinfo
 </code></pre>
@@ -511,6 +540,7 @@ optional arguments:
 <pre><code class="language-inc">$ meson install [-h] [-C WD] [--no-rebuild] [--only-changed] [--quiet]
                 [--destdir DESTDIR] [--dry-run]
                 [--skip-subprojects [SKIP_SUBPROJECTS]] [--tags TAGS]
+                [--strip]
 </code></pre>
 <p>Installs the project to the prefix specified in <a href="Commands.html#setup"><code>setup</code></a>.</p>
 <pre><code class="language-inc">optional arguments:
@@ -530,9 +560,11 @@ optional arguments:
                                         subprojects. (Since 0.58.0)
   --tags TAGS                           Install only targets having one of the
                                         given tags. (Since 0.60.0)
+  --strip                               Strip targets even if strip option was
+                                        not set during configure. (Since 0.62.0)
 </code></pre>
 <p>See <a href="Installing.html">the installation documentation</a> for more info.</p>
-<h4 id="examples5">Examples:</h4>
+<h4 id="examples6">Examples:</h4>
 <p>Install project to <code>prefix</code>:</p>
 <pre><code>meson install -C builddir
 </code></pre>
@@ -693,7 +725,7 @@ optional arguments:
 </code></pre>
 <p>See <a href="Running-Meson.html#configuring-the-build-directory">Meson introduction
 page</a> for more info.</p>
-<h4 id="examples6">Examples:</h4>
+<h4 id="examples7">Examples:</h4>
 <p>Configures <code>builddir</code> with default values:</p>
 <pre><code>meson setup builddir
 </code></pre>
@@ -776,7 +808,7 @@ optional arguments:
                                         test(s) or all tests
 </code></pre>
 <p>See <a href="Unit-tests.html">the unit test documentation</a> for more info.</p>
-<h4 id="examples7">Examples:</h4>
+<h4 id="examples8">Examples:</h4>
 <p>Run tests for the project:</p>
 <pre><code>meson test -C builddir
 </code></pre>
