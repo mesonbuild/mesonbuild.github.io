@@ -142,6 +142,9 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -149,9 +152,6 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
-        </li>
-        <li>
-            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -212,7 +212,7 @@ system. This object is always mapped in the <code>meson</code> variable.</p>
 <p>add an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object (returned by <a href="Reference-manual_functions.html#environment"><ins><code>environment()</code></ins></a>)
 to the list of environments that will be applied when using <a href="Commands.html#devenv"><code>meson devenv</code></a>
 command line.</p>
-<p>This is useful for developers who wish to use the project without
+<p>This is useful for developpers who wish to use the project without
 installing it, it is often needed to set for example the path to plugins
 directory, etc. Alternatively, a list or dictionary can be passed as first
 argument.</p>
@@ -241,11 +241,7 @@ environment variables that are set by default by Meson.</p>
 </div>
 <pre><code class="language-meson"># add an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object (returned by <a href="Reference-manual_functions.html#environment"><ins><code>environment()</code></ins></a>)
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_devenv(
-  <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]] <b>env</b>,     # The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
-
-  # Keyword arguments:
-  <b>method</b>    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Must be one of 'set', 'prepend', or 'append'
-  <b>separator</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use for the initial values defined in
+  <a href="Reference-manual_returned_env.html"><ins>env</ins></a> <b>env</b>,     # The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -266,13 +262,10 @@ environment variables that are set by default by Meson.</p>
     <tbody class="nomargin">
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">env</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
-Since <em>0.62.0</em> list of strings is allowed in dictionnary values. In that
-case values are joined using the separator.</p>
+<p>The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -282,56 +275,6 @@ case values are joined using the separator.</p>
     </tbody>
   </table>
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
-<p>Finally, <code>meson.add_devenv()</code>
-accepts the following keyword arguments:</p>
-  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
-  <style>
-    .nomargin p:last-child { margin-bottom: 0px !important; }
-  </style>
-  <table>
-    <thead>
-      <tr>
-        <th style="white-space: nowrap; text-align: center;">Name</th>
-        <th style="white-space: nowrap; text-align: center;">Type</th>
-        <th style="width: 56%;">Description</th>
-        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
-      </tr>
-    </thead>
-    <tbody class="nomargin">
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">method</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
-        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>Must be one of 'set', 'prepend', or 'append'
-(defaults to 'set'). Controls if initial values defined in the first
-positional argument are prepended, appended or repace the current value
-of the environment variable.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
-  </div>
-  </td>
-      </tr>
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">separator</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
-        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>The separator to use for the initial values defined in
-the first positional argument. If not explicitly specified, the default
-path separator for the host operating system will be used, i.e. ';' for
-Windows and ':' for UNIX/POSIX systems.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
-  </div>
-  </td>
-      </tr>
-    </tbody>
-  </table>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>

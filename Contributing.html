@@ -142,6 +142,9 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -149,9 +152,6 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
-        </li>
-        <li>
-            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -381,7 +381,7 @@ subdirectory. They are not run as part of <code>./run_project_tests.py</code>.</
 <p>The (optional) <code>test.json</code> file, in the root of a test case, is used
 for configuring the test. All of the following root entries in the <code>test.json</code>
 are independent of each other and can be combined as needed.</p>
-<p>Example <code>test.json</code>:</p>
+<p>Exanple <code>test.json</code>:</p>
 <pre><code class="language-json">{
   "env": {
     "VAR": "VAL"
@@ -648,8 +648,6 @@ stdout.</p>
 <li><code>line</code></li>
 <li>
 <code>match</code> (optional)</li>
-<li>
-<code>count</code> (optional)</li>
 </ul>
 <p>Each item in the list is matched, in order, against the remaining
 actual stdout lines, after any previous matches. If the actual stdout
@@ -677,9 +675,6 @@ matched:</p>
 </tr>
 </tbody>
 </table>
-<p>The <code>count</code> element determines how many times the line is expected, and allowed,
-to be in the output. If unspecified, it must appear "any number of times, but at
-least once".</p>
 <h4 id="skip_on_env">skip_on_env</h4>
 <p>The <code>skip_on_env</code> key can be used to specify a list of environment variables. If
 at least one environment variable in the <code>skip_on_env</code> list is present, the test
@@ -717,12 +712,10 @@ integration tests</li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <p>The <code>docs</code> directory contains the full documentation that will be used
-to generate <a href="http://mesonbuild.com">the Meson web site</a>. Line length
-in most cases should not exceed 70 characters (lines containing links
-or examples are usually exempt). Every change in functionality must
-change the documentation pages. In most cases this means updating the
-reference documentation page but bigger changes might need changes in
-other documentation, too.</p>
+to generate <a href="http://mesonbuild.com">the Meson web site</a>. Every change
+in functionality must change the documentation pages. In most cases
+this means updating the reference documentation page but bigger
+changes might need changes in other documentation, too.</p>
 <p>All new functionality needs to have a mention in the release
 notes. These features should be written in standalone files in the
 <code>docs/markdown/snippets</code> directory. The release manager will combine
