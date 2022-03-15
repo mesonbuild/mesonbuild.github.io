@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -152,6 +149,9 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -399,7 +399,7 @@ enable the CMake subproject support and <code>include()</code> the
 specification</a>.</p>
 <h2 id="cmake-configuration-files">CMake configuration files</h2>
 <h3 id="cmakewrite_basic_package_version_file">cmake.write_basic_package_version_file()</h3>
-<p>This function is the equivalent of the corresponding <a href="https://cmake.org/cmake/help/v3.11/module/CMakePackageConfigHelpers.html#generating-a-package-version-file">CMake
+<p>This function is the equivalent of the corresponding <a href="https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html#command:write_basic_package_version_file">CMake
 function</a>,
 it generates a <code>name</code> package version file.</p>
 <ul>
@@ -412,6 +412,9 @@ it generates a <code>name</code> package version file.</p>
 <code>AnyNewerVersion</code>, <code>SameMajorVersion</code>, <code>SameMinorVersion</code> or <code>ExactVersion</code>.
 It defaults to <code>AnyNewerVersion</code>. Depending on your cmake installation some kind of
 compatibility may not be available.</li>
+<li>
+<code>arch_independent</code>: <em>new in 0.62.0</em>, if true the generated package file
+will skip architecture checks. Useful for header-only libraries.</li>
 <li>
 <code>install_dir</code>: optional installation directory, it defaults to <code>$(libdir)/cmake/$(name)</code>
 </li>
@@ -437,7 +440,8 @@ the <code>configuration</code> parameter.</p>
 <li>
 <code>install_dir</code>: optional installation directory, it defaults to <code>$(libdir)/cmake/$(name)</code>.</li>
 <li>
-<code>configuration</code>: a <code>configuration_data</code> object that will be used for variable substitution in the template file.</li>
+<code>configuration</code>: a <code>configuration_data</code> object that will be used for variable substitution in the template file.
+<em>Since 0.62.0</em> it can take a dictionary instead.</li>
 </ul>
 <p>Example:</p>
 <p>meson.build:</p>
