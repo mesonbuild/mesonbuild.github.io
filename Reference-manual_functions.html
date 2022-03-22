@@ -3630,7 +3630,7 @@ corresponding output. For example:</p>
 <pre><code class="language-meson">custom_target('different-install-dirs',
   output : ['first.file', 'second.file'],
   install : true,
-  install_dir : ['somedir', 'otherdir])
+  install_dir : ['somedir', 'otherdir'])
 </code></pre>
 <p>This would install <code>first.file</code> to <code>somedir</code> and <code>second.file</code> to <code>otherdir</code>.</p>
 <p>To only install some outputs, pass <code>false</code> for the outputs that you
@@ -3638,7 +3638,7 @@ don't want installed. For example:</p>
 <pre><code class="language-meson">    custom_target('only-install-second',
       output : ['first.file', 'second.file'],
       install : true,
-      install_dir : [false, 'otherdir])
+      install_dir : [false, 'otherdir'])
 </code></pre>
 <p>This would install <code>second.file</code> to <code>otherdir</code> and not install <code>first.file</code>.</p>
   </td>
