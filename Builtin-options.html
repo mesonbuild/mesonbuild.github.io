@@ -810,6 +810,11 @@ while <code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
 <p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control
 the value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other
 c/c++ compiler supports this option.</p>
+<p>Since <em>0.63.0</em> all compiler options can be set per subproject, see
+<a href="Builtin-options.html#specifying-options-per-subproject">here</a> for details on how the default value
+is inherited from main project. This is useful for example when the main project
+requires C++11 but a subproject requires C++14. The <code>cpp_std</code> value from
+subproject's <code>default_options</code> is now respected.</p>
 <h2 id="specifying-options-per-machine">Specifying options per machine</h2>
 <p>Since <em>0.51.0</em>, some options are specified per machine rather than
 globally for all machine configurations. Prefixing the option with
