@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.62.0</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Release-notes-for-0-62-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="new-features">New features</h1>
+<h2 id="bash-completion-scripts-sourced-in-meson-devenv">Bash completion scripts sourced in <code>meson devenv</code>
+</h2>
+<p>If bash-completion scripts are being installed and the shell is bash, they will
+be automatically sourced.</p>
+<h2 id="setup-gdb-autoload-for-meson-devenv">Setup GDB auto-load for <code>meson devenv</code>
+</h2>
+<p>When GDB helper scripts (*-gdb.py, *-gdb.gdb, and *-gdb.csm) are installed with
+a library name that matches one being built, Meson adds the needed auto-load
+commands into <code>&lt;builddir&gt;/.gdbinit</code> file. When running gdb from top build
+directory, that file is loaded by gdb automatically.</p>
+<h2 id="print-modified-environment-variables-with-meson-devenv-dump">Print modified environment variables with <code>meson devenv --dump</code>
+</h2>
+<p>With <code>--dump</code> option, all envorinment variables that have been modified are
+printed instead of starting an interactive shell. It can be used by shell
+scripts that wish to setup their environment themself.</p>
+<h2 id="new-method-and-separator-kwargs-on-environment-and-mesonadd_devenv">New <code>method</code> and <code>separator</code> kwargs on <code>environment()</code> and <code>meson.add_devenv()</code>
+</h2>
+<p>It simplifies this common pattern:</p>
+<pre><code class="language-meson">env = environment()
+env.prepend('FOO', ['a', 'b'], separator: ',')
+meson.add_devenv(env)
+</code></pre>
+<p>becomes one line:</p>
+<pre><code class="language-meson">meson.add_devenv({'FOO': ['a', 'b']}, method: 'prepend', separator: ',')
+</code></pre>
+<p>or two lines:</p>
+<pre><code class="language-meson">env = environment({'FOO': ['a', 'b']}, method: 'prepend', separator: ',')
+meson.add_devenv(env)
+</code></pre>
+<h2 id="new-custom-dependency-for-libdl">New custom dependency for libdl</h2>
+<pre><code>dependency('dl')
+</code></pre>
+<p>will now check for the functionality of libdl.so, but first check if it is
+provided in the libc (for example in libc on OpenBSD or in musl libc on linux).</p>
+<h2 id="pkgconfiggenerate-will-now-include-variables-for-builtin-directories-when-referenced">pkgconfig.generate will now include variables for builtin directories when referenced</h2>
+<p>When using the <code>variables:</code> family of kwargs to <code>pkgconfig.generate</code> to refer
+to installed paths, traditionally only <code>prefix</code>, <code>includedir</code>, and <code>libdir</code>
+were available by default, and generating a correct (relocatable) pkg-config
+file required manually constructing variables for e.g. <code>datadir</code>.</p>
+<p>Meson now checks each variable to see if it begins with a reference to a
+standard directory, and if so, adds it to the list of directories for which a
+builtin variable is created.</p>
+<p>For example, before it was necessary to do this:</p>
+<pre><code class="language-meson">pkgconfig.generate(
+    name: 'bash-completion',
+    description: 'programmable completion for the bash shell',
+    dataonly: true,
+    variables: {
+        'prefix': get_option('prefix'),
+        'datadir': join_paths('${prefix}', get_option('datadir')),
+        'sysconfdir': join_paths('${prefix}', get_option('sysconfdir')),
+
+        'compatdir': '${sysconfdir}/bash_completion.d',
+        'completionsdir': '${datadir}/bash-completion/completions',
+        'helpersdir': '${datadir}/bash-completion/helpers',
+    },
+    install_dir: join_paths(get_option('datadir'), 'pkgconfig'),
+)
+</code></pre>
+<p>Now the first three variables are not needed.</p>
+<h2 id="new-keyword-argument-verbose-for-tests-and-benchmarks">New keyword argument <code>verbose</code> for tests and benchmarks</h2>
+<p>The new keyword argument <code>verbose</code> can be used to mark tests and benchmarks
+that must always be logged verbosely on the console.  This is particularly
+useful for long-running tests, or when a single Meson test() is wrapping
+an external test harness.</p>
+<h2 id="cmake-support-for-versions-3170-is-deprecated">CMake support for versions &lt;3.17.0 is deprecated</h2>
+<p>Support for CMake versions below 3.17.0 is now deprecated for <em>both</em> CMake
+dependencies and subprojects.</p>
+<h2 id="removal-of-the-rpm-module">Removal of the RPM module</h2>
+<p>Due to lack of interest, lack of maintainership, and lack of a clear purpose,
+the RPM module has been removed.</p>
+<p>Users interested in one-shot tools to generate an RPM spec file template for
+distro packaging, are encouraged develop an external tool that reads the
+introspection data.</p>
+<p>For more details, see https://github.com/mesonbuild/meson/issues/9764</p>
+<h2 id="cmake-server-api-support-is-removed">CMake server API support is removed</h2>
+<p>Support for the
+<a href="https://cmake.org/cmake/help/latest/release/3.15.html#deprecated-and-removed-features">deprecated (since CMake 3.15)</a>
+and now
+<a href="https://cmake.org/cmake/help/latest/release/3.20.html#deprecated-and-removed-features">removed (since CMake 3.20)</a>
+CMake server API is dropped from Meson.</p>
+<p>The new CMake minimum version for CMake subprojects is now CMake 3.14.</p>
+<h2 id="rust-procmacro-crates">Rust proc-macro crates</h2>
+<p>Rust has these handy things called proc-macro crates, which are a bit like a
+compiler plugin. We can now support them, simply build a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> with
+the <code>rust_crate_type</code> set to <code>proc-macro</code>.</p>
+<pre><code class="language-meson">proc = shared_library(
+  'proc',
+  'proc.rs',
+  rust_crate_type : 'proc-macro',
+  install : false,
+)
+
+user = executable('user, 'user.rs', link_with : proc)
+</code></pre>
+<h2 id="found-programs-now-have-a-version-method">found programs now have a version method</h2>
+<p>The return value of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> can now check the exact version of the
+found program, independent of the minimum version requirement. This can be used
+e.g. to perform different actions depending on the exact version detected.</p>
+<h2 id="minimum-required-python-version-updated-to-37">Minimum required Python version updated to 3.7</h2>
+<p>Meson now requires at least Python version 3.7 to run as Python 3.6 reached EOL
+on December 2021. In practice this should only affect people developing on
+Ubuntu Bionic, who will need to manually install python3.8 from the official
+repositories.</p>
+<h2 id="added-support-for-xml-translations-using-itstool">Added support for XML translations using itstool</h2>
+<p>XML files can now be translated easier by using <code>itstool</code> via
+<code>i18n.itstool_join()</code>. This ensures the XML is translated correctly
+based on the defined ITS rules for the specific XML layout.</p>
+<h2 id="jni-system-dependency-modules">JNI System Dependency Modules</h2>
+<p>The JNI system dependency now supports a <code>modules</code> keyword argument which is a
+list containing any of the following: <code>jvm</code>, <code>awt</code>.</p>
+<pre><code class="language-meson">jni_dep = dependency('jni', version: '&gt;= 1.8.0', modules: ['jvm', 'awt'])
+</code></pre>
+<p>This will add appropriate linker arguments to your target.</p>
+<h2 id="new-unstable-wayland-module">New unstable wayland module</h2>
+<p>This module can search for protocol xml files from the wayland-protocols
+package, and generate .c and .h files using wayland-scanner.</p>
+<h2 id="experimental-command-to-convert-environments-to-cross-files">Experimental command to convert environments to cross files</h2>
+<p>Meson has a new command <code>env2mfile</code> that can be used to convert
+"environment variable based" cross and native compilation environments
+to Meson machine files. This is especially convenient for e.g. distro
+packagers so they can easily generate unambiguous configuration files
+for packge building.</p>
+<p>As an example here's how you would generate a cross file that takes
+its settings from the <code>CC</code>, <code>CXX</code>, <code>CFLAGS</code> etc environment variables.</p>
+<pre><code>meson env2mfile --cross --system=baremetal --cpu=armv7 --cpu-family=arm -o armcross.txt
+</code></pre>
+<p>The command also has support for generating Debian build files using
+system introspection:</p>
+<pre><code>meson env2mfile --cross --debarch armhf -o debarmhf_cross.txt
+</code></pre>
+<p>Note how you don't need to specify any system details, the command
+gets them transparently via <code>dpkg-architecture</code>.</p>
+<p>Creating a native file is done in the same way:</p>
+<pre><code>meson env2mfile --native -o current_system.txt
+</code></pre>
+<p>This system will detect if the <code>_FOR_BUILD</code> environment variables are
+enabled and then uses them as needed.</p>
+<p>With this you should be able to convert any envvar-based cross build
+setup to cross and native files and then use those. This means, among
+other things, that you can then run your compilations from any shell,
+not just the special one that has all the environment variables set.</p>
+<p>As this functionality is still a bit in flux, the specific behaviour
+and command line arguments to use are subject to change. Because of
+this the main documentation has not yet been updated.</p>
+<p>Please try this for your use cases and report to us if it is working.
+Patches to make the autodetection work on other distros and platforms
+are also welcome.</p>
+<h2 id="added-optional-allowdirty-flag-for-the-dist-command">Added optional '--allow-dirty' flag for the 'dist' command</h2>
+<p>An optional <code>--allow-dirty</code> flag has been added to the <code>dist</code> command.</p>
+<p>Previously, if uncommitted changes were present, Meson would warn about
+this but continue with the dist process. It now errors out instead. The
+error can be suppressed by using the <code>--allow-dirty</code> option.</p>
+<h2 id="ldconfig-is-no-longer-run-on-install">ldconfig is no longer run on install</h2>
+<p>Due to various issues of fragility and concern that it doesn't predictably do
+the right thing, meson no longer runs ldconfig during <code>meson install</code>, and
+users who need it run should run it themselves, instead.</p>
+<h2 id="added-support-for-texas-instruments-msp430-and-arm-compilers">Added support for Texas Instruments MSP430 and ARM compilers</h2>
+<p>Meson now supports the TI <a href="https://www.ti.com/tool/MSP-CGT">MSP430</a> and
+<a href="https://www.ti.com/tool/ARM-CGT">ARM</a> toolchains. The compiler and linker are
+identified as <code>ti</code> and <code>ti-ar</code>, respectively. To maintain backwards
+compatibility with existing build definitions, the <a href="https://www.ti.com/tool/C2000-CGT">C2000
+toolchain</a> is still identified as <code>c2000</code> and
+<code>ar2000</code>.</p>
+<h2 id="cmakeconfigure_package_config_file-can-now-take-a-dict">cmake.configure_package_config_file can now take a dict</h2>
+<p>The <code>configuration</code> kwarg of the <code>configure_package_config_file()</code> function
+from the <code>cmake</code> module can now take a dict object, just like the regular
+<code>configure_file()</code> function.</p>
+<h2 id="deprecated-javagenerate_native_header-in-favor-of-the-new-javagenerate_native_headers">Deprecated <code>java.generate_native_header()</code> in favor of the new <code>java.generate_native_headers()</code>
+</h2>
+<p><code>java.generate_native_header()</code> was only useful for the most basic of
+situations. It didn't take into account that in order to generate native
+headers, you had to have all the referenced Java files. It also didn't take
+into account inner classes. Do not use this function from <code>0.62.0</code> onward.</p>
+<p><code>java.generate_native_headers()</code> has been added as a replacement which should account for the previous function's shortcomings.</p>
+<pre><code class="language-java">// Outer.java
+
+package com.mesonbuild;
+
+public class Outer {
+    private static native void outer();
+
+    public static class Inner {
+        private static native void inner();
+    }
+}
+</code></pre>
+<p>With the above file, an invocation would look like the following:</p>
+<pre><code class="language-meson">java = import('java')
+
+native_headers = java.generate_native_headers(
+    'Outer.java',
+    package: 'com.mesonbuild',
+    classes: ['Outer', 'Outer.Inner']
+)
+</code></pre>
+<h2 id="new-option-to-choose-python-installation-environment">New option to choose python installation environment</h2>
+<p>It is now possible to specify <code>-Dpython.install_env</code> and choose how python modules are installed.</p>
+<ul>
+<li>
+<code>venv</code>: assume that a virtualenv is active and install to that</li>
+<li>
+<code>system</code>: install to the global site-packages of the selected interpreter
+(the one that the venv module calls --system-site-packages)</li>
+<li>
+<code>prefix</code>: preserve existing behavior</li>
+<li>
+<code>auto</code>: autodetect whether to use venv or system</li>
+</ul>
+<h2 id="jdk-system-dependency-renamed-from-jdk-to-jni">JDK System Dependency Renamed from <code>jdk</code> to <code>jni</code>
+</h2>
+<p>The JDK system dependency is useful for creating native Java modules using the
+JNI. Since the purpose is to find the JNI, it has been decided that a better
+name is in fact "jni". Use of <code>dependency('jdk')</code> should be replaced with
+<code>dependency('jni')</code>.</p>
+<h2 id="i18nmerge_file-no-longer-arbitrarily-leaves-your-project-halfbuilt">i18n.merge_file no longer arbitrarily leaves your project half-built</h2>
+<p>The i18n module partially accounts for builds with NLS disabled, by disabling
+gettext compiled translation catalogs if it cannot build them. Due to
+implementation details, this also disabled important data files created via
+merge_file, leading to important desktop files etc. not being installed.</p>
+<p>This overreaction has been fixed. It is no longer possible to have NLS-disabled
+builds which break the project by not installing important files which have
+nothing to do with NLS (other than including some).</p>
+<p>If you were depending on not having the Gettext tools installed and
+successfully mis-building your project, you may need to make your project
+actually work with NLS disabled, for example by providing some version of your
+files which is still installed even when merge_file cannot be run.</p>
+<h2 id="all-directory-options-now-support-paths-outside-of-prefix">All directory options now support paths outside of prefix</h2>
+<p>Previously, Meson only allowed most directory options to be relative to prefix.
+This restriction has been now lifted, bringing us in line with Autotools and
+CMake. It is also useful for platforms like Nix, which install projects into
+multiple independent prefixes.</p>
+<p>As a consequence, <code>get_option</code> might return absolute paths for any
+directory option, if a directory outside of prefix is passed. This
+is technically a backwards incompatible change but its effect
+should be minimal, thanks to widespread use of <code>join_paths</code>/
+<code>/</code> operator and pkg-config generator module.</p>
+<h2 id="meson-install-strip"><code>meson install --strip</code></h2>
+<p>It is now possible to strip targets using <code>meson install --strip</code> even if
+<code>-Dstrip=true</code> option was not set during configuration. This allows doing
+stripped and not stripped installations without reconfiguring the build.</p>
+<h2 id="support-for-arm-ltd-clang-toolchain">Support for ARM Ltd. Clang toolchain</h2>
+<p>Support for the <code>armltdclang</code> compiler has been added. This differs from the
+existing <code>armclang</code> toolchain in that it is a fork of Clang by ARM Ltd. and
+supports native compilation. The Keil <code>armclang</code> toolchain only supports
+cross-compilation to embedded devices.</p>
+<h2 id="structured_sources">structured_sources()</h2>
+<p>A new function, <code>structured_sources()</code> has been added. This function allows
+languages like Rust which depend on the filesystem layout at compile time to mix
+generated and static sources.</p>
+<pre><code class="language-meson">executable(
+  'main',
+  structured_sources(
+    'main.rs,
+    {'mod' : generated_mod_rs},
+  )
+)
+</code></pre>
+<p>Meson will then at build time copy the files into the build directory (if
+necessary), so that the desired file structure is laid out, and compile that. In
+this case:</p>
+<pre><code>root/
+  main.rs
+  mod/
+    mod.rs
+</code></pre>
+<h2 id="new-custom-dependency-for-openssl">New custom dependency for OpenSSL</h2>
+<p>Detecting an OpenSSL installation in a cross-platform manner can be
+complicated. Officially, pkg-config is supported by upstream. Unofficially,
+cmake includes a FindOpenSSL using a different name and which requires
+specifying modules.</p>
+<p>Meson will now allow the pkg-config name to work in all cases using the following lookup order:</p>
+<ul>
+<li>prefer pkg-config if at all possible</li>
+<li>attempt to probe the system for the standard library naming, and retrieve the version from the headers</li>
+<li>if all else fails, check if cmake can find it</li>
+</ul>
+<h2 id="d-features-in-declare_dependency">D features in <code>declare_dependency</code>
+</h2>
+<p><code>declare_dependency</code>accepts parameters for D specific features.
+Accepted new parameters are <code>d_module_features</code> and <code>d_import_dirs</code>.</p>
+<p>This can be useful to propagate conditional compilation versions. E.g.:</p>
+<pre><code class="language-meson">my_lua_dep = declare_dependency(
+    # ...
+    d_module_features: ['LUA_53'],
+    d_import_dirs: include_directories('my_lua_folder'),
+)
+</code></pre>
+<h2 id="arch_independent-kwarg-in-cmakewrite_basic_package_version_file">arch_independent kwarg in cmake.write_basic_package_version_file</h2>
+<p>The <code>write_basic_package_version_file()</code> function from the <code>cmake</code> module
+now supports an <code>arch_independent</code> kwarg, so that architecture checks in
+the generated Package Version file are skipped, reproducing the behaviour of
+CMake's <a href="https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html#command:write_basic_package_version_file">ARCH_INDEPENDENT</a>
+option.</p>
+<h2 id="dataonly-pkgconfig-default-install-path">
+<code>dataonly</code> Pkgconfig Default Install Path</h2>
+<p>The default install path for <code>dataonly</code> pkgconfig files has changed from
+<code>${libdir}/pkgconfig</code> to <code>${datadir}/pkgconfig</code>.</p>
+<h2 id="jar-default-install-dir">JAR default install dir</h2>
+<p>The previous default for <code>jar()</code> was <code>libdir</code>. With this release, it has been
+changed to <code>datadir/java</code>. Please open an issue if this is not a sane default
+for your system.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Release-notes-for-0.62.0.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

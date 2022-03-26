@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -152,6 +149,9 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -482,6 +482,13 @@ foreach h : check_headers
   endif
 endforeach
 </code></pre>
+<h2 id="dl-libdl">dl (libdl)</h2>
+<p><em>(added 0.62.0)</em></p>
+<p>Provides access to the dynamic link interface (functions: dlopen,
+dlclose, dlsym and others). On systems where this is not built
+into libc (mostly glibc &lt; 2.34), tries to find an external library
+providing them instead.</p>
+<p><code>method</code> may be <code>auto</code>, <code>builtin</code> or <code>system</code>.</p>
 <h2 id="fortran-coarrays">Fortran Coarrays</h2>
 <p><em>(added 0.50.0)</em></p>
 <p>Coarrays are a Fortran language intrinsic feature, enabled by
@@ -537,6 +544,33 @@ not built into libc, tries to find an external library providing them instead.</
 is not built into libc, tries to find an external library providing them
 instead.</p>
 <p><code>method</code> may be <code>auto</code>, <code>builtin</code> or <code>system</code>.</p>
+<h2 id="jdk">JDK</h2>
+<p><em>(added 0.58.0)</em>
+<em>(deprecated 0.62.0)</em></p>
+<p>Deprecated name for JNI. <code>dependency('jdk')</code> instead of <code>dependency('jni')</code>.</p>
+<h2 id="jni">JNI</h2>
+<p><em>(added 0.62.0)</em></p>
+<p><code>modules</code> is an optional list of strings containing any of <code>jvm</code> and <code>awt</code>.</p>
+<p>Provides access to compiling with the Java Native Interface (JNI). The lookup
+will first check if <code>JAVA_HOME</code> is set in the environment, and if not will use
+the resolved path of <code>javac</code>. Systems will usually link your preferred JDK to
+well known paths like <code>/usr/bin/javac</code> on Linux for instance. Using the path
+from <code>JAVA_HOME</code> or the resolved <code>javac</code>, this dependency will place the JDK
+installation's <code>include</code> directory and its platform-dependent subdirectory on
+the compiler's include path. If <code>modules</code> is non-empty, then the proper linker
+arguments will also be added.</p>
+<pre><code class="language-meson">dep = dependency('jni', version: '&gt;= 1.8.0', modules: ['jvm'])
+</code></pre>
+<p><strong>Note</strong>: Due to usage of a resolved path, upgrading the JDK may cause the
+various paths to not be found. In that case, please reconfigure the build
+directory. One workaround is to explicitly set <code>JAVA_HOME</code> instead of relying on
+the fallback <code>javac</code> resolved path behavior.</p>
+<p><strong>Note</strong>: Include paths might be broken on platforms other than <code>linux</code>,
+<code>windows</code>, <code>darwin</code>, and <code>sunos</code>. Please submit a PR or open an issue in this
+case.</p>
+<p><strong>Note</strong>: Use of the <code>modules</code> argument on a JDK <code>&lt;= 1.8</code> may be broken if your
+system is anything other than <code>x86_64</code>. Please submit a PR or open an issue in
+this case.</p>
 <h2 id="libgcrypt">libgcrypt</h2>
 <p><em>(added 0.49.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
@@ -615,6 +649,9 @@ language-specific, you must specify the requested language using the
 <p>This dependency selects the appropriate compiler flags and/or libraries to use
 for OpenMP support.</p>
 <p>The <code>language</code> keyword may used.</p>
+<h2 id="openssl">OpenSSL</h2>
+<p><em>(added 0.62.0)</em></p>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>system</code> or <code>cmake</code>.</p>
 <h2 id="pcap">pcap</h2>
 <p><em>(added 0.42.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
@@ -677,11 +714,16 @@ or as an OSX framework.</p>
 <code>pkg-config</code>.</p>
 <h2 id="shaderc">Shaderc</h2>
 <p><em>(added 0.51.0)</em></p>
-<p>Shaderc currently does not ship with any means of detection.
-Nevertheless, Meson can try to detect it using <code>pkg-config</code>, but will
-default to looking for the appropriate library manually. If the
-<code>static</code> keyword argument is <code>true</code>, <code>shaderc_combined</code> is preferred.
-Otherwise, <code>shaderc_shared</code> is preferred. Note that it is not possible
+<p>Meson will first attempt to find shaderc using <code>pkg-config</code>. Upstream
+currently ships three different <code>pkg-config</code> files and by default will
+check them in this order: <code>shaderc</code>, <code>shaderc_combined</code>, and
+<code>shaderc_static</code>. If the <code>static</code> keyword argument is <code>true</code>, then
+Meson instead checks in this order: <code>shaderc_combined</code>, <code>shaderc_static</code>,
+and <code>shaderc</code>.</p>
+<p>If no <code>pkg-config</code> file is found, then Meson will try to detect the
+library manually. In this case, it will try to link against either
+<code>-lshaderc_shared</code> or <code>-lshaderc_combined</code>, preferring the latter
+if the static keyword argument is true. Note that it is not possible
 to obtain the shaderc version using this method.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <h2 id="threads">Threads</h2>

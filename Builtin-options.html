@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -152,6 +149,9 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -215,7 +215,8 @@ or <code>--option value</code>--- a list is shown by running <code>meson setup -
 <p>For legacy reasons <code>--warnlevel</code> is the cli argument for the
 <code>warning_level</code> option.</p>
 <p>They can also be edited after setup using <code>meson configure -Doption=value</code>.</p>
-<p>Installation options are all relative to the prefix, except:</p>
+<p>Installation options are usually relative to the prefix but it should
+not be relied on, since they can be absolute paths in the following cases:</p>
 <ul>
 <li>When the prefix is <code>/usr</code>: <code>sysconfdir</code> defaults to <code>/etc</code>,
 <code>localstatedir</code> defaults to <code>/var</code>, and <code>sharedstatedir</code> defaults to
@@ -224,6 +225,7 @@ or <code>--option value</code>--- a list is shown by running <code>meson setup -
 <li>When the prefix is <code>/usr/local</code>: <code>localstatedir</code> defaults
 to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/var/local/lib</code>
 </li>
+<li>When an absolute path outside of prefix is provided by the user/distributor.</li>
 </ul>
 <h3 id="directories">Directories</h3>
 <table>
@@ -808,6 +810,11 @@ while <code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
 <p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control
 the value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other
 c/c++ compiler supports this option.</p>
+<p>Since <em>0.63.0</em> all compiler options can be set per subproject, see
+<a href="Builtin-options.html#specifying-options-per-subproject">here</a> for details on how the default value
+is inherited from main project. This is useful for example when the main project
+requires C++11 but a subproject requires C++14. The <code>cpp_std</code> value from
+subproject's <code>default_options</code> is now respected.</p>
 <h2 id="specifying-options-per-machine">Specifying options per machine</h2>
 <p>Since <em>0.51.0</em>, some options are specified per machine rather than
 globally for all machine configurations. Prefixing the option with
@@ -863,6 +870,12 @@ name with the module name: <code>-D&lt;module&gt;.&lt;option&gt;=&lt;value&gt;</
 </thead>
 <tbody>
 <tr>
+<td> install_env</td>
+<td> prefix</td>
+<td> {auto,prefix,system,venv}</td>
+<td> Which python environment to install to (Since 0.62.0)</td>
+</tr>
+<tr>
 <td> platlibdir</td>
 <td></td>
 <td> Directory path</td>
@@ -883,6 +896,15 @@ relative to the installation <code>prefix</code>, which will often result in ins
 modules to not be found by the interpreter unless <code>prefix</code> is <code>/usr</code> on Linux,
 or for example <code>C:\Python39</code> on Windows. These options can be absolute paths
 outside of <code>prefix</code>.</p>
+<p><em>Since 0.62.0</em> The <code>python.install_env</code> option is used to detect the correct
+installation path. Setting to <code>system</code> will avoid making the paths relative to
+<code>prefix</code> and instead use the global site-packages of the selected python
+interpreter directly, even if it is a venv. Setting to <code>venv</code> will instead use
+the paths for the virtualenv the python found installation comes from (or fail
+if it is not a virtualenv).  Setting to <code>auto</code> will check if the found
+installation is a virtualenv, and use <code>venv</code> or <code>system</code> as appropriate (but
+never <code>prefix</code>). This option is mutually exclusive with the <code>platlibdir</code>/<code>purelibdir</code>.</p>
+<p>For backwards compatibility purposes, the default <code>install_env</code> is <code>prefix</code>.</p>
 
     </div>
         
