@@ -3336,7 +3336,7 @@ this may be an absolute or a relative to current workdir path.</li>
   <b>command</b>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a>]  # Command to run to create outputs from inputs
   <b>console</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                       # Keyword argument conflicts with `capture`, and is meant
   <b>depend_files</b>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                           # files (<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>,
-  <b>depends</b>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_tgt.html"><ins>tgt</ins></a>]                                  # Specifies that this target depends on the specified
+  <b>depends</b>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins>build_tgt</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a>]               # Specifies that this target depends on the specified
   <b>depfile</b>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                        # A dependency file that the command can write listing
   <b>env</b>                : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                # environment variables to set, such as
   <b>feed</b>               : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                       # There are some compilers that can't be told to read
@@ -3532,7 +3532,7 @@ argument. Useful for adding regen dependencies.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depends</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_tgt.html"><ins><code>tgt</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Specifies that this target depends on the specified
@@ -8821,7 +8821,7 @@ this may be an absolute or a relative to current workdir path.</li>
 
   # Keyword arguments:
   <b>command</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # A list containing the command to run and the arguments
-  <b>depends</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_tgt.html"><ins>tgt</ins></a>]                                               # A list of targets that this target depends on but which
+  <b>depends</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins>build_tgt</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a>]                            # A list of targets that this target depends on but which
   <b>env</b>     : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                             # environment variables to set, such as
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -8892,7 +8892,7 @@ the first item will find that command in <code>PATH</code> and run it.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depends</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_tgt.html"><ins><code>tgt</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>A list of targets that this target depends on but which
