@@ -5273,8 +5273,8 @@ need to construct the set of paths to search on the fly:</p>
 </div>
 <pre><code class="language-meson"># `program_name` here is a string that can be an executable or script
 <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> find_program(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>program_name</b>,     # The name of the program to search
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>fallback</b>...,      # These parameters are used as fallback strings to search for
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>program_name</b>,     # The name of the program to search, or a <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> object to be used
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>fallback</b>...,      # These parameters are used as fallback names to search for
 
   # Keyword arguments:
   <b>dirs</b>     : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]       # extra list of absolute paths where to look for program names
@@ -5302,10 +5302,13 @@ need to construct the set of paths to search on the fly:</p>
     <tbody class="nomargin">
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">program_name</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
+</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>The name of the program to search</p>
+<p>The name of the program to search, or a <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> object to be used
+without searching.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5317,8 +5320,8 @@ need to construct the set of paths to search on the fly:</p>
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p>Additionally, the
 function accepts between <code>0</code> and <code>infinity</code> variadic
-arguments (<code>fallback...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
-<p>These parameters are used as fallback strings to search for.
+arguments (<code>fallback...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a></code>.</p>
+<p>These parameters are used as fallback names to search for.
 This is meant to be used for cases where the
 program may have many alternative names, such as <code>foo</code> and
 <code>foo.py</code>. The function will check for the arguments one by one and the
