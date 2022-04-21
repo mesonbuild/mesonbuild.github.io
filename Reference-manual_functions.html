@@ -12024,11 +12024,11 @@ you should use <a href="Reference-manual_functions.html#custom_target"><ins><cod
 </div>
 <pre><code class="language-meson"># This command detects revision control commit information at build time
 <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> vcs_tag(
-  <b>command</b>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]              # The command to execute, see <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> for details
-  <b>fallback</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                    # Version number to use when no revision control information is present,
-  <b>input</b>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        <i>[required]</i>  # File to modify (e
-  <b>output</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        <i>[required]</i>  # File to write the results to (e
-  <b>replace_string</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                    # String in the input file to substitute with the commit information
+  <b>command</b>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]              # The command to execute, see <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> for details
+  <b>fallback</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                 # Version number to use when no revision control information is present,
+  <b>input</b>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                     <i>[required]</i>  # File to modify (e
+  <b>output</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                     <i>[required]</i>  # File to write the results to (e
+  <b>replace_string</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                 # String in the input file to substitute with the commit information
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments53">Arguments</h3>
@@ -12051,13 +12051,15 @@ accepts the following keyword arguments:</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">command</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The command to execute, see <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> for details
 on how this command must be specified.</p>
 <p>This parameter is optional. If it is absent, Meson will try
 its best to find a suitable default command.</p>
+<p><em>(since 0.62.0)</em> <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> is accepted.</p>
+<p><em>(since 0.63.0)</em> <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>, <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a>, and <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> are accepted.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
