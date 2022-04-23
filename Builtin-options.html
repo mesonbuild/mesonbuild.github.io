@@ -810,6 +810,11 @@ while <code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
 <p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control
 the value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other
 c/c++ compiler supports this option.</p>
+<p>Since <em>0.63.0</em> all compiler options can be set per subproject, see
+<a href="Builtin-options.html#specifying-options-per-subproject">here</a> for details on how the default value
+is inherited from main project. This is useful for example when the main project
+requires C++11 but a subproject requires C++14. The <code>cpp_std</code> value from
+subproject's <code>default_options</code> is now respected.</p>
 <h2 id="specifying-options-per-machine">Specifying options per machine</h2>
 <p>Since <em>0.51.0</em>, some options are specified per machine rather than
 globally for all machine configurations. Prefixing the option with
@@ -853,6 +858,38 @@ command line <code>-Dfoo:default_library=static</code>.</p>
 <h2 id="module-options">Module options</h2>
 <p>Some Meson modules have built-in options. They can be set by prefixing the option
 name with the module name: <code>-D&lt;module&gt;.&lt;option&gt;=&lt;value&gt;</code> (e.g. <code>-Dpython.platlibdir=/foo</code>).</p>
+<h3 id="pkgconfig-module">Pkgconfig module</h3>
+<table>
+<thead>
+<tr>
+<th> Option</th>
+<th> Default value</th>
+<th> Possible values</th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> relocatable</td>
+<td> false</td>
+<td> true, false</td>
+<td> Generate the pkgconfig files as relocatable (Since 0.63.0)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Since 0.63.0</em> The <code>pkgconfig.relocatable</code> option is used by the
+pkgconfig module, namely <a href="Pkgconfig-module.html"><code>pkg.generate()</code></a> and affect how the
+<code>prefix</code> in the generated pkgconfig file is set (not to be confused
+with the <a href="Builtin-options.html#directories">install prefix</a>). When it is <code>true</code> the <code>prefix</code> will be
+relative to the <code>install_dir</code>. This allows the pkgconfig file to be
+moved around and still work, as long as the relative path is not
+broken. In general this allows for the whole installed package to be
+placed anywhere on the system and still work as a dependency. When it
+is set to <code>false</code> the <code>prefix</code> will be the same as the install prefix.</p>
+<p>An error will be raised if <code>pkgconfig.relocatable</code> is <code>true</code> and the
+<code>install_dir</code> for a generated pkgconfig file points outside the
+install prefix. For example if the install prefix is <code>/usr</code> and the
+<code>install_dir</code> for a pkgconfig file is <code>/var/lib/pkgconfig</code>.</p>
 <h3 id="python-module">Python module</h3>
 <table>
 <thead>
