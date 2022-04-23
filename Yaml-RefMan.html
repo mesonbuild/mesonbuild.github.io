@@ -215,11 +215,6 @@ main executable being <code>docs/genrefman.py</code>.  By default <code>genrefma
 the yaml manual using a strict subset of yaml at the cost of loading slowly.
 You may optionally disable all these safety checks using the <code>fastyaml</code> loader,
 which will significantly speed things up at the cost of being less correct.</p>
-<p>The following python packages are required for the <code>genrefman</code> script:</p>
-<ul>
-<li>chevron</li>
-<li>strictyaml</li>
-</ul>
 <h2 id="linking-to-the-reference-manual">Linking to the Reference Manual</h2>
 <p>Links to the Reference Manual can be inserted <em>anywhere</em> in the Meson docs with
 tags like this: <code>[[&lt;tag&gt;]]</code>. This guarantees that links remain stable (even if
@@ -311,9 +306,6 @@ optargs_inherit: _build_target_base  # Use the optargs definition of `_build_tar
 varargs_inherit: _build_target_base  # Use the varargs definition of `_build_target_base` here
 kwargs_inherit: _build_target_base   # Add all kwargs of `_build_target_base` to this function
 
-# Whether argument flattening (see Syntax.md) is enabled
-# for this function. Defaults to `true`.
-args_flattening: true
 
 posargs:
   arg_name:
