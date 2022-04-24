@@ -241,9 +241,7 @@ global.</p>
 <pre><code class="language-meson">i18n = import('i18n')
 # define GETTEXT_PACKAGE
 add_project_arguments('-DGETTEXT_PACKAGE="intltest"', language:'c')
-i18n.gettext(meson.project_name(),
-    args: '--directory=' + meson.source_root()
-)
+i18n.gettext(meson.project_name())
 </code></pre>
 <p>The first command imports the <code>i18n</code> module that provides gettext
 features. The fourth line does the actual invocation. The first
