@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"foo.py","urls":[{"url":"Reference-manual_functions.html#arguments21","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"foo.py","urls":[{"url":"Reference-manual_functions.html#arguments22","node_type":"p","context":{"gi-language":["default"]}}]});

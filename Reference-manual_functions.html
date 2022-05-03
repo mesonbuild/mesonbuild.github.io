@@ -593,12 +593,102 @@ compilations (only) when cross compiling.</p>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h2 id="add_project_dependencies">add_project_dependencies()</h2>
+<p>Adds arguments to the compiler and linker command line, so that the
+given set of dependencies is included in all build products for this
+project.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h3 style="margin-top: 0px;" id="signature4">Signature</h3>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.63.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Adds arguments to the compiler and linker command line, so that the
+<a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_project_dependencies(
+  <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> <b>dependencies</b>...,  # The dependencies to add; if internal dependencies are included, they must not include any built object
+
+  # Keyword arguments:
+  <b>language</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  <i>[required]</i>  # Specifies the language(s) that the arguments should be
+  <b>native</b>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                   # A boolean specifying whether the arguments should be
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h3 id="arguments4">Arguments</h3>
+<p>The
+function accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>dependencies...</code>) of type <code><a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a></code>.</p>
+<p>The dependencies to add; if internal dependencies are included, they must not include any built object.</p>
+  <div style="margin: 0px; text-align: center;">
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>The function <code>add_project_dependencies()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">language</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies the language(s) that the arguments should be
+applied to. If a list of languages is given, the arguments are added
+to each of the corresponding compiler command lines. Note that there
+is no way to remove an argument set in this way. If you have an
+argument that is only used in a subset of targets, you have to specify
+it in per-target flags.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A boolean specifying whether the arguments should be
+applied to the native or cross compilation. If <code>true</code> the arguments
+will only be used for native compilations. If <code>false</code> the arguments
+will only be used in cross compilations. If omitted, the flags are
+added to native compilations if compiling natively and cross
+compilations (only) when cross compiling.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.48.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h2 id="add_project_link_arguments">add_project_link_arguments()</h2>
 <p>Adds global arguments to the linker command line.</p>
 <p>Like <a href="Reference-manual_functions.html#add_global_arguments"><ins><code>add_global_arguments()</code></ins></a> but the arguments are passed to the linker.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature4">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature5">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -618,7 +708,7 @@ compilations (only) when cross compiling.</p>
 <p>You must pass always arguments individually <code>arg1, arg2, ...</code> rather than as a string <code>'arg1 arg2', ...</code></p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments4">Arguments</h3>
+<h3 id="arguments5">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>Linker argument...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -695,7 +785,7 @@ build dir.</p>
 <code>msbuild RUN_TESTS.vcxproj</code>, etc depending on the backend.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature5">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature6">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -715,7 +805,7 @@ build dir.</p>
   <b>timeout_multiplier</b> : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                           # A number to multiply the test timeout with
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments5">Arguments</h3>
+<h3 id="arguments6">Arguments</h3>
 <p>The function <code>add_test_setup()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -866,7 +956,7 @@ are built. Dependencies can be any build target (e.g. return value of
 <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>, <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>, etc)</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature6">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature7">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -880,7 +970,7 @@ are built. Dependencies can be any build target (e.g. return value of
   <a href="Reference-manual_returned_tgt.html"><ins>tgt</ins></a> <b>Dep</b>...,          # The targets to depend on
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments6">Arguments</h3>
+<h3 id="arguments7">Arguments</h3>
 <p>The function <code>alias_target()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -925,7 +1015,7 @@ arguments (<code>Dep...</code>) of type <code><a href="Reference-manual_returned
 <p>Abort with an error message if <code>condition</code> evaluates to <code>false</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature7">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature8">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -942,7 +1032,7 @@ arguments (<code>Dep...</code>) of type <code><a href="Reference-manual_returned
 <p>The <code>message</code> argument is optional since 0.53.0 and defaults to print the condition statement.</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments7">Arguments</h3>
+<h3 id="arguments8">Arguments</h3>
 <p>The function <code>assert()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -1002,7 +1092,7 @@ except for:</p>
 commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature8">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature9">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1031,7 +1121,7 @@ commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</co
 <p>Prior to 0.52.0 benchmark would warn that <code>depends</code> and <code>priority</code> were unsupported, this is incorrect.</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments8">Arguments</h3>
+<h3 id="arguments9">Arguments</h3>
 <p>The function <code>benchmark()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -1283,7 +1373,7 @@ unless <code>b_staticpic</code> user option or <code>pic</code> argument are set
 which case sources will be compiled twice.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature9">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature10">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1337,7 +1427,7 @@ which case sources will be compiled twice.</p>
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments9">Arguments</h3>
+<h3 id="arguments10">Arguments</h3>
 <p>The function <code>both_libraries()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2064,7 +2154,7 @@ creating the final list.</p>
 <p>The returned object also has methods that are documented in <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature10">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature11">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2123,7 +2213,7 @@ creating the final list.</p>
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments10">Arguments</h3>
+<h3 id="arguments11">Arguments</h3>
 <p>The function <code>build_target()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2912,7 +3002,7 @@ configuration with the <a href="Reference-manual_returned_cfg_data.html"><ins><c
 finally use it in a call to <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature11">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature12">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2924,7 +3014,7 @@ finally use it in a call to <a href="Reference-manual_functions.html#configure_f
   <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>] [<b>data</b>],   # Optional dictionary to specifiy an inital data set
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments11">Arguments</h3>
+<h3 id="arguments12">Arguments</h3>
 <p>The function <code>configuration_data()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2981,7 +3071,7 @@ this function will copy the file provided in <code>input:</code> to a file in th
 build directory with the name <code>output:</code> in the current directory.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature12">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature13">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3006,7 +3096,7 @@ build directory with the name <code>output:</code> in the current directory.</p>
   <b>output_format</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # The format of the output to generate when no input
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments12">Arguments</h3>
+<h3 id="arguments13">Arguments</h3>
 <p>The function <code>configure_file()</code>
 accepts the following keyword arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -3313,7 +3403,7 @@ this may be an absolute or a relative to current workdir path.</li>
 <p>The returned object also has methods that are documented in <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature13">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature14">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3350,7 +3440,7 @@ is not portable, notably to Windows. Instead, consider using a
 <code>native: true</code> <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>, or a python script.</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments13">Arguments</h3>
+<h3 id="arguments14">Arguments</h3>
 <p>The function <code>custom_target()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3705,7 +3795,7 @@ outputs that have no tag or are not installed.</p>
 <p>Write the argument string to the meson build log.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature14">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature15">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3719,7 +3809,7 @@ outputs that have no tag or are not installed.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>] <b>msg</b>...,      # Additional parameters will be separated by spaces
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments14">Arguments</h3>
+<h3 id="arguments15">Arguments</h3>
 <p>The function <code>debug()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3770,7 +3860,7 @@ be used. This makes it interchangeable with the same dependency that
 is provided externally by the system.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature15">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature16">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3792,7 +3882,7 @@ is provided externally by the system.</p>
   <b>version</b>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                    # the version of this dependency,
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments15">Arguments</h3>
+<h3 id="arguments16">Arguments</h3>
 <p>The function <code>declare_dependency()</code>
 accepts the following keyword arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -4019,7 +4109,7 @@ allowed by <code>--wrap-mode</code>.</p>
 <p>The returned object <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> also has additional methods.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature16">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature17">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -4049,7 +4139,7 @@ allowed by <code>--wrap-mode</code>.</p>
 <p>This function supports additional <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific</a> keyword arguments that may also be accepted (e.g. <code>modules</code> specifies submodules to use for dependencies such as Qt5 or Boost. <code>components</code> allows the user to manually add CMake <code>COMPONENTS</code> for the <code>find_package</code> lookup)</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments16">Arguments</h3>
+<h3 id="arguments17">Arguments</h3>
 <p>The
 function accepts between <code>1</code> and <code>infinity</code> variadic
 arguments (<code>names...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -4311,7 +4401,7 @@ These requirements are never met if the version is unknown.</p>
 <p>Returns a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature17">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature18">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -4327,7 +4417,7 @@ These requirements are never met if the version is unknown.</p>
 <p>Returns an empty <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature18">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature19">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -4344,7 +4434,7 @@ These requirements are never met if the version is unknown.</p>
   <b>separator</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use for the initial values defined in
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments17">Arguments</h3>
+<h3 id="arguments18">Arguments</h3>
 <p><a href="Syntax.html#argument-flattening">Argument flattening</a> is <strong>NOT SUPPORTED</strong> by this function.</p>
 <p>The function <code>environment()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -4439,7 +4529,7 @@ Windows and ':' for UNIX/POSIX systems.</p>
 <p>Print the argument string and halts the build process.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature19">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature20">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -4452,7 +4542,7 @@ Windows and ':' for UNIX/POSIX systems.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>msg</b>...,      # Additional parameters will be separated by spaces
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments18">Arguments</h3>
+<h3 id="arguments19">Arguments</h3>
 <p><a href="Syntax.html#argument-flattening">Argument flattening</a> is <strong>NOT SUPPORTED</strong> by this function.</p>
 <p>The function <code>error()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -4504,7 +4594,7 @@ creating the final list.</p>
 <p>The returned object also has methods that are documented in <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature20">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature21">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -4558,7 +4648,7 @@ creating the final list.</p>
 <p>The <code>link_language</code> kwarg was broken until 0.55.0</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments19">Arguments</h3>
+<h3 id="arguments20">Arguments</h3>
 <p>The function <code>executable()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -5209,7 +5299,7 @@ targets. The difference is that file objects remember the subdirectory
 they were defined in and can be used anywhere in the source tree.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature21">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature22">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5233,7 +5323,7 @@ like this:</p>
 </code></pre>
 <p>Meson will then do the right thing.</p>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments20">Arguments</h3>
+<h3 id="arguments21">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>file...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -5292,7 +5382,7 @@ need to construct the set of paths to search on the fly:</p>
 <p>The returned <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> object also has documented methods.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature22">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature23">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5312,7 +5402,7 @@ need to construct the set of paths to search on the fly:</p>
   <b>version</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>             # specifies the required version, see
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments21">Arguments</h3>
+<h3 id="arguments22">Arguments</h3>
 <p>The function <code>find_program()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -5512,7 +5602,7 @@ generating headers to be used by several sources, or data that will be
 installed, and so on, use a <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> instead.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature23">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature24">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5531,7 +5621,7 @@ installed, and so on, use a <a href="Reference-manual_functions.html#custom_targ
   <b>output</b>    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                     # Template string (or list of template strings) defining
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments22">Arguments</h3>
+<h3 id="arguments23">Arguments</h3>
 <p>The function <code>generator()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -5681,7 +5771,7 @@ See <a href="Build-options.html#features"><code>feature</code> options</a>
 documentation for more details.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature24">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature25">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5693,7 +5783,7 @@ documentation for more details.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>option_name</b>,     # Name of the option to query
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments23">Arguments</h3>
+<h3 id="arguments24">Arguments</h3>
 <p>The function <code>get_option()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -5735,7 +5825,7 @@ the variable does not exist, the variable <code>fallback</code> is stored to
 a non-existing variable will cause a fatal error.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature25">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature26">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5748,7 +5838,7 @@ a non-existing variable will cause a fatal error.</p>
   <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<b>default</b>],         # Fallback value to return when the variable does not exist
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments24">Arguments</h3>
+<h3 id="arguments25">Arguments</h3>
 <p><a href="Syntax.html#argument-flattening">Argument flattening</a> is <strong>NOT SUPPORTED</strong> by this function.</p>
 <p>The function <code>get_variable()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -5802,7 +5892,7 @@ the methods of the module. Here's an example for a hypothetical <code>testmod</c
 module.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature26">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature27">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5823,7 +5913,7 @@ module.</p>
 tmod.do_something()
 </code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments25">Arguments</h3>
+<h3 id="arguments26">Arguments</h3>
 <p>The function <code>import()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -5920,7 +6010,7 @@ directories to include path.</p>
 relative to the source root and one relative to the build root.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature27">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature28">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5963,7 +6053,7 @@ executable('some-tool', sources,
 <p>If the build tree is <code>/tmp/build-tree</code>, the following include paths
 will be added to the <code>executable()</code> call: <code>-I/tmp/build-tree/include -I/home/user/project.git/include</code>.</p>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments26">Arguments</h3>
+<h3 id="arguments27">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>includes...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -6015,7 +6105,7 @@ except Visual Studio).</p>
 <p>See <a href="Installing.html">Installing</a> for more examples.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature28">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature29">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6034,7 +6124,7 @@ except Visual Studio).</p>
   <b>sources</b>      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments27">Arguments</h3>
+<h3 id="arguments28">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>file...</code>) of type <code><a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -6148,7 +6238,7 @@ argument. If the directory exists and is not empty, the contents are left in
 place.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature29">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature30">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6165,7 +6255,7 @@ place.</p>
   <b>install_tag</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # A string used by the `meson install --tags` command to install only a
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments28">Arguments</h3>
+<h3 id="arguments29">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>dirpath...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -6233,7 +6323,7 @@ argument. As an example if this has the value <code>myproj</code> then the
 headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature30">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature31">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6262,7 +6352,7 @@ headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
 <pre><code class="language-meson">install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 </code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments29">Arguments</h3>
+<h3 id="arguments30">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>file...</code>) of type <code><a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -6339,7 +6429,7 @@ overridden by specifying it with the <code>install_dir</code> keyword argument.<
 <p><em>(since 0.49.0)</em> <a href="https://mesonbuild.com/Release-notes-for-0-49-0.html#manpages-are-no-longer-compressed-implicitly">manpages are no longer compressed implicitly</a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature31">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature32">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6356,7 +6446,7 @@ overridden by specifying it with the <code>install_dir</code> keyword argument.<
   <b>locale</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Can be used to specify the locale
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments30">Arguments</h3>
+<h3 id="arguments31">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>file...</code>) of type <code><a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -6442,7 +6532,7 @@ intentionally designed to work this way, please use <a href="Reference-manual_fu
 instead.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature32">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature33">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6496,7 +6586,7 @@ instead.</p>
   new_directory/
 </code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments31">Arguments</h3>
+<h3 id="arguments32">Arguments</h3>
 <p>The function <code>install_subdir()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -6640,7 +6730,7 @@ If <code>strip_directory=true</code> only the last component of the source path 
 <p>Installs a symbolic link to <code>pointing_to</code> target under install_dir.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature33">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature34">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6658,7 +6748,7 @@ If <code>strip_directory=true</code> only the last component of the source path 
   <b>pointing_to</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  <i>[required]</i>  # Target to point the link to
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments32">Arguments</h3>
+<h3 id="arguments33">Arguments</h3>
 <p>The function <code>install_symlink()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -6755,7 +6845,7 @@ Can be absolute or relative and that will be respected when creating the link.</
 <p>Returns true if a variable is a disabler and false otherwise.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature34">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature35">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6768,7 +6858,7 @@ Can be absolute or relative and that will be respected when creating the link.</
   <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> <b>var</b>,     # The varaible to test
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments33">Arguments</h3>
+<h3 id="arguments34">Arguments</h3>
 <p>The function <code>is_disabler()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -6806,7 +6896,7 @@ Can be absolute or relative and that will be respected when creating the link.</
 <p>Returns true if a variable of the given name exists and false otherwise.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature35">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature36">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6819,7 +6909,7 @@ Can be absolute or relative and that will be respected when creating the link.</
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>var</b>,     # The varaible to test
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments34">Arguments</h3>
+<h3 id="arguments35">Arguments</h3>
 <p>The function <code>is_variable()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -6860,7 +6950,7 @@ are the same as <a href="Reference-manual_functions.html#executable"><ins><code>
 the jar with <code>java -jar file.jar</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature36">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature37">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6909,7 +6999,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments35">Arguments</h3>
+<h3 id="arguments36">Arguments</h3>
 <p>The function <code>jar()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -7540,7 +7630,7 @@ res2 = foo / bar
 </code></pre>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature37">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature38">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7557,7 +7647,7 @@ res2 = foo / bar
 <p>Don't use <a href="Reference-manual_functions.html#join_paths"><ins><code>join_paths()</code></ins></a> for sources in <a href="Reference-manual_functions.html#library"><ins><code>library()</code></ins></a> and <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>. You should use <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> instead.</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments36">Arguments</h3>
+<h3 id="arguments37">Arguments</h3>
 <p>The
 function accepts between <code>1</code> and <code>infinity</code> variadic
 arguments (<code>part...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -7584,7 +7674,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
 <a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a></p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature38">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature39">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7637,7 +7727,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments37">Arguments</h3>
+<h3 id="arguments38">Arguments</h3>
 <p>The function <code>library()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -8336,7 +8426,7 @@ for the full list.</p>
 <p>This function prints its argument to stdout.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature39">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature40">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8349,7 +8439,7 @@ for the full list.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>] <b>more_text</b>...,  # Additional text that will be printed separated by spaces
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments38">Arguments</h3>
+<h3 id="arguments39">Arguments</h3>
 <p><a href="Syntax.html#argument-flattening">Argument flattening</a> is <strong>NOT SUPPORTED</strong> by this function.</p>
 <p>The function <code>message()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -8413,7 +8503,7 @@ languages are not required.</p>
 <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>), <code>vala</code> and <code>rust</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature40">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature41">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8433,7 +8523,7 @@ languages are not required.</p>
   <b>version</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>       # A free form string describing the version of this project
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments39">Arguments</h3>
+<h3 id="arguments40">Arguments</h3>
 <p>The function <code>project()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -8604,7 +8694,7 @@ text.</p>
 to <code>stop</code> excluded with an increment of <code>step</code> after each loop.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature41">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature42">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8630,7 +8720,7 @@ endforeach
 assert(r[2] == 9)
 </code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments40">Arguments</h3>
+<h3 id="arguments41">Arguments</h3>
 <p>The function <code>range()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -8709,7 +8799,7 @@ respectively.</p>
 <p>See also <a href="External-commands.html">External commands</a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature42">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature43">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8726,7 +8816,7 @@ respectively.</p>
   <b>env</b>     : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # environment variables to set,
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments41">Arguments</h3>
+<h3 id="arguments42">Arguments</h3>
 <p>The
 function accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>command...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a></code>.</p>
@@ -8834,7 +8924,7 @@ this may be an absolute or a relative to current workdir path.</li>
 </ul>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature43">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature44">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8851,7 +8941,7 @@ this may be an absolute or a relative to current workdir path.</li>
   <b>env</b>     : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                             # environment variables to set, such as
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments42">Arguments</h3>
+<h3 id="arguments43">Arguments</h3>
 <p>The function <code>run_target()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -8957,7 +9047,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
 <p><em>(since 0.46.1)</em> The <code>value</code> parameter can be an array type.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature44">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature45">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8970,7 +9060,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> <b>value</b>,             # The value to set the variable to
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments43">Arguments</h3>
+<h3 id="arguments44">Arguments</h3>
 <p><a href="Syntax.html#argument-flattening">Argument flattening</a> is <strong>NOT SUPPORTED</strong> by this function.</p>
 <p>The function <code>set_variable()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -9021,7 +9111,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
 <p>Builds a shared library with the given sources.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature45">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature46">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -9072,7 +9162,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments44">Arguments</h3>
+<h3 id="arguments45">Arguments</h3>
 <p>The function <code>shared_library()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -9747,7 +9837,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
 <code>true</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature46">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature47">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -9811,7 +9901,7 @@ also be linked to <code>bar</code>. Hence, linking one shared module to another 
 building for Android.</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments45">Arguments</h3>
+<h3 id="arguments46">Arguments</h3>
 <p>The function <code>shared_module()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -10424,7 +10514,7 @@ for the full list.</p>
 <p>Builds a static library with the given sources.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature47">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature48">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -10473,7 +10563,7 @@ for the full list.</p>
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments46">Arguments</h3>
+<h3 id="arguments47">Arguments</h3>
 <p>The function <code>static_library()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -11105,7 +11195,7 @@ to determine import names. This is only allowed in Rust targets, and cannot be
 mixed with non structured inputs.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature48">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature49">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11119,7 +11209,7 @@ mixed with non structured inputs.</p>
   <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>] [<b>additional</b>],   # Additional sources, where the key is the directory under the root to place
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments47">Arguments</h3>
+<h3 id="arguments48">Arguments</h3>
 <p>The function <code>structured_sources()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -11180,7 +11270,7 @@ current build file and in all subsequent build files executed with
 and must only be executed once.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature49">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature50">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11195,7 +11285,7 @@ and must only be executed once.</p>
   <b>if_found</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Only enter the subdir if all <a href="Reference-manual_returned_dep.html#depfound"><ins><code>dep.found()</code></ins></a> methods return `true`.
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments48">Arguments</h3>
+<h3 id="arguments49">Arguments</h3>
 <p>The function <code>subdir()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -11272,7 +11362,7 @@ end. If the current script is the top level script Meson configures
 the project as defined up to this point.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature50">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature51">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11327,7 +11417,7 @@ argument to <a href="Reference-manual_functions.html#dependency"><ins><code>depe
 <p><a href="Subprojects.html">See additional documentation</a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature51">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature52">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11344,7 +11434,7 @@ argument to <a href="Reference-manual_functions.html#dependency"><ins><code>depe
   <b>version</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>             # Works just like the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments49">Arguments</h3>
+<h3 id="arguments50">Arguments</h3>
 <p>The function <code>subproject()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -11477,7 +11567,7 @@ and printed at the end of the configuration in the same order as they
 have been called.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature52">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature53">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11527,7 +11617,7 @@ summary({'Some boolean': false,
                      True
 </code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments50">Arguments</h3>
+<h3 id="arguments51">Arguments</h3>
 <p><a href="Syntax.html#argument-flattening">Argument flattening</a> is <strong>NOT SUPPORTED</strong> by this function.</p>
 <p>The function <code>summary()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -11677,7 +11767,7 @@ the whole log at the end of the run.</p>
 commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature53">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature54">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11703,7 +11793,7 @@ commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</co
   <b>workdir</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           # absolute path that will be used as the working directory
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments51">Arguments</h3>
+<h3 id="arguments52">Arguments</h3>
 <p>The function <code>test()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -11966,7 +12056,7 @@ for the test</p>
 Referencing a variable which has been unset is an error until it has been set again.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature54">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature55">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11979,7 +12069,7 @@ Referencing a variable which has been unset is an error until it has been set ag
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>varname</b>,     # The variable to unset
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments52">Arguments</h3>
+<h3 id="arguments53">Arguments</h3>
 <p>The function <code>unset_variable()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -12031,7 +12121,7 @@ which to build the targets.</p>
 you should use <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature55">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature56">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -12047,7 +12137,7 @@ you should use <a href="Reference-manual_functions.html#custom_target"><ins><cod
   <b>replace_string</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                 # String in the input file to substitute with the commit information
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments53">Arguments</h3>
+<h3 id="arguments54">Arguments</h3>
 <p>The function <code>vcs_tag()</code>
 accepts the following keyword arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -12144,7 +12234,7 @@ such as when building from a release tarball.</p>
 <p>This function prints its argument to stdout prefixed with WARNING:.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature56">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature57">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -12158,7 +12248,7 @@ such as when building from a release tarball.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>] <b>more_text</b>...,  # Additional text that will be printed separated by spaces
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h3 id="arguments54">Arguments</h3>
+<h3 id="arguments55">Arguments</h3>
 <p><a href="Syntax.html#argument-flattening">Argument flattening</a> is <strong>NOT SUPPORTED</strong> by this function.</p>
 <p>The function <code>warning()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
