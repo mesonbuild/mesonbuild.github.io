@@ -231,9 +231,9 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
                   [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
-                  [--stdsplit] [--strip] [--unity {on,off,subprojects}]
-                  [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}]
-                  [--werror]
+                  [--prefer-static] [--stdsplit] [--strip]
+                  [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
+                  [--warnlevel {0,1,2,3}] [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR]
                   [--pkgconfig.relocatable]
@@ -284,6 +284,8 @@ optional arguments:
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --prefer-static                       Whether to try static linking before
+                                        shared linking
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
@@ -611,8 +613,9 @@ Rewriter commands:
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
               [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
-              [--stdsplit] [--strip] [--unity {on,off,subprojects}]
-              [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}] [--werror]
+              [--prefer-static] [--stdsplit] [--strip]
+              [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
+              [--warnlevel {0,1,2,3}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR]
               [--pkgconfig.relocatable]
@@ -667,6 +670,8 @@ optional arguments:
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --prefer-static                       Whether to try static linking before
+                                        shared linking
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
