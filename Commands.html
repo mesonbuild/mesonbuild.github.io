@@ -900,6 +900,11 @@ needed auto-load commands into <code>&lt;builddir&gt;/.gdbinit</code> file. When
 top build directory, that file is loaded by gdb automatically. In the case of
 python scripts that needs to load other python modules, <code>PYTHONPATH</code> may need
 to be modified using <code>meson.add_devenv()</code>.</p>
+<p>Since <em>Since 0.63.0</em> when cross compiling for Windows <code>WINEPATH</code> is used instead
+of <code>PATH</code> which allows running Windows executables using wine. Note that since
+<code>WINEPATH</code> size is currently limited to 1024 characters, paths relative to the
+root of build directory are used. That means current workdir must be the root of
+build directory when running wine.</p>
 <pre><code class="language-inc">positional arguments:
   command     Command to run in developer environment (default: interactive
               shell)
