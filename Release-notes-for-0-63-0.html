@@ -266,6 +266,34 @@ and, if present, manually tell lcov to use it.</p>
 </h2>
 <p>When cross compiling for Windows, <code>meson devenv</code> now sets <code>WINEPATH</code> pointing to
 all directories containing needed DLLs and executables.</p>
+<h2 id="added-preserve_path-arg-to-install_headers">Added preserve_path arg to install_headers</h2>
+<p>The <a href="Reference-manual_functions.html#install_headers"><ins><code>install_headers()</code></ins></a> function now has an optional argument <code>preserve_path</code>
+that allows installing multi-directory headerfile structures that live
+alongside sourcecode with a single command.</p>
+<p>For example, the headerfile structure</p>
+<pre><code class="language-meson">headers = [
+  'one.h',
+  'two.h',
+  'alpha/one.h',
+  'alpha/two.h',
+  'alpha/three.h'
+  'beta/one.h'
+]
+</code></pre>
+<p>can now be passed to <code>install_headers(headers, subdir: 'mylib', preserve_path: true)</code>
+and the resulting directory tree will look like</p>
+<pre><code>{prefix}
+└── include
+    └── mylib
+        ├── alpha
+        │   ├── one.h
+        │   ├── two.h
+        │   └── three.h
+        ├── beta
+        │   └── one.h
+        ├── one.h
+        └── two.h
+</code></pre>
 <h2 id="deprecate-an-option-and-replace-it-with-a-new-one">Deprecate an option and replace it with a new one</h2>
 <p>The <code>deprecated</code> keyword argument can now take the name of a new option
 that replace this option. In that case, setting a value on the deprecated option
