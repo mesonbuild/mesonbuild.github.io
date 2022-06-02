@@ -231,11 +231,12 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
                   [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
-                  [--stdsplit] [--strip] [--unity {on,off,subprojects}]
-                  [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}]
-                  [--werror]
+                  [--prefer-static] [--stdsplit] [--strip]
+                  [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
+                  [--warnlevel {0,1,2,3}] [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR]
+                  [--pkgconfig.relocatable]
                   [--python.install-env {auto,prefix,system,venv}]
                   [--python.platlibdir PYTHON.PLATLIBDIR]
                   [--python.purelibdir PYTHON.PURELIBDIR]
@@ -283,6 +284,8 @@ optional arguments:
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --prefer-static                       Whether to try static linking before
+                                        shared linking
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
@@ -296,6 +299,7 @@ optional arguments:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
@@ -609,10 +613,12 @@ Rewriter commands:
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
               [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
-              [--stdsplit] [--strip] [--unity {on,off,subprojects}]
-              [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}] [--werror]
+              [--prefer-static] [--stdsplit] [--strip]
+              [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
+              [--warnlevel {0,1,2,3}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR]
+              [--pkgconfig.relocatable]
               [--python.install-env {auto,prefix,system,venv}]
               [--python.platlibdir PYTHON.PLATLIBDIR]
               [--python.purelibdir PYTHON.PURELIBDIR]
@@ -664,6 +670,8 @@ optional arguments:
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --prefer-static                       Whether to try static linking before
+                                        shared linking
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
@@ -677,6 +685,7 @@ optional arguments:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
@@ -891,6 +900,11 @@ needed auto-load commands into <code>&lt;builddir&gt;/.gdbinit</code> file. When
 top build directory, that file is loaded by gdb automatically. In the case of
 python scripts that needs to load other python modules, <code>PYTHONPATH</code> may need
 to be modified using <code>meson.add_devenv()</code>.</p>
+<p>Since <em>Since 0.63.0</em> when cross compiling for Windows <code>WINEPATH</code> is used instead
+of <code>PATH</code> which allows running Windows executables using wine. Note that since
+<code>WINEPATH</code> size is currently limited to 1024 characters, paths relative to the
+root of build directory are used. That means current workdir must be the root of
+build directory when running wine.</p>
 <pre><code class="language-inc">positional arguments:
   command     Command to run in developer environment (default: interactive
               shell)
