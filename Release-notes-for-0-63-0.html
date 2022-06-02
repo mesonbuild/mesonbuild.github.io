@@ -204,27 +204,22 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features">New features</h1>
-<h2 id="compiler-options-can-be-set-per-subproject">Compiler options can be set per subproject</h2>
-<p>All compiler options can now be set per subproject. See
-<a href="Build-options.html#specifying-options-per-subproject">here</a> for details on how
-the default value is inherited from main project.</p>
-<p>This is useful for example when the main project requires C++11 but a subproject
-requires C++14. The <code>cpp_std</code> value from subproject's <code>default_options</code> is now
-respected.</p>
-<h2 id="python-extension-modules-now-build-with-hidden-visibility">Python extension modules now build with hidden visibility</h2>
-<p>Python extension modules are usually expected to only export a single symbol,
-decorated with the <code>PyMODINIT_FUNC</code> macro and providing the module entry point.
-On versions of python &gt;= 3.9, the python headers contain GNU symbol visibility
-attributes to mark the init function with default visibility; it is then safe
-to set the <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a> inherited kwarg <code>gnu_symbol_visibility: 'hidden'</code>.</p>
-<p>In the interest of doing the right thing out of the box, this is now the
-default for extension modules for found installations that are new enough to
-have this set, which is not expected to break anything, but remains possible to
-set explicitly (in which case that will take precedence).</p>
-<h2 id="added-debug-function">Added <code>debug</code> function</h2>
-<p>In addition to the <code>message()</code>, <code>warning()</code> and <code>error()</code> functions there is now the
-<code>debug()</code> function to log messages that only end up in the <code>meson-log.txt</code> logfile
-and are not printed to stdout at configure time.</p>
+<h2 id="added-support-for-multiline-fstrings">Added support for multiline fstrings</h2>
+<p>Added support for multiline f-strings which use the same syntax as f-strings
+for string substition.</p>
+<pre><code class="language-meson">x = 'hello'
+y = 'world'
+
+msg = f'''Sending a message...
+"@x@ @y@"
+'''
+</code></pre>
+<p>which produces:</p>
+<pre><code>Sending a message....
+
+"hello world"
+
+</code></pre>
 <h2 id="new-prefer_static-builtin-option">New prefer_static built-in option</h2>
 <p>Users can now set a boolean, <code>prefer_static</code>, that controls whether or not
 static linking should be tried before shared linking. This option acts as
@@ -233,11 +228,16 @@ then Meson will fallback and try the other linking method. Specifically
 setting the <code>static</code> kwarg in the meson.build will take precedence over
 the value of <code>prefer_static</code> for that specific <code>dependency</code> or
 <code>find_library</code> call.</p>
-<h2 id="persubproject-languages">Per-subproject languages</h2>
-<p>Subprojects does not inherit languages added by main project or other subprojects
-any more. This could break subprojects that wants to compile e.g. <code>.c</code> files but
-did not add <code>c</code> language, either in <code>project()</code> or <code>add_languages()</code>, and were
-relying on the main project to do it for them.</p>
+<h2 id="coverage-targets-now-respect-tool-config-files">Coverage targets now respect tool config files</h2>
+<p>gcovr &gt;= 4.2 supports <code>gcovr.cfg</code> in the project source root to configure how
+coverage is generated. If Meson detects that gcovr will load this file, it no
+longer excludes the <code>subprojects/</code> directory from coverage. It's a good default
+for Meson to guess that projects want to ignore it, but not all projects prefer
+that and it is assumed that if a gcovr.cfg exists then it will manually
+include/exclude desired paths.</p>
+<p>lcov supports <code>.lcovrc</code>, but only as a systemwide or user setting. This is
+non-ideal for projects, so Meson will now detect one in the project source root
+and, if present, manually tell lcov to use it.</p>
 <h2 id="add_project_dependencies-function">
 <code>add_project_dependencies()</code> function</h2>
 <p>Dependencies can now be added to all build products using
@@ -252,20 +252,6 @@ cases:</p>
 <code>declare_dependency()</code>, to add both source and build
 directories to the include search path</li>
 </ul>
-<h2 id="coverage-targets-now-respect-tool-config-files">Coverage targets now respect tool config files</h2>
-<p>gcovr &gt;= 4.2 supports <code>gcovr.cfg</code> in the project source root to configure how
-coverage is generated. If Meson detects that gcovr will load this file, it no
-longer excludes the <code>subprojects/</code> directory from coverage. It's a good default
-for Meson to guess that projects want to ignore it, but not all projects prefer
-that and it is assumed that if a gcovr.cfg exists then it will manually
-include/exclude desired paths.</p>
-<p>lcov supports <code>.lcovrc</code>, but only as a systemwide or user setting. This is
-non-ideal for projects, so Meson will now detect one in the project source root
-and, if present, manually tell lcov to use it.</p>
-<h2 id="running-windows-executables-with-wine-in-meson-devenv">Running Windows executables with Wine in <code>meson devenv</code>
-</h2>
-<p>When cross compiling for Windows, <code>meson devenv</code> now sets <code>WINEPATH</code> pointing to
-all directories containing needed DLLs and executables.</p>
 <h2 id="added-preserve_path-arg-to-install_headers">Added preserve_path arg to install_headers</h2>
 <p>The <a href="Reference-manual_functions.html#install_headers"><ins><code>install_headers()</code></ins></a> function now has an optional argument <code>preserve_path</code>
 that allows installing multi-directory headerfile structures that live
@@ -307,18 +293,6 @@ option('o2', type: 'feature', value: 'enabled', deprecated: {'true': 'enabled', 
 # A project option is replaced by a module option
 option('o3', type: 'string', value: '', deprecated: 'python.platlibdir')
 </code></pre>
-<h2 id="d-compiler-checks">D compiler checks</h2>
-<p>Some compiler checks are implemented for D:</p>
-<ul>
-<li><code>run</code></li>
-<li><code>sizeof</code></li>
-<li>
-<code>has_header</code> (to check if a module is present)</li>
-<li><code>alignment</code></li>
-</ul>
-<p>Example:</p>
-<pre><code class="language-meson">ptr_size = meson.get_compiler('d').sizeof('void*')
-</code></pre>
 <h2 id="installed-pkgconfig-files-can-now-be-relocatable">Installed pkgconfig files can now be relocatable</h2>
 <p>The pkgconfig module now has a module option <code>pkgconfig.relocatable</code>.
 When set to <code>true</code>, the pkgconfig files generated will have their
@@ -331,6 +305,21 @@ files are located inside the install prefix of the package. Not doing
 so will cause an error.</p>
 <p>This should be useful on Windows or any other platform where
 relocatable packages are desired.</p>
+<h2 id="python-extension-modules-now-build-with-hidden-visibility">Python extension modules now build with hidden visibility</h2>
+<p>Python extension modules are usually expected to only export a single symbol,
+decorated with the <code>PyMODINIT_FUNC</code> macro and providing the module entry point.
+On versions of python &gt;= 3.9, the python headers contain GNU symbol visibility
+attributes to mark the init function with default visibility; it is then safe
+to set the <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a> inherited kwarg <code>gnu_symbol_visibility: 'hidden'</code>.</p>
+<p>In the interest of doing the right thing out of the box, this is now the
+default for extension modules for found installations that are new enough to
+have this set, which is not expected to break anything, but remains possible to
+set explicitly (in which case that will take precedence).</p>
+<h2 id="persubproject-languages">Per-subproject languages</h2>
+<p>Subprojects does not inherit languages added by main project or other subprojects
+any more. This could break subprojects that wants to compile e.g. <code>.c</code> files but
+did not add <code>c</code> language, either in <code>project()</code> or <code>add_languages()</code>, and were
+relying on the main project to do it for them.</p>
 <h2 id="jar-resources">JAR Resources</h2>
 <p>The ability to add resources to a JAR has been added. Use the <code>java_resources</code>
 keyword argument. It takes a <code>sturctured_src</code> object.</p>
@@ -374,22 +363,33 @@ value.</p>
 users want the default behavior, and <em>impossible</em> to use the default behavior
 in cross-platform code (which frequently breaks as soon as the first person
 tries to compile using MSVC).</p>
-<h2 id="added-support-for-multiline-fstrings">Added support for multiline fstrings</h2>
-<p>Added support for multiline f-strings which use the same syntax as f-strings
-for string substition.</p>
-<pre><code class="language-meson">x = 'hello'
-y = 'world'
-
-msg = f'''Sending a message...
-"@x@ @y@"
-'''
+<h2 id="running-windows-executables-with-wine-in-meson-devenv">Running Windows executables with Wine in <code>meson devenv</code>
+</h2>
+<p>When cross compiling for Windows, <code>meson devenv</code> now sets <code>WINEPATH</code> pointing to
+all directories containing needed DLLs and executables.</p>
+<h2 id="d-compiler-checks">D compiler checks</h2>
+<p>Some compiler checks are implemented for D:</p>
+<ul>
+<li><code>run</code></li>
+<li><code>sizeof</code></li>
+<li>
+<code>has_header</code> (to check if a module is present)</li>
+<li><code>alignment</code></li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-meson">ptr_size = meson.get_compiler('d').sizeof('void*')
 </code></pre>
-<p>which produces:</p>
-<pre><code>Sending a message....
-
-"hello world"
-
-</code></pre>
+<h2 id="added-debug-function">Added <code>debug</code> function</h2>
+<p>In addition to the <code>message()</code>, <code>warning()</code> and <code>error()</code> functions there is now the
+<code>debug()</code> function to log messages that only end up in the <code>meson-log.txt</code> logfile
+and are not printed to stdout at configure time.</p>
+<h2 id="compiler-options-can-be-set-per-subproject">Compiler options can be set per subproject</h2>
+<p>All compiler options can now be set per subproject. See
+<a href="Build-options.html#specifying-options-per-subproject">here</a> for details on how
+the default value is inherited from main project.</p>
+<p>This is useful for example when the main project requires C++11 but a subproject
+requires C++14. The <code>cpp_std</code> value from subproject's <code>default_options</code> is now
+respected.</p>
 
     </div>
         
