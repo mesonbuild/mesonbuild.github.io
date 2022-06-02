@@ -484,11 +484,11 @@ specifying modules.</p>
 <h2 id="d-features-in-declare_dependency">D features in <code>declare_dependency</code>
 </h2>
 <p><code>declare_dependency</code>accepts parameters for D specific features.
-Accepted new parameters are <code>d_module_versions</code> and <code>d_import_dirs</code>.</p>
+Accepted new parameters are <code>d_module_features</code> and <code>d_import_dirs</code>.</p>
 <p>This can be useful to propagate conditional compilation versions. E.g.:</p>
 <pre><code class="language-meson">my_lua_dep = declare_dependency(
     # ...
-    d_module_versions: ['LUA_53'],
+    d_module_features: ['LUA_53'],
     d_import_dirs: include_directories('my_lua_folder'),
 )
 </code></pre>

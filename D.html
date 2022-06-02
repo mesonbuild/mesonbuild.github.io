@@ -226,17 +226,17 @@ executable('myapp', 'app.d', d_debug: [3, 'DebugFeatureA'])
 </code></pre>
 <h2 id="in-declare_dependency">In <code>declare_dependency</code>
 </h2>
-<p><em>Since 0.62.0</em>, when declaring your own dependency using <code>declare_dependency</code>,
-it is possible to add parameters for D specific features, e.g. to propagate
+<p><em>Since 0.62.0</em>, when declaring your own dependency using <code>declare_dependency</code>, it is
+possible to add parameters for D specific features, e.g. to propagate
 conditional compilation versions:</p>
 <pre><code class="language-meson">my_dep = declare_dependency(
     # ...
-    d_module_versions: ['LUA_53'],
+    d_module_features: ['LUA_53'],
     d_import_dirs: include_directories('my_lua_folder'),
 )
 </code></pre>
-<p>Accepted D specific parameters are <code>d_module_versions</code> and <code>d_import_dirs</code>
-(DMD <code>-J</code> switch).</p>
+<p>Accepted D specific parameters are <code>d_module_features</code> and
+<code>d_import_dirs</code>.</p>
 <h2 id="using-embedded-unittests">Using embedded unittests</h2>
 <p>If you are using embedded <a href="https://dlang.org/spec/unittest.html">unittest
 functions</a>, your source code
