@@ -383,6 +383,11 @@ all directories containing needed DLLs and executables.</p>
 <p>In addition to the <code>message()</code>, <code>warning()</code> and <code>error()</code> functions there is now the
 <code>debug()</code> function to log messages that only end up in the <code>meson-log.txt</code> logfile
 and are not printed to stdout at configure time.</p>
+<h2 id="diff-files-for-wraps">Diff files for wraps</h2>
+<p>Wrap files can now define <code>diff_files</code>, a list of local patch files in <code>diff</code>
+format. Meson will apply the diff files after extracting or cloning the project,
+and after applying the overlay archive (<code>patch_*</code>). For this feature, the
+<code>patch</code> or <code>git</code> command-line tool must be available.</p>
 <h2 id="compiler-options-can-be-set-per-subproject">Compiler options can be set per subproject</h2>
 <p>All compiler options can now be set per subproject. See
 <a href="Build-options.html#specifying-options-per-subproject">here</a> for details on how
