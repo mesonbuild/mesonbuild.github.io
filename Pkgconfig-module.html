@@ -142,6 +142,9 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -149,9 +152,6 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
-        </li>
-        <li>
-            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -257,7 +257,8 @@ would be <code>foobar-1</code>
 <code>requires</code> list of strings, pkgconfig-dependencies or libraries that
 <code>pkgconfig.generate()</code> was used on to put in the <code>Requires</code> field</li>
 <li>
-<code>requires_private</code> the same as <code>requires</code> but for the <code>Requires.private</code> field</li>
+<code>requires_private</code> same as <code>requires</code> but for <code>Requires.private</code> field
+field</li>
 <li>
 <code>url</code> a string with a url for the library</li>
 <li>
@@ -271,8 +272,7 @@ cause issues when some variables reference other variables.
 Spaces in values are escaped with <code>\</code>, this is required in the case the value is
 a path that and is used in <code>cflags</code> or <code>libs</code> arguments. <em>Since 0.59.0</em> if
 escaping is not desired (e.g. space separate list of values) <code>unescaped_variables</code>
-keyword argument should be used instead. <em>Since 0.62.0</em> builtin directory variables
-that are referenced are automatically created by default.</li>
+keyword argument should be used instead.</li>
 <li>
 <code>uninstalled_variables</code> used instead of the <code>variables</code> keyword argument, when
 generating the uninstalled pkg-config file. Since <em>0.54.0</em>

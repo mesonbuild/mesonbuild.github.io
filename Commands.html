@@ -142,6 +142,9 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -149,9 +152,6 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
-        </li>
-        <li>
-            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -231,13 +231,11 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
                   [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
-                  [--prefer-static] [--stdsplit] [--strip]
-                  [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
-                  [--warnlevel {0,1,2,3}] [--werror]
+                  [--stdsplit] [--strip] [--unity {on,off,subprojects}]
+                  [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}]
+                  [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR]
-                  [--pkgconfig.relocatable]
-                  [--python.install-env {auto,prefix,system,venv}]
                   [--python.platlibdir PYTHON.PLATLIBDIR]
                   [--python.purelibdir PYTHON.PURELIBDIR]
                   [--pkg-config-path PKG_CONFIG_PATH]
@@ -284,8 +282,6 @@ optional arguments:
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
-  --prefer-static                       Whether to try static linking before
-                                        shared linking
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
@@ -299,10 +295,6 @@ optional arguments:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
-  --pkgconfig.relocatable               Generate pkgconfig files as relocatable
-  --python.install-env {auto,prefix,system,venv}
-                                        Which python environment to install to
-                                        (default: prefix).
   --python.platlibdir PYTHON.PLATLIBDIR
                                         Directory for site-specific, platform-
                                         specific files (default: ).
@@ -412,15 +404,13 @@ different type, and a <code>bar</code> target:</p>
 </code></pre>
 <h3 id="dist">dist</h3>
 <p><em>(since 0.52.0)</em></p>
-<pre><code class="language-inc">$ meson dist [-h] [-C WD] [--allow-dirty] [--formats FORMATS]
-             [--include-subprojects] [--no-tests]
+<pre><code class="language-inc">$ meson dist [-h] [-C WD] [--formats FORMATS] [--include-subprojects]
+             [--no-tests]
 </code></pre>
 <p>Generates a release archive from the current source tree.</p>
 <pre><code class="language-inc">optional arguments:
   -h, --help             show this help message and exit
   -C WD                  directory to cd into before running
-  --allow-dirty          Allow even when repository contains uncommitted
-                         changes.
   --formats FORMATS      Comma separated list of archive types to create.
                          Supports xztar (default), gztar, and zip.
   --include-subprojects  Include source code of subprojects that have been used
@@ -468,35 +458,6 @@ optional arguments:
 <p>Create a project in <code>sourcedir</code>:</p>
 <pre><code>meson init -C sourcedir
 </code></pre>
-<h3 id="env2mfile">env2mfile</h3>
-<p><em>This command is experimental and subject to change.</em></p>
-<p><em>{Since 0.62.0}</em></p>
-<pre><code class="language-inc">$ meson env2mfile [-h] [--debarch DEBARCH] [--gccsuffix GCCSUFFIX] -o
-                  OUTFILE [--cross] [--native] [--system SYSTEM]
-                  [--cpu CPU] [--cpu-family CPU_FAMILY]
-                  [--endian {big,little}]
-</code></pre>
-<p>Create native and cross files from the current environment, typically
-by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.</p>
-<pre><code class="language-inc">optional arguments:
-  -h, --help               show this help message and exit
-  --debarch DEBARCH        The dpkg architecture to generate.
-  --gccsuffix GCCSUFFIX    A particular gcc version suffix if necessary.
-  -o OUTFILE               The output file.
-  --cross                  Generate a cross compilation file.
-  --native                 Generate a native compilation file.
-  --system SYSTEM          Define system for cross compilation.
-  --cpu CPU                Define cpu for cross compilation.
-  --cpu-family CPU_FAMILY  Define cpu family for cross compilation.
-  --endian {big,little}    Define endianness for cross compilation.
-</code></pre>
-<h4 id="examples4">Examples:</h4>
-<p>Autodetect the current cross build environment:</p>
-<pre><code>meson env2mfile --cross -o current_cross.txt --cpu=arm7a --cpu-family=arm --system=linux
-</code></pre>
-<p>Generate a cross build using Debian system information:</p>
-<pre><code>meson env2mfile --cross --debarch=armhf -o deb_arm_cross.txt
-</code></pre>
 <h3 id="introspect">introspect</h3>
 <pre><code class="language-inc">$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
                    [--buildsystem-files] [--dependencies]
@@ -536,7 +497,7 @@ optional arguments:
                                         multiple entries (even for 0 and 1
                                         introspection commands)
 </code></pre>
-<h4 id="examples5">Examples:</h4>
+<h4 id="examples4">Examples:</h4>
 <p>Display basic information about a configured project in <code>builddir</code>:</p>
 <pre><code>meson introspect builddir --projectinfo
 </code></pre>
@@ -545,7 +506,6 @@ optional arguments:
 <pre><code class="language-inc">$ meson install [-h] [-C WD] [--no-rebuild] [--only-changed] [--quiet]
                 [--destdir DESTDIR] [--dry-run]
                 [--skip-subprojects [SKIP_SUBPROJECTS]] [--tags TAGS]
-                [--strip]
 </code></pre>
 <p>Installs the project to the prefix specified in <a href="Commands.html#setup"><code>setup</code></a>.</p>
 <pre><code class="language-inc">optional arguments:
@@ -565,11 +525,9 @@ optional arguments:
                                         subprojects. (Since 0.58.0)
   --tags TAGS                           Install only targets having one of the
                                         given tags. (Since 0.60.0)
-  --strip                               Strip targets even if strip option was
-                                        not set during configure. (Since 0.62.0)
 </code></pre>
 <p>See <a href="Installing.html">the installation documentation</a> for more info.</p>
-<h4 id="examples6">Examples:</h4>
+<h4 id="examples5">Examples:</h4>
 <p>Install project to <code>prefix</code>:</p>
 <pre><code>meson install -C builddir
 </code></pre>
@@ -613,13 +571,10 @@ Rewriter commands:
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
               [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
-              [--prefer-static] [--stdsplit] [--strip]
-              [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
-              [--warnlevel {0,1,2,3}] [--werror]
+              [--stdsplit] [--strip] [--unity {on,off,subprojects}]
+              [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR]
-              [--pkgconfig.relocatable]
-              [--python.install-env {auto,prefix,system,venv}]
               [--python.platlibdir PYTHON.PLATLIBDIR]
               [--python.purelibdir PYTHON.PURELIBDIR]
               [--pkg-config-path PKG_CONFIG_PATH]
@@ -670,8 +625,6 @@ optional arguments:
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
-  --prefer-static                       Whether to try static linking before
-                                        shared linking
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
@@ -685,10 +638,6 @@ optional arguments:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
-  --pkgconfig.relocatable               Generate pkgconfig files as relocatable
-  --python.install-env {auto,prefix,system,venv}
-                                        Which python environment to install to
-                                        (default: prefix).
   --python.platlibdir PYTHON.PLATLIBDIR
                                         Directory for site-specific, platform-
                                         specific files (default: ).
@@ -736,7 +685,7 @@ optional arguments:
 </code></pre>
 <p>See <a href="Running-Meson.html#configuring-the-build-directory">Meson introduction
 page</a> for more info.</p>
-<h4 id="examples7">Examples:</h4>
+<h4 id="examples6">Examples:</h4>
 <p>Configures <code>builddir</code> with default values:</p>
 <pre><code>meson setup builddir
 </code></pre>
@@ -819,7 +768,7 @@ optional arguments:
                                         test(s) or all tests
 </code></pre>
 <p>See <a href="Unit-tests.html">the unit test documentation</a> for more info.</p>
-<h4 id="examples8">Examples:</h4>
+<h4 id="examples7">Examples:</h4>
 <p>Run tests for the project:</p>
 <pre><code>meson test -C builddir
 </code></pre>
@@ -849,7 +798,7 @@ Commands:
 <p>See <a href="Using-wraptool.html">the WrapDB tool documentation</a> for more info.</p>
 <h3 id="devenv">devenv</h3>
 <p><em>(since 0.58.0)</em></p>
-<pre><code class="language-inc">$ meson devenv [-h] [-C WD] [--dump] ...
+<pre><code class="language-inc">$ meson devenv [-h] [-C WD] ...
 </code></pre>
 <p>Runs a command, or open interactive shell if no command is provided, with
 environment setup to run project from the build directory, without installation.</p>
@@ -892,27 +841,13 @@ schemas is compiled. This is automatically set when using <code>gnome.compile_sc
 Note that this requires GLib &gt;= 2.64 when <code>gnome.compile_schemas()</code> is used in
 more than one directory.</li>
 </ul>
-<p>Since <em>Since 0.62.0</em> if bash-completion scripts are being installed and the
-shell is bash, they will be automatically sourced.</p>
-<p>Since <em>Since 0.62.0</em> when GDB helper scripts (*-gdb.py, *-gdb.gdb, and *-gdb.csm)
-are installed with a library name that matches one being built, Meson adds the
-needed auto-load commands into <code>&lt;builddir&gt;/.gdbinit</code> file. When running gdb from
-top build directory, that file is loaded by gdb automatically. In the case of
-python scripts that needs to load other python modules, <code>PYTHONPATH</code> may need
-to be modified using <code>meson.add_devenv()</code>.</p>
-<p>Since <em>Since 0.63.0</em> when cross compiling for Windows <code>WINEPATH</code> is used instead
-of <code>PATH</code> which allows running Windows executables using wine. Note that since
-<code>WINEPATH</code> size is currently limited to 1024 characters, paths relative to the
-root of build directory are used. That means current workdir must be the root of
-build directory when running wine.</p>
 <pre><code class="language-inc">positional arguments:
   command     Command to run in developer environment (default: interactive
               shell)
 
 optional arguments:
   -h, --help  show this help message and exit
-  -C WD       Directory to cd into before running
-  --dump      Only print required environment (Since 0.62.0)
+  -C WD       directory to cd into before running
 </code></pre>
 
     </div>

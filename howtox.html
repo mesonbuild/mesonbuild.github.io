@@ -142,6 +142,9 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
+            <a href="RPM-module.html">RPM</a>
+        </li>
+        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -149,9 +152,6 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
-        </li>
-        <li>
-            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -211,12 +211,12 @@ almost all other compilers.</p>
 <p>When first running Meson, set it in an environment variable.</p>
 <pre><code class="language-console">$ CC=mycc meson &lt;options&gt;
 </code></pre>
-<p>Note that environment variables like <code>CC</code> only refer to the host
-platform in cross builds.  That is, <code>CC</code> refers to the compiler used to
-compile programs that run on the machine we will eventually install the
-project on. The compiler used to build things that run on the machine we
-do the building can be specified with <code>CC_FOR_BUILD</code>. You can use it in
-cross builds.</p>
+<p>Note that environment variables like <code>CC</code> only works in native builds.
+The <code>CC</code> refers to the compiler for the host platform, that is the
+compiler used to compile programs that run on the machine we will
+eventually install the project on. The compiler used to build things
+that run on the machine we do the building can be specified with
+<code>CC_FOR_BUILD</code>. You can use it in cross builds.</p>
 <p>Note that environment variables are never the idiomatic way to do
 anything with Meson, however. It is better to use the native and cross
 files. And the tools for the host platform in cross builds can only be
@@ -291,7 +291,7 @@ cdata.set('SOMETHING', txt)
 configure_file(...)
 </code></pre>
 <h2 id="generate-configuration-data-from-files">Generate configuration data from files</h2>
-<p>The <a href="howtox.html#Fs-modules">fs module</a> offers the <code>read</code> function which enables adding
+<p><code>The [fs module](#Fs-modules) offers the</code>read<code>function</code> which enables adding
 the contents of arbitrary files to configuration data (among other uses):</p>
 <pre><code class="language-meson">fs = import('fs')
 cdata = configuration_data()
