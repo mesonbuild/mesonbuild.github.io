@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -152,6 +149,9 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -336,7 +336,8 @@ int main (int argc, char ** argv) {
 </code></pre>
 <p>These are raw strings that do not support the escape sequences listed
 above.  These strings can also be combined with the string formatting
-functionality described below.</p>
+functionality via <code>.format()</code> described below.</p>
+<p>Note that multiline f-string support was added in version 0.63.</p>
 <h3 id="string-index">String index</h3>
 <p>Strings support the indexing (<code>[&lt;num&gt;]</code>) operator. This operator allows (read
 only) accessing a specific character. The returned value is guaranteed to be
@@ -357,7 +358,8 @@ res = template.format('text', 1, true)
 <h4 id="format-strings">Format strings</h4>
 <p><em>(Added 0.58)</em></p>
 <p>Format strings can be used as a non-positional alternative to the
-string formatting functionality described above.</p>
+string formatting functionality described above. Note that multiline f-string
+support was added in version 0.63.</p>
 <pre><code class="language-meson">n = 10
 m = 'hi'
 
@@ -585,6 +587,43 @@ executable('progname', 'prog.c',
   kwargs: d) # This is an error!
 </code></pre>
 <p>Attempting to do this causes Meson to immediately exit with an error.</p>
+<h3 id="argument-flattening">Argument flattening</h3>
+<p>Argument flattening is a Meson feature that aims to simplify using
+methods and functions. For functions where this feature is active,
+Meson takes the list of arguments and flattens all nested lists into
+one big list.</p>
+<p>For instance the following function calls to <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> are
+identical in Meson:</p>
+<pre><code class="language-meson"># A normal example:
+executable('exe1', ['foo.c', 'bar.c', 'foobar.c'])
+
+# A more contrived example that also works but certainly
+# isn't good Meson code:
+l1 = ['bar.c']
+executable('exe1', [[['foo.c', l1]], ['foobar.c']])
+
+# How meson will treat all the previous calls internally:
+executable('exe1', 'foo.c', 'bar.c', 'foobar.c')
+</code></pre>
+<p>Because of an internal implementation detail, the following syntax
+is currently also supported, even though the first argument of
+<a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> is a single <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> and not a <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>:</p>
+<pre><code class="language-meson"># WARNING: This example is only valid because of an internal
+#          implementation detail and not because it is intended
+#
+#          PLEASE DO NOT DO SOMETHING LIKE THIS!
+#
+executable(['exe1', 'foo.c'], 'bar.c', 'foobar.c')
+</code></pre>
+<p>This code is currently accepted because argument flattening <em>currently</em>
+happens before the parameters are evaluated. "Support" for
+such constructs will likely be removed in future Meson releases!</p>
+<p>Argument flattening is supported by <em>most</em> but not <em>all</em> Meson
+functions and methods. As a general rule, it can be assumed that a
+function or method supports argument flattening if the exact list
+structure is irrelevant to a function.</p>
+<p>Whether a function supports argument flattening is documented in the
+<a href="Reference-manual.html">Reference Manual</a>.</p>
 <h2 id="method-calls">Method calls</h2>
 <p>Objects can have methods, which are called with the dot operator. The
 exact methods it provides depends on the object.</p>

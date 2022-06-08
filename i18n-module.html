@@ -142,9 +142,6 @@ $('body').removeClass('no-script');
             <a href="Qt6-module.html">Qt6</a>
         </li>
         <li>
-            <a href="RPM-module.html">RPM</a>
-        </li>
-        <li>
             <a href="Rust-module.html">Rust</a>
         </li>
         <li>
@@ -152,6 +149,9 @@ $('body').removeClass('no-script');
         </li>
         <li>
             <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
         </li>
         <li>
             <a href="Windows-module.html">Windows</a>
@@ -256,9 +256,15 @@ for for their value</li>
 </ul>
 <h3 id="i18nmerge_file">i18n.merge_file()</h3>
 <p>This merges translations into a text file using <code>msgfmt</code>. See
-<a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>
+[[custom_tgt]]
 for normal keywords. In addition it accepts these keywords:</p>
 <ul>
+<li>
+<code>output</code>: same as <code>custom_target</code> but only accepts one item</li>
+<li>
+<code>install_dir</code>: same as <code>custom_target</code> but only accepts one item</li>
+<li>
+<code>install_tag</code>: same as <code>custom_target</code> but only accepts one item</li>
 <li>
 <code>data_dirs</code>: (<em>Added 0.41.0</em>) list of directories for its files (See
 also <code>i18n.gettext()</code>)</li>
@@ -272,6 +278,24 @@ also <code>i18n.gettext()</code>)</li>
 </li>
 </ul>
 <p><em>Added 0.37.0</em></p>
+<h3 id="i18nitstool_join">i18n.itstool_join()</h3>
+<p>This joins translations into a XML file using <code>itstool</code>. See
+[[custom_tgt]]
+for normal keywords. In addition it accepts these keywords:</p>
+<ul>
+<li>
+<code>output</code>: same as <code>custom_target</code> but only accepts one item</li>
+<li>
+<code>install_dir</code>: same as <code>custom_target</code> but only accepts one item</li>
+<li>
+<code>install_tag</code>: same as <code>custom_target</code> but only accepts one item</li>
+<li>
+<code>its_files</code>: filenames of ITS files that should be used explicitly
+(XML translation rules are autodetected otherwise).</li>
+<li>
+<code>mo_targets</code> <em>required</em>: mo file generation targets as returned by <code>i18n.gettext()</code>.</li>
+</ul>
+<p><em>Added 0.62.0</em></p>
 
     </div>
         

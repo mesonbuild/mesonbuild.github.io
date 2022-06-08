@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Release 0.63.0 (in development)</title>
+
+<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Release-notes-for-0-63-0.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/sitemap.js"></script>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="added-support-for-multiline-fstrings">Added support for multiline fstrings</h2>
+<p>Added support for multiline f-strings which use the same syntax as f-strings
+for string substition.</p>
+<pre><code class="language-meson">x = 'hello'
+y = 'world'
+
+msg = f'''Sending a message...
+"@x@ @y@"
+'''
+</code></pre>
+<p>which produces:</p>
+<pre><code>Sending a message....
+
+"hello world"
+
+</code></pre>
+<h2 id="new-prefer_static-builtin-option">New prefer_static built-in option</h2>
+<p>Users can now set a boolean, <code>prefer_static</code>, that controls whether or not
+static linking should be tried before shared linking. This option acts as
+strictly a preference. If the preferred linking method is not successful,
+then Meson will fallback and try the other linking method. Specifically
+setting the <code>static</code> kwarg in the meson.build will take precedence over
+the value of <code>prefer_static</code> for that specific <code>dependency</code> or
+<code>find_library</code> call.</p>
+<h2 id="coverage-targets-now-respect-tool-config-files">Coverage targets now respect tool config files</h2>
+<p>gcovr &gt;= 4.2 supports <code>gcovr.cfg</code> in the project source root to configure how
+coverage is generated. If Meson detects that gcovr will load this file, it no
+longer excludes the <code>subprojects/</code> directory from coverage. It's a good default
+for Meson to guess that projects want to ignore it, but not all projects prefer
+that and it is assumed that if a gcovr.cfg exists then it will manually
+include/exclude desired paths.</p>
+<p>lcov supports <code>.lcovrc</code>, but only as a systemwide or user setting. This is
+non-ideal for projects, so Meson will now detect one in the project source root
+and, if present, manually tell lcov to use it.</p>
+<h2 id="add_project_dependencies-function">
+<code>add_project_dependencies()</code> function</h2>
+<p>Dependencies can now be added to all build products using
+<code>add_project_dependencies()</code>.  This can be useful in several
+cases:</p>
+<ul>
+<li>with special dependencies such as <code>dependency('threads')</code>
+</li>
+<li>with system libraries such as <code>find_library('m')</code>
+</li>
+<li>with the <code>include_directories</code> keyword argument of
+<code>declare_dependency()</code>, to add both source and build
+directories to the include search path</li>
+</ul>
+<h2 id="added-preserve_path-arg-to-install_headers">Added preserve_path arg to install_headers</h2>
+<p>The <a href="Reference-manual_functions.html#install_headers"><ins><code>install_headers()</code></ins></a> function now has an optional argument <code>preserve_path</code>
+that allows installing multi-directory headerfile structures that live
+alongside sourcecode with a single command.</p>
+<p>For example, the headerfile structure</p>
+<pre><code class="language-meson">headers = [
+  'one.h',
+  'two.h',
+  'alpha/one.h',
+  'alpha/two.h',
+  'alpha/three.h'
+  'beta/one.h'
+]
+</code></pre>
+<p>can now be passed to <code>install_headers(headers, subdir: 'mylib', preserve_path: true)</code>
+and the resulting directory tree will look like</p>
+<pre><code>{prefix}
+└── include
+    └── mylib
+        ├── alpha
+        │   ├── one.h
+        │   ├── two.h
+        │   └── three.h
+        ├── beta
+        │   └── one.h
+        ├── one.h
+        └── two.h
+</code></pre>
+<h2 id="deprecate-an-option-and-replace-it-with-a-new-one">Deprecate an option and replace it with a new one</h2>
+<p>The <code>deprecated</code> keyword argument can now take the name of a new option
+that replace this option. In that case, setting a value on the deprecated option
+will set the value on both the old and new names, assuming they accept the same
+values.</p>
+<pre><code class="language-meson"># A boolean option has been replaced by a feature with another name, old true/false values
+# are accepted by the new option for backward compatibility.
+option('o1', type: 'boolean', value: 'true', deprecated: 'o2')
+option('o2', type: 'feature', value: 'enabled', deprecated: {'true': 'enabled', 'false': 'disabled'})
+
+# A project option is replaced by a module option
+option('o3', type: 'string', value: '', deprecated: 'python.platlibdir')
+</code></pre>
+<h2 id="installed-pkgconfig-files-can-now-be-relocatable">Installed pkgconfig files can now be relocatable</h2>
+<p>The pkgconfig module now has a module option <code>pkgconfig.relocatable</code>.
+When set to <code>true</code>, the pkgconfig files generated will have their
+<code>prefix</code> variable set to be relative to their <code>install_dir</code>.</p>
+<p>For example to enable it from the command line run:</p>
+<pre><code class="language-sh">meson setup builddir -Dpkgconfig.relocatable=true …
+</code></pre>
+<p>It will only work if the <code>install_dir</code> for the generated pkgconfig
+files are located inside the install prefix of the package. Not doing
+so will cause an error.</p>
+<p>This should be useful on Windows or any other platform where
+relocatable packages are desired.</p>
+<h2 id="python-extension-modules-now-build-with-hidden-visibility">Python extension modules now build with hidden visibility</h2>
+<p>Python extension modules are usually expected to only export a single symbol,
+decorated with the <code>PyMODINIT_FUNC</code> macro and providing the module entry point.
+On versions of python &gt;= 3.9, the python headers contain GNU symbol visibility
+attributes to mark the init function with default visibility; it is then safe
+to set the <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a> inherited kwarg <code>gnu_symbol_visibility: 'hidden'</code>.</p>
+<p>In the interest of doing the right thing out of the box, this is now the
+default for extension modules for found installations that are new enough to
+have this set, which is not expected to break anything, but remains possible to
+set explicitly (in which case that will take precedence).</p>
+<h2 id="persubproject-languages">Per-subproject languages</h2>
+<p>Subprojects does not inherit languages added by main project or other subprojects
+any more. This could break subprojects that wants to compile e.g. <code>.c</code> files but
+did not add <code>c</code> language, either in <code>project()</code> or <code>add_languages()</code>, and were
+relying on the main project to do it for them.</p>
+<h2 id="jar-resources">JAR Resources</h2>
+<p>The ability to add resources to a JAR has been added. Use the <code>java_resources</code>
+keyword argument. It takes a <code>sturctured_src</code> object.</p>
+<pre><code class="language-meson">jar(
+  meson.project_name(),
+  sources,
+  main_class: 'com.mesonbuild.Resources',
+  java_resources: structured_sources(
+    files('resources/resource1.txt'),
+    {
+      'subdir': files('resources/subdir/resource2.txt'),
+    }
+  )
+)
+</code></pre>
+<p>To access these resources in your Java application:</p>
+<pre><code class="language-java">try (InputStreamReader reader = new InputStreamReader(
+        Resources.class.getResourceAsStream("/resource1.txt"),
+        StandardCharsets.UTF_8)) {
+    // ...
+}
+
+try (InputStreamReader reader = new InputStreamReader(
+        Resources.class.getResourceAsStream("/subdir/resource2.txt"),
+        StandardCharsets.UTF_8)) {
+    // ...
+}
+</code></pre>
+<h2 id="support-for-mold-linker-added">Support for mold linker added</h2>
+<p>The high performance linker mold can be selected via <code>CC_LD</code> or <code>CXX_LD</code> for
+Clang and GCC &gt;= 12.0.1.</p>
+<h2 id="msvc-now-sets-the-__cplusplus-define-accurately">MSVC now sets the __cplusplus #define accurately</h2>
+<p>MSVC will always return <code>199711L</code> for <code>__cplusplus</code>, even when a newer c++
+standard is explicitly requested, unless you pass a specific option to the
+compiler for MSVC 2017 15.7 and newer. Older versions are unaffected by this.</p>
+<p>Microsoft's stated rationale is that "a lot of existing code appears to depend
+on the value of this macro matching 199711L", therefore for compatibility with
+such (MSVC-only) code they will require opting in to the standards-conformant
+value.</p>
+<p>Meson now always sets the option if it is available, as it is unlikely that
+users want the default behavior, and <em>impossible</em> to use the default behavior
+in cross-platform code (which frequently breaks as soon as the first person
+tries to compile using MSVC).</p>
+<h2 id="running-windows-executables-with-wine-in-meson-devenv">Running Windows executables with Wine in <code>meson devenv</code>
+</h2>
+<p>When cross compiling for Windows, <code>meson devenv</code> now sets <code>WINEPATH</code> pointing to
+all directories containing needed DLLs and executables.</p>
+<h2 id="d-compiler-checks">D compiler checks</h2>
+<p>Some compiler checks are implemented for D:</p>
+<ul>
+<li><code>run</code></li>
+<li><code>sizeof</code></li>
+<li>
+<code>has_header</code> (to check if a module is present)</li>
+<li><code>alignment</code></li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-meson">ptr_size = meson.get_compiler('d').sizeof('void*')
+</code></pre>
+<h2 id="added-debug-function">Added <code>debug</code> function</h2>
+<p>In addition to the <code>message()</code>, <code>warning()</code> and <code>error()</code> functions there is now the
+<code>debug()</code> function to log messages that only end up in the <code>meson-log.txt</code> logfile
+and are not printed to stdout at configure time.</p>
+<h2 id="diff-files-for-wraps">Diff files for wraps</h2>
+<p>Wrap files can now define <code>diff_files</code>, a list of local patch files in <code>diff</code>
+format. Meson will apply the diff files after extracting or cloning the project,
+and after applying the overlay archive (<code>patch_*</code>). For this feature, the
+<code>patch</code> or <code>git</code> command-line tool must be available.</p>
+<h2 id="compiler-options-can-be-set-per-subproject">Compiler options can be set per subproject</h2>
+<p>All compiler options can now be set per subproject. See
+<a href="Build-options.html#specifying-options-per-subproject">here</a> for details on how
+the default value is inherited from main project.</p>
+<p>This is useful for example when the main project requires C++11 but a subproject
+requires C++14. The <code>cpp_std</code> value from subproject's <code>default_options</code> is now
+respected.</p>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Release-notes-for-0.63.0.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
