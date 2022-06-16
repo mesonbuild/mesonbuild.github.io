@@ -313,6 +313,7 @@ p = mod.add_project('configure',
 )
 
 mylib_dep = p.dependency('mylib')
+meson.override_dependency('mylib', mylib_dep)
 </code></pre>
 <h2 id="using-wrap-file">Using wrap file</h2>
 <p>Most of the time the project will be built as a subproject, and
