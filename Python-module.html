@@ -286,9 +286,9 @@ mutually exclusive with <code>install_dir</code>
 of Python that support this (the python headers define <code>PyMODINIT_FUNC</code> has
 default visibility).</li>
 </ul>
-<p><code>extension_module</code> does not add any dependencies to the library so
-user may need to add <code>dependencies : py_installation.dependency()</code>,
-see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.</p>
+<p><em>since 0.63.0</em> <code>extension_module</code> automatically adds a dependency to the library
+if one is not explicitly provided. To support older versions, the user may need to
+add <code>dependencies : py_installation.dependency()</code>, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.</p>
 <p><strong>Returns</strong>: a <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</p>
 <h4 id="dependency"><code>dependency()</code></h4>
 <pre><code class="language-meson">python_dependency py_installation.dependency(...)

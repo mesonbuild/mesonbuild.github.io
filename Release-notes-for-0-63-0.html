@@ -369,6 +369,16 @@ then Meson will fallback and try the other linking method. Specifically
 setting the <code>static</code> kwarg in the meson.build will take precedence over
 the value of <code>prefer_static</code> for that specific <code>dependency</code> or
 <code>find_library</code> call.</p>
+<h2 id="python-extension-modules-now-depend-on-the-python-library-by-default">Python extension modules now depend on the python library by default</h2>
+<p>Python extension modules are usually expected to link to the python library
+and/or its headers in order to build correctly (via the default <code>embed: false</code>,
+which may not actually link to the library itself). This means that every
+single use of <code>.extension_module()</code> needed to include the <code>dependencies: py_installation.dependency()</code> kwarg explicitly.</p>
+<p>In the interest of doing the right thing out of the box, this is now the
+default for extension modules that don't already include a dependency on
+python. This is not expected to break anything, because it should always be
+needed. Nevertheless, <code>py_installation.dependency().partial_dependency()</code> will
+be detected as already included while providing no compile/link args.</p>
 <h2 id="python-extension-modules-now-build-with-hidden-visibility">Python extension modules now build with hidden visibility</h2>
 <p>Python extension modules are usually expected to only export a single symbol,
 decorated with the <code>PyMODINIT_FUNC</code> macro and providing the module entry point.
