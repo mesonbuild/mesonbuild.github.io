@@ -223,7 +223,7 @@ c_lib = static_library(
 <p>This is an implementation detail of Meson, and is subject to change in the future.</p>
 <h2 id="mixing-generated-and-static-sources">Mixing Generated and Static sources</h2>
 <p><em>Note</em> This feature was added in 0.62</p>
-<p>You can use a [[structured_source]] for this. Structured sources are a dictionary
+<p>You can use a <a href="Reference-manual_returned_structured_src.html"><ins><code>structured_src</code></ins></a> for this. Structured sources are a dictionary
 mapping a string of the directory, to a source or list of sources.
 When using a structured source all inputs <em>must</em> be listed, as Meson may copy
 the sources from the source tree to the build tree.</p>
@@ -233,7 +233,7 @@ files at configure time and will skip copying if it can. Copying is done at
 build time (when necessary), to avoid reconfiguring when sources change.</p>
 <pre><code class="language-meson">executable(
     'rust_exe',
-    structured_sources(
+    <a href="Reference-manual_functions.html#structured_sources"><ins>structured_sources</ins></a>(
         'main.rs',
         {
             'foo' : ['bar.rs', 'foo/lib.rs', generated_rs],
