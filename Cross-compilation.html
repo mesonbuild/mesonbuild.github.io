@@ -222,8 +222,8 @@ output will run, <em>only meaningful</em> if the program produces
 machine-specific output.</li>
 </ul>
 <p>The <code>tl/dr</code> summary is the following: if you are doing regular cross
-compilation, you only care about <code>build_machine</code> and
-<code>host_machine</code>. Just ignore <code>target_machine</code> altogether and you will
+compilation, you only care about <a href="Reference-manual_builtin_build_machine.html"><ins><code>build_machine</code></ins></a> and
+<a href="Reference-manual_builtin_host_machine.html"><ins><code>host_machine</code></ins></a>. Just ignore <a href="Reference-manual_builtin_target_machine.html"><ins><code>target_machine</code></ins></a> altogether and you will
 be correct 99% of the time. Only compilers and similar tools care
 about the target machine. In fact, for so-called "multi-target" tools
 the target machine need not be fixed at build-time like the others but
@@ -368,7 +368,7 @@ endian = 'little'
 purposes. The corresponding target definition would look the same but
 have <code>target_machine</code> in the header. These values are available in
 your Meson scripts. There are three predefined variables called,
-surprisingly, <code>build_machine</code>, <code>host_machine</code> and <code>target_machine</code>.
+surprisingly, <a href="Reference-manual_builtin_build_machine.html"><ins><code>build_machine</code></ins></a>, <a href="Reference-manual_builtin_host_machine.html"><ins><code>host_machine</code></ins></a> and <a href="Reference-manual_builtin_target_machine.html"><ins><code>target_machine</code></ins></a>.
 Determining the operating system of your host machine is simply a
 matter of calling <code>host_machine.system()</code>.</p>
 <p>There are two different values for the CPU. The first one is

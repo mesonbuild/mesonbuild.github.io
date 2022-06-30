@@ -223,18 +223,18 @@ know the operating system your code will run on, issue this command:</p>
 <pre><code class="language-meson">host_machine.system()
 </code></pre>
 <h2 id="compiler-id">Compiler id</h2>
-<p>The compiler object method <code>get_id</code> returns a
+<p>The compiler object method <a href="Reference-manual_returned_compiler.html#compilerget_id"><ins><code>compiler.get_id()</code></ins></a> returns a
 lower case string describing the "family" of the compiler. Since 0.53.0
-<code>get_linker_id</code> returns a lower case string with the linker name. Since
+<a href="Reference-manual_returned_compiler.html#compilerget_linker_id"><ins><code>compiler.get_linker_id()</code></ins></a> returns a lower case string with the linker name. Since
 compilers can often choose from multiple linkers depending on operating
 system, <code>get_linker_id</code> can be useful for handling or mitigating effects
 of particular linkers.</p>
-<p>The compiler object also has a method <code>get_argument_syntax</code> which
+<p>The compiler object also has a method <a href="Reference-manual_returned_compiler.html#compilerget_argument_syntax"><ins><code>compiler.get_argument_syntax()</code></ins></a> which
 returns a lower case string of <code>gcc</code>, <code>msvc</code>, or another undefined string
 value; identifying whether the compiler arguments use the same syntax as
 either <code>gcc</code> or <code>msvc</code>, or that its arguments are not like either. This should
 only be used to select the syntax of the arguments, such as those to test
-with <code>has_argument</code>.</p>
+with <a href="Reference-manual_returned_compiler.html#compilerhas_argument"><ins><code>compiler.has_argument()</code></ins></a>.</p>
 <p>See <a href="Reference-tables.html#compiler-ids">reference tables</a> for a list of
 supported compiler ids and their argument type.</p>
 <h2 id="does-code-compile">Does code compile?</h2>
@@ -260,7 +260,7 @@ result of the check to its log.</p>
 <p>Sometimes it is necessary to check whether a certain code fragment not
 only compiles, but also links successfully, e.g. to check if a symbol
 is actually present in a library. This can be done using the
-'''.links()''' method on a compiler object like this:</p>
+<a href="Reference-manual_returned_compiler.html#compilerlinks"><ins><code>compiler.links()</code></ins></a> method like this:</p>
 <pre><code class="language-meson">code = '''#include&lt;stdio.h&gt;
 void func() { printf("Compile me.\n"); }
 '''
@@ -356,7 +356,7 @@ endif
 versions than the one that the program is compiled on. It can't be
 assumed that the OS version that is compiled on matches the OS version
 that the binary will run on.</p>
-<p>Therefore when detecting function availability with <code>has_function</code>, it
+<p>Therefore when detecting function availability with <a href="Reference-manual_returned_compiler.html#compilerhas_function"><ins><code>compiler.has_function()</code></ins></a>, it
 is important to specify the correct header in the prefix argument.</p>
 <p>In the example above, the function <code>open_memstream</code> is detected, which
 was introduced in macOS 10.13. When the user builds on macOS 10.13,

@@ -234,7 +234,7 @@ whether the actual dependency was found or not. Meson will ignore
 non-found dependencies.</p>
 <p>Meson also allows to get variables that are defined in the
 <code>pkg-config</code> file. This can be done by using the
-<code>get_pkgconfig_variable</code> function.</p>
+<a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a> function.</p>
 <pre><code class="language-meson">zdep_prefix = zdep.get_pkgconfig_variable('prefix')
 </code></pre>
 <p>These variables can also be redefined by passing the <code>define_variable</code>
@@ -340,7 +340,7 @@ no pkg-config on macOS and Windows.</p>
 <p>In these cases Meson provides convenience wrappers in the form of <code>system</code>
 dependencies. Internally these dependencies do exactly what a user would do
 in the build system DSL or with a script, likely calling
-<code>compiler.find_library()</code>, setting <code>link_with</code> and <code>include_directories</code>. By
+<a href="Reference-manual_returned_compiler.html#compilerfind_library"><ins><code>compiler.find_library()</code></ins></a>, setting <code>link_with</code> and <code>include_directories</code>. By
 putting these in Meson upstream the barrier of using them is lowered, as
 projects using Meson don't have to re-implement the logic.</p>
 <h2 id="builtin">Builtin</h2>
@@ -447,7 +447,7 @@ would like to use.</p>
 <pre><code class="language-meson">boost_dep = dependency('boost', modules : ['thread', 'utility'])
 exe = executable('myprog', 'file.cc', dependencies : boost_dep)
 </code></pre>
-<p>You can call <code>dependency</code> multiple times with different modules and
+<p>You can call <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> multiple times with different modules and
 use those to link against your targets.</p>
 <p>If your boost headers or libraries are in non-standard locations you
 can set the <code>BOOST_ROOT</code>, or the <code>BOOST_INCLUDEDIR</code> and

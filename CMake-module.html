@@ -236,14 +236,14 @@ cm_lib = sub_proj.dependency('cm_lib')
 executable(exe1, ['sources'], dependencies: [cm_lib])
 </code></pre>
 <p>The <code>subproject</code> method is almost identical to the normal Meson
-<code>subproject</code> function. The only difference is that a CMake project
+<a href="Reference-manual_functions.html#subproject"><ins><code>subproject()</code></ins></a> function. The only difference is that a CMake project
 instead of a Meson project is configured.</p>
 <p>The returned <code>sub_proj</code> supports the same options as a "normal"
 subproject. Meson automatically detects CMake build targets, which can
 be accessed with the methods listed <a href="CMake-module.html#subproject-object">below</a>.</p>
 <p>It is usually enough to just use the dependency object returned by the
 <code>dependency()</code> method in the build targets. This is almost identical
-to using the <code>declare_dependency()</code> object from a normal Meson subproject.</p>
+to using the <a href="Reference-manual_functions.html#declare_dependency"><ins><code>declare_dependency()</code></ins></a> object from a normal Meson subproject.</p>
 <p>It is also possible to use executables defined in the CMake project as code
 generators with the <code>target()</code> method:</p>
 <pre><code class="language-cmake">add_executable(cm_exe ${EXE_SRC})
