@@ -6120,11 +6120,12 @@ except Visual Studio).</p>
   <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>file</b>...,  # Files to install
 
   # Keyword arguments:
-  <b>install_dir</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # The absolute or relative path to the installation directory
-  <b>install_mode</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]   # specify the file mode in symbolic format and
-  <b>install_tag</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # A string used by the `meson install --tags` command
-  <b>rename</b>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]         # If specified renames each source file into corresponding file from `rename` list
-  <b>sources</b>      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
+  <b>install_dir</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # The absolute or relative path to the installation directory
+  <b>install_mode</b>  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]   # specify the file mode in symbolic format and
+  <b>install_tag</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # A string used by the `meson install --tags` command
+  <b>preserve_path</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>              # Disable stripping child-directories from data files when installing
+  <b>rename</b>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]         # If specified renames each source file into corresponding file from `rename` list
+  <b>sources</b>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments28">Arguments</h3>
@@ -6197,6 +6198,22 @@ tag which means they are not being installed when <code>--tags</code> argument i
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">preserve_path</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Disable stripping child-directories from data files when installing.</p>
+<p>This is equivalent to GNU Automake's <code>nobase</code> option.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.64.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
   </div>
   </td>
       </tr>
