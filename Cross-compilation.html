@@ -416,13 +416,13 @@ in the usual way.</p>
 <h2 id="introspection-and-system-checks">Introspection and system checks</h2>
 <p>The main <em>meson</em> object provides two functions to determine cross
 compilation status.</p>
-<pre><code class="language-meson">meson.is_cross_build()        # returns true when cross compiling
-meson.can_run_host_binaries() # returns true if the host binaries can be run, either with a wrapper or natively
+<pre><code class="language-meson"><a href="Reference-manual_builtin_meson.html#mesonis_cross_build"><ins>meson.is_cross_build()</ins></a>        # returns true when cross compiling
+<a href="Reference-manual_builtin_meson.html#mesoncan_run_host_binaries"><ins>meson.can_run_host_binaries()</ins></a> # returns true if the host binaries can be run, either with a wrapper or natively
 </code></pre>
 <p>You can run system checks on both the system compiler or the cross
 compiler. You just have to specify which one to use.</p>
-<pre><code class="language-meson">build_compiler = meson.get_compiler('c', native : true)
-host_compiler = meson.get_compiler('c', native : false)
+<pre><code class="language-meson">build_compiler = <a href="Reference-manual_builtin_meson.html#mesonget_compiler"><ins>meson.get_compiler</ins></a>('c', native : true)
+host_compiler = <a href="Reference-manual_builtin_meson.html#mesonget_compiler"><ins>meson.get_compiler</ins></a>('c', native : false)
 
 build_int_size = build_compiler.sizeof('int')
 host_int_size  = host_compiler.sizeof('int')
