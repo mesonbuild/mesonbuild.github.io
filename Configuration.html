@@ -210,9 +210,9 @@ configuration settings hard to inspect. To make things easier, Meson
 supports the generation of configure files. This feature is similar to
 one found in other build systems such as CMake.</p>
 <p>Suppose we have the following Meson snippet:</p>
-<pre><code class="language-meson">conf_data = <a href="Reference-manual_functions.html#configuration_data"><ins>configuration_data()</ins></a>
+<pre><code class="language-meson">conf_data = configuration_data()
 conf_data.set('version', '1.2.3')
-<a href="Reference-manual_functions.html#configure_file"><ins>configure_file</ins></a>(input : 'config.h.in',
+configure_file(input : 'config.h.in',
                output : 'config.h',
                configuration : conf_data)
 </code></pre>
