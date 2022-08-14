@@ -204,7 +204,28 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="cross-compilation">Cross compilation</h1>
-<p>Meson has full support for cross compilation. Since cross compiling is
+<p>Meson has full support for cross compilation through the use of
+a cross build definition file.  An minimal example of one such
+file <code>x86_64-w64-mingw32.txt</code> for a GCC/MinGW cross compiler
+targeting 64-bit Windows could be:</p>
+<pre><code class="language-ini">[binaries]
+c = 'x86_64-w64-mingw32-gcc'
+cpp = 'x86_64-w64-mingw32-g++'
+ar = 'x86_64-w64-mingw32-ar'
+strip = 'x86_64-w64-mingw32-strip'
+exe_wrapper = 'wine64'
+
+[host_machine]
+system = 'windows'
+cpu_family = 'x86_64'
+cpu = 'x86_64'
+endian = 'little'
+</code></pre>
+<p>Which is then used during the <code>setup</code> phase.</p>
+<pre><code class="language-sh">meson setup --cross-file x86_64-w64-mingw32.txt build-mingw
+meson compile -C build-mingw
+</code></pre>
+<p>Since cross compiling is
 more complicated than native building, let's first go over some
 nomenclature. The three most important definitions are traditionally
 called <em>build</em>, <em>host</em> and <em>target</em>. This is confusing because those
@@ -395,13 +416,13 @@ in the usual way.</p>
 <h2 id="introspection-and-system-checks">Introspection and system checks</h2>
 <p>The main <em>meson</em> object provides two functions to determine cross
 compilation status.</p>
-<pre><code class="language-meson">meson.is_cross_build()        # returns true when cross compiling
-meson.can_run_host_binaries() # returns true if the host binaries can be run, either with a wrapper or natively
+<pre><code class="language-meson"><a href="Reference-manual_builtin_meson.html#mesonis_cross_build"><ins>meson.is_cross_build()</ins></a>        # returns true when cross compiling
+<a href="Reference-manual_builtin_meson.html#mesoncan_run_host_binaries"><ins>meson.can_run_host_binaries()</ins></a> # returns true if the host binaries can be run, either with a wrapper or natively
 </code></pre>
 <p>You can run system checks on both the system compiler or the cross
 compiler. You just have to specify which one to use.</p>
-<pre><code class="language-meson">build_compiler = meson.get_compiler('c', native : true)
-host_compiler = meson.get_compiler('c', native : false)
+<pre><code class="language-meson">build_compiler = <a href="Reference-manual_builtin_meson.html#mesonget_compiler"><ins>meson.get_compiler</ins></a>('c', native : true)
+host_compiler = <a href="Reference-manual_builtin_meson.html#mesonget_compiler"><ins>meson.get_compiler</ins></a>('c', native : false)
 
 build_int_size = build_compiler.sizeof('int')
 host_int_size  = host_compiler.sizeof('int')
