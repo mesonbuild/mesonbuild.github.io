@@ -234,8 +234,8 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo FROM YOUR/REPO:eoan &gt; Dockerfile; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo ADD . /root &gt;&gt; Dockerfile; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker build -t withgit .; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run withgit /bin/sh -c "cd /root &amp;&amp; TRAVIS=true CC=$CC CXX=$CXX meson builddir &amp;&amp; meson test -C builddir"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson builddir &amp;&amp; meson test -C builddir; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run withgit /bin/sh -c "cd /root &amp;&amp; TRAVIS=true CC=$CC CXX=$CXX meson setup builddir &amp;&amp; meson test -C builddir"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson setup builddir &amp;&amp; meson test -C builddir; fi
 </code></pre>
 <h2 id="circleci-for-linux-with-docker">CircleCi for Linux (with Docker)</h2>
 <p><a href="https://circleci.com/">CircleCi</a> can work for spinning all of the
@@ -368,7 +368,7 @@ install:
   - pip install meson ninja
 
 script:
-  - meson builddir
+  - meson setup builddir
   - meson compile -C builddir
   - meson test -C builddir
 </code></pre>

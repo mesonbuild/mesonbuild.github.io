@@ -298,7 +298,7 @@ path.</p>
 <pre><code>/tmp/dep/lib/cmake
 /tmp/dep/bin
 </code></pre>
-<p>then invoke Meson as <code>meson builddir/ -Dcmake_prefix_path=/tmp/dep</code></p>
+<p>then invoke Meson as <code>meson setup builddir/ -Dcmake_prefix_path=/tmp/dep</code></p>
 <h2 id="tests-that-should-fail-but-did-not-are-now-errors">Tests that should fail but did not are now errors</h2>
 <p>You can tag a test as needing to fail like this:</p>
 <pre><code class="language-meson">test('shoulfail', exe, should_fail: true)

@@ -291,10 +291,10 @@ agnostic compilation. It accepts two arguments, <code>-j</code> and <code>-l</co
 are used if possible (<code>-l</code> does nothing with msbuild). A <code>-j</code> or <code>-l</code>
 value &lt; 1 lets the backend decide how many threads to use. For msbuild
 this means <code>-m</code>, for ninja it means passing no arguments.</p>
-<pre><code class="language-console">meson builddir --backend vs
+<pre><code class="language-console">meson setup builddir --backend vs
 meson compile -C builddir -j0  # this is the same as `msbuild builddir/my.sln -m`
 </code></pre>
-<pre><code class="language-console">meson builddir
+<pre><code class="language-console">meson setup builddir
 meson compile -C builddir -j3  # this is the same as `ninja -C builddir -j3`
 </code></pre>
 <p>Additionally <code>meson compile</code> provides a <code>--clean</code> switch to clean the
