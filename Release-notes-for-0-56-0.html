@@ -316,10 +316,10 @@ lowest precedent, and will be overwritten by command line arguments.</p>
 <pre><code class="language-ini">[project options]
 foo = 'other val'
 </code></pre>
-<pre><code class="language-console">meson builddir/ --native-file my.ini
+<pre><code class="language-console">meson setup builddir/ --native-file my.ini
 </code></pre>
 <p>Will result in the option foo having the value <code>other val</code>,</p>
-<pre><code class="language-console">meson builddir/ --native-file my.ini -Dfoo='different val'
+<pre><code class="language-console">meson setup builddir/ --native-file my.ini -Dfoo='different val'
 </code></pre>
 <p>Will result in the option foo having the value <code>different val</code>,</p>
 <p>Subproject options are assigned like this:</p>
