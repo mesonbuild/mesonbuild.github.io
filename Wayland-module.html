@@ -246,6 +246,7 @@ Required for staging and unstable, but not allowed for stable.</li>
   client : true,
   server : true,
   public : false,
+  core_only : false,
 )
 </code></pre>
 <p>This function accepts one or more arguments of either string or file type.</p>
@@ -260,6 +261,10 @@ generated. The default is true.</li>
 <li>
 <code>server</code> Optional arg that specifies if server side header file is
 generated. The default is false.</li>
+<li>
+<code>core_only</code> Optional arg that specifies that generated headers only include
+wayland-client-core.h instead of wayland-client.h. Since <em>0.64.0</em>
+</li>
 </ul>
 <p><strong>Returns</strong>: a list of <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> in the order source, client side header,
 server side header. Generated header files have the name
