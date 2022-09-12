@@ -292,7 +292,7 @@ if intl_found
 endif
 </code></pre>
 <p>one may simply use:</p>
-<pre><code>intl_dep = dependency('intl')
+<pre><code>intl_dep = dependency('intl', required: false)
 
 if intl_dep.found()
   # build options that need gettext
