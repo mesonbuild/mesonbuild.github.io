@@ -209,12 +209,14 @@ out-of-source. This means that <em>all</em> files generated during the build
 are placed in a separate subdirectory. This goes against common Unix
 tradition where you build your projects in-source. Building out of
 source gives two major advantages.</p>
-<p>First of all this makes for very simple <code>.gitignore</code> files. In
+<p>First of all this makes for very simple VCS "ignore" files. In
 classical build systems you may need to have tens of lines of
 definitions, most of which contain wildcards. When doing out of source
 builds all of this busywork goes away. A common ignore file for a
 Meson project only contains a few lines that are the build directory
-and IDE project files.</p>
+and IDE project files. (Note that since Meson 0.57.0, build directories
+are automatically ignored for git and mercurial by generating an ignore
+file inside the build directory.)</p>
 <p>Secondly this makes it very easy to clean your projects: just delete
 the build subdirectory and you are done. There is no need to guess
 whether you need to run <code>make clean</code>, <code>make distclean</code>, <code>make mrproper</code> or something else. When you delete a build subdirectory
