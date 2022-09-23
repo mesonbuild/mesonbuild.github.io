@@ -771,9 +771,9 @@ Commands:
     packagefiles                        Manage the packagefiles overlay
 </code></pre>
 <h3 id="test">test</h3>
-<pre><code class="language-inc">$ meson test [-h] [--repeat REPEAT] [--no-rebuild] [--gdb]
-             [--gdb-path GDB_PATH] [--list] [--wrapper WRAPPER] [-C WD]
-             [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
+<pre><code class="language-inc">$ meson test [-h] [--maxfail MAXFAIL] [--repeat REPEAT] [--no-rebuild]
+             [--gdb] [--gdb-path GDB_PATH] [--list] [--wrapper WRAPPER]
+             [-C WD] [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
              [--print-errorlogs] [--benchmark] [--logbase LOGBASE]
              [--num-processes NUM_PROCESSES] [-v] [-q]
              [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
@@ -791,6 +791,9 @@ Commands:
 
 optional arguments:
   -h, --help                            show this help message and exit
+  --maxfail MAXFAIL                     Number of failing tests before aborting
+                                        the test run. (default: 0, to disable
+                                        aborting on failure)
   --repeat REPEAT                       Number of times to run the tests.
   --no-rebuild                          Do not rebuild before running tests.
   --gdb                                 Run test under gdb.
