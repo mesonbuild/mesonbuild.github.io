@@ -235,6 +235,11 @@ filename without paths of the input if unset:</p>
 <pre><code class="language-meson">fs.copyfile('file.txt', 'outfile.txt')
 </code></pre>
 <p>Will create a copy renamed to <code>outfile.txt</code></p>
+<h2 id="added-update_mime_database-to-gnomepost_install">Added <code>update_mime_database</code> to <code>gnome.post_install()</code>
+</h2>
+<p>Applications that install a <code>.xml</code> file containing a <code>mime-type</code> need to update
+the cache upon installation. Most applications do that using a custom script,
+but it can now be done by Meson directly.</p>
 <h2 id="added-preserve_path-arg-to-install_data">Added preserve_path arg to install_data</h2>
 <p>The <a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a> function now has an optional argument <code>preserve_path</code>
 that allows installing multi-directory data file structures that live
