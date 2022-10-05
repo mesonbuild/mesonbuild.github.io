@@ -3429,8 +3429,8 @@ this may be an absolute or a relative to current workdir path.</li>
   <b>env</b>                : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                # environment variables to set, such as
   <b>feed</b>               : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                       # There are some compilers that can't be told to read
   <b>input</b>              : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                           # List of source files
-  <b>install</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                       # When true, one or more files of this target are installed during the install step (see `install_dir` for details)
-  <b>install_dir</b>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                     # If only one install_dir is provided, all outputs are installed there
+  <b>install</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                       # When true, this target is installed during the install step
+  <b>install_dir</b>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                            # If only one install_dir is provided, all outputs are installed there
   <b>install_mode</b>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                            # The file mode and optionally the owner/uid and group/gid
   <b>install_tag</b>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                  # A list of strings, one per output, used by the `meson install --tags` command
   <b>output</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                  # List of output files
@@ -3705,7 +3705,7 @@ your argument list may not contain <code>@INPUT@</code> when feed mode is active
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>When true, one or more files of this target are installed during the install step (see <code>install_dir</code> for details).</p>
+<p>When true, this target is installed during the install step.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -3715,7 +3715,7 @@ your argument list may not contain <code>@INPUT@</code> when feed mode is active
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>If only one install_dir is provided, all outputs are installed there.
@@ -6120,12 +6120,11 @@ except Visual Studio).</p>
   <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>file</b>...,  # Files to install
 
   # Keyword arguments:
-  <b>install_dir</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # The absolute or relative path to the installation directory
-  <b>install_mode</b>  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]   # specify the file mode in symbolic format and
-  <b>install_tag</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # A string used by the `meson install --tags` command
-  <b>preserve_path</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>              # Disable stripping child-directories from data files when installing
-  <b>rename</b>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]         # If specified renames each source file into corresponding file from `rename` list
-  <b>sources</b>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
+  <b>install_dir</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # The absolute or relative path to the installation directory
+  <b>install_mode</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]   # specify the file mode in symbolic format and
+  <b>install_tag</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # A string used by the `meson install --tags` command
+  <b>rename</b>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]         # If specified renames each source file into corresponding file from `rename` list
+  <b>sources</b>      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments28">Arguments</h3>
@@ -6198,22 +6197,6 @@ tag which means they are not being installed when <code>--tags</code> argument i
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
-  </div>
-  </td>
-      </tr>
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">preserve_path</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
-        <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>Disable stripping child-directories from data files when installing.</p>
-<p>This is equivalent to GNU Automake's <code>nobase</code> option.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.64.0)</em></p>
-  <p style="margin: 0px;"><code class="language-meson">default =
-  false</code></p>
   </div>
   </td>
       </tr>
@@ -11353,7 +11336,6 @@ and must only be executed once.</p>
         <!-- This suboptimal formating is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Directory relative to the current <code>meson.build</code> to enter.</p>
-<p>Cannot contain <code>..</code></p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
