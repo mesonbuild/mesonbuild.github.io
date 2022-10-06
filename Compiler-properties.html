@@ -209,7 +209,7 @@ the tools to detect properties of the system during configure time. To
 get most of this information, you first need to extract the <em><a href="Reference-manual_returned_compiler.html">compiler
 object</a></em> from the main
 <em>meson</em> variable.</p>
-<pre><code class="language-meson">compiler = meson.get_compiler('c')
+<pre><code class="language-meson">compiler = <a href="Reference-manual_builtin_meson.html#mesonget_compiler"><ins>meson.get_compiler</ins></a>('c')
 </code></pre>
 <p>Here we extract the C compiler. We could also have given the argument
 <code>cpp</code> to get the C++ compiler, <code>objc</code> to get the objective C compiler
@@ -250,7 +250,7 @@ void func() { printf("Compile me.\n"); }
 '''
 </code></pre>
 <p>Then we can run the test.</p>
-<pre><code class="language-meson">result = compiler.compiles(code, name : 'basic check')
+<pre><code class="language-meson">result = <a href="Reference-manual_returned_compiler.html#compilercompiles"><ins>compiler.compiles</ins></a>(code, name : 'basic check')
 </code></pre>
 <p>The variable <em>result</em> will now contain either <code>true</code> or <code>false</code>
 depending on whether the compilation succeeded or not. The keyword
@@ -266,7 +266,7 @@ void func() { printf("Compile me.\n"); }
 '''
 </code></pre>
 <p>Then we can run the test.</p>
-<pre><code class="language-meson">result = compiler.links(code, args : '-lfoo', name : 'link check')
+<pre><code class="language-meson">result = <a href="Reference-manual_returned_compiler.html#compilerlinks"><ins>compiler.links</ins></a>(code, args : '-lfoo', name : 'link check')
 </code></pre>
 <p>The variable <em>result</em> will now contain either <code>true</code> or <code>false</code>
 depending on whether the compilation and linking succeeded or not. The
@@ -283,7 +283,7 @@ int main(int argc, char **argv) {
   return 0;
 }
 '''
-result = compiler.run(code, name : 'basic check')
+result = <a href="Reference-manual_returned_compiler.html#compilerrun"><ins>compiler.run</ins></a>(code, name : 'basic check')
 </code></pre>
 <p>The <code>result</code> variable encapsulates the state of the test, which can be
 extracted with the following methods. The <code>name</code> keyword argument
@@ -325,7 +325,7 @@ has functionality to detect whether a given header file is available
 on the system. The test is done by trying to compile a simple test
 program that includes the specified header. The following snippet
 describes how this feature can be used.</p>
-<pre><code class="language-meson">if compiler.has_header('sys/fstat.h')
+<pre><code class="language-meson">if <a href="Reference-manual_returned_compiler.html#compilerhas_header"><ins>compiler.has_header</ins></a>('sys/fstat.h')
   # header exists, do something
 endif
 </code></pre>
@@ -333,7 +333,7 @@ endif
 <p>Often you need to determine the size of a particular element (such as
 <code>int</code>, <code>wchar_t</code> or <code>char*</code>). Using the <code>compiler</code> variable mentioned
 above, the check can be done like this.</p>
-<pre><code class="language-meson">wcharsize = compiler.sizeof('wchar_t', prefix : '#include&lt;wchar.h&gt;')
+<pre><code class="language-meson">wcharsize = <a href="Reference-manual_returned_compiler.html#compilersizeof"><ins>compiler.sizeof</ins></a>('wchar_t', prefix : '#include&lt;wchar.h&gt;')
 </code></pre>
 <p>This will put the size of <code>wchar_t</code> as reported by sizeof into
 variable <code>wcharsize</code>. The keyword argument <code>prefix</code> is optional. If
@@ -348,7 +348,7 @@ not be determined.</p>
 Sometimes you need to explicitly check if some function exists. This
 is how we would check whether the function <code>open_memstream</code> exists in
 header <code>stdio.h</code></p>
-<pre><code class="language-meson">if compiler.has_function('open_memstream', prefix : '#include &lt;stdio.h&gt;')
+<pre><code class="language-meson">if <a href="Reference-manual_returned_compiler.html#compilerhas_function"><ins>compiler.has_function</ins></a>('open_memstream', prefix : '#include &lt;stdio.h&gt;')
   # function exists, do whatever is required.
 endif
 </code></pre>
@@ -368,7 +368,7 @@ report the function as available.</p>
 <p>Some platforms have different standard structures. Here's how one
 would check if a struct called <code>mystruct</code> from header <code>myheader.h</code>
 contains a member called <code>some_member</code>.</p>
-<pre><code class="language-meson">if compiler.has_member('struct mystruct', 'some_member', prefix : '#include&lt;myheader.h&gt;')
+<pre><code class="language-meson">if <a href="Reference-manual_returned_compiler.html#compilerhas_member"><ins>compiler.has_member</ins></a>('struct mystruct', 'some_member', prefix : '#include&lt;myheader.h&gt;')
   # member exists, do whatever is required
 endif
 </code></pre>
@@ -377,13 +377,13 @@ endif
 example it is common that a <code>char</code> can be at any address but a 32 bit
 integer only at locations which are divisible by four. Determining the
 alignment of data types is simple.</p>
-<pre><code class="language-meson">int_alignment = compiler.alignment('int') # Will most likely contain the value 4.
+<pre><code class="language-meson">int_alignment = <a href="Reference-manual_returned_compiler.html#compileralignment"><ins>compiler.alignment</ins></a>('int') # Will most likely contain the value 4.
 </code></pre>
 <h2 id="has-argument">Has argument</h2>
 <p>This method tests if the compiler supports a given command line
 argument. This is implemented by compiling a small file with the given
 argument.</p>
-<pre><code class="language-meson">has_special_flags = compiler.has_argument('-Wspecialthing')
+<pre><code class="language-meson">has_special_flags = <a href="Reference-manual_returned_compiler.html#compilerhas_argument"><ins>compiler.has_argument</ins></a>('-Wspecialthing')
 </code></pre>
 <p><em>Note</em>: some compilers silently swallow command line arguments they do
 not understand. Thus this test can not be made 100% reliable.</p>

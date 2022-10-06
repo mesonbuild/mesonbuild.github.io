@@ -279,7 +279,7 @@ system libraries (<code>libc</code>, <code>libpthread</code>, <code>libm</code> 
 see the <a href="https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries">sample
 project</a>.</p>
 <p>Make the script run during install with this:</p>
-<pre><code class="language-meson">meson.add_install_script('linux_bundler.sh')
+<pre><code class="language-meson"><a href="Reference-manual_builtin_meson.html#mesonadd_install_script"><ins>meson.add_install_script</ins></a>('linux_bundler.sh')
 </code></pre>
 <h2 id="final-steps">Final steps</h2>
 <p>If you try to run the program now it will most likely fail to start or
@@ -294,7 +294,7 @@ export LD_LIBRARY_PATH="$(pwd)/lib"
 bin/myapp
 </code></pre>
 <p>Install it with this Meson snippet:</p>
-<pre><code class="language-meson">install_data('myapp.sh', install_dir : '.')
+<pre><code class="language-meson"><a href="Reference-manual_functions.html#install_data"><ins>install_data</ins></a>('myapp.sh', install_dir : '.')
 </code></pre>
 <p>And now you are done. Zip up your <code>/tmp/myapp</code> directory and you have
 a working binary ready for deployment. To run the program, just unzip

@@ -351,6 +351,31 @@ specified by <code>path</code> changes, this will trigger Meson to reconfigure t
 project. If the file specified by <code>path</code> is a <code>files()</code> object it
 cannot refer to a built file.</li>
 </ul>
+<h3 id="copyfile">copyfile</h3>
+<p><em>Since 0.64.0</em></p>
+<p>Copy a file from the source directory to the build directory at build time</p>
+<p>Has the following positional arguments:</p>
+<ul>
+<li>src <code>File | str</code>: the file to copy</li>
+</ul>
+<p>Has the following optional arguments:</p>
+<ul>
+<li>dest <code>str</code>: the name of the output file. If unset will be the basename of
+the src argument</li>
+</ul>
+<p>Has the following keyword arguments:</p>
+<ul>
+<li>install <code>bool</code>: Whether to install the copied file, defaults to false</li>
+<li>install_dir <code>str</code>: Where to install the file to</li>
+<li>install_tag: <code>str</code>: the install tag to assign to this target</li>
+<li>install_mode <code>array[str | int]</code>: the mode to install the file with</li>
+</ul>
+<p>returns:</p>
+<ul>
+<li>a <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> object</li>
+</ul>
+<pre><code class="language-meson">copy = fs.copyfile('input-file', 'output-file')
+</code></pre>
 
     </div>
         

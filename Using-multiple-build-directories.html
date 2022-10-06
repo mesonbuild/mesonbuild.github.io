@@ -209,12 +209,14 @@ out-of-source. This means that <em>all</em> files generated during the build
 are placed in a separate subdirectory. This goes against common Unix
 tradition where you build your projects in-source. Building out of
 source gives two major advantages.</p>
-<p>First of all this makes for very simple <code>.gitignore</code> files. In
+<p>First of all this makes for very simple VCS "ignore" files. In
 classical build systems you may need to have tens of lines of
 definitions, most of which contain wildcards. When doing out of source
 builds all of this busywork goes away. A common ignore file for a
 Meson project only contains a few lines that are the build directory
-and IDE project files.</p>
+and IDE project files. (Note that since Meson 0.57.0, build directories
+are automatically ignored for git and mercurial by generating an ignore
+file inside the build directory.)</p>
 <p>Secondly this makes it very easy to clean your projects: just delete
 the build subdirectory and you are done. There is no need to guess
 whether you need to run <code>make clean</code>, <code>make distclean</code>, <code>make mrproper</code> or something else. When you delete a build subdirectory
@@ -235,7 +237,7 @@ compiler and build with debug enabled and no optimizations so it
 builds as fast as possible. This is the default project type for
 Meson, so setting it up is simple.</p>
 <pre><code>mkdir builddir
-meson builddir
+meson setup builddir
 </code></pre>
 <p>Another common setup is to build with debug and optimizations to, for
 example, run performance tests. Setting this up is just as simple.</p>
@@ -245,7 +247,7 @@ meson --buildtype=debugoptimized buildopt
 <p>For systems where the default compiler is GCC, we would like to
 compile with Clang, too. So let's do that.</p>
 <pre><code>mkdir buildclang
-CC=clang CXX=clang++ meson buildclang
+CC=clang CXX=clang++ meson setup buildclang
 </code></pre>
 <p>You can add cross builds, too. As an example, let's set up a Linux -&gt;
 Windows cross compilation build using MinGW.</p>
@@ -273,7 +275,7 @@ analyzer. It is meant to be run from scratch on a given source tree.
 The steps to run it with Meson are very simple.</p>
 <pre><code>rm -rf buildscan
 mkdir buildscan
-scan-build meson buildscan
+scan-build meson setup buildscan
 cd buildscan
 scan-build ninja
 </code></pre>

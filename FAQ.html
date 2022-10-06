@@ -745,6 +745,12 @@ executable(
   link_language : 'c',
 )
 </code></pre>
+<h2 id="how-do-i-ignore-the-build-directory-in-my-vcs">How do I ignore the build directory in my VCS?</h2>
+<p>You don't need to, assuming you use git or mercurial! Meson &gt;=0.57.0 will
+create a <code>.gitignore</code> and <code>.hgignore</code> file for you, inside each build
+directory. It glob ignores <code>"*"</code>, since all generated files should not be
+checked into git.</p>
+<p>Users of older versions of Meson may need to set up ignore files themselves.</p>
 
     </div>
         
