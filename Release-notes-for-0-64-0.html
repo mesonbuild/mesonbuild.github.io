@@ -204,6 +204,14 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="add-optimization-plain-option">Add <code>optimization</code> <code>plain</code> option</h2>
+<p>The <code>optimization</code> built-in option now accepts <code>plain</code> value,
+which will not set any optimization flags. This is now the default
+value of the flag for <code>buildtype=plain</code>, which is useful for distros,
+that set the optimization and hardening flags by other means.</p>
+<p>If you are using the value of <code>get_option('optimization')</code> in your
+Meson scripts, make sure you are not making assumptions about it,
+such as that the value can be passed to a compiler in <code>-O</code> flag.</p>
 <h2 id="pager-and-colors-for-meson-configure-output">Pager and colors for <code>meson configure</code> output</h2>
 <p>The output of <code>meson configure</code>, printing all options, is now more readable by
 automatically using a pager (<code>less</code> by default) and colors. The pager used can

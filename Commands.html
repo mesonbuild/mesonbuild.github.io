@@ -230,10 +230,11 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
-                  [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
-                  [--prefer-static] [--stdsplit] [--strip]
-                  [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
-                  [--warnlevel {0,1,2,3}] [--werror]
+                  [--layout {mirror,flat}]
+                  [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
+                  [--stdsplit] [--strip] [--unity {on,off,subprojects}]
+                  [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}]
+                  [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR]
                   [--pkgconfig.relocatable]
@@ -283,7 +284,7 @@ optional arguments:
                                         installed files (default: 022).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
-  --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
   --prefer-static                       Whether to try static linking before
                                         shared linking
   --stdsplit                            Split stdout and stderr in test logs
@@ -613,7 +614,7 @@ Rewriter commands:
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
-              [--layout {mirror,flat}] [--optimization {0,g,1,2,3,s}]
+              [--layout {mirror,flat}] [--optimization {plain,0,g,1,2,3,s}]
               [--prefer-static] [--stdsplit] [--strip]
               [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
               [--warnlevel {0,1,2,3}] [--werror]
@@ -672,7 +673,7 @@ optional arguments:
                                         installed files (default: 022).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
-  --optimization {0,g,1,2,3,s}          Optimization level (default: 0).
+  --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
   --prefer-static                       Whether to try static linking before
                                         shared linking
   --stdsplit                            Split stdout and stderr in test logs
