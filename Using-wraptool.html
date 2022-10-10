@@ -273,6 +273,15 @@ Updated zlib to branch 1.2.8 revision 4
 <p>Wraptool can do other things besides these. Documentation for these
 can be found in the command line help, which can be accessed by
 <code>meson wrap --help</code>.</p>
+<h2 id="automatic-dependency-fallback">Automatic dependency fallback</h2>
+<p>Since <em>0.64.0</em> Meson can use WrapDB to automatically find missing dependencies.</p>
+<p>The user simply needs to download latest database, the following command stores
+it in <code>subprojects/wrapdb.json</code>:
+$ meson wrap update-db</p>
+<p>Once the database is available locally, any dependency not found on the system
+but available in WrapDB will automatically be downloaded.</p>
+<p>Automatic fetch of WrapDB subprojects can be disabled by removing the file
+<code>subprojects/wrapdb.json</code>, or by using <code>--wrap-mode=nodownload</code>.</p>
 
     </div>
         

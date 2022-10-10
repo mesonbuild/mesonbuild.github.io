@@ -834,14 +834,15 @@ optional arguments:
 <pre><code>meson test -C builddir specific_test_1 specific_test_2
 </code></pre>
 <h3 id="wrap">wrap</h3>
-<pre><code class="language-inc">$ meson wrap [-h] {list,search,install,update,info,status,promote} ...
+<pre><code class="language-inc">$ meson wrap [-h]
+             {list,search,install,update,info,status,promote,update-db} ...
 </code></pre>
 <p>An utility to manage WrapDB dependencies.</p>
 <pre><code class="language-inc">optional arguments:
   -h, --help                            show this help message and exit
 
 Commands:
-  {list,search,install,update,info,status,promote}
+  {list,search,install,update,info,status,promote,update-db}
     list                                show all available projects
     search                              search the db by name
     install                             install the specified project
@@ -852,6 +853,8 @@ Commands:
                                         your projects
     promote                             bring a subsubproject up to the master
                                         project
+    update-db                           Update list of projects available in
+                                        WrapDB (Since 0.61.0)
 </code></pre>
 <p>See <a href="Using-wraptool.html">the WrapDB tool documentation</a> for more info.</p>
 <h3 id="devenv">devenv</h3>

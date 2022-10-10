@@ -4074,6 +4074,12 @@ used only if none of the names are found on the system. Once one of the name has
 been found, all other names are added into the cache so subsequent calls for any
 of those name will return the same value. This is useful in case a dependency
 could have different names, such as <code>png</code> and <code>libpng</code>.</p>
+<ul>
+<li>Since <em>0.64.0</em> a dependency fallback can be provided by WrapDB. Simply download
+the database locally using <code>meson wrap update-db</code> command and Meson will
+automatically fallback to subprojects provided by WrapDB if the dependency is
+not found on the system and the project does not ship their own <code>.wrap</code> file.</li>
+</ul>
 <p>Dependencies can also be resolved in two other ways:</p>
 <ul>
 <li>
