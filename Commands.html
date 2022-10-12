@@ -753,6 +753,8 @@ page</a> for more info.</p>
 <p>Manages subprojects of the Meson project. <em>Since 0.59.0</em> commands are run on
 multiple subprojects in parallel by default, use <code>--num-processes=1</code> if it is
 not desired.</p>
+<p>Since <em>0.64.0</em> the <code>update</code> subcommand will not download new wrap files
+from WrapDB any more. Use <code>meson wrap update</code> command for that instead.</p>
 <pre><code class="language-inc">optional arguments:
   -h, --help                            show this help message and exit
 
@@ -846,8 +848,8 @@ Commands:
     list                                show all available projects
     search                              search the db by name
     install                             install the specified project
-    update                              update the project to its newest
-                                        available release
+    update                              Update wrap files from WrapDB (Since
+                                        0.63.0)
     info                                show available versions of a project
     status                              show installed and available versions of
                                         your projects
