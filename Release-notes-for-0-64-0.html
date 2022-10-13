@@ -276,6 +276,13 @@ Rust targets, and is placed in the build directory.</p>
 canceled or interrupted after 1 test is marked as failing. This can be used for
 example to quit a CI run and avoid burning additional time as soon as it is
 known that the overall return status will be failing.</p>
+<h2 id="incremental-thinlto-with-b_thinlto_cache">Incremental ThinLTO with <code>b_thinlto_cache</code>
+</h2>
+<p><a href="https://clang.llvm.org/docs/ThinLTO.html#incremental">Incremental ThinLTO</a> can now be enabled by passing
+<code>-Db_thinlto_cache=true</code> during setup. The use of caching speeds up incremental builds significantly while retaining all
+the runtime performance benefits of ThinLTO.</p>
+<p>The cache location defaults to a Meson-managed directory inside the build folder, but can be customized with
+<code>b_thinlto_cache_dir</code>.</p>
 <h2 id="update-all-wraps-from-wrapdb-with-meson-wrap-update-command">Update all wraps from WrapDB with <code>meson wrap update</code> command</h2>
 <p>The command <code>meson wrap update</code>, with no extra argument, will now update all wraps
 that comes from WrapDB to the latest version. The extra <code>--force</code> argument will
