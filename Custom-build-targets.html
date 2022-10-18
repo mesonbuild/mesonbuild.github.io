@@ -240,6 +240,60 @@ must be written to <code>build_dir/subdir/foo.dat</code>
 <code>build_dir/subdir/target.dir</code>
 </li>
 </ul>
+<h1 id="generating-a-full-subdirectory-of-files-since-0640">Generating a full subdirectory of files (since 0.64.0)</h1>
+<p>There are many cases where one needs to generate a bunch of files
+where the list of outputs is unknown. The most common case is
+documentations. Tools like Doxygen, Sphinx and the like typically
+generate a whole directory tree full of files that you would need to
+install.</p>
+<p>For this case Meson provides the <code>opaque_target</code> command. It is more
+complex than other targets and typically require the developer to
+write a small wrapper script that runs the actual tool. The syntax
+looks like this.</p>
+<pre><code class="language-meson">doc_target = opaque_target('docs',
+    command: find_program('adaptor_script.py'),
+    args: ['--some-flag'],
+    install: true,
+    install_dir: 'some_dir')
+</code></pre>
+<p>An <code>opaque_target</code> function behaves much like a <code>custom_target</code> with
+the exception that it takes the command and arguments separately. This
+is needed so that Meson can insert additional integration command line
+arguments to the command line. When the script is executed, the
+command line looks like this.</p>
+<pre><code>adaptor_script.py --stamp=&lt;path&gt; --dep=&lt;path&gt; --scrath=&lt;dir&gt; \
+  --out=&lt;dir&gt; -- --some-flag
+</code></pre>
+<p>The first arguments are as follows:</p>
+<p><strong>--stamp</strong> is a <em>stamp file</em>. That is, the file whose existance and
+time samp specify whether the target is up to date or not. Its
+contents are ignored. When the script is run successfully it must
+update the time stamp of this file, typically by opening it for
+writing and closing it. If the script did not succeed the script
+must delete this file if it exists. If a stamp file exists after
+an unsuccessfull run, the resulting behaviour is undefined.</p>
+<p><strong>--dep</strong> specifies the dependency file. That is, it should list all
+the source files whose changes should cause the target to be
+re-run. It should be in the same syntax (a subset of Make
+dependencies) as produced by compilers like GCC and Clang. This
+file <strong>must</strong> be written. If there is no dependency information
+available, then the contents should be just a single line
+consisting of the stamp file name followed by a colon. There must
+<em>not</em> be a space between the two.</p>
+<p><strong>--scratch</strong> points to a directory that can be used for temporary
+processing. The contents of this file are persisted over
+consecutive invocations but they are cleared on every <code>clean</code>
+operation.</p>
+<p><strong>--out</strong> points to a directory where the final output files should be
+placed. They are copied as is on install (if the <code>install</code> kwarg
+is <code>true</code>). If the script is invoked multiple times it is the
+responsibility of the script to ensure that no stray files from
+the first run remain in the dir after the second run.</p>
+<p><em>--</em> signals the end of integration args. Additional scripts specified
+in the target follow this one. Meson may add new integration
+flags in the future, so the script must be able to handle any
+unknown arguments before this marker (typically by ignoring
+them).</p>
 
     </div>
         
