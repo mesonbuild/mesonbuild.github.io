@@ -261,6 +261,16 @@ supports, including FreeBSD, NetBSD, OpenBSD, and DragonflyBSD.</p>
 <p>When a subproject is downloaded using an <code>https://</code> URL, credentials from
 <code>~/.netrc</code> are now used. This avoids hardcoding login and password in plain
 text in the URL itself.</p>
+<h2 id="new-method-to-preprocess-source-files">New method to preprocess source files</h2>
+<p>Compiler object has a new <code>preprocess()</code> method. It is supported by all C/C++
+compilers. It preprocess sources without compiling them.</p>
+<p>The preprocessor will receive the same arguments (include directories, defines,
+etc) as with normal compilation. That includes for example args added with
+<code>add_project_arguments()</code>, or on the command line with <code>-Dc_args=-DFOO</code>.</p>
+<pre><code class="language-meson">cc = meson.get_compiler('c')
+pp_files = cc.preprocess('foo.c', 'bar.c', output: '@PLAINNAME@')
+exe = executable('app', pp_files)
+</code></pre>
 <h2 id="pythonfind_installation-now-accepts-pure-argument">python.find_installation() now accepts pure argument</h2>
 <p>The default value of <code>pure:</code> for <code>py.install_sources()</code> and
 <code>py.get_install_dir()</code> can now be changed by explicitly passing a <code>pure:</code> kwarg

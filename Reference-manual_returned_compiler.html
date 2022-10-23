@@ -2879,11 +2879,114 @@ If this keyword argument is not passed, no message will be printed about the che
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="compilerpreprocess">compiler.preprocess()</h3>
+<p>Preprocess a list of source files but do not compile them. The preprocessor
+will receive the same arguments (include directories, defines, etc) as with
+normal compilation. That includes for example args added with
+<code>add_project_arguments()</code>, or on the command line with <code>-Dc_args=-DFOO</code>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature27">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.64.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Preprocess a list of source files but do not compile them
+<a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>] preprocess(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> <b>source</b>...,  # Input source to compile
+
+  # Keyword arguments:
+  <b>compile_args</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Extra flags to pass to the preprocessor
+  <b>output</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        # Template for name of preprocessed files: `@PLAINNAME@` is replaced by
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments22">Arguments</h4>
+<p>The
+method accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>source...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a></code>.</p>
+<p>Input source to compile. The following types are supported:</p>
+<ul>
+<li>Strings relative to the current source directory</li>
+<li>
+<a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects defined in any preceding build file</li>
+<li>The return value of configure-time generators such as <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>
+</li>
+<li>The return value of build-time generators such as
+<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> or <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a>
+</li>
+</ul>
+<p>These input files can be sources, objects, libraries, or any other
+file. Meson will automatically categorize them based on the extension
+and use them accordingly. For instance, sources (<code>.c</code>, <code>.cpp</code>,
+<code>.vala</code>, <code>.rs</code>, etc) will be compiled and objects (<code>.o</code>, <code>.obj</code>) and
+libraries (<code>.so</code>, <code>.dll</code>, etc) will be linked.</p>
+<p>With the Ninja backend, Meson will create a build-time <a href="https://ninja-build.org/manual.html#ref_dependencies">order-only
+dependency</a> on
+all generated input files, including unknown files. This is needed to
+bootstrap the generation of the real dependencies in the
+<a href="https://ninja-build.org/manual.html#ref_headers">depfile</a> generated
+by your compiler to determine when to rebuild sources. Ninja relies on
+this dependency file for all input files, generated and non-generated.
+The behavior is similar for other backends.</p>
+  <div style="margin: 0px; text-align: center;">
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>The method <code>compiler.preprocess()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">compile_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Extra flags to pass to the preprocessor</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">output</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Template for name of preprocessed files: <code>@PLAINNAME@</code> is replaced by
+the source filename and <code>@BASENAME@</code> is replaced by the source filename
+without its extension.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="compilerrun">compiler.run()</h3>
 <p>Attempts to compile and execute the given code fragment.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature27">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature28">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2902,7 +3005,7 @@ If this keyword argument is not passed, no message will be printed about the che
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments22">Arguments</h4>
+<h4 id="arguments23">Arguments</h4>
 <p>The method <code>compiler.run()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3035,7 +3138,7 @@ If this keyword argument is not passed, no message will be printed about the che
 <p>returns the size of the given type (e.g. <code>'int'</code>) or -1 if the type is unknown.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature28">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature29">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3054,7 +3157,7 @@ If this keyword argument is not passed, no message will be printed about the che
   <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments23">Arguments</h4>
+<h4 id="arguments24">Arguments</h4>
 <p>The method <code>compiler.sizeof()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3186,7 +3289,7 @@ some symbols to be exposed on Linux, and it should be passed via
 <p>Returns <code>true</code> if the C symbol mangling is one underscore (<code>_</code>) prefixed to the symbol.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature29">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature30">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3202,7 +3305,7 @@ some symbols to be exposed on Linux, and it should be passed via
 <p>Returns the compiler's version number as a string.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature30">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature31">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
