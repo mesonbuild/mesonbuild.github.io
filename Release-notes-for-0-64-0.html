@@ -261,6 +261,10 @@ supports, including FreeBSD, NetBSD, OpenBSD, and DragonflyBSD.</p>
 <p>When a subproject is downloaded using an <code>https://</code> URL, credentials from
 <code>~/.netrc</code> are now used. This avoids hardcoding login and password in plain
 text in the URL itself.</p>
+<h2 id="new-opaque_target-for-generating-directory-trees">New <code>opaque_target</code> for generating directory trees</h2>
+<p>To make integrating tools like Doxygen and Sphinx easier, Meson now
+has a custom command for running targets that produce a large number
+of files, whose names are not know beforehand.</p>
 <h2 id="new-method-to-preprocess-source-files">New method to preprocess source files</h2>
 <p>Compiler object has a new <code>preprocess()</code> method. It is supported by all C/C++
 compilers. It preprocess sources without compiling them.</p>
