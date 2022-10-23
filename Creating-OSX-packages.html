@@ -295,12 +295,12 @@ though.</p>
 ready for distribution.</p>
 <h4 id="qt">Qt</h4>
 <p>Qt offers a <a href="https://doc.qt.io/qt-5/macos-deployment.html#macdeploy">deployment tool</a>,
-called <code>macdeployqt</code>, that automatizes bundling Qt's libraries in your application folder and
+called <code>macdeployqt</code>, that automates bundling Qt's libraries in your application folder and
 optionally create the final <code>.dmg</code> installer</p>
 <pre><code class="language-console"># cd into the folder that contains the `myapp.app` folder
 macdeployqt myapp.app -executable=myapp.app/Contents/MacOS/myapp
 </code></pre>
-<p>This copies the needed Qt libaries to the correct subfolders within <code>myapp.app</code>.
+<p>This copies the needed Qt libraries to the correct subfolders within <code>myapp.app</code>.
 The <code>-executable=myapp.app/Contents/MacOS/myapp</code> argument is
 to automatically alter the search path of the executable
 <code>myapp.app/Contents/MacOS/myapp</code> for the Qt libraries. One can also pass the <code>-dmg</code>

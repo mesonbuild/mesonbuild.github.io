@@ -257,7 +257,7 @@ libfoo = static_library('foo', [foo_c, foo_h])
 executable('myexe', ['main.c', foo_h], link_with : libfoo)
 </code></pre>
 <p>Each target that depends on a generated header should add that header
-to it's sources, as seen above with <code>libfoo</code> and <code>myexe</code>. This is
+to its sources, as seen above with <code>libfoo</code> and <code>myexe</code>. This is
 because there is no way for Meson or the backend to know that <code>myexe</code>
 depends on <code>foo.h</code> just because <code>libfoo</code> does, it could be a private
 header.</p>
