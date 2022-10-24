@@ -212,6 +212,18 @@ that set the optimization and hardening flags by other means.</p>
 <p>If you are using the value of <code>get_option('optimization')</code> in your
 Meson scripts, make sure you are not making assumptions about it,
 such as that the value can be passed to a compiler in <code>-O</code> flag.</p>
+<h2 id="new-language-nasm">New language <code>nasm</code>
+</h2>
+<p>When the <code>nasm</code> language is added to the project, <code>.asm</code> files are
+automatically compiled with NASM. This is only supported for x86 and x86_64 CPU
+family. <code>yasm</code> is used as fallback if <code>nasm</code> command is not found.</p>
+<p>Note that GNU Assembly files usually have <code>.s</code> extension and were already built
+using C compiler such as GCC or CLANG.</p>
+<pre><code class="language-meson">project('test', 'nasm')
+
+exe = executable('hello', 'hello.asm')
+test('hello', exe)
+</code></pre>
 <h2 id="pager-and-colors-for-meson-configure-output">Pager and colors for <code>meson configure</code> output</h2>
 <p>The output of <code>meson configure</code>, printing all options, is now more readable by
 automatically using a pager (<code>less</code> by default) and colors. The pager used can
@@ -261,10 +273,6 @@ supports, including FreeBSD, NetBSD, OpenBSD, and DragonflyBSD.</p>
 <p>When a subproject is downloaded using an <code>https://</code> URL, credentials from
 <code>~/.netrc</code> are now used. This avoids hardcoding login and password in plain
 text in the URL itself.</p>
-<h2 id="new-opaque_target-for-generating-directory-trees">New <code>opaque_target</code> for generating directory trees</h2>
-<p>To make integrating tools like Doxygen and Sphinx easier, Meson now
-has a custom command for running targets that produce a large number
-of files, whose names are not know beforehand.</p>
 <h2 id="new-method-to-preprocess-source-files">New method to preprocess source files</h2>
 <p>Compiler object has a new <code>preprocess()</code> method. It is supported by all C/C++
 compilers. It preprocess sources without compiling them.</p>
