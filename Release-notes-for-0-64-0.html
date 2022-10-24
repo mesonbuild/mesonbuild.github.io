@@ -276,6 +276,11 @@ supports, including FreeBSD, NetBSD, OpenBSD, and DragonflyBSD.</p>
 <p>When a subproject is downloaded using an <code>https://</code> URL, credentials from
 <code>~/.netrc</code> are now used. This avoids hardcoding login and password in plain
 text in the URL itself.</p>
+<h2 id="basic-support-for-oneapi-compilers-on-linux-and-windows">Basic support for oneAPI compilers on Linux and Windows</h2>
+<p>To use on Linux:</p>
+<pre><code>source /opt/intel/oneapi/setvars.sh
+CC=icx CXX=icpx FC=ifx meson setup builddir
+</code></pre>
 <h2 id="new-method-to-preprocess-source-files">New method to preprocess source files</h2>
 <p>Compiler object has a new <code>preprocess()</code> method. It is supported by all C/C++
 compilers. It preprocess sources without compiling them.</p>
