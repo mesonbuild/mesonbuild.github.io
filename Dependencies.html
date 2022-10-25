@@ -373,14 +373,14 @@ directly to <code>find_package(COMPONENTS)</code>.</p>
 <code>find_package</code> to succeed is provided with the <code>cmake_package_version</code>
 kwarg (<em>introduced in 0.57.0</em>). The specified <code>cmake_package_version</code>
 will be passed directly as the second parameter to <code>find_package</code>.</p>
-<p>It is also possible to reuse existing <code>Find&lt;name&gt;.cmake</code> files with
-the <code>cmake_module_path</code> property. Using this property is equivalent to
-setting the <code>CMAKE_MODULE_PATH</code> variable in CMake. The path(s) given
-to <code>cmake_module_path</code> should all be relative to the project source
-directory. Absolute paths should only be used if the CMake files are
-not stored in the project itself.</p>
+<p>It is also possible to reuse existing <code>Find&lt;name&gt;.cmake</code> files with the
+<code>cmake_module_path</code> property (<em>since 0.50.0</em>). Using this property is
+equivalent to setting the <code>CMAKE_MODULE_PATH</code> variable in CMake. The
+path(s) given to <code>cmake_module_path</code> should all be relative to the
+project source directory. Absolute paths should only be used if the
+CMake files are not stored in the project itself.</p>
 <p>Additional CMake parameters can be specified with the <code>cmake_args</code>
-property.</p>
+property (<em>since 0.50.0</em>).</p>
 <h2 id="dub">Dub</h2>
 <p>Please understand that Meson is only able to find dependencies that
 exist in the local Dub repository. You need to manually fetch and
