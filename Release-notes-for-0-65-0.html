@@ -204,6 +204,15 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="in-operator-for-strings">
+<code>in</code> operator for strings</h2>
+<p><code>in</code> and <code>not in</code> operators now works on strings, in addition to arrays and
+dictionaries.</p>
+<pre><code>fs = import('fs')
+if 'something' in fs.read('somefile')
+  # True
+endif
+</code></pre>
 
     </div>
         
