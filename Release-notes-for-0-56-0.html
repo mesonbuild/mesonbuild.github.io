@@ -406,14 +406,14 @@ separately. Both work as proper dependencies of their type, so
 <p>It has also been fixed to use the selected compiler for the build instead of
 the default compiler.</p>
 <h2 id="external-projects">External projects</h2>
-<p>A new experimental module <code>unstable-external_project</code> has been added
+<p>A new experimental module <code>unstable_external_project</code> has been added
 to build code using other build systems than Meson. Currently only
 supporting projects with a configure script that generates Makefiles.</p>
 <pre><code class="language-meson">project('My Autotools Project', 'c',
   meson_version : '&gt;=0.56.0',
 )
 
-mod = import('unstable-external_project')
+mod = import('unstable_external_project')
 
 p = mod.add_project('configure',
   configure_options : ['--prefix=@PREFIX@',
