@@ -644,9 +644,7 @@ available on all platforms or with all compilers:</p>
 <code>undefined</code>, <code>memory</code>, <code>leak</code>, <code>address,undefined</code>, but note that some
 compilers might not support all of them. For example Visual Studio
 only supports the address sanitizer.</p>
-<ul>
-<li>&lt; 0 means disable, == 0 means automatic selection, &gt; 0 sets a specific number to use</li>
-</ul>
+<p>* &lt; 0 means disable, == 0 means automatic selection, &gt; 0 sets a specific number to use</p>
 <p>LLVM supports <code>thin</code> lto, for more discussion see <a href="https://clang.llvm.org/docs/ThinLTO.html">LLVM's documentation</a></p>
 <p><a name="b_vscrt-from_buildtype"></a>
 The default value of <code>b_vscrt</code> is <code>from_buildtype</code>. The following table is
@@ -831,41 +829,41 @@ the value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other
 c/c++ compiler supports this option.</p>
 <p>Since <em>0.63.0</em> all compiler options can be set per subproject, see
 <a href="Builtin-options.html#specifying-options-per-subproject">here</a> for details on how the default value
-is inherited from main project. This is useful for example when the main project
-requires C++11 but a subproject requires C++14. The <code>cpp_std</code> value from
-subproject's <code>default_options</code> is now respected.</p>
+is inherited from the main project. This is useful, for example, when the main
+project requires C++11, but a subproject requires C++14. The <code>cpp_std</code> value
+from the subproject's <code>default_options</code> is now respected.</p>
 <h2 id="specifying-options-per-machine">Specifying options per machine</h2>
 <p>Since <em>0.51.0</em>, some options are specified per machine rather than
 globally for all machine configurations. Prefixing the option with
-<code>build.</code> just affects the build machine configuration, while
-unprefixed just affects the host machine configuration, respectively.
+<code>build.</code> only affects the build machine configuration, while leaving it
+unprefixed only affects the host machine configuration.
 For example:</p>
 <ul>
 <li>
 <p><code>build.pkg_config_path</code> controls the paths pkg-config will search
-for just <code>native: true</code> dependencies (build machine).</p>
+for <code>native: true</code> (build machine) dependencies.</p>
 </li>
 <li>
 <p><code>pkg_config_path</code> controls the paths pkg-config will search for
-just <code>native: false</code> dependencies (host machine).</p>
+<code>native: false</code> (host machine) dependencies.</p>
 </li>
 </ul>
-<p>This is useful for cross builds. In the native builds, build = host,
-and the unprefixed option alone will suffice.</p>
-<p>Prior to <em>0.51.0</em>, these options just effected native builds when
-specified on the command line, as there was no <code>build.</code> prefix.
+<p>This is useful for cross builds. In native builds, the build and host
+machines are the same, and the unprefixed option alone will suffice.</p>
+<p>Prior to <em>0.51.0</em>, these options only affected native builds when
+specified on the command line as there was no <code>build.</code> prefix.
 Similarly named fields in the <code>[properties]</code> section of the cross file
-would effect cross compilers, but the code paths were fairly different
+would affect cross compilers, but the code paths were fairly different,
 allowing differences in behavior to crop out.</p>
 <h2 id="specifying-options-per-subproject">Specifying options per subproject</h2>
 <p>Since <em>0.54.0</em> <code>default_library</code> and <code>werror</code> built-in options can be
-defined per subproject. This is useful for example when building
-shared libraries in the main project, but static link a subproject, or
-when the main project must build with no warnings but some subprojects
+defined per subproject. This is useful, for example, when building
+shared libraries in the main project and statically linking a subproject,
+or when the main project must build with no warnings but some subprojects
 cannot.</p>
-<p>Most of the time this would be used either by the parent project by
-setting subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>), or by the user using the
-command line <code>-Dfoo:default_library=static</code>.</p>
+<p>Most of the time, this would be used either in the parent project by
+setting subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>), or by the user through the
+command line: <code>-Dfoo:default_library=static</code>.</p>
 <p>The value is overridden in this order:</p>
 <ul>
 <li>Value from parent project</li>
@@ -873,10 +871,11 @@ command line <code>-Dfoo:default_library=static</code>.</p>
 <li>Value from subproject() default_options if set</li>
 <li>Value from command line if set</li>
 </ul>
-<p>Since 0.56.0 <code>warning_level</code> can also be defined per subproject.</p>
+<p>Since <em>0.56.0</em> <code>warning_level</code> can also be defined per subproject.</p>
 <h2 id="module-options">Module options</h2>
-<p>Some Meson modules have built-in options. They can be set by prefixing the option
-name with the module name: <code>-D&lt;module&gt;.&lt;option&gt;=&lt;value&gt;</code> (e.g. <code>-Dpython.platlibdir=/foo</code>).</p>
+<p>Some Meson modules have built-in options. They can be set by prefixing the
+option with the module's name:
+<code>-D&lt;module&gt;.&lt;option&gt;=&lt;value&gt;</code> (e.g. <code>-Dpython.platlibdir=/foo</code>).</p>
 <h3 id="pkgconfig-module">Pkgconfig module</h3>
 <table>
 <thead>
@@ -897,17 +896,18 @@ name with the module name: <code>-D&lt;module&gt;.&lt;option&gt;=&lt;value&gt;</
 </tbody>
 </table>
 <p><em>Since 0.63.0</em> The <code>pkgconfig.relocatable</code> option is used by the
-pkgconfig module, namely <a href="Pkgconfig-module.html"><code>pkg.generate()</code></a> and affect how the
-<code>prefix</code> in the generated pkgconfig file is set (not to be confused
-with the <a href="Builtin-options.html#directories">install prefix</a>). When it is <code>true</code> the <code>prefix</code> will be
-relative to the <code>install_dir</code>. This allows the pkgconfig file to be
-moved around and still work, as long as the relative path is not
-broken. In general this allows for the whole installed package to be
-placed anywhere on the system and still work as a dependency. When it
-is set to <code>false</code> the <code>prefix</code> will be the same as the install prefix.</p>
+pkgconfig module–namely <a href="Pkgconfig-module.html"><code>pkg.generate()</code></a>–and
+affects how the <code>prefix</code> (not to be confused with the
+<a href="Builtin-options.html#directories">install prefix</a>) in the generated pkgconfig file is set.
+When it is <code>true</code>, the <code>prefix</code> will be relative to the <code>install_dir</code>-this
+allows the pkgconfig file to be moved around and still work, as long
+as the relative path is not broken. In general, this allows for the whole
+installed package to be placed anywhere on the system and still work as a
+dependency. When it is set to <code>false</code>, the <code>prefix</code> will be the same as
+the install prefix.</p>
 <p>An error will be raised if <code>pkgconfig.relocatable</code> is <code>true</code> and the
 <code>install_dir</code> for a generated pkgconfig file points outside the
-install prefix. For example if the install prefix is <code>/usr</code> and the
+install prefix. For example: if the install prefix is <code>/usr</code> and the
 <code>install_dir</code> for a pkgconfig file is <code>/var/lib/pkgconfig</code>.</p>
 <h3 id="python-module">Python module</h3>
 <table>
@@ -940,13 +940,13 @@ install prefix. For example if the install prefix is <code>/usr</code> and the
 </tr>
 </tbody>
 </table>
-<p><em>Since 0.60.0</em> <code>python.platlibdir</code> and <code>python.purelibdir</code> options are used by
-python module methods <code>python.install_sources()</code> and <code>python.get_install_dir()</code>.
-By default Meson tries to detect the correct installation path, but make them
-relative to the installation <code>prefix</code>, which will often result in installed python
-modules to not be found by the interpreter unless <code>prefix</code> is <code>/usr</code> on Linux,
-or for example <code>C:\Python39</code> on Windows. These options can be absolute paths
-outside of <code>prefix</code>.</p>
+<p><em>Since 0.60.0</em> The <code>python.platlibdir</code> and <code>python.purelibdir</code> options are used
+by the python module methods <code>python.install_sources()</code> and
+<code>python.get_install_dir()</code>; Meson tries to detect the correct installation paths
+and make them relative to the installation <code>prefix</code> by default which will often
+result in the interpreter not finding the installed python modules unless
+<code>prefix</code> is <code>/usr</code> on Linux, or, for instance, <code>C:\Python39</code> on Windows. These
+options can be absolute paths outside of <code>prefix</code>.</p>
 <p><em>Since 0.62.0</em> The <code>python.install_env</code> option is used to detect the correct
 installation path. Setting to <code>system</code> will avoid making the paths relative to
 <code>prefix</code> and instead use the global site-packages of the selected python
