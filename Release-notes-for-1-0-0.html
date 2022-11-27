@@ -217,6 +217,11 @@ if 'something' in fs.read('somefile')
   # True
 endif
 </code></pre>
+<h2 id="warningleveleverything-option">
+<code>warning-level=everything</code> option</h2>
+<p>The new <code>everything</code> value for the built-in <code>warning_level</code> enables roughly all applicable compiler warnings.
+For clang and MSVC, this simply enables <code>-Weverything</code> or <code>/Wall</code>, respectively.
+For GCC, meson enables warnings approximately equivalent to <code>-Weverything</code> from clang.</p>
 
     </div>
         

@@ -233,8 +233,8 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--layout {mirror,flat}]
                   [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
                   [--stdsplit] [--strip] [--unity {on,off,subprojects}]
-                  [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3}]
-                  [--werror]
+                  [--unity-size UNITY_SIZE]
+                  [--warnlevel {0,1,2,3,everything}] [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR]
                   [--pkgconfig.relocatable]
@@ -292,7 +292,7 @@ optional arguments:
   --unity {on,off,subprojects}          Unity build (default: off).
   --unity-size UNITY_SIZE               Unity block size (default: (2, None,
                                         4)).
-  --warnlevel {0,1,2,3}                 Compiler warning level to use (default:
+  --warnlevel {0,1,2,3,everything}      Compiler warning level to use (default:
                                         1).
   --werror                              Treat warnings as errors
   --wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}
@@ -617,7 +617,7 @@ Rewriter commands:
               [--layout {mirror,flat}] [--optimization {plain,0,g,1,2,3,s}]
               [--prefer-static] [--stdsplit] [--strip]
               [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
-              [--warnlevel {0,1,2,3}] [--werror]
+              [--warnlevel {0,1,2,3,everything}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR]
               [--pkgconfig.relocatable]
@@ -681,7 +681,7 @@ optional arguments:
   --unity {on,off,subprojects}          Unity build (default: off).
   --unity-size UNITY_SIZE               Unity block size (default: (2, None,
                                         4)).
-  --warnlevel {0,1,2,3}                 Compiler warning level to use (default:
+  --warnlevel {0,1,2,3,everything}      Compiler warning level to use (default:
                                         1).
   --werror                              Treat warnings as errors
   --wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}
