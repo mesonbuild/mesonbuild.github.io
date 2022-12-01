@@ -229,8 +229,11 @@ $('body').removeClass('no-script');
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="external_programfull_path">external_program.full_path()</h3>
 <p>Returns a string pointing to the script or executable.</p>
-<p><strong>NOTE:</strong> You should not need to use this method. Passing the object itself
-should work in all cases.</p>
+<p><strong>NOTE:</strong> You should not usually need to use this method. Passing the
+object itself should work in most contexts where a program can appear,
+and allows Meson to setup inter-target dependencies correctly. Only
+use this if you specifically need a string, such as when embedding a
+program path into a header file.</p>
 <p>For example:</p>
 <pre><code class="language-meson">run_command(find_program('foo'), 'arg1', 'arg2')
 </code></pre>
@@ -251,8 +254,11 @@ should work in all cases.</p>
 <h3 id="external_programpath">external_program.path()</h3>
 <p><em>Deprecated:</em> Use <a href="Reference-manual_returned_external_program.html#external_programfull_path"><ins><code>external_program.full_path()</code></ins></a> instead.</p>
 <p>Returns a string pointing to the script or executable.</p>
-<p><strong>NOTE:</strong> You should not need to use this method. Passing the object itself
-should work in all cases.</p>
+<p><strong>NOTE:</strong> You should not usually need to use this method. Passing the
+object itself should work in most contexts where a program can appear,
+and allows Meson to setup inter-target dependencies correctly. Only
+use this if you specifically need a string, such as when embedding a
+program path into a header file.</p>
 <p>For example:</p>
 <pre><code class="language-meson">run_command(find_program('foo'), 'arg1', 'arg2')
 </code></pre>
