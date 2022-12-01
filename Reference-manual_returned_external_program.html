@@ -231,9 +231,10 @@ $('body').removeClass('no-script');
 <p>Returns a string pointing to the script or executable.</p>
 <p><strong>NOTE:</strong> You should not usually need to use this method. Passing the
 object itself should work in most contexts where a program can appear,
-and allows Meson to setup inter-target dependencies correctly. Only
-use this if you specifically need a string, such as when embedding a
-program path into a header file.</p>
+and allows Meson to setup inter-target dependencies correctly (for
+example in cases where a program might be overridden by a [[build_tgt]]).
+Only use this if you specifically need a string, such as when embedding
+a program path into a header file.</p>
 <p>For example:</p>
 <pre><code class="language-meson">run_command(find_program('foo'), 'arg1', 'arg2')
 </code></pre>
@@ -256,9 +257,10 @@ program path into a header file.</p>
 <p>Returns a string pointing to the script or executable.</p>
 <p><strong>NOTE:</strong> You should not usually need to use this method. Passing the
 object itself should work in most contexts where a program can appear,
-and allows Meson to setup inter-target dependencies correctly. Only
-use this if you specifically need a string, such as when embedding a
-program path into a header file.</p>
+and allows Meson to setup inter-target dependencies correctly (for
+example in cases where a program might be overridden by a [[build_tgt]]).
+Only use this if you specifically need a string, such as when embedding
+a program path into a header file.</p>
 <p>For example:</p>
 <pre><code class="language-meson">run_command(find_program('foo'), 'arg1', 'arg2')
 </code></pre>
