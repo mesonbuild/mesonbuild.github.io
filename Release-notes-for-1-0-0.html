@@ -204,6 +204,17 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="compiler-check-functions-prefix-kwargs-accepts-arrays">Compiler check functions <code>prefix</code> kwargs accepts arrays</h2>
+<p>The <code>prefix</code> kwarg that most compiler check functions support
+now accepts an array in addition to a string. The elements of the
+array will be concatenated separated by a newline.</p>
+<p>This makes it more readable to write checks that need multiple headers
+to be included:</p>
+<pre><code class="language-meson">cc.check_header('GL/wglew.h', prefix : ['#include &lt;windows.h&gt;', '#include &lt;GL/glew.h&gt;'])
+</code></pre>
+<p>instead of</p>
+<pre><code class="language-meson">cc.check_header('GL/wglew.h', prefix : '#include &lt;windows.h&gt;\n#include &lt;GL/glew.h&gt;'])
+</code></pre>
 <h2 id="flags-removed-from-cppobjcpp-warning-level-1">Flags removed from cpp/objcpp warning level 1</h2>
 <p><code>-Wnon-virtual-dtor</code> is no longer implied by <code>meson setup -Dwarning_level=1</code>.</p>
 <h2 id="string-arguments-to-the-rustbindgen-include_directories-argument">String arguments to the rust.bindgen include_directories argument</h2>

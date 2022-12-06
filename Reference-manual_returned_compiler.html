@@ -251,7 +251,7 @@ http://www.mingw.org/wiki/SpecsFileHOWTO</p>
   # Keyword arguments:
   <b>args</b>         : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
   <b>dependencies</b> : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>prefix</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -335,14 +335,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -376,7 +379,7 @@ with the specified prefix, dependencies, and arguments.</p>
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
   <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -489,14 +492,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -721,7 +727,7 @@ first.</p>
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>low</b>                 : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>              # The min value
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments3">Arguments</h4>
@@ -873,14 +879,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1238,7 +1247,7 @@ the compiler would. E.g. <code>"a" "b"</code> will become <code>"ab"</code>.</p>
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments7">Arguments</h4>
@@ -1350,14 +1359,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1595,7 +1607,7 @@ by the standard library or a library passed in with the <code>args</code> keywor
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments11">Arguments</h4>
@@ -1707,14 +1719,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1803,7 +1818,7 @@ pre-processor check.</p>
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
   <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -1916,14 +1931,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1974,7 +1992,7 @@ some symbols to be exposed on Linux, and it should be passed via
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
   <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -2099,14 +2117,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2212,7 +2233,7 @@ a <code>/link</code> argument will be prepended.</p>
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments16">Arguments</h4>
@@ -2336,14 +2357,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2376,7 +2400,7 @@ some symbols to be exposed on Linux, and it should be passed via
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments17">Arguments</h4>
@@ -2495,14 +2519,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2592,7 +2619,7 @@ arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementa
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments20">Arguments</h4>
@@ -2704,14 +2731,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -3154,7 +3184,7 @@ If this keyword argument is not passed, no message will be printed about the che
   <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Used to add `#include`s and other things that are required
+  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments24">Arguments</h4>
@@ -3266,14 +3296,17 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
       </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Used to add <code>#include</code>s and other things that are required
-for the symbol to be declared. System definitions should be
-passed via compiler args (eg: <code>_GNU_SOURCE</code> is often required for
-some symbols to be exposed on Linux, and it should be passed via
-<code>args</code> keyword argument).</p>
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
