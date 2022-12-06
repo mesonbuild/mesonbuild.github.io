@@ -208,7 +208,8 @@ $('body').removeClass('no-script');
 Windows.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="compile_resources">compile_resources</h3>
-<pre><code>  windows.compile_resources(...(string | File | CustomTarget | CustomTargetIndex),
+<pre><code>  windows = import('windows')
+  windows.compile_resources(...(string | File | CustomTarget | CustomTargetIndex),
                             args: []string,
                             depend_files: [](string | File),
                             depends: [](BuildTarget | CustomTarget)
