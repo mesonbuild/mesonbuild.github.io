@@ -252,7 +252,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
 <pre><code class="language-inc">positional arguments:
   builddir
 
-optional arguments:
+options:
   -h, --help                            show this help message and exit
   --prefix PREFIX                       Installation prefix.
   --bindir BINDIR                       Executable directory.
@@ -346,7 +346,7 @@ values (even if they were changed in <code>meson.build</code>).</p>
 <pre><code class="language-inc">$ meson compile [-h] [--clean] [-C WD] [-j JOBS] [-l LOAD_AVERAGE] [-v]
                 [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
                 [--xcode-args XCODE_ARGS]
-                [TARGET [TARGET ...]]
+                [TARGET ...]
 </code></pre>
 <p>Builds a default or a specified target of a configured Meson project.</p>
 <pre><code class="language-inc">positional arguments:
@@ -354,7 +354,7 @@ values (even if they were changed in <code>meson.build</code>).</p>
                                         following format: [PATH_TO_TARGET/]TARGE
                                         T_NAME[:TARGET_TYPE].
 
-optional arguments:
+options:
   -h, --help                            show this help message and exit
   --clean                               Clean the build directory.
   -C WD                                 directory to cd into before running
@@ -418,7 +418,7 @@ different type, and a <code>bar</code> target:</p>
              [--include-subprojects] [--no-tests]
 </code></pre>
 <p>Generates a release archive from the current source tree.</p>
-<pre><code class="language-inc">optional arguments:
+<pre><code class="language-inc">options:
   -h, --help             show this help message and exit
   -C WD                  directory to cd into before running
   --allow-dirty          Allow even when repository contains uncommitted
@@ -440,14 +440,14 @@ different type, and a <code>bar</code> target:</p>
              [-l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}] [-b]
              [--builddir BUILDDIR] [-f] [--type {executable,library}]
              [--version VERSION]
-             [sourcefile [sourcefile ...]]
+             [sourcefile ...]
 </code></pre>
 <p>Creates a basic set of build files based on a template.</p>
 <pre><code class="language-inc">positional arguments:
   sourcefile                            source files. default: all recognized
                                         files in current directory
 
-optional arguments:
+options:
   -h, --help                            show this help message and exit
   -C WD                                 directory to cd into before running
   -n NAME, --name NAME                  project name. default: name of current
@@ -480,7 +480,7 @@ optional arguments:
 </code></pre>
 <p>Create native and cross files from the current environment, typically
 by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.</p>
-<pre><code class="language-inc">optional arguments:
+<pre><code class="language-inc">options:
   -h, --help               show this help message and exit
   --debarch DEBARCH        The dpkg architecture to generate.
   --gccsuffix GCCSUFFIX    A particular gcc version suffix if necessary.
@@ -512,7 +512,7 @@ by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.<
 <pre><code class="language-inc">positional arguments:
   builddir                              The build directory
 
-optional arguments:
+options:
   -h, --help                            show this help message and exit
   --ast                                 Dump the AST of the meson file.
   --benchmarks                          List all benchmarks.
@@ -550,7 +550,7 @@ optional arguments:
                 [--strip]
 </code></pre>
 <p>Installs the project to the prefix specified in <a href="Commands.html#setup"><code>setup</code></a>.</p>
-<pre><code class="language-inc">optional arguments:
+<pre><code class="language-inc">options:
   -h, --help                            show this help message and exit
   -C WD                                 directory to cd into before running
   --no-rebuild                          Do not rebuild before installing.
@@ -586,7 +586,7 @@ directory. An absolute path will be set into environment when executing scripts.
                 {target,kwargs,default-options,command} ...
 </code></pre>
 <p>Modifies the Meson project.</p>
-<pre><code class="language-inc">optional arguments:
+<pre><code class="language-inc">options:
   -h, --help                            show this help message and exit
   -s SRCDIR, --sourcedir SRCDIR         Path to source directory.
   -V, --verbose                         Enable verbose output
@@ -641,7 +641,7 @@ clashes with future added commands, so "setup" should be used explicitly.</p>
   builddir
   sourcedir
 
-optional arguments:
+options:
   -h, --help                            show this help message and exit
   --prefix PREFIX                       Installation prefix.
   --bindir BINDIR                       Executable directory.
@@ -755,7 +755,7 @@ multiple subprojects in parallel by default, use <code>--num-processes=1</code> 
 not desired.</p>
 <p>Since <em>0.64.0</em> the <code>update</code> subcommand will not download new wrap files
 from WrapDB any more. Use <code>meson wrap update</code> command for that instead.</p>
-<pre><code class="language-inc">optional arguments:
+<pre><code class="language-inc">options:
   -h, --help                            show this help message and exit
 
 Commands:
@@ -781,7 +781,7 @@ Commands:
              [--num-processes NUM_PROCESSES] [-v] [-q]
              [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
              [--test-args TEST_ARGS]
-             [args [args ...]]
+             [args ...]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
 <pre><code class="language-inc">positional arguments:
@@ -792,7 +792,7 @@ Commands:
                                         "subprojname", "subprojname:" to run all
                                         tests defined by "subprojname".
 
-optional arguments:
+options:
   -h, --help                            show this help message and exit
   --maxfail MAXFAIL                     Number of failing tests before aborting
                                         the test run. (default: 0, to disable
@@ -840,7 +840,7 @@ optional arguments:
              {list,search,install,update,info,status,promote,update-db} ...
 </code></pre>
 <p>An utility to manage WrapDB dependencies.</p>
-<pre><code class="language-inc">optional arguments:
+<pre><code class="language-inc">options:
   -h, --help                            show this help message and exit
 
 Commands:
@@ -921,7 +921,7 @@ build directory when running wine.</p>
   command     Command to run in developer environment (default: interactive
               shell)
 
-optional arguments:
+options:
   -h, --help  show this help message and exit
   -C WD       Directory to cd into before running
   --dump      Only print required environment (Since 0.62.0)
