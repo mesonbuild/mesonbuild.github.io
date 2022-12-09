@@ -861,7 +861,7 @@ Commands:
 <p>See <a href="Using-wraptool.html">the WrapDB tool documentation</a> for more info.</p>
 <h3 id="devenv">devenv</h3>
 <p><em>(since 0.58.0)</em></p>
-<pre><code class="language-inc">$ meson devenv [-h] [-C WD] [--dump] ...
+<pre><code class="language-inc">$ meson devenv [-h] [-C BUILDDIR] [--workdir WORKDIR] [--dump] ...
 </code></pre>
 <p>Runs a command, or open interactive shell if no command is provided, with
 environment setup to run project from the build directory, without installation.</p>
@@ -903,6 +903,9 @@ typelib is built. This is automatically set when using <code>gnome.generate_gir(
 schemas is compiled. This is automatically set when using <code>gnome.compile_schemas()</code>.
 Note that this requires GLib &gt;= 2.64 when <code>gnome.compile_schemas()</code> is used in
 more than one directory.</li>
+<li>
+<code>QEMU_LD_PREFIX</code> <em>Since 1.0.0</em> is set to the <code>sys_root</code> value from cross file
+when cross compiling and that property is defined.</li>
 </ul>
 <p>Since <em>Since 0.62.0</em> if bash-completion scripts are being installed and the
 shell is bash, they will be automatically sourced.</p>
@@ -918,13 +921,15 @@ of <code>PATH</code> which allows running Windows executables using wine. Note t
 root of build directory are used. That means current workdir must be the root of
 build directory when running wine.</p>
 <pre><code class="language-inc">positional arguments:
-  command     Command to run in developer environment (default: interactive
-              shell)
+  command                        Command to run in developer environment
+                                 (default: interactive shell)
 
 options:
-  -h, --help  show this help message and exit
-  -C WD       Directory to cd into before running
-  --dump      Only print required environment (Since 0.62.0)
+  -h, --help                     show this help message and exit
+  -C BUILDDIR                    Path to build directory
+  --workdir WORKDIR, -w WORKDIR  Directory to cd into before running (default:
+                                 builddir, Since 1.0.0)
+  --dump                         Only print required environment (Since 0.62.0)
 </code></pre>
 
     </div>
