@@ -229,6 +229,10 @@ remain in the current dir (often source dir) instead.</p>
 <p><code>--dump</code> now prints shell commands like <code>FOO="/prepend/path:$FOO:/append/path"</code>,
 using the litteral <code>$FOO</code> instead of current value of <code>FOO</code> from environment.
 This makes easier to evaluate those expressions in a different environment.</p>
+<h2 id="rustbindgen-accepts-a-dependency-argument">rust.bindgen accepts a dependency argument</h2>
+<p>The <code>bindgen</code> method of the <code>rust</code> module now accepts a dependencies argument.
+Any include paths in these dependencies will be passed to the underlying call to
+<code>clang</code>, and the call to <code>bindgen</code> will correctly depend on any generatd sources.</p>
 <h2 id="string-arguments-to-the-rustbindgen-include_directories-argument">String arguments to the rust.bindgen include_directories argument</h2>
 <p>Most other cases of include_directories accept strings as well as
 <code>IncludeDirectory</code> objects, so lets do that here too for consistancy.</p>

@@ -223,7 +223,7 @@ test target which calls that executable, using the rust test protocol.</p>
 that automatically.</p>
 <p>Additional, test only dependencies may be passed via the dependencies
 argument.</p>
-<h3 id="bindgen-input-string-buildtarget-string-buildtarget-output-string-include_directories-include_directories-string-c_args-string-args-string">bindgen(*, input: string | BuildTarget | [](string | BuildTarget), output: string, include_directories: [](include_directories | string), c_args: []string, args: []string)</h3>
+<h3 id="bindgen-input-string-buildtarget-string-buildtarget-output-string-include_directories-include_directories-string-c_args-string-args-string-dependencies-dependency">bindgen(*, input: string | BuildTarget | [](string | BuildTarget), output: string, include_directories: [](include_directories | string), c_args: []string, args: []string, dependencies: []Dependency)</h3>
 <p>This function wraps bindgen to simplify creating rust bindings around C
 libraries. This has two advantages over hand-rolling ones own with a
 <code>generator</code> or <code>custom_target</code>:</p>
@@ -242,6 +242,7 @@ these are passed to clang as <code>-I</code> arguments <em>(string since 1.0.0)<
 </li>
 <li>c_args — A list of string arguments to pass to clang untouched</li>
 <li>args — A list of string arguments to pass to <code>bindgen</code> untouched.</li>
+<li>dependencies — A list of <code>Dependency</code> objects to pass to the underlying clang call (<em>since 1.0.0</em>)</li>
 </ul>
 <pre><code class="language-meson">rust = import('unstable-rust')
 
