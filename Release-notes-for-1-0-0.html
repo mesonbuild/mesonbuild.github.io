@@ -229,6 +229,10 @@ remain in the current dir (often source dir) instead.</p>
 <p><code>--dump</code> now prints shell commands like <code>FOO="/prepend/path:$FOO:/append/path"</code>,
 using the litteral <code>$FOO</code> instead of current value of <code>FOO</code> from environment.
 This makes easier to evaluate those expressions in a different environment.</p>
+<h2 id="deprecate-javagenerate_native_headers-rename-to-javanative_headers">Deprecate <code>java.generate_native_headers</code>, rename to <code>java.native_headers</code>
+</h2>
+<p>The functions operate in the exact same way. The new name matches more with
+Meson function name styling.</p>
 <h2 id="rustbindgen-accepts-a-dependency-argument">rust.bindgen accepts a dependency argument</h2>
 <p>The <code>bindgen</code> method of the <code>rust</code> module now accepts a dependencies argument.
 Any include paths in these dependencies will be passed to the underlying call to

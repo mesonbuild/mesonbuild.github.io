@@ -207,7 +207,8 @@ $('body').removeClass('no-script');
 <p><em>(added in 0.60.0)</em></p>
 <h2 id="functions">Functions</h2>
 <h3 id="generate_native_header"><code>generate_native_header()</code></h3>
-<p><em>(deprecated in 0.62.0, use <code>generate_native_headers()</code>)</em></p>
+<p><em>(deprecated in 0.62.0, use <code>generate_native_headers()</code>)</em>
+<em>(removed in 1.0.0)</em></p>
 <p>This function will generate a header file for use in Java native module
 development by reading the supplied Java file for <code>native</code> method declarations.</p>
 <p>Keyword arguments:</p>
@@ -217,7 +218,45 @@ development by reading the supplied Java file for <code>native</code> method dec
 file. If left empty, Meson will assume that there is no package.</li>
 </ul>
 <h3 id="generate_native_headers"><code>generate_native_headers()</code></h3>
-<p><em>(added in 0.62.0)</em></p>
+<p><em>(added in 0.62.0)</em>
+<em>(deprecated in 1.0.0, use <code>native_headers()</code>)</em></p>
+<p>This function will generate native header files for use in Java native module
+development by reading the supplied Java files for <code>native</code> method declarations.</p>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<p><code>classes</code>: The list of class names relative to the <code>package</code>, if it exists,
+which contain <code>native</code> method declarations. Use <code>.</code> separated class names.</p>
+</li>
+<li>
+<p><code>package</code>: The <a href="https://en.wikipedia.org/wiki/Java_package">package</a> of the
+file. If left empty, Meson will assume that there is no package.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-java">// Outer.java
+
+package com.mesonbuild;
+
+public class Outer {
+    private static native void outer();
+
+    public static class Inner {
+        private static native void inner();
+    }
+}
+</code></pre>
+<p>With the above file, an invocation would look like the following:</p>
+<pre><code class="language-meson">java = import('java')
+
+native_headers = java.generate_native_headers(
+    'Outer.java',
+    package: 'com.mesonbuild',
+    classes: ['Outer', 'Outer.Inner']
+)
+</code></pre>
+<h3 id="native_headers"><code>native_headers()</code></h3>
+<p><em>(added in 1.0.0)</em></p>
 <p>This function will generate native header files for use in Java native module
 development by reading the supplied Java files for <code>native</code> method declarations.</p>
 <p>Keyword arguments:</p>
