@@ -380,7 +380,7 @@ with the specified prefix, dependencies, and arguments.</p>
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
   <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
-  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set to `true`, Meson will halt if the header check fails
+  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments1">Arguments</h4>
@@ -516,7 +516,8 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>If set to <code>true</code>, Meson will halt if the header check fails.</p>
+<p>When set to <code>true</code>, Meson will halt if the header check fails.
+When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature will control if it is searched and whether to fail if not found.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1111,8 +1112,9 @@ the header check.</p>
 <p>If set <code>true</code>, Meson will abort with an error if the library could not
 be found. Otherwise, Meson will continue and the found method of the
 returned object will return <code>false</code>.</p>
-<p><em>(since 0.47.0)</em> The value of a <a href="Build-options.html#features"><code>feature</code></a>
-option can also be passed here.</p>
+<p>When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature
+will control if it is searched and whether to fail if not found.</p>
+<p><em>(since 0.47.0)</em> The value of a <code>feature</code> option can also be passed here.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1819,7 +1821,7 @@ pre-processor check.</p>
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
   <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
-  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set to `true`, Meson will halt if the header check fails
+  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments13">Arguments</h4>
@@ -1955,7 +1957,8 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>If set to <code>true</code>, Meson will halt if the header check fails.</p>
+<p>When set to <code>true</code>, Meson will halt if the header check fails.
+When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature will control if it is searched and whether to fail if not found.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1993,7 +1996,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
   <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
-  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set to `true`, Meson will halt if the header check fails
+  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments14">Arguments</h4>
@@ -2141,7 +2144,8 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>If set to <code>true</code>, Meson will halt if the header check fails.</p>
+<p>When set to <code>true</code>, Meson will halt if the header check fails.
+When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature will control if it is searched and whether to fail if not found.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">

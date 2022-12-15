@@ -4140,7 +4140,7 @@ allowed by <code>--wrap-mode</code>.</p>
   <b>method</b>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Defines the way the dependency is detected, the default is
   <b>native</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If set to `true`, causes Meson to find the dependency on
   <b>not_found_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # An optional string that will be printed as a <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> if the dependency was not found.
-  <b>required</b>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # when set to false, Meson will proceed with the build
+  <b>required</b>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `false`, Meson will proceed with the build
   <b>static</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Tells the dependency provider to try to get static
   <b>version</b>           : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Specifies the required version,
 )</code></pre>
@@ -4355,9 +4355,11 @@ a tool to be used during compilation.</p>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>when set to false, Meson will proceed with the build
-even if the dependency is not found. <em>(since 0.47.0)</em> The value of a
-<a href="Build-options.html#features"><code>feature</code></a> option can also be passed.</p>
+<p>When set to <code>false</code>, Meson will proceed with the build
+even if the dependency is not found.</p>
+<p>When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature
+will control if it is searched and whether to fail if not found.</p>
+<p><em>(since 0.47.0)</em> The value of a <code>feature</code> option can also be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5918,7 +5920,7 @@ module.</p>
 
   # Keyword arguments:
   <b>disabler</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>            # Returns a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object when not found.
-  <b>required</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # Whether the mdule is required and Meson should abort if not found
+  <b>required</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # When set to `false`, Meson will proceed with the build even if the module is not found
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="example2">Example</h3>
@@ -5993,11 +5995,14 @@ accepts the following keyword arguments:</p>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Whether the mdule is required and Meson should abort if not found.</p>
+<p>When set to <code>false</code>, Meson will proceed with the build even if the module is not found.
+When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature will control if it is searched and whether to fail if not found.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.59.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
   </div>
   </td>
       </tr>
@@ -11493,7 +11498,7 @@ argument to <a href="Reference-manual_functions.html#dependency"><ins><code>depe
 
   # Keyword arguments:
   <b>default_options</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]       # An array of default option values
-  <b>required</b>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # If `true`, Meson will abort if the subproject could not be setup
+  <b>required</b>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # Works just the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.
   <b>version</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>             # Works just like the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -11572,10 +11577,7 @@ built-in option can also be overridden.</p>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>If <code>true</code>, Meson will abort if the subproject could not be setup. You can set
-this to <code>false</code> and then use the <code>.found()</code> method on the <a href="Reference-manual_returned_subproject.html"><ins><code>subproject</code></ins></a> object.
-You may also pass the value of a
-<a href="Build-options.html#features"><code>feature</code></a> option, same as <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.</p>
+<p>Works just the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
