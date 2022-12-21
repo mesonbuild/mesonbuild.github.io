@@ -1415,7 +1415,7 @@ which case sources will be compiled twice.</p>
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
@@ -1951,12 +1951,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2201,7 +2201,7 @@ creating the final list.</p>
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <b>pie</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Build a position-independent executable
@@ -2802,12 +2802,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -4649,7 +4649,7 @@ creating the final list.</p>
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>pie</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Build a position-independent executable
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
@@ -5204,12 +5204,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7048,7 +7048,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
@@ -7585,12 +7585,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7773,7 +7773,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
@@ -8309,12 +8309,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9212,7 +9212,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
@@ -9746,12 +9746,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9940,7 +9940,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
@@ -10468,12 +10468,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10618,7 +10618,7 @@ for the full list.</p>
   <b>name_prefix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the prefix for the
   <b>name_suffix</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <b>native</b>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
-  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                                     # List of prebuilt object files (usually for third party
+  <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
@@ -11132,12 +11132,12 @@ import libraries with a <code>lib</code> suffix.</p>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of prebuilt object files (usually for third party
-products you don't have source to) that should be linked in this
-target, <strong>never</strong> use this for object files that you build yourself.</p>
+<p>List of object files that should be linked in this target.
+These can include third party products you don't have source to,
+or object files produced by other build targets.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
