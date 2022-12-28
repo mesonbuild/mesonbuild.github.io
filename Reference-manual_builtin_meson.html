@@ -1152,8 +1152,13 @@ cross-file if cross-compiling, and from the native-file when not cross-compiling
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="mesoninstall_dependency_manifest">meson.install_dependency_manifest()</h3>
 <p>Installs a manifest file
-containing a list of all subprojects, their versions and license
-files to the file name given as the argument.</p>
+containing a list of all subprojects, their versions and license names
+to the file name given as the argument.</p>
+<p>If license files are defined as well, they will be copied next to the
+manifest and referenced in it.</p>
+<p>If this function is not used, the builtin option <code>licensedir</code> can
+be used to install the manifest to a given directory with the name
+<code>depmf.json</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature16">Signature</h4>
@@ -1473,11 +1478,27 @@ an executable, the current project version is used.</p>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="mesonproject_license_files">meson.project_license_files()</h3>
+<p>Returns the array of license files specified in the <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function call.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature24">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a>] project_license_files()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="mesonproject_name">meson.project_name()</h3>
 <p>Returns the project name specified in the <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function call.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature24">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature25">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1492,7 +1513,7 @@ an executable, the current project version is used.</p>
 <p>Returns a string with the absolute path to the source root directory of the current (sub)project.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature25">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature26">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1508,7 +1529,7 @@ an executable, the current project version is used.</p>
 <p>Returns the version string specified in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function call.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature26">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature27">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1529,7 +1550,7 @@ use <a href="Reference-manual_builtin_meson.html#mesonglobal_source_root"><ins><
 name.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature27">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature28">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1554,7 +1575,7 @@ constructing paths manually with <a href="Reference-manual_builtin_meson.html#me
 <p>Return a string with the version of Meson.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature28">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature29">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">

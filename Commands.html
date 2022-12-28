@@ -221,9 +221,10 @@ the following syntax: <code>meson COMMAND --help</code></p>
 <pre><code class="language-inc">$ meson configure [-h] [--prefix PREFIX] [--bindir BINDIR]
                   [--datadir DATADIR] [--includedir INCLUDEDIR]
                   [--infodir INFODIR] [--libdir LIBDIR]
-                  [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
-                  [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
-                  [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
+                  [--licensedir LICENSEDIR] [--libexecdir LIBEXECDIR]
+                  [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
+                  [--mandir MANDIR] [--sbindir SBINDIR]
+                  [--sharedstatedir SHAREDSTATEDIR]
                   [--sysconfdir SYSCONFDIR]
                   [--auto-features {enabled,disabled,auto}]
                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
@@ -260,6 +261,7 @@ options:
   --includedir INCLUDEDIR               Header file directory.
   --infodir INFODIR                     Info page directory.
   --libdir LIBDIR                       Library directory.
+  --licensedir LICENSEDIR               Licenses directory (default: ).
   --libexecdir LIBEXECDIR               Library executable directory.
   --localedir LOCALEDIR                 Locale data directory.
   --localstatedir LOCALSTATEDIR         Localstate data directory.
@@ -605,10 +607,11 @@ Rewriter commands:
 <h3 id="setup">setup</h3>
 <pre><code class="language-inc">$ meson setup [-h] [--prefix PREFIX] [--bindir BINDIR] [--datadir DATADIR]
               [--includedir INCLUDEDIR] [--infodir INFODIR]
-              [--libdir LIBDIR] [--libexecdir LIBEXECDIR]
-              [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
-              [--mandir MANDIR] [--sbindir SBINDIR]
-              [--sharedstatedir SHAREDSTATEDIR] [--sysconfdir SYSCONFDIR]
+              [--libdir LIBDIR] [--licensedir LICENSEDIR]
+              [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
+              [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
+              [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
+              [--sysconfdir SYSCONFDIR]
               [--auto-features {enabled,disabled,auto}]
               [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
@@ -649,6 +652,7 @@ options:
   --includedir INCLUDEDIR               Header file directory.
   --infodir INFODIR                     Info page directory.
   --libdir LIBDIR                       Library directory.
+  --licensedir LICENSEDIR               Licenses directory (default: ).
   --libexecdir LIBEXECDIR               Library executable directory.
   --localedir LOCALEDIR                 Locale data directory.
   --localstatedir LOCALSTATEDIR         Localstate data directory.
