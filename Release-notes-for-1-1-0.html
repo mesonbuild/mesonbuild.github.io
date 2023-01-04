@@ -204,6 +204,15 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="new-declare_dependencyobjects-argument">New <code>declare_dependency(objects: )</code> argument</h2>
+<p>A new argument to <code>declare_dependency</code> makes it possible to add objects
+directly to executables that use an internal dependency, without going
+for example through <code>link_whole</code>.</p>
+<h2 id="generated-objects-can-be-passed-in-the-objects-keyword-argument">Generated objects can be passed in the <code>objects:</code> keyword argument</h2>
+<p>In previous versions of Meson, generated objects could only be
+passed as sources of a build target.  This was confusing, therefore
+generated objects can now be passed in the <code>objects:</code> keyword
+argument as well.</p>
 <h2 id="the-project-function-now-supports-setting-the-project-license-files">The project function now supports setting the project license files</h2>
 <p>This goes together with the license name. The license files can be
 automatically installed via <a href="Reference-manual_builtin_meson.html#mesoninstall_dependency_manifest"><ins><code>meson.install_dependency_manifest()</code></ins></a>,
