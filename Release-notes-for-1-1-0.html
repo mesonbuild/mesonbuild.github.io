@@ -212,6 +212,20 @@ $('body').removeClass('no-script');
 <p>A new argument to <code>declare_dependency</code> makes it possible to add objects
 directly to executables that use an internal dependency, without going
 for example through <code>link_whole</code>.</p>
+<h2 id="dump-devenv-into-file-and-select-format">Dump devenv into file and select format</h2>
+<p><code>meson devenv --dump [&lt;filename&gt;]</code> command now takes an option filename argument
+to write the environment into a file instead of printing to stdout.</p>
+<p>A new <code>--dump-format</code> argument has been added to select which shell format
+should be used. There are currently 3 formats supported:</p>
+<ul>
+<li>
+<code>sh</code>: Lines are in the format <code>VAR=/prepend:$VAR:/append</code>.</li>
+<li>
+<code>export</code>: Same as <code>sh</code> but with extra <code>export VAR</code> lines.</li>
+<li>
+<code>vscode</code>: Same as <code>sh</code> but without <code>$VAR</code> substitution because they do not
+seems to be properly supported by vscode.</li>
+</ul>
 <h2 id="generated-objects-can-be-passed-in-the-objects-keyword-argument">Generated objects can be passed in the <code>objects:</code> keyword argument</h2>
 <p>In previous versions of Meson, generated objects could only be
 passed as sources of a build target.  This was confusing, therefore
