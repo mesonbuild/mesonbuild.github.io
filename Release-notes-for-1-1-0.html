@@ -208,6 +208,12 @@ $('body').removeClass('no-script');
 <code>clang-cl</code> now accepts <code>cpp_std=c++20</code>
 </h2>
 <p>Requires <code>clang-cl</code> 13 or later.</p>
+<h2 id="coercing-values-in-the-option-function-is-deprecated">coercing values in the option() function is deprecated</h2>
+<p>Currently code such as:</p>
+<pre><code class="language-meson">option('foo', type : 'boolean', value : 'false')
+</code></pre>
+<p>works, because Meson coerces <code>'false'</code> to <code>false</code>.</p>
+<p>This should be avoided, and will now result in a deprecation warning.</p>
 <h2 id="new-declare_dependencyobjects-argument">New <code>declare_dependency(objects: )</code> argument</h2>
 <p>A new argument to <code>declare_dependency</code> makes it possible to add objects
 directly to executables that use an internal dependency, without going
