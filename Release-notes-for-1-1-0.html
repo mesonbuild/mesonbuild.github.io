@@ -244,6 +244,12 @@ or queried via <a href="Reference-manual_builtin_meson.html#mesonproject_license
 <h2 id="a-new-core-directory-option-licensedir-is-available">A new core directory option "licensedir" is available</h2>
 <p>This will install a dependency manifest to the specified directory, if none
 is is explicitly set.</p>
+<h2 id="allow-custom-install-scripts-to-run-with-dryrun-option">Allow custom install scripts to run with <code>--dry-run</code> option</h2>
+<p>An new <code>dry_run</code> keyword is added to <code>meson.add_install_script()</code>
+to allow a custom install script to run when meson is invoked
+with <code>meson install --dry-run</code>.</p>
+<p>In dry run mode, the <code>MESON_INSTALL_DRY_RUN</code> environment variable
+is set.</p>
 
     </div>
         

@@ -428,6 +428,8 @@ this script  will have the environment variables <code>MESON_SOURCE_ROOT</code>,
 All positional arguments are passed as parameters.</p>
 <p><em>(since 0.54.0)</em> If <code>meson install</code> is called with the <code>--quiet</code> option, the
 environment variable <code>MESON_INSTALL_QUIET</code> will be set.</p>
+<p><em>(since 1.1.0)</em> If <code>meson install</code> is called with the <code>--dry-run</code> option, the
+environment variable <code>MESON_INSTALL_DRY_RUN</code> will be set.</p>
 <p>Meson uses the <code>DESTDIR</code> environment variable as set by the
 inherited environment to determine the (temporary) installation
 location for files. Your install script must be aware of this while
@@ -461,6 +463,7 @@ easiest correct way to do this.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>arg</b>...,          # Additional arguments
 
   # Keyword arguments:
+  <b>dry_run</b>         : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will be run even if `--dry-run` option is provided to
   <b>install_tag</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>   # A string used by the `meson install --tags` command
   <b>skip_if_destdir</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will not be run if DESTDIR is set during installation
 )</code></pre>
@@ -527,6 +530,23 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dry_run</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If <code>true</code> the script will be run even if <code>--dry-run</code> option is provided to
+the <code>meson install</code> command. The script can use the <code>MESON_INSTALL_DRY_RUN</code>
+variable to determine if it is in dry run mode or not.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
       <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_tag</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
