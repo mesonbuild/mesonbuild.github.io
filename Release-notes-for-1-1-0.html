@@ -244,6 +244,10 @@ or queried via <a href="Reference-manual_builtin_meson.html#mesonproject_license
 <h2 id="a-new-core-directory-option-licensedir-is-available">A new core directory option "licensedir" is available</h2>
 <p>This will install a dependency manifest to the specified directory, if none
 is is explicitly set.</p>
+<h2 id="compilerpreprocess">compiler.preprocess()</h2>
+<p>Dependencies keyword argument can now be passed to <code>compiler.preprocess()</code> to
+add include directories or compiler arguments.</p>
+<p>Generated sources such as custom targets are now allowed too.</p>
 <h2 id="allow-custom-install-scripts-to-run-with-dryrun-option">Allow custom install scripts to run with <code>--dry-run</code> option</h2>
 <p>An new <code>dry_run</code> keyword is added to <code>meson.add_install_script()</code>
 to allow a custom install script to run when meson is invoked
