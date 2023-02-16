@@ -215,22 +215,51 @@ case where the project consists of one static library called <code>bob</code> an
 some headers. To create a binary dependency project we put the static
 library at the top level and headers in a subdirectory called
 <code>include</code>. The Meson build definition would look like the following.</p>
-<pre><code class="language-meson">project('binary dep', 'c')
+<pre><code class="language-meson">project('bob', 'c')
+
+# Do some sanity checking so that meson can fail early instead of at final link time
+if not (host_machine.system() == 'windows' or host_machine.cpu_family() == 'x86_64')
+  error('This wrap of libbob is a binary wrap for x64_64 Windows, and will not work on your system')
+endif
 
 cc = meson.get_compiler('c')
-bin_dep = declare_dependency(
+bob_dep = declare_dependency(
   dependencies : cc.find_library('bob', dirs : meson.current_source_dir()),
   include_directories : include_directories('include'))
+
+meson.override_dependency('bob', bob_dep)
 </code></pre>
 <p>Now you can use this subproject as if it was a Meson project:</p>
 <pre><code class="language-meson">project('using dep', 'c')
-bob_dep = subproject('bob').get_variable('bin_dep')
+bob_dep = dependency('bob')
 executable('prog', 'prog.c', dependencies : bob_dep)
 </code></pre>
 <p>Note that often libraries compiled with different compilers (or even
 compiler flags) might not be compatible. If you do this, then you are
 responsible for verifying that your libraries are compatible, Meson
 will not check things for you.</p>
+<h2 id="using-a-wrap-file">Using a wrap file</h2>
+<p>To make this all work automatically, a project will need a
+<a href="Wrap-dependency-system-manual.html#wrap-format">wrap file</a>, as well as the
+meson.build definition from above. For this example our dependency is called
+<code>bob</code>.</p>
+<p>The wrap ini (subprojects/bob.wrap):</p>
+<pre><code class="language-ini">[wrap-file]
+directory = libbob-1.0
+source_url = https://libbob.example.com/libbob-1.0.zip
+source_filename = libbob-1.0.zip
+source_hash = 5ebeea0dfb75d090ea0e7ff84799b2a7a1550db3fe61eb5f6f61c2e971e57663
+patch_directory = libbob
+
+[provide]
+dependency_names = bob
+</code></pre>
+<p>Then create <code>subprojects/packagefiles/libbob/</code>, and place the <code>meson.build</code> from
+above in that directory. With these in place a call to <code>dependency('bob')</code> will
+first try standard discovery methods for your system (such as pkg-config, cmake,
+and any built-in meson find methods), and then fall back to using the binary
+wrap if it cannot find the dependency on the system. Meson provides the
+<code>--force-fallback-for=bob</code> command line option to force the use of the fallback.</p>
 <h2 id="note-for-linux-libraries">Note for Linux libraries</h2>
 <p>A precompiled linux shared library (.so) requires a soname field to be properly installed. If the soname field is missing, binaries referencing the library will require a hard link to the location of the library at install time (<code>/path/to/your/project/subprojects/precompiledlibrary/lib.so</code> instead of <code>$INSTALL_PREFIX/lib/lib.so</code>) after installation.</p>
 <p>You should change the compilation options for the precompiled library to avoid this issue. If recompiling is not an option, you can use the <a href="https://github.com/NixOS/patchelf">patchelf</a> tool with the command <code>patchelf --set-soname libfoo.so libfoo.so</code> to edit the precompiled library after the fact.</p>
