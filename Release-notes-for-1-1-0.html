@@ -315,6 +315,26 @@ or queried via <a href="Reference-manual_builtin_meson.html#mesonproject_license
 <h2 id="a-new-core-directory-option-licensedir-is-available">A new core directory option "licensedir" is available</h2>
 <p>This will install a dependency manifest to the specified directory, if none
 is is explicitly set.</p>
+<h2 id="sudo-meson-install-now-drops-privileges-when-rebuilding-targets">
+<code>sudo meson install</code> now drops privileges when rebuilding targets</h2>
+<p>It is common to install projects using sudo, which should not affect build
+outputs but simply install the results. Unfortunately, since the ninja backend
+updates a state file when run, it's not safe to run ninja as root at all.</p>
+<p>It has always been possible to carefully build with:</p>
+<pre><code>ninja &amp;&amp; sudo meson install --no-rebuild
+</code></pre>
+<p>Meson now tries to be extra safe as a general solution. <code>sudo meson install</code>
+will attempt to rebuild, but has learned to run <code>ninja</code> as the original
+(pre-sudo or pre-doas) user, ensuring that build outputs are generated/compiled
+as non-root.</p>
+<h2 id="meson-install-now-supports-userpreferred-root-elevation-tools">
+<code>meson install</code> now supports user-preferred root elevation tools</h2>
+<p>Previously, when installing a project, if any files could not be installed due
+to insufficient permissions the install process was automatically re-run using
+polkit. Now it prompts to ask whether that is desirable, and checks for
+CLI-based tools such as sudo or opendoas or <code>$MESON_ROOT_CMD</code>, first.</p>
+<p>Meson will no longer attempt privilege elevation at all, when not running
+interactively.</p>
 <h2 id="compilerpreprocess">compiler.preprocess()</h2>
 <p>Dependencies keyword argument can now be passed to <code>compiler.preprocess()</code> to
 add include directories or compiler arguments.</p>
