@@ -266,6 +266,11 @@ to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/v
 <td> Library directory</td>
 </tr>
 <tr>
+<td> licensedir</td>
+<td> see below</td>
+<td> Licenses directory (since 1.1.0)</td>
+</tr>
+<tr>
 <td> libexecdir</td>
 <td> libexec</td>
 <td> Library executable directory</td>
@@ -311,6 +316,9 @@ libdir, but it may not be accurate, especially on Linux where
 different distributions have different defaults. Using a <a href="Cross-compilation.html#defining-the-environment">cross
 file</a>, particularly the
 paths section may be necessary.</p>
+<p><code>licensedir</code> is empty by default. If set, it defines the default location
+to install a dependency manifest and project licenses. For more details,
+see <a href="Reference-manual_builtin_meson.html#mesoninstall_dependency_manifest"><ins><code>meson.install_dependency_manifest()</code></ins></a>.</p>
 <h3 id="core-options">Core options</h3>
 <p>Options that are labeled "per machine" in the table are set per
 machine. See the <a href="Builtin-options.html#specifying-options-per-machine">specifying options per
