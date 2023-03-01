@@ -8603,7 +8603,7 @@ languages are not required.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>language</b>...,      # The languages that Meson should initialize
 
   # Keyword arguments:
-  <b>default_options</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Accecpts strings in the form `key=value`
+  <b>default_options</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Accepts strings in the form `key=value`
   <b>license</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Takes a string or array of strings describing the license(s) the code is under
   <b>license_files</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Takes a string or array of strings with the paths to the license file(s)
   <b>meson_version</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Takes a string describing which Meson version the project requires
@@ -8671,7 +8671,7 @@ accepts the following keyword arguments:</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Accecpts strings in the form <code>key=value</code>
+<p>Accepts strings in the form <code>key=value</code>
 which have the same format as options to <code>meson configure</code>.
 For example to set the default project type you would
 set this: <code>default_options : ['buildtype=debugoptimized']</code>. Note
@@ -8679,6 +8679,10 @@ that these settings are only used when running Meson for the first
 time. Global options such as <code>buildtype</code> can only be specified in
 the master project, settings in subprojects are ignored. Project
 specific options are used normally even in subprojects.</p>
+<p>Note that some options can override the default behavior;
+for example, using <code>c_args</code> here means that the <code>CFLAGS</code>
+environment variable is not used. Consider using
+[<a href="Reference-manual_functions.html#add_project_arguments">add_project_arguments()</a>] instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
