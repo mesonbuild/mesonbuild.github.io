@@ -335,6 +335,10 @@ polkit. Now it prompts to ask whether that is desirable, and checks for
 CLI-based tools such as sudo or opendoas or <code>$MESON_ROOT_CMD</code>, first.</p>
 <p>Meson will no longer attempt privilege elevation at all, when not running
 interactively.</p>
+<h2 id="redirect-introspection-outputs-to-stderr">Redirect introspection outputs to stderr</h2>
+<p><code>meson introspect</code> used to disable logging to <code>stdout</code> to not interfere with generated json.
+It now redirect outputs to <code>stderr</code> to allow printing warnings to the console
+while keeping <code>stdout</code> clean for json outputs.</p>
 <h2 id="compilerpreprocess">compiler.preprocess()</h2>
 <p>Dependencies keyword argument can now be passed to <code>compiler.preprocess()</code> to
 add include directories or compiler arguments.</p>
