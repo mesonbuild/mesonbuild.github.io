@@ -343,6 +343,12 @@ while keeping <code>stdout</code> clean for json outputs.</p>
 <p>Dependencies keyword argument can now be passed to <code>compiler.preprocess()</code> to
 add include directories or compiler arguments.</p>
 <p>Generated sources such as custom targets are now allowed too.</p>
+<h2 id="new-pybind11-custom-dependency">New pybind11 custom dependency</h2>
+<p><code>dependency('pybind11')</code> works with pkg-config and cmake without any special
+support, but did not handle the <code>pybind11-config</code> script.</p>
+<p>This is useful because the config-tool will work out of the box when pybind11
+is installed, but the pkg-config and cmake files are shoved into python's
+site-packages, which makes it impossible to use in an out of the box manner.</p>
 <h2 id="allow-custom-install-scripts-to-run-with-dryrun-option">Allow custom install scripts to run with <code>--dry-run</code> option</h2>
 <p>An new <code>dry_run</code> keyword is added to <code>meson.add_install_script()</code>
 to allow a custom install script to run when meson is invoked
