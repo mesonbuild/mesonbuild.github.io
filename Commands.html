@@ -585,7 +585,7 @@ directory. An absolute path will be set into environment when executing scripts.
 <h3 id="rewrite">rewrite</h3>
 <p><em>(since 0.50.0)</em></p>
 <pre><code class="language-inc">$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
-                {target,kwargs,default-options,command} ...
+                {target,tgt,kwargs,default-options,def,command,cmd} ...
 </code></pre>
 <p>Modifies the Meson project.</p>
 <pre><code class="language-inc">options:
@@ -597,11 +597,11 @@ directory. An absolute path will be set into environment when executing scripts.
 Rewriter commands:
   Rewrite command to execute
 
-  {target,kwargs,default-options,command}
-    target                              Modify a target
+  {target,tgt,kwargs,default-options,def,command,cmd}
+    target (tgt)                        Modify a target
     kwargs                              Modify keyword arguments
-    default-options                     Modify the project default options
-    command                             Execute a JSON array of commands
+    default-options (def)               Modify the project default options
+    command (cmd)                       Execute a JSON array of commands
 </code></pre>
 <p>See <a href="Rewriter.html">the Meson file rewriter documentation</a> for more info.</p>
 <h3 id="setup">setup</h3>
