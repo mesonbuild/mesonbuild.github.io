@@ -342,7 +342,7 @@ machine</a> section for details.</p>
 <td> no</td>
 </tr>
 <tr>
-<td> backend {ninja, vs,<br>vs2010, vs2012, vs2013, vs2015, vs2017, vs2019, vs2022, xcode}</td>
+<td> backend {ninja, vs,<br>vs2010, vs2012, vs2013, vs2015, vs2017, vs2019, vs2022, xcode, none}</td>
 <td> ninja</td>
 <td> Backend to use</td>
 <td> no</td>
@@ -476,6 +476,15 @@ machine</a> section for details.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="details-for-backend">Details for <code>backend</code>
+</h4>
+<p>Several build file formats are supported as command runners to build the
+configured project. Meson prefers ninja by default, but platform-specific
+backends are also available for better IDE integration with native tooling:
+Visual Studio for Windows, and xcode for macOS. It is also possible to
+configure with no backend at all, which is an error if you have targets to
+build, but for projects that need configuration + testing + installation allows
+for a lighter automated build pipeline.</p>
 <h4 id="details-for-buildtype">Details for <code>buildtype</code>
 </h4>
 <p><a name="build-type-options"></a> For setting optimization levels and

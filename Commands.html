@@ -227,7 +227,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--sharedstatedir SHAREDSTATEDIR]
                   [--sysconfdir SYSCONFDIR]
                   [--auto-features {enabled,disabled,auto}]
-                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
+                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -272,7 +272,7 @@ options:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
@@ -506,7 +506,7 @@ by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.<
                    [--buildsystem-files] [--dependencies]
                    [--scan-dependencies] [--installed] [--install-plan]
                    [--projectinfo] [--targets] [--tests]
-                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
+                   [--backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
                    [-a] [-i] [-f]
                    [builddir]
 </code></pre>
@@ -531,7 +531,7 @@ options:
   --projectinfo                         Information about projects.
   --targets                             List top level targets.
   --tests                               List all unit tests.
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
+  --backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
                                         The backend to use for the
                                         --buildoptions introspection.
   -a, --all                             Print all available information.
@@ -613,7 +613,7 @@ Rewriter commands:
               [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
               [--sysconfdir SYSCONFDIR]
               [--auto-features {enabled,disabled,auto}]
-              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
+              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -663,7 +663,7 @@ options:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).

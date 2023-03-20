@@ -339,6 +339,9 @@ interactively.</p>
 <p><code>meson introspect</code> used to disable logging to <code>stdout</code> to not interfere with generated json.
 It now redirect outputs to <code>stderr</code> to allow printing warnings to the console
 while keeping <code>stdout</code> clean for json outputs.</p>
+<h2 id="new-none-backend">New "none" backend</h2>
+<p>The <code>--backend=none</code> option has been added, to configure a project that has no
+build rules, only install rules. This avoids depending on ninja.</p>
 <h2 id="compilerpreprocess">compiler.preprocess()</h2>
 <p>Dependencies keyword argument can now be passed to <code>compiler.preprocess()</code> to
 add include directories or compiler arguments.</p>
