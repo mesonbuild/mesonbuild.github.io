@@ -352,6 +352,14 @@ support, but did not handle the <code>pybind11-config</code> script.</p>
 <p>This is useful because the config-tool will work out of the box when pybind11
 is installed, but the pkg-config and cmake files are shoved into python's
 site-packages, which makes it impossible to use in an out of the box manner.</p>
+<h2 id="allow-reconfigure-and-wipe-of-empty-builddir">Allow --reconfigure and --wipe of empty builddir</h2>
+<p><code>meson setup --reconfigure builddir</code> and <code>meson setup --wipe builddir</code> are now
+accepting <code>builddir/</code> to be empty or containing a previously failed setup attempt.
+Note that in that case previously passed command line options must be repeated
+as only a successful build saves configured options.</p>
+<p>This is useful for example with scripts that always repeat all options,
+<code>meson setup builddir --wipe -Dfoo=bar</code> will always work regardless whether
+it is a first invocation or not.</p>
 <h2 id="allow-custom-install-scripts-to-run-with-dryrun-option">Allow custom install scripts to run with <code>--dry-run</code> option</h2>
 <p>An new <code>dry_run</code> keyword is added to <code>meson.add_install_script()</code>
 to allow a custom install script to run when meson is invoked
