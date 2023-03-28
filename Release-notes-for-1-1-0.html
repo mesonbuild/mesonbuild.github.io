@@ -335,6 +335,12 @@ polkit. Now it prompts to ask whether that is desirable, and checks for
 CLI-based tools such as sudo or opendoas or <code>$MESON_ROOT_CMD</code>, first.</p>
 <p>Meson will no longer attempt privilege elevation at all, when not running
 interactively.</p>
+<h2 id="support-for-reading-options-from-mesonoptions">Support for reading options from meson.options</h2>
+<p>Support has been added for reading options from <code>meson.options</code> instead of
+<code>meson_options.txt</code>. These are equivalent, but not using the <code>.txt</code> extension
+for a build file has a few advantages, chief among them many tools and text
+editors expect a file with the <code>.txt</code> extension to be plain text files, not
+build scripts.</p>
 <h2 id="redirect-introspection-outputs-to-stderr">Redirect introspection outputs to stderr</h2>
 <p><code>meson introspect</code> used to disable logging to <code>stdout</code> to not interfere with generated json.
 It now redirect outputs to <code>stderr</code> to allow printing warnings to the console
