@@ -237,7 +237,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--unity-size UNITY_SIZE]
                   [--warnlevel {0,1,2,3,everything}] [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
-                  [--force-fallback-for FORCE_FALLBACK_FOR]
+                  [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
                   [--pkgconfig.relocatable]
                   [--python.install-env {auto,prefix,system,venv}]
                   [--python.platlibdir PYTHON.PLATLIBDIR]
@@ -302,6 +302,7 @@ options:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --vsenv                               Activate Visual Studio environment
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
@@ -622,7 +623,7 @@ Rewriter commands:
               [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
               [--warnlevel {0,1,2,3,everything}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
-              [--force-fallback-for FORCE_FALLBACK_FOR]
+              [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
               [--pkgconfig.relocatable]
               [--python.install-env {auto,prefix,system,venv}]
               [--python.platlibdir PYTHON.PLATLIBDIR]
@@ -632,8 +633,8 @@ Rewriter commands:
               [--cmake-prefix-path CMAKE_PREFIX_PATH]
               [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
               [-D option] [--native-file NATIVE_FILE]
-              [--cross-file CROSS_FILE] [--vsenv] [-v]
-              [--fatal-meson-warnings] [--reconfigure] [--wipe]
+              [--cross-file CROSS_FILE] [-v] [--fatal-meson-warnings]
+              [--reconfigure] [--wipe]
               [builddir] [sourcedir]
 </code></pre>
 <p>Configures a build directory for the Meson project.</p>
@@ -693,6 +694,7 @@ options:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --vsenv                               Activate Visual Studio environment
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
@@ -724,12 +726,6 @@ options:
                                         compilation environment.
   --cross-file CROSS_FILE               File describing cross compilation
                                         environment.
-  --vsenv                               Setup Visual Studio environment even
-                                        when other compilers are found, abort if
-                                        Visual Studio is not found. This option
-                                        has no effect on other platforms than
-                                        Windows. Defaults to True when using
-                                        "vs" backend.
   -v, --version                         show program's version number and exit
   --fatal-meson-warnings                Make all Meson warnings fatal
   --reconfigure                         Set options and reconfigure the project.

@@ -351,7 +351,7 @@ machine</a> section for details.</p>
 <tr>
 <td> buildtype {plain, debug,<br>debugoptimized, release, minsize, custom}</td>
 <td> debug</td>
-<td>  Build type to use</td>
+<td> Build type to use</td>
 <td> no</td>
 <td> no</td>
 </tr>
@@ -474,6 +474,13 @@ machine</a> section for details.</p>
 <td> no</td>
 <td> no</td>
 </tr>
+<tr>
+<td> vsenv</td>
+<td> false</td>
+<td> Activate Visual Studio environment</td>
+<td> no</td>
+<td> no</td>
+</tr>
 </tbody>
 </table>
 <h4 id="details-for-backend">Details for <code>backend</code>
@@ -572,6 +579,17 @@ table for most common compilers.</p>
 </tbody>
 </table>
 <p>Clang's <code>-Weverything</code> is emulated on GCC by passing all known warning flags.</p>
+<h4 id="details-for-vsenv">Details for <code>vsenv</code>
+</h4>
+<p>The <code>--vsenv</code> argument is supported since <code>0.60.0</code>, <code>-Dvsenv=true</code> syntax is supported
+since <code>1.1.0</code>.</p>
+<p>Since <code>0.59.0</code>, meson automatically activates a Visual Studio environment on Windows
+for all its subcommands, but only if no other compilers (e.g. <code>gcc</code> or <code>clang</code>)
+are found, and silently continues if Visual Studio activation fails.</p>
+<p>Setting the <code>vsenv</code> option to <code>true</code> forces Visual Studio activation even when other
+compilers are found. It also make Meson abort with an error message when activation
+fails.</p>
+<p><code>vsenv</code> is <code>true</code> by default when using the <code>vs</code> backend.</p>
 <h2 id="base-options">Base options</h2>
 <p>These are set in the same way as universal options, either by
 <code>-Doption=value</code>, or by setting them inside <code>default_options</code> of
