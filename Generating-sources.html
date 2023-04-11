@@ -336,7 +336,7 @@ executable('program', 'main.c', gen_src)
                  output : ['@BASENAME@.c', '@BASENAME@.h'],
                  arguments : ['--out_dir=@BUILD_DIR@', '@INPUT@'])
 </code></pre>
-<p>In this case you can not use the plain <code>@OUTPUT@</code> variable, as it
+<p>In this case you cannot use the plain <code>@OUTPUT@</code> variable, as it
 would be ambiguous. This program only needs to know the output
 directory, it will generate the file names by itself.</p>
 <p>To make passing different additional arguments to the generator
