@@ -255,7 +255,7 @@ generated = rust.bindgen(
     c_args : ['-DFOO=1'],
 )
 </code></pre>
-<p>If the header depeneds on generated headers, those headers must be passed to
+<p>If the header depends on generated headers, those headers must be passed to
 <code>bindgen</code> as well to ensure proper dependency ordering, static headers do not
 need to be passed, as a proper depfile is generated:</p>
 <pre><code class="language-meson">h1 = custom_target(...)

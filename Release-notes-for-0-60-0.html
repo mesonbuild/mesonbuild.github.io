@@ -423,7 +423,7 @@ for every warning not explicitly disabled</li>
 <li>support for meson's pic has been enabled</li>
 </ul>
 <h2 id="the-qt-modules-now-accept-generated-outputs-as-inputs-for-qtcompile_">The qt modules now accept generated outputs as inputs for qt.compile_*</h2>
-<p>This means you can uset <code>custom_target</code>, custom_target indices
+<p>This means you can use <code>custom_target</code>, custom_target indices
 (<code>custom_target[0]</code>, for example), or the output of <code>generator.process</code> as
 inputs to the various <code>qt.compile_*</code> methods.</p>
 <pre><code class="language-meson">qt = import('qt5')
@@ -474,7 +474,7 @@ for all its subcommands, but only if no other compilers (e.g. <code>gcc</code> o
 are found, and silently continue if Visual Studio activation fails.</p>
 <p><code>meson setup --vsenv</code> command line argument can now be used to force Visual Studio
 activation even when other compilers are found. It also make Meson abort with an
-error message when activation fails. This is especially useful for Github Action
+error message when activation fails. This is especially useful for GitHub Actions
 because their Windows images have gcc in their PATH by default.</p>
 <p><code>--vsenv</code> is set by default when using <code>vs</code> backend.</p>
 <p>Only <code>setup</code>, <code>compile</code>, <code>dist</code> and <code>devenv</code> subcommands now activate Visual Studio.</p>
