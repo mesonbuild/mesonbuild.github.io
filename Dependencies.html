@@ -232,7 +232,7 @@ endif
 <p>You can pass the <code>opt_dep</code> variable to target construction functions
 whether the actual dependency was found or not. Meson will ignore
 non-found dependencies.</p>
-<p>Meson also allows to get variables that are defined in the
+<p>Meson also allows one to get variables that are defined in a
 <code>pkg-config</code> file. This can be done by using the
 <a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a> function.</p>
 <pre><code class="language-meson">zdep_prefix = zdep.get_pkgconfig_variable('prefix')
@@ -249,8 +249,8 @@ page</a>.</p>
 <h1 id="arbitrary-variables-from-dependencies-that-can-be-found-multiple-ways">Arbitrary variables from dependencies that can be found multiple ways</h1>
 <p><em>Note</em> new in 0.51.0
 <em>new in 0.54.0, the <code>internal</code> keyword</em></p>
-<p>When you need to get an arbitrary variables from a dependency that can
-be found multiple ways and you don't want to constrain the type you
+<p>When you need to get an arbitrary variable from a dependency that can
+be found multiple ways and you don't want to constrain the type, you
 can use the generic <code>get_variable</code> method. This currently supports
 cmake, pkg-config, and config-tool based variables.</p>
 <pre><code class="language-meson">foo_dep = dependency('foo')
