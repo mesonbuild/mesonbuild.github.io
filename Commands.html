@@ -504,9 +504,9 @@ by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.<
 </code></pre>
 <h3 id="introspect">introspect</h3>
 <pre><code class="language-inc">$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
-                   [--buildsystem-files] [--dependencies]
+                   [--buildsystem-files] [--compilers] [--dependencies]
                    [--scan-dependencies] [--installed] [--install-plan]
-                   [--projectinfo] [--targets] [--tests]
+                   [--machines] [--projectinfo] [--targets] [--tests]
                    [--backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
                    [-a] [-i] [-f]
                    [builddir]
@@ -522,6 +522,7 @@ options:
   --buildoptions                        List all build options.
   --buildsystem-files                   List files that make up the build
                                         system.
+  --compilers                           List used compilers.
   --dependencies                        List external dependencies.
   --scan-dependencies                   Scan for dependencies used in the
                                         meson.build file.
@@ -529,6 +530,8 @@ options:
                                         directories.
   --install-plan                        List all installed files and directories
                                         with their details.
+  --machines                            Information about host, build, and
+                                        target machines.
   --projectinfo                         Information about projects.
   --targets                             List top level targets.
   --tests                               List all unit tests.
