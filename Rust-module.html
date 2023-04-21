@@ -230,6 +230,7 @@ libraries. This has two advantages over hand-rolling ones own with a
 <li>It handles <code>include_directories</code>, so one doesn't have to manually convert them to <code>-I...</code>
 </li>
 <li>It automatically sets up a depfile, making the results more reliable</li>
+<li>It automatically handles assertions, synchronizing Rust and C/C++ to have the same behavior</li>
 </ul>
 <p>It takes the following keyword arguments</p>
 <ul>
@@ -266,6 +267,11 @@ r1 = rust.bindgen(
   output : 'out.rs',
 )
 </code></pre>
+<p><em>Since 1.1.0</em> Meson will synchronize assertions for Rust and C/C++  when the
+<code>b_ndebug</code> option is set (via <code>-DNDEBUG</code> for C/C++, and <code>-C debug-assertions=on</code> for Rust), and will pass <code>-DNDEBUG</code> as an extra argument
+to clang. This allows for reliable wrapping of <code>-DNDEBUG</code> controlled behavior
+with <code>#[cfg(debug_asserions)]</code> and or <code>cfg!()</code>. Before 1.1.0, assertions for Rust
+were never turned on by Meson.</p>
 
     </div>
         
