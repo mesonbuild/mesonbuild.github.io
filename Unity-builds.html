@@ -228,21 +228,10 @@ bugs in the source that need to be fixed before Unity compiles work.
 As an example, if both <code>src1.c</code> and <code>src2.c</code> contain a static function
 or variable of the same name, there will be a clash.</p>
 <p>Meson has built-in support for unity builds. To enable them, just pass
-<code>--unity on</code> on the command line or enable unity builds in you project
-default_options.
+<code>--unity on</code> on the command line or enable unity builds with the GUI.
 No code changes are necessary apart from the potential clash issue
 discussed above. Meson will automatically generate all the necessary
 inclusion files for you.</p>
-<p>You may modify unity settings for a given build target using
-the <code>override_options</code> parameter. This may be useful when a build
-target is not compatible with unity build.</p>
-<p>The <code>unity</code> option can also have the value <code>subprojects</code>, to build
-subprojects with unity, while building the main project incrementally.</p>
-<p>The <code>unity_size</code> option allows to specify the number of source files
-included per unity file. The default is 4. Having more source files
-per unity file will speed up full builds, but slow down incremental
-builds. To get only one unity file per build target, you can use
-a very big number for <code>unity_size</code>.</p>
 
     </div>
         

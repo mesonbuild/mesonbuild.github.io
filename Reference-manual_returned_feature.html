@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Feature option object</title>
+<title>feature</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
@@ -210,9 +210,6 @@ $('body').removeClass('no-script');
 <ul>
 <li><a href="Reference-manual_functions.html#get_option"><ins><code>get_option()</code></ins></a></li>
 <li><a href="Reference-manual_returned_feature.html#featuredisable_auto_if"><ins><code>feature.disable_auto_if()</code></ins></a></li>
-<li><a href="Reference-manual_returned_feature.html#featuredisable_if"><ins><code>feature.disable_if()</code></ins></a></li>
-<li><a href="Reference-manual_returned_feature.html#featureenable_auto_if"><ins><code>feature.enable_auto_if()</code></ins></a></li>
-<li><a href="Reference-manual_returned_feature.html#featureenable_if"><ins><code>feature.enable_if()</code></ins></a></li>
 <li><a href="Reference-manual_returned_feature.html#featurerequire"><ins><code>feature.require()</code></ins></a></li>
 </ul>
 <h2 id="feature-option-object-methods">Feature option object methods</h2>
@@ -327,109 +324,11 @@ $('body').removeClass('no-script');
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
-<h3 id="featuredisable_if">feature.disable_if()</h3>
-<p>Returns the object itself if the value is false; an error if the object is
-<code>'enabled'</code> and the value is true; a disabled feature if the object
-is <code>'auto'</code> or <code>'disabled'</code> and the value is true.</p>
-<p>This is equivalent to <code>feature_opt.require(not condition)</code>, but may make
-code easier to reason about, especially when mixed with <code>enable_if</code></p>
-<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
-<div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
-  <div style="flex-grow: 1;"></div>
-  <div>
-<div style="margin: 0px; text-align: center;">
-<p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
-</div>
-</div>
-</div>
-<pre><code class="language-meson"># Returns the object itself if the value is false; an error if the object is
-<a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> disable_if(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # The value to check
-
-  # Keyword arguments:
-  <b>error_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
-)</code></pre>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example">Example</h4>
-<p><code>disable_if</code> is useful to restrict the applicability of <code>'auto'</code> features,
-particularly when passing them to <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>:</p>
-<pre><code>use_os_feature = get_option('foo') \
-  .disable_if(host_machine.system() == 'darwin', error_message : 'os feature not supported on MacOS')
-dep_os_feature = dependency('os_feature', require : use_os_feature)
-</code></pre>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments1">Arguments</h4>
-<p>The method <code>feature.disable_if()</code> accepts the following positional arguments:</p>
-  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
-  <style>
-    .nomargin p:last-child { margin-bottom: 0px !important; }
-  </style>
-  <table>
-    <thead>
-      <tr>
-        <th style="white-space: nowrap; text-align: center;">Name</th>
-        <th style="white-space: nowrap; text-align: center;">Type</th>
-        <th style="width: 56%;">Description</th>
-        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
-      </tr>
-    </thead>
-    <tbody class="nomargin">
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>The value to check</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
-<p>Finally, <code>feature.disable_if()</code>
-accepts the following keyword arguments:</p>
-  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
-  <style>
-    .nomargin p:last-child { margin-bottom: 0px !important; }
-  </style>
-  <table>
-    <thead>
-      <tr>
-        <th style="white-space: nowrap; text-align: center;">Name</th>
-        <th style="white-space: nowrap; text-align: center;">Type</th>
-        <th style="width: 56%;">Description</th>
-        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
-      </tr>
-    </thead>
-    <tbody class="nomargin">
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">error_message</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>The error Message to print if the check fails</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><code class="language-meson">default =
-  ''</code></p>
-  </div>
-  </td>
-      </tr>
-    </tbody>
-  </table>
-<p style="padding: 7.5px; margin: 0px;"></p>
-<hr>
-<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="featuredisabled">feature.disabled()</h3>
 <p>Returns whether the feature was set to <code>'disabled'</code></p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -440,185 +339,11 @@ accepts the following keyword arguments:</p>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
-<h3 id="featureenable_auto_if">feature.enable_auto_if()</h3>
-<p>Returns the feature, with <code>'auto'</code> converted to <code>'enabled'</code> if value is true.</p>
-<table>
-<thead>
-<tr>
-<th> Feature / Condition</th>
-<th> <code>value = true</code>
-</th>
-<th> <code>value = false</code>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> Enabled</td>
-<td> Enabled</td>
-<td> Enabled</td>
-</tr>
-<tr>
-<td> Disabled</td>
-<td> Disabled</td>
-<td> Disabled</td>
-</tr>
-<tr>
-<td> Auto</td>
-<td> Enabled</td>
-<td> Auto</td>
-</tr>
-</tbody>
-</table>
-<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
-<div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature5">Signature</h4>
-  <div style="flex-grow: 1;"></div>
-  <div>
-<div style="margin: 0px; text-align: center;">
-<p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
-</div>
-</div>
-</div>
-<pre><code class="language-meson"># Returns the feature, with `'auto'` converted to `'enabled'` if value is true
-<a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> enable_auto_if(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # See the table above
-)</code></pre>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments2">Arguments</h4>
-<p>The method <code>feature.enable_auto_if()</code> accepts the following positional arguments:</p>
-  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
-  <style>
-    .nomargin p:last-child { margin-bottom: 0px !important; }
-  </style>
-  <table>
-    <thead>
-      <tr>
-        <th style="white-space: nowrap; text-align: center;">Name</th>
-        <th style="white-space: nowrap; text-align: center;">Type</th>
-        <th style="width: 56%;">Description</th>
-        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
-      </tr>
-    </thead>
-    <tbody class="nomargin">
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>See the table above</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
-<p style="padding: 7.5px; margin: 0px;"></p>
-<hr>
-<p style="padding: 7.5px; margin: 0px;"></p>
-<h3 id="featureenable_if">feature.enable_if()</h3>
-<p>Returns the object itself if the value is false; an error if the object is
-<code>'disabled'</code> and the value is true; an enabled feature if the object
-is <code>'auto'</code> or <code>'enabled'</code> and the value is true.</p>
-<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
-<div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
-  <div style="flex-grow: 1;"></div>
-  <div>
-<div style="margin: 0px; text-align: center;">
-<p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
-</div>
-</div>
-</div>
-<pre><code class="language-meson"># Returns the object itself if the value is false; an error if the object is
-<a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> enable_if(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # The value to check
-
-  # Keyword arguments:
-  <b>error_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
-)</code></pre>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example1">Example</h4>
-<p><code>enable_if</code> is useful to restrict the applicability of <code>'auto'</code> features,
-particularly when passing them to <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>:</p>
-<pre><code>use_llvm = get_option('llvm').enable_if(with_clang).enable_if(with_llvm_libs)
-dep_llvm = dependency('llvm', require : use_llvm)
-</code></pre>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments3">Arguments</h4>
-<p>The method <code>feature.enable_if()</code> accepts the following positional arguments:</p>
-  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
-  <style>
-    .nomargin p:last-child { margin-bottom: 0px !important; }
-  </style>
-  <table>
-    <thead>
-      <tr>
-        <th style="white-space: nowrap; text-align: center;">Name</th>
-        <th style="white-space: nowrap; text-align: center;">Type</th>
-        <th style="width: 56%;">Description</th>
-        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
-      </tr>
-    </thead>
-    <tbody class="nomargin">
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>The value to check</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
-<p>Finally, <code>feature.enable_if()</code>
-accepts the following keyword arguments:</p>
-  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
-  <style>
-    .nomargin p:last-child { margin-bottom: 0px !important; }
-  </style>
-  <table>
-    <thead>
-      <tr>
-        <th style="white-space: nowrap; text-align: center;">Name</th>
-        <th style="white-space: nowrap; text-align: center;">Type</th>
-        <th style="width: 56%;">Description</th>
-        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
-      </tr>
-    </thead>
-    <tbody class="nomargin">
-      <tr>
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">error_message</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>The error Message to print if the check fails</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><code class="language-meson">default =
-  ''</code></p>
-  </div>
-  </td>
-      </tr>
-    </tbody>
-  </table>
-<p style="padding: 7.5px; margin: 0px;"></p>
-<hr>
-<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="featureenabled">feature.enabled()</h3>
 <p>Returns whether the feature was set to <code>'enabled'</code></p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature7">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -635,7 +360,7 @@ accepts the following keyword arguments:</p>
 is <code>'auto'</code> or <code>'disabled'</code> and the value is false.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature8">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature5">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -651,7 +376,7 @@ is <code>'auto'</code> or <code>'disabled'</code> and the value is false.</p>
   <b>error_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example2">Example</h4>
+<h4 id="example">Example</h4>
 <p><code>require</code> is useful to restrict the applicability of <code>'auto'</code> features,
 for example based on other features or on properties of the host machine:</p>
 <pre><code>if get_option('directx').require(host_machine.system() == 'windows',
@@ -661,7 +386,7 @@ for example based on other features or on properties of the host machine:</p>
 endif
 </code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments4">Arguments</h4>
+<h4 id="arguments1">Arguments</h4>
 <p>The method <code>feature.require()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>

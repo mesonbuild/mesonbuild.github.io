@@ -236,7 +236,7 @@ file individually by index.</p>
 <p>Adding a generated header to a source list will ensure that the header
 is generated and that the proper include paths are created for the
 target:</p>
-<pre><code class="language-meson">prog_python = <a href="Reference-manual_functions.html#find_program"><ins>find_program</ins></a>('python3')
+<pre><code class="language-meson">prog_python = import('python').find_installation('python3')
 
 foo_c = custom_target(
     'foo.c',
@@ -267,7 +267,7 @@ files at a time, (perhaps a header and source file), Meson has this
 case covered as well. <code>custom_target</code>s can be indexed like a list to
 get each output file separately. The order is the same as the order of
 the output argument to <code>custom_target</code></p>
-<pre><code class="language-meson">prog_python = <a href="Reference-manual_functions.html#find_program"><ins>find_program</ins></a>('python3')
+<pre><code class="language-meson">prog_python = import('python').find_installation('python3')
 
 foo_ch = custom_target(
     'foo.[ch]',
@@ -336,7 +336,7 @@ executable('program', 'main.c', gen_src)
                  output : ['@BASENAME@.c', '@BASENAME@.h'],
                  arguments : ['--out_dir=@BUILD_DIR@', '@INPUT@'])
 </code></pre>
-<p>In this case you cannot use the plain <code>@OUTPUT@</code> variable, as it
+<p>In this case you can not use the plain <code>@OUTPUT@</code> variable, as it
 would be ambiguous. This program only needs to know the output
 directory, it will generate the file names by itself.</p>
 <p>To make passing different additional arguments to the generator

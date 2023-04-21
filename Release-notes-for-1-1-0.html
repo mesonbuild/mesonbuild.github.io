@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Release 1.1.0</title>
+<title>Release 1.1.0 (in development)</title>
 
 <link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
@@ -203,176 +203,11 @@ $('body').removeClass('no-script');
 <div id="body">
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
-        <h1 id="new-features">New features</h1>
-<p>Meson 1.1.0 was released on 10 April 2023</p>
+        <h1 id="new-features-in-development">New features (in development)</h1>
 <h2 id="clangcl-now-accepts-cpp_stdc20">
 <code>clang-cl</code> now accepts <code>cpp_std=c++20</code>
 </h2>
 <p>Requires <code>clang-cl</code> 13 or later.</p>
-<h2 id="coercing-values-in-the-option-function-is-deprecated">coercing values in the option() function is deprecated</h2>
-<p>Currently code such as:</p>
-<pre><code class="language-meson">option('foo', type : 'boolean', value : 'false')
-</code></pre>
-<p>works, because Meson coerces <code>'false'</code> to <code>false</code>.</p>
-<p>This should be avoided, and will now result in a deprecation warning.</p>
-<h2 id="new-declare_dependencyobjects-argument">New <code>declare_dependency(objects: )</code> argument</h2>
-<p>A new argument to <code>declare_dependency</code> makes it possible to add objects
-directly to executables that use an internal dependency, without going
-for example through <code>link_whole</code>.</p>
-<h2 id="dump-devenv-into-file-and-select-format">Dump devenv into file and select format</h2>
-<p><code>meson devenv --dump [&lt;filename&gt;]</code> command now takes an optional filename argument
-to write the environment into a file instead of printing to stdout.</p>
-<p>A new <code>--dump-format</code> argument has been added to select which shell format
-should be used. There are currently 3 formats supported:</p>
-<ul>
-<li>
-<code>sh</code>: Lines are in the format <code>VAR=/prepend:$VAR:/append</code>.</li>
-<li>
-<code>export</code>: Same as <code>sh</code> but with extra <code>export VAR</code> lines.</li>
-<li>
-<code>vscode</code>: Same as <code>sh</code> but without <code>$VAR</code> substitution because they do not
-seems to be properly supported by vscode.</li>
-</ul>
-<h2 id="feature-objects-now-have-an-enable_auto_if-method">Feature objects now have an enable_auto_if method</h2>
-<p>This performs the opposite task of the disable_auto_if method, enabling the
-feature if the condition is true.</p>
-<h2 id="add-a-featureoptionenable_if-and-disable_if">Add a FeatureOption.enable_if and .disable_if</h2>
-<p>These are useful when features need to be constrained to pass to <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>,
-as the behavior of an <code>auto</code> and <code>disabled</code> or <code>enabled</code> feature is markedly
-different. consider the following case:</p>
-<pre><code class="language-meson">opt = get_option('feature').disable_auto_if(not foo)
-if opt.enabled() and not foo
-  error('Cannot enable feat when foo is not also enabled')
-endif
-dep = dependency('foo', required : opt)
-</code></pre>
-<p>This could be simplified to</p>
-<pre><code class="language-meson">opt = get_option('feature').disable_if(not foo, error_message : 'Cannot enable feature when foo is not also enabled')
-dep = dependency('foo', required : opt)
-</code></pre>
-<p>For a real life example, here is some code in mesa:</p>
-<pre><code class="language-meson">_llvm = get_option('llvm')
-dep_llvm = null_dep
-with_llvm = false
-if _llvm.allowed()
-  dep_llvm = dependency(
-    'llvm',
-    version : _llvm_version,
-    modules : llvm_modules,
-    optional_modules : llvm_optional_modules,
-    required : (
-      with_amd_vk or with_gallium_radeonsi or with_gallium_opencl or with_clc
-      or _llvm.enabled()
-    ),
-    static : not _shared_llvm,
-    fallback : ['llvm', 'dep_llvm'],
-    include_type : 'system',
-  )
-  with_llvm = dep_llvm.found()
-endif
-if with_llvm
-  ...
-elif with_amd_vk and with_aco_tests
-  error('ACO tests require LLVM, but LLVM is disabled.')
-elif with_gallium_radeonsi or with_swrast_vk
-  error('The following drivers require LLVM: RadeonSI, SWR, Lavapipe. One of these is enabled, but LLVM is disabled.')
-elif with_gallium_opencl
-  error('The OpenCL "Clover" state tracker requires LLVM, but LLVM is disabled.')
-elif with_clc
-  error('The CLC compiler requires LLVM, but LLVM is disabled.')
-else
-  draw_with_llvm = false
-endif
-</code></pre>
-<p>simplified to:</p>
-<pre><code class="language-meson">_llvm = get_option('llvm') \
-  .enable_if(with_amd_vk and with_aco_tests, error_message : 'ACO tests requires LLVM') \
-  .enable_if(with_gallium_radeonsi, error_message : 'RadeonSI requires LLVM') \
-  .enable_if(with_swrast_vk, error_message : 'Vulkan SWRAST requires LLVM') \
-  .enable_if(with_gallium_opencl, error_message : 'The OpenCL Clover state trackers requires LLVM') \
-  .enable_if(with_clc, error_message : 'CLC library requires LLVM')
-
-dep_llvm = dependency(
-  'llvm',
-  version : _llvm_version,
-  modules : llvm_modules,
-  optional_modules : llvm_optional_modules,
-  required : _llvm,
-  static : not _shared_llvm,
-  fallback : ['llvm', 'dep_llvm'],
-  include_type : 'system',
-)
-with_llvm = dep_llvm.found()
-</code></pre>
-<h2 id="generated-objects-can-be-passed-in-the-objects-keyword-argument">Generated objects can be passed in the <code>objects:</code> keyword argument</h2>
-<p>In previous versions of Meson, generated objects could only be
-passed as sources of a build target.  This was confusing, therefore
-generated objects can now be passed in the <code>objects:</code> keyword
-argument as well.</p>
-<h2 id="the-project-function-now-supports-setting-the-project-license-files">The project function now supports setting the project license files</h2>
-<p>This goes together with the license name. The license files can be
-automatically installed via <a href="Reference-manual_builtin_meson.html#mesoninstall_dependency_manifest"><ins><code>meson.install_dependency_manifest()</code></ins></a>,
-or queried via <a href="Reference-manual_builtin_meson.html#mesonproject_license_files"><ins><code>meson.project_license_files()</code></ins></a>.</p>
-<h2 id="a-new-core-directory-option-licensedir-is-available">A new core directory option "licensedir" is available</h2>
-<p>This will install a dependency manifest to the specified directory, if none
-is is explicitly set.</p>
-<h2 id="sudo-meson-install-now-drops-privileges-when-rebuilding-targets">
-<code>sudo meson install</code> now drops privileges when rebuilding targets</h2>
-<p>It is common to install projects using sudo, which should not affect build
-outputs but simply install the results. Unfortunately, since the ninja backend
-updates a state file when run, it's not safe to run ninja as root at all.</p>
-<p>It has always been possible to carefully build with:</p>
-<pre><code>ninja &amp;&amp; sudo meson install --no-rebuild
-</code></pre>
-<p>Meson now tries to be extra safe as a general solution. <code>sudo meson install</code>
-will attempt to rebuild, but has learned to run <code>ninja</code> as the original
-(pre-sudo or pre-doas) user, ensuring that build outputs are generated/compiled
-as non-root.</p>
-<h2 id="meson-install-now-supports-userpreferred-root-elevation-tools">
-<code>meson install</code> now supports user-preferred root elevation tools</h2>
-<p>Previously, when installing a project, if any files could not be installed due
-to insufficient permissions the install process was automatically re-run using
-polkit. Now it prompts to ask whether that is desirable, and checks for
-CLI-based tools such as sudo or opendoas or <code>$MESON_ROOT_CMD</code>, first.</p>
-<p>Meson will no longer attempt privilege elevation at all, when not running
-interactively.</p>
-<h2 id="support-for-reading-options-from-mesonoptions">Support for reading options from meson.options</h2>
-<p>Support has been added for reading options from <code>meson.options</code> instead of
-<code>meson_options.txt</code>. These are equivalent, but not using the <code>.txt</code> extension
-for a build file has a few advantages, chief among them many tools and text
-editors expect a file with the <code>.txt</code> extension to be plain text files, not
-build scripts.</p>
-<h2 id="redirect-introspection-outputs-to-stderr">Redirect introspection outputs to stderr</h2>
-<p><code>meson introspect</code> used to disable logging to <code>stdout</code> to not interfere with generated json.
-It now redirect outputs to <code>stderr</code> to allow printing warnings to the console
-while keeping <code>stdout</code> clean for json outputs.</p>
-<h2 id="new-none-backend">New "none" backend</h2>
-<p>The <code>--backend=none</code> option has been added, to configure a project that has no
-build rules, only install rules. This avoids depending on ninja.</p>
-<h2 id="compilerpreprocess">compiler.preprocess()</h2>
-<p>Dependencies keyword argument can now be passed to <code>compiler.preprocess()</code> to
-add include directories or compiler arguments.</p>
-<p>Generated sources such as custom targets are now allowed too.</p>
-<h2 id="new-pybind11-custom-dependency">New pybind11 custom dependency</h2>
-<p><code>dependency('pybind11')</code> works with pkg-config and cmake without any special
-support, but did not handle the <code>pybind11-config</code> script.</p>
-<p>This is useful because the config-tool will work out of the box when pybind11
-is installed, but the pkg-config and cmake files are shoved into python's
-site-packages, which makes it impossible to use in an out of the box manner.</p>
-<h2 id="allow-reconfigure-and-wipe-of-empty-builddir">Allow --reconfigure and --wipe of empty builddir</h2>
-<p><code>meson setup --reconfigure builddir</code> and <code>meson setup --wipe builddir</code> are now
-accepting <code>builddir/</code> to be empty or containing a previously failed setup attempt.
-Note that in that case previously passed command line options must be repeated
-as only a successful build saves configured options.</p>
-<p>This is useful for example with scripts that always repeat all options,
-<code>meson setup builddir --wipe -Dfoo=bar</code> will always work regardless whether
-it is a first invocation or not.</p>
-<h2 id="allow-custom-install-scripts-to-run-with-dryrun-option">Allow custom install scripts to run with <code>--dry-run</code> option</h2>
-<p>An new <code>dry_run</code> keyword is added to <code>meson.add_install_script()</code>
-to allow a custom install script to run when meson is invoked
-with <code>meson install --dry-run</code>.</p>
-<p>In dry run mode, the <code>MESON_INSTALL_DRY_RUN</code> environment variable
-is set.</p>
 
     </div>
         
@@ -401,7 +236,7 @@ is set.</p>
 <div id="toc-column">
 	
 		<div class="edit-button">
-		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Release-notes-for-1.1.0.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Release-notes-for-1.1.0.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
 
 	</div>
 		<div id="toc-wrapper">

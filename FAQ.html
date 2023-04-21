@@ -243,7 +243,7 @@ your build directory and invoke <code>meson compile</code>.</p>
 <pre><code class="language-meson">executable('myprog', sources : '*.cpp') # This does NOT work!
 </code></pre>
 <p>Meson does not support this syntax and the reason for this is simple.
-This cannot be made both reliable and fast. By reliable we mean that
+This can not be made both reliable and fast. By reliable we mean that
 if the user adds a new source file to the subdirectory, Meson should
 detect that and make it part of the build automatically.</p>
 <p>One of the main requirements of Meson is that it must be fast. This
@@ -309,7 +309,7 @@ subdir('tests') # test binaries would link against the library here
 </code></pre>
 <h2 id="why-is-there-not-a-make-backend">Why is there not a Make backend?</h2>
 <p>Because Make is slow. This is not an implementation issue, Make simply
-cannot be made fast. For further info we recommend you read <a href="http://neugierig.org/software/chromium/notes/2011/02/ninja.html">this
+can not be made fast. For further info we recommend you read <a href="http://neugierig.org/software/chromium/notes/2011/02/ninja.html">this
 post</a>
 by Evan Martin, the author of Ninja. Makefiles also have a syntax that
 is very unpleasant to write which makes them a big maintenance burden.</p>
@@ -468,7 +468,7 @@ projects attempting to do just this:</p>
 <p>Meson needs to know several details about each compiler in order to
 compile code with it. These include things such as which compiler
 flags to use for each option and how to detect the compiler from its
-output. This information cannot be input via a configuration file,
+output. This information can not be input via a configuration file,
 instead it requires changes to Meson's source code that need to be
 submitted to Meson master repository. In theory you can run your own
 forked version with custom patches, but that's not good use of your

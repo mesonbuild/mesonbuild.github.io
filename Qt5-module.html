@@ -287,7 +287,7 @@ sources += qt.preprocess(qresources : ['resources'])
 <li>
 <code>moc_sources</code>: (string | File | CustomTarget)[]: Passed the <code>moc</code> compiler. These are converted into .moc files meant to be <code>#include</code>ed</li>
 <li>
-<code>moc_headers</code>: (string | File | CustomTarget)[]: Passed the <code>moc</code> compiler. These will be converted into .cpp files</li>
+<code>moc_headers</code>: (string | File | CustomTarget)[]: Passied the <code>moc</code> compiler. These will be converted into .cpp files</li>
 <li>
 <code>include_directories</code> (IncludeDirectories | string)[], the directories to add to header search path for <code>moc</code>
 </li>
@@ -363,7 +363,7 @@ headers. (since v0.47.0)</p>
 qt5_dep = dependency('qt5', modules: ['Core', 'Gui'])
 inc = include_directories('includes')
 moc_files = qt5.compile_moc(headers : 'myclass.h',
-                            extra_args: ['-DMAKES_MY_MOC_HEADER_COMPILE'],
+                            extra_arguments: ['-DMAKES_MY_MOC_HEADER_COMPILE'],
                             include_directories: inc,
                             dependencies: qt5_dep)
 translations = qt5.compile_translations(ts_files : 'myTranslation_fr.ts', build_by_default : true)
