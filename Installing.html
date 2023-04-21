@@ -269,6 +269,18 @@ also sets the variables <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROO
 </code></pre>
 <p>The argument is the name of the script file relative to the current
 subdirectory.</p>
+<h2 id="installing-as-the-superuser">Installing as the superuser</h2>
+<p>When building as a non-root user, but installing to root-owned locations via
+e.g. <code>sudo ninja install</code>, ninja will attempt to rebuild any out of date
+targets as root. This results in various bad behaviors due to build outputs and
+ninja internal files being owned by root.</p>
+<p>Running <code>meson install</code> is preferred for several reasons. It can rebuild out of
+date targets and then re-invoke itself as root. <em>(since 1.1.0)</em> Additionally,
+running <code>sudo meson install</code> will drop permissions and rebuild out of date
+targets as the original user, not as root.</p>
+<p><em>(since 1.1.0)</em> Re-invoking as root will try to guess the user's preferred method for
+re-running commands as root. The order of precedence is: sudo, doas, pkexec
+(polkit). An elevation tool can be forced by setting <code>$MESON_ROOT_CMD</code>.</p>
 <h2 id="destdir-support">DESTDIR support</h2>
 <p>Sometimes you need to install to a different directory than the
 install prefix. This is most common when building rpm or deb

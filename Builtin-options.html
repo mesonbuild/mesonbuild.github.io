@@ -266,6 +266,11 @@ to <code>/var/local</code>, and <code>sharedstatedir</code> defaults to <code>/v
 <td> Library directory</td>
 </tr>
 <tr>
+<td> licensedir</td>
+<td> see below</td>
+<td> Licenses directory (since 1.1.0)</td>
+</tr>
+<tr>
 <td> libexecdir</td>
 <td> libexec</td>
 <td> Library executable directory</td>
@@ -311,6 +316,9 @@ libdir, but it may not be accurate, especially on Linux where
 different distributions have different defaults. Using a <a href="Cross-compilation.html#defining-the-environment">cross
 file</a>, particularly the
 paths section may be necessary.</p>
+<p><code>licensedir</code> is empty by default. If set, it defines the default location
+to install a dependency manifest and project licenses. For more details,
+see <a href="Reference-manual_builtin_meson.html#mesoninstall_dependency_manifest"><ins><code>meson.install_dependency_manifest()</code></ins></a>.</p>
 <h3 id="core-options">Core options</h3>
 <p>Options that are labeled "per machine" in the table are set per
 machine. See the <a href="Builtin-options.html#specifying-options-per-machine">specifying options per
@@ -334,7 +342,7 @@ machine</a> section for details.</p>
 <td> no</td>
 </tr>
 <tr>
-<td> backend {ninja, vs,<br>vs2010, vs2012, vs2013, vs2015, vs2017, vs2019, vs2022, xcode}</td>
+<td> backend {ninja, vs,<br>vs2010, vs2012, vs2013, vs2015, vs2017, vs2019, vs2022, xcode, none}</td>
 <td> ninja</td>
 <td> Backend to use</td>
 <td> no</td>
@@ -343,7 +351,7 @@ machine</a> section for details.</p>
 <tr>
 <td> buildtype {plain, debug,<br>debugoptimized, release, minsize, custom}</td>
 <td> debug</td>
-<td>  Build type to use</td>
+<td> Build type to use</td>
 <td> no</td>
 <td> no</td>
 </tr>
@@ -466,8 +474,26 @@ machine</a> section for details.</p>
 <td> no</td>
 <td> no</td>
 </tr>
+<tr>
+<td> vsenv</td>
+<td> false</td>
+<td> Activate Visual Studio environment</td>
+<td> no</td>
+<td> no</td>
+</tr>
 </tbody>
 </table>
+<h4 id="details-for-backend">Details for <code>backend</code>
+</h4>
+<p>Several build file formats are supported as command runners to build the
+configured project. Meson prefers ninja by default, but platform-specific
+backends are also available for better IDE integration with native tooling:
+Visual Studio for Windows, and xcode for macOS. It is also possible to
+configure with no backend at all, which is an error if you have targets to
+build, but for projects that need configuration + testing + installation allows
+for a lighter automated build pipeline.</p>
+<h4 id="details-for-buildtype">Details for <code>buildtype</code>
+</h4>
 <p><a name="build-type-options"></a> For setting optimization levels and
 toggling debug, you can either set the <code>buildtype</code> option, or you can
 set the <code>optimization</code> and <code>debug</code> options which give finer control
@@ -512,6 +538,58 @@ the two-way mapping:</p>
 </tbody>
 </table>
 <p>All other combinations of <code>debug</code> and <code>optimization</code> set <code>buildtype</code> to <code>'custom'</code>.</p>
+<h4 id="details-for-warning_level">Details for <code>warning_level</code>
+</h4>
+<p>Exact flags per warning level is compiler specific, but there is an approximative
+table for most common compilers.</p>
+<table>
+<thead>
+<tr>
+<th> Warning level</th>
+<th> GCC/Clang</th>
+<th> MSVC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> 1</td>
+<td> -Wall</td>
+<td> /W2</td>
+</tr>
+<tr>
+<td> 2</td>
+<td> -Wall -Wextra</td>
+<td> /W3</td>
+</tr>
+<tr>
+<td> 3</td>
+<td> -Wall -Wextra -Wpedantic</td>
+<td> /W4</td>
+</tr>
+<tr>
+<td> everything</td>
+<td> -Weverything</td>
+<td> /Wall</td>
+</tr>
+</tbody>
+</table>
+<p>Clang's <code>-Weverything</code> is emulated on GCC by passing all known warning flags.</p>
+<h4 id="details-for-vsenv">Details for <code>vsenv</code>
+</h4>
+<p>The <code>--vsenv</code> argument is supported since <code>0.60.0</code>, <code>-Dvsenv=true</code> syntax is supported
+since <code>1.1.0</code>.</p>
+<p>Since <code>0.59.0</code>, meson automatically activates a Visual Studio environment on Windows
+for all its subcommands, but only if no other compilers (e.g. <code>gcc</code> or <code>clang</code>)
+are found, and silently continues if Visual Studio activation fails.</p>
+<p>Setting the <code>vsenv</code> option to <code>true</code> forces Visual Studio activation even when other
+compilers are found. It also make Meson abort with an error message when activation
+fails.</p>
+<p><code>vsenv</code> is <code>true</code> by default when using the <code>vs</code> backend.</p>
 <h2 id="base-options">Base options</h2>
 <p>These are set in the same way as universal options, either by
 <code>-Doption=value</code>, or by setting them inside <code>default_options</code> of

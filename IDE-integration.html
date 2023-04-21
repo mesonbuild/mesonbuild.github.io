@@ -499,7 +499,7 @@ subprojects can differ.</p>
 <p>The list of all <em>found</em> dependencies can be acquired from
 <code>intro-dependencies.json</code>. Here, the name, version, compiler and
 linker arguments for a dependency are listed.</p>
-<h3 id="scanning-for-dependecie-with-scandependencies">Scanning for dependecie with <code>--scan-dependencies</code>
+<h3 id="scanning-for-dependencies-with-scandependencies">Scanning for dependencies with <code>--scan-dependencies</code>
 </h3>
 <p>It is also possible to get most dependencies used without a build
 directory. This can be done by running <code>meson introspect --scan-dependencies /path/to/meson.build</code>.</p>
@@ -559,7 +559,7 @@ project. This can be done by running <code>meson introspect --buildsystem-files 
 <p>The output format is as follows:</p>
 <pre><code class="language-json">[
     "/Path/to/the/targets/meson.build",
-    "/Path/to/the/targets/meson_options.txt",
+    "/Path/to/the/targets/meson.options",
     "/Path/to/the/targets/subdir/meson.build"
 ]
 </code></pre>
@@ -766,17 +766,14 @@ schema is defined by the class structure given in
 <ul>
 <li><a href="https://wiki.gnome.org/Apps/Builder">Gnome Builder</a></li>
 <li><a href="https://www.kdevelop.org">KDevelop</a></li>
-<li>
-<a href="https://www.eclipse.org/cdt/">Eclipse CDT</a> (experimental)</li>
-<li>
-<a href="https://github.com/prozum/meson-cmake-wrapper">Meson Cmake Wrapper</a> (for cmake IDEs) (currently unmaintained !!)</li>
-<li>
-<a href="https://github.com/michaelbadcrumble/meson-ui">Meson-UI</a> (Meson build GUI)</li>
+<li><a href="https://www.eclipse.org/cdt/">Eclipse CDT</a></li>
 <li>
 <a href="https://plugins.jetbrains.com/plugin/13269-meson-syntax-highlighter">Meson Syntax Highlighter</a> plugin for JetBrains IDEs.</li>
 <li>
-<a href="https://open-vsx.org/extension/asabil/meson">asabil.meson</a> extension for VS Code/Codium</li>
+<a href="https://github.com/mesonbuild/vscode-meson">vscode-meson</a> extension for VS Code/Codium</li>
 <li><a href="https://doc.qt.io/qtcreator/creator-project-meson.html">Qt Creator</a></li>
+<li>
+<a href="https://github.com/stephanlachnit/mmeson">mmeson</a> (ccmake clone for Meson)</li>
 </ul>
 
     </div>

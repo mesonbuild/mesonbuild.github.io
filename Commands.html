@@ -221,12 +221,13 @@ the following syntax: <code>meson COMMAND --help</code></p>
 <pre><code class="language-inc">$ meson configure [-h] [--prefix PREFIX] [--bindir BINDIR]
                   [--datadir DATADIR] [--includedir INCLUDEDIR]
                   [--infodir INFODIR] [--libdir LIBDIR]
-                  [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
-                  [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
-                  [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
+                  [--licensedir LICENSEDIR] [--libexecdir LIBEXECDIR]
+                  [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
+                  [--mandir MANDIR] [--sbindir SBINDIR]
+                  [--sharedstatedir SHAREDSTATEDIR]
                   [--sysconfdir SYSCONFDIR]
                   [--auto-features {enabled,disabled,auto}]
-                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
+                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -236,7 +237,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--unity-size UNITY_SIZE]
                   [--warnlevel {0,1,2,3,everything}] [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
-                  [--force-fallback-for FORCE_FALLBACK_FOR]
+                  [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
                   [--pkgconfig.relocatable]
                   [--python.install-env {auto,prefix,system,venv}]
                   [--python.platlibdir PYTHON.PLATLIBDIR]
@@ -260,6 +261,7 @@ options:
   --includedir INCLUDEDIR               Header file directory.
   --infodir INFODIR                     Info page directory.
   --libdir LIBDIR                       Library directory.
+  --licensedir LICENSEDIR               Licenses directory (default: ).
   --libexecdir LIBEXECDIR               Library executable directory.
   --localedir LOCALEDIR                 Locale data directory.
   --localstatedir LOCALSTATEDIR         Localstate data directory.
@@ -270,7 +272,7 @@ options:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
@@ -300,6 +302,7 @@ options:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --vsenv                               Activate Visual Studio environment
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
@@ -382,7 +385,7 @@ options:
 <li>
 <code>PATH</code>: path to the target relative to the root <code>meson.build</code> file. Note: relative path for a target specified in the root <code>meson.build</code> is <code>./</code>.</li>
 <li>
-<code>TYPE</code>: type of the target. Can be one of the following: 'executable', 'static_library', 'shared_library', 'shared_module', 'custom', 'run', 'jar'.</li>
+<code>TYPE</code>: type of the target. Can be one of the following: 'executable', 'static_library', 'shared_library', 'shared_module', 'custom', 'alias', 'run', 'jar'.</li>
 </ul>
 <p><code>PATH</code> and/or <code>TYPE</code> can be omitted if the resulting <code>TARGET</code> can be
 used to uniquely identify the target in <code>meson.build</code>.</p>
@@ -501,10 +504,10 @@ by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.<
 </code></pre>
 <h3 id="introspect">introspect</h3>
 <pre><code class="language-inc">$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
-                   [--buildsystem-files] [--dependencies]
+                   [--buildsystem-files] [--compilers] [--dependencies]
                    [--scan-dependencies] [--installed] [--install-plan]
-                   [--projectinfo] [--targets] [--tests]
-                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
+                   [--machines] [--projectinfo] [--targets] [--tests]
+                   [--backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
                    [-a] [-i] [-f]
                    [builddir]
 </code></pre>
@@ -519,6 +522,7 @@ options:
   --buildoptions                        List all build options.
   --buildsystem-files                   List files that make up the build
                                         system.
+  --compilers                           List used compilers.
   --dependencies                        List external dependencies.
   --scan-dependencies                   Scan for dependencies used in the
                                         meson.build file.
@@ -526,10 +530,12 @@ options:
                                         directories.
   --install-plan                        List all installed files and directories
                                         with their details.
+  --machines                            Information about host, build, and
+                                        target machines.
   --projectinfo                         Information about projects.
   --targets                             List top level targets.
   --tests                               List all unit tests.
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
+  --backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
                                         The backend to use for the
                                         --buildoptions introspection.
   -a, --all                             Print all available information.
@@ -583,7 +589,7 @@ directory. An absolute path will be set into environment when executing scripts.
 <h3 id="rewrite">rewrite</h3>
 <p><em>(since 0.50.0)</em></p>
 <pre><code class="language-inc">$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
-                {target,kwargs,default-options,command} ...
+                {target,tgt,kwargs,default-options,def,command,cmd} ...
 </code></pre>
 <p>Modifies the Meson project.</p>
 <pre><code class="language-inc">options:
@@ -595,22 +601,23 @@ directory. An absolute path will be set into environment when executing scripts.
 Rewriter commands:
   Rewrite command to execute
 
-  {target,kwargs,default-options,command}
-    target                              Modify a target
+  {target,tgt,kwargs,default-options,def,command,cmd}
+    target (tgt)                        Modify a target
     kwargs                              Modify keyword arguments
-    default-options                     Modify the project default options
-    command                             Execute a JSON array of commands
+    default-options (def)               Modify the project default options
+    command (cmd)                       Execute a JSON array of commands
 </code></pre>
 <p>See <a href="Rewriter.html">the Meson file rewriter documentation</a> for more info.</p>
 <h3 id="setup">setup</h3>
 <pre><code class="language-inc">$ meson setup [-h] [--prefix PREFIX] [--bindir BINDIR] [--datadir DATADIR]
               [--includedir INCLUDEDIR] [--infodir INFODIR]
-              [--libdir LIBDIR] [--libexecdir LIBEXECDIR]
-              [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
-              [--mandir MANDIR] [--sbindir SBINDIR]
-              [--sharedstatedir SHAREDSTATEDIR] [--sysconfdir SYSCONFDIR]
+              [--libdir LIBDIR] [--licensedir LICENSEDIR]
+              [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
+              [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
+              [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
+              [--sysconfdir SYSCONFDIR]
               [--auto-features {enabled,disabled,auto}]
-              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
+              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -619,7 +626,7 @@ Rewriter commands:
               [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
               [--warnlevel {0,1,2,3,everything}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
-              [--force-fallback-for FORCE_FALLBACK_FOR]
+              [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
               [--pkgconfig.relocatable]
               [--python.install-env {auto,prefix,system,venv}]
               [--python.platlibdir PYTHON.PLATLIBDIR]
@@ -629,8 +636,8 @@ Rewriter commands:
               [--cmake-prefix-path CMAKE_PREFIX_PATH]
               [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
               [-D option] [--native-file NATIVE_FILE]
-              [--cross-file CROSS_FILE] [--vsenv] [-v]
-              [--fatal-meson-warnings] [--reconfigure] [--wipe]
+              [--cross-file CROSS_FILE] [-v] [--fatal-meson-warnings]
+              [--reconfigure] [--wipe]
               [builddir] [sourcedir]
 </code></pre>
 <p>Configures a build directory for the Meson project.</p>
@@ -649,6 +656,7 @@ options:
   --includedir INCLUDEDIR               Header file directory.
   --infodir INFODIR                     Info page directory.
   --libdir LIBDIR                       Library directory.
+  --licensedir LICENSEDIR               Licenses directory (default: ).
   --libexecdir LIBEXECDIR               Library executable directory.
   --localedir LOCALEDIR                 Locale data directory.
   --localstatedir LOCALSTATEDIR         Localstate data directory.
@@ -659,7 +667,7 @@ options:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
@@ -689,6 +697,7 @@ options:
   --force-fallback-for FORCE_FALLBACK_FOR
                                         Force fallback for those subprojects
                                         (default: []).
+  --vsenv                               Activate Visual Studio environment
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
@@ -720,12 +729,6 @@ options:
                                         compilation environment.
   --cross-file CROSS_FILE               File describing cross compilation
                                         environment.
-  --vsenv                               Setup Visual Studio environment even
-                                        when other compilers are found, abort if
-                                        Visual Studio is not found. This option
-                                        has no effect on other platforms than
-                                        Windows. Defaults to True when using
-                                        "vs" backend.
   -v, --version                         show program's version number and exit
   --fatal-meson-warnings                Make all Meson warnings fatal
   --reconfigure                         Set options and reconfigure the project.
@@ -861,7 +864,9 @@ Commands:
 <p>See <a href="Using-wraptool.html">the WrapDB tool documentation</a> for more info.</p>
 <h3 id="devenv">devenv</h3>
 <p><em>(since 0.58.0)</em></p>
-<pre><code class="language-inc">$ meson devenv [-h] [-C BUILDDIR] [--workdir WORKDIR] [--dump] ...
+<pre><code class="language-inc">$ meson devenv [-h] [-C BUILDDIR] [--workdir WORKDIR] [--dump [DUMP]]
+               [--dump-format {sh,export,vscode}]
+               ...
 </code></pre>
 <p>Runs a command, or open interactive shell if no command is provided, with
 environment setup to run project from the build directory, without installation.</p>
@@ -907,29 +912,46 @@ more than one directory.</li>
 <code>QEMU_LD_PREFIX</code> <em>Since 1.0.0</em> is set to the <code>sys_root</code> value from cross file
 when cross compiling and that property is defined.</li>
 </ul>
-<p>Since <em>Since 0.62.0</em> if bash-completion scripts are being installed and the
+<p><em>Since 0.62.0</em> if bash-completion scripts are being installed and the
 shell is bash, they will be automatically sourced.</p>
-<p>Since <em>Since 0.62.0</em> when GDB helper scripts (*-gdb.py, *-gdb.gdb, and *-gdb.csm)
+<p><em>Since 0.62.0</em> when GDB helper scripts (*-gdb.py, *-gdb.gdb, and *-gdb.csm)
 are installed with a library name that matches one being built, Meson adds the
 needed auto-load commands into <code>&lt;builddir&gt;/.gdbinit</code> file. When running gdb from
 top build directory, that file is loaded by gdb automatically. In the case of
 python scripts that needs to load other python modules, <code>PYTHONPATH</code> may need
 to be modified using <code>meson.add_devenv()</code>.</p>
-<p>Since <em>Since 0.63.0</em> when cross compiling for Windows <code>WINEPATH</code> is used instead
+<p><em>Since 0.63.0</em> when cross compiling for Windows <code>WINEPATH</code> is used instead
 of <code>PATH</code> which allows running Windows executables using wine. Note that since
 <code>WINEPATH</code> size is currently limited to 1024 characters, paths relative to the
 root of build directory are used. That means current workdir must be the root of
 build directory when running wine.</p>
+<p><em>Since 1.1.0</em> <code>meson devenv --dump [&lt;filename&gt;]</code> command takes an optional
+filename argument to write the environment into a file instead of printing to
+stdout.</p>
+<p><em>Since 1.1.0</em> <code>--dump-format</code> argument has been added to select which shell
+format should be used. There are currently 3 formats supported:</p>
+<ul>
+<li>
+<code>sh</code>: Lines are in the format <code>VAR=/prepend:$VAR:/append</code>.</li>
+<li>
+<code>export</code>: Same as <code>sh</code> but with extra <code>export VAR</code> lines.</li>
+<li>
+<code>vscode</code>: Same as <code>sh</code> but without <code>$VAR</code> substitution because they do not
+seems to be properly supported by vscode.</li>
+</ul>
 <pre><code class="language-inc">positional arguments:
-  command                        Command to run in developer environment
-                                 (default: interactive shell)
+  command                           Command to run in developer environment
+                                    (default: interactive shell)
 
 options:
-  -h, --help                     show this help message and exit
-  -C BUILDDIR                    Path to build directory
-  --workdir WORKDIR, -w WORKDIR  Directory to cd into before running (default:
-                                 builddir, Since 1.0.0)
-  --dump                         Only print required environment (Since 0.62.0)
+  -h, --help                        show this help message and exit
+  -C BUILDDIR                       Path to build directory
+  --workdir WORKDIR, -w WORKDIR     Directory to cd into before running
+                                    (default: builddir, Since 1.0.0)
+  --dump [DUMP]                     Only print required environment (Since
+                                    0.62.0) Takes an optional file path (Since
+                                    1.1.0)
+  --dump-format {sh,export,vscode}  Format used with --dump (Since 1.1.0)
 </code></pre>
 
     </div>

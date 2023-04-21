@@ -1420,6 +1420,7 @@ which case sources will be compiled twice.</p>
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <b>version</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
@@ -1691,7 +1692,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -1954,9 +1955,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2024,12 +2027,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -2207,6 +2227,7 @@ creating the final list.</p>
   <b>pie</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Build a position-independent executable
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <b>target_type</b>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The actual target to build
@@ -2496,7 +2517,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -2805,9 +2826,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2888,12 +2911,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -3877,10 +3917,12 @@ is provided externally by the system.</p>
   <b>d_import_dirs</b>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # the directories to add to the string search path (i
   <b>d_module_versions</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                  # The [D version identifiers](https://dlang
   <b>dependencies</b>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                    # Other dependencies needed to use this dependency
+  <b>extra_files</b>         : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                             # extra files to add to targets
   <b>include_directories</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                              # the directories to add to header search path,
   <b>link_args</b>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                    # Link arguments to use
   <b>link_whole</b>          : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a>]                                                    # Libraries to link fully, same as <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.
   <b>link_with</b>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a>]                                                    # Libraries to link against
+  <b>objects</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a>]                                          # a list of object files, to be linked directly into the targets that use the
   <b>sources</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a>]  # sources to add to targets
   <b>variables</b>           : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # a dictionary of arbitrary strings,
   <b>version</b>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                          # the version of this dependency,
@@ -3960,6 +4002,21 @@ during the compilation of D source files.</p>
   </td>
       </tr>
       <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>extra files to add to targets.
+mostly used for IDE integration.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -4010,6 +4067,21 @@ must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>a list of object files, to be linked directly into the targets that use the
+dependency.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
   </div>
   </td>
       </tr>
@@ -4209,7 +4281,7 @@ for more details.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>An array of default option values
-that override those set in the subproject's <code>meson_options.txt</code>
+that override those set in the subproject's <code>meson.options</code>
 (like <code>default_options</code> in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a>, they only have
 effect when Meson is run for the first time, and command line
 arguments override any default options in build files)</p>
@@ -4653,6 +4725,7 @@ creating the final list.</p>
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>pie</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Build a position-independent executable
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
@@ -4923,7 +4996,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -5207,9 +5280,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5259,12 +5334,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -6372,7 +6464,7 @@ headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
   # Keyword arguments:
   <b>install_dir</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Where to install to
   <b>install_mode</b>  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]  # Specify the file mode in symbolic format
-  <b>preserve_path</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Disable stripping child-direcories from header files when installing
+  <b>preserve_path</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Disable stripping child-directories from header files when installing
   <b>subdir</b>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Install to the `subdir` subdirectory of the default includedir
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -6449,7 +6541,7 @@ and optionally the owner/uid and group/gid for the installed files.</p>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Disable stripping child-direcories from header files when installing.</p>
+<p>Disable stripping child-directories from header files when installing.</p>
 <p>This is equivalent to GNU Automake's <code>nobase</code> option.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -7051,6 +7143,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
@@ -7300,7 +7393,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -7588,9 +7681,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7627,12 +7722,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -7778,6 +7890,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <b>version</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
@@ -8049,7 +8162,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -8312,9 +8425,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8382,12 +8497,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -8559,8 +8691,9 @@ Library</em>.</p>
 (host machine) targets and for <code>native: true</code> (build machine) targets.
 <em>(since 0.56.0)</em> The build machine compilers for the specified
 languages are not required.</p>
-<p>Supported values for languages are <code>c</code>, <code>cpp</code> (for <code>C++</code>), <code>cuda</code>, <code>d</code>,
-<code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>), <code>vala</code> and <code>rust</code>.</p>
+<p>Supported values for languages are <code>c</code>, <code>cpp</code> (for <code>C++</code>), <code>cuda</code>,
+<code>cython</code>, <code>d</code>, <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>),
+<code>vala</code> and <code>rust</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h3 style="margin-top: 0px;" id="signature41">Signature</h3>
@@ -8576,8 +8709,9 @@ languages are not required.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>language</b>...,      # The languages that Meson should initialize
 
   # Keyword arguments:
-  <b>default_options</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Accecpts strings in the form `key=value`
+  <b>default_options</b> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Accepts strings in the form `key=value`
   <b>license</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Takes a string or array of strings describing the license(s) the code is under
+  <b>license_files</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Takes a string or array of strings with the paths to the license file(s)
   <b>meson_version</b>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Takes a string describing which Meson version the project requires
   <b>subproject_dir</b>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Specifies the top level directory name that holds Meson subprojects
   <b>version</b>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>       # A free form string describing the version of this project
@@ -8643,7 +8777,7 @@ accepts the following keyword arguments:</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Accecpts strings in the form <code>key=value</code>
+<p>Accepts strings in the form <code>key=value</code>
 which have the same format as options to <code>meson configure</code>.
 For example to set the default project type you would
 set this: <code>default_options : ['buildtype=debugoptimized']</code>. Note
@@ -8651,6 +8785,10 @@ that these settings are only used when running Meson for the first
 time. Global options such as <code>buildtype</code> can only be specified in
 the master project, settings in subprojects are ignored. Project
 specific options are used normally even in subprojects.</p>
+<p>Note that some options can override the default behavior;
+for example, using <code>c_args</code> here means that the <code>CFLAGS</code>
+environment variable is not used. Consider using
+[<a href="Reference-manual_functions.html#add_project_arguments">add_project_arguments()</a>] instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8670,7 +8808,7 @@ list</a>.  Usually this would be something like
 <code>license : 'GPL-2.0-or-later'</code>. If there are multiple licenses you can use the
 <code>AND</code> and <code>OR</code> operators to join them: <code>license : 'Apache-2.0 OR GPL-2.0'</code>.</p>
 <p>For backwards compatibility reasons you can also pass an array of
-licenses here. This is not recommended, as it is ambiguous: <code>license : ['Apache-2.0', 'GPL-2.0-only']</code> instead use an SPDX espression: <code>license : 'Apache-2.0 OR GPL-2.0-only'</code>, which makes it clear that the license
+licenses here. This is not recommended, as it is ambiguous: <code>license : ['Apache-2.0', 'GPL-2.0-only']</code> instead use an SPDX expression: <code>license : 'Apache-2.0 OR GPL-2.0-only'</code>, which makes it clear that the license
 mean OR, not AND.</p>
 <p>Note that the text is informal and is only written to the dependency
 manifest. Meson does not do any license validation, you are responsible
@@ -8679,6 +8817,28 @@ value in your Meson build files with <code>meson.project_license()</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">license_files</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Takes a string or array of strings with the paths to the license file(s)
+the code is under.</p>
+<p>This enhances the value of the <code>license</code> kwarg by allowing to specify both
+the short license name and the full license text. Usually this would be
+something like <code>license_files: ['COPYING']</code>.</p>
+<p>Note that the files are informal and are only installed with the dependency
+manifest. Meson does not do any license validation, you are responsible
+for verifying that you abide by all licensing terms. You can access the
+value in your Meson build files with <a href="Reference-manual_builtin_meson.html#mesonproject_license_files"><ins><code>meson.project_license_files()</code></ins></a>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
   </div>
   </td>
       </tr>
@@ -9215,6 +9375,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>soversion</b>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <b>version</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
@@ -9486,7 +9647,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -9749,9 +9910,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9788,12 +9951,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -9943,6 +10123,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <b>objects</b>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
   <b>override_options</b>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>vs_module_defs</b>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -10208,7 +10389,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -10471,9 +10652,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10510,12 +10693,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -10623,6 +10823,7 @@ for the full list.</p>
   <b>pic</b>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <b>prelink</b>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <b>rust_crate_type</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <b>rust_dependency_map</b>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <b>sources</b>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <b>win_subsystem</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
@@ -10872,7 +11073,7 @@ do not support GNU visibility arguments.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>When set to true flags this target as a GUI application
-on platforms where this makes a differerence, <strong>deprecated</strong> since
+on platforms where this makes a difference, <strong>deprecated</strong> since
 0.56.0, use <code>win_subsystem</code> instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -11135,9 +11336,11 @@ import libraries with a <code>lib</code> suffix.</p>
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of object files that should be linked in this target.
-These can include third party products you don't have source to,
-or object files produced by other build targets.</p>
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11205,12 +11408,29 @@ means a C ABI library, "rlib" means a Rust ABI.</p>
 <p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
 "dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
 default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
-"proc-macro" is a special rust proceedural macro crate.</p>
+"proc-macro" is a special rust procedural macro crate.</p>
 <p>"proc-macro" is new in 0.62.0.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr>
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this provides a map of library names to the crate name
+with which it would be available inside the rust code.</p>
+<p>This allows renaming similar to the dependency renaming feature of cargo
+or <code>extern crate foo as bar</code> inside rust code.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
   </div>
   </td>
       </tr>
@@ -11460,7 +11680,7 @@ example a subproject called <code>foo</code> must be located in
 <ul>
 <li>
 <code>default_options</code> <em>(since 0.37.0)</em>: an array of default option values
-that override those set in the subproject's <code>meson_options.txt</code>
+that override those set in the subproject's <code>meson.options</code>
 (like <code>default_options</code> in <code>project</code>, they only have effect when
 Meson is run for the first time, and command line arguments override
 any default options in build files). <em>(since 0.54.0)</em>: <code>default_library</code>
@@ -11558,7 +11778,7 @@ accepts the following keyword arguments:</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>An array of default option values
-that override those set in the subproject's <code>meson_options.txt</code>
+that override those set in the subproject's <code>meson.options</code>
 (like <code>default_options</code> in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a>, they only have effect when
 Meson is run for the first time, and command line arguments override
 any default options in build files). <em>(since 0.54.0)</em>: <code>default_library</code>
