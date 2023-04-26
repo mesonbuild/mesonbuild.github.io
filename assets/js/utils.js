@@ -144,6 +144,7 @@ utils.HDContext = (class {
 
 		this.rel_path = this.project_url_path + this.hd_basename;
 		this.hd_root = this.hd_root.replace(new RegExp(this.rel_path + "$"),'');
+        this.navbar_height = $('#topnav').height();
 	}
 });
 

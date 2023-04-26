@@ -11,13 +11,16 @@
 
 <title>GNOME module</title>
 
-<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
-<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
-<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -32,6 +35,7 @@
 <script src="assets/js/anchor.min.js"></script>
 <script src="assets/js/tag_filtering.js"></script>
 <script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
 
 <script src="assets/js/lines_around_headings.js"></script>
 
@@ -66,6 +70,7 @@ $('body').removeClass('no-script');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
 			<form class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
@@ -196,8 +201,10 @@ $('body').removeClass('no-script');
 <script src="assets/js/utils.js"></script>
 
 <div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
-	<script src="assets/js/navigation.js"></script>
-	<script src="assets/js/sitemap.js"></script>
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
 </div>
 
 <div id="body">
@@ -291,6 +298,10 @@ executable object.</p>
 <code>dependencies</code>: deps to use during introspection scanning</li>
 <li>
 <code>extra_args</code>: command line arguments to pass to gir compiler</li>
+<li>
+<code>env</code>: (<em>Added 1.2.0</em>) environment variables to set, such as
+<code>{'NAME1': 'value1', 'NAME2': 'value2'}</code> or <code>['NAME1=value1', 'NAME2=value2']</code>,
+or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object which allows more sophisticated environment juggling.</li>
 <li>
 <code>export_packages</code>: extra packages the gir file exports</li>
 <li>

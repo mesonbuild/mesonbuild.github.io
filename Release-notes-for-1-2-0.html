@@ -11,13 +11,16 @@
 
 <title>Release 1.2.0 (in development)</title>
 
-<link rel="stylesheet" href="assets/css/custom_bootstrap.css" type="text/css">
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
-<link rel="stylesheet" href="assets/css/frontend.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
-<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
 
 <script src="assets/js/mustache.min.js"></script>
 <script src="assets/js/jquery.js"></script>
@@ -32,6 +35,7 @@
 <script src="assets/js/anchor.min.js"></script>
 <script src="assets/js/tag_filtering.js"></script>
 <script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
 
 <script src="assets/js/lines_around_headings.js"></script>
 
@@ -66,6 +70,7 @@ $('body').removeClass('no-script');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
 			<form class="navbar-form pull-right" id="navbar-search-form">
                                <div class="form-group has-feedback">
                                        <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
@@ -196,8 +201,10 @@ $('body').removeClass('no-script');
 <script src="assets/js/utils.js"></script>
 
 <div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
-	<script src="assets/js/navigation.js"></script>
-	<script src="assets/js/sitemap.js"></script>
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
 </div>
 
 <div id="body">
@@ -211,6 +218,9 @@ $('body').removeClass('no-script');
 </h2>
 <p><code>declare_dependency</code> have a new <code>extra_files</code> keyword,
 to add extra files to a target. It is used mostly for IDE integration.</p>
+<h2 id="gnomegenerate_gir-now-supports-env-kwarg">
+<code>gnome.generate_gir()</code> now supports <code>env</code> kwarg</h2>
+<p><code>gnome.generate_gir()</code> now accepts the <code>env</code> kwarg which lets you set environment variables.</p>
 <h2 id="more-data-in-introspection-files">More data in introspection files</h2>
 <ul>
 <li>Used compilers are listed in <code>intro-compilers.json</code>
@@ -225,16 +235,6 @@ and relations between dependencies.</li>
 <code>intro-targets.json</code> now includes dependencies, <code>vs_module_defs</code>,
 <code>win_subsystem</code>, and linker parameters.</li>
 </ul>
-<h2 id="machine-objects-get-kernel-and-userland-properties">Machine objects get <code>kernel</code> and <code>userland</code> properties</h2>
-<p>Meson has traditionally provided a <code>system</code> property to detect the
-system being run on. However this is not enough to reliably
-differentiate between e.g. an iOS platform from a watchOS one. Two new
-properties, namely <code>kernel</code> and <code>userland</code> have been added to make
-this configuration doable.</p>
-<p>These new properties are not necessary in cross files for now, but if
-they are not defined and a build file tries to access them, Meson will
-exit with a hard error. It is expected that at some point in the
-future defining the new properties will become mandatory.</p>
 <h2 id="support-for-defining-crate-names-of-rust-dependencies-in-rust-targets">Support for defining crate names of Rust dependencies in Rust targets</h2>
 <p>Rust supports defining a different crate name for a dependency than what the
 actual crate name during compilation of that dependency was.</p>
