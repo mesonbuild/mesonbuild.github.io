@@ -235,6 +235,16 @@ and relations between dependencies.</li>
 <code>intro-targets.json</code> now includes dependencies, <code>vs_module_defs</code>,
 <code>win_subsystem</code>, and linker parameters.</li>
 </ul>
+<h2 id="machine-objects-get-kernel-and-userland-properties">Machine objects get <code>kernel</code> and <code>userland</code> properties</h2>
+<p>Meson has traditionally provided a <code>system</code> property to detect the
+system being run on. However this is not enough to reliably
+differentiate between e.g. an iOS platform from a watchOS one. Two new
+properties, namely <code>kernel</code> and <code>userland</code> have been added to make
+this configuration doable.</p>
+<p>These new properties are not necessary in cross files for now, but if
+they are not defined and a build file tries to access them, Meson will
+exit with a hard error. It is expected that at some point in the
+future defining the new properties will become mandatory.</p>
 <h2 id="support-for-defining-crate-names-of-rust-dependencies-in-rust-targets">Support for defining crate names of Rust dependencies in Rust targets</h2>
 <p>Rust supports defining a different crate name for a dependency than what the
 actual crate name during compilation of that dependency was.</p>

@@ -388,6 +388,8 @@ about it is extracted automatically. The definitions for host and
 target machines look the same. Here is a sample for host machine.</p>
 <pre><code class="language-ini">[host_machine]
 system = 'windows'
+userland = 'windows'
+kernel = 'windows'
 cpu_family = 'x86'
 cpu = 'i686'
 endian = 'little'
@@ -396,9 +398,13 @@ endian = 'little'
 purposes. The corresponding target definition would look the same but
 have <code>target_machine</code> in the header. These values are available in
 your Meson scripts. There are three predefined variables called,
-surprisingly, <a href="Reference-manual_builtin_build_machine.html"><ins><code>build_machine</code></ins></a>, <a href="Reference-manual_builtin_host_machine.html"><ins><code>host_machine</code></ins></a> and <a href="Reference-manual_builtin_target_machine.html"><ins><code>target_machine</code></ins></a>.
-Determining the operating system of your host machine is simply a
-matter of calling <code>host_machine.system()</code>.</p>
+surprisingly, <a href="Reference-manual_builtin_build_machine.html"><ins><code>build_machine</code></ins></a>, <a href="Reference-manual_builtin_host_machine.html"><ins><code>host_machine</code></ins></a> and
+<a href="Reference-manual_builtin_target_machine.html"><ins><code>target_machine</code></ins></a>. Determining the operating system of your host
+machine is simply a matter of calling <code>host_machine.system()</code>.
+Starting from version 1.2.0 you can get more fine grained information
+using the <code>.userland()</code> and <code>.kernel()</code> methods. The return values of
+these functions are documented in <a href="Reference-tables.html">the reference table
+page</a>.</p>
 <p>There are two different values for the CPU. The first one is
 <code>cpu_family</code>. It is a general type of the CPU. This should have a
 value from <a href="Reference-tables.html#cpu-families">the CPU Family table</a>.
