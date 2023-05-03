@@ -285,7 +285,7 @@ are immutable, all operations return their results as a new string.</p>
 </div>
 <pre><code class="language-meson"># Returns `true` if string contains the string specified as the argument
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> contains(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>fragment</b>,     # The string fragment to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#contains_fragment"><b>fragment</b></a>,     # The string fragment to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example">Example</h4>
@@ -310,7 +310,7 @@ is_fbsd = target.to_lower().contains('freebsd')
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="contains_fragment">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fragment</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -341,7 +341,7 @@ is_fbsd = target.to_lower().contains('freebsd')
 </div>
 <pre><code class="language-meson"># Returns true if string ends with the string specified as the argument
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> endswith(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>fragment</b>,     # The string fragment to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#endswith_fragment"><b>fragment</b></a>,     # The string fragment to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example1">Example</h4>
@@ -365,7 +365,7 @@ is_bsd = target.to_lower().endswith('bsd') # boolean value 'true'
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="endswith_fragment">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fragment</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -398,7 +398,7 @@ information.</p>
 </div>
 <pre><code class="language-meson"># Strings can be built using the string formatting functionality
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> format(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <b>fmt</b>,       # The string to format
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <a href="Reference-manual_elementary_str.html#format_fmt"><b>fmt</b></a>,       # The string to format
   <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>value</b>...,  # The values to replace the @number@ placeholders in the format string
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -425,7 +425,7 @@ res = template.format('text', 1, true)
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="format_fmt">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fmt</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -506,8 +506,8 @@ argument of the type [[list[str]]].</p>
 </div>
 <pre><code class="language-meson"># Search all occurrences of `old` and replace it with `new`
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> replace(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>old</b>,     # The substring to search
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>new</b>,     # The replacement string
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#replace_old"><b>old</b></a>,     # The substring to search
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#replace_new"><b>new</b></a>,     # The replacement string
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example4">Example</h4>
@@ -533,7 +533,7 @@ s = s.replace('as', 'are')
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="replace_old">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">old</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -545,7 +545,7 @@ s = s.replace('as', 'are')
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="replace_new">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">new</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -578,7 +578,7 @@ array.</p>
 </div>
 <pre><code class="language-meson"># Splits the string at the specified character
 <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] split(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<b>split_string</b>],   # Specifies the character / substring where to split the string
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<a href="Reference-manual_elementary_str.html#split_split_string"><b>split_string</b></a>],   # Specifies the character / substring where to split the string
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example5">Example</h4>
@@ -605,7 +605,7 @@ components = 'a b   c d '.split(' ')
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="split_split_string">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">split_string</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -637,7 +637,7 @@ components = 'a b   c d '.split(' ')
 </div>
 <pre><code class="language-meson"># Returns true if string starts with the string specified as the argument
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> startswith(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>fragment</b>,     # The string fragment to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#startswith_fragment"><b>fragment</b></a>,     # The string fragment to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example6">Example</h4>
@@ -661,7 +661,7 @@ is_x86 = target.startswith('x86') # boolean value 'true'
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="startswith_fragment">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fragment</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -692,7 +692,7 @@ is_x86 = target.startswith('x86') # boolean value 'true'
 </div>
 <pre><code class="language-meson"># Removes leading/ending spaces and newlines from the string
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> strip(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<b>strip_chars</b>],   # All characters in this string will be stripped
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<a href="Reference-manual_elementary_str.html#strip_strip_chars"><b>strip_chars</b></a>],   # All characters in this string will be stripped
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example7">Example</h4>
@@ -718,7 +718,7 @@ stripped_define = define.strip()
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="strip_strip_chars">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">strip_chars</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -755,8 +755,8 @@ string <code>len(string) - start</code> as well as negative <code>end</code>.</p
 </div>
 <pre><code class="language-meson"># Returns a substring specified from `start` to `end`
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> substring(
-  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<b>start</b>],   # The start position
-  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<b>end</b>],     # The end position
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<a href="Reference-manual_elementary_str.html#substring_start"><b>start</b></a>],   # The start position
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<a href="Reference-manual_elementary_str.html#substring_end"><b>end</b></a>],     # The end position
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example8">Example</h4>
@@ -787,7 +787,7 @@ string.substring(1, -1) # =&gt; 'ooba'
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="substring_start">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">start</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -800,7 +800,7 @@ string.substring(1, -1) # =&gt; 'ooba'
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="substring_end">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">end</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -916,7 +916,7 @@ underscored = name.underscorify()
 </div>
 <pre><code class="language-meson"># Does semantic version comparison
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> version_compare(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>compare_string</b>,     # The string to compare to
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#version_compare_compare_string"><b>compare_string</b></a>,     # The string to compare to
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example13">Example</h4>
@@ -947,7 +947,7 @@ is_new = version.version_compare('&gt;=2.0')
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="version_compare_compare_string">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">compare_string</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->

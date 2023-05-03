@@ -247,7 +247,7 @@ given as argument, <code>false</code> otherwise</p>
 </div>
 <pre><code class="language-meson"># Returns `true` if the array contains the object
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> contains(
-  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> <b>item</b>,     # The item to check
+  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> <a href="Reference-manual_elementary_list.html#contains_item"><b>item</b></a>,     # The item to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -267,7 +267,7 @@ given as argument, <code>false</code> otherwise</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="contains_item">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">item</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -301,8 +301,8 @@ not specified, causes a fatal error</p>
 </div>
 <pre><code class="language-meson"># returns the object at the given index,
 <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> get(
-  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> <b>index</b>,        # Index of the list position to query
-  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<b>fallback</b>],   # Fallback value that is returned if the index is out of range
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> <a href="Reference-manual_elementary_list.html#get_index"><b>index</b></a>,        # Index of the list position to query
+  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<a href="Reference-manual_elementary_list.html#get_fallback"><b>fallback</b></a>],   # Fallback value that is returned if the index is out of range
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments1">Arguments</h4>
@@ -322,7 +322,7 @@ not specified, causes a fatal error</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_index">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">index</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -334,7 +334,7 @@ not specified, causes a fatal error</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_fallback">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fallback</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->

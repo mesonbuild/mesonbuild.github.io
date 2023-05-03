@@ -253,8 +253,8 @@ variable will cause a fatal error.</p>
 </div>
 <pre><code class="language-meson"># fetches the specified variable from inside the subproject
 <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> get_variable(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>var_name</b>,     # The name of the variable to query
-  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<b>fallback</b>],   # The fallback value to return if `var_name` does not exist
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_subproject.html#get_variable_var_name"><b>var_name</b></a>,     # The name of the variable to query
+  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<a href="Reference-manual_returned_subproject.html#get_variable_fallback"><b>fallback</b></a>],   # The fallback value to return if `var_name` does not exist
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -274,7 +274,7 @@ variable will cause a fatal error.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_variable_var_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">var_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -286,7 +286,7 @@ variable will cause a fatal error.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_variable_fallback">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fallback</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
