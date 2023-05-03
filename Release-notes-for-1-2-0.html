@@ -262,6 +262,9 @@ my_executable = executable('my-executable', 'src/main.rs',
 <code>debug_assert!()</code> macro. This macro is roughly equivalent to C's <code>assert()</code>, as
 it can be toggled with command line options, unlike Rust's <code>assert!()</code>, which
 cannot be turned off, and is not designed to be.</p>
+<h2 id="new-for-the-generation-of-visual-studio-vcxproj-projects">New for the generation of Visual Studio vcxproj projects</h2>
+<p>When vcxproj is generated, another file vcxproj.filters is generated in parallel.
+It enables to set a hierarchy of the files inside the solution following their place on filesystem.</p>
 
     </div>
         
