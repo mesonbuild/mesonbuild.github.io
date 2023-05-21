@@ -214,6 +214,12 @@ $('body').removeClass('no-script');
 <h2 id="added-metrowerks-cc-toolchains">Added Metrowerks C/C++ toolchains</h2>
 <p>Added support for the Metrowerks Embedded ARM and Metrowerks Embedded PowerPC toolchains (https://www.nxp.com/docs/en/reference-manual/CWMCUKINCMPREF.pdf).</p>
 <p>The implementation is somewhat experimental. It has been tested on a few projects and works fairly well, but may have issues.</p>
+<h2 id="generatorprocessgeneratorprocess"><code>generator.process(generator.process(...))</code></h2>
+<p>Added support for code like this:</p>
+<pre><code class="language-meson">gen1 = generator(...)
+gen2 = generator(...)
+gen2.process(gen1.process('input.txt'))
+</code></pre>
 <h2 id="extra-files-keyword-in-declare_dependency">Extra files keyword in <code>declare_dependency</code>
 </h2>
 <p><code>declare_dependency</code> have a new <code>extra_files</code> keyword,
