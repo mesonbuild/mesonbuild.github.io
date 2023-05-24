@@ -241,7 +241,9 @@ that can be embedded inside the main binary. Similar a build target it
 takes two positional arguments. The first one is the name of the
 resource and the second is the XML file containing the resource
 definitions. If the name is <code>foobar</code>, Meson will generate a header
-file called <code>foobar.h</code>, which you can then include in your sources.</p>
+file called <code>foobar.h</code>, which you can then include in your sources.
+The resources specified are automatically added as dependencies of the
+generated target.</p>
 <ul>
 <li>
 <code>c_name</code>: passed to the resource compiler as an argument after
