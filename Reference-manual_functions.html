@@ -3146,6 +3146,10 @@ build directory with the name <code>output:</code> in the current directory.</p>
   <a href="Reference-manual_functions.html#configure_file_output"><b>output</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # The output file name
   <a href="Reference-manual_functions.html#configure_file_output_format"><b>output_format</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # The format of the output to generate when no input
 )</code></pre>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>the <code>install_mode</code> kwarg ignored integer values between 0.62 -- 1.1.0.</p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments13">Arguments</h3>
 <p>The function <code>configure_file()</code>
@@ -3489,6 +3493,10 @@ this may be an absolute or a relative to current workdir path.</li>
 <p>Assuming that <code>command:</code> is executed by a POSIX <code>sh</code> shell
 is not portable, notably to Windows. Instead, consider using a
 <code>native: true</code> <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>, or a python script.</p>
+</div>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>the <code>install_mode</code> kwarg ignored integer values between 0.60.0 -- 1.1.0.</p>
 </div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments14">Arguments</h3>
@@ -6241,6 +6249,10 @@ except Visual Studio).</p>
   <a href="Reference-manual_functions.html#install_data_rename"><b>rename</b></a>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]         # If specified renames each source file into corresponding file from `rename` list
   <a href="Reference-manual_functions.html#install_data_sources"><b>sources</b></a>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
 )</code></pre>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>the <code>install_mode</code> kwarg ignored integer values between 0.59.0 -- 1.1.0.</p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments28">Arguments</h3>
 <p>The
@@ -6388,6 +6400,10 @@ place.</p>
   <a href="Reference-manual_functions.html#install_emptydir_install_mode"><b>install_mode</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]  # Specify the file mode in symbolic format and optionally the owner/uid and
   <a href="Reference-manual_functions.html#install_emptydir_install_tag"><b>install_tag</b></a>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # A string used by the `meson install --tags` command to install only a
 )</code></pre>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>the <code>install_mode</code> kwarg ignored integer values before 1.1.0.</p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments29">Arguments</h3>
 <p>The
@@ -6490,6 +6506,10 @@ headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
 into <code>/{prefix}/include/proj/</code>:</p>
 <pre><code class="language-meson">install_headers('common.h, 'proj/kola.h', preserve_path : true)
 </code></pre>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>the <code>install_mode</code> kwarg ignored integer values between 0.59.0 -- 1.1.0.</p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments30">Arguments</h3>
 <p>The
@@ -6600,6 +6620,10 @@ overridden by specifying it with the <code>install_dir</code> keyword argument.<
   <a href="Reference-manual_functions.html#install_man_install_mode"><b>install_mode</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]  # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#install_man_locale"><b>locale</b></a>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Can be used to specify the locale
 )</code></pre>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>the <code>install_mode</code> kwarg ignored integer values between 0.59.0 -- 1.1.0.</p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments31">Arguments</h3>
 <p>The
@@ -6740,6 +6764,10 @@ instead.</p>
 <pre><code class="language-text">share/
   new_directory/
 </code></pre>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>the <code>install_mode</code> kwarg ignored integer values between 0.59.0 -- 1.1.0.</p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments32">Arguments</h3>
 <p>The function <code>install_subdir()</code> accepts the following positional arguments:</p>
