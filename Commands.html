@@ -246,7 +246,6 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
                   [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
                   [--pkgconfig.relocatable]
-                  [--python.bytecompile PYTHON.BYTECOMPILE]
                   [--python.install-env {auto,prefix,system,venv}]
                   [--python.platlibdir PYTHON.PLATLIBDIR]
                   [--python.purelibdir PYTHON.PURELIBDIR]
@@ -312,9 +311,6 @@ options:
                                         (default: []).
   --vsenv                               Activate Visual Studio environment
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
-  --python.bytecompile PYTHON.BYTECOMPILE
-                                        Whether to compile bytecode (default:
-                                        (-1, 2, 0)).
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
@@ -515,9 +511,9 @@ by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.<
 </code></pre>
 <h3 id="introspect">introspect</h3>
 <pre><code class="language-inc">$ meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
-                   [--buildsystem-files] [--compilers] [--dependencies]
+                   [--buildsystem-files] [--dependencies]
                    [--scan-dependencies] [--installed] [--install-plan]
-                   [--machines] [--projectinfo] [--targets] [--tests]
+                   [--projectinfo] [--targets] [--tests]
                    [--backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
                    [-a] [-i] [-f]
                    [builddir]
@@ -533,7 +529,6 @@ options:
   --buildoptions                        List all build options.
   --buildsystem-files                   List files that make up the build
                                         system.
-  --compilers                           List used compilers.
   --dependencies                        List external dependencies.
   --scan-dependencies                   Scan for dependencies used in the
                                         meson.build file.
@@ -541,8 +536,6 @@ options:
                                         directories.
   --install-plan                        List all installed files and directories
                                         with their details.
-  --machines                            Information about host, build, and
-                                        target machines.
   --projectinfo                         Information about projects.
   --targets                             List top level targets.
   --tests                               List all unit tests.
@@ -639,7 +632,6 @@ Rewriter commands:
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
               [--pkgconfig.relocatable]
-              [--python.bytecompile PYTHON.BYTECOMPILE]
               [--python.install-env {auto,prefix,system,venv}]
               [--python.platlibdir PYTHON.PLATLIBDIR]
               [--python.purelibdir PYTHON.PURELIBDIR]
@@ -711,9 +703,6 @@ options:
                                         (default: []).
   --vsenv                               Activate Visual Studio environment
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
-  --python.bytecompile PYTHON.BYTECOMPILE
-                                        Whether to compile bytecode (default:
-                                        (-1, 2, 0)).
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
@@ -846,10 +835,6 @@ options:
                                         test(s) or all tests
 </code></pre>
 <p>See <a href="Unit-tests.html">the unit test documentation</a> for more info.</p>
-<p>Since <em>1.2.0</em> you can use wildcards in <em>args</em> for test names.
-For example, "bas*" will match all test with names beginning with "bas".</p>
-<p>Since <em>1.2.0</em> it is an error to provide a test name or wildcard that
-does not match any test.</p>
 <h4 id="examples8">Examples:</h4>
 <p>Run tests for the project:</p>
 <pre><code>meson test -C builddir

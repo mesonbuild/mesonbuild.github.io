@@ -1,1 +1,0 @@
-urls_downloaded_cb({"token":"python3.x","urls":[{"url":"Release-notes-for-1-2-0.html#find-more-specific-python-version-on-windows","node_type":"p","context":{"gi-language":["default"]}}]});

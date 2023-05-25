@@ -239,7 +239,7 @@ endif
 <p>You can pass the <code>opt_dep</code> variable to target construction functions
 whether the actual dependency was found or not. Meson will ignore
 non-found dependencies.</p>
-<p>Meson also allows one to get variables that are defined in a
+<p>Meson also allows to get variables that are defined in the
 <code>pkg-config</code> file. This can be done by using the
 <a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a> function.</p>
 <pre><code class="language-meson">zdep_prefix = zdep.get_pkgconfig_variable('prefix')
@@ -256,8 +256,8 @@ page</a>.</p>
 <h1 id="arbitrary-variables-from-dependencies-that-can-be-found-multiple-ways">Arbitrary variables from dependencies that can be found multiple ways</h1>
 <p><em>Note</em> new in 0.51.0
 <em>new in 0.54.0, the <code>internal</code> keyword</em></p>
-<p>When you need to get an arbitrary variable from a dependency that can
-be found multiple ways and you don't want to constrain the type, you
+<p>When you need to get an arbitrary variables from a dependency that can
+be found multiple ways and you don't want to constrain the type you
 can use the generic <code>get_variable</code> method. This currently supports
 cmake, pkg-config, and config-tool based variables.</p>
 <pre><code class="language-meson">foo_dep = dependency('foo')
@@ -736,9 +736,9 @@ your own risk.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>qmake</code>.</p>
 <h2 id="sdl2">SDL2</h2>
 <p>SDL2 can be located using <code>pkg-confg</code>, the <code>sdl2-config</code> config tool,
-as an OSX framework, or <code>cmake</code>.</p>
-<p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>extraframework</code>,
-<code>pkg-config</code> or <code>cmake</code>.</p>
+or as an OSX framework.</p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>extraframework</code> or
+<code>pkg-config</code>.</p>
 <h2 id="shaderc">Shaderc</h2>
 <p><em>(added 0.51.0)</em></p>
 <p>Meson will first attempt to find shaderc using <code>pkg-config</code>. Upstream

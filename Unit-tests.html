@@ -251,7 +251,7 @@ types, if possible.</p>
 your build directory.</p>
 <h2 id="parallelism">Parallelism</h2>
 <p>To reduce test times, Meson will by default run multiple unit tests in
-parallel. It is common to have some tests which cannot be run in
+parallel. It is common to have some tests which can not be run in
 parallel because they require unique hold on some resource such as a
 file or a D-Bus name. You have to specify these tests with a keyword
 argument.</p>
@@ -282,7 +282,7 @@ to complete. It is thus possible that a higher-priority test is still
 running when lower-priority tests with a shorter runtime have
 completed.</p>
 <h2 id="skipped-tests-and-hard-errors">Skipped tests and hard errors</h2>
-<p>Sometimes a test can only determine at runtime that it cannot be run.</p>
+<p>Sometimes a test can only determine at runtime that it can not be run.</p>
 <p>For the default <code>exitcode</code> testing protocol, the GNU standard approach
 in this case is to exit the program with error code 77. Meson will
 detect this and report these tests as skipped rather than failed. This
@@ -312,17 +312,6 @@ test('D', ..., suite: 'baz')
 </code></pre>
 <p>Specify test(s) by name like:</p>
 <pre><code class="language-console">$ meson test A D
-</code></pre>
-<p>You can run tests from specific (sub)project:</p>
-<pre><code class="language-console">$ meson test (sub)project_name:
-</code></pre>
-<p>or a specific test in a specific project:</p>
-<pre><code class="language-console">$ meson test (sub)project_name:test_name
-</code></pre>
-<p>Since version <em>1.2.0</em>, you can use wildcards in project
-and test names. For instance, to run all tests beginning with
-"foo" and all tests from projects beginning with "bar":</p>
-<pre><code class="language-console">$ meson test "foo*" "bar*:"
 </code></pre>
 <p>Tests belonging to a suite <code>suite</code> can be run as follows</p>
 <pre><code class="language-console">$ meson test --suite (sub)project_name:suite
