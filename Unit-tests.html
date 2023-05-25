@@ -313,6 +313,17 @@ test('D', ..., suite: 'baz')
 <p>Specify test(s) by name like:</p>
 <pre><code class="language-console">$ meson test A D
 </code></pre>
+<p>You can run tests from specific (sub)project:</p>
+<pre><code class="language-console">$ meson test (sub)project_name:
+</code></pre>
+<p>or a specific test in a specific project:</p>
+<pre><code class="language-console">$ meson test (sub)project_name:test_name
+</code></pre>
+<p>Since version <em>1.2.0</em>, you can use wildcards in project
+and test names. For instance, to run all tests beginning with
+"foo" and all tests from projects beginning with "bar":</p>
+<pre><code class="language-console">$ meson test "foo*" "bar*:"
+</code></pre>
 <p>Tests belonging to a suite <code>suite</code> can be run as follows</p>
 <pre><code class="language-console">$ meson test --suite (sub)project_name:suite
 </code></pre>

@@ -846,6 +846,10 @@ options:
                                         test(s) or all tests
 </code></pre>
 <p>See <a href="Unit-tests.html">the unit test documentation</a> for more info.</p>
+<p>Since <em>1.2.0</em> you can use wildcards in <em>args</em> for test names.
+For example, "bas*" will match all test with names beginning with "bas".</p>
+<p>Since <em>1.2.0</em> it is an error to provide a test name or wildcard that
+does not match any test.</p>
 <h4 id="examples8">Examples:</h4>
 <p>Run tests for the project:</p>
 <pre><code>meson test -C builddir
