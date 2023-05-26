@@ -297,7 +297,7 @@ $('body').removeClass('no-script');
 </div>
 <pre><code class="language-meson"># Returns the feature, with `'auto'` converted to `'disabled'` if value is true
 <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> disable_auto_if(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # See the table above
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_feature.html#disable_auto_if_value"><b>value</b></a>,     # See the table above
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -316,7 +316,7 @@ $('body').removeClass('no-script');
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="disable_auto_if_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -352,10 +352,10 @@ code easier to reason about, especially when mixed with <code>enable_if</code></
 </div>
 <pre><code class="language-meson"># Returns the object itself if the value is false; an error if the object is
 <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> disable_if(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # The value to check
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_feature.html#disable_if_value"><b>value</b></a>,     # The value to check
 
   # Keyword arguments:
-  <b>error_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
+  <a href="Reference-manual_returned_feature.html#disable_if_error_message"><b>error_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example">Example</h4>
@@ -382,7 +382,7 @@ dep_os_feature = dependency('os_feature', required: use_os_feature)
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="disable_if_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -413,7 +413,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="disable_if_error_message">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">error_message</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -489,7 +489,7 @@ accepts the following keyword arguments:</p>
 </div>
 <pre><code class="language-meson"># Returns the feature, with `'auto'` converted to `'enabled'` if value is true
 <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> enable_auto_if(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # See the table above
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_feature.html#enable_auto_if_value"><b>value</b></a>,     # See the table above
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments2">Arguments</h4>
@@ -508,7 +508,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="enable_auto_if_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -542,10 +542,10 @@ is <code>'auto'</code> or <code>'enabled'</code> and the value is true.</p>
 </div>
 <pre><code class="language-meson"># Returns the object itself if the value is false; an error if the object is
 <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> enable_if(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # The value to check
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_feature.html#enable_if_value"><b>value</b></a>,     # The value to check
 
   # Keyword arguments:
-  <b>error_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
+  <a href="Reference-manual_returned_feature.html#enable_if_error_message"><b>error_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example1">Example</h4>
@@ -571,7 +571,7 @@ dep_llvm = dependency('llvm', required: use_llvm)
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="enable_if_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -602,7 +602,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="enable_if_error_message">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">error_message</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -652,10 +652,10 @@ is <code>'auto'</code> or <code>'disabled'</code> and the value is false.</p>
 </div>
 <pre><code class="language-meson"># Returns the object itself if the value is true; an error if the object is
 <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a> require(
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,     # The value to check
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_feature.html#require_value"><b>value</b></a>,     # The value to check
 
   # Keyword arguments:
-  <b>error_message</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
+  <a href="Reference-manual_returned_feature.html#require_error_message"><b>error_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error Message to print if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example2">Example</h4>
@@ -684,7 +684,7 @@ endif
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="require_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -715,7 +715,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="require_error_message">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">error_message</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->

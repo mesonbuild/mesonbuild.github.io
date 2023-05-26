@@ -248,11 +248,11 @@ environment variables that are set by default by Meson.</p>
 </div>
 <pre><code class="language-meson"># add an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object (returned by <a href="Reference-manual_functions.html#environment"><ins><code>environment()</code></ins></a>)
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_devenv(
-  <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]] <b>env</b>,     # The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
+  <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]] <a href="Reference-manual_builtin_meson.html#add_devenv_env"><b>env</b></a>,     # The <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object to add.
 
   # Keyword arguments:
-  <b>method</b>    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Must be one of 'set', 'prepend', or 'append'
-  <b>separator</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use for the initial values defined in
+  <a href="Reference-manual_builtin_meson.html#add_devenv_method"><b>method</b></a>    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Must be one of 'set', 'prepend', or 'append'
+  <a href="Reference-manual_builtin_meson.html#add_devenv_separator"><b>separator</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use for the initial values defined in
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -271,7 +271,7 @@ environment variables that are set by default by Meson.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="add_devenv_env">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">env</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
@@ -305,7 +305,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="add_devenv_method">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">method</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -321,7 +321,7 @@ of the environment variable.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="add_devenv_separator">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">separator</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -348,7 +348,7 @@ operation after the
 distribution source has been generated but before it is
 archived. Note that this runs the script file that is in the
 <em>staging</em> directory, not the one in the source directory. If the
-script file can not be found in the staging directory, it is a hard
+script file cannot be found in the staging directory, it is a hard
 error. The <code>MESON_DIST_ROOT</code> environment variables is set when dist scripts is
 run.</p>
 <p><em>(since 0.54.0)</em> The <code>MESON_SOURCE_ROOT</code> and <code>MESON_BUILD_ROOT</code>
@@ -375,7 +375,7 @@ subproject appended, usually <code>subprojects/&lt;subproject-name&gt;</code>.</
 </div>
 <pre><code class="language-meson"># Causes the script given as argument to run during `dist`
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_dist_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <a href="Reference-manual_builtin_meson.html#add_dist_script_script_name"><b>script_name</b></a>,     # The script to execute
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -395,7 +395,7 @@ subproject appended, usually <code>subprojects/&lt;subproject-name&gt;</code>.</
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="add_dist_script_script_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
@@ -466,13 +466,13 @@ easiest correct way to do this.</p>
 </div>
 <pre><code class="language-meson"># Causes the script given as an argument to be run during the install step,
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_install_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <a href="Reference-manual_builtin_meson.html#add_install_script_script_name"><b>script_name</b></a>,     # The script to execute
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>arg</b>...,          # Additional arguments
 
   # Keyword arguments:
-  <b>dry_run</b>         : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will be run even if `--dry-run` option is provided to
-  <b>install_tag</b>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>   # A string used by the `meson install --tags` command
-  <b>skip_if_destdir</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will not be run if DESTDIR is set during installation
+  <a href="Reference-manual_builtin_meson.html#add_install_script_dry_run"><b>dry_run</b></a>         : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will be run even if `--dry-run` option is provided to
+  <a href="Reference-manual_builtin_meson.html#add_install_script_install_tag"><b>install_tag</b></a>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>   # A string used by the `meson install --tags` command
+  <a href="Reference-manual_builtin_meson.html#add_install_script_skip_if_destdir"><b>skip_if_destdir</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will not be run if DESTDIR is set during installation
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments2">Arguments</h4>
@@ -491,7 +491,7 @@ easiest correct way to do this.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="add_install_script_script_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
@@ -537,7 +537,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="add_install_script_dry_run">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dry_run</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -554,7 +554,7 @@ variable to determine if it is in dry run mode or not.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="add_install_script_install_tag">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_tag</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -570,7 +570,7 @@ By default the script has no install tag which means it is not being run when
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="add_install_script_skip_if_destdir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">skip_if_destdir</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -607,7 +607,7 @@ This script will have the environment variables
 </div>
 <pre><code class="language-meson"># Runs the given command after all project files have been generated
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_postconf_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>script_name</b>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <a href="Reference-manual_builtin_meson.html#add_postconf_script_script_name"><b>script_name</b></a>,     # The script to execute
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -627,7 +627,7 @@ This script will have the environment variables
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="add_postconf_script_script_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
@@ -806,10 +806,10 @@ of constructing paths manually with <a href="Reference-manual_builtin_meson.html
 </div>
 <pre><code class="language-meson"># Returns a <a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a> object describing a compiler.
 <a href="Reference-manual_returned_compiler.html"><ins>compiler</ins></a> get_compiler(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>language</b>,     # The language of the compiler to return
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_builtin_meson.html#get_compiler_language"><b>language</b></a>,     # The language of the compiler to return
 
   # Keyword arguments:
-  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # When set to `true` Meson returns the compiler for the build
+  <a href="Reference-manual_builtin_meson.html#get_compiler_native"><b>native</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # When set to `true` Meson returns the compiler for the build
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments4">Arguments</h4>
@@ -828,7 +828,7 @@ of constructing paths manually with <a href="Reference-manual_builtin_meson.html
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_compiler_language">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">language</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -860,7 +860,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_compiler_native">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -902,8 +902,8 @@ is returned if not cross compiling or the given property is not found.</p>
 </div>
 <pre><code class="language-meson"># Returns the given property from a cross file, the optional fallback_value
 <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> get_cross_property(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>propname</b>,           # Name of the property in the cross / native file
-  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<b>fallback_value</b>],   # Value to return if `propname` is not set in the machine file
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_builtin_meson.html#get_cross_property_propname"><b>propname</b></a>,           # Name of the property in the cross / native file
+  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<a href="Reference-manual_builtin_meson.html#get_cross_property_fallback_value"><b>fallback_value</b></a>],   # Value to return if `propname` is not set in the machine file
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments5">Arguments</h4>
@@ -923,7 +923,7 @@ is returned if not cross compiling or the given property is not found.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_cross_property_propname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">propname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -935,7 +935,7 @@ is returned if not cross compiling or the given property is not found.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_cross_property_fallback_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fallback_value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -969,11 +969,11 @@ The optional fallback_value is returned if the given property is not found.</p>
 </div>
 <pre><code class="language-meson"># Returns the given property from a native or cross file
 <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> get_external_property(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>propname</b>,           # Name of the property in the cross / native file
-  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<b>fallback_value</b>],   # Value to return if `propname` is not set in the machine file
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_builtin_meson.html#get_external_property_propname"><b>propname</b></a>,           # Name of the property in the cross / native file
+  <a href="Reference-manual_elementary_any.html"><ins>any</ins></a> [<a href="Reference-manual_builtin_meson.html#get_external_property_fallback_value"><b>fallback_value</b></a>],   # Value to return if `propname` is not set in the machine file
 
   # Keyword arguments:
-  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Setting `native` to `true` forces retrieving a variable from the
+  <a href="Reference-manual_builtin_meson.html#get_external_property_native"><b>native</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Setting `native` to `true` forces retrieving a variable from the
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments6">Arguments</h4>
@@ -993,7 +993,7 @@ The optional fallback_value is returned if the given property is not found.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_external_property_propname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">propname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1005,7 +1005,7 @@ The optional fallback_value is returned if the given property is not found.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_external_property_fallback_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fallback_value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_any.html"><ins><code>any</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1037,7 +1037,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_external_property_native">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1128,10 +1128,10 @@ It is usually preferable to use <a href="Reference-manual_builtin_meson.html#mes
 </div>
 <pre><code class="language-meson"># Checks whether the given property exist in a native or cross file
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_external_property(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>propname</b>,     # Name of the property in the cross / native file
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_builtin_meson.html#has_external_property_propname"><b>propname</b></a>,     # Name of the property in the cross / native file
 
   # Keyword arguments:
-  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Setting `native` to `true` forces retrieving a variable from the
+  <a href="Reference-manual_builtin_meson.html#has_external_property_native"><b>native</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Setting `native` to `true` forces retrieving a variable from the
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments7">Arguments</h4>
@@ -1150,7 +1150,7 @@ It is usually preferable to use <a href="Reference-manual_builtin_meson.html#mes
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_external_property_propname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">propname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1181,7 +1181,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_external_property_native">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1221,7 +1221,7 @@ be used to install the manifest to a given directory with the name
 </div>
 <pre><code class="language-meson"># Installs a manifest file
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> install_dependency_manifest(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>output_name</b>,     # Name of the manifest file to install
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_builtin_meson.html#install_dependency_manifest_output_name"><b>output_name</b></a>,     # Name of the manifest file to install
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments8">Arguments</h4>
@@ -1240,7 +1240,7 @@ be used to install the manifest to a given directory with the name
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="install_dependency_manifest_output_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">output_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1322,12 +1322,12 @@ variable name: <code>dependency(name, fallback : subproject_name)</code>.</p>
 </div>
 <pre><code class="language-meson"># Specifies that whenever <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> with `name` is used, Meson should not
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> override_dependency(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>name</b>,           # The name of the dependency to override
-  <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> <b>dep_object</b>,     # The dependency to set as the override for `name`
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_builtin_meson.html#override_dependency_name"><b>name</b></a>,           # The name of the dependency to override
+  <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> <a href="Reference-manual_builtin_meson.html#override_dependency_dep_object"><b>dep_object</b></a>,     # The dependency to set as the override for `name`
 
   # Keyword arguments:
-  <b>native</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If set to `true`, the dependency is always overwritten for the build machine
-  <b>static</b> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Used to override static and/or shared dependencies separately
+  <a href="Reference-manual_builtin_meson.html#override_dependency_native"><b>native</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If set to `true`, the dependency is always overwritten for the build machine
+  <a href="Reference-manual_builtin_meson.html#override_dependency_static"><b>static</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Used to override static and/or shared dependencies separately
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments9">Arguments</h4>
@@ -1346,7 +1346,7 @@ variable name: <code>dependency(name, fallback : subproject_name)</code>.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="override_dependency_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1358,7 +1358,7 @@ variable name: <code>dependency(name, fallback : subproject_name)</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="override_dependency_dep_object">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dep_object</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1389,7 +1389,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="override_dependency_native">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1405,7 +1405,7 @@ differs from the build machine when cross-compiling.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="override_dependency_static">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">static</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1445,8 +1445,8 @@ an executable, the current project version is used.</p>
 </div>
 <pre><code class="language-meson"># specifies that whenever <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> is used to find a program
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> override_find_program(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           <b>progname</b>,     # The name of the program to override
-  <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>program</b>,      # The program to set as the override for `progname`
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           <a href="Reference-manual_builtin_meson.html#override_find_program_progname"><b>progname</b></a>,     # The name of the program to override
+  <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <a href="Reference-manual_builtin_meson.html#override_find_program_program"><b>program</b></a>,      # The program to set as the override for `progname`
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments10">Arguments</h4>
@@ -1465,7 +1465,7 @@ an executable, the current project version is used.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="override_find_program_progname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">progname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1477,7 +1477,7 @@ an executable, the current project version is used.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="override_find_program_program">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">program</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>

@@ -211,6 +211,73 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="added-metrowerks-cc-toolchains">Added Metrowerks C/C++ toolchains</h2>
+<p>Added support for the Metrowerks Embedded ARM and Metrowerks Embedded PowerPC toolchains (https://www.nxp.com/docs/en/reference-manual/CWMCUKINCMPREF.pdf).</p>
+<p>The implementation is somewhat experimental. It has been tested on a few projects and works fairly well, but may have issues.</p>
+<h2 id="generatorprocessgeneratorprocess"><code>generator.process(generator.process(...))</code></h2>
+<p>Added support for code like this:</p>
+<pre><code class="language-meson">gen1 = generator(...)
+gen2 = generator(...)
+gen2.process(gen1.process('input.txt'))
+</code></pre>
+<h2 id="extra-files-keyword-in-declare_dependency">Extra files keyword in <code>declare_dependency</code>
+</h2>
+<p><code>declare_dependency</code> have a new <code>extra_files</code> keyword,
+to add extra files to a target. It is used mostly for IDE integration.</p>
+<h2 id="gnomegenerate_gir-now-supports-env-kwarg">
+<code>gnome.generate_gir()</code> now supports <code>env</code> kwarg</h2>
+<p><code>gnome.generate_gir()</code> now accepts the <code>env</code> kwarg which lets you set environment variables.</p>
+<h2 id="more-data-in-introspection-files">More data in introspection files</h2>
+<ul>
+<li>Used compilers are listed in <code>intro-compilers.json</code>
+</li>
+<li>Informations about <code>host</code>, <code>build</code> and <code>target</code> machines
+are lister in <code>intro-machines.json</code>
+</li>
+<li>
+<code>intro-dependencies.json</code> now includes internal dependencies,
+and relations between dependencies.</li>
+<li>
+<code>intro-targets.json</code> now includes dependencies, <code>vs_module_defs</code>,
+<code>win_subsystem</code>, and linker parameters.</li>
+</ul>
+<h2 id="find-more-specific-python-version-on-windows">Find more specific python version on Windows</h2>
+<p>You can now use <code>python3.x</code>, where <code>x</code> is the minor version,
+to find a more specific version of python on Windows, when
+using the python module. On other platforms, it was already
+working as <code>python3.x</code> is the executable name.</p>
+<h2 id="python-module-can-now-compile-bytecode">Python module can now compile bytecode</h2>
+<p>A new builtin option is available: <code>-Dpython.bytecompile=2</code>. It can be used to
+compile bytecode for all pure python files installed via the python module.</p>
+<h2 id="support-for-defining-crate-names-of-rust-dependencies-in-rust-targets">Support for defining crate names of Rust dependencies in Rust targets</h2>
+<p>Rust supports defining a different crate name for a dependency than what the
+actual crate name during compilation of that dependency was.</p>
+<p>This allows using multiple versions of the same crate at once, or simply using
+a shorter name of the crate for convenience.</p>
+<pre><code class="language-meson">a_dep = dependency('some-very-long-name')
+
+my_executable = executable('my-executable', 'src/main.rs',
+  rust_dependency_map : {
+    'some_very_long_name' : 'a',
+  },
+  dependencies : [a_dep],
+)
+</code></pre>
+<h2 id="rust-now-supports-the-b_ndebug-option">Rust now supports the b_ndebug option</h2>
+<p>Which controls the <code>debug_assertions</code> cfg, which in turn controls
+<code>debug_assert!()</code> macro. This macro is roughly equivalent to C's <code>assert()</code>, as
+it can be toggled with command line options, unlike Rust's <code>assert!()</code>, which
+cannot be turned off, and is not designed to be.</p>
+<h2 id="wildcards-in-list-of-tests-to-run">Wildcards in list of tests to run</h2>
+<p>The <code>meson test</code> command now accepts wildcards in the list of test names.
+For example <code>meson test basic*</code> will run all tests whose name begins
+with "basic".</p>
+<p>meson will report an error if the given test name does not match any
+existing test. meson will log a warning if two redundant test names
+are given (for example if you give both "proj:basic" and "proj:").</p>
+<h2 id="new-for-the-generation-of-visual-studio-vcxproj-projects">New for the generation of Visual Studio vcxproj projects</h2>
+<p>When vcxproj is generated, another file vcxproj.filters is generated in parallel.
+It enables to set a hierarchy of the files inside the solution following their place on filesystem.</p>
 
     </div>
         

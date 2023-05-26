@@ -1006,6 +1006,12 @@ install prefix. For example: if the install prefix is <code>/usr</code> and the
 </thead>
 <tbody>
 <tr>
+<td> bytecompile</td>
+<td> 0</td>
+<td> integer from -1 to 2</td>
+<td> What bytecode optimization level to use (Since 1.2.0)</td>
+</tr>
+<tr>
 <td> install_env</td>
 <td> prefix</td>
 <td> {auto,prefix,system,venv}</td>
@@ -1041,6 +1047,15 @@ if it is not a virtualenv).  Setting to <code>auto</code> will check if the foun
 installation is a virtualenv, and use <code>venv</code> or <code>system</code> as appropriate (but
 never <code>prefix</code>). This option is mutually exclusive with the <code>platlibdir</code>/<code>purelibdir</code>.</p>
 <p>For backwards compatibility purposes, the default <code>install_env</code> is <code>prefix</code>.</p>
+<p><em>Since 1.2.0</em> The <code>python.bytecompile</code> option can be used to enable compiling
+python bytecode. Bytecode has 3 optimization levels:</p>
+<ul>
+<li>0, bytecode without optimizations</li>
+<li>1, bytecode with some optimizations</li>
+<li>2, bytecode with some more optimizations</li>
+</ul>
+<p>To this, Meson adds level <code>-1</code>, which is to not attempt to compile bytecode at
+all.</p>
 
     </div>
         

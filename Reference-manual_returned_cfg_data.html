@@ -238,8 +238,8 @@ value has not been set returns <code>default_value</code> if it is defined
 </div>
 <pre><code class="language-meson"># Returns the value of `varname`, if the
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> get(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <b>varname</b>,           # The name of the variable to query
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> [<b>default_value</b>],   # The default value to return when `varname` does not exist
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <a href="Reference-manual_returned_cfg_data.html#get_varname"><b>varname</b></a>,           # The name of the variable to query
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> [<a href="Reference-manual_returned_cfg_data.html#get_default_value"><b>default_value</b></a>],   # The default value to return when `varname` does not exist
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -258,7 +258,7 @@ value has not been set returns <code>default_value</code> if it is defined
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_varname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">varname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -270,7 +270,7 @@ value has not been set returns <code>default_value</code> if it is defined
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_default_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">default_value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
@@ -307,8 +307,8 @@ not been set returns <code>default_value</code> if it is defined and errors out 
 </div>
 <pre><code class="language-meson"># Returns the value
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> get_unquoted(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <b>varname</b>,           # The name of the variable to query
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> [<b>default_value</b>],   # The default value to return when `varname` does not exist
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <a href="Reference-manual_returned_cfg_data.html#get_unquoted_varname"><b>varname</b></a>,           # The name of the variable to query
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> [<a href="Reference-manual_returned_cfg_data.html#get_unquoted_default_value"><b>default_value</b></a>],   # The default value to return when `varname` does not exist
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments1">Arguments</h4>
@@ -327,7 +327,7 @@ not been set returns <code>default_value</code> if it is defined and errors out 
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_unquoted_varname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">varname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -339,7 +339,7 @@ not been set returns <code>default_value</code> if it is defined and errors out 
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_unquoted_default_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">default_value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
@@ -373,7 +373,7 @@ not been set returns <code>default_value</code> if it is defined and errors out 
 </div>
 <pre><code class="language-meson"># returns `true` if the specified variable is set
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>varname</b>,     # The name of the variable to query
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_cfg_data.html#has_varname"><b>varname</b></a>,     # The name of the variable to query
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments2">Arguments</h4>
@@ -392,7 +392,7 @@ not been set returns <code>default_value</code> if it is defined and errors out 
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_varname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">varname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -445,7 +445,7 @@ the current.</p>
 </div>
 <pre><code class="language-meson"># Takes as argument a different
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> merge_from(
-  <a href="Reference-manual_returned_cfg_data.html"><ins>cfg_data</ins></a> <b>other</b>,     # The other <a href="Reference-manual_returned_cfg_data.html"><ins><code>cfg_data</code></ins></a> object to merge into this one.
+  <a href="Reference-manual_returned_cfg_data.html"><ins>cfg_data</ins></a> <a href="Reference-manual_returned_cfg_data.html#merge_from_other"><b>other</b></a>,     # The other <a href="Reference-manual_returned_cfg_data.html"><ins><code>cfg_data</code></ins></a> object to merge into this one.
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments3">Arguments</h4>
@@ -464,7 +464,7 @@ the current.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="merge_from_other">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">other</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_returned_cfg_data.html"><ins><code>cfg_data</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -495,11 +495,11 @@ the current.</p>
 </div>
 <pre><code class="language-meson"># Sets a variable to a given value
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> set(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <b>varname</b>,     # The name of the variable to set
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,       # The value to set
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <a href="Reference-manual_returned_cfg_data.html#set_varname"><b>varname</b></a>,     # The name of the variable to set
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_cfg_data.html#set_value"><b>value</b></a>,       # The value to set
 
   # Keyword arguments:
-  <b>description</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Message / Comment that will be written in the
+  <a href="Reference-manual_returned_cfg_data.html#set_description"><b>description</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Message / Comment that will be written in the
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments4">Arguments</h4>
@@ -518,7 +518,7 @@ the current.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set_varname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">varname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -530,7 +530,7 @@ the current.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="set_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
@@ -563,7 +563,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set_description">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">description</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -599,11 +599,11 @@ respectively</p>
 </div>
 <pre><code class="language-meson"># Is the same as <a href="Reference-manual_returned_cfg_data.html#cfg_dataset"><ins><code>cfg_data.set()</code></ins></a> but the value
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> set10(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        <b>varname</b>,     # The name of the variable to set
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> <b>value</b>,       # The value to set as either `1` or `0`
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        <a href="Reference-manual_returned_cfg_data.html#set10_varname"><b>varname</b></a>,     # The name of the variable to set
+  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> <a href="Reference-manual_returned_cfg_data.html#set10_value"><b>value</b></a>,       # The value to set as either `1` or `0`
 
   # Keyword arguments:
-  <b>description</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Message / Comment that will be written in the
+  <a href="Reference-manual_returned_cfg_data.html#set10_description"><b>description</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Message / Comment that will be written in the
 )</code></pre>
 <div class="alert alert-warning">
   <strong>Warning:</strong>
@@ -626,7 +626,7 @@ respectively</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set10_varname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">varname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -638,7 +638,7 @@ respectively</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="set10_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a>
@@ -674,7 +674,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set10_description">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">description</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -708,11 +708,11 @@ cause a syntax error.</p>
 </div>
 <pre><code class="language-meson"># Is same as <a href="Reference-manual_returned_cfg_data.html#cfg_dataset"><ins><code>cfg_data.set()</code></ins></a> but quotes the value in double quotes (`"`)
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> set_quoted(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <b>varname</b>,     # The name of the variable to set
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <b>value</b>,       # The value to set
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              <a href="Reference-manual_returned_cfg_data.html#set_quoted_varname"><b>varname</b></a>,     # The name of the variable to set
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_cfg_data.html#set_quoted_value"><b>value</b></a>,       # The value to set
 
   # Keyword arguments:
-  <b>description</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Message / Comment that will be written in the
+  <a href="Reference-manual_returned_cfg_data.html#set_quoted_description"><b>description</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Message / Comment that will be written in the
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments6">Arguments</h4>
@@ -731,7 +731,7 @@ cause a syntax error.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set_quoted_varname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">varname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -743,7 +743,7 @@ cause a syntax error.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="set_quoted_value">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">value</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
@@ -776,7 +776,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set_quoted_description">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">description</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->

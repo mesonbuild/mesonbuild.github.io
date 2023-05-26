@@ -241,7 +241,9 @@ that can be embedded inside the main binary. Similar a build target it
 takes two positional arguments. The first one is the name of the
 resource and the second is the XML file containing the resource
 definitions. If the name is <code>foobar</code>, Meson will generate a header
-file called <code>foobar.h</code>, which you can then include in your sources.</p>
+file called <code>foobar.h</code>, which you can then include in your sources.
+The resources specified are automatically added as dependencies of the
+generated target.</p>
 <ul>
 <li>
 <code>c_name</code>: passed to the resource compiler as an argument after
@@ -298,6 +300,10 @@ executable object.</p>
 <code>dependencies</code>: deps to use during introspection scanning</li>
 <li>
 <code>extra_args</code>: command line arguments to pass to gir compiler</li>
+<li>
+<code>env</code>: (<em>Added 1.2.0</em>) environment variables to set, such as
+<code>{'NAME1': 'value1', 'NAME2': 'value2'}</code> or <code>['NAME1=value1', 'NAME2=value2']</code>,
+or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object which allows more sophisticated environment juggling.</li>
 <li>
 <code>export_packages</code>: extra packages the gir file exports</li>
 <li>

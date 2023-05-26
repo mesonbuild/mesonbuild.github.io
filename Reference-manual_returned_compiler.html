@@ -253,12 +253,12 @@ http://www.mingw.org/wiki/SpecsFileHOWTO</p>
 </div>
 <pre><code class="language-meson"># Returns the alignment of the specified type
 <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> alignment(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>typename</b>,     # The name of the type to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#alignment_typename"><b>typename</b></a>,     # The name of the type to check
 
   # Keyword arguments:
-  <b>args</b>         : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b> : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>prefix</b>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#alignment_args"><b>args</b></a>         : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#alignment_dependencies"><b>dependencies</b></a> : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#alignment_prefix"><b>prefix</b></a>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -277,7 +277,7 @@ http://www.mingw.org/wiki/SpecsFileHOWTO</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="alignment_typename">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">typename</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -308,7 +308,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="alignment_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -327,7 +327,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="alignment_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -340,7 +340,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="alignment_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -379,15 +379,15 @@ with the specified prefix, dependencies, and arguments.</p>
 </div>
 <pre><code class="language-meson"># Returns true if the specified header is *usable*
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> check_header(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>header_name</b>,     # The header to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#check_header_header_name"><b>header_name</b></a>,     # The header to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
-  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
+  <a href="Reference-manual_returned_compiler.html#check_header_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#check_header_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#check_header_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#check_header_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#check_header_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#check_header_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments1">Arguments</h4>
@@ -406,7 +406,7 @@ with the specified prefix, dependencies, and arguments.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="check_header_header_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -437,7 +437,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="check_header_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -456,7 +456,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="check_header_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -469,7 +469,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="check_header_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -483,7 +483,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="check_header_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -497,7 +497,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="check_header_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -516,7 +516,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="check_header_required">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
@@ -567,14 +567,14 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 </div>
 <pre><code class="language-meson"># Returns true if the code compiles
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> compiles(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>code</b>,     # The source code to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <a href="Reference-manual_returned_compiler.html#compiles_code"><b>code</b></a>,     # The source code to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>name</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#compiles_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#compiles_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#compiles_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#compiles_name"><b>name</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
+  <a href="Reference-manual_returned_compiler.html#compiles_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments2">Arguments</h4>
@@ -593,7 +593,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="compiles_code">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">code</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
@@ -628,7 +628,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="compiles_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -647,7 +647,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compiles_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -660,7 +660,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compiles_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -674,7 +674,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compiles_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -687,7 +687,7 @@ If this keyword argument is not passed, no message will be printed about the che
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compiles_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -725,17 +725,17 @@ first.</p>
 </div>
 <pre><code class="language-meson"># Computes the value of the given expression
 <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> compute_int(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>expr</b>,     # The expression to compute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#compute_int_expr"><b>expr</b></a>,     # The expression to compute
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>guess</b>               : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>              # The value to try first
-  <b>high</b>                : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>              # The max value
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>low</b>                 : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>              # The min value
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#compute_int_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#compute_int_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#compute_int_guess"><b>guess</b></a>               : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>              # The value to try first
+  <a href="Reference-manual_returned_compiler.html#compute_int_high"><b>high</b></a>                : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>              # The max value
+  <a href="Reference-manual_returned_compiler.html#compute_int_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#compute_int_low"><b>low</b></a>                 : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>              # The min value
+  <a href="Reference-manual_returned_compiler.html#compute_int_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#compute_int_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments3">Arguments</h4>
@@ -754,7 +754,7 @@ first.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="compute_int_expr">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">expr</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -785,7 +785,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="compute_int_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -804,7 +804,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compute_int_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -817,7 +817,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compute_int_guess">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">guess</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -829,7 +829,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compute_int_high">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">high</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -843,7 +843,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compute_int_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -857,7 +857,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compute_int_low">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">low</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -871,7 +871,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compute_int_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -885,7 +885,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="compute_int_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -922,19 +922,19 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
 </div>
 <pre><code class="language-meson"># Tries to find the library specified in the positional argument
 <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> find_library(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>libname</b>,     # The library to find
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#find_library_libname"><b>libname</b></a>,     # The library to find
 
   # Keyword arguments:
-  <b>dirs</b>                       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Additional directories to search in
-  <b>disabler</b>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, this method will return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> on a failed check.
-  <b>has_headers</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # List of headers that must be found as well
-  <b>header_args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # When the `has_headers` kwarg is also used, this argument is passed to
-  <b>header_dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # When the `has_headers` kwarg is also used, this argument is passed to
-  <b>header_include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # When the `has_headers` kwarg is also used, this argument is passed to
-  <b>header_no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When the `has_headers` kwarg is also used, this argument is passed to
-  <b>header_prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # When the `has_headers` kwarg is also used, this argument is passed to
-  <b>required</b>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set `true`, Meson will abort with an error if the library could not
-  <b>static</b>                     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, the search is limited to static libraries only
+  <a href="Reference-manual_returned_compiler.html#find_library_dirs"><b>dirs</b></a>                       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Additional directories to search in
+  <a href="Reference-manual_returned_compiler.html#find_library_disabler"><b>disabler</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, this method will return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> on a failed check.
+  <a href="Reference-manual_returned_compiler.html#find_library_has_headers"><b>has_headers</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # List of headers that must be found as well
+  <a href="Reference-manual_returned_compiler.html#find_library_header_args"><b>header_args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # When the `has_headers` kwarg is also used, this argument is passed to
+  <a href="Reference-manual_returned_compiler.html#find_library_header_dependencies"><b>header_dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # When the `has_headers` kwarg is also used, this argument is passed to
+  <a href="Reference-manual_returned_compiler.html#find_library_header_include_directories"><b>header_include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # When the `has_headers` kwarg is also used, this argument is passed to
+  <a href="Reference-manual_returned_compiler.html#find_library_header_no_builtin_args"><b>header_no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When the `has_headers` kwarg is also used, this argument is passed to
+  <a href="Reference-manual_returned_compiler.html#find_library_header_prefix"><b>header_prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # When the `has_headers` kwarg is also used, this argument is passed to
+  <a href="Reference-manual_returned_compiler.html#find_library_required"><b>required</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # If set `true`, Meson will abort with an error if the library could not
+  <a href="Reference-manual_returned_compiler.html#find_library_static"><b>static</b></a>                     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If `true`, the search is limited to static libraries only
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments4">Arguments</h4>
@@ -953,7 +953,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="find_library_libname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">libname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -984,7 +984,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="find_library_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1000,7 +1000,7 @@ in those directories as well as the system directories.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_disabler">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">disabler</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1015,7 +1015,7 @@ in those directories as well as the system directories.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_has_headers">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">has_headers</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1034,7 +1034,7 @@ the header check.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_header_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1049,7 +1049,7 @@ the header check.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_header_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -1064,7 +1064,7 @@ the header check.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_header_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -1079,7 +1079,7 @@ the header check.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_header_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1095,7 +1095,7 @@ the header check.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_header_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1109,7 +1109,7 @@ the header check.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_required">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
@@ -1130,7 +1130,7 @@ will control if it is searched and whether to fail if not found.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="find_library_static">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">static</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1249,14 +1249,14 @@ the compiler would. E.g. <code>"a" "b"</code> will become <code>"ab"</code>.</p>
 </div>
 <pre><code class="language-meson"># Returns the given preprocessor symbol's value
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> get_define(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>definename</b>,     # The define to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#get_define_definename"><b>definename</b></a>,     # The define to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#get_define_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#get_define_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#get_define_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#get_define_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#get_define_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments7">Arguments</h4>
@@ -1275,7 +1275,7 @@ the compiler would. E.g. <code>"a" "b"</code> will become <code>"ab"</code>.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_define_definename">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">definename</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1306,7 +1306,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_define_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1325,7 +1325,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_define_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -1338,7 +1338,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_define_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -1352,7 +1352,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_define_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1366,7 +1366,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="get_define_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1441,7 +1441,7 @@ as if <a href="Reference-manual_returned_compiler.html#compilerhas_argument"><in
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>arg</b>...,  # The arguments to check
 
   # Keyword arguments:
-  <b>checked</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Supported values:
+  <a href="Reference-manual_returned_compiler.html#get_supported_arguments_checked"><b>checked</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Supported values:
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments8">Arguments</h4>
@@ -1468,7 +1468,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="get_supported_arguments_checked">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">checked</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1558,7 +1558,7 @@ an unknown flag.</p>
 </div>
 <pre><code class="language-meson"># Returns `true` if the compiler accepts the specified command line argument,
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_argument(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>argument</b>,     # The argument to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_argument_argument"><b>argument</b></a>,     # The argument to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments10">Arguments</h4>
@@ -1577,7 +1577,7 @@ an unknown flag.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_argument_argument">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">argument</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1609,14 +1609,14 @@ by the standard library or a library passed in with the <code>args</code> keywor
 </div>
 <pre><code class="language-meson"># Returns true if the given function is provided
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_function(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>funcname</b>,     # The function to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_function_funcname"><b>funcname</b></a>,     # The function to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#has_function_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#has_function_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#has_function_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#has_function_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#has_function_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments11">Arguments</h4>
@@ -1635,7 +1635,7 @@ by the standard library or a library passed in with the <code>args</code> keywor
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_function_funcname">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">funcname</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1666,7 +1666,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_function_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1685,7 +1685,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_function_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -1698,7 +1698,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_function_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -1712,7 +1712,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_function_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1726,7 +1726,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_function_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1767,7 +1767,7 @@ do not support such attributes.
 </div>
 <pre><code class="language-meson"># Returns `true` if the compiler supports the GNU style (`__attribute__(
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_function_attribute(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>name</b>,     # The attribute name to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_function_attribute_name"><b>name</b></a>,     # The attribute name to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments12">Arguments</h4>
@@ -1786,7 +1786,7 @@ do not support such attributes.
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_function_attribute_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1820,15 +1820,15 @@ pre-processor check.</p>
 </div>
 <pre><code class="language-meson"># Returns true if the specified header is *exists*
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_header(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>header_name</b>,     # The header to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_header_header_name"><b>header_name</b></a>,     # The header to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
-  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
+  <a href="Reference-manual_returned_compiler.html#has_header_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#has_header_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#has_header_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#has_header_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#has_header_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#has_header_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments13">Arguments</h4>
@@ -1847,7 +1847,7 @@ pre-processor check.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_header_header_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1878,7 +1878,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_header_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1897,7 +1897,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -1910,7 +1910,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -1924,7 +1924,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -1938,7 +1938,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -1957,7 +1957,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_required">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
@@ -1994,16 +1994,16 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 </div>
 <pre><code class="language-meson"># Detects whether a particular symbol is declared in the specified header
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_header_symbol(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>header</b>,     # The header to check
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>symbol</b>,     # The symbol to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_header_symbol_header"><b>header</b></a>,     # The header to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_header_symbol_symbol"><b>symbol</b></a>,     # The symbol to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
-  <b>required</b>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
+  <a href="Reference-manual_returned_compiler.html#has_header_symbol_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#has_header_symbol_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#has_header_symbol_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#has_header_symbol_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#has_header_symbol_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#has_header_symbol_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments14">Arguments</h4>
@@ -2022,7 +2022,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_header_symbol_header">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">header</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2034,7 +2034,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_symbol_symbol">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">symbol</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2065,7 +2065,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_header_symbol_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2084,7 +2084,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_symbol_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -2097,7 +2097,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_symbol_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -2111,7 +2111,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_symbol_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2125,7 +2125,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_symbol_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2144,7 +2144,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_header_symbol_required">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
@@ -2186,7 +2186,7 @@ a <code>/link</code> argument will be prepended.</p>
 </div>
 <pre><code class="language-meson"># Returns `true` if the linker accepts the specified command line argument,
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_link_argument(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>argument</b>,     # The argument to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_link_argument_argument"><b>argument</b></a>,     # The argument to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments15">Arguments</h4>
@@ -2205,7 +2205,7 @@ a <code>/link</code> argument will be prepended.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_link_argument_argument">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">argument</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2236,15 +2236,15 @@ a <code>/link</code> argument will be prepended.</p>
 </div>
 <pre><code class="language-meson"># Returns true if the type has the specified member
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_member(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>typename</b>,       # The type to check
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>membername</b>,     # The member to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_member_typename"><b>typename</b></a>,       # The type to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_member_membername"><b>membername</b></a>,     # The member to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#has_member_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#has_member_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#has_member_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#has_member_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#has_member_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments16">Arguments</h4>
@@ -2263,7 +2263,7 @@ a <code>/link</code> argument will be prepended.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_member_typename">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">typename</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2275,7 +2275,7 @@ a <code>/link</code> argument will be prepended.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_member_membername">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">membername</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2306,7 +2306,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_member_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2325,7 +2325,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_member_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -2338,7 +2338,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_member_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -2352,7 +2352,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_member_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2366,7 +2366,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_member_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2403,15 +2403,15 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
 </div>
 <pre><code class="language-meson"># Returns `true` if the type has *all* the specified members
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_members(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>typename</b>,     # The type to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_members_typename"><b>typename</b></a>,     # The type to check
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>member</b>...,    # The members to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#has_members_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#has_members_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#has_members_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#has_members_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#has_members_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments17">Arguments</h4>
@@ -2430,7 +2430,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_members_typename">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">typename</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2468,7 +2468,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_members_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2487,7 +2487,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_members_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -2500,7 +2500,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_members_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -2514,7 +2514,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_members_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2528,7 +2528,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_members_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2623,14 +2623,14 @@ arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementa
 </div>
 <pre><code class="language-meson"># Returns `true` if the specified token is a type
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_type(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>typename</b>,     # The type to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_type_typename"><b>typename</b></a>,     # The type to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#has_type_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#has_type_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#has_type_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#has_type_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#has_type_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments20">Arguments</h4>
@@ -2649,7 +2649,7 @@ arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementa
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_type_typename">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">typename</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2680,7 +2680,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="has_type_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2699,7 +2699,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_type_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -2712,7 +2712,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_type_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -2726,7 +2726,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_type_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2740,7 +2740,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="has_type_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2781,14 +2781,14 @@ target of the <code>links</code> method is used to link the resulting object fil
 </div>
 <pre><code class="language-meson"># Returns true if the code compiles and links
 <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> links(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>code</b>,     # The source code to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <a href="Reference-manual_returned_compiler.html#links_code"><b>code</b></a>,     # The source code to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>name</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#links_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#links_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#links_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#links_name"><b>name</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
+  <a href="Reference-manual_returned_compiler.html#links_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments21">Arguments</h4>
@@ -2807,7 +2807,7 @@ target of the <code>links</code> method is used to link the resulting object fil
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="links_code">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">code</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
@@ -2842,7 +2842,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="links_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -2861,7 +2861,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="links_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -2874,7 +2874,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="links_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -2888,7 +2888,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="links_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2901,7 +2901,7 @@ If this keyword argument is not passed, no message will be printed about the che
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="links_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -2940,10 +2940,10 @@ normal compilation. That includes for example args added with
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> <b>source</b>...,  # Input source to compile
 
   # Keyword arguments:
-  <b>compile_args</b>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Extra flags to pass to the preprocessor
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>output</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Template for name of preprocessed files: `@PLAINNAME@` is replaced by
+  <a href="Reference-manual_returned_compiler.html#preprocess_compile_args"><b>compile_args</b></a>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Extra flags to pass to the preprocessor
+  <a href="Reference-manual_returned_compiler.html#preprocess_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required
+  <a href="Reference-manual_returned_compiler.html#preprocess_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#preprocess_output"><b>output</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Template for name of preprocessed files: `@PLAINNAME@` is replaced by
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments22">Arguments</h4>
@@ -2993,7 +2993,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="preprocess_compile_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">compile_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -3006,7 +3006,7 @@ accepts the following keyword arguments:</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="preprocess_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -3020,7 +3020,7 @@ accepts the following keyword arguments:</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="preprocess_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -3034,7 +3034,7 @@ accepts the following keyword arguments:</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="preprocess_output">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">output</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -3066,14 +3066,14 @@ without its extension.</p>
 </div>
 <pre><code class="language-meson"># Attempts to compile and execute the given code fragment
 <a href="Reference-manual_returned_runresult.html"><ins>runresult</ins></a> run(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>code</b>,     # The source code to check
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <a href="Reference-manual_returned_compiler.html#run_code"><b>code</b></a>,     # The source code to check
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>name</b>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#run_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#run_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#run_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#run_name"><b>name</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
+  <a href="Reference-manual_returned_compiler.html#run_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments23">Arguments</h4>
@@ -3092,7 +3092,7 @@ without its extension.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="run_code">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">code</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
@@ -3127,7 +3127,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="run_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -3146,7 +3146,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="run_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -3159,7 +3159,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="run_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -3173,7 +3173,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="run_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -3186,7 +3186,7 @@ If this keyword argument is not passed, no message will be printed about the che
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="run_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -3218,14 +3218,14 @@ If this keyword argument is not passed, no message will be printed about the che
 </div>
 <pre><code class="language-meson"># returns the size of the given type (e
 <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> sizeof(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>typename</b>,     # The type to compute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#sizeof_typename"><b>typename</b></a>,     # The type to compute
 
   # Keyword arguments:
-  <b>args</b>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
-  <b>dependencies</b>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
-  <b>include_directories</b> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
-  <b>no_builtin_args</b>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
-  <b>prefix</b>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+  <a href="Reference-manual_returned_compiler.html#sizeof_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#sizeof_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#sizeof_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#sizeof_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#sizeof_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments24">Arguments</h4>
@@ -3244,7 +3244,7 @@ If this keyword argument is not passed, no message will be printed about the che
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="sizeof_typename">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">typename</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -3275,7 +3275,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="sizeof_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
@@ -3294,7 +3294,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="sizeof_dependencies">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
@@ -3307,7 +3307,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="sizeof_include_directories">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
@@ -3321,7 +3321,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="sizeof_no_builtin_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -3335,7 +3335,7 @@ The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
   </div>
   </td>
       </tr>
-      <tr>
+      <tr id="sizeof_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>

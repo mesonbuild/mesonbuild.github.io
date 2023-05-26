@@ -251,11 +251,11 @@ the value <code>BOB</code> and plain <code>BAR;BAZ</code> if the value was not d
 </div>
 <pre><code class="language-meson"># appends the given values to
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> append(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>variable</b>,     # The variable to modify
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_env.html#append_variable"><b>variable</b></a>,     # The variable to modify
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>Value</b>...,     # The values to append
 
   # Keyword arguments:
-  <b>separator</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use
+  <a href="Reference-manual_returned_env.html#append_separator"><b>separator</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -274,7 +274,7 @@ the value <code>BOB</code> and plain <code>BAR;BAZ</code> if the value was not d
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="append_variable">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">variable</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -312,7 +312,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="append_separator">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">separator</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -344,11 +344,11 @@ Windows and ':' for UNIX/POSIX systems.</p>
 </div>
 <pre><code class="language-meson"># Same as `append` except that it writes to the beginning of the variable
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> prepend(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>variable</b>,     # The variable to modify
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_env.html#prepend_variable"><b>variable</b></a>,     # The variable to modify
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>Value</b>...,     # The values to prepend
 
   # Keyword arguments:
-  <b>separator</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use
+  <a href="Reference-manual_returned_env.html#prepend_separator"><b>separator</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments1">Arguments</h4>
@@ -367,7 +367,7 @@ Windows and ':' for UNIX/POSIX systems.</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="prepend_variable">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">variable</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -405,7 +405,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="prepend_separator">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">separator</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -440,11 +440,11 @@ joined by the separator. For instance, <code>env.set('FOO', 'BAR'),</code> sets 
 </div>
 <pre><code class="language-meson"># Sets the environment variable
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> set(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>variable</b>,     # The variable to modify
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_env.html#set_variable"><b>variable</b></a>,     # The variable to modify
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>Value</b>...,     # The values to set
 
   # Keyword arguments:
-  <b>separator</b> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use
+  <a href="Reference-manual_returned_env.html#set_separator"><b>separator</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The separator to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments2">Arguments</h4>
@@ -463,7 +463,7 @@ joined by the separator. For instance, <code>env.set('FOO', 'BAR'),</code> sets 
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set_variable">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">variable</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
@@ -501,7 +501,7 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
-      <tr>
+      <tr id="set_separator">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">separator</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
