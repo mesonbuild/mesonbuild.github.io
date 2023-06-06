@@ -5501,6 +5501,8 @@ just pass an absolute path to <code>find_program</code>, e.g.</p>
 need to construct the set of paths to search on the fly:</p>
 <pre><code class="language-meson">setcap = find_program(['setcap', '/usr/sbin/setcap', '/sbin/setcap'], required : false)
 </code></pre>
+<p><em>Since 1.2.0</em> <code>find_program('meson')</code> is automatically overridden to the Meson
+command used to execute the build script.</p>
 <p>The returned <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> object also has documented methods.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">

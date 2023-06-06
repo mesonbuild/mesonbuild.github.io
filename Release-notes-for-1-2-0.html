@@ -241,6 +241,38 @@ and relations between dependencies.</li>
 <code>intro-targets.json</code> now includes dependencies, <code>vs_module_defs</code>,
 <code>win_subsystem</code>, and linker parameters.</li>
 </ul>
+<h2 id="new-override-of-find_programmeson">New override of <code>find_program('meson')</code>
+</h2>
+<p>In some cases, it has been useful for build scripts to access the Meson command
+used to invoke the build script. This has led to various ad-hoc solutions that
+can be very brittle and project-specific.</p>
+<pre><code class="language-meson">meson_prog = find_program('meson')
+</code></pre>
+<p>This call will supply the build script with an external program pointing at the
+invoked Meson.</p>
+<p>Because Meson also uses <code>find_program</code> for program lookups internally, this
+override will also be handled in cases similar to the following:</p>
+<pre><code class="language-meson">custom_target(
+  # ...
+  command: [
+    'meson',
+  ],
+  # ...
+)
+
+run_command(
+  'meson',
+  # ...
+)
+
+run_target(
+  'tgt',
+  command: [
+    'meson',
+    # ...
+  ]
+)
+</code></pre>
 <h2 id="find-more-specific-python-version-on-windows">Find more specific python version on Windows</h2>
 <p>You can now use <code>python3.x</code>, where <code>x</code> is the minor version,
 to find a more specific version of python on Windows, when
