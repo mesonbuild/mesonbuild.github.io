@@ -241,6 +241,16 @@ and relations between dependencies.</li>
 <code>intro-targets.json</code> now includes dependencies, <code>vs_module_defs</code>,
 <code>win_subsystem</code>, and linker parameters.</li>
 </ul>
+<h2 id="machine-objects-get-kernel-and-subsystem-properties">Machine objects get <code>kernel</code> and <code>subsystem</code> properties</h2>
+<p>Meson has traditionally provided a <code>system</code> property to detect the
+system being run on. However this is not enough to reliably
+differentiate between e.g. an iOS platform from a watchOS one. Two new
+properties, namely <code>kernel</code> and <code>subsystem</code> have been added so these
+setups can be reliably detected.</p>
+<p>These new properties are not necessary in cross files for now, but if
+they are not defined and a build file tries to access them, Meson will
+exit with a hard error. It is expected that at some point in the
+future defining the new properties will become mandatory.</p>
 <h2 id="new-override-of-find_programmeson">New override of <code>find_program('meson')</code>
 </h2>
 <p>In some cases, it has been useful for build scripts to access the Meson command
