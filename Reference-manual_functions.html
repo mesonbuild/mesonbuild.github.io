@@ -1423,7 +1423,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#both_libraries_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#both_libraries_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#both_libraries_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#both_libraries_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#both_libraries_pic"><b>pic</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <a href="Reference-manual_functions.html#both_libraries_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <a href="Reference-manual_functions.html#both_libraries_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
@@ -1976,12 +1976,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="both_libraries_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2229,7 +2230,7 @@ creating the final list.</p>
   <a href="Reference-manual_functions.html#build_target_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#build_target_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#build_target_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#build_target_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#build_target_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#build_target_pic"><b>pic</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <a href="Reference-manual_functions.html#build_target_pie"><b>pie</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Build a position-independent executable
   <a href="Reference-manual_functions.html#build_target_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
@@ -2847,12 +2848,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="build_target_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -4218,18 +4220,18 @@ allowed by <code>--wrap-mode</code>.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>names</b>...,  # The names of the dependency to look up
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#dependency_allow_fallback"><b>allow_fallback</b></a>    : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Specifies whether Meson should automatically pick a fallback subproject
-  <a href="Reference-manual_functions.html#dependency_default_options"><b>default_options</b></a>   : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # An array of default option values
-  <a href="Reference-manual_functions.html#dependency_disabler"><b>disabler</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Returns a <a href="Reference-manual_functions.html#disabler"><ins><code>disabler()</code></ins></a> object instead of a not-found dependency
-  <a href="Reference-manual_functions.html#dependency_fallback"><b>fallback</b></a>          : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # Manually specifies a subproject fallback
-  <a href="Reference-manual_functions.html#dependency_include_type"><b>include_type</b></a>      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # An enum flag, marking how the dependency
-  <a href="Reference-manual_functions.html#dependency_language"><b>language</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Defines what language-specific dependency to find
-  <a href="Reference-manual_functions.html#dependency_method"><b>method</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Defines the way the dependency is detected, the default is
-  <a href="Reference-manual_functions.html#dependency_native"><b>native</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If set to `true`, causes Meson to find the dependency on
-  <a href="Reference-manual_functions.html#dependency_not_found_message"><b>not_found_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # An optional string that will be printed as a <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> if the dependency was not found.
-  <a href="Reference-manual_functions.html#dependency_required"><b>required</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `false`, Meson will proceed with the build
-  <a href="Reference-manual_functions.html#dependency_static"><b>static</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Tells the dependency provider to try to get static
-  <a href="Reference-manual_functions.html#dependency_version"><b>version</b></a>           : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Specifies the required version,
+  <a href="Reference-manual_functions.html#dependency_allow_fallback"><b>allow_fallback</b></a>    : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # Specifies whether Meson should automatically pick a fallback subproject
+  <a href="Reference-manual_functions.html#dependency_default_options"><b>default_options</b></a>   : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]  # An array of default option values
+  <a href="Reference-manual_functions.html#dependency_disabler"><b>disabler</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # Returns a <a href="Reference-manual_functions.html#disabler"><ins><code>disabler()</code></ins></a> object instead of a not-found dependency
+  <a href="Reference-manual_functions.html#dependency_fallback"><b>fallback</b></a>          : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                               # Manually specifies a subproject fallback
+  <a href="Reference-manual_functions.html#dependency_include_type"><b>include_type</b></a>      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # An enum flag, marking how the dependency
+  <a href="Reference-manual_functions.html#dependency_language"><b>language</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # Defines what language-specific dependency to find
+  <a href="Reference-manual_functions.html#dependency_method"><b>method</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # Defines the way the dependency is detected, the default is
+  <a href="Reference-manual_functions.html#dependency_native"><b>native</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # If set to `true`, causes Meson to find the dependency on
+  <a href="Reference-manual_functions.html#dependency_not_found_message"><b>not_found_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # An optional string that will be printed as a <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> if the dependency was not found.
+  <a href="Reference-manual_functions.html#dependency_required"><b>required</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>                                # When set to `false`, Meson will proceed with the build
+  <a href="Reference-manual_functions.html#dependency_static"><b>static</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # Tells the dependency provider to try to get static
+  <a href="Reference-manual_functions.html#dependency_version"><b>version</b></a>           : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # Specifies the required version,
 )</code></pre>
 <div class="alert alert-info">
   <strong>Note:</strong>
@@ -4292,14 +4294,15 @@ for more details.</p>
       <tr id="dependency_default_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">default_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>An array of default option values
 that override those set in the subproject's <code>meson.options</code>
 (like <code>default_options</code> in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a>, they only have
 effect when Meson is run for the first time, and command line
-arguments override any default options in build files)</p>
+arguments override any default options in build files)
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -4737,7 +4740,7 @@ creating the final list.</p>
   <a href="Reference-manual_functions.html#executable_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#executable_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#executable_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#executable_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#executable_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#executable_pie"><b>pie</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Build a position-independent executable
   <a href="Reference-manual_functions.html#executable_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#executable_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
@@ -5309,12 +5312,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="executable_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7178,7 +7182,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#jar_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#jar_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#jar_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#jar_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#jar_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#jar_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#jar_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
@@ -7732,12 +7736,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="jar_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7923,7 +7928,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#library_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#library_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#library_pic"><b>pic</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <a href="Reference-manual_functions.html#library_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <a href="Reference-manual_functions.html#library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
@@ -8476,12 +8481,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="library_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8746,12 +8752,12 @@ languages are not required.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>language</b>...,      # The languages that Meson should initialize
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#project_default_options"><b>default_options</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Accepts strings in the form `key=value`
-  <a href="Reference-manual_functions.html#project_license"><b>license</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Takes a string or array of strings describing the license(s) the code is under
-  <a href="Reference-manual_functions.html#project_license_files"><b>license_files</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Takes a string or array of strings with the paths to the license file(s)
-  <a href="Reference-manual_functions.html#project_meson_version"><b>meson_version</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Takes a string describing which Meson version the project requires
-  <a href="Reference-manual_functions.html#project_subproject_dir"><b>subproject_dir</b></a>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Specifies the top level directory name that holds Meson subprojects
-  <a href="Reference-manual_functions.html#project_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>       # A free form string describing the version of this project
+  <a href="Reference-manual_functions.html#project_default_options"><b>default_options</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]  # Accepts strings in the form `key=value`
+  <a href="Reference-manual_functions.html#project_license"><b>license</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                               # Takes a string or array of strings describing the license(s) the code is under
+  <a href="Reference-manual_functions.html#project_license_files"><b>license_files</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                               # Takes a string or array of strings with the paths to the license file(s)
+  <a href="Reference-manual_functions.html#project_meson_version"><b>meson_version</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # Takes a string describing which Meson version the project requires
+  <a href="Reference-manual_functions.html#project_subproject_dir"><b>subproject_dir</b></a>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # Specifies the top level directory name that holds Meson subprojects
+  <a href="Reference-manual_functions.html#project_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                    # A free form string describing the version of this project
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments40">Arguments</h3>
@@ -8811,7 +8817,7 @@ accepts the following keyword arguments:</p>
       <tr id="project_default_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">default_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Accepts strings in the form <code>key=value</code>
@@ -8826,6 +8832,7 @@ specific options are used normally even in subprojects.</p>
 for example, using <code>c_args</code> here means that the <code>CFLAGS</code>
 environment variable is not used. Consider using
 [<a href="Reference-manual_functions.html#add_project_arguments">add_project_arguments()</a>] instead.</p>
+<p><em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9410,7 +9417,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#shared_library_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#shared_library_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#shared_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#shared_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#shared_library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#shared_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#shared_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
@@ -9961,12 +9968,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="shared_library_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10158,7 +10166,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#shared_module_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#shared_module_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#shared_module_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#shared_module_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#shared_module_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#shared_module_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#shared_module_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
@@ -10703,12 +10711,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="shared_module_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10856,7 +10865,7 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                        # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#static_library_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#static_library_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                        # List of object files that should be linked in this target
-  <a href="Reference-manual_functions.html#static_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions.html#static_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                            # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#static_library_pic"><b>pic</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
   <a href="Reference-manual_functions.html#static_library_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <a href="Reference-manual_functions.html#static_library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
@@ -11387,12 +11396,13 @@ object files had to be placed in <code>sources</code>.</p>
       <tr id="static_library_override_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
 overriding the values of these options
-for this target only.</p>
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11720,8 +11730,9 @@ example a subproject called <code>foo</code> must be located in
 that override those set in the subproject's <code>meson.options</code>
 (like <code>default_options</code> in <code>project</code>, they only have effect when
 Meson is run for the first time, and command line arguments override
-any default options in build files). <em>(since 0.54.0)</em>: <code>default_library</code>
-built-in option can also be overridden.</li>
+any default options in build files).
+<em>(since 0.54.0)</em>: <code>default_library</code> built-in option can also be overridden.
+<em>(since 1.2.0)</em>: A dictionary may be passed instead of array.</li>
 <li>
 <code>version</code>: works just like the same as in <code>dependency</code>.
 It specifies what version the subproject should be, as an example <code>&gt;=1.0.1</code>
@@ -11754,9 +11765,9 @@ argument to <a href="Reference-manual_functions.html#dependency"><ins><code>depe
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_functions.html#subproject_subproject_name"><b>subproject_name</b></a>,     # Name of the subproject
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#subproject_default_options"><b>default_options</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]       # An array of default option values
-  <a href="Reference-manual_functions.html#subproject_required"><b>required</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # Works just the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.
-  <a href="Reference-manual_functions.html#subproject_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>             # Works just like the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.
+  <a href="Reference-manual_functions.html#subproject_default_options"><b>default_options</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]  # An array of default option values
+  <a href="Reference-manual_functions.html#subproject_required"><b>required</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>                                # Works just the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.
+  <a href="Reference-manual_functions.html#subproject_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # Works just like the same as in <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments50">Arguments</h3>
@@ -11811,15 +11822,16 @@ accepts the following keyword arguments:</p>
       <tr id="subproject_default_options">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">default_options</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>An array of default option values
 that override those set in the subproject's <code>meson.options</code>
 (like <code>default_options</code> in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a>, they only have effect when
 Meson is run for the first time, and command line arguments override
-any default options in build files). <em>(since 0.54.0)</em>: <code>default_library</code>
-built-in option can also be overridden.</p>
+any default options in build files).
+<em>(since 0.54.0)</em>: <code>default_library</code> built-in option can also be overridden.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
