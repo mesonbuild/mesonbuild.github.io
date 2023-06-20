@@ -624,11 +624,42 @@ components = 'a b   c d '.split(' ')
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="strsplitlines">str.splitlines()</h3>
+<p>Splits the string into an array of lines.
+Unlike .split('\n'), the empty string produced an empty array,
+and if the string ends in a newline, splitlines() doesn't split
+on that last newline.
+'\n', '\r' and '\r\n' are all considered newlines.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] splitlines()</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example6">Example</h4>
+<pre><code class="language-meson">output = 'hello\nworld\n'.splitlines()
+# Output value is ['hello', 'world']
+output = ''.splitlines()
+# Output value is []
+fs = import('fs')
+paths = fs.read('my_paths.list').splitlines()
+# paths is now the paths listed in 'my_paths.list', or an empty list
+# if 'my_paths.list' is empty
+</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="strstartswith">str.startswith()</h3>
 <p>Returns true if string starts with the string specified as the argument.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature7">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -640,7 +671,7 @@ components = 'a b   c d '.split(' ')
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#startswith_fragment"><b>fragment</b></a>,     # The string fragment to check
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example6">Example</h4>
+<h4 id="example7">Example</h4>
 <pre><code class="language-meson">target = 'x86_FreeBSD'
 is_x86 = target.startswith('x86') # boolean value 'true'
 </code></pre>
@@ -683,7 +714,7 @@ is_x86 = target.startswith('x86') # boolean value 'true'
 <p>Removes leading/ending spaces and newlines from the string.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature7">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature8">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -695,7 +726,7 @@ is_x86 = target.startswith('x86') # boolean value 'true'
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<a href="Reference-manual_elementary_str.html#strip_strip_chars"><b>strip_chars</b></a>],   # All characters in this string will be stripped
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example7">Example</h4>
+<h4 id="example8">Example</h4>
 <pre><code class="language-meson"># Similar to the Python str.strip(). Removes leading/ending spaces and newlines
 define = ' -Dsomedefine '
 stripped_define = define.strip()
@@ -745,7 +776,7 @@ Both <code>start</code> and <code>end</code> arguments are optional, so, for exa
 string <code>len(string) - start</code> as well as negative <code>end</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature8">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature9">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -759,7 +790,7 @@ string <code>len(string) - start</code> as well as negative <code>end</code>.</p
   <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<a href="Reference-manual_elementary_str.html#substring_end"><b>end</b></a>],     # The end position
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example8">Example</h4>
+<h4 id="example9">Example</h4>
 <pre><code class="language-meson"># Similar to the Python str[start:end] syntax
 target = 'x86_FreeBSD'
 platform = target.substring(0, 3) # prefix string value 'x86'
@@ -823,7 +854,7 @@ string.substring(1, -1) # =&gt; 'ooba'
 <p>Converts the string to an int and throws an error if it can't be</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature9">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature10">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -832,7 +863,7 @@ string.substring(1, -1) # =&gt; 'ooba'
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_int.html"><ins>int</ins></a> to_int()</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example9">Example</h4>
+<h4 id="example10">Example</h4>
 <pre><code class="language-meson">version = '1'
 # Converts the string to an int and throws an error if it can't be
 ver_int = version.to_int()
@@ -844,7 +875,7 @@ ver_int = version.to_int()
 <p>Converts all characters to lower case</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature10">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature11">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -853,7 +884,7 @@ ver_int = version.to_int()
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> to_lower()</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example10">Example</h4>
+<h4 id="example11">Example</h4>
 <pre><code class="language-meson">target = 'x86_FreeBSD'
 lower = target.to_lower() # t now has the value 'x86_freebsd'
 </code></pre>
@@ -864,7 +895,7 @@ lower = target.to_lower() # t now has the value 'x86_freebsd'
 <p>Converts all characters to upper case</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature11">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature12">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -873,7 +904,7 @@ lower = target.to_lower() # t now has the value 'x86_freebsd'
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> to_upper()</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example11">Example</h4>
+<h4 id="example12">Example</h4>
 <pre><code class="language-meson">target = 'x86_FreeBSD'
 upper = target.to_upper() # t now has the value 'X86_FREEBSD'
 </code></pre>
@@ -884,7 +915,7 @@ upper = target.to_upper() # t now has the value 'X86_FREEBSD'
 <p>Creates a string where every non-alphabetical non-number character is replaced with <code>_</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature12">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature13">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -893,7 +924,7 @@ upper = target.to_upper() # t now has the value 'X86_FREEBSD'
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> underscorify()</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example12">Example</h4>
+<h4 id="example13">Example</h4>
 <pre><code class="language-meson">name = 'Meson Docs.txt#Reference-manual'
 # Replaces all characters other than `a-zA-Z0-9` with `_` (underscore)
 # Useful for substituting into #defines, filenames, etc.
@@ -907,7 +938,7 @@ underscored = name.underscorify()
 <p>Does semantic version comparison.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature13">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature14">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -919,7 +950,7 @@ underscored = name.underscorify()
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_elementary_str.html#version_compare_compare_string"><b>compare_string</b></a>,     # The string to compare to
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example13">Example</h4>
+<h4 id="example14">Example</h4>
 <pre><code class="language-meson">version = '1.2.3'
 # Compare version numbers semantically
 is_new = version.version_compare('&gt;=2.0')
