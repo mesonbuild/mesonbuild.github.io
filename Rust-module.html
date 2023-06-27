@@ -218,7 +218,7 @@ goal is to make using rust in Meson more pleasant, while still
 remaining mesonic, this means that it attempts to make Rust work more
 like Meson, rather than Meson work more like rust.</p>
 <h2 id="functions">Functions</h2>
-<h3 id="testname-string-target-library-executable-dependencies-dependency">test(name: string, target: library | executable, dependencies: []Dependency)</h3>
+<h3 id="testname-string-target-library-executable-dependencies-dependency-link_with-targets-rust_args-string">test(name: string, target: library | executable, dependencies: []Dependency, link_with: []targets, rust_args: []string)</h3>
 <p>This function creates a new rust unittest target from an existing rust
 based target, which may be a library or executable. It does this by
 copying the sources and arguments passed to the original target and
@@ -229,6 +229,10 @@ test target which calls that executable, using the rust test protocol.</p>
 that automatically.</p>
 <p>Additional, test only dependencies may be passed via the dependencies
 argument.</p>
+<p><em>(since 1.2.0)</em> the link_with argument can be used to pass additional build
+targets to link with
+<em>(since 1.2.0)</em> the <code>rust_args</code> keyword argument can be ussed to pass extra
+arguments to the Rust compiler.</p>
 <h3 id="bindgen-input-string-buildtarget-string-buildtarget-output-string-include_directories-include_directories-string-c_args-string-args-string-dependencies-dependency">bindgen(*, input: string | BuildTarget | [](string | BuildTarget), output: string, include_directories: [](include_directories | string), c_args: []string, args: []string, dependencies: []Dependency)</h3>
 <p>This function wraps bindgen to simplify creating rust bindings around C
 libraries. This has two advantages over hand-rolling ones own with a
@@ -279,6 +283,11 @@ r1 = rust.bindgen(
 to clang. This allows for reliable wrapping of <code>-DNDEBUG</code> controlled behavior
 with <code>#[cfg(debug_asserions)]</code> and or <code>cfg!()</code>. Before 1.1.0, assertions for Rust
 were never turned on by Meson.</p>
+<p><em>Since 1.2.0</em> Additional arguments to pass to clang may be specified in a
+*machine file in the properties section:</p>
+<pre><code class="language-ini">[properties]
+bindgen_clang_arguments = ['--target', 'x86_64-linux-gnu']
+</code></pre>
 
     </div>
         

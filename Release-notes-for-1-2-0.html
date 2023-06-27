@@ -297,6 +297,8 @@ working as <code>python3.x</code> is the executable name.</p>
 <h2 id="python-module-can-now-compile-bytecode">Python module can now compile bytecode</h2>
 <p>A new builtin option is available: <code>-Dpython.bytecompile=2</code>. It can be used to
 compile bytecode for all pure python files installed via the python module.</p>
+<h2 id="rustbindgen-allows-passing-extra-arguments-to-rustc">rust.bindgen allows passing extra arguments to rustc</h2>
+<p>This may be necessary to pass extra <code>cfg</code>s or to change warning levels.</p>
 <h2 id="support-for-defining-crate-names-of-rust-dependencies-in-rust-targets">Support for defining crate names of Rust dependencies in Rust targets</h2>
 <p>Rust supports defining a different crate name for a dependency than what the
 actual crate name during compilation of that dependency was.</p>
@@ -311,6 +313,17 @@ my_executable = executable('my-executable', 'src/main.rs',
   dependencies : [a_dep],
 )
 </code></pre>
+<h2 id="a-machine-file-may-be-used-to-pass-extra-arguments-to-clang-in-a-bindgen-call">A machine file may be used to pass extra arguments to clang in a bindgen call</h2>
+<p>Because of the way that bindgen proxies arguments to clang the only choice to
+add extra arguments currently is to wrap bindgen in a script, since the
+arguments must come after a <code>--</code>. This is inelegant, and not very portable. Now
+a <code>bindgen_clang_arguments</code> field may be placed in the machine file for the host
+machine, and these arguments will be added to every bindgen call for clang. This
+is intended to be useful for things like injecting <code>--target</code> arguments.</p>
+<h2 id="add-a-link_with-keyword-to-rusttest">Add a <code>link_with</code> keyword to <code>rust.test()</code>
+</h2>
+<p>This can already be be worked around by creating <code>declare_dependency()</code> objects
+to pass to the <code>dependencies</code> keyword, but this cuts out the middle man.</p>
 <h2 id="rust-now-supports-the-b_ndebug-option">Rust now supports the b_ndebug option</h2>
 <p>Which controls the <code>debug_assertions</code> cfg, which in turn controls
 <code>debug_assert!()</code> macro. This macro is roughly equivalent to C's <code>assert()</code>, as
