@@ -235,6 +235,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--sysconfdir SYSCONFDIR]
                   [--auto-features {enabled,disabled,auto}]
                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
+                  [--genvslite {vs2022}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -282,6 +283,16 @@ options:
                                         (default: auto).
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
+  --genvslite {vs2022}                  Setup multiple buildtype-suffixed ninja-
+                                        backend build directories (e.g.
+                                        builddir_[debug/release/etc.]) and
+                                        generate [builddir]_vs containing a
+                                        Visual Studio solution with multiple
+                                        configurations that invoke a meson
+                                        compile of the newly setup build
+                                        directories, as appropriate for the
+                                        current build configuration (buildtype)
+                                        (default: vs2022).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
   --debug                               Enable debug symbols and other
@@ -631,6 +642,7 @@ Rewriter commands:
               [--sysconfdir SYSCONFDIR]
               [--auto-features {enabled,disabled,auto}]
               [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
+              [--genvslite {vs2022}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
               [--errorlogs] [--install-umask INSTALL_UMASK]
@@ -683,6 +695,16 @@ options:
                                         (default: auto).
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
+  --genvslite {vs2022}                  Setup multiple buildtype-suffixed ninja-
+                                        backend build directories (e.g.
+                                        builddir_[debug/release/etc.]) and
+                                        generate [builddir]_vs containing a
+                                        Visual Studio solution with multiple
+                                        configurations that invoke a meson
+                                        compile of the newly setup build
+                                        directories, as appropriate for the
+                                        current build configuration (buildtype)
+                                        (default: vs2022).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
   --debug                               Enable debug symbols and other

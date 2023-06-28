@@ -226,6 +226,16 @@ gen2.process(gen1.process('input.txt'))
 </h2>
 <p><code>declare_dependency</code> have a new <code>extra_files</code> keyword,
 to add extra files to a target. It is used mostly for IDE integration.</p>
+<h2 id="added-a-new-genvslite-option-for-use-with-meson-setup-">Added a new '--genvslite' option for use with 'meson setup ...'</h2>
+<p>To facilitate a more usual visual studio work-flow of supporting and switching between
+multiple build configurations (buildtypes) within the same solution, among other
+<a href="https://github.com/mesonbuild/meson/pull/11049">reasons</a>, use of this new option
+has the effect of setting up multiple ninja back-end-configured build directories,
+named with their respective buildtype suffix.  E.g. 'somebuilddir_debug',
+'somebuilddir_release', etc. as well as a '_vs'-suffixed directory that contains the
+generated multi-buildtype solution.  Building/cleaning/rebuilding in the solution
+now launches the meson build (compile) of the corresponding buildtype-suffixed build
+directory, instead of using Visual Studio's native engine.</p>
 <h2 id="gnomegenerate_gir-now-supports-env-kwarg">
 <code>gnome.generate_gir()</code> now supports <code>env</code> kwarg</h2>
 <p><code>gnome.generate_gir()</code> now accepts the <code>env</code> kwarg which lets you set environment variables.</p>
