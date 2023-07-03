@@ -284,14 +284,10 @@ options:
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
   --genvslite {vs2022}                  Setup multiple buildtype-suffixed ninja-
-                                        backend build directories (e.g.
-                                        builddir_[debug/release/etc.]) and
-                                        generate [builddir]_vs containing a
-                                        Visual Studio solution with multiple
-                                        configurations that invoke a meson
-                                        compile of the newly setup build
-                                        directories, as appropriate for the
-                                        current build configuration (buildtype)
+                                        backend build directories, and a
+                                        [builddir]_vs containing a Visual Studio
+                                        meta-backend with multiple
+                                        configurations that calls into them
                                         (default: vs2022).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
@@ -696,14 +692,10 @@ options:
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
   --genvslite {vs2022}                  Setup multiple buildtype-suffixed ninja-
-                                        backend build directories (e.g.
-                                        builddir_[debug/release/etc.]) and
-                                        generate [builddir]_vs containing a
-                                        Visual Studio solution with multiple
-                                        configurations that invoke a meson
-                                        compile of the newly setup build
-                                        directories, as appropriate for the
-                                        current build configuration (buildtype)
+                                        backend build directories, and a
+                                        [builddir]_vs containing a Visual Studio
+                                        meta-backend with multiple
+                                        configurations that calls into them
                                         (default: vs2022).
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
