@@ -216,6 +216,10 @@ available starting with version 0.53.0.</p>
 <p>Since 0.59.0, all functions accept <code>files()</code> objects if they can do something
 useful with them (this excludes <code>exists</code>, <code>is_dir</code>, <code>is_file</code>, <code>is_absolute</code>
 since a <code>files()</code> object is always the absolute path to an existing file).</p>
+<h2 id="usage">Usage</h2>
+<p>The module may be imported as follows:</p>
+<pre><code class="language-meson">fs = <a href="Reference-manual_functions.html#import"><ins>import</ins></a>('fs')
+</code></pre>
 <h2 id="file-lookup-rules">File lookup rules</h2>
 <p>Non-absolute paths are looked up relative to the directory where the
 current <code>meson.build</code> file is.</p>
