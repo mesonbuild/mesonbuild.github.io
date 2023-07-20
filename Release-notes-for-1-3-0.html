@@ -211,6 +211,13 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="deprecate-jar-as-a-build_target-type">Deprecate 'jar' as a build_target type</h2>
+<p>The point of <code>build_target()</code> is that what is produced can be conditionally
+changed. However, <code>jar()</code> has a significant number of non-overlapping arguments
+from other build_targets, including the kinds of sources it can include. Because
+of this crafting a <code>build_target</code> that can be used as a Jar and as something
+else is incredibly hard to do. As such, it has been deprecated, and using
+<code>jar()</code> directly is recommended.</p>
 
     </div>
         

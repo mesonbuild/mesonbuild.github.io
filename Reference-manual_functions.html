@@ -2172,7 +2172,7 @@ for the full list.</p>
 <li>
 <code>library</code> (see <a href="Reference-manual_functions.html#library"><ins><code>library()</code></ins></a>)</li>
 <li>
-<code>jar</code> (see <a href="Reference-manual_functions.html#jar"><ins><code>jar()</code></ins></a>)</li>
+<code>jar</code> (see <a href="Reference-manual_functions.html#jar"><ins><code>jar()</code></ins></a>)*</li>
 </ul>
 <p>This declaration:</p>
 <pre><code class="language-meson">executable(&lt;arguments and keyword arguments&gt;)
@@ -2184,6 +2184,8 @@ for the full list.</p>
 always flattened, which means you can freely nest and add lists while
 creating the final list.</p>
 <p>The returned object also has methods that are documented in <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a>.</p>
+<p>*"jar" is deprecated because it is fundementally a different thing than the
+other build_target types.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h3 style="margin-top: 0px;" id="signature11">Signature</h3>
@@ -2240,7 +2242,7 @@ creating the final list.</p>
   <a href="Reference-manual_functions.html#build_target_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#build_target_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#build_target_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
-  <a href="Reference-manual_functions.html#build_target_target_type"><b>target_type</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The actual target to build
+  <a href="Reference-manual_functions.html#build_target_target_type"><b>target_type</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The actual target type to build
   <a href="Reference-manual_functions.html#build_target_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#build_target_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#build_target_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -2990,7 +2992,7 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>The actual target to build</p>
+<p>The actual target type to build</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
