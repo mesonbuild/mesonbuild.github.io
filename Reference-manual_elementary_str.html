@@ -711,7 +711,8 @@ is_x86 = target.startswith('x86') # boolean value 'true'
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="strstrip">str.strip()</h3>
-<p>Removes leading/ending spaces and newlines from the string.</p>
+<p>Removes leading/ending characters from the string.</p>
+<p>By default the characters to remove are spaces and newlines.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature8">Signature</h4>
@@ -721,9 +722,9 @@ is_x86 = target.startswith('x86') # boolean value 'true'
 </div>
 </div>
 </div>
-<pre><code class="language-meson"># Removes leading/ending spaces and newlines from the string
+<pre><code class="language-meson"># Removes leading/ending characters from the string
 <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> strip(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<a href="Reference-manual_elementary_str.html#strip_strip_chars"><b>strip_chars</b></a>],   # All characters in this string will be stripped
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<a href="Reference-manual_elementary_str.html#strip_strip_chars"><b>strip_chars</b></a>],   # Instead of whitespace, strip all the characters in this string
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example8">Example</h4>
@@ -754,7 +755,7 @@ stripped_define = define.strip()
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>All characters in this string will be stripped.</p>
+<p>Instead of whitespace, strip all the characters in this string.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">

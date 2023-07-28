@@ -392,13 +392,13 @@ s = s.replace('as', 'are')
 # 's' now has the value of 'semicolons;are;separators'
 </code></pre>
 <h4 id="strip">.strip()</h4>
-<pre><code class="language-meson"># Similar to the Python str.strip(). Removes leading/ending spaces and newlines
+<pre><code class="language-meson"># Similar to the Python str.strip(). Removes leading/ending spaces and newlines.
 define = ' -Dsomedefine '
 stripped_define = define.strip()
 # 'stripped_define' now has the value '-Dsomedefine'
 
 # You may also pass a string to strip, which specifies the set of characters to
-# be removed.
+# be removed instead of the default whitespace.
 string = 'xyxHelloxyx'.strip('xy')
 # 'string' now has the value 'Hello'
 </code></pre>
