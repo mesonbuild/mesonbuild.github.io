@@ -240,7 +240,7 @@ sub_proj = cmake.subproject('libsimple_cmake')
 # Fetch the dependency object
 cm_lib = sub_proj.dependency('cm_lib')
 
-executable(exe1, ['sources'], dependencies: [cm_lib])
+executable('exe1', ['sources'], dependencies: [cm_lib])
 </code></pre>
 <p>The <code>subproject</code> method is almost identical to the normal Meson
 <a href="Reference-manual_functions.html#subproject"><ins><code>subproject()</code></ins></a> function. The only difference is that a CMake project
