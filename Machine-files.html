@@ -282,7 +282,7 @@ arch = 'aarch64-linux-gnu'
 c = arch + '-gcc'
 cpp = arch + '-g++'
 strip = arch + '-strip'
-pkgconfig = arch + '-pkg-config'
+pkg-config = arch + '-pkg-config'
 ...
 </code></pre>
 <p>This can be used as <code>meson setup --cross-file aarch64.ini --cross-file cross.ini builddir</code>.</p>
@@ -334,7 +334,7 @@ c_ld = 'gold'
 cpp_ld = 'gold'
 ar = '/usr/i586-mingw32msvc/bin/ar'
 strip = '/usr/i586-mingw32msvc/bin/strip'
-pkgconfig = '/usr/bin/i586-mingw32msvc-pkg-config'
+pkg-config = '/usr/bin/i586-mingw32msvc-pkg-config'
 </code></pre>
 <p>An incomplete list of internally used programs that can be overridden
 here is:</p>
@@ -347,7 +347,7 @@ here is:</p>
 <li>libwmf-config</li>
 <li>llvm-config</li>
 <li>pcap-config</li>
-<li>pkgconfig</li>
+<li>pkg-config</li>
 <li>sdl2-config</li>
 <li>wx-config (or wx-3.0-config or wx-config-gtk)</li>
 </ul>
