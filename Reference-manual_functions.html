@@ -5531,11 +5531,12 @@ command used to execute the build script.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>fallback</b>...,      # These parameters are used as fallback names to search for
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#find_program_dirs"><b>dirs</b></a>     : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]       # extra list of absolute paths where to look for program names
-  <a href="Reference-manual_functions.html#find_program_disabler"><b>disabler</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>            # If `true` and the program couldn't be found, return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object
-  <a href="Reference-manual_functions.html#find_program_native"><b>native</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>            # Defines how this executable should be searched
-  <a href="Reference-manual_functions.html#find_program_required"><b>required</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # When `true`, Meson will abort if no program can be found
-  <a href="Reference-manual_functions.html#find_program_version"><b>version</b></a>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>             # specifies the required version, see
+  <a href="Reference-manual_functions.html#find_program_default_options"><b>default_options</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]  # An array of default option values
+  <a href="Reference-manual_functions.html#find_program_dirs"><b>dirs</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                     # extra list of absolute paths where to look for program names
+  <a href="Reference-manual_functions.html#find_program_disabler"><b>disabler</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # If `true` and the program couldn't be found, return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object
+  <a href="Reference-manual_functions.html#find_program_native"><b>native</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # Defines how this executable should be searched
+  <a href="Reference-manual_functions.html#find_program_required"><b>required</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>                                # When `true`, Meson will abort if no program can be found
+  <a href="Reference-manual_functions.html#find_program_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # specifies the required version, see
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments22">Arguments</h3>
@@ -5600,6 +5601,24 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
+      <tr id="find_program_default_options">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">default_options</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>An array of default option values
+that override those set in the subproject's <code>meson.options</code>
+(like <code>default_options</code> in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a>, they only have
+effect when Meson is run for the first time, and command line
+arguments override any default options in build files)</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
       <tr id="find_program_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
