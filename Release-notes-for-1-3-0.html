@@ -211,6 +211,10 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="treat-warnings-as-error-in-compiler-checks">Treat warnings as error in compiler checks</h2>
+<p>Compiler check methods <code>compiler.compiles()</code>, <code>compiler.links()</code> and <code>compiler.run()</code>
+now have a new <code>werror: true</code> keyword argument to treat compiler warnings as error.
+This can be used to check if code compiles without warnings.</p>
 <h2 id="deprecate-jar-as-a-build_target-type">Deprecate 'jar' as a build_target type</h2>
 <p>The point of <code>build_target()</code> is that what is produced can be conditionally
 changed. However, <code>jar()</code> has a significant number of non-overlapping arguments
