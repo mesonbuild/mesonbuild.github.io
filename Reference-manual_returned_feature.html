@@ -260,7 +260,7 @@ $('body').removeClass('no-script');
 <table>
 <thead>
 <tr>
-<th> Feature / Condition</th>
+<th> Feature</th>
 <th> <code>value = true</code>
 </th>
 <th> <code>value = false</code>
@@ -269,6 +269,11 @@ $('body').removeClass('no-script');
 </thead>
 <tbody>
 <tr>
+<td> Auto</td>
+<td> Disabled</td>
+<td> Auto</td>
+</tr>
+<tr>
 <td> Enabled</td>
 <td> Enabled</td>
 <td> Enabled</td>
@@ -277,11 +282,6 @@ $('body').removeClass('no-script');
 <td> Disabled</td>
 <td> Disabled</td>
 <td> Disabled</td>
-</tr>
-<tr>
-<td> Auto</td>
-<td> Disabled</td>
-<td> Auto</td>
 </tr>
 </tbody>
 </table>
@@ -338,6 +338,34 @@ $('body').removeClass('no-script');
 <p>Returns the object itself if the value is false; an error if the object is
 <code>'enabled'</code> and the value is true; a disabled feature if the object
 is <code>'auto'</code> or <code>'disabled'</code> and the value is true.</p>
+<table>
+<thead>
+<tr>
+<th> Feature</th>
+<th> <code>value = true</code>
+</th>
+<th> <code>value = false</code>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Auto</td>
+<td> Disabled</td>
+<td> Auto</td>
+</tr>
+<tr>
+<td> Enabled</td>
+<td> Error</td>
+<td> Enabled</td>
+</tr>
+<tr>
+<td> Disabled</td>
+<td> Disabled</td>
+<td> Disabled</td>
+</tr>
+</tbody>
+</table>
 <p>This is equivalent to <code>feature_opt.require(not condition)</code>, but may make
 code easier to reason about, especially when mixed with <code>enable_if</code></p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
@@ -452,7 +480,7 @@ accepts the following keyword arguments:</p>
 <table>
 <thead>
 <tr>
-<th> Feature / Condition</th>
+<th> Feature</th>
 <th> <code>value = true</code>
 </th>
 <th> <code>value = false</code>
@@ -461,6 +489,11 @@ accepts the following keyword arguments:</p>
 </thead>
 <tbody>
 <tr>
+<td> Auto</td>
+<td> Enabled</td>
+<td> Auto</td>
+</tr>
+<tr>
 <td> Enabled</td>
 <td> Enabled</td>
 <td> Enabled</td>
@@ -469,11 +502,6 @@ accepts the following keyword arguments:</p>
 <td> Disabled</td>
 <td> Disabled</td>
 <td> Disabled</td>
-</tr>
-<tr>
-<td> Auto</td>
-<td> Enabled</td>
-<td> Auto</td>
 </tr>
 </tbody>
 </table>
@@ -530,6 +558,34 @@ accepts the following keyword arguments:</p>
 <p>Returns the object itself if the value is false; an error if the object is
 <code>'disabled'</code> and the value is true; an enabled feature if the object
 is <code>'auto'</code> or <code>'enabled'</code> and the value is true.</p>
+<table>
+<thead>
+<tr>
+<th> Feature</th>
+<th> <code>value = true</code>
+</th>
+<th> <code>value = false</code>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Auto</td>
+<td> Enabled</td>
+<td> Auto</td>
+</tr>
+<tr>
+<td> Enabled</td>
+<td> Enabled</td>
+<td> Enabled</td>
+</tr>
+<tr>
+<td> Disabled</td>
+<td> Error</td>
+<td> Disabled</td>
+</tr>
+</tbody>
+</table>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature6">Signature</h4>
@@ -640,6 +696,34 @@ accepts the following keyword arguments:</p>
 <p>Returns the object itself if the value is true; an error if the object is
 <code>'enabled'</code> and the value is false; a disabled feature if the object
 is <code>'auto'</code> or <code>'disabled'</code> and the value is false.</p>
+<table>
+<thead>
+<tr>
+<th> Feature</th>
+<th> <code>value = true</code>
+</th>
+<th> <code>value = false</code>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Auto</td>
+<td> Auto</td>
+<td> Disabled</td>
+</tr>
+<tr>
+<td> Enabled</td>
+<td> Enabled</td>
+<td> Error</td>
+</tr>
+<tr>
+<td> Disabled</td>
+<td> Disabled</td>
+<td> Disabled</td>
+</tr>
+</tbody>
+</table>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature8">Signature</h4>
