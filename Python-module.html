@@ -295,6 +295,12 @@ the relevant top-level location for the python installation, eg
 it will be appended to that location. This keyword argument is
 mutually exclusive with <code>install_dir</code>
 </li>
+<li>
+<code>limited_api</code>: <em>since 1.3.0</em> A string containing the Python version
+of the <a href="https://docs.python.org/3/c-api/stable.html">Py_LIMITED_API</a> that
+the extension targets. For example, '3.7' to target Python 3.7's version of
+the limited API. This behavior can be disabled by setting the value of
+<code>python.allow_limited_api</code>. See <a href="Builtin-options.html#python-module">Python module options</a>.</li>
 </ul>
 <p>Additionally, the following diverge from <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a>'s default behavior:</p>
 <ul>

@@ -251,6 +251,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--python.install-env {auto,prefix,system,venv}]
                   [--python.platlibdir PYTHON.PLATLIBDIR]
                   [--python.purelibdir PYTHON.PURELIBDIR]
+                  [--python.allow-limited-api]
                   [--pkg-config-path PKG_CONFIG_PATH]
                   [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
                   [--cmake-prefix-path CMAKE_PREFIX_PATH]
@@ -331,6 +332,8 @@ options:
   --python.purelibdir PYTHON.PURELIBDIR
                                         Directory for site-specific, non-
                                         platform-specific files (default: ).
+  --python.allow-limited-api            Whether to allow use of the Python
+                                        Limited API
   --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
                                         to search (default: []). (just for host
                                         machine)
@@ -653,6 +656,7 @@ Rewriter commands:
               [--python.install-env {auto,prefix,system,venv}]
               [--python.platlibdir PYTHON.PLATLIBDIR]
               [--python.purelibdir PYTHON.PURELIBDIR]
+              [--python.allow-limited-api]
               [--pkg-config-path PKG_CONFIG_PATH]
               [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
               [--cmake-prefix-path CMAKE_PREFIX_PATH]
@@ -739,6 +743,8 @@ options:
   --python.purelibdir PYTHON.PURELIBDIR
                                         Directory for site-specific, non-
                                         platform-specific files (default: ).
+  --python.allow-limited-api            Whether to allow use of the Python
+                                        Limited API
   --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
                                         to search (default: []). (just for host
                                         machine)
