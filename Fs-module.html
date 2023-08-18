@@ -362,20 +362,6 @@ specified by <code>path</code> changes, this will trigger Meson to reconfigure t
 project. If the file specified by <code>path</code> is a <code>files()</code> object it
 cannot refer to a built file.</li>
 </ul>
-<h3 id="relative_to">relative_to</h3>
-<p><em>Since 1.3.0</em></p>
-<p>Return a relative filepath. In event a relative path could not be found, the
-absolute path of <code>to</code> is returned. Relative path arguments will be assumed to be
-relative to <code>meson.current_source_dir()</code>.</p>
-<p>Has the following positional arguments:</p>
-<ul>
-<li>to <code>str | file | custom_tgt | custom_idx | tgt</code>: end path</li>
-<li>from <code>str | file | custom_tgt | custom_idx | tgt</code>: start path</li>
-</ul>
-<p>returns:</p>
-<ul>
-<li>a string</li>
-</ul>
 <h3 id="copyfile">copyfile</h3>
 <p><em>Since 0.64.0</em></p>
 <p>Copy a file from the source directory to the build directory at build time</p>
