@@ -300,6 +300,18 @@ $('body').removeClass('no-script');
   <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> <a href="Reference-manual_returned_feature.html#disable_auto_if_value"><b>value</b></a>,     # See the table above
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="example">Example</h4>
+<p><code>disable_auto_if</code> is useful to give precedence to mutually exclusive dependencies
+(that provide the same API) if either or both are available:</p>
+<pre><code># '-Dfoo=auto -Dbar=enabled' will not pick foo even if installed.
+use_bar = get_option('bar')
+use_foo = get_option('foo').disable_auto_if(use_bar.enabled())
+dep_foo = dependency('foo', required: use_foo)
+if not dep_foo.found()
+  dep_foo = dependency('bar', required: use_bar)
+endif
+</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
 <p>The method <code>feature.disable_auto_if()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
@@ -386,7 +398,7 @@ code easier to reason about, especially when mixed with <code>enable_if</code></
   <a href="Reference-manual_returned_feature.html#disable_if_error_message"><b>error_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error message to print if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example">Example</h4>
+<h4 id="example1">Example</h4>
 <p><code>disable_if</code> is useful to restrict the applicability of <code>'auto'</code> features,
 particularly when passing them to <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>:</p>
 <pre><code>use_os_feature = get_option('foo') \
@@ -604,7 +616,7 @@ is <code>'auto'</code> or <code>'enabled'</code> and the value is true.</p>
   <a href="Reference-manual_returned_feature.html#enable_if_error_message"><b>error_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error message to print if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example1">Example</h4>
+<h4 id="example2">Example</h4>
 <p><code>enable_if</code> is useful to restrict the applicability of <code>'auto'</code> features,
 particularly when passing them to <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>:</p>
 <pre><code>use_llvm = get_option('llvm').enable_if(with_clang).enable_if(with_llvm_libs)
@@ -742,7 +754,7 @@ is <code>'auto'</code> or <code>'disabled'</code> and the value is false.</p>
   <a href="Reference-manual_returned_feature.html#require_error_message"><b>error_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>  # The error message to print if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="example2">Example</h4>
+<h4 id="example3">Example</h4>
 <p><code>require</code> is useful to restrict the applicability of <code>'auto'</code> features,
 for example based on other features or on properties of the host machine:</p>
 <pre><code>if get_option('directx').require(host_machine.system() == 'windows',
