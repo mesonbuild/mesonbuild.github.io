@@ -242,6 +242,21 @@ assert(fs.relative_to('prefix/lib/foo', 'prefix') == 'lib/foo')
 </code></pre>
 <p>In addition to strings, it can handle files, custom targets, custom target
 indices, and build targets.</p>
+<h2 id="global_source_root-and-dirname-in-machine-files">
+<code>@GLOBAL_SOURCE_ROOT@</code> and <code>@DIRNAME@</code> in machine files</h2>
+<p>Some tokens are now replaced in the machine file before parsing it:</p>
+<ul>
+<li>
+<code>@GLOBAL_SOURCE_ROOT@</code>: the absolute path to the project's source tree</li>
+<li>
+<code>@DIRNAME@</code>: the absolute path to the machine file's parent directory.</li>
+</ul>
+<p>It can be used, for example, to have paths relative to the source directory, or
+relative to toolchain's installation directory.</p>
+<pre><code class="language-ini">[binaries]
+c = '@DIRNAME@/toolchain/gcc'
+exe_wrapper = '@GLOBAL_SOURCE_ROOT@' / 'build-aux' / 'my-exe-wrapper.sh'
+</code></pre>
 <h2 id="support-targeting-pythons-limited-c-api">Support targeting Python's limited C API</h2>
 <p>The Python module's <code>extension_module</code> function has gained the ability
 to build extensions which target Python's limited C API via a new keyword
