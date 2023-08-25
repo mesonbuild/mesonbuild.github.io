@@ -663,13 +663,21 @@ Rewriter commands:
               [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
               [-D option] [--native-file NATIVE_FILE]
               [--cross-file CROSS_FILE] [-v] [--fatal-meson-warnings]
-              [--reconfigure] [--wipe]
+              [--reconfigure] [--wipe] [--clearcache]
               [builddir] [sourcedir]
 </code></pre>
 <p>Configures a build directory for the Meson project.</p>
 <p><em>Deprecated since 0.64.0</em>: This is the default Meson command (invoked if there
 was no COMMAND supplied). However, supplying the command is necessary to avoid
 clashes with future added commands, so "setup" should be used explicitly.</p>
+<p><em>Since 1.1.0</em> <code>--reconfigure</code> is allowed even if the build directory does not
+already exist, that argument is ignored in that case.</p>
+<p><em>Since 1.3.0</em> If the build directory already exists, options are updated with
+their new value given on the command line (<code>-Dopt=value</code>). Unless <code>--reconfigure</code>
+is also specified, this won't reconfigure immediately. This has the same behaviour
+as <code>meson configure &lt;builddir&gt; -Dopt=value</code>.</p>
+<p><em>Since 1.3.0</em> It is possible to clear the cache and reconfigure in a single command
+with <code>meson setup --clearcache --reconfigure &lt;builddir&gt;</code>.</p>
 <pre><code class="language-inc">positional arguments:
   builddir
   sourcedir
@@ -777,6 +785,8 @@ options:
                                         Useful when build directory got
                                         corrupted, or when rebuilding with a
                                         newer version of meson.
+  --clearcache                          Clear cached state (e.g. found
+                                        dependencies). Since 1.3.0.
 </code></pre>
 <p>See <a href="Running-Meson.html#configuring-the-build-directory">Meson introduction
 page</a> for more info.</p>
