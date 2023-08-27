@@ -535,6 +535,9 @@ projects built with both MSVC, GCC, and Clang on Windows.</li>
 not care what the extension is</a>,
 so specifying <code>libfoo.a</code> instead of <code>foo.lib</code> does not change the workflow,
 and is an improvement since it's less ambiguous.</li>
+<li>Projects built with the MinGW compiler are fully compatible with
+MSVC as long as they use the same CRT (e.g. UCRT with MSYS2).
+These projects also name their static libraries <code>libfoo.a</code>.</li>
 </ol>
 <p>If, for some reason, you really need your project to output static
 libraries of the form <code>foo.lib</code> when building with MSVC, you can set
