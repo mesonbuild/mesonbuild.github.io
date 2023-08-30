@@ -215,6 +215,21 @@ $('body').removeClass('no-script');
 <p>Compiler check methods <code>compiler.compiles()</code>, <code>compiler.links()</code> and <code>compiler.run()</code>
 now have a new <code>werror: true</code> keyword argument to treat compiler warnings as error.
 This can be used to check if code compiles without warnings.</p>
+<h2 id="c_std-and-cpp_std-options-now-accepts-a-list-of-values">
+<code>c_std</code> and <code>cpp_std</code> options now accepts a list of values</h2>
+<p>Projects that prefer GNU C, but can fallback to ISO C, can now set, for
+example, <code>default_options: 'c_std=gnu11,c11'</code>, and it will use <code>gnu11</code> when
+available, but fallback to <code>c11</code> otherwise. It is an error only if none of the
+values are supported by the current compiler.</p>
+<p>Likewise, a project that can take benefit of <code>c++17</code> but can still build with
+<code>c++11</code> can set <code>default_options: 'cpp_std=c++17,c++11'</code>.</p>
+<p>This allows us to deprecate <code>gnuXX</code> values from the MSVC compiler. That means
+that <code>default_options: 'c_std=gnu11'</code> will now print a warning with MSVC
+but fallback to <code>c11</code>. No warning is printed if at least one
+of the values is valid, i.e. <code>default_options: 'c_std=gnu11,c11'</code>.</p>
+<p>In the future that deprecation warning will become an hard error because
+<code>c_std=gnu11</code> should mean GNU is required, for projects that cannot be
+built with MSVC for example.</p>
 <h2 id="more-meaningful-description-of-many-generative-tasks">More meaningful description of many generative tasks</h2>
 <p>When a module uses a <code>CustomTarget</code> to process files, it now has the possibility
 to customize the message displayed by ninja.</p>

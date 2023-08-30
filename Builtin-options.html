@@ -941,6 +941,20 @@ c/c++ compiler supports this option.</p>
 is inherited from the main project. This is useful, for example, when the main
 project requires C++11, but a subproject requires C++14. The <code>cpp_std</code> value
 from the subproject's <code>default_options</code> is now respected.</p>
+<p>Since <em>1.3.0</em> <code>c_std</code> and <code>cpp_std</code> options now accept a list of values.
+Projects that prefer GNU C, but can fallback to ISO C, can now set, for
+example, <code>default_options: 'c_std=gnu11,c11'</code>, and it will use <code>gnu11</code> when
+available, but fallback to c11 otherwise. It is an error only if none of the
+values are supported by the current compiler.
+Likewise, a project that can take benefit of <code>c++17</code> but can still build with
+<code>c++11</code> can set <code>default_options: 'cpp_std=c++17,c++11'</code>.
+This allows us to deprecate <code>gnuXX</code> values from the MSVC compiler. That means
+that <code>default_options: 'c_std=gnu11'</code> will now print a warning with MSVC
+but fallback to <code>c11</code>. No warning is printed if at least one
+of the values is valid, i.e. <code>default_options: 'c_std=gnu11,c11'</code>.
+In the future that deprecation warning will become an hard error because
+<code>c_std=gnu11</code> should mean GNU is required, for projects that cannot be
+built with MSVC for example.</p>
 <h2 id="specifying-options-per-machine">Specifying options per machine</h2>
 <p>Since <em>0.51.0</em>, some options are specified per machine rather than
 globally for all machine configurations. Prefixing the option with
