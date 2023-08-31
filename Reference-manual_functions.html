@@ -430,8 +430,8 @@ may change to <code>native: false</code> in a future Meson version.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>Language</b>...,  # The languages to add
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#add_languages_native"><b>native</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If set to `true`, the language will be used to compile for the build
-  <a href="Reference-manual_functions.html#add_languages_required"><b>required</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If set to `true`, Meson will halt if any of the languages
+  <a href="Reference-manual_functions.html#add_languages_native"><b>native</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>            # If set to `true`, the language will be used to compile for the build
+  <a href="Reference-manual_functions.html#add_languages_required"><b>required</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # If set to `true`, Meson will halt if any of the languages
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="example">Example</h3>
@@ -487,7 +487,9 @@ machine, if <code>false</code>, for the host machine.</p>
       </tr>
       <tr id="add_languages_required">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
+</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>If set to <code>true</code>, Meson will halt if any of the languages
