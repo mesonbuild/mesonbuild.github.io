@@ -541,6 +541,12 @@ variable containing a string value as a key.</p>
 <pre><code class="language-meson"># This will fail
 my_dict = {'foo': 42, 'foo': 43}
 </code></pre>
+<p>Accessing elements of a dictionary works similarly to array indexing:</p>
+<pre><code class="language-meson">my_dict = {'foo': 42, 'bar': 'baz'}
+forty_two = my_dict['foo']
+# This will fail
+my_dict['does_not_exist']
+</code></pre>
 <p>Dictionaries are immutable and do not have a guaranteed order.</p>
 <p>Dictionaries are available since 0.47.0.</p>
 <p>Visit the <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a> objects page in the Reference Manual to read
