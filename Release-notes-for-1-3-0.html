@@ -276,6 +276,13 @@ relative to toolchain's installation directory.</p>
 c = '@DIRNAME@/toolchain/gcc'
 exe_wrapper = '@GLOBAL_SOURCE_ROOT@' / 'build-aux' / 'my-exe-wrapper.sh'
 </code></pre>
+<h2 id="new-environment-variable-meson_package_cache_dir">New environment variable <code>MESON_PACKAGE_CACHE_DIR</code>
+</h2>
+<p>If the <code>MESON_PACKAGE_CACHE_DIR</code> environment variable is set, it is used instead of the
+project's <code>subprojects/packagecache</code>. This allows sharing the cache across multiple
+projects. In addition it can contain an already extracted source tree as long as it
+has the same directory name as the <code>directory</code> field in the wrap file. In that
+case, the directory will be copied into <code>subprojects/</code> before applying patches.</p>
 <h2 id="update-options-with-meson-setup-builddir-doptvalue">Update options with <code>meson setup &lt;builddir&gt; -Dopt=value</code>
 </h2>
 <p>If the build directory already exists, options are updated with their new value
