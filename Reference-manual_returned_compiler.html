@@ -1650,12 +1650,167 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="compilerhas_define">compiler.has_define()</h3>
+<p>Returns true if the given preprocessor symbol is <em>defined</em>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature16">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Returns true if the given preprocessor symbol is *defined*
+<a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> has_define(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <a href="Reference-manual_returned_compiler.html#has_define_definename"><b>definename</b></a>,     # The define to check
+
+  # Keyword arguments:
+  <a href="Reference-manual_returned_compiler.html#has_define_args"><b>args</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # Used to pass a list of compiler arguments
+  <a href="Reference-manual_returned_compiler.html#has_define_dependencies"><b>dependencies</b></a>        : <a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]  # Additionally dependencies required for compiling and / or linking
+  <a href="Reference-manual_returned_compiler.html#has_define_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
+  <a href="Reference-manual_returned_compiler.html#has_define_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#has_define_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments11">Arguments</h4>
+<p>The method <code>compiler.has_define()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="has_define_definename">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">definename</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The define to check.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>compiler.has_define()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="has_define_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Used to pass a list of compiler arguments.
+Defining include paths for headers not in the default include path
+via <code>-Isome/path/to/header</code> is generally supported, however, usually not
+recommended.</p>
+<p>This is because include directories can also be specified via the
+<code>include_directories</code> or the <code>dependency</code> kwarg (if present).
+The same is also true for passing libraries to link with <code>-lfoo</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="has_define_dependencies">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Additionally dependencies required for compiling and / or linking.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="has_define_include_directories">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Extra directories for header searches.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.38.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="has_define_no_builtin_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">no_builtin_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to <code>true</code>, the compiler arguments controlled by built-in configuration options are not added.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="has_define_prefix">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prefix</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Used to add <code>#include</code>s and other things that are required
+for the symbol to be declared. Since 1.0.0 an array is accepted
+too. When an array is passed, the items are concatenated together
+separated by a newline.
+System definitions should be passed via compiler args
+(eg: <code>_GNU_SOURCE</code> is often required for some symbols to be exposed
+on Linux, and it should be passed via <code>args</code> keyword argument).</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="compilerhas_function">compiler.has_function()</h3>
 <p>Returns true if the given function is provided
 by the standard library or a library passed in with the <code>args</code> keyword.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature16">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature17">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1675,7 +1830,7 @@ by the standard library or a library passed in with the <code>args</code> keywor
   <a href="Reference-manual_returned_compiler.html#has_function_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments11">Arguments</h4>
+<h4 id="arguments12">Arguments</h4>
 <p>The method <code>compiler.has_function()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -1831,7 +1986,7 @@ do not support such attributes.
 <a href="Reference-tables.html#gcc-__attribute__">This table</a> lists all of the supported attributes.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature17">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature18">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1847,7 +2002,7 @@ do not support such attributes.
   <a href="Reference-manual_returned_compiler.html#has_function_attribute_required"><b>required</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments12">Arguments</h4>
+<h4 id="arguments13">Arguments</h4>
 <p>The method <code>compiler.has_function_attribute()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -1924,7 +2079,7 @@ with the specified prefix, dependencies, and arguments.</p>
 pre-processor check.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature18">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature19">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -1944,7 +2099,7 @@ pre-processor check.</p>
   <a href="Reference-manual_returned_compiler.html#has_header_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments13">Arguments</h4>
+<h4 id="arguments14">Arguments</h4>
 <p>The method <code>compiler.has_header()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2098,7 +2253,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 <p>Symbols here include function, variable, <code>#define</code>, type definition, etc.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature19">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature20">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2119,7 +2274,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
   <a href="Reference-manual_returned_compiler.html#has_header_symbol_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the header check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments14">Arguments</h4>
+<h4 id="arguments15">Arguments</h4>
 <p>The method <code>compiler.has_header_symbol()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2289,7 +2444,7 @@ compiler, so should usually have the <code>-Wl,</code> prefix. On VisualStudio
 a <code>/link</code> argument will be prepended.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature20">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature21">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2305,7 +2460,7 @@ a <code>/link</code> argument will be prepended.</p>
   <a href="Reference-manual_returned_compiler.html#has_link_argument_required"><b>required</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments15">Arguments</h4>
+<h4 id="arguments16">Arguments</h4>
 <p>The method <code>compiler.has_link_argument()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2379,7 +2534,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 <p>Returns true if the type has the specified member.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature21">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature22">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2400,7 +2555,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
   <a href="Reference-manual_returned_compiler.html#has_member_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments16">Arguments</h4>
+<h4 id="arguments17">Arguments</h4>
 <p>The method <code>compiler.has_member()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2565,7 +2720,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 <p>Returns <code>true</code> if the type has <em>all</em> the specified members.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature22">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature23">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2586,7 +2741,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
   <a href="Reference-manual_returned_compiler.html#has_members_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments17">Arguments</h4>
+<h4 id="arguments18">Arguments</h4>
 <p>The method <code>compiler.has_members()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -2747,7 +2902,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 and uses them all in a single compiler invocation.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature23">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature24">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2763,7 +2918,7 @@ and uses them all in a single compiler invocation.</p>
   <a href="Reference-manual_returned_compiler.html#has_multi_arguments_required"><b>required</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments18">Arguments</h4>
+<h4 id="arguments19">Arguments</h4>
 <p>The
 method accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -2815,7 +2970,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 and uses them all in a single compiler invocation.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature24">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature25">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2831,7 +2986,7 @@ and uses them all in a single compiler invocation.</p>
   <a href="Reference-manual_returned_compiler.html#has_multi_link_arguments_required"><b>required</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>  # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments19">Arguments</h4>
+<h4 id="arguments20">Arguments</h4>
 <p>The
 method accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
@@ -2882,7 +3037,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
 <p>Returns <code>true</code> if the specified token is a type.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature25">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature26">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -2902,7 +3057,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
   <a href="Reference-manual_returned_compiler.html#has_type_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the check fails
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments20">Arguments</h4>
+<h4 id="arguments21">Arguments</h4>
 <p>The method <code>compiler.has_type()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3059,7 +3214,7 @@ corresponding to the suffix is used to compile the source, while the
 target of the <code>links</code> method is used to link the resulting object file.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature26">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature27">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3079,7 +3234,7 @@ target of the <code>links</code> method is used to link the resulting object fil
   <a href="Reference-manual_returned_compiler.html#links_werror"><b>werror</b></a>              : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, compiler warnings are treated as error
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments21">Arguments</h4>
+<h4 id="arguments22">Arguments</h4>
 <p>The method <code>compiler.links()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3230,7 +3385,7 @@ normal compilation. That includes for example args added with
 <code>add_project_arguments()</code>, or on the command line with <code>-Dc_args=-DFOO</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature27">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature28">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3249,7 +3404,7 @@ normal compilation. That includes for example args added with
   <a href="Reference-manual_returned_compiler.html#preprocess_output"><b>output</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Template for name of preprocessed files: `@PLAINNAME@` is replaced by
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments22">Arguments</h4>
+<h4 id="arguments23">Arguments</h4>
 <p>The
 method accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>source...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a></code>.</p>
@@ -3360,7 +3515,7 @@ without its extension.</p>
 <p>Attempts to compile and execute the given code fragment.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature28">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature29">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3380,7 +3535,7 @@ without its extension.</p>
   <a href="Reference-manual_returned_compiler.html#run_werror"><b>werror</b></a>              : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, compiler warnings are treated as error
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments23">Arguments</h4>
+<h4 id="arguments24">Arguments</h4>
 <p>The method <code>compiler.run()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3528,7 +3683,7 @@ If this keyword argument is not passed, no message will be printed about the che
 <p>returns the size of the given type (e.g. <code>'int'</code>) or -1 if the type is unknown.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature29">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature30">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3547,7 +3702,7 @@ If this keyword argument is not passed, no message will be printed about the che
   <a href="Reference-manual_returned_compiler.html#sizeof_prefix"><b>prefix</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Used to add `#include`s and other things that are required
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
-<h4 id="arguments24">Arguments</h4>
+<h4 id="arguments25">Arguments</h4>
 <p>The method <code>compiler.sizeof()</code> accepts the following positional arguments:</p>
   <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
   <style>
@@ -3682,7 +3837,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
 <p>Returns <code>true</code> if the C symbol mangling is one underscore (<code>_</code>) prefixed to the symbol.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature30">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature31">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -3698,7 +3853,7 @@ on Linux, and it should be passed via <code>args</code> keyword argument).</p>
 <p>Returns the compiler's version number as a string.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature31">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature32">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">

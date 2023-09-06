@@ -215,6 +215,14 @@ $('body').removeClass('no-script');
 <p>Compiler check methods <code>compiler.compiles()</code>, <code>compiler.links()</code> and <code>compiler.run()</code>
 now have a new <code>werror: true</code> keyword argument to treat compiler warnings as error.
 This can be used to check if code compiles without warnings.</p>
+<h2 id="compilers-now-have-a-has_define-method">Compilers now have a <code>has_define</code> method</h2>
+<p>This method returns true if the given preprocessor symbol is
+defined, else false is returned. This is useful is cases where
+an empty define has to be distinguished from a non-set one, which
+is not possible using <code>get_define</code>.</p>
+<p>Additionally it makes intent clearer for code that only needs
+to check if a specific define is set at all and does not care
+about its value.</p>
 <h2 id="c_std-and-cpp_std-options-now-accepts-a-list-of-values">
 <code>c_std</code> and <code>cpp_std</code> options now accepts a list of values</h2>
 <p>Projects that prefer GNU C, but can fallback to ISO C, can now set, for
