@@ -3153,6 +3153,7 @@ build directory with the name <code>output:</code> in the current directory.</p>
   <a href="Reference-manual_functions.html#configure_file_install_dir"><b>install_dir</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # The subdirectory to install the generated file to
   <a href="Reference-manual_functions.html#configure_file_install_mode"><b>install_mode</b></a>  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                    # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#configure_file_install_tag"><b>install_tag</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#configure_file_macro_name"><b>macro_name</b></a>    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # When specified, macro guards will be used instead of '#pragma once'
   <a href="Reference-manual_functions.html#configure_file_output"><b>output</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # The output file name
   <a href="Reference-manual_functions.html#configure_file_output_format"><b>output_format</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # The format of the output to generate when no input
 )</code></pre>
@@ -3372,6 +3373,20 @@ tag which means it is not being installed when <code>--tags</code> argument is s
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="configure_file_macro_name">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">macro_name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When specified, macro guards will be used instead of '#pragma once'. The
+macro guard name will be the specified name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
   </div>
   </td>
       </tr>
