@@ -281,6 +281,21 @@ assert(fs.relative_to('prefix/lib/foo', 'prefix') == 'lib/foo')
 </code></pre>
 <p>In addition to strings, it can handle files, custom targets, custom target
 indices, and build targets.</p>
+<h2 id="added-fill-kwarg-to-intto_string">Added 'fill' kwarg to int.to_string()</h2>
+<p>int.to_string() now accepts a <code>fill</code> argument. This allows you to pad the
+string representation of the integer with leading zeroes:</p>
+<pre><code class="language-meson">n = 4
+message(n.to_string())
+message(n.to_string(length: 3))
+
+n = -4
+message(n.to_string(length: 3))
+</code></pre>
+<p>OUTPUT:</p>
+<pre><code class="language-meson">4
+004
+-04
+</code></pre>
 <h2 id="added-json-output_format-to-configure_file">Added 'json' output_format to configure_file()</h2>
 <p>When no input file is specified, <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> can now
 generate a <code>json</code> file from given <a href="Reference-manual_returned_cfg_data.html"><ins><code>cfg_data</code></ins></a>.

@@ -269,7 +269,47 @@ $('body').removeClass('no-script');
 </div>
 </div>
 </div>
-<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> to_string()</code></pre>
+<pre><code class="language-meson"># Returns the value of the number as a string
+<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> to_string(
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<a href="Reference-manual_elementary_int.html#to_string_fill"><b>fill</b></a>],   # Left fill the string with zeros until it reaches the length
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments">Arguments</h4>
+<p>The method <code>int.to_string()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="to_string_fill">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fill</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Left fill the string with zeros until it reaches the length
+specified by this argument. A leading negative sign counts towards
+the length, and is handled by inserting the padding after the <code>-</code>
+character rather than before. The original string is returned if the
+value provided is less than or equal to the former's length.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 
