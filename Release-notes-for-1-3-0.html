@@ -211,6 +211,16 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="clarify-of-implicitlyincluded-headers-in-clike-compiler-checks">Clarify of implicitly-included headers in C-like compiler checks</h2>
+<p>Compiler check methods <code>compiler.compute_int()</code>, <code>compiler.alignment()</code>
+and <code>compiler.sizeof()</code> now have their implicitly-included headers
+corrected and documented.</p>
+<p><code>&lt;stdio.h&gt;</code> was included unintentionally when cross-compiling, which
+is less than ideal because there is no guarantee that a standard library
+is available for the target platform. Only <code>&lt;stddef.h&gt;</code> is included instead.</p>
+<p>For projects that depend on the old behavior, the compiler check methods
+have an optional argument <code>prefix</code>, which can be used to specify additional
+<code>#include</code> directives.</p>
 <h2 id="treat-warnings-as-error-in-compiler-checks">Treat warnings as error in compiler checks</h2>
 <p>Compiler check methods <code>compiler.compiles()</code>, <code>compiler.links()</code> and <code>compiler.run()</code>
 now have a new <code>werror: true</code> keyword argument to treat compiler warnings as error.

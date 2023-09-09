@@ -241,7 +241,10 @@ http://www.mingw.org/wiki/SpecsFileHOWTO</p>
 <h2 id="compiler-object-methods">Compiler object methods</h2>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="compileralignment">compiler.alignment()</h3>
-<p>Returns the alignment of the specified type.</p>
+<p>Returns the alignment of the specified type. For C-like languages,
+For C-like languages, the header <code>stddef.h</code> and <code>stdio.h</code> are included
+implicitly for native compilation, only <code>stddef.h</code> is included when
+cross-compiling.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature">Signature</h4>
@@ -728,7 +731,10 @@ If this keyword argument is not passed, no message will be printed about the che
 an iterative algorithm, you can specify keyword arguments <code>low</code>
 (defaults to -1024), <code>high</code> (defaults to 1024) and <code>guess</code> to
 specify max and min values for the search and the value to try
-first.</p>
+first.
+For C-like languages, the header <code>stddef.h</code> and <code>stdio.h</code> are included
+implicitly for native compilation, only <code>stddef.h</code> is included when
+cross-compiling.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
@@ -3680,7 +3686,10 @@ If this keyword argument is not passed, no message will be printed about the che
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="compilersizeof">compiler.sizeof()</h3>
-<p>returns the size of the given type (e.g. <code>'int'</code>) or -1 if the type is unknown.</p>
+<p>returns the size of the given type (e.g. <code>'int'</code>) or -1 if the type is unknown.
+For C-like languages, the header <code>stddef.h</code> and <code>stdio.h</code> are included
+implicitly for native compilation, only <code>stddef.h</code> is included when
+cross-compiling.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature30">Signature</h4>
