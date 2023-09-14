@@ -281,6 +281,12 @@ assert(fs.relative_to('prefix/lib/foo', 'prefix') == 'lib/foo')
 </code></pre>
 <p>In addition to strings, it can handle files, custom targets, custom target
 indices, and build targets.</p>
+<h2 id="added-follow_symlinks-arg-to-install_data-install_header-and-install_subdir">Added follow_symlinks arg to install_data, install_header, and install_subdir</h2>
+<p>The <a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a>, <a href="Reference-manual_functions.html#install_headers"><ins><code>install_headers()</code></ins></a>, <a href="Reference-manual_functions.html#install_subdir"><ins><code>install_subdir()</code></ins></a> functions now
+have an optional argument <code>follow_symlinks</code> that, if set to <code>true</code>, makes it so
+symbolic links in the source are followed, rather than copied into the
+destination tree, to match the old behavior.  The default, which is currently
+to follow links, is subject to change in the future.</p>
 <h2 id="added-fill-kwarg-to-intto_string">Added 'fill' kwarg to int.to_string()</h2>
 <p>int.to_string() now accepts a <code>fill</code> argument. This allows you to pad the
 string representation of the integer with leading zeroes:</p>

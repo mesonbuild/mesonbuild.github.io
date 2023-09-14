@@ -6292,12 +6292,13 @@ except Visual Studio).</p>
   <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>file</b>...,  # Files to install
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#install_data_install_dir"><b>install_dir</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # The absolute or relative path to the installation directory
-  <a href="Reference-manual_functions.html#install_data_install_mode"><b>install_mode</b></a>  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]   # specify the file mode in symbolic format and
-  <a href="Reference-manual_functions.html#install_data_install_tag"><b>install_tag</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # A string used by the `meson install --tags` command
-  <a href="Reference-manual_functions.html#install_data_preserve_path"><b>preserve_path</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>              # Disable stripping child-directories from data files when installing
-  <a href="Reference-manual_functions.html#install_data_rename"><b>rename</b></a>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]         # If specified renames each source file into corresponding file from `rename` list
-  <a href="Reference-manual_functions.html#install_data_sources"><b>sources</b></a>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
+  <a href="Reference-manual_functions.html#install_data_follow_symlinks"><b>follow_symlinks</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>              # If true, dereferences links and copies their target instead
+  <a href="Reference-manual_functions.html#install_data_install_dir"><b>install_dir</b></a>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # The absolute or relative path to the installation directory
+  <a href="Reference-manual_functions.html#install_data_install_mode"><b>install_mode</b></a>    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]   # specify the file mode in symbolic format and
+  <a href="Reference-manual_functions.html#install_data_install_tag"><b>install_tag</b></a>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>               # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#install_data_preserve_path"><b>preserve_path</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>              # Disable stripping child-directories from data files when installing
+  <a href="Reference-manual_functions.html#install_data_rename"><b>rename</b></a>          : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]         # If specified renames each source file into corresponding file from `rename` list
+  <a href="Reference-manual_functions.html#install_data_sources"><b>sources</b></a>         : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # Additional files to install
 )</code></pre>
 <div class="alert alert-warning">
   <strong>Warning:</strong>
@@ -6336,6 +6337,22 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
+      <tr id="install_data_follow_symlinks">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">follow_symlinks</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If true, dereferences links and copies their target instead.  The default
+value will become false in the future.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
+  </div>
+  </td>
+      </tr>
       <tr id="install_data_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
@@ -6543,10 +6560,11 @@ headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
   <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>file</b>...,  # Header files to install
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#install_headers_install_dir"><b>install_dir</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Where to install to
-  <a href="Reference-manual_functions.html#install_headers_install_mode"><b>install_mode</b></a>  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]  # Specify the file mode in symbolic format
-  <a href="Reference-manual_functions.html#install_headers_preserve_path"><b>preserve_path</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Disable stripping child-directories from header files when installing
-  <a href="Reference-manual_functions.html#install_headers_subdir"><b>subdir</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Install to the `subdir` subdirectory of the default includedir
+  <a href="Reference-manual_functions.html#install_headers_follow_symlinks"><b>follow_symlinks</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If true, dereferences links and copies their target instead
+  <a href="Reference-manual_functions.html#install_headers_install_dir"><b>install_dir</b></a>     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Where to install to
+  <a href="Reference-manual_functions.html#install_headers_install_mode"><b>install_mode</b></a>    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]  # Specify the file mode in symbolic format
+  <a href="Reference-manual_functions.html#install_headers_preserve_path"><b>preserve_path</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # Disable stripping child-directories from header files when installing
+  <a href="Reference-manual_functions.html#install_headers_subdir"><b>subdir</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Install to the `subdir` subdirectory of the default includedir
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="example4">Example</h3>
@@ -6593,6 +6611,22 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
+      <tr id="install_headers_follow_symlinks">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">follow_symlinks</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If true, dereferences links and copies their target instead.  The default
+value will become false in the future.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
+  </div>
+  </td>
+      </tr>
       <tr id="install_headers_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
@@ -6783,6 +6817,7 @@ instead.</p>
   # Keyword arguments:
   <a href="Reference-manual_functions.html#install_subdir_exclude_directories"><b>exclude_directories</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # A list of directory names that should not be installed
   <a href="Reference-manual_functions.html#install_subdir_exclude_files"><b>exclude_files</b></a>       : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]        # A list of file names that should not be installed
+  <a href="Reference-manual_functions.html#install_subdir_follow_symlinks"><b>follow_symlinks</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # If true, dereferences links and copies their target instead
   <a href="Reference-manual_functions.html#install_subdir_install_dir"><b>install_dir</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # Where to install to
   <a href="Reference-manual_functions.html#install_subdir_install_mode"><b>install_mode</b></a>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]  # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#install_subdir_install_tag"><b>install_tag</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # A string used by the `meson install --tags` command
@@ -6900,6 +6935,22 @@ Names are interpreted as paths relative to the <code>subdir_name</code> location
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="install_subdir_follow_symlinks">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">follow_symlinks</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If true, dereferences links and copies their target instead.  The default
+value will become false in the future.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
   </div>
   </td>
       </tr>
