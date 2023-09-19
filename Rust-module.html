@@ -300,6 +300,29 @@ were never turned on by Meson.</p>
 <pre><code class="language-ini">[properties]
 bindgen_clang_arguments = ['--target', 'x86_64-linux-gnu']
 </code></pre>
+<h3 id="proc_macro">proc_macro()</h3>
+<pre><code class="language-meson">rustmod.proc_macro(name, sources, ...)
+</code></pre>
+<p><em>Since 1.3.0</em></p>
+<p>This function creates a Rust <code>proc-macro</code> crate, similar to:</p>
+<pre><code class="language-meson"><a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a>(name, sources,
+  rust_crate_type: 'proc-macro',
+  native: true)
+</code></pre>
+<p><code>proc-macro</code> targets can be passed to <code>link_with</code> keyword argument of other Rust
+targets.</p>
+<p>Only a subset of <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> keyword arguments are allowed:</p>
+<ul>
+<li>rust_args</li>
+<li>rust_dependency_map</li>
+<li>sources</li>
+<li>dependencies</li>
+<li>extra_files</li>
+<li>link_args</li>
+<li>link_depends</li>
+<li>link_with</li>
+<li>override_options</li>
+</ul>
 
     </div>
         

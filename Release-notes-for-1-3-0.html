@@ -356,6 +356,15 @@ cc.has_type('some_type', required: true)
 cc.has_member('struct some_type', 'x', required: true)
 cc.has_members('struct some_type', ['x', 'y'], required: true)
 </code></pre>
+<h2 id="deprecated-rust_crate_type-and-replaced-by-rust_abi">Deprecated <code>rust_crate_type</code> and replaced by <code>rust_abi</code>
+</h2>
+<p>The new <code>rust_abi</code> keyword argument is accepted by <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a>,
+<a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a>, <a href="Reference-manual_functions.html#library"><ins><code>library()</code></ins></a> and <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a> functions. It can be either
+<code>'rust'</code> (the default) or <code>'c'</code> strings.</p>
+<p><code>rust_crate_type</code> is now deprecated because Meson already knows if it's a shared
+or static library, user only need to specify the ABI (Rust or C).</p>
+<p><code>proc_macro</code> crates are now handled by the <a href="Rust-module.html#proc_macro"><code>rust.proc_macro()</code></a>
+method.</p>
 <h2 id="unified-message-strformat-and-fstring-formatting">Unified message(), str.format() and f-string formatting</h2>
 <p>They now all support the same set of values: strings, integers, bools, options,
 dictionaries and lists thereof.</p>
