@@ -693,8 +693,8 @@ compilations (only) when cross compiling.</p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h2 id="add_project_link_arguments">add_project_link_arguments()</h2>
-<p>Adds global arguments to the linker command line.</p>
-<p>Like <a href="Reference-manual_functions.html#add_global_arguments"><ins><code>add_global_arguments()</code></ins></a> but the arguments are passed to the linker.</p>
+<p>Adds project specific arguments to the linker command line.</p>
+<p>Like <a href="Reference-manual_functions.html#add_project_arguments"><ins><code>add_project_arguments()</code></ins></a> but the arguments are passed to the linker.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h3 style="margin-top: 0px;" id="signature5">Signature</h3>
@@ -704,7 +704,7 @@ compilations (only) when cross compiling.</p>
 </div>
 </div>
 </div>
-<pre><code class="language-meson"># Adds global arguments to the linker command line
+<pre><code class="language-meson"># Adds project specific arguments to the linker command line
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_project_link_arguments(
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>Linker argument</b>...,  # The linker arguments to add
 
