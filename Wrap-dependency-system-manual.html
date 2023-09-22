@@ -292,6 +292,16 @@ files are local instead of a downloaded archive. The directory must be placed in
 <li>
 <code>diff_files</code> - <em>Since 0.63.0</em> Comma-separated list of local diff files (see
 <a href="Wrap-dependency-system-manual.html#diff-files">Diff files</a> below).</li>
+<li>
+<code>method</code> - <em>Since 1.3.0</em> The build system used by this subproject. Defaults to <code>meson</code>.
+Supported methods:
+<ul>
+<li>
+<code>meson</code> requires <code>meson.build</code> file.</li>
+<li>
+<code>cmake</code> requires <code>CMakeLists.txt</code> file. <a href="Wrap-dependency-system-manual.html#cmake-wraps">See details</a>.</li>
+</ul>
+</li>
 </ul>
 <h3 id="specific-to-wrapfile">Specific to wrap-file</h3>
 <ul>
@@ -477,6 +487,21 @@ program_names = myprog, otherprog
 <p>With such wrap file, <code>find_program('myprog')</code> will automatically
 fallback to use the subproject, assuming it uses
 <code>meson.override_find_program('myprog')</code>.</p>
+<h3 id="cmake-wraps">CMake wraps</h3>
+<p>Since the CMake module does not know the public name of the provided
+dependencies, a CMake <code>.wrap</code> file cannot use the <code>dependency_names = foo</code>
+syntax. Instead, the <code>dep_name = &lt;target_name&gt;_dep</code> syntax should be used, where
+<code>&lt;target_name&gt;</code> is the name of a CMake library with all non alphanumeric
+characters replaced by underscores <code>_</code>.</p>
+<p>For example, a CMake project that contains <code>add_library(foo-bar ...)</code> in its
+<code>CMakeList.txt</code> and that applications would usually find using the dependency
+name <code>foo-bar-1.0</code> (e.g. via pkg-config) would have a wrap file like this:</p>
+<pre><code class="language-ini">[wrap-file]
+...
+method = cmake
+[provide]
+foo-bar-1.0 = foo_bar_dep
+</code></pre>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>Wraps provide a convenient way of obtaining a project into your
 subproject directory. Then you use it as a regular subproject (see
