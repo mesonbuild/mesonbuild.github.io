@@ -321,6 +321,13 @@ relative to toolchain's installation directory.</p>
 c = '@DIRNAME@/toolchain/gcc'
 exe_wrapper = '@GLOBAL_SOURCE_ROOT@' / 'build-aux' / 'my-exe-wrapper.sh'
 </code></pre>
+<h2 id="clangtidyfix-target">clang-tidy-fix target</h2>
+<p>If <code>clang-tidy</code> is installed and the project's source root contains a
+<code>.clang-tidy</code> (or <code>_clang-tidy</code>) file, Meson will automatically define
+a <code>clang-tidy-fix</code> target that runs <code>run-clang-tidy</code> tool with <code>-fix</code>
+option to apply the changes found by clang-tidy to the source code.</p>
+<p>If you have defined your own <code>clang-tidy-fix</code> target, Meson will not
+generate its own target.</p>
 <h2 id="new-environment-variable-meson_package_cache_dir">New environment variable <code>MESON_PACKAGE_CACHE_DIR</code>
 </h2>
 <p>If the <code>MESON_PACKAGE_CACHE_DIR</code> environment variable is set, it is used instead of the
