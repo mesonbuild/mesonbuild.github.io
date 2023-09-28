@@ -265,6 +265,9 @@ from other build_targets, including the kinds of sources it can include. Because
 of this crafting a <code>build_target</code> that can be used as a Jar and as something
 else is incredibly hard to do. As such, it has been deprecated, and using
 <code>jar()</code> directly is recommended.</p>
+<h2 id="executable-gains-vs_module_defs-keyword">Executable gains vs_module_defs keyword</h2>
+<p>This allows using a .def file to control which functions an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> will
+expose to a <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a>.</p>
 <h2 id="find_program-now-supports-the-default_options-argument">find_program() now supports the 'default_options' argument</h2>
 <p>In a similar fashion as dependency(), find_program() now also allows you to set default
 options for the subproject that gets built in case of a fallback.</p>
@@ -382,6 +385,12 @@ by any of those functions.</li>
 <li>str.format() allowed any type and often resulted in printing the internal
 representation which is now deprecated.</li>
 </ul>
+<h2 id="vs_module_defs-keyword-now-supports-indexes-of-custom_target">vs_module_defs keyword now supports indexes of custom_target</h2>
+<p>This means you can do something like:</p>
+<pre><code class="language-meson">defs = custom_target('generate_module_defs', ...)
+shared_library('lib1', vs_module_defs : defs[0])
+shared_library('lib2', vs_module_defs : defs[2])
+</code></pre>
 <h2 id="automatic-fallback-to-cmake-subproject">Automatic fallback to <code>cmake</code> subproject</h2>
 <p>CMake subprojects have been supported for a while using the <code>cmake.subproject()</code>
 module method. However until now it was not possible to use a CMake subproject
