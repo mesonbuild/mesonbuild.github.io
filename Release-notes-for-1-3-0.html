@@ -265,6 +265,9 @@ from other build_targets, including the kinds of sources it can include. Because
 of this crafting a <code>build_target</code> that can be used as a Jar and as something
 else is incredibly hard to do. As such, it has been deprecated, and using
 <code>jar()</code> directly is recommended.</p>
+<h2 id="generatorprocess-gains-env-keyword-argument">generator.process() gains 'env' keyword argument</h2>
+<p>Like the kwarg of the same name in <code>custom_target()</code>, <code>env</code> allows
+you to set the environment in which the generator will process inputs.</p>
 <h2 id="target-names-for-executables-now-take-into-account-suffixes">Target names for executables now take into account suffixes.</h2>
 <p>In previous versions of meson, a <code>meson.build</code> file like this:</p>
 <pre><code>exectuable('foo', 'main.c')
