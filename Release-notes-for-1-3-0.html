@@ -265,6 +265,16 @@ from other build_targets, including the kinds of sources it can include. Because
 of this crafting a <code>build_target</code> that can be used as a Jar and as something
 else is incredibly hard to do. As such, it has been deprecated, and using
 <code>jar()</code> directly is recommended.</p>
+<h2 id="target-names-for-executables-now-take-into-account-suffixes">Target names for executables now take into account suffixes.</h2>
+<p>In previous versions of meson, a <code>meson.build</code> file like this:</p>
+<pre><code>exectuable('foo', 'main.c')
+exectuable('foo', 'main.c', name_suffix: 'bar')
+</code></pre>
+<p>would result in a configure error because meson internally used
+the same id for both executables. This build file is now allowed
+since meson takes into account the <code>bar</code> suffix when generating the
+second executable. This allows for executables with the same basename
+but different suffixes to be built in the same subdirectory.</p>
 <h2 id="executable-gains-vs_module_defs-keyword">Executable gains vs_module_defs keyword</h2>
 <p>This allows using a .def file to control which functions an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> will
 expose to a <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a>.</p>
@@ -331,6 +341,12 @@ a <code>clang-tidy-fix</code> target that runs <code>run-clang-tidy</code> tool 
 option to apply the changes found by clang-tidy to the source code.</p>
 <p>If you have defined your own <code>clang-tidy-fix</code> target, Meson will not
 generate its own target.</p>
+<h2 id="meson-compile-command-now-accepts-suffixes-for-target">Meson compile command now accepts suffixes for TARGET</h2>
+<p>The syntax for specifying a target for meson compile is now
+<code>[PATH_TO_TARGET/]TARGET_NAME.TARGET_SUFFIX[:TARGET_TYPE]</code> where
+<code>TARGET_SUFFIX</code> is the suffix argument given in the build target
+within meson.build. It is optional and <code>TARGET_NAME</code> remains
+sufficient if it uniquely resolves to one single target.</p>
 <h2 id="new-environment-variable-meson_package_cache_dir">New environment variable <code>MESON_PACKAGE_CACHE_DIR</code>
 </h2>
 <p>If the <code>MESON_PACKAGE_CACHE_DIR</code> environment variable is set, it is used instead of the

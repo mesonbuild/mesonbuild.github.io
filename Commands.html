@@ -376,7 +376,7 @@ values (even if they were changed in <code>meson.build</code>).</p>
 <pre><code class="language-inc">positional arguments:
   TARGET                                Targets to build. Target has the
                                         following format: [PATH_TO_TARGET/]TARGE
-                                        T_NAME[:TARGET_TYPE].
+                                        T_NAME.TARGET_SUFFIX[:TARGET_TYPE].
 
 options:
   -h, --help                            show this help message and exit
@@ -399,17 +399,20 @@ options:
 <p><code>--verbose</code> argument is available since 0.55.0.</p>
 <h4 id="targets">Targets</h4>
 <p><em>(since 0.55.0)</em></p>
-<p><code>TARGET</code> has the following syntax <code>[PATH/]NAME[:TYPE]</code>, where:</p>
+<p><code>TARGET</code> has the following syntax <code>[PATH/]NAME.SUFFIX[:TYPE]</code>, where:</p>
 <ul>
 <li>
 <code>NAME</code>: name of the target from <code>meson.build</code> (e.g. <code>foo</code> from <code>executable('foo', ...)</code>).</li>
+<li>
+<code>SUFFIX</code>: name of the suffix of the target from <code>meson.build</code> (e.g. <code>exe</code> from <code>executable('foo', suffix: 'exe', ...)</code>).</li>
 <li>
 <code>PATH</code>: path to the target relative to the root <code>meson.build</code> file. Note: relative path for a target specified in the root <code>meson.build</code> is <code>./</code>.</li>
 <li>
 <code>TYPE</code>: type of the target. Can be one of the following: 'executable', 'static_library', 'shared_library', 'shared_module', 'custom', 'alias', 'run', 'jar'.</li>
 </ul>
-<p><code>PATH</code> and/or <code>TYPE</code> can be omitted if the resulting <code>TARGET</code> can be
+<p><code>PATH</code>, <code>SUFFIX</code>, and <code>TYPE</code> can all be omitted if the resulting <code>TARGET</code> can be
 used to uniquely identify the target in <code>meson.build</code>.</p>
+<p>Note that <code>SUFFIX</code> did not exist prior to 1.3.0.</p>
 <h4 id="backend-specific-arguments">Backend specific arguments</h4>
 <p><em>(since 0.55.0)</em></p>
 <p><code>BACKEND-args</code> use the following syntax:</p>
