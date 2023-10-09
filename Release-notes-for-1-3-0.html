@@ -394,6 +394,14 @@ cc.has_members('struct some_type', ['x', 'y'], required: true)
 or static library, user only need to specify the ABI (Rust or C).</p>
 <p><code>proc_macro</code> crates are now handled by the <a href="Rust-module.html#proc_macro"><code>rust.proc_macro()</code></a>
 method.</p>
+<h2 id="lang_sharedstatic_args-for-both_library-library-and-build_target">
+<code>&lt;lang&gt;_(shared|static)_args</code> for both_library, library, and build_target</h2>
+<p>We now allow passing arguments like <code>c_static_args</code> and <code>c_shared_args</code>. This
+allows a <a href="Reference-manual_functions.html#both_libraries"><ins><code>both_libraries()</code></ins></a> to have arguments specific to either the shared or
+static library, as well as common arguments to both.</p>
+<p>There is a drawback to this, since Meson now cannot re-use object files between
+the static and shared targets. This could lead to much higher compilation time
+when using a <a href="Reference-manual_functions.html#both_libraries"><ins><code>both_libraries()</code></ins></a> if there are many sources.</p>
 <h2 id="unified-message-strformat-and-fstring-formatting">Unified message(), str.format() and f-string formatting</h2>
 <p>They now all support the same set of values: strings, integers, bools, options,
 dictionaries and lists thereof.</p>

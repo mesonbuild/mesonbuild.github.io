@@ -1398,6 +1398,8 @@ which case sources will be compiled twice.</p>
   # Keyword arguments:
   <a href="Reference-manual_functions.html#both_libraries__lang__args"><b>&lt;lang&gt;_args</b></a>                  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # compiler flags to use for the given language;
   <a href="Reference-manual_functions.html#both_libraries__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
+  <a href="Reference-manual_functions.html#both_libraries__lang__shared_args"><b>&lt;lang&gt;_shared_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a shared library
+  <a href="Reference-manual_functions.html#both_libraries__lang__static_args"><b>&lt;lang&gt;_static_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#both_libraries_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#both_libraries_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#both_libraries_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
@@ -1433,6 +1435,9 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#both_libraries_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#both_libraries_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
+  <a href="Reference-manual_functions.html#both_libraries_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#both_libraries_vala_shared_args"><b>vala_shared_args</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Arguments that are only passed to a shared library
+  <a href="Reference-manual_functions.html#both_libraries_vala_static_args"><b>vala_static_args</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#both_libraries_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#both_libraries_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#both_libraries_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -1538,6 +1543,34 @@ eg: <code>cpp_args</code> for C++</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries__lang__shared_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_shared_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a shared library</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries__lang__static_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_static_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a static library</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
   </div>
   </td>
       </tr>
@@ -2133,6 +2166,49 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </div>
   </td>
       </tr>
+      <tr id="both_libraries_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_vala_shared_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_shared_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a shared library
+Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> is allowed in addition to string</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_vala_static_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_static_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a static library
+Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> is allowed in addition to string</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
       <tr id="both_libraries_version">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">version</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
@@ -2239,6 +2315,8 @@ other build_target types.</p>
   # Keyword arguments:
   <a href="Reference-manual_functions.html#build_target__lang__args"><b>&lt;lang&gt;_args</b></a>                  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # compiler flags to use for the given language;
   <a href="Reference-manual_functions.html#build_target__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
+  <a href="Reference-manual_functions.html#build_target__lang__shared_args"><b>&lt;lang&gt;_shared_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a shared library
+  <a href="Reference-manual_functions.html#build_target__lang__static_args"><b>&lt;lang&gt;_static_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#build_target_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#build_target_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#build_target_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
@@ -2280,6 +2358,9 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#build_target_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#build_target_target_type"><b>target_type</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The actual target type to build
+  <a href="Reference-manual_functions.html#build_target_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#build_target_vala_shared_args"><b>vala_shared_args</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Arguments that are only passed to a shared library
+  <a href="Reference-manual_functions.html#build_target_vala_static_args"><b>vala_static_args</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#build_target_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#build_target_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#build_target_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -2385,6 +2466,34 @@ eg: <code>cpp_args</code> for C++</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target__lang__shared_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_shared_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a shared library</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target__lang__static_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_static_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a static library</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
   </div>
   </td>
       </tr>
@@ -3065,6 +3174,49 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_vala_shared_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_shared_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a shared library
+Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> is allowed in addition to string</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_vala_static_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_static_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a static library
+Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> is allowed in addition to string</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
   </div>
   </td>
       </tr>
@@ -4840,6 +4992,7 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#executable_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#executable_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
+  <a href="Reference-manual_functions.html#executable_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
   <a href="Reference-manual_functions.html#executable_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#executable_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
@@ -5492,6 +5645,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Additional source files. Same as the source varargs.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7387,6 +7553,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#jar_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#jar_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
+  <a href="Reference-manual_functions.html#jar_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
   <a href="Reference-manual_functions.html#jar_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -8014,6 +8181,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
   </div>
   </td>
       </tr>
+      <tr id="jar_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="jar_win_subsystem">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">win_subsystem</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
@@ -8111,6 +8291,8 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   # Keyword arguments:
   <a href="Reference-manual_functions.html#library__lang__args"><b>&lt;lang&gt;_args</b></a>                  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # compiler flags to use for the given language;
   <a href="Reference-manual_functions.html#library__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
+  <a href="Reference-manual_functions.html#library__lang__shared_args"><b>&lt;lang&gt;_shared_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a shared library
+  <a href="Reference-manual_functions.html#library__lang__static_args"><b>&lt;lang&gt;_static_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
@@ -8146,10 +8328,17 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
+  <a href="Reference-manual_functions.html#library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#library_vala_shared_args"><b>vala_shared_args</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Arguments that are only passed to a shared library
+  <a href="Reference-manual_functions.html#library_vala_static_args"><b>vala_static_args</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#library_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#library_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#library_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
+<div class="alert alert-warning">
+  <strong>Warning:</strong>
+<p>using <lang>_shared_args and/or <lang>_static_args may lead to much higher compilation times with both_library, as object files cannot be shared between the static and shared targets. It is guaranteed to not duplicate the build if these arguments are empty arrays</lang></lang></p>
+</div>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments38">Arguments</h3>
 <p>The function <code>library()</code> accepts the following positional arguments:</p>
@@ -8251,6 +8440,34 @@ eg: <code>cpp_args</code> for C++</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="library__lang__shared_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_shared_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a shared library</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library__lang__static_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_static_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a static library</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
   </div>
   </td>
       </tr>
@@ -8843,6 +9060,49 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="library_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="library_vala_shared_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_shared_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a shared library
+Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> is allowed in addition to string</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library_vala_static_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_static_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Arguments that are only passed to a static library
+Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> is allowed in addition to string</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
   </div>
   </td>
       </tr>
@@ -9669,6 +9929,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#shared_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#shared_library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
+  <a href="Reference-manual_functions.html#shared_library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
   <a href="Reference-manual_functions.html#shared_library_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#shared_library_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#shared_library_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -10336,6 +10597,19 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </div>
   </td>
       </tr>
+      <tr id="shared_library_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="shared_library_version">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">version</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
@@ -10451,6 +10725,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#shared_module_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#shared_module_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
+  <a href="Reference-manual_functions.html#shared_module_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
   <a href="Reference-manual_functions.html#shared_module_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#shared_module_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
@@ -11092,6 +11367,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
   </div>
   </td>
       </tr>
+      <tr id="shared_module_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="shared_module_vs_module_defs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vs_module_defs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
@@ -11186,6 +11474,7 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#static_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#static_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
+  <a href="Reference-manual_functions.html#static_library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                        # Compiler flags for Vala
   <a href="Reference-manual_functions.html#static_library_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -11836,6 +12125,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Additional source files. Same as the source varargs.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
