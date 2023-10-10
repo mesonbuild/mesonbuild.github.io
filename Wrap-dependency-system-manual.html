@@ -300,6 +300,8 @@ Supported methods:
 <code>meson</code> requires <code>meson.build</code> file.</li>
 <li>
 <code>cmake</code> requires <code>CMakeLists.txt</code> file. <a href="Wrap-dependency-system-manual.html#cmake-wraps">See details</a>.</li>
+<li>
+<code>cargo</code> requires <code>Cargo.toml</code> file. <a href="Wrap-dependency-system-manual.html#cargo-wraps">See details</a>.</li>
 </ul>
 </li>
 </ul>
@@ -501,6 +503,22 @@ name <code>foo-bar-1.0</code> (e.g. via pkg-config) would have a wrap file like 
 method = cmake
 [provide]
 foo-bar-1.0 = foo_bar_dep
+</code></pre>
+<h3 id="cargo-wraps">Cargo wraps</h3>
+<p>Cargo subprojects automatically override the <code>&lt;package_name&gt;-rs</code> dependency name.
+<code>package_name</code> is defined in <code>[package] name = ...</code> section of the <code>Cargo.toml</code>
+and <code>-rs</code> suffix is added. That means the <code>.wrap</code> file should have
+<code>dependency_names = foo-rs</code> in their <code>[provide]</code> section when <code>Cargo.toml</code> has
+package name <code>foo</code>.</p>
+<p>Cargo subprojects require a toml parser. Python &gt;= 3.11 have one built-in, older
+Python versions require either the external <code>tomli</code> module or <code>toml2json</code> program.</p>
+<p>For example, a Cargo project with the package name <code>foo-bar</code> would have a wrap
+file like that:</p>
+<pre><code class="language-ini">[wrap-file]
+...
+method = cargo
+[provide]
+dependency_names = foo-bar-rs
 </code></pre>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>Wraps provide a convenient way of obtaining a project into your

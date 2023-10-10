@@ -418,7 +418,7 @@ representation which is now deprecated.</li>
 shared_library('lib1', vs_module_defs : defs[0])
 shared_library('lib2', vs_module_defs : defs[2])
 </code></pre>
-<h2 id="automatic-fallback-to-cmake-subproject">Automatic fallback to <code>cmake</code> subproject</h2>
+<h2 id="automatic-fallback-to-cmake-and-cargo-subproject">Automatic fallback to <code>cmake</code> and <code>cargo</code> subproject</h2>
 <p>CMake subprojects have been supported for a while using the <code>cmake.subproject()</code>
 module method. However until now it was not possible to use a CMake subproject
 as fallback in a <code>dependency()</code> call.</p>
@@ -430,6 +430,8 @@ key in the wrap file's first section. The method defaults to <code>meson</code>.
 <code>meson</code> requires <code>meson.build</code> file.</li>
 <li>
 <code>cmake</code> requires <code>CMakeLists.txt</code> file. <a href="Wrap-dependency-system-manual.html#cmake-wraps">See details</a>.</li>
+<li>
+<code>cargo</code> requires <code>Cargo.toml</code> file. <a href="Wrap-dependency-system-manual.html#cargo-wraps">See details</a>.</li>
 </ul>
 
     </div>
