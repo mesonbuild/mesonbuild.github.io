@@ -308,10 +308,10 @@ to follow links, is subject to change in the future.</p>
 string representation of the integer with leading zeroes:</p>
 <pre><code class="language-meson">n = 4
 message(n.to_string())
-message(n.to_string(length: 3))
+message(n.to_string(fill: 3))
 
 n = -4
-message(n.to_string(length: 3))
+message(n.to_string(fill: 3))
 </code></pre>
 <p>OUTPUT:</p>
 <pre><code class="language-meson">4
