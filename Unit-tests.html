@@ -232,6 +232,10 @@ test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
 set to a random value between 1..255. This can help find memory leaks on
 configurations using glibc, including with non-GCC compilers. This feature
 can be disabled as discussed in <a href="Reference-manual_functions.html#test"><ins><code>test()</code></ins></a>.</p>
+<h3 id="asan_options-and-ubsan_options">ASAN_OPTIONS and UBSAN_OPTIONS</h3>
+<p>By default, the environment variables <code>ASAN_OPTIONS</code> and <code>UBSAN_OPTIONS</code> are
+set to enable aborting on detected violations and to give a backtrace. This
+feature can be disabled as discussed in <a href="Reference-manual_functions.html#test"><ins><code>test()</code></ins></a>.</p>
 <h2 id="coverage">Coverage</h2>
 <p>If you enable coverage measurements by giving Meson the command line
 flag <code>-Db_coverage=true</code>, you can generate coverage reports after

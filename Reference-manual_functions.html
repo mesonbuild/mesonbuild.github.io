@@ -12739,6 +12739,9 @@ disabling of this check in meson.build do like:</p>
 
 test(..., env: nomalloc, ...)
 </code></pre>
+<p>By default, the environment variables <code>ASAN_OPTIONS</code> and <code>UBSAN_OPTIONS</code> are
+set to enable aborting on detected violations and to give a backtrace. To suppress
+this, <code>ASAN_OPTIONS</code> and <code>UBSAN_OPTIONS</code> can be set in the environment.</p>
 <p>In addition to running individual executables as test cases, <code>test()</code>
 can also be used to invoke an external test harness.  In this case,
 it is best to use <code>verbose: true</code> <em>(since 0.62.0)</em> and, if supported

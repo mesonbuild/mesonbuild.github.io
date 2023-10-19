@@ -394,6 +394,10 @@ cc.has_members('struct some_type', ['x', 'y'], required: true)
 or static library, user only need to specify the ABI (Rust or C).</p>
 <p><code>proc_macro</code> crates are now handled by the <a href="Rust-module.html#proc_macro"><code>rust.proc_macro()</code></a>
 method.</p>
+<h2 id="tests-now-abort-on-errors-by-default-under-sanitizers">Tests now abort on errors by default under sanitizers</h2>
+<p>Sanitizers like AddressSanitizer and UndefinedBehaviorSanitizer do not abort
+by default on detected violations. Meson now exports <code>ASAN_OPTIONS</code> and <code>UBSAN_OPTIONS</code>
+when unset in the environment to provide sensible abort-by-default behavior.</p>
 <h2 id="lang_sharedstatic_args-for-both_library-library-and-build_target">
 <code>&lt;lang&gt;_(shared|static)_args</code> for both_library, library, and build_target</h2>
 <p>We now allow passing arguments like <code>c_static_args</code> and <code>c_shared_args</code>. This
