@@ -368,6 +368,15 @@ this won't reconfigure immediately. This has the same behaviour as
 </h2>
 <p>Just like <code>meson configure --clearcache</code>, it is now possible to clear the cache
 and reconfigure in a single command with <code>meson setup --clearcache --reconfigure &lt;builddir&gt;</code>.</p>
+<h2 id="machine-files-pkgconfig-field-deprecated-and-replaced-by-pkgconfig">Machine files: <code>pkgconfig</code> field deprecated and replaced by <code>pkg-config</code>
+</h2>
+<p>Meson used to allow both <code>pkgconfig</code> and <code>pkg-config</code> entries in machine files,
+the former was used for <code>dependency()</code> lookup and the latter was used as return
+value for <code>find_program('pkg-config')</code>.</p>
+<p>This inconsistency is now fixed by deprecating <code>pkgconfig</code> in favor of
+<code>pkg-config</code> which matches the name of the binary. For backward compatibility
+it is still allowed to define both with the same value, in that case no
+deprecation warning is printed.</p>
 <h2 id="support-targeting-pythons-limited-c-api">Support targeting Python's limited C API</h2>
 <p>The Python module's <code>extension_module</code> function has gained the ability
 to build extensions which target Python's limited C API via a new keyword
