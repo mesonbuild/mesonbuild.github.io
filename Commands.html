@@ -831,9 +831,8 @@ Commands:
              [--gdb] [--gdb-path GDB_PATH] [--list] [--wrapper WRAPPER]
              [-C WD] [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
              [--print-errorlogs] [--benchmark] [--logbase LOGBASE]
-             [--num-processes NUM_PROCESSES] [-v] [-q]
-             [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
-             [--test-args TEST_ARGS]
+             [-j NUM_PROCESSES] [-v] [-q] [-t TIMEOUT_MULTIPLIER]
+             [--setup SETUP] [--test-args TEST_ARGS]
              [args ...]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
@@ -867,7 +866,8 @@ options:
   --print-errorlogs                     Whether to print failing tests' logs.
   --benchmark                           Run benchmarks instead of tests.
   --logbase LOGBASE                     Base name for log file.
-  --num-processes NUM_PROCESSES         How many parallel processes to use.
+  -j NUM_PROCESSES, --num-processes NUM_PROCESSES
+                                        How many parallel processes to use.
   -v, --verbose                         Do not redirect stdout and stderr
   -q, --quiet                           Produce less output to the terminal.
   -t TIMEOUT_MULTIPLIER, --timeout-multiplier TIMEOUT_MULTIPLIER

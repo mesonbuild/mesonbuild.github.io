@@ -415,6 +415,11 @@ static library, as well as common arguments to both.</p>
 <p>There is a drawback to this, since Meson now cannot re-use object files between
 the static and shared targets. This could lead to much higher compilation time
 when using a <a href="Reference-manual_functions.html#both_libraries"><ins><code>both_libraries()</code></ins></a> if there are many sources.</p>
+<h2 id="j-shorthand-for-numprocesses">
+<code>-j</code> shorthand for <code>--num-processes</code>
+</h2>
+<p><code>-j</code> now means the same thing as <code>--num-processes</code>. It was inconsistently
+supported only in some subcommands. Now you may use it everywhere</p>
 <h2 id="unified-message-strformat-and-fstring-formatting">Unified message(), str.format() and f-string formatting</h2>
 <p>They now all support the same set of values: strings, integers, bools, options,
 dictionaries and lists thereof.</p>
