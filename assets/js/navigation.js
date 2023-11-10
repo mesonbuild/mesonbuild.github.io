@@ -27,13 +27,14 @@ function scroll_to_current_page(hd_context) {
 }
 
 window.addEventListener('message', event => {
-    if (event.data.action == "unfold") {
+    if (event.data["hotdoc/sitenav-action"] == "unfold") {
       scroll_to_current_page(event.data);
-    } else if (event.data.action == "update-style") {
+    } else if (event.data["hotdoc/sitenav-action"] == "update-style") {
       setPreferredStyleSheet();
     }
 });
 
 $(document).ready(function() {
-    window.parent.postMessage("ready", "*");
+    let msg = {"hotdoc/sitenav-status": "ready"};
+    window.parent.postMessage(msg, "*");
 });

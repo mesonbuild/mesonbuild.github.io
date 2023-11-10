@@ -93,23 +93,13 @@ utils.uri_is_in_this_page = (function(uri) {
 	return utils.uri_is_in_page(utils.parseUri(window.location.href), uri);
 });
 
-utils.getLanguageCookie = (function () {
-    var name =  "gi-language=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "c";
+utils.getStoredLanguage = (function () {
+    const lang = localStorage.getItem("hotdoc.gi-language");
+    return lang || "c";
 });
 
-utils.setLanguageCookie = (function (language) {
-    document.cookie = "gi-language=" + language + "; path=/;SameSite=Strict";
+utils.setStoredLanguage = (function (language) {
+    localStorage.setItem("hotdoc.gi-language", language);
 });
 
 utils.HDContext = (class {
@@ -136,8 +126,9 @@ utils.HDContext = (class {
 
     if (gi_languages_json) {
       this.gi_languages = JSON.parse(gi_languages_json.replace(/'/g, '"'));
-      this.gi_language = this.parsedUri.queries['gi-language'] || utils.getLanguageCookie() || 'c';
-      utils.setLanguageCookie(this.gi_language);
+      const query_language = this.parsedUri.queries['gi-language'];
+      this.gi_language = query_language || utils.getStoredLanguage() || 'c';
+      utils.setStoredLanguage(this.gi_language);
     } else {
       this.gi_languages = [];
     }

@@ -167,10 +167,11 @@ function display_fragments_for_urls(fragments, token) {
 	}
 }
 
-function update_cookie() {
+function store_lang() {
   for (var i = 0; i < utils.hd_context.gi_languages.length; i++) {
     if ($(this).hasClass('search_result_' + utils.hd_context.gi_languages[i])) {
-      utils.setLanguageCookie(utils.hd_context.gi_languages[i]);
+      localStorage.setItem(
+        "hotdoc.gi-language", utils.hd_context.gi_languages[i]);
     }
   }
 }
@@ -308,7 +309,7 @@ function display_urls_for_token(data) {
 	}
 
 	token_results_div.html(meat);
-  token_results_div.on("click", "a[href]", update_cookie);
+  token_results_div.on("click", "a[href]", store_lang);
 
 	display_fragments_for_urls(final_urls, data.token);
 }

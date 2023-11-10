@@ -49,16 +49,22 @@ $(document).ready(function() {
     /* Communicate context to our navigation iframe.
      *
      * As it may get loaded before or after us, we communicate
-     * it too upon reception of any message.
+     * it too upon reception of a sitenav-status ready message.
      */
     const frame = document.getElementById('sitenav-frame');
-    var message = {action: "unfold"}
-    Object.assign(message, utils.hd_context);
-    frame.contentWindow.postMessage(message, '*');
+    let msg = {"hotdoc/sitenav-action": "unfold"}
+    Object.assign(msg, utils.hd_context);
+    frame.contentWindow.postMessage(msg, '*');
 
     $(window).on("message", function(e) {
-        var message = {action: "unfold"}
-        Object.assign(message, utils.hd_context);
-        frame.contentWindow.postMessage(message, '*');
+        console.log("main window got message", e.originalEvent.data);
+
+        let msg = e.originalEvent.data;
+
+        if (msg["hotdoc/sitenav-status"] == "ready") {
+            let msg = {"hotdoc/sitenav-action": "unfold"}
+            Object.assign(msg, utils.hd_context);
+            frame.contentWindow.postMessage(msg, '*');
+        }
     });
 });
