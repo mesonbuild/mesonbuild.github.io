@@ -368,6 +368,13 @@ this won't reconfigure immediately. This has the same behaviour as
 </h2>
 <p>Just like <code>meson configure --clearcache</code>, it is now possible to clear the cache
 and reconfigure in a single command with <code>meson setup --clearcache --reconfigure &lt;builddir&gt;</code>.</p>
+<h2 id="pkgconfig-dependencies-can-now-get-a-variable-with-multiple-replacements">pkg-config dependencies can now get a variable with multiple replacements</h2>
+<p>When using <a href="Reference-manual_returned_dep.html#depget_variable"><ins><code>dep.get_variable()</code></ins></a> and defining a <code>pkgconfig_define</code>, it is
+sometimes useful to remap multiple dependency variables. For example, if the
+upstream project changed the variable name that is interpolated and it is
+desirable to support both versions.</p>
+<p>It is now possible to pass multiple pairs of variable/value.</p>
+<p>The same applies to the compatibility <a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a> method.</p>
 <h2 id="machine-files-pkgconfig-field-deprecated-and-replaced-by-pkgconfig">Machine files: <code>pkgconfig</code> field deprecated and replaced by <code>pkg-config</code>
 </h2>
 <p>Meson used to allow both <code>pkgconfig</code> and <code>pkg-config</code> entries in machine files,
