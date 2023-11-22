@@ -778,6 +778,8 @@ stripped_define = define.strip()
 Both <code>start</code> and <code>end</code> arguments are optional, so, for example, <code>'foobar'.substring()</code> will return <code>'foobar'</code>.</p>
 <p>The method accepts negative values where negative <code>start</code> is relative to the end of
 string <code>len(string) - start</code> as well as negative <code>end</code>.</p>
+<p>If <code>start</code> or <code>end</code> are out of bounds, the position of the closest character will be used.
+If <code>start</code> is bigger than <code>end</code>, the result will be an empty substring.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature9">Signature</h4>
@@ -804,6 +806,12 @@ system = target.substring(4) # suffix string value 'FreeBSD'
 <pre><code class="language-meson">string = 'foobar'
 string.substring(-5, -3) # =&gt; 'oo'
 string.substring(1, -1) # =&gt; 'ooba'
+</code></pre>
+<p>Example with out of bound values:</p>
+<pre><code class="language-meson">string = 'foobar'
+string.substring(64) # =&gt; ''
+string.substring(0, 64) # =&gt; 'foobar'
+string.substring(64, 0) # =&gt; ''
 </code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments8">Arguments</h4>
