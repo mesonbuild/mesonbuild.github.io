@@ -212,8 +212,13 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="qt6-module">Qt6 module</h1>
 <p><em>New in Meson 0.57.0</em></p>
-<p>The Qt6 module provides tools to automatically deal with the various
+<p>The Qt6 module provides methods to automatically deal with the various
 tools and steps required for Qt.</p>
+<div class="alert alert-warning">
+<strong>Warning:</strong> before version 0.63.0 Meson would fail to find
+Qt 6.1 or later due to the Qt tools having moved to the libexec subdirectory,
+and tool names being suffixed with only the Qt major version number e.g. qmake6.
+</div>
 <h2 id="compile_resources">compile_resources</h2>
 <p><em>New in 0.59.0</em></p>
 <p>Compiles Qt's resources collection files (.qrc) into c++ files for compilation.</p>
@@ -231,7 +236,7 @@ A list of sources to be transpiled. Required, must have at least one source<br>
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-rcc</code>
 </li>
 <li>
-<code>method</code> string: The method to use to detect qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
+<code>method</code> string: The method to use to detect Qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
 </li>
 </ul>
 <h2 id="compile_ui">compile_ui</h2>
@@ -247,7 +252,7 @@ A list of sources to be transpiled. Required, must have at least one source<br>
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-uic</code>
 </li>
 <li>
-<code>method</code> string: The method to use to detect qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
+<code>method</code> string: The method to use to detect Qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
 </li>
 </ul>
 <h2 id="compile_moc">compile_moc</h2>
@@ -268,7 +273,7 @@ A list of headers to be transpiled into .cpp files<br>
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-moc</code>
 </li>
 <li>
-<code>method</code> string: The method to use to detect qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
+<code>method</code> string: The method to use to detect Qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
 </li>
 <li>
 <code>dependencies</code>: dependency objects whose include directories are used by moc.</li>
@@ -363,11 +368,11 @@ endif
 <code>true</code> or an enabled <a href="Build-options.html#features"><code>feature</code></a> and some tools are
 missing Meson will abort.</li>
 <li>
-<code>method</code> string: The method to use to detect qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
+<code>method</code> string: The method to use to detect Qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
 </li>
 </ul>
 <h2 id="dependencies">Dependencies</h2>
-<p>See <a href="Dependencies.html#qt4-qt5">Qt dependencies</a></p>
+<p>See <a href="Dependencies.html#qt">Qt dependencies</a></p>
 <p>The 'modules' argument is used to include Qt modules in the project.
 See the Qt documentation for the <a href="https://doc.qt.io/qt-6/qtmodules.html">list of
 modules</a>.</p>

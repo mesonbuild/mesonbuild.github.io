@@ -230,7 +230,7 @@ A list of sources to be transpiled. Required, must have at least one source
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-rcc</code>
 </li>
 <li>
-<code>method</code> string: The method to use to detect qt, see <code>dependency()</code> for more
+<code>method</code> string: The method to use to detect Qt, see <code>dependency()</code> for more
 information.</li>
 </ul>
 <h2 id="compile_ui">compile_ui</h2>
@@ -246,7 +246,7 @@ A list of sources to be transpiled. Required, must have at least one source
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-uic</code>
 </li>
 <li>
-<code>method</code> string: The method to use to detect qt, see <code>dependency()</code> for more
+<code>method</code> string: The method to use to detect Qt, see <code>dependency()</code> for more
 information.</li>
 </ul>
 <h2 id="compile_moc">compile_moc</h2>
@@ -267,7 +267,7 @@ A list of headers to be transpiled into .cpp files
 <code>extra_args</code> string[]: Extra arguments to pass directly to <code>qt-moc</code>
 </li>
 <li>
-<code>method</code> string: The method to use to detect qt, see <code>dependency()</code> for more
+<code>method</code> string: The method to use to detect Qt, see <code>dependency()</code> for more
 information.</li>
 <li>
 <code>dependencies</code>: dependency objects whose include directories are used by moc.</li>
@@ -310,7 +310,8 @@ sources += qt.preprocess(qresources : ['resources'])
 <code>sources</code>: a list of extra sources, which are added to the output unchanged. Deprecated in 0.59.0.</li>
 </ul>
 <p>It returns an array of targets and sources to pass to a compilation target.</p>
-<h2 id="compile_translations-since-v0440">compile_translations (since v0.44.0)</h2>
+<h2 id="compile_translations">compile_translations</h2>
+<p><em>since 0.44.0</em></p>
 <p>This method generates the necessary targets to build translation files with
 lrelease, it takes no positional arguments, and the following keyword arguments:</p>
 <ul>
@@ -358,7 +359,7 @@ missing Meson will abort.</li>
 <code>method</code> string: method used to find the Qt dependency (<code>auto</code> by default).</li>
 </ul>
 <h2 id="dependencies">Dependencies</h2>
-<p>See <a href="Dependencies.html#qt4-qt5">Qt dependencies</a></p>
+<p>See <a href="Dependencies.html#qt">Qt dependencies</a></p>
 <p>The 'modules' argument is used to include Qt modules in the project.
 See the Qt documentation for the <a href="http://doc.qt.io/qt-5/qtmodules.html">list of
 modules</a>.</p>
