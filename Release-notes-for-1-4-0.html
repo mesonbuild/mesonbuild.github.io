@@ -216,6 +216,14 @@ $('body').removeClass('no-script');
 version set to the project version in their CMakeLists.txt. This
 allows version constraints to be properly checked when falling back to
 a cmake subproject.</p>
+<h2 id="ndebug-setting-now-controls-c-stdlib-assertions">
+<code>ndebug</code> setting now controls C++ stdlib assertions</h2>
+<p>The <code>ndebug</code> setting, if disabled, now passes preprocessor defines to enable
+debugging assertions within the C++ standard library.</p>
+<p>For GCC, <code>-D_GLIBCXX_ASSERTIONS=1</code> is set.</p>
+<p>For Clang, <code>-D_GLIBCXX_ASSERTIONS=1</code> is set to cover libstdc++ usage,
+and <code>-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_EXTENSIVE</code> or
+<code>-D_LIBCPP_ENABLE_ASSERTIONS=1</code> is used depending on the Clang version.</p>
 <h2 id="file-object-now-has-full_path-method">File object now has <code>full_path()</code> method</h2>
 <p>Returns a full path pointing to the file. This is useful for printing the path
 with e.g <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> function for debugging purpose.</p>
