@@ -224,6 +224,10 @@ debugging assertions within the C++ standard library.</p>
 <p>For Clang, <code>-D_GLIBCXX_ASSERTIONS=1</code> is set to cover libstdc++ usage,
 and <code>-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_EXTENSIVE</code> or
 <code>-D_LIBCPP_ENABLE_ASSERTIONS=1</code> is used depending on the Clang version.</p>
+<h2 id="stldebug-gains-clang-support">
+<code>stldebug</code> gains Clang support</h2>
+<p>For Clang, we now pass <code>-D_GLIBCXX_DEBUG=1</code> if <code>debugstl</code> is enabled, and
+we also pass <code>-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_DEBUG</code>.</p>
 <h2 id="file-object-now-has-full_path-method">File object now has <code>full_path()</code> method</h2>
 <p>Returns a full path pointing to the file. This is useful for printing the path
 with e.g <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> function for debugging purpose.</p>
