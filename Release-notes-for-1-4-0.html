@@ -233,6 +233,11 @@ we also pass <code>-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_DEBUG</code>.
 with e.g <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> function for debugging purpose.</p>
 <p><strong>NOTE:</strong> In most cases using the object itself will do the same job
 as this and will also allow Meson to setup dependencies correctly.</p>
+<h2 id="depends-kwarg-now-supported-by-compilerpreprocess">
+<code>depends</code> kwarg now supported by compiler.preprocess()</h2>
+<p>It is now possible to specify the dependent targets with <code>depends:</code>
+for compiler.preprocess(). These targets should be built before the
+preprocessing starts.</p>
 
     </div>
         
