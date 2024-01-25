@@ -316,7 +316,7 @@ configure_file(...)
 execute permissions, the generated file will have them too.</p>
 <h2 id="producing-a-coverage-report">Producing a coverage report</h2>
 <p>First initialize the build directory with this command.</p>
-<pre><code class="language-console">$ meson &lt;other flags&gt; -Db_coverage=true
+<pre><code class="language-console">$ meson setup &lt;other flags&gt; -Db_coverage=true
 </code></pre>
 <p>Then issue the following commands.</p>
 <pre><code class="language-console">$ meson compile
@@ -338,7 +338,7 @@ following command.</p>
 <p>Clang and gcc come with a selection of analysis tools such as the <a href="https://clang.llvm.org/docs/AddressSanitizer.html">address
 sanitizer</a>. Meson
 has native support for these with the <code>b_sanitize</code> option.</p>
-<pre><code class="language-console">$ meson &lt;other options&gt; -Db_sanitize=address
+<pre><code class="language-console">$ meson setup &lt;other options&gt; -Db_sanitize=address
 </code></pre>
 <p>After this you just compile your code and run the test suite. Address
 sanitizer will abort executables which have bugs so they show up as
