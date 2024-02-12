@@ -245,6 +245,14 @@ without setting <code>PKG_CONFIG_PATH</code>.</p>
 <p>It is now possible to specify the dependent targets with <code>depends:</code>
 for compiler.preprocess(). These targets should be built before the
 preprocessing starts.</p>
+<h2 id="added-preserve_paths-keyword-argument-to-qt-module-functions">Added <code>preserve_paths</code> keyword argument to qt module functions.</h2>
+<p>In <code>qt4</code>, <code>qt5</code>, and <code>qt6</code> modules, <code>compile_ui</code>, <code>compile_moc</code>, and
+<code>preprocess</code> functions now have a <code>preserve_paths</code> keyword argument.</p>
+<p>If <code>'true</code>, it specifies that the output files need to maintain their directory
+structure inside the target temporary directory. For instance, when a file
+called <code>subdir/one.input</code> is processed it generates a file
+<code>{target private directory}/subdir/one.out</code> when <code>true</code>,
+and <code>{target private directory}/one.out</code> when <code>false</code> (default).</p>
 
     </div>
         

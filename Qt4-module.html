@@ -248,6 +248,12 @@ A list of sources to be transpiled. Required, must have at least one source
 <li>
 <code>method</code> string: The method to use to detect Qt, see <code>dependency()</code> for more
 information.</li>
+<li>
+<code>preserve_paths</code> bool: <em>Since 1.4.0</em>. If <code>true</code>, specifies that the output
+files need to maintain their directory structure inside the target temporary
+directory. For instance, when a file called <code>subdir/one.input</code> is processed
+it generates a file <code>{target private directory}/subdir/one.out</code> when <code>true</code>,
+and <code>{target private directory}/one.out</code> when <code>false</code> (default).</li>
 </ul>
 <h2 id="compile_moc">compile_moc</h2>
 <p><em>New in 0.59.0</em></p>
@@ -274,6 +280,12 @@ information.</li>
 <li>
 <code>include_directories</code> (string | IncludeDirectory)[]: A list of <code>include_directory()</code>
 objects used when transpiling the .moc files</li>
+<li>
+<code>preserve_paths</code> bool: <em>New in 1.4.0</em>. If <code>true</code>, specifies that the output
+files need to maintain their directory structure inside the target temporary
+directory. For instance, when a file called <code>subdir/one.input</code> is processed
+it generates a file <code>{target private directory}/subdir/one.out</code> when <code>true</code>,
+and <code>{target private directory}/one.out</code> when <code>false</code> (default).</li>
 </ul>
 <h2 id="preprocess">preprocess</h2>
 <p>Consider using <code>compile_resources</code>, <code>compile_ui</code>, and <code>compile_moc</code> instead.</p>
@@ -308,6 +320,12 @@ sources += qt.preprocess(qresources : ['resources'])
 <code>dependencies</code> Dependency[]: dependency objects needed by moc. Available since v0.48.0.</li>
 <li>
 <code>sources</code>: a list of extra sources, which are added to the output unchanged. Deprecated in 0.59.0.</li>
+<li>
+<code>preserve_paths</code> bool: <em>New in 1.4.0</em>. If <code>true</code>, specifies that the output
+files need to maintain their directory structure inside the target temporary
+directory. For instance, when a file called <code>subdir/one.input</code> is processed
+it generates a file <code>{target private directory}/subdir/one.out</code> when <code>true</code>,
+and <code>{target private directory}/one.out</code> when <code>false</code> (default).</li>
 </ul>
 <p>It returns an array of targets and sources to pass to a compilation target.</p>
 <h2 id="compile_translations">compile_translations</h2>
