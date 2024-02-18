@@ -5819,7 +5819,7 @@ command used to execute the build script.</p>
   <a href="Reference-manual_functions.html#find_program_disabler"><b>disabler</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # If `true` and the program couldn't be found, return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object
   <a href="Reference-manual_functions.html#find_program_native"><b>native</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # Defines how this executable should be searched
   <a href="Reference-manual_functions.html#find_program_required"><b>required</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>                                # When `true`, Meson will abort if no program can be found
-  <a href="Reference-manual_functions.html#find_program_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # specifies the required version, see
+  <a href="Reference-manual_functions.html#find_program_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                               # Specifies the required version, see
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments22">Arguments</h3>
@@ -5975,10 +5975,11 @@ whether it was found or not. <em>(since 0.47.0)</em> The value of a
       </tr>
       <tr id="find_program_version">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">version</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>specifies the required version, see
+<p>Specifies the required version, see
 <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> for argument format. The version of the program
 is determined by running <code>program_name --version</code> command. If stdout is empty
 it fallbacks to stderr. If the output contains more text than simply a version
