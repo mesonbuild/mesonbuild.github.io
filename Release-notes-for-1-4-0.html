@@ -267,6 +267,11 @@ there may still be cases where Meson does not have the intended behavior,
 specifically with headers with a <code>.h</code> suffix, but are C++ headers.</p>
 <h2 id="bindgen-now-uses-the-same-cc-as-the-project-as-a-whole">Bindgen now uses the same C/C++ as the project as a whole</h2>
 <p>Which is very important for C++ bindings.</p>
+<h2 id="tests-now-abort-on-errors-by-default-under-more-sanitizers">Tests now abort on errors by default under more sanitizers</h2>
+<p>Sanitizers like MemorySanitizer do not abort
+by default on detected violations. Meson now exports <code>MSAN_OPTIONS</code> (in addition to
+<code>ASAN_OPTIONS</code> and <code>UBSAN_OPTIONS</code> from a previous release) when unset in the
+environment to provide sensible abort-by-default behavior.</p>
 
     </div>
         
