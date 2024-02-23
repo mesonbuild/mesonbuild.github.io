@@ -3401,7 +3401,7 @@ normal compilation. That includes for example args added with
 </div>
 <pre><code class="language-meson"># Preprocess a list of source files but do not compile them
 <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>] preprocess(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> <b>source</b>...,  # Input source to compile
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> <b>source</b>...,  # Input source to preprocess
 
   # Keyword arguments:
   <a href="Reference-manual_returned_compiler.html#preprocess_compile_args"><b>compile_args</b></a>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                     # Extra flags to pass to the preprocessor
@@ -3415,122 +3415,114 @@ normal compilation. That includes for example args added with
 <p>The
 method accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>source...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a></code>.</p>
-<p>Input source to compile. The following types are supported:</p>
+<p>Input source to preprocess. The following types are supported:</p>
 <ul>
-<li>Strings relative to the current source directory</li>
 <li>
-<a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects defined in any preceding build file</li>
-<li>The return value of configure-time generators such as <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>
+<p>Strings relative to the current source directory</p>
 </li>
-<li>The return value of build-time generators such as
-<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> or <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a>
+<li>
+<p><a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects defined in any preceding build file</p>
 </li>
-</ul>
-<p>These input files can be sources, objects, libraries, or any other
-file. Meson will automatically categorize them based on the extension
-and use them accordingly. For instance, sources (<code>.c</code>, <code>.cpp</code>,
-<code>.vala</code>, <code>.rs</code>, etc) will be compiled and objects (<code>.o</code>, <code>.obj</code>) and
-libraries (<code>.so</code>, <code>.dll</code>, etc) will be linked.</p>
-<p>With the Ninja backend, Meson will create a build-time <a href="https://ninja-build.org/manual.html#ref_dependencies">order-only
-dependency</a> on
-all generated input files, including unknown files. This is needed to
-bootstrap the generation of the real dependencies in the
-<a href="https://ninja-build.org/manual.html#ref_headers">depfile</a> generated
-by your compiler to determine when to rebuild sources. Ninja relies on
-this dependency file for all input files, generated and non-generated.
-The behavior is similar for other backends.</p>
-  <div style="margin: 0px; text-align: center;">
-  </div>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<li>
+<p>The return value of configure-time generators such as <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a></p>
+</li>
+<li>
+<p>The return value of build-time generators such as
+<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> or <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a></p>
+<div style="margin: 0px; text-align: center;">
+</div>
+<p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p>The method <code>compiler.preprocess()</code>
 accepts the following keyword arguments:</p>
-  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
-  <style>
-    .nomargin p:last-child { margin-bottom: 0px !important; }
-  </style>
-  <table>
-    <thead>
-      <tr>
-        <th style="white-space: nowrap; text-align: center;">Name</th>
-        <th style="white-space: nowrap; text-align: center;">Type</th>
-        <th style="width: 56%;">Description</th>
-        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
-      </tr>
-    </thead>
-    <tbody class="nomargin">
-      <tr id="preprocess_compile_args">
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">compile_args</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+<style>
+  .nomargin p:last-child { margin-bottom: 0px !important; }
+</style>
+<table>
+  <thead>
+    <tr>
+      <th style="white-space: nowrap; text-align: center;">Name</th>
+      <th style="white-space: nowrap; text-align: center;">Type</th>
+      <th style="width: 56%;">Description</th>
+      <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+    </tr>
+  </thead>
+  <tbody class="nomargin">
+    <tr id="preprocess_compile_args">
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">compile_args</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
+      <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
 <p>Extra flags to pass to the preprocessor</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-      <tr id="preprocess_dependencies">
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+</div>
+</td>
+    </tr>
+    <tr id="preprocess_dependencies">
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
+      <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
 <p>Additionally dependencies required.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
-  </div>
-  </td>
-      </tr>
-      <tr id="preprocess_depends">
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depends</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.1.0)</em></p>
+</div>
+</td>
+    </tr>
+    <tr id="preprocess_depends">
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depends</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>]</td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
+      <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
 <p>Specifies that this target depends on the specified
 target(s). These targets should be built before starting
 to preprocess an input.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.4.0)</em></p>
-  </div>
-  </td>
-      </tr>
-      <tr id="preprocess_include_directories">
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.4.0)</em></p>
+</div>
+</td>
+    </tr>
+    <tr id="preprocess_include_directories">
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
 <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a>]</td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
+      <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
 <p>Extra directories for header searches.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
-  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.38.0)</em></p>
-  </div>
-  </td>
-      </tr>
-      <tr id="preprocess_output">
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">output</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 0.38.0)</em></p>
+</div>
+</td>
+    </tr>
+    <tr id="preprocess_output">
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">output</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+      <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
 <p>Template for name of preprocessed files: <code>@PLAINNAME@</code> is replaced by
 the source filename and <code>@BASENAME@</code> is replaced by the source filename
 without its extension.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-    </tbody>
-  </table>
+</div>
+</td>
+    </tr>
+  </tbody>
+</table>
+</li>
+</ul>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>

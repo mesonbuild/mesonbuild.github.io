@@ -266,6 +266,12 @@ these are passed to clang as <code>-I</code> arguments <em>(string since 1.0.0)<
 <code>args</code>: a list of string arguments to pass to <code>bindgen</code> untouched.</li>
 <li>
 <code>dependencies</code>: a list of <code>Dependency</code> objects to pass to the underlying clang call (<em>since 1.0.0</em>)</li>
+<li>
+<code>language</code>: A literal string value of <code>c</code> or <code>cpp</code>. When set this will force bindgen to treat a source as the given language. Defaults to checking based on the input file extension. <em>(since 1.4.0)</em>
+</li>
+<li>
+<code>bindgen_version</code>: a list of string version values. When set the found bindgen binary must conform to these constraints. <em>(since 1.4.0)</em>
+</li>
 </ul>
 <pre><code class="language-meson">rust = import('unstable-rust')
 
@@ -350,6 +356,7 @@ targets.</p>
 				© 								2020, 
 				2021, 
 				2022, 
+				2024, 
 													       	Dylan Baker 				(<a href="mailto:dylan@pnwbakers.com">dylan@pnwbakers.com</a>)
 			</p>
 	</div>
