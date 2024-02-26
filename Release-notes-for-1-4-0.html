@@ -266,7 +266,7 @@ called <code>subdir/one.input</code> is processed it generates a file
 <code>{target private directory}/subdir/one.out</code> when <code>true</code>,
 and <code>{target private directory}/one.out</code> when <code>false</code> (default).</p>
 <h2 id="bindgen-will-now-use-mesons-hueristic-for-what-is-a-c-header">Bindgen will now use Meson's hueristic for what is a C++ header</h2>
-<p>Bindgen natively assumes that a file with the extension <code>.cpp</code> is a C++ header,
+<p>Bindgen natively assumes that a file with the extension <code>.hpp</code> is a C++ header,
 but that everything else is a C header. Meson has a whole list of extensions it
 considers to be C++, and now will automatically look for those extensions and
 set bindgen to treat those as C++</p>
@@ -274,7 +274,7 @@ set bindgen to treat those as C++</p>
 <p>Even though Meson will now tell bindgen to do the right thing in most cases,
 there may still be cases where Meson does not have the intended behavior,
 specifically with headers with a <code>.h</code> suffix, but are C++ headers.</p>
-<h2 id="bindgen-now-uses-the-same-cc-as-the-project-as-a-whole">Bindgen now uses the same C/C++ as the project as a whole</h2>
+<h2 id="bindgen-now-uses-the-same-cc-std-as-the-project-as-a-whole">Bindgen now uses the same C/C++ std as the project as a whole</h2>
 <p>Which is very important for C++ bindings.</p>
 <h2 id="tests-now-abort-on-errors-by-default-under-more-sanitizers">Tests now abort on errors by default under more sanitizers</h2>
 <p>Sanitizers like MemorySanitizer do not abort
