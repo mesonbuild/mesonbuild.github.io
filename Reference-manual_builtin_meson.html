@@ -363,6 +363,16 @@ variables are set when dist scripts are run. They are identical to
 <code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code> and <code>MESON_DIST_ROOT</code> for main project
 scripts, but for subproject scripts they have the path to the root of the
 subproject appended, usually <code>subprojects/&lt;subproject-name&gt;</code>.</p>
+<p><em>(since 1.4.0)</em> The <code>MESONREWRITE</code> environment variable contains the path
+to the rewrite command that corresponds to the <code>meson</code> executable that
+was used to configure the build. (This might be a different path than the
+first executable found in <code>PATH</code>.) It can be used to remove or replace
+any <a href="Reference-manual_functions.html#run_command"><ins><code>run_command()</code></ins></a> that depends on the revision control system from the
+build configuration. Note that the value will contain many parts. For
+example, it may be <code>python3 /path/to/meson.py introspect</code>. The user is
+responsible for splitting the string to an array if needed by splitting
+lexically like a UNIX shell would. If your script uses Python,
+<code>shlex.split()</code> is the easiest correct way to do this.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature1">Signature</h4>

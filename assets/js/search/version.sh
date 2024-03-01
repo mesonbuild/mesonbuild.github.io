@@ -1,0 +1,1 @@
+urls_downloaded_cb({"token":"version.sh","urls":[{"url":"Creating-releases.html#cement-a-version-obtained-from-vcs","node_type":"p","context":{"gi-language":["default"]}}]});
