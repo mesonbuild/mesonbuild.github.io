@@ -238,9 +238,22 @@ is a Cargo dependency.</li>
 <code>[provide]</code> section when <code>Cargo.toml</code> has package name <code>foo</code> and version <code>1.2</code>.</p>
 <p>This is a breaking change (Cargo subprojects are still experimental), previous
 versions were using <code>&lt;package_name&gt;-rs</code> format.</p>
+<h2 id="compilerrun-method-is-now-available-for-all-languages">compiler.run() method is now available for all languages</h2>
+<p>It used to be only implemented for C-like and D languages, but it is now available
+for all languages.</p>
 <h2 id="support-for-texas-instruments-c6000-cc-compiler">Support for Texas Instruments C6000 C/C++ compiler</h2>
 <p>Meson now supports the TI C6000 C/C++ compiler use for the C6000 cpu family.
 The example cross file is available in <code>cross/ti-c6000.txt</code>.</p>
+<h2 id="wayland-stable-protocols-can-be-versioned">Wayland stable protocols can be versioned</h2>
+<p>The wayland module now accepts a version number for stable protocols.</p>
+<pre><code class="language-meson">wl_mod = import('unstable-wayland')
+
+wl_mod.find_protocol(
+  'linux-dmabuf',
+  state: 'stable'
+  version: 1
+)
+</code></pre>
 
     </div>
         
