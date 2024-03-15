@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"x.y","urls":[{"url":"Cuda-module.html#nvcc_arch_flags","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"x.y","urls":[{"url":"Cuda-module.html#nvcc_arch_flags","node_type":"p","context":{"gi-language":["default"]}},{"url":"Release-notes-for-1-5-0.html#cargo-dependencies-names-now-include-the-api-version","node_type":"ul","context":{"gi-language":["default"]}},{"url":"Wrap-dependency-system-manual.html#cargo-wraps","node_type":"ul","context":{"gi-language":["default"]}}]});

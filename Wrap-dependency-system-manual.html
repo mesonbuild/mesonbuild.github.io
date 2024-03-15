@@ -505,11 +505,33 @@ method = cmake
 foo-bar-1.0 = foo_bar_dep
 </code></pre>
 <h3 id="cargo-wraps">Cargo wraps</h3>
-<p>Cargo subprojects automatically override the <code>&lt;package_name&gt;-rs</code> dependency name.
-<code>package_name</code> is defined in <code>[package] name = ...</code> section of the <code>Cargo.toml</code>
-and <code>-rs</code> suffix is added. That means the <code>.wrap</code> file should have
-<code>dependency_names = foo-rs</code> in their <code>[provide]</code> section when <code>Cargo.toml</code> has
-package name <code>foo</code>.</p>
+<p>Cargo subprojects automatically override the <code>&lt;package_name&gt;-&lt;version&gt;-rs</code> dependency
+name:</p>
+<ul>
+<li>
+<code>package_name</code> is defined in <code>[package] name = ...</code> section of the <code>Cargo.toml</code>.</li>
+<li>
+<code>version</code> is the API version deduced from <code>[package] version = ...</code> as follow:
+<ul>
+<li>
+<code>x.y.z</code> -&gt; 'x'</li>
+<li>
+<code>0.x.y</code> -&gt; '0.x'</li>
+<li>
+<code>0.0.x</code> -&gt; '0'
+It allows to make different dependencies for uncompatible versions of the same
+crate.</li>
+</ul>
+</li>
+<li>
+<code>-rs</code> suffix is added to distinguish from regular system dependencies, for
+example <code>gstreamer-1.0</code> is a system pkg-config dependency and <code>gstreamer-0.22-rs</code>
+is a Cargo dependency.</li>
+</ul>
+<p>That means the <code>.wrap</code> file should have <code>dependency_names = foo-1-rs</code> in their
+<code>[provide]</code> section when <code>Cargo.toml</code> has package name <code>foo</code> and version <code>1.2</code>.</p>
+<p>Note that the version component was added in Meson 1.4, previous versions were
+using <code>&lt;package_name&gt;-rs</code> format.</p>
 <p>Cargo subprojects require a toml parser. Python &gt;= 3.11 have one built-in, older
 Python versions require either the external <code>tomli</code> module or <code>toml2json</code> program.</p>
 <p>For example, a Cargo project with the package name <code>foo-bar</code> would have a wrap
@@ -518,24 +540,24 @@ file like that:</p>
 ...
 method = cargo
 [provide]
-dependency_names = foo-bar-rs
+dependency_names = foo-bar-0.1-rs
 </code></pre>
 <p>Cargo features are exposed as Meson boolean options, with the <code>feature-</code> prefix.
 For example the <code>default</code> feature is named <code>feature-default</code> and can be set from
-the command line with <code>-Dfoo-rs:feature-default=false</code>. When a cargo subproject
+the command line with <code>-Dfoo-1-rs:feature-default=false</code>. When a cargo subproject
 depends on another cargo subproject, it will automatically enable features it
-needs using the <code>dependency('foo-rs', default_options: ...)</code> mechanism. However,
+needs using the <code>dependency('foo-1-rs', default_options: ...)</code> mechanism. However,
 unlike Cargo, the set of enabled features is not managed globally. Let's assume
-the main project depends on <code>foo-rs</code> and <code>bar-rs</code>, and they both depend on
-<code>common-rs</code>. The main project will first look up <code>foo-rs</code> which itself will
-configure <code>common-rs</code> with a set of features. Later, when <code>bar-rs</code> does a lookup
-for <code>common-rs</code> it has already been configured and the set of features cannot be
-changed. If <code>bar-rs</code> wants extra features from <code>common-rs</code>, Meson will error out.
+the main project depends on <code>foo-1-rs</code> and <code>bar-1-rs</code>, and they both depend on
+<code>common-1-rs</code>. The main project will first look up <code>foo-1-rs</code> which itself will
+configure <code>common-rs</code> with a set of features. Later, when <code>bar-1-rs</code> does a lookup
+for <code>common-1-rs</code> it has already been configured and the set of features cannot be
+changed. If <code>bar-1-rs</code> wants extra features from <code>common-1-rs</code>, Meson will error out.
 It is currently the responsability of the main project to resolve those
 issues by enabling extra features on each subproject:</p>
 <pre><code class="language-meson">project(...,
   default_options: {
-    'common-rs:feature-something': true,
+    'common-1-rs:feature-something': true,
   },
 )
 </code></pre>
