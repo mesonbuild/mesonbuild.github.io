@@ -241,6 +241,15 @@ versions were using <code>&lt;package_name&gt;-rs</code> format.</p>
 <h2 id="compilerrun-method-is-now-available-for-all-languages">compiler.run() method is now available for all languages</h2>
 <p>It used to be only implemented for C-like and D languages, but it is now available
 for all languages.</p>
+<h2 id="meson-configure-handles-changes-to-options-in-more-cases">Meson configure handles changes to options in more cases</h2>
+<p>Meson configure now correctly handles updates to the options file without a full
+reconfigure. This allows making a change to the <code>meson.options</code> or
+<code>meson_options.txt</code> file without a reconfigure.</p>
+<p>For example, this now works:</p>
+<pre><code class="language-sh">meson setup builddir
+git pull
+meson configure builddir -Doption-added-by-pull=value
+</code></pre>
 <h2 id="support-for-texas-instruments-c6000-cc-compiler">Support for Texas Instruments C6000 C/C++ compiler</h2>
 <p>Meson now supports the TI C6000 C/C++ compiler use for the C6000 cpu family.
 The example cross file is available in <code>cross/ti-c6000.txt</code>.</p>
