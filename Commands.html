@@ -1007,6 +1007,94 @@ options:
                                     1.1.0)
   --dump-format {sh,export,vscode}  Format used with --dump (Since 1.1.0)
 </code></pre>
+<h3 id="format">format</h3>
+<p><em>(since 1.5.0)</em></p>
+<pre><code class="language-inc">$ meson format [-h] [-q | -i] [-r] [-c meson.format] [-e] [-o OUTPUT]
+               [sources ...]
+</code></pre>
+<p>Format specified <code>meson.build</code> documents. For compatibility with <code>muon</code>, <code>fmt</code>
+is an alias to <code>format</code>.</p>
+<pre><code class="language-inc">positional arguments:
+  sources                               meson source files
+
+options:
+  -h, --help                            show this help message and exit
+  -q, --check-only                      exit with 1 if files would be modified
+                                        by meson format
+  -i, --inplace                         format files in-place
+  -r, --recursive                       recurse subdirs (requires --check-only
+                                        or --inplace option)
+  -c meson.format, --configuration meson.format
+                                        read configuration from meson.format
+  -e, --editor-config                   try to read configuration from
+                                        .editorconfig
+  -o OUTPUT, --output OUTPUT            output file (implies having exactly one
+                                        input)
+</code></pre>
+<p>The configuration file is a <code>.ini</code> file. If a <code>meson.format</code> file exists
+beside the provided build file to analyze, and no configuration file is
+provided on the command line, the <code>meson.format</code> file is automatically used.</p>
+<p>If no build file is provided on the command line, the <code>meson.build</code> file in
+current directory is analyzed.</p>
+<p>The following options are recognized:</p>
+<ul>
+<li>max_line_length (int): When an array, a dict, a function or a method
+would be longer that this, it is formatted one argument per line
+(Default is 80).</li>
+<li>indent_by (str): Indentation to use (Default is four spaces <code>' '</code>).</li>
+<li>space_array (bool): Whether to add spaces between <code>[]</code> and array
+arguments (default is false).</li>
+<li>kwargs_force_multiline (bool): If true, arguments are formatted one per
+line as soon as there is a keyword argument (default is false).</li>
+<li>wide_colon (bool): If true, a space is placed before colon in dict
+and in keyword arguments (default is false).</li>
+<li>no_single_comma_function (bool): If true, a comma is never appended
+to function arguments if there is only one argument, even if
+using multiline arguments (default is false).</li>
+<li>end_of_line ('cr', 'lf', 'crlf', 'native'): Line ending to use
+(applied when using <code>--output</code> or <code>--inline</code> argument) (default
+is 'native).</li>
+<li>indent_before_comments (str): Indentation to use before inline comments
+(default is two spaces <code>' '</code>).</li>
+<li>simplify_string_literals (bool): When true, multiline strings are
+converted to single line strings if they don't contain newlines.
+Formatted strings are converted to normal strings if they don't
+contain substitutions (default is true).</li>
+<li>insert_final_newline (bool): If true, force the <code>meson.build</code> file
+to end with a newline character (default is true).</li>
+<li>tab_width (int): Width of tab stops, used to compute line length
+when <code>indent_by</code> uses tab characters (default is 4).</li>
+<li>sort_files (bool): When true, arguments of <code>files()</code> function are
+sorted alphabetically (default is false).</li>
+<li>group_arg_value (bool): When true, string argument with <code>--</code> prefix
+followed by string argument without <code>--</code> prefix are grouped on the
+same line, in multiline arguments (default is false).</li>
+<li>use_editor_config (bool): When true, also uses config from .editorconfig .</li>
+</ul>
+<p>The first six options are the same than for the <code>muon fmt</code> command.</p>
+<p>It is also possible to use a <code>.editorconfig</code> file, by providing
+the <code>--editor-config</code> option on the command line, or with the
+<code>use_editor_config</code> option in the config file.</p>
+<p>When <code>--recursive</code> option is specified, <code>meson.build</code> files from
+<code>subdir</code> are also analyzed (must be used in conjunction with <code>--inplace</code>
+or <code>--check-only</code> option).</p>
+<h4 id="differences-with-muon-fmt">Differences with <code>muon fmt</code>
+</h4>
+<p>The <code>meson format</code> command should be compatible with the <code>muon fmt</code> command.
+However, it has more features, and some differences:</p>
+<ul>
+<li>By default, <code>meson format</code> put two spaces before inline comments,
+while <code>muon fmt</code> only puts one.</li>
+<li>
+<code>muon fmt</code> can potentially mix crlf and lf end-of-lines, as it is not aware
+of them. <code>meson format</code> will always be consistent in the output it produces.</li>
+<li>
+<code>muon fmt</code> only recognize the <code>indent_by</code> option from .editorconfig files.
+<code>meson format</code> also recognizes <code>max_line_length</code>, <code>end_of_line</code>,
+<code>insert_final_newline</code> and <code>tab_width</code> options.</li>
+<li>
+<code>meson format</code> has many additional format rules (see option list above).</li>
+</ul>
 
     </div>
         
