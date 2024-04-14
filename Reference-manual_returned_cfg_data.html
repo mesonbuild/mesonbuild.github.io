@@ -211,10 +211,13 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="configuration-data-object-cfg_data">Configuration data object (<code>cfg_data</code>)</h1>
-<p>This object encapsulates
-configuration values to be used for generating configuration files. A
-more in-depth description can be found in the <a href="Configuration.html">the configuration wiki
-page</a>.</p>
+<p>This object encapsulates configuration values to be used for generating
+configuration files. A more in-depth description can be found in the
+<a href="Configuration.html">the configuration page</a>.</p>
+<p>This object becomes immutable after first use. This means that
+calling set() or merge_from() will cause an error if this object has
+already been used in any function arguments. However, assignment creates a
+mutable copy.</p>
 <h2 id="returned-by">Returned by</h2>
 <p>Configuration data object objects are returned by the following functions and methods:</p>
 <ul>
