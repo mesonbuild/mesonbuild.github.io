@@ -214,7 +214,9 @@ $('body').removeClass('no-script');
 <p>This page lists some recommendations on organizing and formatting your
 Meson build files.</p>
 <h2 id="tabs-or-spaces">Tabs or spaces?</h2>
-<p>Always spaces.</p>
+<p>Always spaces. Two spaces is the most common.</p>
+<h2 id="trailing-commas">Trailing commas?</h2>
+<p>Yes, where possible. They help make nicer diffs in version control systems.</p>
 <h2 id="naming-variable">Naming Variable</h2>
 <p>Snake case (stylized as <code>snake_case</code>) refers to the style of writing in which
 each space is replaced by an underscore (<code>_</code>) character, and the first letter of
@@ -254,7 +256,7 @@ Furthermore, strings should be sorted case insensitive.</p>
 <p>Additionally, if a path contains a directory it should be sorted before
 normal files. This rule also applies recursively for subdirectories.</p>
 <p>The following example shows correct source list definition:</p>
-<pre><code class="language-meson">sources = files([
+<pre><code class="language-meson">sources = files(
   'aaa/a1.c',
   'aaa/a2.c',
   'bbb/subdir1/b1.c',
@@ -266,8 +268,8 @@ normal files. This rule also applies recursively for subdirectories.</p>
   'f1.c',
   'f2.c',
   'f10.c',
-  'f20.c'
-])
+  'f20.c',
+)
 </code></pre>
 
     </div>
