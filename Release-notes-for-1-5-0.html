@@ -245,6 +245,8 @@ versions were using <code>&lt;package_name&gt;-rs</code> format.</p>
 <h2 id="compilerrun-method-is-now-available-for-all-languages">compiler.run() method is now available for all languages</h2>
 <p>It used to be only implemented for C-like and D languages, but it is now available
 for all languages.</p>
+<h2 id="dependencies-created-by-compilerfind_library-implement-the-name-method">dependencies created by compiler.find_library implement the <code>name()</code> method</h2>
+<p>Which would previously result in Meson crashing.</p>
 <h2 id="meson-configure-handles-changes-to-options-in-more-cases">Meson configure handles changes to options in more cases</h2>
 <p>Meson configure now correctly handles updates to the options file without a full
 reconfigure. This allows making a change to the <code>meson.options</code> or
