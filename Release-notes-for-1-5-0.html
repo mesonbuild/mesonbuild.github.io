@@ -242,6 +242,28 @@ is a Cargo dependency.</li>
 <code>[provide]</code> section when <code>Cargo.toml</code> has package name <code>foo</code> and version <code>1.2</code>.</p>
 <p>This is a breaking change (Cargo subprojects are still experimental), previous
 versions were using <code>&lt;package_name&gt;-rs</code> format.</p>
+<h2 id="meson-now-propagates-its-build-type-to-cmake">Meson now propagates its build type to CMake</h2>
+<p>When the CMake build type variable, <code>CMAKE_BUILD_TYPE</code>, is not set via the
+<code>add_cmake_defines</code> method of the <a href="CMake-module.html#cmake-options-object"><code>cmake options</code> object</a>,
+it is inferred from the <a href="Builtin-options.html#details-for-buildtype">Meson build type</a>.
+Build types of the two build systems do not match perfectly. The mapping from
+Meson build type to CMake build type is as follows:</p>
+<ul>
+<li>
+<code>debug</code> -&gt; <code>Debug</code>
+</li>
+<li>
+<code>debugoptimized</code> -&gt; <code>RelWithDebInfo</code>
+</li>
+<li>
+<code>release</code> -&gt; <code>Release</code>
+</li>
+<li>
+<code>minsize</code> -&gt; <code>MinSizeRel</code>
+</li>
+</ul>
+<p>No CMake build type is set for the <code>plain</code> Meson build type. The inferred CMake
+build type overrides any <code>CMAKE_BUILD_TYPE</code> environment variable.</p>
 <h2 id="compilerrun-method-is-now-available-for-all-languages">compiler.run() method is now available for all languages</h2>
 <p>It used to be only implemented for C-like and D languages, but it is now available
 for all languages.</p>
