@@ -828,11 +828,12 @@ Commands:
 </code></pre>
 <h3 id="test">test</h3>
 <pre><code class="language-inc">$ meson test [-h] [--maxfail MAXFAIL] [--repeat REPEAT] [--no-rebuild]
-             [--gdb] [--gdb-path GDB_PATH] [--list] [--wrapper WRAPPER]
-             [-C WD] [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
-             [--print-errorlogs] [--benchmark] [--logbase LOGBASE]
-             [-j NUM_PROCESSES] [-v] [-q] [-t TIMEOUT_MULTIPLIER]
-             [--setup SETUP] [--test-args TEST_ARGS]
+             [--gdb] [--gdb-path GDB_PATH] [-i] [--list]
+             [--wrapper WRAPPER] [-C WD] [--suite SUITE] [--no-suite SUITE]
+             [--no-stdsplit] [--print-errorlogs] [--benchmark]
+             [--logbase LOGBASE] [-j NUM_PROCESSES] [-v] [-q]
+             [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
+             [--test-args TEST_ARGS]
              [args ...]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
@@ -853,6 +854,7 @@ options:
   --no-rebuild                          Do not rebuild before running tests.
   --gdb                                 Run test under gdb.
   --gdb-path GDB_PATH                   Path to the gdb binary (default: gdb).
+  -i, --interactive                     Run tests with interactive input/output.
   --list                                List available tests.
   --wrapper WRAPPER                     wrapper to run tests with (e.g.
                                         Valgrind)
