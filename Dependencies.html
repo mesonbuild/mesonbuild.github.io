@@ -404,16 +404,18 @@ variable when running Meson.</p>
 DC="dmd" meson setup builddir
 </code></pre>
 <h2 id="config-tool">Config tool</h2>
-<p><a href="Dependencies.html#cups">CUPS</a>, <a href="Dependencies.html#llvm">LLVM</a>, <a href="Dependencies.html#pcap">pcap</a>, <a href="Dependencies.html#wxwidgets">WxWidgets</a>,
-<a href="Dependencies.html#libwmf">libwmf</a>, <a href="Dependencies.html#libgcrypt">GCrypt</a>, <a href="Dependencies.html#gpgme">GPGME</a>, and GnuStep either do not provide pkg-config
-modules or additionally can be detected via a config tool
-(cups-config, llvm-config, libgcrypt-config, etc). Meson has native support for these
-tools, and they can be found like other dependencies:</p>
+<p><a href="Dependencies.html#cups">CUPS</a>, <a href="Dependencies.html#llvm">LLVM</a>, <a href="Dependencies.html#objfw">ObjFW</a>, <a href="Dependencies.html#pcap">pcap</a>,
+<a href="Dependencies.html#wxwidgets">WxWidgets</a>, <a href="Dependencies.html#libwmf">libwmf</a>, <a href="Dependencies.html#libgcrypt">GCrypt</a>,
+<a href="Dependencies.html#gpgme">GPGME</a>, and GnuStep either do not provide pkg-config modules or
+additionally can be detected via a config tool (cups-config, llvm-config,
+libgcrypt-config, etc). Meson has native support for these tools, and they can
+be found like other dependencies:</p>
 <pre><code class="language-meson">pcap_dep = dependency('pcap', version : '&gt;=1.0')
 cups_dep = dependency('cups', version : '&gt;=1.4')
 llvm_dep = dependency('llvm', version : '&gt;=4.0')
 libgcrypt_dep = dependency('libgcrypt', version: '&gt;= 1.8')
 gpgme_dep = dependency('gpgme', version: '&gt;= 1.0')
+objfw_dep = dependency('objfw', version: '&gt;= 1.0')
 </code></pre>
 <p><em>Since 0.55.0</em> Meson won't search $PATH any more for a config tool
 binary when cross compiling if the config tool did not have an entry
@@ -667,6 +669,23 @@ language-specific, you must specify the requested language using the
 <code>dependency('netcdf', language: 'fortran')</code> for the Fortran NetCDF headers and libraries</li>
 </ul>
 <p>Meson uses pkg-config to find NetCDF.</p>
+<h2 id="objfw">ObjFW</h2>
+<p><em>(added 1.5.0)</em></p>
+<p>Meson has native support for ObjFW, including support for ObjFW packages.</p>
+<p>In order to use ObjFW, simply create the dependency:</p>
+<pre><code class="language-meson">objfw_dep = dependency('objfw')
+</code></pre>
+<p>In order to also use ObjFW packages, simply specify them as modules:</p>
+<pre><code class="language-meson">objfw_dep = dependency('objfw', modules: ['SomePackage'])
+</code></pre>
+<p>If you need a dependency with and without packages, e.g. because your tests
+want to use ObjFWTest, but you don't want to link your application against the
+tests, simply get two dependencies and use them as appropriate:</p>
+<pre><code class="language-meson">objfw_dep = dependency('objfw', modules: ['SomePackage'])
+objfwtest_dep = dependency('objfw', modules: ['ObjFWTest'])
+</code></pre>
+<p>Then use <code>objfw_dep</code> for your library and only <code>objfwtest_dep</code> (not both) for
+your tests.</p>
 <h2 id="openmp">OpenMP</h2>
 <p><em>(added 0.46.0)</em></p>
 <p>This dependency selects the appropriate compiler flags and/or libraries to use

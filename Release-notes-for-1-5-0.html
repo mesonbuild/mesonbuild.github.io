@@ -283,6 +283,24 @@ meson configure builddir -Doption-added-by-pull=value
 <h2 id="new-meson-format-command">New meson format command</h2>
 <p>This command is similar to <code>muon fmt</code> and allows to format a <code>meson.build</code>
 document.</p>
+<h2 id="a-new-dependency-for-objfw-is-now-supported">A new dependency for ObjFW is now supported</h2>
+<p>For example, you can create a simple application written using ObjFW like this:</p>
+<pre><code class="language-meson">project('SimpleApp', 'objc')
+
+objfw_dep = dependency('objfw', version: '&gt;= 1.0')
+
+executable('SimpleApp', 'SimpleApp.m',
+  dependencies: [objfw_dep])
+</code></pre>
+<p>Modules are also supported. A test case using ObjFWTest can be created like
+this:</p>
+<pre><code class="language-meson">project('Tests', 'objc')
+
+objfwtest_dep = dependency('objfw', version: '&gt;= 1.1', modules: ['ObjFWTest'])
+
+executable('Tests', ['FooTest.m', 'BarTest.m'],
+  dependencies: [objfwtest_dep])
+</code></pre>
 <h2 id="the-meson-test-program-supports-a-new-interactive-argument">The Meson test program supports a new "--interactive" argument</h2>
 <p><code>meson test --interactive</code> invokes tests with stdout, stdin and stderr
 connected directly to the calling terminal. This can be useful when running
