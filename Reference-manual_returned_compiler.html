@@ -578,6 +578,7 @@ When set to a <a href="Build-options.html#features"><code>feature</code></a> opt
   <a href="Reference-manual_returned_compiler.html#compiles_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <a href="Reference-manual_returned_compiler.html#compiles_name"><b>name</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
   <a href="Reference-manual_returned_compiler.html#compiles_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#compiles_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the check fails
   <a href="Reference-manual_returned_compiler.html#compiles_werror"><b>werror</b></a>              : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, compiler warnings are treated as error
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -700,6 +701,24 @@ If this keyword argument is not passed, no message will be printed about the che
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="compiles_required">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to <code>true</code>, Meson will halt if the check fails.
+When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature will control if it is searched and whether to fail if not found.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.5.0)</em></p>
   <p style="margin: 0px;"><code class="language-meson">default =
   false</code></p>
   </div>
@@ -3237,6 +3256,7 @@ target of the <code>links</code> method is used to link the resulting object fil
   <a href="Reference-manual_returned_compiler.html#links_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <a href="Reference-manual_returned_compiler.html#links_name"><b>name</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
   <a href="Reference-manual_returned_compiler.html#links_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#links_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the check fails
   <a href="Reference-manual_returned_compiler.html#links_werror"><b>werror</b></a>              : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, compiler warnings are treated as error
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -3359,6 +3379,24 @@ If this keyword argument is not passed, no message will be printed about the che
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="links_required">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to <code>true</code>, Meson will halt if the check fails.
+When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature will control if it is searched and whether to fail if not found.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.5.0)</em></p>
   <p style="margin: 0px;"><code class="language-meson">default =
   false</code></p>
   </div>
@@ -3547,6 +3585,7 @@ without its extension.</p>
   <a href="Reference-manual_returned_compiler.html#run_include_directories"><b>include_directories</b></a> : <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a>]  # Extra directories for header searches
   <a href="Reference-manual_returned_compiler.html#run_name"><b>name</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>              # The name to use for printing a message about the compiler check
   <a href="Reference-manual_returned_compiler.html#run_no_builtin_args"><b>no_builtin_args</b></a>     : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, the compiler arguments controlled by built-in configuration options are not added
+  <a href="Reference-manual_returned_compiler.html#run_required"><b>required</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>   # When set to `true`, Meson will halt if the check fails
   <a href="Reference-manual_returned_compiler.html#run_werror"><b>werror</b></a>              : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>             # When set to `true`, compiler warnings are treated as error
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -3669,6 +3708,24 @@ If this keyword argument is not passed, no message will be printed about the che
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="run_required">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to <code>true</code>, Meson will halt if the check fails.
+When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature will control if it is searched and whether to fail if not found.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.5.0)</em></p>
   <p style="margin: 0px;"><code class="language-meson">default =
   false</code></p>
   </div>
