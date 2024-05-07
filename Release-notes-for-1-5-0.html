@@ -283,6 +283,16 @@ meson configure builddir -Doption-added-by-pull=value
 <h2 id="new-meson-format-command">New meson format command</h2>
 <p>This command is similar to <code>muon fmt</code> and allows to format a <code>meson.build</code>
 document.</p>
+<h2 id="added-support-for-gccs-null_terminated_string_arg-function-attribute">Added support for GCC's <code>null_terminated_string_arg</code> function attribute</h2>
+<p>You can now check if a compiler support the <code>null_terminated_string_arg</code>
+function attribute via the <code>has_function_attribute()</code> method on the
+<a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a> object.</p>
+<pre><code class="language-meson">cc = meson.get_compiler('c')
+
+if cc.has_function_attribute('null_terminated_string_arg')
+  # We have it...
+endif
+</code></pre>
 <h2 id="a-new-dependency-for-objfw-is-now-supported">A new dependency for ObjFW is now supported</h2>
 <p>For example, you can create a simple application written using ObjFW like this:</p>
 <pre><code class="language-meson">project('SimpleApp', 'objc')
