@@ -344,6 +344,8 @@ specific test names or suite(s).</p>
 <p>Sometimes you need to run the tests multiple times, which is done like this:</p>
 <pre><code class="language-console">$ meson test --repeat=10
 </code></pre>
+<p>Meson will set the <code>MESON_TEST_ITERATION</code> environment variable to the
+current iteration of the test <em>(added 1.5.0)</em>.</p>
 <p>Invoking tests via a helper executable such as Valgrind can be done with the
 <code>--wrap</code> argument</p>
 <pre><code class="language-console">$ meson test --wrap=valgrind testname
