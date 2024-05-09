@@ -3618,7 +3618,9 @@ macro guard name will be the specified name.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The output file name. <em>(since 0.41.0)</em> may contain
-<code>@PLAINNAME@</code> or <code>@BASENAME@</code> substitutions. In configuration mode,
+<code>@PLAINNAME@</code> or <code>@BASENAME@</code> substitutions, as well as <em>(since 1.5.0)</em>
+their indexed versions, like <code>@PLAINNAME0@</code> or <code>@BASENAME0@</code>.
+In configuration mode,
 the permissions of the input file (if it is specified) are copied to
 the output file.</p>
   </td>
@@ -3686,7 +3688,13 @@ than one outputs are specified, the behavior is the same as
 <li>
 <code>@PLAINNAME@</code>: the input filename, without a path</li>
 <li>
+<code>@PLAINNAME0@</code> <code>@PLAINNAME1@</code> <code>...</code> <em>(since 1.5.0)</em>: the input filename without a path, with the specified array index in <code>input</code>
+</li>
+<li>
 <code>@BASENAME@</code>: the input filename, with extension removed</li>
+<li>
+<code>@BASENAME0@</code> <code>@BASENAME1@</code> <code>...</code> <em>(since 1.5.0)</em>: the input filename with extension removed, with the specified array index in <code>input</code>
+</li>
 <li>
 <code>@PRIVATE_DIR@</code> <em>(since 0.50.1)</em>: path to a directory where the custom target must store all its intermediate files.</li>
 <li>

@@ -311,6 +311,16 @@ objfwtest_dep = dependency('objfw', version: '&gt;= 1.1', modules: ['ObjFWTest']
 executable('Tests', ['FooTest.m', 'BarTest.m'],
   dependencies: [objfwtest_dep])
 </code></pre>
+<h2 id="support-of-indexed-plainname-and-basename">Support of indexed <code>@PLAINNAME@</code> and <code>@BASENAME@</code>
+</h2>
+<p>In <code>custom_target()</code> and <code>configure_file()</code> with multiple inputs,
+it is now possible to specify index for <code>@PLAINNAME@</code> and <code>@BASENAME@</code>
+macros in <code>output</code>:</p>
+<pre><code>custom_target('target_name',
+  output: '@PLAINNAME0@.dl',
+  input: [dep1, dep2],
+  command: cmd)
+</code></pre>
 <h2 id="required-kwarg-on-more-compiler-methods">Required kwarg on more <code>compiler</code> methods</h2>
 <p>The following <code>compiler</code> methods now support the <code>required</code> keyword argument:</p>
 <ul>
