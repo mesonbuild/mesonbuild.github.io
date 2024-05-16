@@ -928,11 +928,11 @@ advapi32.</p>
 <p>All these <code>&lt;lang&gt;_*</code> options are specified per machine. See below in
 the <a href="Builtin-options.html#specifying-options-per-machine">specifying options per machine</a>
 section on how to do this in cross builds.</p>
-<p>When using MSVC, <code>cpp_eh=none</code> will result in no exception flags being
-passed, while the <code>cpp_eh=[value]</code> will result in <code>/EH[value]</code>. Since
-<em>0.51.0</em> <code>cpp_eh=default</code> will result in <code>/EHsc</code> on MSVC. When using
-gcc-style compilers, nothing is passed (allowing exceptions to work),
-while <code>cpp_eh=none</code> passes <code>-fno-exceptions</code>.</p>
+<p>When using MSVC, <code>cpp_eh=[value]</code> will result in <code>/EH[value]</code> being passed.
+The magic value <code>none</code> translates to <code>s-c-</code> to disable exceptions. <em>Since
+0.51.0</em> <code>default</code> translates to <code>sc</code>. When using gcc-style compilers, nothing
+is passed (allowing exceptions to work), while <code>cpp_eh=none</code> passes
+<code>-fno-exceptions</code>.</p>
 <p>Since <em>0.54.0</em> The <code>&lt;lang&gt;_thread_count</code> option can be used to control
 the value passed to <code>-s PTHREAD_POOL_SIZE</code> when using emcc. No other
 c/c++ compiler supports this option.</p>
