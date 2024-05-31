@@ -761,6 +761,14 @@ create a <code>.gitignore</code> and <code>.hgignore</code> file for you, inside
 directory. It glob ignores <code>"*"</code>, since all generated files should not be
 checked into git.</p>
 <p>Users of older versions of Meson may need to set up ignore files themselves.</p>
+<h2 id="how-to-add-preprocessor-defines-to-a-target">How to add preprocessor defines to a target?</h2>
+<p>Just add <code>-DFOO</code> to <code>c_args</code> or <code>cpp_args</code>. This works for all known compilers.</p>
+<pre><code class="language-meson">mylib = library('mylib', 'mysource.c', c_args: ['-DFOO'])
+</code></pre>
+<p>Even though <a href="https://learn.microsoft.com/en-us/cpp/build/reference/d-preprocessor-definitions">MSVC documentation</a>
+uses <code>/D</code> for preprocessor defines, its <a href="https://learn.microsoft.com/en-us/cpp/build/reference/compiler-command-line-syntax">command-line syntax</a>
+accepts <code>-</code> instead of <code>/</code>.
+It's not necessary to treat preprocessor defines specially in Meson (<a href="https://github.com/mesonbuild/meson/issues/6269#issuecomment-560003922">GH-6269</a>).</p>
 
     </div>
         
