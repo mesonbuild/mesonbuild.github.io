@@ -1089,7 +1089,8 @@ interpreter directly, even if it is a venv. Setting to <code>venv</code> will in
 the paths for the virtualenv the python found installation comes from (or fail
 if it is not a virtualenv).  Setting to <code>auto</code> will check if the found
 installation is a virtualenv, and use <code>venv</code> or <code>system</code> as appropriate (but
-never <code>prefix</code>). This option is mutually exclusive with the <code>platlibdir</code>/<code>purelibdir</code>.</p>
+never <code>prefix</code>). Note that Conda environments are treated as <code>system</code>.
+This option is mutually exclusive with the <code>platlibdir</code>/<code>purelibdir</code>.</p>
 <p>For backwards compatibility purposes, the default <code>install_env</code> is <code>prefix</code>.</p>
 <p><em>Since 1.2.0</em> The <code>python.bytecompile</code> option can be used to enable compiling
 python bytecode. Bytecode has 3 optimization levels:</p>
