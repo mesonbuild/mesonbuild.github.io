@@ -242,6 +242,11 @@ is a Cargo dependency.</li>
 <code>[provide]</code> section when <code>Cargo.toml</code> has package name <code>foo</code> and version <code>1.2</code>.</p>
 <p>This is a breaking change (Cargo subprojects are still experimental), previous
 versions were using <code>&lt;package_name&gt;-rs</code> format.</p>
+<h2 id="added-support-cargolock-file">Added support <code>Cargo.lock</code> file</h2>
+<p>When a (sub)project has a <code>Cargo.lock</code> file at its root, it is loaded to provide
+an automatic fallback for dependencies it defines, fetching code from
+https://crates.io or git. This is identical as providing <code>subprojects/*.wrap</code>,
+see <a href="Wrap-dependency-system-manual.html#cargo-wraps">cargo wraps</a> dependency naming convention.</p>
 <h2 id="meson-now-propagates-its-build-type-to-cmake">Meson now propagates its build type to CMake</h2>
 <p>When the CMake build type variable, <code>CMAKE_BUILD_TYPE</code>, is not set via the
 <code>add_cmake_defines</code> method of the <a href="CMake-module.html#cmake-options-object"><code>cmake options</code> object</a>,

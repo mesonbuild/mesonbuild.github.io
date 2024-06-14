@@ -570,6 +570,9 @@ This is typically used as <code>extra_args += ['--cfg', 'foo']</code>.</li>
 <li>The <code>extra_deps</code> variable is pre-defined and can be used to add extra dependencies.
 This is typically used as <code>extra_deps += dependency('foo')</code>.</li>
 </ul>
+<p>Since <em>1.5.0</em> Cargo wraps can also be provided with <code>Cargo.lock</code> file at the root
+of (sub)project source tree. Meson will automatically load that file and convert
+it into a serie of wraps definitions.</p>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>Wraps provide a convenient way of obtaining a project into your
 subproject directory. Then you use it as a regular subproject (see

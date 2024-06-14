@@ -1,0 +1,1 @@
+urls_downloaded_cb({"token":"crates.io","urls":[{"url":"Release-notes-for-1-5-0.html#added-support-cargolock-file","node_type":"p","context":{"gi-language":["default"]}}]});
