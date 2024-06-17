@@ -833,7 +833,7 @@ Commands:
              [--no-stdsplit] [--print-errorlogs] [--benchmark]
              [--logbase LOGBASE] [-j NUM_PROCESSES] [-v] [-q]
              [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
-             [--test-args TEST_ARGS]
+             [--test-args TEST_ARGS] [--max-lines MAX_LINES]
              [args ...]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
@@ -881,6 +881,8 @@ options:
   --setup SETUP                         Which test setup to use.
   --test-args TEST_ARGS                 Arguments to pass to the specified
                                         test(s) or all tests
+  --max-lines MAX_LINES                 Maximum number of lines to show from a
+                                        long test log. Since 1.5.0.
 </code></pre>
 <p>See <a href="Unit-tests.html">the unit test documentation</a> for more info.</p>
 <p>Since <em>1.2.0</em> you can use wildcards in <em>args</em> for test names.

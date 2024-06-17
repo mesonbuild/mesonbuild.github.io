@@ -354,6 +354,11 @@ debug shell if a test fails.</p>
 <p><code>meson test</code> will now set the <code>MESON_TEST_ITERATION</code> environment variable to the
 current iteration of the test. This will always be <code>1</code> unless <code>--repeat</code> is used
 to run the same test multiple times.</p>
+<h2 id="the-meson-test-program-supports-a-new-maxlines-argument">The Meson test program supports a new "--max-lines" argument</h2>
+<p>By default <code>meson test</code> only shows the last 100 lines of test output from tests
+that produce large amounts of output. This default can now be changed with the
+new <code>--max-lines</code> option. For example, <code>--max-lines=1000</code> will increase the
+maximum number of log output lines from 100 to 1000.</p>
 <h2 id="basic-support-for-ti-arm-clang-tiarmclang">Basic support for TI Arm Clang (tiarmclang)</h2>
 <p>Support for TI's newer <a href="https://www.ti.com/tool/ARM-CGT">Clang-based ARM toolchain</a>.</p>
 <h2 id="support-for-texas-instruments-c6000-cc-compiler">Support for Texas Instruments C6000 C/C++ compiler</h2>

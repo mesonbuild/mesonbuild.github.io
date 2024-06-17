@@ -386,6 +386,11 @@ shell is spawned if it fails <em>(added 1.5.0)</em>:</p>
 other useful information as the environmental variables. This is
 useful, for example, when you run the tests on Travis-CI, Jenkins and
 the like.</p>
+<p>By default, the output from tests will be limited to the last 100 lines. The
+maximum number of lines to show can be configured with the <code>--max-lines</code> option
+<em>(added 1.5.0)</em>:</p>
+<pre><code class="language-console">$ meson test --max-lines=1000 testname
+</code></pre>
 <p><strong>Timeout</strong></p>
 <p>In the test case options, the <code>timeout</code> option is specified in a number of seconds.</p>
 <p>To disable timeout in test cases, add <code>timeout: 0</code> or a negative value to allow
