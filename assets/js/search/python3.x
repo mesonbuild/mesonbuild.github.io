@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"python3.x","urls":[{"url":"Release-notes-for-1-2-0.html#find-more-specific-python-version-on-windows","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"python3.x","urls":[{"url":"Release-notes-for-1-2-0.html#find-more-specific-python-version-on-windows","node_type":"p","page":"Release 1.2.0","sections":["New features","Find more specific python version on Windows"],"context":{"gi-language":["default"]}}]});

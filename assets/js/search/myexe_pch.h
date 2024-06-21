@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"myexe_pch.h","urls":[{"url":"Precompiled-headers.html#using-precompiled-headers-with-gcc-and-derivatives","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"myexe_pch.h","urls":[{"url":"Precompiled-headers.html#using-precompiled-headers-with-gcc-and-derivatives","node_type":"p","page":"Precompiled headers","sections":["Precompiled headers","Using precompiled headers with GCC and derivatives"],"context":{"gi-language":["default"]}}]});

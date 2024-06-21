@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"build_windows_installer.bat","urls":[{"url":"Creating-OSX-packages.html#putting-it-all-together","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"build_windows_installer.bat","urls":[{"url":"Creating-OSX-packages.html#putting-it-all-together","node_type":"p","page":"Creating OSX packages","sections":["Creating OSX packages","Putting it all together"],"context":{"gi-language":["default"]}}]});

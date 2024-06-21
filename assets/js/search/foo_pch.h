@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"foo_pch.h","urls":[{"url":"Precompiled-headers.html#using-precompiled-headers-with-msvc","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"foo_pch.h","urls":[{"url":"Precompiled-headers.html#using-precompiled-headers-with-msvc","node_type":"p","page":"Precompiled headers","sections":["Precompiled headers","Using precompiled headers with MSVC"],"context":{"gi-language":["default"]}}]});

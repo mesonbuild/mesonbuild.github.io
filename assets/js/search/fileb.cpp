@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"fileb.cpp","urls":[{"url":"Rewriter.html#adding-and-removing-sources","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"fileb.cpp","urls":[{"url":"Rewriter.html#adding-and-removing-sources","node_type":"p","page":"Meson file rewriter","sections":["Meson file rewriter","Using the rewriter","Adding and removing sources"],"context":{"gi-language":["default"]}}]});

@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"genrefman.py","urls":[{"url":"Yaml-RefMan.html#reference-manual","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"genrefman.py","urls":[{"url":"Yaml-RefMan.html#reference-manual","node_type":"p","page":"YAML Reference manual","sections":["Reference Manual"],"context":{"gi-language":["default"]}}]});

@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"foo.cpp","urls":[{"url":"Reference-manual_functions.html#example1","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"foo.cpp","urls":[{"url":"Reference-manual_functions.html#example1","node_type":"p","page":"Functions","sections":["Functions","files()","Example"],"context":{"gi-language":["default"]}}]});

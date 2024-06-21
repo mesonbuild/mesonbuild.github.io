@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"Dockerfile","urls":[{"url":"MesonCI.html#image-generation","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"Dockerfile","urls":[{"url":"MesonCI.html#image-generation","node_type":"p","page":"Meson CI setup","sections":["Meson CI setup","Docker images","Image generation"],"context":{"gi-language":["default"]}}]});

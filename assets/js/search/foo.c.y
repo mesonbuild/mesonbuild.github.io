@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"foo.c.y","urls":[{"url":"Reference-manual_functions.html#generator","node_type":"ul","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"foo.c.y","urls":[{"url":"Reference-manual_functions.html#generator","node_type":"ul","page":"Functions","sections":["Functions","generator()"],"context":{"gi-language":["default"]}}]});

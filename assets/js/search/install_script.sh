@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"install_script.sh","urls":[{"url":"Creating-OSX-packages.html#putting-it-all-together","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"install_script.sh","urls":[{"url":"Creating-OSX-packages.html#putting-it-all-together","node_type":"p","page":"Creating OSX packages","sections":["Creating OSX packages","Putting it all together"],"context":{"gi-language":["default"]}}]});

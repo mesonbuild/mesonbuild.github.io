@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"omp.h","urls":[{"url":"Release-notes-for-0-46-0.html#addition-of-openmp-dependency","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"omp.h","urls":[{"url":"Release-notes-for-0-46-0.html#addition-of-openmp-dependency","node_type":"p","page":"Release 0.46","sections":["New features","Addition of OpenMP dependency"],"context":{"gi-language":["default"]}}]});

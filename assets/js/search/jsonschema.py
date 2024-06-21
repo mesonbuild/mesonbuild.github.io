@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"jsonschema.py","urls":[{"url":"IDE-integration.html#json-reference-manual","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"jsonschema.py","urls":[{"url":"IDE-integration.html#json-reference-manual","node_type":"p","page":"IDE integration","sections":["JSON Reference manual"],"context":{"gi-language":["default"]}}]});

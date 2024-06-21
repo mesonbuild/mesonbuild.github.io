@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"glib-2.0.vapi","urls":[{"url":"Vala.html#libraries-without-pkgconfig-files","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"glib-2.0.vapi","urls":[{"url":"Vala.html#libraries-without-pkgconfig-files","node_type":"p","page":"Vala","sections":["Compiling Vala applications and libraries","Using libraries","Libraries without pkg-config files"],"context":{"gi-language":["default"]}}]});

@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"somefile1.c","urls":[{"url":"Generating-sources.html#using-custom_target","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"somefile1.c","urls":[{"url":"Generating-sources.html#using-custom_target","node_type":"p","page":"Generating sources","sections":["Generating sources","Using custom_target()"],"context":{"gi-language":["default"]}}]});

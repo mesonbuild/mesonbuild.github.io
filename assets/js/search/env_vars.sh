@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"env_vars.sh","urls":[{"url":"MesonCI.html#common-image-setup","node_type":"p","context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"env_vars.sh","urls":[{"url":"MesonCI.html#common-image-setup","node_type":"p","page":"Meson CI setup","sections":["Meson CI setup","Docker images","Common image setup"],"context":{"gi-language":["default"]}}]});
