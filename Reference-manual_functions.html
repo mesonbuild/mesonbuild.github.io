@@ -5823,12 +5823,13 @@ command used to execute the build script.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>fallback</b>...,      # These parameters are used as fallback names to search for
 
   # Keyword arguments:
-  <a href="Reference-manual_functions.html#find_program_default_options"><b>default_options</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]  # An array of default option values
-  <a href="Reference-manual_functions.html#find_program_dirs"><b>dirs</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                     # extra list of absolute paths where to look for program names
-  <a href="Reference-manual_functions.html#find_program_disabler"><b>disabler</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # If `true` and the program couldn't be found, return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object
-  <a href="Reference-manual_functions.html#find_program_native"><b>native</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # Defines how this executable should be searched
-  <a href="Reference-manual_functions.html#find_program_required"><b>required</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>                                # When `true`, Meson will abort if no program can be found
-  <a href="Reference-manual_functions.html#find_program_version"><b>version</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                               # Specifies the required version, see
+  <a href="Reference-manual_functions.html#find_program_default_options"><b>default_options</b></a>  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]  # An array of default option values
+  <a href="Reference-manual_functions.html#find_program_dirs"><b>dirs</b></a>             : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                     # extra list of absolute paths where to look for program names
+  <a href="Reference-manual_functions.html#find_program_disabler"><b>disabler</b></a>         : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # If `true` and the program couldn't be found, return a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object
+  <a href="Reference-manual_functions.html#find_program_native"><b>native</b></a>           : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                          # Defines how this executable should be searched
+  <a href="Reference-manual_functions.html#find_program_required"><b>required</b></a>         : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>                                # When `true`, Meson will abort if no program can be found
+  <a href="Reference-manual_functions.html#find_program_version"><b>version</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                               # Specifies the required version, see
+  <a href="Reference-manual_functions.html#find_program_version_argument"><b>version_argument</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                           # Specifies the argument to pass when trying to find the version of the program
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments22">Arguments</h3>
@@ -5989,7 +5990,7 @@ whether it was found or not. <em>(since 0.47.0)</em> The value of a
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Specifies the required version, see
-<a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> for argument format. The version of the program
+<a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> for argument format. By default, the version of the program
 is determined by running <code>program_name --version</code> command. If stdout is empty
 it fallbacks to stderr. If the output contains more text than simply a version
 number, only the first occurrence of numbers separated by dots is kept.
@@ -5999,6 +6000,20 @@ be done manually using <a href="Reference-manual_functions.html#run_command"><in
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.52.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="find_program_version_argument">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">version_argument</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies the argument to pass when trying to find the version of the program.
+If this is unspecified, <code>program_name --version</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.5.0)</em></p>
   </div>
   </td>
       </tr>
