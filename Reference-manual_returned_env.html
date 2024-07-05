@@ -217,10 +217,6 @@ It should be passed as the <code>env</code> keyword argument to tests and other 
 <p><em>Since 0.58.0</em> <a href="Reference-manual_returned_env.html#envappend"><ins><code>env.append()</code></ins></a> and <a href="Reference-manual_returned_env.html#envprepend"><ins><code>env.prepend()</code></ins></a> can be called multiple times
 on the same <code>varname</code>. Earlier Meson versions would warn and only the last
 operation took effect.</p>
-<p><em>Since 1.5.0</em> This object becomes immutable after first use. This means that
-calling append(), prepend() or set() will cause a deprecation warning if this
-object has already been used in any function arguments. However, assignment
-creates a mutable copy.</p>
 <h2 id="returned-by">Returned by</h2>
 <p>Environment objects are returned by the following functions and methods:</p>
 <ul>
@@ -235,14 +231,6 @@ env.set('MY_PATH', '1')
 env.append('MY_PATH', '2')
 env.append('MY_PATH', '3')
 env.prepend('MY_PATH', '0')
-
-# Deprecated since 1.5.0
-run_command('script.py', env: env)
-env.append('MY_PATH', '4')
-
-# Allowed and only env2 is modified
-env2 = env
-env2.append('MY_PATH', '4')
 ```
 </code></pre>
 <h2 id="environment-methods">Environment methods</h2>
