@@ -211,6 +211,20 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="using-rust-with-meson">Using Rust with Meson</h1>
+<h2 id="avoid-using-extern-crate">Avoid using <code>extern crate</code>
+</h2>
+<p>Meson can't track dependency information for crates linked by rustc as
+a result of <code>extern crate</code> statements in Rust source code.  If your
+crate dependencies are properly expressed in Meson, there should be no
+need for <code>extern crate</code> statements in your Rust code.</p>
+<p>An example of the problems with <code>extern crate</code> is that if you delete a
+crate from a Meson build file, other crates that depend on that crate
+using <code>extern crate</code> might continue linking with the leftover rlib of
+the deleted crate rather than failing to build, until the build
+directory is cleaned.</p>
+<p>This limitation could be resolved in future with rustc improvements,
+for example if the <a href="https://github.com/rust-lang/rust/issues/63012"><code>-Z binary-dep-depinfo</code></a>
+feature is stabilized.</p>
 <h2 id="mixing-rust-and-nonrust-sources">Mixing Rust and non-Rust sources</h2>
 <p>Meson currently does not support creating a single target with Rust and non Rust
 sources mixed together, therefore one must compile multiple libraries and link
