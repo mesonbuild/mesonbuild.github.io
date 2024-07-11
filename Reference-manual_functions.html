@@ -12367,10 +12367,10 @@ accepts the following keyword arguments:</p>
 <p>Stops further interpretation of the Meson script file from the point
 of the invocation. All steps executed up to this point are valid and
 will be executed by Meson. This means that all targets defined before
-the call of <a href="Reference-manual_functions.html#subdir_done"><ins><code>subdir_done()</code></ins></a> will be build.</p>
-<p>If the current script was called by <code>subdir</code> the execution returns to
+the call of <a href="Reference-manual_functions.html#subdir_done"><ins><code>subdir_done()</code></ins></a> will be built.</p>
+<p>If the current script was called by <code>subdir</code>, the execution returns to
 the calling directory and continues as if the script had reached the
-end. If the current script is the top level script Meson configures
+end. If the current script is the top level script, Meson configures
 the project as defined up to this point.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
@@ -12390,8 +12390,8 @@ executable('exe1', 'exe1.cpp')
 subdir_done()
 executable('exe2', 'exe2.cpp')
 </code></pre>
-<p>The executable <code>exe1</code> will be build, while the executable <code>exe2</code> is not
-build.</p>
+<p>The executable <code>exe1</code> will be built, while the executable <code>exe2</code> is not
+built.</p>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
