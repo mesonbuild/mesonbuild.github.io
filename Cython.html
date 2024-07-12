@@ -232,6 +232,15 @@ py.extension_module(
     dependencies : dep_py,
 )
 </code></pre>
+<p>You can pass arguments accepted by the <code>cython</code> CLI script with the
+<code>cython_args</code> argument:</p>
+<pre><code class="language-meson">py.extension_module(
+    'foo-bounds'
+    'foo.pyx',
+    dependencies : dep_py,
+    cython_args : ['-Xboundscheck=False'],
+)
+</code></pre>
 <h2 id="c-intermediate-support">C++ intermediate support</h2>
 <p><em>(New in 0.60.0)</em></p>
 <p>An option has been added to control this, called <code>cython_language</code>. This can be
