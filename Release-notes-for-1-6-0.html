@@ -211,6 +211,13 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="dependencies-from-cmake-subprojects-now-use-only-public-link-flags">Dependencies from CMake subprojects now use only PUBLIC link flags</h2>
+<p>Any <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> obtained from a CMake subproject (or <code>.wrap</code> with <code>method = cmake</code>)
+now only includes link flags marked in CMake as <code>PUBLIC</code> or <code>INTERFACE</code>.
+Flags marked as <code>PRIVATE</code> are now only applied when building the subproject
+library and not when using it as a dependency. This better matches how CMake
+handles link flags and fixes link errors when using some CMake projects as
+subprojects.</p>
 
     </div>
         
