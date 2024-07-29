@@ -218,6 +218,13 @@ Flags marked as <code>PRIVATE</code> are now only applied when building the subp
 library and not when using it as a dependency. This better matches how CMake
 handles link flags and fixes link errors when using some CMake projects as
 subprojects.</p>
+<h2 id="support-for-llvmbased-flang-compiler">Support for LLVM-based flang compiler</h2>
+<p>Added basic handling for the <a href="https://flang.llvm.org/docs/">flang</a> compiler
+that's now part of LLVM. It is the successor of another compiler named
+<a href="https://github.com/flang-compiler/flang">flang</a> by largely the same
+group of developers, who now refer to the latter as "classic flang".</p>
+<p>Meson already supports classic flang, and the LLVM-based flang now
+uses the compiler-id <code>'llvm-flang'</code>.</p>
 
     </div>
         
