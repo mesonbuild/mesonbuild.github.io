@@ -269,7 +269,7 @@ endif
 </code></pre>
 <h2 id="configuring-without-an-input-file">Configuring without an input file</h2>
 <p>If the input file is not defined then Meson will generate a header
-file all the entries in the configuration data object. The
+file with all the entries in the configuration data object. The
 replacements are the same as when generating <code>#mesondefine</code> entries:</p>
 <pre><code class="language-meson">conf_data.set('FOO', '"string"') =&gt; #define FOO "string"
 conf_data.set('FOO', 'a_token')  =&gt; #define FOO a_token
@@ -288,7 +288,7 @@ before the value so that your generated files are self-documenting.</p>
 </code></pre>
 <h2 id="dealing-with-file-encodings">Dealing with file encodings</h2>
 <p>The default Meson file encoding to configure files is utf-8. If you
-need to configure a file that is not utf-8 encoded the encoding
+need to configure a file that is not utf-8 encoded the <code>encoding</code>
 keyword will allow you to specify which file encoding to use. It is
 however strongly advised to convert your non utf-8 file to utf-8
 whenever possible. Supported file encodings are those of python3, see
