@@ -225,6 +225,13 @@ that's now part of LLVM. It is the successor of another compiler named
 group of developers, who now refer to the latter as "classic flang".</p>
 <p>Meson already supports classic flang, and the LLVM-based flang now
 uses the compiler-id <code>'llvm-flang'</code>.</p>
+<h2 id="test-and-benchmark-functions-accept-new-types">test() and benchmark() functions accept new types</h2>
+<p><code>test</code> and <code>benchmark</code> now accept ExternalPrograms (as returned by
+<code>find_program</code>) in the <code>args</code> list.  This can be useful where the test
+executable is a wrapper which invokes another program given as an
+argument.</p>
+<pre><code class="language-meson">test('some_test', find_program('sudo'), args : [ find_program('sh'), 'script.sh' ])
+</code></pre>
 
     </div>
         
