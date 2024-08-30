@@ -211,6 +211,34 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="default-to-printing-deprecations-when-no-minimum-version-is-specified">Default to printing deprecations when no minimum version is specified.</h2>
+<p>For a long time, the <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function has supported specifying the minimum
+<code>meson_version:</code> needed by a project. When this is used, deprecated features
+from before that version produce warnings, as do features which aren't
+available in all supported versions.</p>
+<p>When no minimum version was specified, meson didn't warn you even about
+deprecated functionality that might go away in an upcoming semver major release
+of meson.</p>
+<p>Now, meson will treat an unspecified minimum version following semver:</p>
+<ul>
+<li>
+<p>For new features introduced in the current meson semver major cycle
+(currently: all features added since 1.0) a warning is printed. Features that
+have been available since the initial 1.0 release are assumed to be widely
+available.</p>
+</li>
+<li>
+<p>For features that have been deprecated by any version of meson, a warning is
+printed. Since no minimum version was specified, it is assumed that the
+project wishes to follow the latest and greatest functionality.</p>
+</li>
+</ul>
+<p>These warnings will overlap for functionality that was both deprecated and
+replaced with an alternative in the current release cycle. The combination
+means that projects without a minimum version specified are assumed to want
+broad compatibility with the current release cycle (1.x).</p>
+<p>Projects that specify a minimum <code>meson_version:</code> will continue to only receive
+actionable warnings based on their current minimum version.</p>
 <h2 id="dependencies-from-cmake-subprojects-now-use-only-public-link-flags">Dependencies from CMake subprojects now use only PUBLIC link flags</h2>
 <p>Any <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> obtained from a CMake subproject (or <code>.wrap</code> with <code>method = cmake</code>)
 now only includes link flags marked in CMake as <code>PUBLIC</code> or <code>INTERFACE</code>.
