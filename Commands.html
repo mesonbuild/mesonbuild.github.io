@@ -238,6 +238,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--genvslite {vs2022}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
+                  [--default-both-libraries {shared,static,auto}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
                   [--layout {mirror,flat}]
                   [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
@@ -296,6 +297,9 @@ options:
                                         information
   --default-library {shared,static,both}
                                         Default library type (default: shared).
+  --default-both-libraries {shared,static,auto}
+                                        Default library type for both_libraries
+                                        (default: shared).
   --errorlogs                           Whether to print the logs from failing
                                         tests
   --install-umask INSTALL_UMASK         Default umask to apply on permissions of
@@ -647,11 +651,12 @@ Rewriter commands:
               [--genvslite {vs2022}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
-              [--errorlogs] [--install-umask INSTALL_UMASK]
-              [--layout {mirror,flat}] [--optimization {plain,0,g,1,2,3,s}]
-              [--prefer-static] [--stdsplit] [--strip]
-              [--unity {on,off,subprojects}] [--unity-size UNITY_SIZE]
-              [--warnlevel {0,1,2,3,everything}] [--werror]
+              [--default-both-libraries {shared,static,auto}] [--errorlogs]
+              [--install-umask INSTALL_UMASK] [--layout {mirror,flat}]
+              [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
+              [--stdsplit] [--strip] [--unity {on,off,subprojects}]
+              [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3,everything}]
+              [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
               [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
               [--pkgconfig.relocatable]
@@ -718,6 +723,9 @@ options:
                                         information
   --default-library {shared,static,both}
                                         Default library type (default: shared).
+  --default-both-libraries {shared,static,auto}
+                                        Default library type for both_libraries
+                                        (default: shared).
   --errorlogs                           Whether to print the logs from failing
                                         tests
   --install-umask INSTALL_UMASK         Default umask to apply on permissions of

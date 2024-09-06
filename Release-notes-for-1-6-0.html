@@ -211,6 +211,12 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="alias_target-of-both_libraries">
+<code>alias_target</code> of <code>both_libraries</code>
+</h2>
+<p>Previously, when passing a <a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a> object to <a href="Reference-manual_functions.html#alias_target"><ins><code>alias_target()</code></ins></a>, the alias
+would only point to the shared library. It now points to both the static and the
+shared library.</p>
 <h2 id="default-to-printing-deprecations-when-no-minimum-version-is-specified">Default to printing deprecations when no minimum version is specified.</h2>
 <p>For a long time, the <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a> function has supported specifying the minimum
 <code>meson_version:</code> needed by a project. When this is used, deprecated features
@@ -246,6 +252,21 @@ Flags marked as <code>PRIVATE</code> are now only applied when building the subp
 library and not when using it as a dependency. This better matches how CMake
 handles link flags and fixes link errors when using some CMake projects as
 subprojects.</p>
+<h2 id="new-builtin-option-for-default-both_libraries">New built-in option for default both_libraries</h2>
+<p><code>both_libraries</code> targets used to be considered as a shared library by default.
+There is now the <code>default_both_libraries</code> option to change this default.</p>
+<p>When <code>default_both_libraries</code> is 'auto', <a href="Reference-manual_functions.html#both_libraries"><ins><code>both_libraries()</code></ins></a> with dependencies
+that are <a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a> themselves will link with the same kind of library.
+For example, if <code>libA</code> is a <a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a> and <code>libB</code> is a <a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a>
+linked with <code>libA</code> (or with an internal dependency on <code>libA</code>),
+the static lib of <code>libB</code> will link with the static lib of <code>libA</code>, and the
+shared lib of <code>libA</code> will link with the shared lib of <code>libB</code>.</p>
+<h2 id="new-as_static-and-as_shared-methods-on-internal-dependencies">New <code>as_static</code> and <code>as_shared</code> methods on internal dependencies</h2>
+<p><a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> object returned by <a href="Reference-manual_functions.html#declare_dependency"><ins><code>declare_dependency()</code></ins></a> now has <code>.as_static()</code> and
+<code>.as_shared()</code> methods, to convert to a dependency that prefers the <code>static</code>
+or the <code>shared</code> version of the linked <a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a> target.</p>
+<p>When the same dependency is used without those methods, the
+<code>default_both_libraries</code> option determines which version is used.</p>
 <h2 id="support-for-llvmbased-flang-compiler">Support for LLVM-based flang compiler</h2>
 <p>Added basic handling for the <a href="https://flang.llvm.org/docs/">flang</a> compiler
 that's now part of LLVM. It is the successor of another compiler named
