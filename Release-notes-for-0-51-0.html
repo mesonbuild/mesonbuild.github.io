@@ -308,7 +308,7 @@ path.</p>
 <p>then invoke Meson as <code>meson setup builddir/ -Dcmake_prefix_path=/tmp/dep</code></p>
 <h2 id="tests-that-should-fail-but-did-not-are-now-errors">Tests that should fail but did not are now errors</h2>
 <p>You can tag a test as needing to fail like this:</p>
-<pre><code class="language-meson">test('shoulfail', exe, should_fail: true)
+<pre><code class="language-meson">test('shouldfail', exe, should_fail: true)
 </code></pre>
 <p>If the test passes the problem is reported in the error logs but due
 to a bug it was not reported in the test runner's exit code. Starting

@@ -519,7 +519,7 @@ name:</p>
 <code>0.x.y</code> -&gt; '0.x'</li>
 <li>
 <code>0.0.x</code> -&gt; '0'
-It allows to make different dependencies for uncompatible versions of the same
+It allows to make different dependencies for incompatible versions of the same
 crate.</li>
 </ul>
 </li>
@@ -553,7 +553,7 @@ the main project depends on <code>foo-1-rs</code> and <code>bar-1-rs</code>, and
 configure <code>common-rs</code> with a set of features. Later, when <code>bar-1-rs</code> does a lookup
 for <code>common-1-rs</code> it has already been configured and the set of features cannot be
 changed. If <code>bar-1-rs</code> wants extra features from <code>common-1-rs</code>, Meson will error out.
-It is currently the responsability of the main project to resolve those
+It is currently the responsibility of the main project to resolve those
 issues by enabling extra features on each subproject:</p>
 <pre><code class="language-meson">project(...,
   default_options: {
