@@ -1405,7 +1405,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#both_libraries_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#both_libraries_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#both_libraries_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#both_libraries_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#both_libraries_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#both_libraries_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#both_libraries_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                   # Defines the `compatibility version` and `current version` for the dylib on macOS
@@ -1624,13 +1624,15 @@ during the compilation of D source files.</p>
       <tr id="both_libraries_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
@@ -2322,7 +2324,7 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#build_target_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#build_target_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#build_target_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#build_target_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#build_target_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#build_target_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#build_target_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                   # Defines the `compatibility version` and `current version` for the dylib on macOS
@@ -2547,13 +2549,15 @@ during the compilation of D source files.</p>
       <tr id="build_target_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
@@ -4975,7 +4979,7 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#executable_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#executable_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#executable_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#executable_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#executable_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#executable_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#executable_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                               # one or more dependency objects
@@ -5165,13 +5169,15 @@ during the compilation of D source files.</p>
       <tr id="executable_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
@@ -7554,7 +7560,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#jar_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#jar_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#jar_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#jar_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#jar_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#jar_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#jar_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                               # one or more dependency objects
@@ -7738,13 +7744,15 @@ during the compilation of D source files.</p>
       <tr id="jar_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
@@ -8326,7 +8334,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#library_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#library_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                   # Defines the `compatibility version` and `current version` for the dylib on macOS
@@ -8549,13 +8557,15 @@ during the compilation of D source files.</p>
       <tr id="library_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
@@ -9930,7 +9940,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#shared_library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#shared_library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#shared_library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#shared_library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#shared_library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#shared_library_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#shared_library_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                   # Defines the `compatibility version` and `current version` for the dylib on macOS
@@ -10117,13 +10127,15 @@ during the compilation of D source files.</p>
       <tr id="shared_library_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
@@ -10728,7 +10740,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#shared_module_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#shared_module_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#shared_module_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#shared_module_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#shared_module_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#shared_module_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#shared_module_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                               # one or more dependency objects
@@ -10927,13 +10939,15 @@ during the compilation of D source files.</p>
       <tr id="shared_module_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
@@ -11475,7 +11489,7 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#static_library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#static_library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
-  <a href="Reference-manual_functions.html#static_library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # List of directories to look in for string imports used in the D programming language
+  <a href="Reference-manual_functions.html#static_library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                         # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#static_library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                         # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#static_library_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#static_library_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                               # one or more dependency objects
@@ -11660,13 +11674,15 @@ during the compilation of D source files.</p>
       <tr id="static_library_d_import_dirs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>List of directories to look in for string imports used in the D programming language.</p>
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
   </div>
   </td>
       </tr>
