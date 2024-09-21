@@ -264,8 +264,8 @@ cmake, pkg-config, and config-tool based variables.</p>
 var = foo_dep.get_variable(cmake : 'CMAKE_VAR', pkgconfig : 'pkg-config-var', configtool : 'get-var', default_value : 'default')
 </code></pre>
 <p>It accepts the keywords 'cmake', 'pkgconfig', 'pkgconfig_define',
-'configtool', 'internal', and 'default_value'. 'pkgconfig_define'
-works just like the 'define_variable' argument to
+'configtool', 'internal', 'system', and 'default_value'.
+'pkgconfig_define' works just like the 'define_variable' argument to
 <code>get_pkgconfig_variable</code>. When this method is invoked the keyword
 corresponding to the underlying type of the dependency will be used to
 look for a variable. If that variable cannot be found or if the caller
@@ -820,6 +820,26 @@ System finder can be used on these OSes to link with the bundled
 version.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>cmake</code>, or <code>system</code>.</p>
 <p><em>New in 0.54.0</em> the <code>system</code> method.</p>
+<h2 id="dia-sdk">DIA SDK</h2>
+<p><em>(added 1.6.0)</em></p>
+<p>Microsoft's Debug Interface Access SDK (DIA SDK) is available only on Windows,
+when using msvc, clang-cl or clang compiler from Microsoft Visual Studio.</p>
+<p>The DIA SDK runtime is not statically linked to target. The default usage
+method requires the runtime DLL (msdiaXXX.dll) to be manually registered in the
+OS with <code>regsrv32.exe</code> command, so it can be loaded using <code>CoCreateInstance</code>
+Windows function.</p>
+<p>Alternatively, you can use meson to copy the DIA runtime DLL to your build
+directory, and load it dynamically using <code>NoRegCoCreate</code> function provided by
+the DIA SDK. To facilitate this, you can read DLL path from dependency's
+variable 'dll' and use fs module to copy it. Example:</p>
+<pre><code class="language-meson">dia = dependency('diasdk', required: true)
+fs = import('fs')
+fs.copyfile(dia.get_variable('dll'))
+
+conf = configuration_data()
+conf.set('msdia_dll_name', fs.name(dia_dll_name))
+</code></pre>
+<p>Only the major version is available (eg. version is <code>14</code> for msdia140.dll).</p>
 <hr>
 <a name="footnote1">1</a>: They may appear to be case-insensitive, if the
     underlying file system happens to be case-insensitive.

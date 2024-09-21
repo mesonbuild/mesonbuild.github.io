@@ -267,6 +267,8 @@ shared lib of <code>libA</code> will link with the shared lib of <code>libB</cod
 or the <code>shared</code> version of the linked <a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a> target.</p>
 <p>When the same dependency is used without those methods, the
 <code>default_both_libraries</code> option determines which version is used.</p>
+<h2 id="support-for-dia-sdk">Support for DIA SDK</h2>
+<p>Added support for Windows Debug Interface Access SDK (DIA SDK) dependency. It allows reading with MSVC debugging information (.PDB format). This dependency can only be used on Windows, with msvc, clang or clang-cl compiler.</p>
 <h2 id="support-for-llvmbased-flang-compiler">Support for LLVM-based flang compiler</h2>
 <p>Added basic handling for the <a href="https://flang.llvm.org/docs/">flang</a> compiler
 that's now part of LLVM. It is the successor of another compiler named
@@ -274,6 +276,8 @@ that's now part of LLVM. It is the successor of another compiler named
 group of developers, who now refer to the latter as "classic flang".</p>
 <p>Meson already supports classic flang, and the LLVM-based flang now
 uses the compiler-id <code>'llvm-flang'</code>.</p>
+<h2 id="support-for-variable-in-system-dependencies">Support for variable in system dependencies</h2>
+<p>System Dependency method <code>get_variable()</code> now supports <code>system</code> variable.</p>
 <h2 id="test-and-benchmark-functions-accept-new-types">test() and benchmark() functions accept new types</h2>
 <p><code>test</code> and <code>benchmark</code> now accept ExternalPrograms (as returned by
 <code>find_program</code>) in the <code>args</code> list.  This can be useful where the test

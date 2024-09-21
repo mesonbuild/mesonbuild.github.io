@@ -616,6 +616,7 @@ then an error is raised.</p>
   <a href="Reference-manual_returned_dep.html#get_variable_internal"><b>internal</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        # The internal variable name
   <a href="Reference-manual_returned_dep.html#get_variable_pkgconfig"><b>pkgconfig</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        # The pkgconfig variable name
   <a href="Reference-manual_returned_dep.html#get_variable_pkgconfig_define"><b>pkgconfig_define</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # See <a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a>
+  <a href="Reference-manual_returned_dep.html#get_variable_system"><b>system</b></a>           : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        # The system variable name
 )</code></pre>
 <div class="alert alert-warning">
   <strong>Warning:</strong>
@@ -644,7 +645,7 @@ then an error is raised.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>This argument is used as a default value
-for <code>cmake</code>, <code>pkgconfig</code>, <code>configtool</code> and <code>internal</code> keyword
+for <code>cmake</code>, <code>pkgconfig</code>, <code>configtool</code>, <code>internal</code> and <code>system</code> keyword
 arguments. It is useful in the common case where <code>pkgconfig</code> and <code>internal</code>
 use the same variable name, in which case it's easier to write <code>dep.get_variable('foo')</code>
 instead of <code>dep.get_variable(pkgconfig: 'foo', internal: 'foo')</code>.</p>
@@ -746,6 +747,19 @@ accepts the following keyword arguments:</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="get_variable_system">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">system</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The system variable name</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.6.0)</em></p>
   </div>
   </td>
       </tr>
