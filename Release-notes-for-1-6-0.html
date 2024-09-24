@@ -276,6 +276,14 @@ that's now part of LLVM. It is the successor of another compiler named
 group of developers, who now refer to the latter as "classic flang".</p>
 <p>Meson already supports classic flang, and the LLVM-based flang now
 uses the compiler-id <code>'llvm-flang'</code>.</p>
+<h2 id="tools-can-be-selected-when-calling-has_tools-on-the-qt-modules">Tools can be selected when calling <code>has_tools()</code> on the Qt modules</h2>
+<p>When checking for the presence of Qt tools, you can now explictly ask Meson
+which tools you need. This is particularly useful when you do not need
+<code>lrelease</code> because you are not shipping any translations. For example:</p>
+<pre><code class="language-meson">qt6_mod = import('qt6')
+qt6_mod.has_tools(required: true, tools: ['moc', 'uic', 'rcc'])
+</code></pre>
+<p>valid tools are <code>moc</code>, <code>uic</code>, <code>rcc</code> and <code>lrelease</code>.</p>
 <h2 id="support-for-variable-in-system-dependencies">Support for variable in system dependencies</h2>
 <p>System Dependency method <code>get_variable()</code> now supports <code>system</code> variable.</p>
 <h2 id="test-and-benchmark-functions-accept-new-types">test() and benchmark() functions accept new types</h2>
