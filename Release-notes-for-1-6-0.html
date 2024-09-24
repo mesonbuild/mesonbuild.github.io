@@ -293,6 +293,20 @@ executable is a wrapper which invokes another program given as an
 argument.</p>
 <pre><code class="language-meson">test('some_test', find_program('sudo'), args : [ find_program('sh'), 'script.sh' ])
 </code></pre>
+<h2 id="zig-011-can-be-used-as-a-cc-compiler-frontend">Zig 0.11 can be used as a C/C++ compiler frontend</h2>
+<p>Zig offers
+<a href="https://andrewkelley.me/post/zig-cc-powerful-drop-in-replacement-gcc-clang.html">a C/C++ frontend</a> as a drop-in replacement for Clang. It worked fine with Meson up to Zig 0.10. Since 0.11, Zig's
+dynamic linker reports itself as <code>zig ld</code>, which wasn't known to Meson. Meson now correctly handles
+Zig's linker.</p>
+<p>You can use Zig's frontend via a <a href="Machine-files.html">machine file</a>:</p>
+<pre><code class="language-ini">[binaries]
+c = ['zig', 'cc']
+cpp = ['zig', 'c++']
+ar = ['zig', 'ar']
+ranlib = ['zig', 'ranlib']
+lib = ['zig', 'lib']
+dlltool = ['zig', 'dlltool']
+</code></pre>
 
     </div>
         
