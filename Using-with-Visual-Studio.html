@@ -212,9 +212,14 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="using-with-visual-studio">Using with Visual Studio</h1>
 <p>In order to generate Visual Studio projects, Meson needs to know the
-settings of your installed version of Visual Studio. The only way to
-get this information is to run Meson under the Visual Studio Command
-Prompt.</p>
+settings of your installed version of Visual Studio.</p>
+<p>The traditional way to get this information is to run Meson (or any build
+system) under the Visual Studio Command Prompt.</p>
+<p>If no Visual Studio Command Prompt was detected, and no mingw compilers are
+detected either, meson will attempt to find "a" Visual Studio installation for
+you automatically, by asking Microsoft's "vswhere" program. If you want to
+ignore mingw compilers, pass the <code>--vsenv</code> option on the meson command line.
+If you need to guarantee a specific Visual Studio version, set it up manually.</p>
 <p>You can always find the Visual Studio Command Prompt by searching from
 the Start Menu. However, the name is different for each Visual Studio
 version. With Visual Studio 2019, look for "x64 Native Tools Command
