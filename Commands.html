@@ -616,6 +616,32 @@ options:
 </code></pre>
 <p>Since <em>0.60.0</em> <code>DESTDIR</code> and <code>--destdir</code> can be a path relative to build
 directory. An absolute path will be set into environment when executing scripts.</p>
+<h3 id="reprotest">reprotest</h3>
+<p><em>(since 1.6.0)</em></p>
+<pre><code class="language-inc">$ meson reprotest [-h] [--intermediaries] [mesonargs ...]
+</code></pre>
+<p>Simple reproducible build tester that compiles the project twice and
+checks whether the end results are identical.</p>
+<p>This command must be run in the source root of the project you want to
+test.</p>
+<pre><code class="language-inc">positional arguments:
+  mesonargs         Arguments to pass to "meson setup".
+
+options:
+  -h, --help        show this help message and exit
+  --intermediaries  Check intermediate files.
+</code></pre>
+<h4 id="examples7">Examples</h4>
+<pre><code>meson reprotest
+</code></pre>
+<p>Builds the current project with its default settings.</p>
+<pre><code>meson reprotest --intermediaries -- --buildtype=debugoptimized
+</code></pre>
+<p>Builds the target and also checks that all intermediate files like
+object files are also identical. All command line arguments after the
+<code>--</code> are passed directly to the underlying <code>meson</code> invocation. Only
+use option arguments, i.e. those that start with a dash, Meson sets
+directory arguments automatically.</p>
 <h3 id="rewrite">rewrite</h3>
 <p><em>(since 0.50.0)</em></p>
 <pre><code class="language-inc">$ meson rewrite [-h] [-s SRCDIR] [-V] [-S]
@@ -801,7 +827,7 @@ options:
 </code></pre>
 <p>See <a href="Running-Meson.html#configuring-the-build-directory">Meson introduction
 page</a> for more info.</p>
-<h4 id="examples7">Examples:</h4>
+<h4 id="examples8">Examples:</h4>
 <p>Configures <code>builddir</code> with default values:</p>
 <pre><code>meson setup builddir
 </code></pre>
@@ -897,7 +923,7 @@ options:
 For example, "bas*" will match all test with names beginning with "bas".</p>
 <p>Since <em>1.2.0</em> it is an error to provide a test name or wildcard that
 does not match any test.</p>
-<h4 id="examples8">Examples:</h4>
+<h4 id="examples9">Examples:</h4>
 <p>Run tests for the project:</p>
 <pre><code>meson test -C builddir
 </code></pre>
