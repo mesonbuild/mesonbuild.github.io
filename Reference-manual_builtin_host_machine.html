@@ -268,6 +268,47 @@ all known CPU families. These are guaranteed to continue working.</p>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_machinekernel">build_machine.kernel()</h3>
+<p>Returns the name of the Operating System Kernel, such as <code>linux</code>, <code>xnu</code>, and
+<code>nt</code>. <a href="Reference-tables.html#kernel-names-since-120">See here for more complete
+list</a> These are more specific
+than <code>system</code>. If this cannot be detected (for the build machine), or is not
+set in the cross file (for the host machine when cross compiling), calling
+this method is fatal.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> kernel()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="build_machinesubsystem">build_machine.subsystem()</h3>
+<p>Returns the variant of the operating system, such as <code>ios</code> and <code>tvos</code>.  <a href="Reference-tables.html#kernel-names-since-120">See
+here for more complete list</a>
+These are more specific than <code>system</code>. If this cannot be detected (for the
+build machine), or is not set in the cross file (for the host machine when
+cross compiling), calling this method is fatal.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> subsystem()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="build_machinesystem">build_machine.system()</h3>
 <p>Returns the operating system name.
 <a href="Reference-tables.html#operating-system-names">This table</a> Lists
@@ -275,7 +316,7 @@ all of the currently known Operating System names, these are
 guaranteed to continue working.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature5">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
