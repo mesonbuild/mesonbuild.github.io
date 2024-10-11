@@ -490,6 +490,8 @@ program_names = myprog, otherprog
 fallback to use the subproject, assuming it uses
 <code>meson.override_find_program('myprog')</code>.</p>
 <h3 id="cmake-wraps">CMake wraps</h3>
+<p><strong>Note</strong>: This is experimental and has no backwards or forwards compatibility guarantees.
+See <a href="Mixing-build-systems.html">Meson's rules on mixing build systems</a>.</p>
 <p>Since the CMake module does not know the public name of the provided
 dependencies, a CMake <code>.wrap</code> file cannot use the <code>dependency_names = foo</code>
 syntax. Instead, the <code>dep_name = &lt;target_name&gt;_dep</code> syntax should be used, where
@@ -505,6 +507,8 @@ method = cmake
 foo-bar-1.0 = foo_bar_dep
 </code></pre>
 <h3 id="cargo-wraps">Cargo wraps</h3>
+<p><strong>Note</strong>: This is experimental and has no backwards or forwards compatibility guarantees.
+See <a href="Mixing-build-systems.html">Meson's rules on mixing build systems</a>.</p>
 <p>Cargo subprojects automatically override the <code>&lt;package_name&gt;-&lt;version&gt;-rs</code> dependency
 name:</p>
 <ul>
