@@ -546,25 +546,6 @@ method = cargo
 [provide]
 dependency_names = foo-bar-0.1-rs
 </code></pre>
-<p>Cargo features are exposed as Meson boolean options, with the <code>feature-</code> prefix.
-For example the <code>default</code> feature is named <code>feature-default</code> and can be set from
-the command line with <code>-Dfoo-1-rs:feature-default=false</code>. When a cargo subproject
-depends on another cargo subproject, it will automatically enable features it
-needs using the <code>dependency('foo-1-rs', default_options: ...)</code> mechanism. However,
-unlike Cargo, the set of enabled features is not managed globally. Let's assume
-the main project depends on <code>foo-1-rs</code> and <code>bar-1-rs</code>, and they both depend on
-<code>common-1-rs</code>. The main project will first look up <code>foo-1-rs</code> which itself will
-configure <code>common-rs</code> with a set of features. Later, when <code>bar-1-rs</code> does a lookup
-for <code>common-1-rs</code> it has already been configured and the set of features cannot be
-changed. If <code>bar-1-rs</code> wants extra features from <code>common-1-rs</code>, Meson will error out.
-It is currently the responsibility of the main project to resolve those
-issues by enabling extra features on each subproject:</p>
-<pre><code class="language-meson">project(...,
-  default_options: {
-    'common-1-rs:feature-something': true,
-  },
-)
-</code></pre>
 <p>In addition, if the file <code>meson/meson.build</code> exists, Meson will call <code>subdir('meson')</code>
 where the project can add manual logic that would usually be part of <code>build.rs</code>.
 Some naming conventions need to be respected:</p>

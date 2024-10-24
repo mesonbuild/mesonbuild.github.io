@@ -211,6 +211,17 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="cargo-features-are-resolved-globally">Cargo features are resolved globally</h2>
+<p>When configuring a Cargo dependency, Meson will now resolve its complete
+dependency tree and feature set before generating the subproject AST.
+This solves many cases of Cargo subprojects being configured with missing
+features that the main project had to enable by hand using e.g.
+<code>default_options: ['foo-rs:feature-default=true']</code>.</p>
+<p>Note that there could still be issues in the case there are multiple Cargo
+entry points. That happens if the main Meson project makes multiple <code>dependency()</code>
+calls for different Cargo crates that have common dependencies.</p>
+<p>Breaks: This change removes per feature Meson options that were previously
+possible to set as shown above or from command line <code>-Dfoo-rs:feature-foo=true</code>.</p>
 
     </div>
         
