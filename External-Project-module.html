@@ -214,6 +214,7 @@ $('body').removeClass('no-script');
 <p><strong>Note</strong>: the functionality of this module is governed by <a href="Mixing-build-systems.html">Meson's
 rules on mixing build systems</a>.</p>
 <p><em>This is an experimental module, API could change.</em></p>
+<p><em>Added 0.56.0</em></p>
 <p>This module allows building code that uses build systems other than
 Meson. This module is intended to be used to build Autotools
 subprojects as fallback if the dependency couldn't be found on the
@@ -253,7 +254,8 @@ pkg-config and pkgconf both prepend the sysroot path to <code>-I</code> and <cod
 from <code>-uninstalled.pc</code> files. This is arguably a bug that could be fixed in
 future version of pkg-config/pkgconf.</li>
 </ul>
-<p><em>Added 0.56.0</em></p>
+<p><em>Since 1.7.0</em> [Meson devenv][Commands.md#devenv] setup <code>PATH</code> and
+<code>LD_LIBRARY_PATH</code> to be able to run programs.</p>
 <h2 id="functions">Functions</h2>
 <h3 id="add_project"><code>add_project()</code></h3>
 <p>This function should be called at the root directory of a project
@@ -279,7 +281,8 @@ passed as <code>'--libdir=@PREFIX@/@LIBDIR@'</code>. <em>Since 0.57.0</em> defau
 added in case some tags are not found in <code>configure_options</code>:
 <code>'--prefix=@PREFIX@'</code>, <code>'--libdir=@PREFIX@/@LIBDIR@'</code>, and
 <code>'--includedir=@PREFIX@/@INCLUDEDIR@'</code>. It was previously considered a fatal
-error to not specify them.</li>
+error to not specify them. <em>Since 1.7.0</em> <code>@BINDIR@</code> and <code>'--bindir=@PREFIX@/@BINDIR@'</code>
+default argument have been added.</li>
 <li>
 <code>cross_configure_options</code>: Extra options appended to <code>configure_options</code> only
 when cross compiling. special tag <code>@HOST@</code> will be replaced by

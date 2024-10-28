@@ -222,6 +222,11 @@ entry points. That happens if the main Meson project makes multiple <code>depend
 calls for different Cargo crates that have common dependencies.</p>
 <p>Breaks: This change removes per feature Meson options that were previously
 possible to set as shown above or from command line <code>-Dfoo-rs:feature-foo=true</code>.</p>
+<h2 id="devenv-support-in-external-project-module">Devenv support in external project module</h2>
+<p>The <a href="External-Project-module.html">external project module</a> now setups <code>PATH</code> and
+<code>LD_LIBRARY_PATH</code> to be able to run programs.</p>
+<p><code>@BINDIR@</code> is now substitued in arguments and <code>'--bindir=@PREFIX@/@BINDIR@'</code>
+default argument have been added.</p>
 <h2 id="fixed-sizeof-and-find_library-methods-for-fortran-compilers">Fixed <code>sizeof</code> and <code>find_library</code> methods for Fortran compilers</h2>
 <p>The implementation of the <code>.sizeof()</code> method has been fixed for Fortran
 compilers (it was previously broken since it would try to compile a C code
