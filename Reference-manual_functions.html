@@ -13167,6 +13167,10 @@ you should use <a href="Reference-manual_functions.html#custom_target"><ins><cod
   <a href="Reference-manual_functions.html#vcs_tag_command"><b>command</b></a>        : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]              # The command to execute, see <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> for details
   <a href="Reference-manual_functions.html#vcs_tag_fallback"><b>fallback</b></a>       : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                 # Version number to use when no revision control information is present,
   <a href="Reference-manual_functions.html#vcs_tag_input"><b>input</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                     <i>[required]</i>  # File to modify (e
+  <a href="Reference-manual_functions.html#vcs_tag_install"><b>install</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                # When true, this generated file is installed during
+  <a href="Reference-manual_functions.html#vcs_tag_install_dir"><b>install_dir</b></a>    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                 # The subdirectory to install the generated file to (e
+  <a href="Reference-manual_functions.html#vcs_tag_install_mode"><b>install_mode</b></a>   : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                     # Specify the file mode in symbolic format
+  <a href="Reference-manual_functions.html#vcs_tag_install_tag"><b>install_tag</b></a>    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                 # A string used by the `meson install --tags` command
   <a href="Reference-manual_functions.html#vcs_tag_output"><b>output</b></a>         : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                     <i>[required]</i>  # File to write the results to (e
   <a href="Reference-manual_functions.html#vcs_tag_replace_string"><b>replace_string</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                 # String in the input file to substitute with the commit information
 )</code></pre>
@@ -13230,6 +13234,66 @@ such as when building from a release tarball.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="vcs_tag_install">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When true, this generated file is installed during
+the install step, and <code>install_dir</code> must be set and not empty.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.7.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="vcs_tag_install_dir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The subdirectory to install the generated file to (e.g. <code>share/myproject</code>).</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.7.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="vcs_tag_install_mode">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_mode</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_list.html"><ins><code>list</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specify the file mode in symbolic format
+and optionally the owner/uid and group/gid for the installed files.</p>
+<p>See the <code>install_mode</code> kwarg of <a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a> for more information.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.7.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="vcs_tag_install_tag">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_tag</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string used by the <code>meson install --tags</code> command
+to install only a subset of the files. By default the file has no install
+tag which means it is not being installed when <code>--tags</code> argument is specified.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.7.0)</em></p>
   </div>
   </td>
       </tr>
