@@ -342,10 +342,8 @@ returns a <a href="Python-module.html#disabler-object">disabler object</a> inste
 <pre><code class="language-meson">void py_installation.install_sources(list_of_files, ...)
 </code></pre>
 <p>Install actual python sources (<code>.py</code>).</p>
-<p>All positional and keyword arguments are the same as for
-<a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a>, with the addition of the following:</p>
-<p><em>Since 0.60.0</em> <code>python.platlibdir</code> and <code>python.purelibdir</code> options can be used
-to control the default installation path. See <a href="Builtin-options.html#python-module">Python module options</a>.</p>
+<p>Source files to install are given as positional argument, in the same way as for
+<a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a>. Supported keyword arguments are:</p>
 <ul>
 <li>
 <p><code>pure</code>: On some platforms, architecture independent files are
@@ -363,7 +361,13 @@ override that behaviour. Defaults to the value specified in
 <p><code>install_tag</code> <em>(since 0.60.0)</em>: A string used by <code>meson install --tags</code> command
 to install only a subset of the files. By default it has the tag <code>python-runtime</code>.</p>
 </li>
+<li>
+<p><code>preserve_path</code>: if <code>true</code>, disable stripping child-directories from data
+files when installing. Default is <code>false</code>. <em>(since 0.64.0)</em></p>
+</li>
 </ul>
+<p><em>Since 0.60.0</em> <code>python.platlibdir</code> and <code>python.purelibdir</code> options can be used
+to control the default installation path. See <a href="Builtin-options.html#python-module">Python module options</a>.</p>
 <h4 id="get_install_dir"><code>get_install_dir()</code></h4>
 <pre><code class="language-meson">string py_installation.get_install_dir(...)
 </code></pre>
