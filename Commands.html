@@ -505,9 +505,10 @@ options:
 <p><em>This command is experimental and subject to change.</em></p>
 <p><em>{Since 0.62.0}</em></p>
 <pre><code class="language-inc">$ meson env2mfile [-h] [--debarch DEBARCH] [--gccsuffix GCCSUFFIX] -o
-                  OUTFILE [--cross] [--native] [--system SYSTEM]
-                  [--subsystem SUBSYSTEM] [--kernel KERNEL] [--cpu CPU]
-                  [--cpu-family CPU_FAMILY] [--endian {big,little}]
+                  OUTFILE [--cross] [--native] [--use-for-build]
+                  [--system SYSTEM] [--subsystem SUBSYSTEM]
+                  [--kernel KERNEL] [--cpu CPU] [--cpu-family CPU_FAMILY]
+                  [--endian {big,little}]
 </code></pre>
 <p>Create native and cross files from the current environment, typically
 by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.</p>
@@ -518,6 +519,7 @@ by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.<
   -o OUTFILE               The output file.
   --cross                  Generate a cross compilation file.
   --native                 Generate a native compilation file.
+  --use-for-build          Use _FOR_BUILD envvars.
   --system SYSTEM          Define system for cross compilation.
   --subsystem SUBSYSTEM    Define subsystem for cross compilation.
   --kernel KERNEL          Define kernel for cross compilation.
