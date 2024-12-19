@@ -267,12 +267,13 @@ that you write your unit tests to be parallel executable whenever
 possible.</p>
 <p>By default Meson uses as many concurrent processes as there are cores
 on the test machine. You can override this with the environment
-variable <code>MESON_TESTTHREADS</code> like this.</p>
-<pre><code class="language-console">$ MESON_TESTTHREADS=5 meson test
+variable <code>MESON_TESTTHREADS</code> or, <em>since 1.7.0</em>, <code>MESON_NUM_PROCESSES</code>:</p>
+<pre><code class="language-console">$ MESON_NUM_PROCESSES=5 meson test
 </code></pre>
-<p>Setting <code>MESON_TESTTHREADS</code> to 0 enables the default behavior (core
+<p>Setting <code>MESON_NUM_PROCESSES</code> to 0 enables the default behavior (core
 count), whereas setting an invalid value results in setting the job
 count to 1.</p>
+<p>If both environment variables are present, <code>MESON_NUM_PROCESSES</code> prevails.</p>
 <h2 id="priorities">Priorities</h2>
 <p><em>(added in version 0.52.0)</em></p>
 <p>Tests can be assigned a priority that determines when a test is

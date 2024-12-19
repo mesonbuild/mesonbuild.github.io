@@ -360,6 +360,19 @@ scan-build -v --status-bugs "$@"
 <p>And then pass it through the variable (remember to use absolute path):</p>
 <pre><code class="language-console">$ SCANBUILD=$(pwd)/my-scan-build.sh ninja -C builddir scan-build
 </code></pre>
+<h2 id="use-clippy">Use clippy</h2>
+<p>If your project includes Rust targets, you can invoke clippy like this:</p>
+<pre><code class="language-console">$ meson setup builddir
+$ ninja -C builddir clippy
+</code></pre>
+<p>Clippy will also obey the <code>werror</code> <a href="Builtin-options.html#core-options">builtin option</a>.</p>
+<p>By default Meson uses as many concurrent processes as there are cores
+on the test machine. You can override this with the environment
+variable <code>MESON_NUM_PROCESSES</code>.</p>
+<p>Meson will look for <code>clippy-driver</code> in the same directory as <code>rustc</code>,
+or try to invoke it using <code>rustup</code> if <code>rustc</code> points to a <code>rustup</code>
+binary.  If <code>clippy-driver</code> is not detected properly, you can add it to
+a <a href="Machine-files.html">machine file</a>.</p>
 <h2 id="use-profile-guided-optimization">Use profile guided optimization</h2>
 <p>Using profile guided optimization with GCC is a two phase
 operation. First we set up the project with profile measurements

@@ -222,6 +222,12 @@ entry points. That happens if the main Meson project makes multiple <code>depend
 calls for different Cargo crates that have common dependencies.</p>
 <p>Breaks: This change removes per feature Meson options that were previously
 possible to set as shown above or from command line <code>-Dfoo-rs:feature-foo=true</code>.</p>
+<h2 id="meson-can-run-clippy-on-rust-projects">Meson can run "clippy" on Rust projects</h2>
+<p>Meson now defines a <code>clippy</code> target if the project uses the Rust programming
+language.  The target runs clippy on all Rust sources, using the <code>clippy-driver</code>
+program from the same Rust toolchain as the <code>rustc</code> compiler.</p>
+<p>Using <code>clippy-driver</code> as the Rust compiler will now emit a warning, as it
+is not meant to be a general-purpose compiler front-end.</p>
 <h2 id="devenv-support-in-external-project-module">Devenv support in external project module</h2>
 <p>The <a href="External-Project-module.html">external project module</a> now setups <code>PATH</code> and
 <code>LD_LIBRARY_PATH</code> to be able to run programs.</p>
@@ -236,6 +242,17 @@ when the <code>prefer_static</code> built-in option is set to true.</p>
 <h2 id="format-command-now-accept-stdin-argument">format command now accept stdin argument</h2>
 <p>You can now use <code>-</code> argument for <code>meson format</code> to read input from stdin
 instead of reading it from a file.</p>
+<h2 id="machine-entry-in-target-introspection-data">"machine" entry in target introspection data</h2>
+<p>The JSON data returned by <code>meson introspect --targets</code> now has a <code>machine</code>
+entry in each <code>target_sources</code> block.  The new entry can be one of <code>build</code>
+or <code>host</code> for compiler-built targets, or absent for <code>custom_target</code> targets.</p>
+<h2 id="control-the-number-of-child-processes-with-an-environment-variable">Control the number of child processes with an environment variable</h2>
+<p>Previously, <code>meson test</code> checked the <code>MESON_TESTTHREADS</code> variable to control
+the amount of parallel jobs to run; this was useful when <code>meson test</code> is
+invoked through <code>ninja test</code> for example.  With this version, a new variable
+<code>MESON_NUM_PROCESSES</code> is supported with a broader scope: in addition to
+<code>meson test</code>, it is also used by the <code>external_project</code> module and by
+Ninja targets that invoke <code>clang-tidy</code>, <code>clang-format</code> and <code>clippy</code>.</p>
 <h2 id="install-vcs_tag-output">Install vcs_tag() output</h2>
 <p><a href="Reference-manual_functions.html#vcs_tag"><ins><code>vcs_tag()</code></ins></a> now has <code>install</code>, <code>install_dir</code>, <code>install_tag</code> and <code>install_mode</code>
 keyword arguments to install the generated file.</p>
