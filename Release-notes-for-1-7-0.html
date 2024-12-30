@@ -211,6 +211,12 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="new-custom-dependency-for-atomic">New custom dependency for atomic</h2>
+<pre><code>dependency('atomic')
+</code></pre>
+<p>checks for the availability of the atomic operation library. First, it looks
+for the atomic library. If that is not found, then it will try to use what is
+provided by the libc.</p>
 <h2 id="cargo-features-are-resolved-globally">Cargo features are resolved globally</h2>
 <p>When configuring a Cargo dependency, Meson will now resolve its complete
 dependency tree and feature set before generating the subproject AST.

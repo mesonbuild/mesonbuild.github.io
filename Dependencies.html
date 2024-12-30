@@ -439,6 +439,12 @@ wmf_dep = dependency('libwmf', method : 'config-tool')
 <pre><code class="language-meson">dep = dependency('appleframeworks', modules : 'foundation')
 </code></pre>
 <p>These dependencies can never be found for non-OSX hosts.</p>
+<h2 id="atomic-stdatomic">atomic (stdatomic)</h2>
+<p><em>(added 1.7.0)</em></p>
+<p>Provides access to the atomic operations library. This first attempts
+to look for a valid atomic external library before trying to fallback
+to what is provided by the C runtime libraries.</p>
+<p><code>method</code> may be <code>auto</code>, <code>builtin</code> or <code>system</code>.</p>
 <h2 id="blocks">Blocks</h2>
 <p>Enable support for Clang's blocks extension.</p>
 <pre><code class="language-meson">dep = dependency('blocks')
