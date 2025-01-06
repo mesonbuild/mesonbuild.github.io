@@ -388,7 +388,7 @@ library. It will not be installed, but instead it is added to the list
 of unit tests, which can be run with the command <code>meson test</code>.</p>
 <p>Above we mentioned precompiled headers as a feature not supported by
 other build systems. Here's how you would use them.</p>
-<pre><code class="language-meson">project('pch demo', 'cxx')
+<pre><code class="language-meson">project('pch demo', 'cpp')
 executable('myapp', 'myapp.cpp', pch : 'pch/myapp.hh')
 </code></pre>
 <p>The main reason other build systems cannot provide pch support this
