@@ -266,6 +266,10 @@ invoked through <code>ninja test</code> for example.  With this version, a new v
 <code>MESON_NUM_PROCESSES</code> is supported with a broader scope: in addition to
 <code>meson test</code>, it is also used by the <code>external_project</code> module and by
 Ninja targets that invoke <code>clang-tidy</code>, <code>clang-format</code> and <code>clippy</code>.</p>
+<h2 id="support-for-rust-2024">Support for Rust 2024</h2>
+<p>Meson can now request the compiler to use the 2024 edition of Rust.  Use
+<code>rust_std=2024</code> to activate it.  Rust 2024 requires the 1.85.0 version
+(or newer) of the compiler.</p>
 <h2 id="test-targets-no-longer-built-by-default">Test targets no longer built by default</h2>
 <p><code>meson test</code> and the <code>ninja all</code> rule have been reworked to no longer force
 unnecessary rebuilds.</p>
