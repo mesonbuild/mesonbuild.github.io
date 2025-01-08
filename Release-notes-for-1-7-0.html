@@ -259,6 +259,30 @@ invoked through <code>ninja test</code> for example.  With this version, a new v
 <code>MESON_NUM_PROCESSES</code> is supported with a broader scope: in addition to
 <code>meson test</code>, it is also used by the <code>external_project</code> module and by
 Ninja targets that invoke <code>clang-tidy</code>, <code>clang-format</code> and <code>clippy</code>.</p>
+<h2 id="test-targets-no-longer-built-by-default">Test targets no longer built by default</h2>
+<p><code>meson test</code> and the <code>ninja all</code> rule have been reworked to no longer force
+unnecessary rebuilds.</p>
+<p><code>meson test</code> was invoking <code>ninja all</code> due to a bug if the chosen set of tests
+had no build dependencies. The behavior is now the same as when tests do have
+build dependencies, i.e. to only build the actual set of targets that are used
+by the test. This change could cause failures when upgrading to Meson 1.7.0, if
+the dependencies are not specified correctly in meson.build. Using <code>ninja test</code>
+has always been guaranteed to "do the right thing" and rebuild <code>all</code> as well;
+this continues to work.</p>
+<p><code>ninja all</code> does not rebuild all tests anymore; it should be noted that this
+change means test programs are no longer guaranteed to have been built,
+depending on whether those test programs were <em>also</em> defined to build by
+default / marked as installable. This avoids building test-only binaries as
+part of installing the project (<code>ninja &amp;&amp; ninja install</code>), which is unnecessary
+and has no use case.</p>
+<p>Some users might have been relying on the "all" target building test
+dependencies in combination with <code>meson test --no-rebuild</code> in order to skip
+calling out to ninja when running tests. This might break with this change
+because, when given <code>--no-rebuild</code>, Meson provides no guarantee that test
+dependencies are present and up to date. The recommended workflow is to use
+either <code>ninja test</code> or <code>ninja &amp;&amp; meson test</code> but, if you wish to build test
+programs and dependencies in a separate stage, you can use for example <code>ninja all meson-test-prereq meson-benchmark-prereq</code> before <code>meson test --no-rebuild</code>.
+These prereq targets have been available since meson 0.63.0.</p>
 <h2 id="install-vcs_tag-output">Install vcs_tag() output</h2>
 <p><a href="Reference-manual_functions.html#vcs_tag"><ins><code>vcs_tag()</code></ins></a> now has <code>install</code>, <code>install_dir</code>, <code>install_tag</code> and <code>install_mode</code>
 keyword arguments to install the generated file.</p>
