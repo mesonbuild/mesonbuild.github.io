@@ -217,6 +217,13 @@ $('body').removeClass('no-script');
 <p>checks for the availability of the atomic operation library. First, it looks
 for the atomic library. If that is not found, then it will try to use what is
 provided by the libc.</p>
+<h2 id="caplints-allow-used-for-cargo-subprojects">
+<code>--cap-lints allow</code> used for Cargo subprojects</h2>
+<p>Similar to Cargo itself, all downloaded Cargo subprojects automatically
+add the <code>--cap-lints allow</code> compiler argument, thus hiding any warnings
+from the compiler.</p>
+<p>Related to this, <code>warning_level=0</code> now translates into <code>--cap-lints allow</code>
+for Rust targets instead of <code>-A warnings</code>.</p>
 <h2 id="cargo-features-are-resolved-globally">Cargo features are resolved globally</h2>
 <p>When configuring a Cargo dependency, Meson will now resolve its complete
 dependency tree and feature set before generating the subproject AST.
