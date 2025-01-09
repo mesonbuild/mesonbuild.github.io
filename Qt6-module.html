@@ -292,6 +292,9 @@ files need to maintain their directory structure inside the target temporary
 directory. For instance, when a file called <code>subdir/one.input</code> is processed
 it generates a file <code>{target private directory}/subdir/one.out</code> when <code>true</code>,
 and <code>{target private directory}/one.out</code> when <code>false</code> (default).</li>
+<li>
+<code>output_json</code> bool: <em>New in 1.7.0</em>. If <code>true</code>, generates additionnaly a
+JSON representation which may be used by external tools such as qmltyperegistrar</li>
 </ul>
 <h2 id="preprocess">preprocess</h2>
 <p>Consider using <code>compile_resources</code>, <code>compile_ui</code>, and <code>compile_moc</code> instead.</p>
@@ -340,6 +343,9 @@ files need to maintain their directory structure inside the target temporary
 directory. For instance, when a file called <code>subdir/one.input</code> is processed
 it generates a file <code>{target private directory}/subdir/one.out</code> when <code>true</code>,
 and <code>{target private directory}/one.out</code> when <code>false</code> (default).</li>
+<li>
+<code>moc_output_json</code> bool: <em>New in 1.7.0</em>. If <code>true</code>, generates additionally a
+JSON representation which may be used by external tools such as qmltyperegistrar</li>
 </ul>
 <p>It returns an array of targets and sources to pass to a compilation target.</p>
 <h2 id="compile_translations">compile_translations</h2>
@@ -393,6 +399,107 @@ missing Meson will abort.</li>
 are <code>moc</code>, <code>uic</code>, <code>rcc</code> and <code>lrelease</code>. By default <code>tools</code> is set to <code>['moc', 'uic', 'rcc', 'lrelease']</code>
 </li>
 </ul>
+<h2 id="qml_module">qml_module</h2>
+<p><em>New in 1.7.0</em></p>
+<p>This function requires one positional argument: the URI of the module as dotted
+identifier string. For instance <code>Foo.Bar</code></p>
+<p>This method takes the following keyword arguments:</p>
+<ul>
+<li>
+<code>version</code>: string: the module version in the form <code>Major.Minor</code> with an
+optional <code>.Patch</code>. For instance <code>1.0</code>
+</li>
+<li>
+<code>qml_sources</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of qml to be embedded in the module</li>
+<li>
+<code>qml_singletons</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of qml to be embedded in the module and marked as singletons</li>
+<li>
+<code>qml_internals</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of qml to be embedded in the module and marked as internal files</li>
+<li>
+<code>resources_prefix</code> string: By default <code>resources_prefix</code> is set to
+<code>qt/qml</code>. Prefix resources in the generated QRC with the given prefix</li>
+<li>
+<code>imports</code>: string[]: List of other QML modules imported by this module. Version
+can be specified as <code>Module/1.0</code> or <code>Module/auto</code>. See qmldir documentation</li>
+<li>
+<code>optional_imports</code>: string[]: List of other QML modules that may be imported by this
+module. See <code>imports</code> for expected format and qmldir documentation</li>
+<li>
+<code>default_imports</code>: string[]: List QML modules that may be loaded by
+tooling. See <code>imports</code> for expected format and qmldir documentation</li>
+<li>
+<code>depends_imports</code>: string[]: List of QML extra dependencies that may not be
+imported by QML, such as dependencies existing in C++ code. See <code>imports</code> for
+expected format and qmldir documentation</li>
+<li>
+<code>designer_supported</code> bool: If <code>true</code> specifies that the module supports Qt
+Quick Designer</li>
+<li>
+<code>moc_headers</code> (File | string | custom_target | custom_target index | generator_output)[]:
+A list of headers to be transpiled into .cpp files. See <a href="https://doc.qt.io/qt-6/qtqml-cppintegration-definetypes.html">Qt
+documentation</a>
+regarding how to register C++ class as Qml elements. Note: due to some
+limitations of qmltyperegistrar, all headers that declare QML types need to
+be accessible in the project's include path.</li>
+<li>
+<code>namespace</code>: str: optional C++ namespace for plugin and generation code</li>
+<li>
+<code>typeinfo</code>: str: optional name for the generated qmltype file, by default it
+will be generated as <code>{target_name}.qmltype</code>
+</li>
+<li>
+<code>rcc_extra_arguments</code>: string[]: Extra arguments to pass directly to <code>qt-rcc</code>
+</li>
+<li>
+<code>moc_extra_arguments</code>: string[]: Extra arguments to pass directly to <code>qt-moc</code>
+</li>
+<li>
+<code>qmlcachegen_extra_arguments</code>: string[]: Extra arguments to pass directly to
+<code>qmlcachegen</code>
+</li>
+<li>
+<code>qmltyperegistrar_extra_arguments</code>: string[]: Extra arguments to pass directly to
+<code>qmltyperegistrar</code>
+</li>
+<li>
+<code>generate_qmldir</code>: bool: If <code>true</code> (default) auto generate the <code>qmldir</code> file</li>
+<li>
+<code>generate_qmltype</code>: bool: If <code>true</code> (default) auto generate <code>qmltype</code> file</li>
+<li>
+<code>cachegen</code>: bool: If <code>true</code> (default) preprocess QML and JS files with
+qmlcachegen</li>
+<li>
+<code>method</code> string: The method to use to detect Qt, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>
+</li>
+<li>
+<code>preserve_paths</code> bool: If <code>true</code>, specifies that the output
+files need to maintain their directory structure inside the target temporary
+directory. For instance, when a file called <code>subdir/one.input</code> is processed
+it generates a file <code>{target private directory}/subdir/one.out</code> when <code>true</code>,
+and <code>{target private directory}/one.out</code> when <code>false</code> (default).</li>
+<li>
+<code>dependencies</code>: dependency objects whose include directories are used by
+moc.</li>
+<li>
+<code>include_directories</code> (string | IncludeDirectory)[]: A list of <code>include_directory()</code>
+objects used when transpiling the .moc files</li>
+<li>
+<code>install</code> bool: when true, this target is installed during the install step (optional).</li>
+<li>
+<code>install_dir</code> string: directory to install to (optional).</li>
+</ul>
+<p>Note: Qt uses static initialization to register its resources, if you're
+building a static library you may need to call these entry points
+explicitly. For a module <code>Foo.Bar42</code> the generated resources are <code>Foo_Bar42</code>
+and <code>qmlcache_Foo_Bar42</code> when qmlcache is used, they can be imported using
+<code>Q_INIT_RESOURCE</code>. All non-alphanumeric characters from the module name are
+replaced with <code>_</code>. Type registration may be invoked explicitly using
+<code>extern void qml_register_types_Foo_Bar42()</code>.</p>
+<p>See <a href="https://doc.qt.io/qt-6/resources.html#explicit-loading-and-unloading-of-embedded-resources">Qt documentation</a>
+for more information</p>
 <h2 id="dependencies">Dependencies</h2>
 <p>See <a href="Dependencies.html#qt">Qt dependencies</a></p>
 <p>The 'modules' argument is used to include Qt modules in the project.
