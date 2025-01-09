@@ -259,6 +259,8 @@ instead of reading it from a file.</p>
 <p>The JSON data returned by <code>meson introspect --targets</code> now has a <code>machine</code>
 entry in each <code>target_sources</code> block.  The new entry can be one of <code>build</code>
 or <code>host</code> for compiler-built targets, or absent for <code>custom_target</code> targets.</p>
+<h2 id="add-new-language-linear-asm">Add new language Linear Asm</h2>
+<p>TI C6000 compiler supports a dialect of TI asm, so we add a new language for it.</p>
 <h2 id="control-the-number-of-child-processes-with-an-environment-variable">Control the number of child processes with an environment variable</h2>
 <p>Previously, <code>meson test</code> checked the <code>MESON_TESTTHREADS</code> variable to control
 the amount of parallel jobs to run; this was useful when <code>meson test</code> is
