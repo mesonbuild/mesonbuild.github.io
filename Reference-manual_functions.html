@@ -4175,10 +4175,12 @@ arguments (<code>msg...</code>) of type <code><a href="Reference-manual_elementa
 <h2 id="declare_dependency">declare_dependency()</h2>
 <p>This function returns a <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> object that
 behaves like the return value of <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> but is
-internal to the current build. The main use case for this is in
+internal to the current build. One use case for this is in
 subprojects. This allows a subproject to easily specify how it should
 be used. This makes it interchangeable with the same dependency that
-is provided externally by the system.</p>
+is provided externally by the system. Another common use case is to
+declare project targets as dependencies so they may be used as
+dependencies of other build targets.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h3 style="margin-top: 0px;" id="signature16">Signature</h3>
