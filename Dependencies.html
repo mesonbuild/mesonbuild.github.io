@@ -514,6 +514,26 @@ foreach h : check_headers
   endif
 endforeach
 </code></pre>
+<h2 id="dia-sdk">DIA SDK</h2>
+<p><em>(added 1.6.0)</em></p>
+<p>Microsoft's Debug Interface Access SDK (DIA SDK) is available only on Windows,
+when using msvc, clang-cl or clang compiler from Microsoft Visual Studio.</p>
+<p>The DIA SDK runtime is not statically linked to target. The default usage
+method requires the runtime DLL (msdiaXXX.dll) to be manually registered in the
+OS with <code>regsrv32.exe</code> command, so it can be loaded using <code>CoCreateInstance</code>
+Windows function.</p>
+<p>Alternatively, you can use meson to copy the DIA runtime DLL to your build
+directory, and load it dynamically using <code>NoRegCoCreate</code> function provided by
+the DIA SDK. To facilitate this, you can read DLL path from dependency's
+variable 'dll' and use fs module to copy it. Example:</p>
+<pre><code class="language-meson">dia = dependency('diasdk', required: true)
+fs = import('fs')
+fs.copyfile(dia.get_variable('dll'))
+
+conf = configuration_data()
+conf.set('msdia_dll_name', fs.name(dia_dll_name))
+</code></pre>
+<p>Only the major version is available (eg. version is <code>14</code> for msdia140.dll).</p>
 <h2 id="dl-libdl">dl (libdl)</h2>
 <p><em>(added 0.62.0)</em></p>
 <p>Provides access to the dynamic link interface (functions: dlopen,
@@ -527,12 +547,12 @@ providing them instead.</p>
 <code>dependency('coarray')</code>.</p>
 <p>GCC will use OpenCoarrays if present to implement coarrays, while Intel and NAG
 use internal coarray support.</p>
-<h2 id="gpgme">GPGME</h2>
-<p><em>(added 0.51.0)</em></p>
-<p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
 <h2 id="gl">GL</h2>
 <p>This finds the OpenGL library in a way appropriate to the platform.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code> or <code>system</code>.</p>
+<h2 id="gpgme">GPGME</h2>
+<p><em>(added 0.51.0)</em></p>
+<p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
 <h2 id="gtest-and-gmock">GTest and GMock</h2>
 <p>GTest and GMock come as sources that must be compiled as part of your
 project. With Meson you don't have to care about the details, just
@@ -675,6 +695,11 @@ language-specific, you must specify the requested language using the
 <code>dependency('netcdf', language: 'fortran')</code> for the Fortran NetCDF headers and libraries</li>
 </ul>
 <p>Meson uses pkg-config to find NetCDF.</p>
+<h2 id="numpy">NumPy</h2>
+<p><em>(added 1.4.0)</em></p>
+<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, or <code>config-tool</code>.
+<code>dependency('numpy')</code> supports regular use of the NumPy C API.
+Use of <code>numpy.f2py</code> for binding Fortran code isn't yet supported.</p>
 <h2 id="objfw">ObjFW</h2>
 <p><em>(added 1.5.0)</em></p>
 <p>Meson has native support for ObjFW, including support for ObjFW packages.</p>
@@ -700,11 +725,6 @@ for OpenMP support.</p>
 <h2 id="openssl">OpenSSL</h2>
 <p><em>(added 0.62.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>system</code> or <code>cmake</code>.</p>
-<h2 id="numpy">NumPy</h2>
-<p><em>(added 1.4.0)</em></p>
-<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, or <code>config-tool</code>.
-<code>dependency('numpy')</code> supports regular use of the NumPy C API.
-Use of <code>numpy.f2py</code> for binding Fortran code isn't yet supported.</p>
 <h2 id="pcap">pcap</h2>
 <p><em>(added 0.42.0)</em></p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code> or <code>pkg-config</code>.</p>
@@ -826,26 +846,6 @@ System finder can be used on these OSes to link with the bundled
 version.</p>
 <p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>cmake</code>, or <code>system</code>.</p>
 <p><em>New in 0.54.0</em> the <code>system</code> method.</p>
-<h2 id="dia-sdk">DIA SDK</h2>
-<p><em>(added 1.6.0)</em></p>
-<p>Microsoft's Debug Interface Access SDK (DIA SDK) is available only on Windows,
-when using msvc, clang-cl or clang compiler from Microsoft Visual Studio.</p>
-<p>The DIA SDK runtime is not statically linked to target. The default usage
-method requires the runtime DLL (msdiaXXX.dll) to be manually registered in the
-OS with <code>regsrv32.exe</code> command, so it can be loaded using <code>CoCreateInstance</code>
-Windows function.</p>
-<p>Alternatively, you can use meson to copy the DIA runtime DLL to your build
-directory, and load it dynamically using <code>NoRegCoCreate</code> function provided by
-the DIA SDK. To facilitate this, you can read DLL path from dependency's
-variable 'dll' and use fs module to copy it. Example:</p>
-<pre><code class="language-meson">dia = dependency('diasdk', required: true)
-fs = import('fs')
-fs.copyfile(dia.get_variable('dll'))
-
-conf = configuration_data()
-conf.set('msdia_dll_name', fs.name(dia_dll_name))
-</code></pre>
-<p>Only the major version is available (eg. version is <code>14</code> for msdia140.dll).</p>
 <hr>
 <a name="footnote1">1</a>: They may appear to be case-insensitive, if the
     underlying file system happens to be case-insensitive.
