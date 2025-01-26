@@ -976,6 +976,9 @@ is_new = version.version_compare('&gt;=2.0')
 <pre><code class="language-meson">'3.6'.version_compare('&gt;=3.6.0') == false
 </code></pre>
 <p>It is best to be unambiguous and specify the full revision level to compare.</p>
+<p><em>Since 1.8.0</em> multiple versions can be compared:</p>
+<pre><code class="language-meson">'3.6'.version_compare('&gt;=3', '&lt;4.0') == true
+</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments9">Arguments</h4>
 <p>The method <code>str.version_compare()</code> accepts the following positional arguments:</p>
