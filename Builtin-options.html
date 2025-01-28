@@ -631,11 +631,15 @@ fails.</p>
 <p><code>vsenv</code> is <code>true</code> by default when using the <code>vs</code> backend.</p>
 <h4 id="details-for-default_both_libraries">Details for <code>default_both_libraries</code>
 </h4>
-<p>Since <code>1.6.0</code>, you can select the default type of library selected when using
-a <code>both_libraries</code> object. This can be either 'shared' (default value, compatible
-with previous meson versions), 'static', or 'auto'. With auto, the value from
-<code>default_library</code> option is used, unless it is 'both', in which case 'shared'
-is used instead.</p>
+<p>Since <code>1.6.0</code>, you can specify the default type of library selected when using a
+<code>both_libraries</code> object with <code>default_both_libraries</code>. Note that, unlike
+<code>default_library</code>, this option does not affect how the library artifacts are
+built, but how they are internally linked to the dependent targets within the
+same project.</p>
+<p>The possible values of this option are 'shared' (default value, compatible with
+previous meson versions), 'static', and 'auto'. With auto, the value from the
+<code>default_library</code> option is used, unless it is 'both', in which case 'shared' is
+used instead.</p>
 <p>When <code>default_both_libraries</code> is 'auto', passing a <a href="Reference-manual_returned_both_libs.html"><ins><code>both_libs</code></ins></a> dependency
 in <a href="Reference-manual_functions.html#both_libraries"><ins><code>both_libraries()</code></ins></a> will link the static dependency with the static lib,
 and the shared dependency with the shared lib.</p>
