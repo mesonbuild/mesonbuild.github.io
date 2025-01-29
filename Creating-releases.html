@@ -230,6 +230,11 @@ submodules (recursively). All revision control metadata is removed.
 Meson then takes this archive and tests that it works by doing a full
 <code>compile</code> + <code>test</code> + <code>install</code> cycle. If all these pass, Meson will
 then create a <code>SHA-256</code> checksum file next to the archive.</p>
+<h2 id="modifying-the-dist-directory-before-creating-the-archive">Modifying the dist directory before creating the archive</h2>
+<p>Modification to the checked out files like generating files or
+setting version info can be done with dist scripts:</p>
+<pre><code class="language-meson"><a href="Reference-manual_builtin_meson.html#mesonadd_dist_script"><ins>meson.add_dist_script</ins></a>('distscript.sh')
+</code></pre>
 <h2 id="autotools-dist-vs-meson-dist">Autotools dist VS Meson dist</h2>
 <p>Meson behaviour is different from Autotools. The Autotools "dist"
 target packages up the current source tree. Meson packages the latest
