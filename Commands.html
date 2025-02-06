@@ -232,8 +232,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
                   [--mandir MANDIR] [--sbindir SBINDIR]
                   [--sharedstatedir SHAREDSTATEDIR]
-                  [--sysconfdir SYSCONFDIR]
-                  [--auto-features {enabled,disabled,auto}]
+                  [--sysconfdir SYSCONFDIR] [--auto-features AUTO_FEATURES]
                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
                   [--genvslite {vs2022}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
@@ -280,8 +279,7 @@ options:
   --sbindir SBINDIR                     System executable directory.
   --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
   --sysconfdir SYSCONFDIR               Sysconf data directory.
-  --auto-features {enabled,disabled,auto}
-                                        Override value of all 'auto' features
+  --auto-features AUTO_FEATURES         Override value of all 'auto' features
                                         (default: auto).
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
@@ -312,8 +310,7 @@ options:
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
-  --unity-size UNITY_SIZE               Unity block size (default: (2, None,
-                                        4)).
+  --unity-size UNITY_SIZE               Unity block size (default: 4).
   --warnlevel {0,1,2,3,everything}      Compiler warning level to use (default:
                                         1).
   --werror                              Treat warnings as errors
@@ -326,7 +323,7 @@ options:
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.bytecompile PYTHON.BYTECOMPILE
                                         Whether to compile bytecode (default:
-                                        (-1, 2, 0)).
+                                        0).
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
@@ -673,8 +670,7 @@ Rewriter commands:
               [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
               [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
               [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
-              [--sysconfdir SYSCONFDIR]
-              [--auto-features {enabled,disabled,auto}]
+              [--sysconfdir SYSCONFDIR] [--auto-features AUTO_FEATURES]
               [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
               [--genvslite {vs2022}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
@@ -734,8 +730,7 @@ options:
   --sbindir SBINDIR                     System executable directory.
   --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
   --sysconfdir SYSCONFDIR               Sysconf data directory.
-  --auto-features {enabled,disabled,auto}
-                                        Override value of all 'auto' features
+  --auto-features AUTO_FEATURES         Override value of all 'auto' features
                                         (default: auto).
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
@@ -766,8 +761,7 @@ options:
   --stdsplit                            Split stdout and stderr in test logs
   --strip                               Strip targets on install
   --unity {on,off,subprojects}          Unity build (default: off).
-  --unity-size UNITY_SIZE               Unity block size (default: (2, None,
-                                        4)).
+  --unity-size UNITY_SIZE               Unity block size (default: 4).
   --warnlevel {0,1,2,3,everything}      Compiler warning level to use (default:
                                         1).
   --werror                              Treat warnings as errors
@@ -780,7 +774,7 @@ options:
   --pkgconfig.relocatable               Generate pkgconfig files as relocatable
   --python.bytecompile PYTHON.BYTECOMPILE
                                         Whether to compile bytecode (default:
-                                        (-1, 2, 0)).
+                                        0).
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
