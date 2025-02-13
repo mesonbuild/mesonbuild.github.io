@@ -321,6 +321,36 @@ by invoking <a href="Commands.html#configure"><code>meson configure</code></a> w
 project source directory or the path to the root <code>meson.build</code>. In
 this case, Meson will print the default values of all options similar
 to the example output from above.</p>
+<h2 id="per-project-subproject-options-rewrite-since-18">Per project subproject options rewrite (Since 1.8)</h2>
+<p>A common requirement when building large projects with many
+subprojects is to build some (or all) subprojects with project options
+that are different from the "main project". This has been sort of
+possible in a limited way but is now natively supported. Per project
+options can be added, changed and removed at runtime using the command
+line, in other words, without editing existing <code>meson.build</code> files.</p>
+<p>Starting with version 1.8 you can specify per-project option settings.
+These can be specified for every top level (i.e. not project) options.
+Suppose you have a project that has a single subproject called
+<code>numbercruncher</code> that does heavy computation. During development you
+want to build that subproject with optimizations enabled but your main
+project without optimizations. This can be done by specifying a custom
+value to the given subproject:</p>
+<pre><code>meson configure -Dnumbercruncher:optimization=3
+</code></pre>
+<p>Another case might be that you want to build with warnings as errors,
+but some subproject does not support it. To configure <code>werror</code> per
+subproject you can do:</p>
+<pre><code>meson configure -Dwerror=true -Dnaughty:werror=false
+</code></pre>
+<p>You can also specify a different value on the top level project. For
+example you could enable optimizations on all subprojects but not the
+top level project:</p>
+<pre><code>meson configure -Doptimization=2 -D:optimization=0
+</code></pre>
+<p>Note the colon after the second <code>D</code>.</p>
+<p>Subproject specific values can be removed with -U</p>
+<pre><code>meson configure -Usubproject:optionnname
+</code></pre>
 
     </div>
         

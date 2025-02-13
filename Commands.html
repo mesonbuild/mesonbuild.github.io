@@ -256,7 +256,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
                   [--cmake-prefix-path CMAKE_PREFIX_PATH]
                   [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
-                  [-D option] [--clearcache] [--no-pager]
+                  [-D option] [--clearcache] [--no-pager] [-U UNSET_OPTS]
                   [builddir]
 </code></pre>
 <p>Changes options of a configured meson project.</p>
@@ -355,6 +355,7 @@ options:
   --clearcache                          Clear cached state (e.g. found
                                         dependencies)
   --no-pager                            Do not redirect output to a pager
+  -U UNSET_OPTS                         Remove a subproject option.
 </code></pre>
 <p>Most arguments are the same as in <a href="Commands.html#setup"><code>setup</code></a>.</p>
 <p>Note: reconfiguring project will not reset options to their default

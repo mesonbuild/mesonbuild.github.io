@@ -217,6 +217,21 @@ $('body').removeClass('no-script');
 a range of version for instance.</p>
 <pre><code class="language-meson">'1.5'.version_compare('&gt;=1', '&lt;2')
 </code></pre>
+<h2 id="per-project-subproject-options-rewrite">Per project subproject options rewrite</h2>
+<p>You can now define per-subproject values for all shared configuration
+options. As an example you might want to enable optimizations on only
+one subproject:</p>
+<pre><code>meson configure -Dnumbercruncher:optimization=3
+</code></pre>
+<p>Subproject specific values can be removed with -U</p>
+<pre><code>meson configure -Unumbercruncher:optimization
+</code></pre>
+<p>This is a major change in how options are handled, and the
+implementation will evolve over the next few releases of Meson. If
+this change causes an error in your builds, please <a href="https://github.com/mesonbuild/meson/issues/new">report an issue on
+GitHub</a>.</p>
+<p>We have tried to keep backwards compatibility as much as possible, but
+this may lead to some build breakage.</p>
 
     </div>
         
