@@ -344,6 +344,10 @@ top-level project.</p>
 name(s), the test name(s) must be contained in the suite(s). This
 however is redundant-- it would be more useful to specify either
 specific test names or suite(s).</p>
+<p>Since version <em>1.8.0</em>, you can pass <code>--slice i/n</code> to split up the set of tests
+into <code>n</code> slices and execute the <code>ith</code> such slice. This allows you to distribute
+a set of long-running tests across multiple machines to decrease the overall
+runtime of tests.</p>
 <h3 id="other-test-options">Other test options</h3>
 <p>Sometimes you need to run the tests multiple times, which is done like this:</p>
 <pre><code class="language-console">$ meson test --repeat=10

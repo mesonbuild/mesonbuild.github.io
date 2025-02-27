@@ -232,6 +232,11 @@ this change causes an error in your builds, please <a href="https://github.com/m
 GitHub</a>.</p>
 <p>We have tried to keep backwards compatibility as much as possible, but
 this may lead to some build breakage.</p>
+<h2 id="new-option-to-execute-a-slice-of-tests">New option to execute a slice of tests</h2>
+<p>When tests take a long time to run a common strategy is to slice up the tests
+into multiple sets, where each set is executed on a separate machine. You can
+now use the <code>--slice i/n</code> argument for <code>meson test</code> to create <code>n</code> slices and
+execute the <code>ith</code> slice.</p>
 
     </div>
         
