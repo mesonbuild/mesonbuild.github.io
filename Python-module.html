@@ -283,9 +283,15 @@ added methods.</p>
 <h4 id="path"><code>path()</code></h4>
 <pre><code class="language-meson">str py_installation.path()
 </code></pre>
-<p><em>Added 0.50.0</em></p>
-<p>Works like the path method of other <code>ExternalProgram</code> objects. Was not
-provided prior to 0.50.0 due to a bug.</p>
+<p><em>(since 0.50.0)</em></p>
+<p><em>Deprecated in 0.55: use <code>full_path()</code> instead</em></p>
+<p>Works like the path method of <code>ExternalProgram</code> objects. Was not provided prior
+to 0.50.0 due to a bug.</p>
+<h4 id="full_path"><code>full_path()</code></h4>
+<pre><code class="language-meson">str py_installation.full_path()
+</code></pre>
+<p><em>(since 0.55.0)</em></p>
+<p>Works like the <code>full_path()</code> method of <code>ExternalProgram</code> objects: <a href="Reference-manual_returned_external_program.html#external_programfull_path"><ins><code>external_program.full_path()</code></ins></a></p>
 <h4 id="extension_module"><code>extension_module()</code></h4>
 <pre><code class="language-meson">shared_module py_installation.extension_module(module_name, list_of_sources, ...)
 </code></pre>
