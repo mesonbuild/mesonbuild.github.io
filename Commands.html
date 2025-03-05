@@ -232,7 +232,8 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
                   [--mandir MANDIR] [--sbindir SBINDIR]
                   [--sharedstatedir SHAREDSTATEDIR]
-                  [--sysconfdir SYSCONFDIR] [--auto-features AUTO_FEATURES]
+                  [--sysconfdir SYSCONFDIR]
+                  [--auto-features {enabled,disabled,auto}]
                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
                   [--genvslite {vs2022}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
@@ -279,7 +280,8 @@ options:
   --sbindir SBINDIR                     System executable directory.
   --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
   --sysconfdir SYSCONFDIR               Sysconf data directory.
-  --auto-features AUTO_FEATURES         Override value of all 'auto' features
+  --auto-features {enabled,disabled,auto}
+                                        Override value of all 'auto' features
                                         (default: auto).
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
@@ -301,7 +303,7 @@ options:
   --errorlogs                           Whether to print the logs from failing
                                         tests
   --install-umask INSTALL_UMASK         Default umask to apply on permissions of
-                                        installed files (default: 022).
+                                        installed files (default: 0o22).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
@@ -671,7 +673,8 @@ Rewriter commands:
               [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
               [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
               [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
-              [--sysconfdir SYSCONFDIR] [--auto-features AUTO_FEATURES]
+              [--sysconfdir SYSCONFDIR]
+              [--auto-features {enabled,disabled,auto}]
               [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
               [--genvslite {vs2022}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
@@ -731,7 +734,8 @@ options:
   --sbindir SBINDIR                     System executable directory.
   --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
   --sysconfdir SYSCONFDIR               Sysconf data directory.
-  --auto-features AUTO_FEATURES         Override value of all 'auto' features
+  --auto-features {enabled,disabled,auto}
+                                        Override value of all 'auto' features
                                         (default: auto).
   --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
                                         Backend to use (default: ninja).
@@ -753,7 +757,7 @@ options:
   --errorlogs                           Whether to print the logs from failing
                                         tests
   --install-umask INSTALL_UMASK         Default umask to apply on permissions of
-                                        installed files (default: 022).
+                                        installed files (default: 0o22).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
   --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
