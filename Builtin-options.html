@@ -771,10 +771,25 @@ available on all platforms or with all compilers:</p>
 </tr>
 </tbody>
 </table>
-<p>The value of <code>b_sanitize</code> can be one of: <code>none</code>, <code>address</code>, <code>thread</code>,
-<code>undefined</code>, <code>memory</code>, <code>leak</code>, <code>address,undefined</code>, but note that some
-compilers might not support all of them. For example Visual Studio
-only supports the address sanitizer.</p>
+<p>The default and possible values of sanitizers changed in 1.8. Before 1.8 they
+were string values, and restricted to a specific subset of values: <code>none</code>,
+<code>address</code>, <code>thread</code>, <code>undefined</code>, <code>memory</code>, <code>leak</code>, or <code>address,undefined</code>. In
+1.8 it was changed to a free form array of sanitizers, which are checked by a
+compiler and linker check. For backwards compatibility reasons
+<code>get_option('b_sanitize')</code> continues to return a string with the array values
+separated by a comma. Furthermore:</p>
+<ul>
+<li>
+<p>If the <code>b_sanitize</code> option is empty, the <code>'none'</code> string is returned.</p>
+</li>
+<li>
+<p>If it contains only the values <code>'address'</code> and <code>'undefined'</code>, they are
+always returned as the <code>'address,undefined'</code> string, in this order.</p>
+</li>
+<li>
+<p>Otherwise, the array elements are returned in undefined order.</p>
+</li>
+</ul>
 <p>* &lt; 0 means disable, == 0 means automatic selection, &gt; 0 sets a specific number to use</p>
 <p>LLVM supports <code>thin</code> lto, for more discussion see <a href="https://clang.llvm.org/docs/ThinLTO.html">LLVM's documentation</a></p>
 <p><a name="b_vscrt-from_buildtype"></a>

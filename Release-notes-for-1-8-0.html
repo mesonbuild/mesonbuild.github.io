@@ -211,6 +211,21 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="changes-to-the-b_sanitize-option">Changes to the b_sanitize option</h2>
+<p>Before 1.8 the <code>b_sanitize</code> option was a combo option, which is an enumerated
+set of values. In 1.8 this was changed to a free-form array of options where
+available sanitizers are not hardcoded anymore but instead verified via a
+compiler check.</p>
+<p>This solves a number of longstanding issues such as:</p>
+<ul>
+<li>Sanitizers may be supported by a compiler, but not on a specific platform
+(OpenBSD).</li>
+<li>New sanitizers are not recognized by Meson.</li>
+<li>Using sanitizers in previously-unsupported combinations.</li>
+</ul>
+<p>To not break backwards compatibility, calling <code>get_option('b_sanitize')</code>
+continues to return the configured value as a string, with a guarantee that
+<code>address,undefined</code> remains ordered.</p>
 <h2 id="version_compare-now-accept-multiple-compare-strings">
 <code>version_compare</code> now accept multiple compare strings</h2>
 <p>Is it now possible to compare version against multiple values, to check for
