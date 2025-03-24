@@ -381,6 +381,10 @@ wants to use a GDB replacement. Therefore, the invoked GDB program can
 be specified <em>(added 0.52.0)</em>:</p>
 <pre><code class="language-console">$ meson test --gdb --gdb-path /path/to/gdb testname
 </code></pre>
+<p>Meson can print the error logs produced by failing tests via the
+<code>--print-errorlogs</code> option. The logs can include stack traces and environmental
+variables. This is especially useful when you run the tests on GitHub, Travis,
+Jenkins and the like:</p>
 <pre><code class="language-console">$ meson test --print-errorlogs
 </code></pre>
 <p>Running tests interactively can be done with the <code>--interactive</code> option.
@@ -390,10 +394,6 @@ an integration test running in a container or virtual machine where a debug
 shell is spawned if it fails <em>(added 1.5.0)</em>:</p>
 <pre><code class="language-console">$ meson test --interactive testname
 </code></pre>
-<p>Meson will report the output produced by the failing tests along with
-other useful information as the environmental variables. This is
-useful, for example, when you run the tests on Travis-CI, Jenkins and
-the like.</p>
 <p>By default, the output from tests will be limited to the last 100 lines. The
 maximum number of lines to show can be configured with the <code>--max-lines</code> option
 <em>(added 1.5.0)</em>:</p>
