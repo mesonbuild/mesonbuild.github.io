@@ -324,7 +324,9 @@ combined = str1 + '_' + str2 # combined is now abc_xyz
 <h3 id="string-path-building">String path building</h3>
 <p><em>(Added 0.49)</em></p>
 <p>You can concatenate any two strings using <code>/</code> as an operator to build paths.
-This will always use <code>/</code> as the path separator on all platforms.</p>
+This will always use <code>/</code> as the path separator on all platforms.
+If any one of the individual segments is an absolute path, all segments before
+it are dropped.  For example:</p>
 <pre><code class="language-meson">joined = '/usr/share' / 'projectname'    # =&gt; /usr/share/projectname
 joined = '/usr/local' / '/etc/name'      # =&gt; /etc/name
 
