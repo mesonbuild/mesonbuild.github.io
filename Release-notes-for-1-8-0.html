@@ -262,6 +262,11 @@ sources, using the <code>rustdoc</code> program from the same Rust toolchain as 
 into multiple sets, where each set is executed on a separate machine. You can
 now use the <code>--slice i/n</code> argument for <code>meson test</code> to create <code>n</code> slices and
 execute the <code>ith</code> slice.</p>
+<h2 id="valgrind-now-fails-tests-if-errors-are-found">Valgrind now fails tests if errors are found</h2>
+<p>Valgrind does not reflect an error in its exit code by default, meaning
+a test may silently pass despite memory errors. Meson now exports
+<code>VALGRIND_OPTS</code> such that Valgrind will exit with status 1 to indicate
+an error if <code>VALGRIND_OPTS</code> is not set in the environment.</p>
 
     </div>
         
