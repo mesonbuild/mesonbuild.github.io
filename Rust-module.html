@@ -221,6 +221,7 @@ like Meson, rather than Meson work more like rust.</p>
 <h3 id="test">test()</h3>
 <pre><code class="language-meson">rustmod.test(name, target, ...)
 </code></pre>
+<p><em>Since 1.8.0</em></p>
 <p>This function creates a new rust unittest target from an existing rust
 based target, which may be a library or executable. It does this by
 copying the sources and arguments passed to the original target and
@@ -235,10 +236,36 @@ It also takes the following keyword arguments:</p>
 <li>
 <code>link_with</code>: a list of additional build Targets to link with (<em>since 1.2.0</em>)</li>
 <li>
+<code>link_whole</code>: a list of additional build Targets to link with in their entirety (<em>since 1.8.0</em>)</li>
+<li>
 <code>rust_args</code>: a list of extra arguments passed to the Rust compiler (<em>since 1.2.0</em>)</li>
 </ul>
 <p>This function  also accepts all of the keyword arguments accepted by the
 <a href="Reference-manual_functions.html#test"><ins><code>test()</code></ins></a> function except <code>protocol</code>, it will set that automatically.</p>
+<h3 id="doctest">doctest()</h3>
+<pre><code class="language-meson">rustmod.doctest(name, target, ...)
+</code></pre>
+<p>This function creates a new <code>test()</code> target from an existing rust
+based library target. The test will use <code>rustdoc</code> to extract and run
+the doctests that are included in <code>target</code>'s sources.</p>
+<p>This function takes two positional arguments, the first is the name of the
+test and the second is the library or executable that is the rust based target.
+It also takes the following keyword arguments:</p>
+<ul>
+<li>
+<code>dependencies</code>: a list of test-only Dependencies</li>
+<li>
+<code>link_with</code>: a list of additional build Targets to link with</li>
+<li>
+<code>link_whole</code>: a list of additional build Targets to link with in their entirety</li>
+<li>
+<code>rust_args</code>: a list of extra arguments passed to the Rust compiler</li>
+</ul>
+<p>The target is linked automatically into the doctests.</p>
+<p>This function  also accepts all of the keyword arguments accepted by the
+<a href="Reference-manual_functions.html#test"><ins><code>test()</code></ins></a> function except <code>protocol</code>, it will set that automatically.
+However, arguments are limited to strings that do not contain spaces
+due to limitations of <code>rustdoc</code>.</p>
 <h3 id="bindgen">bindgen()</h3>
 <p>This function wraps bindgen to simplify creating rust bindings around C
 libraries. This has two advantages over invoking bindgen with a
