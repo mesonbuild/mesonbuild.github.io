@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
 
 <link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
 
@@ -218,8 +219,12 @@ It represents a compiler for a given language and allows you to query its proper
 <ul>
 <li><a href="Reference-manual_builtin_meson.html#mesonget_compiler"><ins><code>meson.get_compiler()</code></ins></a></li>
 </ul>
-<div class="alert alert-info">
-  <strong>Note:</strong>
+<aside class="note note-info">
+<div class="note-topbar note-topbar-info">
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="note-title">Note:</span>
+</div>
+<div class="note-content">
 <p>These compiler checks do not use compiler arguments added
 with <code>add_*_arguments()</code>, via <code>-Dlang_args</code> on the command-line, or
 through <code>CFLAGS</code>/<code>LDFLAGS</code>, etc in the environment. Hence, you can
@@ -227,8 +232,13 @@ trust that the tests will be fully self-contained, and won't fail
 because of custom flags added by other parts of the build file or by
 users.</p>
 </div>
-<div class="alert alert-info">
-  <strong>Note:</strong>
+</aside>
+<aside class="note note-info">
+<div class="note-topbar note-topbar-info">
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="note-title">Note:</span>
+</div>
+<div class="note-content">
 <p>Note that if you have a single prefix with all your dependencies, you
 might find it easier to append to the environment variables
 <code>C_INCLUDE_PATH</code> with GCC/Clang and <code>INCLUDE</code> with MSVC to expand the
@@ -238,6 +248,7 @@ MSVC to expand the default library search path.</p>
 cross-compiling. In that case you need to use a specs file. See:
 http://www.mingw.org/wiki/SpecsFileHOWTO</p>
 </div>
+</aside>
 <h2 id="compiler-object-methods">Compiler object methods</h2>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="compileralignment">compiler.alignment()</h3>

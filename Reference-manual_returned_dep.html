@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
 
 <link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
 
@@ -618,10 +619,15 @@ then an error is raised.</p>
   <a href="Reference-manual_returned_dep.html#get_variable_pkgconfig_define"><b>pkgconfig_define</b></a> : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # See <a href="Reference-manual_returned_dep.html#depget_pkgconfig_variable"><ins><code>dep.get_pkgconfig_variable()</code></ins></a>
   <a href="Reference-manual_returned_dep.html#get_variable_system"><b>system</b></a>           : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>        # The system variable name
 )</code></pre>
-<div class="alert alert-warning">
-  <strong>Warning:</strong>
+<aside class="note note-warning">
+<div class="note-topbar note-topbar-warning">
+  <span class="glyphicon glyphicon-warning-sign"></span>
+  <span class="note-title">Warning:</span>
+</div>
+<div class="note-content">
 <p>Before 1.3.0, specifying multiple pkgconfig_define pairs would silently malform the results. Only the first variable would be redefined, but its value would contain both the second variable name, as well as its value.</p>
 </div>
+</aside>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments5">Arguments</h4>
 <p>The method <code>dep.get_variable()</code> accepts the following positional arguments:</p>
@@ -844,10 +850,15 @@ link_args.</p>
   <a href="Reference-manual_returned_dep.html#partial_dependency_links"><b>links</b></a>        : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Whether to include links
   <a href="Reference-manual_returned_dep.html#partial_dependency_sources"><b>sources</b></a>      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # Whether to include sources
 )</code></pre>
-<div class="alert alert-warning">
-  <strong>Warning:</strong>
+<aside class="note note-warning">
+<div class="note-topbar note-topbar-warning">
+  <span class="glyphicon glyphicon-warning-sign"></span>
+  <span class="note-title">Warning:</span>
+</div>
+<div class="note-content">
 <p>A bug present until 0.50.1 results in the above behavior not working correctly.</p>
 </div>
+</aside>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments6">Arguments</h4>
 <p>The method <code>dep.partial_dependency()</code>

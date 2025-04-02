@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
 
 <link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
 
@@ -709,14 +710,19 @@ as well as strings are accepted.</p>
 </div>
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> build_options()</code></pre>
-<div class="alert alert-info">
-  <strong>Note:</strong>
+<aside class="note note-info">
+<div class="note-topbar note-topbar-info">
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="note-title">Note:</span>
+</div>
+<div class="note-content">
 <p><strong>Do not try to parse this string!</strong></p>
 <p>You should use <a href="Reference-manual_returned_cfg_data.html#cfg_dataset_quoted"><ins><code>cfg_data.set_quoted()</code></ins></a> to safely escape any embedded
 quotes prior to storing it into e.g. a C header macro.</p>
 <p>The contents returned by this function are the same as the
 "Build Options:" line reported in <code>&lt;builddir&gt;/meson-logs/meson-log.txt</code>.</p>
 </div>
+</aside>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
@@ -792,14 +798,19 @@ as the helper.</p>
 </div>
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> current_source_dir()</code></pre>
-<div class="alert alert-info">
-  <strong>Note:</strong>
+<aside class="note note-info">
+<div class="note-topbar note-topbar-info">
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="note-title">Note:</span>
+</div>
+<div class="note-content">
 <p><strong>You do not need to use this function!</strong></p>
 <p>When passing files from the current source directory to a function since
 that is the default. Also, you can use the <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> function to
 refer to files in the current or any other source directory instead
 of constructing paths manually with <a href="Reference-manual_builtin_meson.html#mesoncurrent_source_dir"><ins><code>meson.current_source_dir()</code></ins></a>.</p>
 </div>
+</aside>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
@@ -1623,12 +1634,17 @@ name.</p>
 </div>
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_str.html"><ins>str</ins></a> source_root()</code></pre>
-<div class="alert alert-info">
-  <strong>Note:</strong>
+<aside class="note note-info">
+<div class="note-topbar note-topbar-info">
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="note-title">Note:</span>
+</div>
+<div class="note-content">
 <p>You should use the <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a> function
 to refer to files in the root source directory instead of
 constructing paths manually with <a href="Reference-manual_builtin_meson.html#mesonsource_root"><ins><code>meson.source_root()</code></ins></a>.</p>
 </div>
+</aside>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
