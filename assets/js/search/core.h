@@ -1,1 +1,1 @@
-urls_downloaded_cb({"token":"core.h","urls":[{"url":"Wayland-module.html#scan_xml","node_type":"ul","page":"Unstable Wayland Module","sections":["Unstable Wayland Module","Methods","scan_xml"],"context":{"gi-language":["default"]}}]});
+urls_downloaded_cb({"token":"core.h","urls":[{"url":"Wayland-module.html#scan_xml","node_type":"ul","page":"Wayland Module","sections":["Wayland Module","Methods","scan_xml"],"context":{"gi-language":["default"]}}]});

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Unstable Wayland Module</title>
+<title>Wayland Module</title>
 
 <link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
 <link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
@@ -210,18 +210,16 @@ $('body').removeClass('no-script');
 <div id="body">
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
-        <h1 id="unstable-wayland-module">Unstable Wayland Module</h1>
-<p>This module is available since version 0.62.0.</p>
+        <h1 id="wayland-module">Wayland Module</h1>
+<p>This module is available since version 0.62.0, and has been stable since version
+1.8.0.</p>
 <p>This module provides helper functions to find wayland protocol
 xmls and to generate .c and .h files using wayland-scanner</p>
-<p><strong>Note</strong>: this module is unstable. It is only provided as a technology
-preview. Its API may change in arbitrary ways between releases or it
-might be removed from Meson altogether.</p>
 <h2 id="quick-usage">Quick Usage</h2>
 <pre><code class="language-meson">project('hello-wayland', 'c')
 
 wl_dep = dependency('wayland-client')
-wl_mod = import('unstable-wayland')
+wl_mod = import('wayland')
 
 xml = wl_mod.find_protocol('xdg-shell')
 xdg_shell = wl_mod.scan_xml(xml)
