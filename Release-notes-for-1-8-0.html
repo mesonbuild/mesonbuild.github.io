@@ -247,6 +247,11 @@ this change causes an error in your builds, please <a href="https://github.com/m
 GitHub</a>.</p>
 <p>We have tried to keep backwards compatibility as much as possible, but
 this may lead to some build breakage.</p>
+<h2 id="meson-can-run-rustdoc-on-rust-projects">Meson can run "rustdoc" on Rust projects</h2>
+<p>Meson now defines a <code>rustdoc</code> target if the project
+uses the Rust programming language.  The target runs rustdoc on all Rust
+sources, using the <code>rustdoc</code> program from the same Rust toolchain as the
+<code>rustc</code> compiler.</p>
 <h2 id="new-option-to-execute-a-slice-of-tests">New option to execute a slice of tests</h2>
 <p>When tests take a long time to run a common strategy is to slice up the tests
 into multiple sets, where each set is executed on a separate machine. You can
