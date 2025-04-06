@@ -356,11 +356,11 @@ runtime of tests.</p>
 <p>Meson will set the <code>MESON_TEST_ITERATION</code> environment variable to the
 current iteration of the test <em>(added 1.5.0)</em>.</p>
 <p>Invoking tests via a helper executable such as Valgrind can be done with the
-<code>--wrap</code> argument</p>
-<pre><code class="language-console">$ meson test --wrap=valgrind testname
+<code>--wrapper</code> argument</p>
+<pre><code class="language-console">$ meson test --wrapper=valgrind testname
 </code></pre>
 <p>Arguments to the wrapper binary can be given like this:</p>
-<pre><code class="language-console">$ meson test --wrap='valgrind --tool=helgrind' testname
+<pre><code class="language-console">$ meson test --wrapper='valgrind --tool=helgrind' testname
 </code></pre>
 <p>Meson also supports running the tests under GDB. Just doing this:</p>
 <pre><code class="language-console">$ meson test --gdb testname
