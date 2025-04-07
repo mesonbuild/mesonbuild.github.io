@@ -359,7 +359,7 @@ machine</a> section for details.</p>
 <tr>
 <td> genvslite {vs2022}</td>
 <td> vs2022</td>
-<td> Setup multi-builtype ninja build directories and Visual Studio solution</td>
+<td> Setup multi-buildtype ninja build directories and Visual Studio solution</td>
 <td> no</td>
 <td> no</td>
 </tr>
@@ -520,7 +520,7 @@ for a lighter automated build pipeline.</p>
 <p>Setup multiple buildtype-suffixed, ninja-backend build directories (e.g.
 [builddir]_[debug/release/etc.]) and generate [builddir]_vs containing a Visual
 Studio solution with multiple configurations that invoke a meson compile of the
-setup build directories, as appropriate for the current configuration (builtype).</p>
+setup build directories, as appropriate for the current configuration (buildtype).</p>
 <p>This has the effect of a simple setup macro of multiple 'meson setup ...'
 invocations with a set of different buildtype values.  E.g.
 <code>meson setup ... --genvslite vs2022 somebuilddir</code> does the following -</p>
@@ -580,7 +580,7 @@ the two-way mapping:</p>
 <p>All other combinations of <code>debug</code> and <code>optimization</code> set <code>buildtype</code> to <code>'custom'</code>.</p>
 <h4 id="details-for-warning_level">Details for <code>warning_level</code>
 </h4>
-<p>Exact flags per warning level is compiler specific, but there is an approximative
+<p>Exact flags per warning level is compiler specific, but there is an approximate
 table for most common compilers.</p>
 <table>
 <thead>
