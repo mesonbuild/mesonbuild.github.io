@@ -227,6 +227,18 @@ compiler check.</p>
 <p>To not break backwards compatibility, calling <code>get_option('b_sanitize')</code>
 continues to return the configured value as a string, with a guarantee that
 <code>address,undefined</code> remains ordered.</p>
+<h2 id="i18n-module-xgettext">i18n module xgettext</h2>
+<p>There is a new <code>xgettext</code> function in <code>i18n</code> module that acts as a
+wrapper around <code>xgettext</code>. It allows to extract strings to translate from
+source files.</p>
+<p>This function is convenient, because:</p>
+<ul>
+<li>It can find the sources files from a build target;</li>
+<li>It will use an intermediate file when the number of source files is too
+big to be handled directly from the command line;</li>
+<li>It is able to get strings to translate from the dependencies of the given
+targets.</li>
+</ul>
 <h2 id="version_compare-now-accept-multiple-compare-strings">
 <code>version_compare</code> now accept multiple compare strings</h2>
 <p>Is it now possible to compare version against multiple values, to check for
