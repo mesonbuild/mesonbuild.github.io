@@ -372,6 +372,14 @@ but targeting macOS 10.11 (<code>-mmacosx-version-min=10.11</code>), this will
 correctly report the function as missing. Without the header however,
 it would lack the necessary availability information and incorrectly
 report the function as available.</p>
+<h2 id="is-a-macro-defined">Is a macro defined?</h2>
+<p>Macro detection can often be useful to determine if non-standard features
+are supported on your target platform. Fortunately, Meson makes it
+easy to check if a macro is defined:</p>
+<pre><code class="language-meson">if <a href="Reference-manual_returned_compiler.html#compilerhas_define"><ins>compiler.has_define</ins></a>('__SIZEOF_INT128__')
+  # macro is defined, do whatever is required
+endif
+</code></pre>
 <h2 id="does-a-structure-contain-a-member">Does a structure contain a member?</h2>
 <p>Some platforms have different standard structures. Here's how one
 would check if a struct called <code>mystruct</code> from header <code>myheader.h</code>
