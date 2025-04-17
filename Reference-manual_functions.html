@@ -2362,6 +2362,7 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
   <a href="Reference-manual_functions.html#build_target__lang__shared_args"><b>&lt;lang&gt;_shared_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a shared library
   <a href="Reference-manual_functions.html#build_target__lang__static_args"><b>&lt;lang&gt;_static_args</b></a>           : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # Arguments that are only passed to a static library
+  <a href="Reference-manual_functions.html#build_target_android_exe_type"><b>android_exe_type</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the intended target of the executable
   <a href="Reference-manual_functions.html#build_target_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#build_target_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#build_target_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
@@ -2539,6 +2540,24 @@ eg: <code>cpp_args</code> for C++</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_android_exe_type">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">android_exe_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies the intended target of the executable. This can either be
+<code>executable</code>, if the intended usecase is to run the executable using
+fork + exec, or <code>application</code> if the executable is supposed to be
+loaded as shared object by the android runtime.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.8.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  'executable'</code></p>
   </div>
   </td>
       </tr>
@@ -5039,6 +5058,7 @@ long as they each have a different <code>name_suffix</code>.</p>
   # Keyword arguments:
   <a href="Reference-manual_functions.html#executable__lang__args"><b>&lt;lang&gt;_args</b></a>                  : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # compiler flags to use for the given language;
   <a href="Reference-manual_functions.html#executable__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
+  <a href="Reference-manual_functions.html#executable_android_exe_type"><b>android_exe_type</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the intended target of the executable
   <a href="Reference-manual_functions.html#executable_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#executable_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
   <a href="Reference-manual_functions.html#executable_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # The [D version identifiers](https://dlang
@@ -5186,6 +5206,24 @@ eg: <code>cpp_args</code> for C++</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_android_exe_type">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">android_exe_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies the intended target of the executable. This can either be
+<code>executable</code>, if the intended usecase is to run the executable using
+fork + exec, or <code>application</code> if the executable is supposed to be
+loaded as shared object by the android runtime.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.8.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  'executable'</code></p>
   </div>
   </td>
       </tr>
