@@ -222,7 +222,6 @@ like Meson, rather than Meson work more like rust.</p>
 <h3 id="test">test()</h3>
 <pre><code class="language-meson">rustmod.test(name, target, ...)
 </code></pre>
-<p><em>Since 1.8.0</em></p>
 <p>This function creates a new rust unittest target from an existing rust
 based target, which may be a library or executable. It does this by
 copying the sources and arguments passed to the original target and
@@ -246,6 +245,7 @@ It also takes the following keyword arguments:</p>
 <h3 id="doctest">doctest()</h3>
 <pre><code class="language-meson">rustmod.doctest(name, target, ...)
 </code></pre>
+<p><em>Since 1.8.0</em></p>
 <p>This function creates a new <code>test()</code> target from an existing rust
 based library target. The test will use <code>rustdoc</code> to extract and run
 the doctests that are included in <code>target</code>'s sources.</p>
