@@ -329,6 +329,20 @@ application with qemu or a hardware simulator. If you have this kind
 of a wrapper, these lines are all you need to write. Meson will
 automatically use the given wrapper when it needs to run host
 binaries. This happens e.g. when running the project's test suite.</p>
+<p>Note that <code>exe_wrapper</code> in the cross file is handled separately
+from the <code>exe_wrapper</code> argument in
+<a href="Reference-manual_functions.html#add_test_setup_exe_wrapper"><code>add_test_setup</code></a>
+and <a href="Unit-tests.html#other-test-options"><code>meson test --wrapper</code></a>
+command line argument. Meson must have <code>exe_wrapper</code> specified in the
+cross file or else it will skip tests that attempt to run cross
+compiled binaries. Only the cross file <code>exe_wrapper</code> value will be
+stored in the <code>MESON_EXE_WRAPPER</code> environment variable. If another
+wrapper is given in the test setup with <code>exe_wrapper</code> or as a
+<code>meson test --wrapper</code> command line argument, then meson will prepend
+the additional wrapper before the cross file wrapper like the
+following command:</p>
+<pre><code>[prepend_wrapper] &lt;cross_file_wrapper&gt; &lt;exe_binary&gt; &lt;args...&gt;
+</code></pre>
 <h3 id="properties">Properties</h3>
 <p>In addition to the properties allowed in <a href="Machine-files.html#properties">all machine
 files</a>, the cross file may contain
