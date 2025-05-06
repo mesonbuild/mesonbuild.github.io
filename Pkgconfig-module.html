@@ -269,6 +269,8 @@ would be <code>foobar-1</code>
 <li>
 <code>url</code> a string with a url for the library</li>
 <li>
+<code>license</code> (<em>Since 1.9.0</em>) a string with a SPDX license to add to the generated file.</li>
+<li>
 <code>variables</code> a list of strings with custom variables to add to the
 generated file. The strings must be in the form <code>name=value</code> and may
 reference other pkgconfig variables,
@@ -320,6 +322,8 @@ application. That will cause pkg-config to prefer those
 <code>-uninstalled.pc</code> files and find libraries and headers from the Meson
 builddir. This is an experimental feature provided on a best-effort
 basis, it might not work in all use-cases.</p>
+<p><em>Since 1.9.0</em> you can specify a license identifier. To use the current project
+licence, simply use <code>license: meson.project_license()</code> as argument to <code>generate()</code>.</p>
 <h3 id="implicit-dependencies">Implicit dependencies</h3>
 <p>The exact rules followed to find dependencies that are implicitly
 added into the pkg-config file have evolved over time. Here are the
