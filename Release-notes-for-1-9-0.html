@@ -214,6 +214,12 @@ $('body').removeClass('no-script');
         <h1 id="new-features-in-development">New features (in development)</h1>
 <h2 id="added-license-keyword-to-pkgconfiggenerate">Added license keyword to pkgconfig.generate</h2>
 <p>When specified, it will add a <code>License:</code> attribute to the generated .pc file.</p>
+<h2 id="support-for-masm-in-visual-studio-backends">Support for MASM in Visual Studio backends</h2>
+<p>Previously, assembling <code>.masm</code> files with Microsoft's Macro Assembler is only
+available on the Ninja backend. This now also works on Visual Studio backends.</p>
+<p>Note that building ARM64EC code using <code>ml64.exe</code> is currently unimplemented in
+both of the backends. If you need mixing x64 and Arm64 in your project, please
+file an issue on GitHub.</p>
 
     </div>
         
