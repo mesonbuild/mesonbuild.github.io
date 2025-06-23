@@ -231,6 +231,15 @@ Swift compiler, notably <em>-std=</em>, in order to improve the compatibility
 of C code as interpreted by the C compiler and the Swift compiler.</p>
 <p>NB: This does not include any of the options set in the target's
 c_flags.</p>
+<h2 id="swiftc-interoperability-is-now-supported">Swift/C++ interoperability is now supported</h2>
+<p>It is now possible to create Swift executables that can link to C++ or
+Objective-C++ libraries. Only specifying a bridging header for the Swift
+target is required.</p>
+<p>Swift 5.9 is required to use this feature. Xcode 15 is required if the
+Xcode backend is used.</p>
+<pre><code class="language-meson">lib = static_library('mylib', 'mylib.cpp')
+exe = executable('prog', 'main.swift', 'mylib.h', link_with: lib)
+</code></pre>
 <h2 id="support-for-masm-in-visual-studio-backends">Support for MASM in Visual Studio backends</h2>
 <p>Previously, assembling <code>.masm</code> files with Microsoft's Macro Assembler is only
 available on the Ninja backend. This now also works on Visual Studio backends.</p>
