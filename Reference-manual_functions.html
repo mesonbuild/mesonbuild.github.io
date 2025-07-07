@@ -9523,13 +9523,16 @@ which have the same format as options to <code>meson configure</code>.
 For example to set the default project type you would
 set this: <code>default_options : ['buildtype=debugoptimized']</code>. Note
 that these settings are only used when running Meson for the first
-time. Global options such as <code>buildtype</code> can only be specified in
-the master project, settings in subprojects are ignored. Project
-specific options are used normally even in subprojects.</p>
+time.</p>
 <p>Note that some options can override the default behavior;
 for example, using <code>c_args</code> here means that the <code>CFLAGS</code>
 environment variable is not used. Consider using
 [<a href="Reference-manual_functions.html#add_project_arguments">add_project_arguments()</a>] instead.</p>
+<p>Also note that not all options are taken into account when
+building as a subproject, and the exact set of options
+that are per-subproject has increased over time; for more
+information, see <a href="Builtin-options.html#core-options">core options</a>
+and <a href="Builtin-options.html#compiler-options">compiler options</a>.</p>
 <p><em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">

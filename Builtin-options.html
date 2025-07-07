@@ -339,7 +339,7 @@ machine</a> section for details.</p>
 <th> Default value</th>
 <th> Description</th>
 <th> Is per machine</th>
-<th> Is per subproject</th>
+<th> Per subproject (since)</th>
 </tr>
 </thead>
 <tbody>
@@ -369,28 +369,28 @@ machine</a> section for details.</p>
 <td> debug</td>
 <td> Build type to use</td>
 <td> no</td>
-<td> no</td>
+<td> 1.8.0</td>
 </tr>
 <tr>
 <td> debug</td>
 <td> true</td>
 <td> Enable debug symbols and other information</td>
 <td> no</td>
-<td> no</td>
+<td> 1.8.0</td>
 </tr>
 <tr>
 <td> default_both_libraries {shared, static, auto}</td>
 <td> shared</td>
 <td> Default library type for both_libraries</td>
 <td> no</td>
-<td> no</td>
+<td> 1.8.0</td>
 </tr>
 <tr>
 <td> default_library {shared, static, both}</td>
 <td> shared</td>
 <td> Default library type</td>
 <td> no</td>
-<td> yes</td>
+<td> 0.54.0</td>
 </tr>
 <tr>
 <td> errorlogs</td>
@@ -418,7 +418,7 @@ machine</a> section for details.</p>
 <td> 0</td>
 <td> Optimization level</td>
 <td> no</td>
-<td> no</td>
+<td> 1.8.0</td>
 </tr>
 <tr>
 <td> pkg_config_path {OS separated path}</td>
@@ -453,35 +453,35 @@ machine</a> section for details.</p>
 <td> false</td>
 <td> Strip targets on install</td>
 <td> no</td>
-<td> no</td>
+<td> 1.8.0</td>
 </tr>
 <tr>
 <td> unity {on, off, subprojects}</td>
 <td> off</td>
 <td> Unity build</td>
 <td> no</td>
-<td> no</td>
+<td> 1.8.0</td>
 </tr>
 <tr>
 <td> unity_size {&gt;=2}</td>
 <td> 4</td>
 <td> Unity file block size</td>
 <td> no</td>
-<td> no</td>
+<td> 1.8.0</td>
 </tr>
 <tr>
 <td> warning_level {0, 1, 2, 3, everything}</td>
 <td> 1</td>
 <td> Set the warning level. From 0 = compiler default to everything = highest</td>
 <td> no</td>
-<td> yes</td>
+<td> 0.56.0</td>
 </tr>
 <tr>
 <td> werror</td>
 <td> false</td>
 <td> Treat warnings as errors</td>
 <td> no</td>
-<td> yes</td>
+<td> 0.54.0</td>
 </tr>
 <tr>
 <td> wrap_mode {default, nofallback,<br>nodownload, forcefallback, nopromote}</td>
@@ -1020,22 +1020,55 @@ Similarly named fields in the <code>[properties]</code> section of the cross fil
 would affect cross compilers, but the code paths were fairly different,
 allowing differences in behavior to crop out.</p>
 <h2 id="specifying-options-per-subproject">Specifying options per subproject</h2>
-<p>Since <em>0.54.0</em> <code>default_library</code> and <code>werror</code> built-in options can be
-defined per subproject. This is useful, for example, when building
-shared libraries in the main project and statically linking a subproject,
-or when the main project must build with no warnings but some subprojects
-cannot.</p>
+<p>Several built-in options and all compiler options can be defined per subproject.
+This is useful, for example, when building shared libraries in the main project
+and statically linking a subproject, or when the main project must build
+with no warnings but some subprojects cannot.</p>
 <p>Most of the time, this would be used either in the parent project by
 setting subproject's default_options (e.g. <code>subproject('foo', default_options: 'default_library=static')</code>), or by the user through the
 command line: <code>-Dfoo:default_library=static</code>.</p>
 <p>The value is overridden in this order:</p>
 <ul>
-<li>Value from parent project</li>
-<li>Value from subproject's default_options if set</li>
-<li>Value from subproject() default_options if set</li>
-<li>Value from command line if set</li>
+<li>
+<code>opt=value</code> from parent project's <code>default_options</code>
+</li>
+<li>
+<code>opt=value</code> from subproject's <code>default_options</code>
+</li>
+<li>
+<code>subp:opt=value</code> from parent project's default options</li>
+<li>
+<code>opt=value</code> from <code>subproject()</code> <code>default_options</code>
+</li>
+<li>
+<code>opt=value</code> from machine file</li>
+<li>
+<code>opt=value</code> from command line</li>
+<li>
+<code>subp:opt=value</code> from machine file</li>
+<li>
+<code>subp:opt=value</code> from command line</li>
 </ul>
-<p>Since <em>0.56.0</em> <code>warning_level</code> can also be defined per subproject.</p>
+<h3 id="old-behavior">Old behavior</h3>
+<p>Between <em>0.54.0</em> and <em>1.7.x</em> only a few options could be defined per subproject:</p>
+<ul>
+<li>
+<code>default_library</code> and <code>werror</code> since <em>0.54.0</em>;</li>
+<li>
+<code>warning_level</code> since <em>0.56.0</em>;</li>
+<li>compiler options since <em>0.63.0</em>
+</li>
+</ul>
+<p>The value was overridden in this order:</p>
+<ul>
+<li>Value from parent project</li>
+<li>Value from subproject's <code>default_options</code>
+</li>
+<li>Value from <code>subproject()</code> <code>default_options</code>
+</li>
+<li>Value from machine file</li>
+<li>Value from command line</li>
+</ul>
 <h2 id="module-options">Module options</h2>
 <p>Some Meson modules have built-in options. They can be set by prefixing the
 option with the module's name:
