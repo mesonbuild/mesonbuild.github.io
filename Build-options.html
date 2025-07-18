@@ -392,6 +392,9 @@ project which also has an option called <code>some_option</code>, then calling
 <code>get_option</code> returns the value of the superproject. If the value of
 <code>yield</code> is <code>false</code>, <code>get_option</code> returns the value of the subproject's
 option.</p>
+<p><em>Since 1.8.0</em> <code>-Dsub:some_option=anothervalue</code>, when used with a
+yielding option, sets the value separately from the option
+it yields to.</p>
 <h2 id="builtin-build-options">Built-in build options</h2>
 <p>There are a number of <a href="https://mesonbuild.com/Builtin-options.html">built-in options</a>. To get the
 current list execute <code>meson configure</code> in the build directory.</p>
