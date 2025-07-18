@@ -259,7 +259,8 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
                   [--cmake-prefix-path CMAKE_PREFIX_PATH]
                   [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
-                  [-D option] [--clearcache] [--no-pager] [-U UNSET_OPTS]
+                  [-D option=value] [--clearcache] [--no-pager]
+                  [-U CMD_LINE_OPTIONS]
                   [builddir]
 </code></pre>
 <p>Changes options of a configured meson project.</p>
@@ -354,12 +355,12 @@ options:
                                         List of additional prefixes for cmake to
                                         search (default: []). (just for build
                                         machine)
-  -D option                             Set the value of an option, can be used
+  -D option=value                       Set the value of an option, can be used
                                         several times to set multiple options.
   --clearcache                          Clear cached state (e.g. found
                                         dependencies)
   --no-pager                            Do not redirect output to a pager
-  -U UNSET_OPTS                         Remove a subproject option.
+  -U CMD_LINE_OPTIONS                   Remove a subproject option.
 </code></pre>
 <p>Most arguments are the same as in <a href="Commands.html#setup"><code>setup</code></a>.</p>
 <p>Note: reconfiguring project will not reset options to their default
@@ -699,7 +700,7 @@ Rewriter commands:
               [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
               [--cmake-prefix-path CMAKE_PREFIX_PATH]
               [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
-              [-D option] [--native-file NATIVE_FILE]
+              [-D option=value] [--native-file NATIVE_FILE]
               [--cross-file CROSS_FILE] [-v] [--fatal-meson-warnings]
               [--reconfigure] [--wipe] [--clearcache]
               [builddir] [sourcedir]
@@ -808,7 +809,7 @@ options:
                                         List of additional prefixes for cmake to
                                         search (default: []). (just for build
                                         machine)
-  -D option                             Set the value of an option, can be used
+  -D option=value                       Set the value of an option, can be used
                                         several times to set multiple options.
   --native-file NATIVE_FILE             File containing overrides for native
                                         compilation environment.
