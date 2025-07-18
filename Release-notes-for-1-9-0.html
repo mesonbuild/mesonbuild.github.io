@@ -225,6 +225,12 @@ through response files.</p>
 Glib 2.59 or higher).</p>
 <h2 id="added-license-keyword-to-pkgconfiggenerate">Added license keyword to pkgconfig.generate</h2>
 <p>When specified, it will add a <code>License:</code> attribute to the generated .pc file.</p>
+<h2 id="new-experimental-option-rust_dynamic_std">New experimental option <code>rust_dynamic_std</code>
+</h2>
+<p>A new option <code>rust_dynamic_std</code> can be used to link Rust programs so
+that they use a dynamic library for the Rust <code>libstd</code>.</p>
+<p>Right now, <code>staticlib</code> crates cannot be produced if <code>rust_dynamic_std</code> is
+true, but this may change in the future.</p>
 <h2 id="swift-compiler-receives-select-c-family-compiler-options">Swift compiler receives select C family compiler options</h2>
 <p>Meson now passes select few C family (C/Obj-C) compiler options to the
 Swift compiler, notably <em>-std=</em>, in order to improve the compatibility
