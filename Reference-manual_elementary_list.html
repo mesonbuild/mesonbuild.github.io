@@ -229,6 +229,7 @@ $('body').removeClass('no-script');
 <li><a href="Reference-manual_returned_compiler.html#compilerpreprocess"><ins><code>compiler.preprocess()</code></ins></a></li>
 <li><a href="Reference-manual_returned_custom_tgt.html#custom_tgtto_list"><ins><code>custom_tgt.to_list()</code></ins></a></li>
 <li><a href="Reference-manual_elementary_dict.html#dictkeys"><ins><code>dict.keys()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_list.html#listflatten"><ins><code>list.flatten()</code></ins></a></li>
 <li><a href="Reference-manual_builtin_meson.html#mesonproject_license"><ins><code>meson.project_license()</code></ins></a></li>
 <li><a href="Reference-manual_builtin_meson.html#mesonproject_license_files"><ins><code>meson.project_license_files()</code></ins></a></li>
 <li><a href="Reference-manual_elementary_str.html#strsplit"><ins><code>str.split()</code></ins></a></li>
@@ -288,6 +289,22 @@ given as argument, <code>false</code> otherwise</p>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="listflatten">list.flatten()</h3>
+<p>Returns a flattened copy of the array, with all nested arrays removed.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature1">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.9.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_any.html"><ins>any</ins></a>] flatten()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h3 id="listget">list.get()</h3>
 <p>returns the object at the given index,
 negative indices count from the back of the array, indexing out of
@@ -295,7 +312,7 @@ bounds returns the <code>fallback</code> value <em>(since 0.38.0)</em> or, if it
 not specified, causes a fatal error</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature1">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature2">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -360,7 +377,7 @@ not specified, causes a fatal error</p>
 <p>Returns the current size of the array / list.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h4 style="margin-top: 0px;" id="signature2">Signature</h4>
+  <h4 style="margin-top: 0px;" id="signature3">Signature</h4>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
