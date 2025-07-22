@@ -492,7 +492,7 @@ method accepts between <code>0</code> and <code>infinity</code> variadic
 arguments (<code>strings...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
 <p>The strings to join with the current string.</p>
 <p>Before Meson <em>0.60.0</em> this function only accepts a single positional
-argument of the type [[list[str]]].</p>
+argument of the type [[array[str]]].</p>
   <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
   </div>
@@ -585,7 +585,7 @@ array.</p>
 </div>
 </div>
 <pre><code class="language-meson"># Splits the string at the specified character
-<a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] split(
+<a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] split(
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<a href="Reference-manual_elementary_str.html#split_split_string"><b>split_string</b></a>],   # Specifies the character / substring where to split the string
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -648,7 +648,7 @@ on that last newline.
 </div>
 </div>
 </div>
-<pre><code class="language-meson"><a href="Reference-manual_elementary_list.html"><ins>list</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] splitlines()</code></pre>
+<pre><code class="language-meson"><a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] splitlines()</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="example6">Example</h4>
 <pre><code class="language-meson">output = 'hello\nworld\n'.splitlines()
