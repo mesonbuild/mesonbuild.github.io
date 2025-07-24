@@ -347,9 +347,17 @@ new = fs.parent('foo/bar/baz.dll')  # foo/bar
 <h3 id="stem">stem</h3>
 <p><em>since 0.54.0</em></p>
 <p>Returns the last component of the path, dropping the last part of the
-suffix</p>
+suffix.</p>
 <pre><code class="language-meson">fs.stem('foo/bar/baz.dll')  # baz
 fs.stem('foo/bar/baz.dll.a')  # baz.dll
+</code></pre>
+<h3 id="suffix">suffix</h3>
+<p><em>since 1.9.0</em></p>
+<p>Returns the last dot-separated portion of the final component of the path
+including the dot, if any.</p>
+<pre><code class="language-meson">fs.suffix('foo/bar/baz.dll')  # .dll
+fs.suffix('foo/bar/baz.dll.a')  # .a
+fs.suffix('foo/bar')  # (empty)
 </code></pre>
 <h3 id="read">read</h3>
 <ul>
