@@ -239,6 +239,13 @@ Glib 2.59 or higher).</p>
 that they use a dynamic library for the Rust <code>libstd</code>.</p>
 <p>Right now, <code>staticlib</code> crates cannot be produced if <code>rust_dynamic_std</code> is
 true, but this may change in the future.</p>
+<h2 id="toplevel-statement-handling-in-swift-libraries">Top-level statement handling in Swift libraries</h2>
+<p>The Swift compiler normally treats modules with a single source
+file (and files named main.swift) to run top-level code at program
+start. This emits a main symbol which is usually undesirable in a
+library target. Meson now automatically passes the <em>-parse-as-library</em>
+flag to the Swift compiler in case of single-file library targets to
+disable this behavior unless the source file is called main.swift.</p>
 <h2 id="swift-compiler-receives-select-c-family-compiler-options">Swift compiler receives select C family compiler options</h2>
 <p>Meson now passes select few C family (C/Obj-C) compiler options to the
 Swift compiler, notably <em>-std=</em>, in order to improve the compatibility

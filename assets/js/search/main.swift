@@ -1,0 +1,1 @@
+urls_downloaded_cb({"token":"main.swift","urls":[{"url":"Release-notes-for-1-9-0.html#toplevel-statement-handling-in-swift-libraries","node_type":"p","page":"Release 1.9.0 (in development)","sections":["New features (in development)","Top-level statement handling in Swift libraries"],"context":{"gi-language":["default"]}}]});
