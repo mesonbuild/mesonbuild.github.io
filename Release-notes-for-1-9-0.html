@@ -242,6 +242,12 @@ Glib 2.59 or higher).</p>
 that they use a dynamic library for the Rust <code>libstd</code>.</p>
 <p>Right now, <code>staticlib</code> crates cannot be produced if <code>rust_dynamic_std</code> is
 true, but this may change in the future.</p>
+<h2 id="explicitly-setting-swift-module-name-is-now-supported">Explicitly setting Swift module name is now supported</h2>
+<p>It is now possible to set the Swift module name for a target via the
+<em>swift_module_name</em> target kwarg, overriding the default inferred from the
+target name.</p>
+<pre><code class="language-meson">lib = library('foo', 'foo.swift', swift_module_name: 'Foo')
+</code></pre>
 <h2 id="toplevel-statement-handling-in-swift-libraries">Top-level statement handling in Swift libraries</h2>
 <p>The Swift compiler normally treats modules with a single source
 file (and files named main.swift) to run top-level code at program
