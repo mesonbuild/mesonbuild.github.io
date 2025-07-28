@@ -3416,6 +3416,7 @@ A dictionary can be passed instead of a
 <p>When an array of strings is passed to the <code>command:</code> keyword argument,
 it takes any source or configured file as the <code>input:</code> and assumes
 that the <code>output:</code> is produced when the specified command is run.</p>
+<p>You can install the outputted file with the <code>install_dir:</code> kwarg, see below.</p>
 <p><em>(since 0.47.0)</em> When the <code>copy:</code> keyword argument is set to <code>true</code>,
 this function will copy the file provided in <code>input:</code> to a file in the
 build directory with the name <code>output:</code> in the current directory.</p>
@@ -3732,6 +3733,7 @@ it is instead <code>ninja -C builddir subdir/file.txt</code>. However, <code>mes
 is accepted.</p>
 <pre><code class="language-meson">custom_target('foo', output: 'file.txt', ...)
 </code></pre>
+<p>You can install the outputted files with the <code>install_dir:</code> kwarg, see below.</p>
 <p><em>Since 0.60.0</em> the name argument is optional and defaults to the basename of the first
 output (<code>file.txt</code> in the example above).</p>
 <p>The array of strings passed to the <code>command</code> keyword argument accept
@@ -6687,7 +6689,10 @@ except Visual Studio).</p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <h2 id="install_data">install_data()</h2>
-<p>Installs files from the source tree that are listed as positional arguments.</p>
+<p>Installs files from the source tree that are listed as positional arguments.
+Please note that this can only install static files from the source tree.
+Generated files are installed via the <code>install_dir:</code> kwarg on the respective
+generators, such as <code>custom_target()</code> or `configure_file().</p>
 <p>See <a href="Installing.html">Installing</a> for more examples.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
@@ -6977,6 +6982,9 @@ the <code>install_dir</code> keyword argument. If you just want to install into 
 subdirectory of the system header directory, then use the <code>subdir</code>
 argument. As an example if this has the value <code>myproj</code> then the
 headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
+<p>Please note that this can only install static files from the source tree.
+Generated files are installed via the <code>install_dir:</code> kwarg on the respective
+generators, such as <code>custom_target()</code> or `configure_file().</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h3 style="margin-top: 0px;" id="signature31">Signature</h3>
