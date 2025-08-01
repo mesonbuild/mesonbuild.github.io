@@ -511,8 +511,8 @@ foo-bar-1.0 = foo_bar_dep
 <h3 id="cargo-wraps">Cargo wraps</h3>
 <p><strong>Note</strong>: This is experimental and has no backwards or forwards compatibility guarantees.
 See <a href="Mixing-build-systems.html">Meson's rules on mixing build systems</a>.</p>
-<p>Cargo subprojects automatically override the <code>&lt;package_name&gt;-&lt;version&gt;-rs</code> dependency
-name:</p>
+<p>Cargo subprojects automatically call <code>override_dependency</code> with the name
+<code>&lt;package_name&gt;-&lt;version&gt;-&lt;suffix&gt;</code>, where every part is defeined as follows:</p>
 <ul>
 <li>
 <code>package_name</code> is defined in <code>[package] name = ...</code> section of the <code>Cargo.toml</code>.</li>
@@ -529,10 +529,10 @@ It allows to make different dependencies for incompatible versions of the same
 crate.</li>
 </ul>
 </li>
-<li>
-<code>-rs</code> suffix is added to distinguish from regular system dependencies, for
-example <code>gstreamer-1.0</code> is a system pkg-config dependency and <code>gstreamer-0.22-rs</code>
-is a Cargo dependency.</li>
+<li>the suffix is <code>-rs</code> for <code>rlib</code> and <code>dylib</code> crate types, otherwise it is the
+crate type (e.g. <code>staticlib</code> or <code>cdylib</code>).  The suffix is added to distinguish
+Rust crates from regular system dependencies; for example <code>gstreamer-1.0</code> is a
+system pkg-config dependency and <code>gstreamer-0.22-rs</code> is a Cargo dependency.</li>
 </ul>
 <p>That means the <code>.wrap</code> file should have <code>dependency_names = foo-1-rs</code> in their
 <code>[provide]</code> section when <code>Cargo.toml</code> has package name <code>foo</code> and version <code>1.2</code>.</p>
