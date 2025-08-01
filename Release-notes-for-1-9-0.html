@@ -234,6 +234,10 @@ through response files.</p>
 <p>In this release it's enabled only for the Gnome module, fixing calling
 <code>gnome.mkenums()</code> with a large set of files on Windows (requires
 Glib 2.59 or higher).</p>
+<h2 id="meson-format-now-has-a-sourcefilepath-argument-when-reading-from-stdin">meson format now has a --source-file-path argument when reading from stdin</h2>
+<p>This argument is mandatory to mix stdin reading with the use of editor config.
+It allows to know where to look for the .editorconfig, and to use the right
+section of .editorconfig based on the parsed file name.</p>
 <h2 id="added-license-keyword-to-pkgconfiggenerate">Added license keyword to pkgconfig.generate</h2>
 <p>When specified, it will add a <code>License:</code> attribute to the generated .pc file.</p>
 <h2 id="new-experimental-option-rust_dynamic_std">New experimental option <code>rust_dynamic_std</code>

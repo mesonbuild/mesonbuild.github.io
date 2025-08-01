@@ -1055,6 +1055,7 @@ options:
 <h3 id="format">format</h3>
 <p><em>(since 1.5.0)</em></p>
 <pre><code class="language-inc">$ meson format [-h] [-q | -i] [-r] [-c meson.format] [-e] [-o OUTPUT]
+               [--source-file-path SOURCE_FILE_PATH]
                [sources ...]
 </code></pre>
 <p>Format specified <code>meson.build</code> documents. For compatibility with <code>muon</code>, <code>fmt</code>
@@ -1075,6 +1076,7 @@ options:
                                         .editorconfig
   -o OUTPUT, --output OUTPUT            output file (implies having exactly one
                                         input)
+  --source-file-path SOURCE_FILE_PATH   path to use, when reading from stdin
 </code></pre>
 <p>The configuration file is a <code>.ini</code> file. If a <code>meson.format</code> file exists
 beside the provided build file to analyze, and no configuration file is
@@ -1126,6 +1128,8 @@ or <code>--check-only</code> option).</p>
 <p><em>Since 1.7.0</em> You can use <code>-</code> as source file name to read source from standard
 input instead of reading it from a file. This cannot be used with <code>--recursive</code>
 or <code>--inline</code> arguments.</p>
+<p><em>Since 1.9.0</em> Using <code>-</code> as source file with <code>--editor-config</code> now requires
+<code>--source-file-path</code> argument to ensure consistent results.</p>
 <h4 id="differences-with-muon-fmt">Differences with <code>muon fmt</code>
 </h4>
 <p>The <code>meson format</code> command should be compatible with the <code>muon fmt</code> command.
