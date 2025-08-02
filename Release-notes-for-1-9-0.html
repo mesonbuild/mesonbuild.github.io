@@ -264,19 +264,26 @@ library target. Meson now automatically passes the <em>-parse-as-library</em>
 flag to the Swift compiler in case of single-file library targets to
 disable this behavior unless the source file is called main.swift.</p>
 <h2 id="swift-compiler-receives-select-c-family-compiler-options">Swift compiler receives select C family compiler options</h2>
-<p>Meson now passes select few C family (C/Obj-C) compiler options to the
-Swift compiler, notably <em>-std=</em>, in order to improve the compatibility
-of C code as interpreted by the C compiler and the Swift compiler.</p>
+<p>Meson now passes select few C family (C/C++/Obj-C/Obj-C++) compiler
+options to the Swift compiler, notably <em>-std=</em>, in order to improve
+the compatibility of C code as interpreted by the C compiler and the
+Swift compiler.</p>
 <p>NB: This does not include any of the options set in the target's
 c_flags.</p>
 <h2 id="swiftc-interoperability-is-now-supported">Swift/C++ interoperability is now supported</h2>
 <p>It is now possible to create Swift executables that can link to C++ or
-Objective-C++ libraries. Only specifying a bridging header for the Swift
-target is required.</p>
+Objective-C++ libraries. To enable this feature, set the target kwarg
+<em>swift_interoperability_mode</em> to 'cpp'.</p>
+<p>To import C++ code, specify a bridging header in the Swift target's
+sources, or use another way such as adding a directory containing a
+Clang module map to its include path.</p>
+<p>Note: Enabling C++ interoperability in a library target is a breaking
+change. Swift libraries that enable it need their consumers to enable
+it as well, as per <a href="https://www.swift.org/documentation/cxx-interop/project-build-setup/#vending-packages-that-enable-c-interoperability">the Swift documentation</a>.</p>
 <p>Swift 5.9 is required to use this feature. Xcode 15 is required if the
 Xcode backend is used.</p>
 <pre><code class="language-meson">lib = static_library('mylib', 'mylib.cpp')
-exe = executable('prog', 'main.swift', 'mylib.h', link_with: lib)
+exe = executable('prog', 'main.swift', 'mylib.h', link_with: lib, swift_interoperability_mode: 'cpp')
 </code></pre>
 <h2 id="support-for-masm-in-visual-studio-backends">Support for MASM in Visual Studio backends</h2>
 <p>Previously, assembling <code>.masm</code> files with Microsoft's Macro Assembler is only
