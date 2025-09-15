@@ -1043,14 +1043,14 @@ command line: <code>-Dfoo:default_library=static</code>.</p>
 <code>opt=value</code> from subproject's <code>default_options</code>
 </li>
 <li>
+<code>opt=value</code> from machine file</li>
+<li>
+<code>opt=value</code> from command line</li>
+<li>
 <code>subp:opt=value</code> from parent project's default options</li>
 <li>
 <code>opt=value</code> from <code>subproject()</code> <code>default_options</code>
 </li>
-<li>
-<code>opt=value</code> from machine file</li>
-<li>
-<code>opt=value</code> from command line</li>
 <li>
 <code>subp:opt=value</code> from machine file</li>
 <li>
@@ -1068,14 +1068,28 @@ command line: <code>-Dfoo:default_library=static</code>.</p>
 </ul>
 <p>The value was overridden in this order:</p>
 <ul>
-<li>Value from parent project</li>
-<li>Value from subproject's <code>default_options</code>
+<li>
+<code>opt=value</code> from parent project's <code>default_options</code>
 </li>
-<li>Value from <code>subproject()</code> <code>default_options</code>
+<li>
+<code>opt=value</code> from machine file</li>
+<li>
+<code>opt=value</code> from command line</li>
+<li>
+<code>opt=value</code> from subproject's <code>default_options</code>
 </li>
-<li>Value from machine file</li>
-<li>Value from command line</li>
+<li>
+<code>subp:opt=value</code> from parent project's default options</li>
+<li>
+<code>opt=value</code> from <code>subproject()</code> <code>default_options</code>
+</li>
+<li>
+<code>subp:opt=value</code> from machine file</li>
+<li>
+<code>subp:opt=value</code> from command line</li>
 </ul>
+<p>In other word, the subproject's <code>default_options</code> had a <em>higher</em> priority
+than <code>opt=value</code> from machine file or command line.</p>
 <h2 id="module-options">Module options</h2>
 <p>Some Meson modules have built-in options. They can be set by prefixing the
 option with the module's name:
