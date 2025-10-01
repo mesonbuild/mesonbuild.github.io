@@ -226,6 +226,12 @@ to retrieve the dictionary values as an array, analogous to the
 <code>-Db_msvcrt</code> on clang</h2>
 <p><code>-Db_msvcrt</code> will now link the appropriate runtime library, and set
 the appropriate preprocessor symbols, also when the compiler is clang.</p>
+<h2 id="i18nxgettext-now-accepts-customtarget-and-customtargetindex-as-sources">
+<code>i18n.xgettext</code> now accepts CustomTarget and CustomTargetIndex as sources</h2>
+<p>Previously, <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> were accepted but silently ignored, and
+<a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> were not accepted.</p>
+<p>Now, they both can be used, and the generated outputs will be scanned to extract
+translation strings.</p>
 
     </div>
         

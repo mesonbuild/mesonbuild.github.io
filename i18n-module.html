@@ -315,7 +315,7 @@ for each executable.</p>
 <p>Positional arguments are the following:</p>
 <ul>
 <li>name <code>str</code>: the name of the resulting pot file.</li>
-<li>sources <code>array[str|File|build_tgt|custom_tgt]</code>:
+<li>sources <code>array[str|File|build_tgt|custom_tgt|custom_idx]</code>:
 source files or targets. May be a list of <code>string</code>, <code>File</code>, <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a>,
 or <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> returned from other calls to this function.</li>
 </ul>
@@ -342,6 +342,8 @@ given, all generated pot files from dependencies of the source targets are
 included to generate the final pot file. Therefore, adding a dependency to
 source target will automatically add the translations of that dependency to the
 needed translations for that source target.</p>
+<p><em>New in 1.10.0</em> sources can be result of <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> or <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>.
+Before 1.10.0, custom targets were silently ignored.</p>
 <p><em>Added 1.8.0</em></p>
 
     </div>
