@@ -243,6 +243,7 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--default-both-libraries {shared,static,auto}]
                   [--errorlogs] [--install-umask INSTALL_UMASK]
                   [--layout {mirror,flat}]
+                  [--namingscheme {platform,classic}]
                   [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
                   [--stdsplit] [--strip] [--unity {on,off,subprojects}]
                   [--unity-size UNITY_SIZE]
@@ -310,6 +311,8 @@ options:
                                         installed files (default: 0o22).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
+  --namingscheme {platform,classic}     How target file names are formed
+                                        (default: classic).
   --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
   --prefer-static                       Whether to try static linking before
                                         shared linking
@@ -689,6 +692,7 @@ Rewriter commands:
               [--debug] [--default-library {shared,static,both}]
               [--default-both-libraries {shared,static,auto}] [--errorlogs]
               [--install-umask INSTALL_UMASK] [--layout {mirror,flat}]
+              [--namingscheme {platform,classic}]
               [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
               [--stdsplit] [--strip] [--unity {on,off,subprojects}]
               [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3,everything}]
@@ -769,6 +773,8 @@ options:
                                         installed files (default: 0o22).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
+  --namingscheme {platform,classic}     How target file names are formed
+                                        (default: classic).
   --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
   --prefer-static                       Whether to try static linking before
                                         shared linking

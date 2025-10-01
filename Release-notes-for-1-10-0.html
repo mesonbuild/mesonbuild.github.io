@@ -226,6 +226,19 @@ to retrieve the dictionary values as an array, analogous to the
 <code>-Db_msvcrt</code> on clang</h2>
 <p><code>-Db_msvcrt</code> will now link the appropriate runtime library, and set
 the appropriate preprocessor symbols, also when the compiler is clang.</p>
+<h2 id="added-new-namingscheme-option">Added new <code>namingscheme</code> option</h2>
+<p>Traditionally Meson has named output targets so that they don't clash
+with each other. This has meant, among other things, that on Windows
+Meson uses a nonstandard <code>.a</code> suffix for static libraries because both
+static libraries and import libraries have the suffix <code>.lib</code>.</p>
+<p>There is now an option <code>namingscheme</code> that can be set to
+<code>platform</code>. This new platform native naming scheme that replicates
+what Rust does. That is, shared libraries on Windows get a suffix
+<code>.dll</code>, static libraries get <code>.lib</code> and import libraries have the name
+<code>.dll.lib</code>.</p>
+<p>We expect to change the default value of this option to <code>platform</code> in
+a future major version. Until that happens we reserve the right to
+alter how <code>platform</code> actually names its output files.</p>
 <h2 id="i18nxgettext-now-accepts-customtarget-and-customtargetindex-as-sources">
 <code>i18n.xgettext</code> now accepts CustomTarget and CustomTargetIndex as sources</h2>
 <p>Previously, <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> were accepted but silently ignored, and
