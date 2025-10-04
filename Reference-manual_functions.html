@@ -3733,6 +3733,9 @@ it is instead <code>ninja -C builddir subdir/file.txt</code>. However, <code>mes
 is accepted.</p>
 <pre><code class="language-meson">custom_target('foo', output: 'file.txt', ...)
 </code></pre>
+<p>The files passed to <code>output:</code> cannot contain path separators. See the
+<a href="Custom-build-targets.html#details-on-command-invocation">manual on custom build targets</a> for
+an explanation on where output files should be placed.</p>
 <p>You can install the outputted files with the <code>install_dir:</code> kwarg, see below.</p>
 <p><em>Since 0.60.0</em> the name argument is optional and defaults to the basename of the first
 output (<code>file.txt</code> in the example above).</p>
@@ -4178,7 +4181,7 @@ outputs that have no tag or are not installed.</p>
 <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>Array of output files.</p>
+<p>Array of output files. These cannot contain path separators.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
