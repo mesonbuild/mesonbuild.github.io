@@ -285,7 +285,7 @@ configuration depends on metadata from revision control such as in the
 following example.</p>
 <p><code>meson.build</code>:</p>
 <pre><code class="language-meson">project('tig', 'c',
-  version : run_command('version.sh', 'get-vcs').stdout.strip())
+  version : run_command('version.sh', 'get-vcs').stdout().strip())
 
 meson.add_dist_script('version.sh', 'set-dist', meson.project_version())
 </code></pre>
