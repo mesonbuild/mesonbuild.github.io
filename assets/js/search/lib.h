@@ -1,0 +1,1 @@
+urls_downloaded_cb({"token":"lib.h","urls":[{"url":"Release-notes-for-1-10-0.html#vala-buildtarget-dependency-enhancements","node_type":"p","page":"Release 1.10.0 (in development)","sections":["New features (in development)","Vala BuildTarget dependency enhancements"],"context":{"gi-language":["default"]}}]});

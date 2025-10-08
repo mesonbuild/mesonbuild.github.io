@@ -453,6 +453,25 @@ outputs the C header and the VAPI. They can be renamed by setting the
 <p>In this example, the second and third elements of the <code>install_dir</code>
 array indicate the destination with <code>true</code> to use default directories
 (i.e. <code>include</code> and <code>share/vala/vapi</code>).</p>
+<h3 id="depending-on-c-header">Depending on C header</h3>
+<p><em>(since 1.10.0)</em></p>
+<p>Given the previous example,</p>
+<pre><code class="language-meson">foo_lib = shared_library(...)
+foo_h = foo_lib.vala_header()
+</code></pre>
+<p>This header can now be used like any other generated header to create an
+order-only dependency.</p>
+<h3 id="depending-on-vapi-header">Depending on VAPI header</h3>
+<p><em>(since 1.10.0)</em></p>
+<p>Given the previous example,</p>
+<pre><code class="language-meson">foo_lib = shared_library(...)
+foo_vapi = foo_lib.vala_vapi()
+</code></pre>
+<h3 id="depending-on-generated-gir">Depending on generated GIR</h3>
+<p><em>(since 1.10.0)</em></p>
+<pre><code class="language-meson">foo_lib = shared_library(..., vala_gir : 'foo.gir')
+foo_gir = foo_lib.vala_gir()
+</code></pre>
 <h3 id="gobject-introspection-and-language-bindings">GObject Introspection and language bindings</h3>
 <p>A 'binding' allows another programming language to use a library
 written in Vala. Because Vala uses the GObject type system as its
@@ -479,6 +498,16 @@ directory (i.e. <code>share/gir-1.0</code> for GIRs). The fourth element in the
 <code>install_dir</code> array indicates where the GIR file will be installed.</p>
 <p>To then generate a typelib file use a custom target with the
 <code>g-ir-compiler</code> program and a dependency on the library:</p>
+<p><em>Since Meson 1.10</em>, use the <code>.vala_gir()</code> method to get a handle to the generated <code>.gir</code> file:</p>
+<pre><code class="language-meson">g_ir_compiler = find_program('g-ir-compiler')
+custom_target('foo typelib', command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
+              input: foo_lib.vala_gir(),
+              output: 'Foo-1.0.typelib',
+              install: true,
+              install_dir: get_option('libdir') / 'girepository-1.0')
+</code></pre>
+<p><em>Before Meson 1.10</em>, calculating the path to the input is required, as is adding a
+manual dependency to the vala target:</p>
 <pre><code class="language-meson">g_ir_compiler = find_program('g-ir-compiler')
 custom_target('foo typelib', command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
               input: meson.current_build_dir() / 'Foo-1.0.gir',

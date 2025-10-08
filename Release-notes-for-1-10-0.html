@@ -239,6 +239,23 @@ what Rust does. That is, shared libraries on Windows get a suffix
 <p>We expect to change the default value of this option to <code>platform</code> in
 a future major version. Until that happens we reserve the right to
 alter how <code>platform</code> actually names its output files.</p>
+<h2 id="vala-buildtarget-dependency-enhancements">Vala BuildTarget dependency enhancements</h2>
+<p>A BuildTarget that has Vala sources can now get a File dependency for its
+generated header, vapi, and gir files.</p>
+<pre><code class="language-meson">lib = library('foo', 'foo.vala')
+lib_h = lib.vala_header()
+lib_s = static_lib('static', 'static.c', lib_h)
+
+lib_vapi = lib.vala_vapi()
+
+custom_target(
+  'foo-typelib',
+  command : ['g-ir-compiler', '--output', '@OUTPUT@', '@INPUT@'],
+  input : lib.vala_gir(),
+  output : 'Foo-1.0.typelib'
+)
+</code></pre>
+<p><code>static.c</code> will not start compilation until <code>lib.h</code> is generated.</p>
 <h2 id="i18nxgettext-now-accepts-customtarget-and-customtargetindex-as-sources">
 <code>i18n.xgettext</code> now accepts CustomTarget and CustomTargetIndex as sources</h2>
 <p>Previously, <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> were accepted but silently ignored, and
