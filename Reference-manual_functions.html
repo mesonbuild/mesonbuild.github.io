@@ -1480,8 +1480,11 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#both_libraries_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#both_libraries_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#both_libraries_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#both_libraries_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#both_libraries_vala_shared_args"><b>vala_shared_args</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Arguments that are only passed to a shared library
   <a href="Reference-manual_functions.html#both_libraries_vala_static_args"><b>vala_static_args</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Arguments that are only passed to a static library
+  <a href="Reference-manual_functions.html#both_libraries_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#both_libraries_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#both_libraries_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#both_libraries_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -2225,6 +2228,33 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </div>
   </td>
       </tr>
+      <tr id="both_libraries_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="both_libraries_vala_shared_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_shared_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
@@ -2252,6 +2282,20 @@ Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><in
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
   </div>
   </td>
       </tr>
@@ -2406,8 +2450,11 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#build_target_target_type"><b>target_type</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The actual target type to build
   <a href="Reference-manual_functions.html#build_target_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#build_target_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#build_target_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#build_target_vala_shared_args"><b>vala_shared_args</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Arguments that are only passed to a shared library
   <a href="Reference-manual_functions.html#build_target_vala_static_args"><b>vala_static_args</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Arguments that are only passed to a static library
+  <a href="Reference-manual_functions.html#build_target_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#build_target_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#build_target_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#build_target_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -3257,6 +3304,33 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </div>
   </td>
       </tr>
+      <tr id="build_target_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="build_target_vala_shared_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_shared_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
@@ -3284,6 +3358,20 @@ Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><in
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
   </div>
   </td>
       </tr>
@@ -5099,6 +5187,9 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#executable_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#executable_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#executable_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#executable_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
+  <a href="Reference-manual_functions.html#executable_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#executable_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#executable_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
@@ -5789,6 +5880,47 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7747,6 +7879,9 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#jar_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#jar_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#jar_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#jar_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
+  <a href="Reference-manual_functions.html#jar_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#jar_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -8389,6 +8524,47 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
   </div>
   </td>
       </tr>
+      <tr id="jar_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="jar_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="jar_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="jar_win_subsystem">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">win_subsystem</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
@@ -8529,8 +8705,11 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#library_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#library_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#library_vala_shared_args"><b>vala_shared_args</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Arguments that are only passed to a shared library
   <a href="Reference-manual_functions.html#library_vala_static_args"><b>vala_static_args</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Arguments that are only passed to a static library
+  <a href="Reference-manual_functions.html#library_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#library_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#library_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#library_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -9283,6 +9462,33 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </div>
   </td>
       </tr>
+      <tr id="library_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="library_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="library_vala_shared_args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_shared_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
@@ -9310,6 +9516,20 @@ Like <code>vala_args</code>, <a href="Reference-manual_functions.html#files"><in
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
   </div>
   </td>
       </tr>
@@ -10141,6 +10361,9 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#shared_library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#shared_library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#shared_library_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#shared_library_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
+  <a href="Reference-manual_functions.html#shared_library_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#shared_library_version"><b>version</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying the version of this shared library,
   <a href="Reference-manual_functions.html#shared_library_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#shared_library_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
@@ -10823,6 +11046,47 @@ is used instead (see below). For example, if <code>version</code> is <code>3.6.0
   </div>
   </td>
       </tr>
+      <tr id="shared_library_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_library_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_library_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="shared_library_version">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">version</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
@@ -10939,6 +11203,9 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#shared_module_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#shared_module_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#shared_module_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#shared_module_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
+  <a href="Reference-manual_functions.html#shared_module_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#shared_module_vs_module_defs"><b>vs_module_defs</b></a>               : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Specify a Microsoft module definition file for controlling symbol exports,
   <a href="Reference-manual_functions.html#shared_module_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
@@ -11600,6 +11867,47 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
   </div>
   </td>
       </tr>
+      <tr id="shared_module_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_module_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_module_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
       <tr id="shared_module_vs_module_defs">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vs_module_defs</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
@@ -11695,6 +12003,9 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
   <a href="Reference-manual_functions.html#static_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#static_library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions.html#static_library_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions.html#static_library_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
+  <a href="Reference-manual_functions.html#static_library_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions.html#static_library_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
@@ -12360,6 +12671,47 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
