@@ -244,6 +244,16 @@ linker.</p>
 now accept stings or array of strings, in addition to <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects
 generated from <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function, as it was already the case for
 <a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a> family of functions.</p>
+<h2 id="common-cargolock-for-all-cargo-subprojects">Common <code>Cargo.lock</code> for all Cargo subprojects</h2>
+<p>Whenever Meson finds a <code>Cargo.lock</code> file in the toplevel directory
+of the project, it will use it to resolve the versions of Cargo
+subprojects in preference to per-subproject <code>Cargo.lock</code> files.
+Per-subproject lock files are only used if the invoking project
+did not have a <code>Cargo.lock</code> file itself.</p>
+<p>If you wish to experiment with Cargo subprojects, it is recommended
+to use <code>cargo</code> to set up <code>Cargo.lock</code> and <code>Cargo.toml</code> files,
+encompassing all Rust targets, in the toplevel source directory.
+Cargo subprojects remain unstable and subject to change.</p>
 <h2 id="added-new-namingscheme-option">Added new <code>namingscheme</code> option</h2>
 <p>Traditionally Meson has named output targets so that they don't clash
 with each other. This has meant, among other things, that on Windows
