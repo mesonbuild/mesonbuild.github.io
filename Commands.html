@@ -1071,7 +1071,7 @@ options:
 </code></pre>
 <h3 id="format">format</h3>
 <p><em>(since 1.5.0)</em></p>
-<pre><code class="language-inc">$ meson format [-h] [-q | -i] [-r] [-c meson.format] [-e] [-o OUTPUT]
+<pre><code class="language-inc">$ meson format [-h] [-q | -d | -i] [-r] [-c meson.format] [-e] [-o OUTPUT]
                [--source-file-path SOURCE_FILE_PATH]
                [sources ...]
 </code></pre>
@@ -1082,8 +1082,10 @@ is an alias to <code>format</code>.</p>
 
 options:
   -h, --help                            show this help message and exit
-  -q, --check-only                      exit with 1 if files would be modified
-                                        by meson format
+  -q, --check-only                      silently exit with 1 if files would be
+                                        modified by meson format
+  -d, --check-diff                      exit with 1 and show diff if files would
+                                        be modified by meson format
   -i, --inplace                         format files in-place
   -r, --recursive                       recurse subdirs (requires --check-only
                                         or --inplace option)
@@ -1147,6 +1149,8 @@ input instead of reading it from a file. This cannot be used with <code>--recurs
 or <code>--inline</code> arguments.</p>
 <p><em>Since 1.9.0</em> Using <code>-</code> as source file with <code>--editor-config</code> now requires
 <code>--source-file-path</code> argument to ensure consistent results.</p>
+<p><em>Since 1.10.0</em> When <code>--check-diff</code> is specified, instead of silently exiting
+with an error code, <code>meson format</code> will print a diff of the formatting changes.</p>
 <h4 id="differences-with-muon-fmt">Differences with <code>muon fmt</code>
 </h4>
 <p>The <code>meson format</code> command should be compatible with the <code>muon fmt</code> command.
