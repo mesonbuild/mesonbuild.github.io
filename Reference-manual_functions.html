@@ -1452,7 +1452,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#both_libraries_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                  # Defines the `compatibility version` and `current version` for the dylib on macOS
   <a href="Reference-manual_functions.html#both_libraries_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
-  <a href="Reference-manual_functions.html#both_libraries_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#both_libraries_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#both_libraries_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#both_libraries_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
   <a href="Reference-manual_functions.html#both_libraries_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
@@ -1747,12 +1747,13 @@ created with
       <tr id="both_libraries_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2417,10 +2418,10 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                  # Defines the `compatibility version` and `current version` for the dylib on macOS
   <a href="Reference-manual_functions.html#build_target_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
   <a href="Reference-manual_functions.html#build_target_export_dynamic"><b>export_dynamic</b></a>               : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # when set to true causes the target's symbols to be
-  <a href="Reference-manual_functions.html#build_target_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#build_target_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#build_target_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#build_target_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
-  <a href="Reference-manual_functions.html#build_target_implib"><b>implib</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                              # When set to true, an import library is generated for the
+  <a href="Reference-manual_functions.html#build_target_implib"><b>implib</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                              # When set to a string, that will be the name of a generated import library
   <a href="Reference-manual_functions.html#build_target_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#build_target_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#build_target_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
@@ -2740,8 +2741,7 @@ created with
 <p>when set to true causes the target's symbols to be
 dynamically exported, allowing modules built using the
 <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a> function to refer to functions,
-variables and other symbols defined in the executable itself. Implies
-the <code>implib</code> argument.</p>
+variables and other symbols defined in the executable itself.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2752,12 +2752,13 @@ the <code>implib</code> argument.</p>
       <tr id="build_target_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2810,6 +2811,8 @@ on platforms where this makes a difference, <strong>deprecated</strong> since
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
+<p>When set to a string, that will be the name of a generated import library.</p>
+<p><em>Since 1.10.0</em> passing a boolean value is deprecated.</p>
 <p>When set to true, an import library is generated for the
 executable (the name of the import library is based on <em>exe_name</em>).
 Alternatively, when set to a string, that gives the base name for
@@ -5161,10 +5164,10 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#executable_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
   <a href="Reference-manual_functions.html#executable_export_dynamic"><b>export_dynamic</b></a>               : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # when set to true causes the target's symbols to be
-  <a href="Reference-manual_functions.html#executable_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#executable_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#executable_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#executable_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
-  <a href="Reference-manual_functions.html#executable_implib"><b>implib</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                              # When set to true, an import library is generated for the
+  <a href="Reference-manual_functions.html#executable_implib"><b>implib</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                              # When set to a string, that will be the name of a generated import library
   <a href="Reference-manual_functions.html#executable_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#executable_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#executable_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
@@ -5436,8 +5439,7 @@ created with
 <p>when set to true causes the target's symbols to be
 dynamically exported, allowing modules built using the
 <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a> function to refer to functions,
-variables and other symbols defined in the executable itself. Implies
-the <code>implib</code> argument.</p>
+variables and other symbols defined in the executable itself.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5448,12 +5450,13 @@ the <code>implib</code> argument.</p>
       <tr id="executable_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5506,6 +5509,8 @@ on platforms where this makes a difference, <strong>deprecated</strong> since
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
+<p>When set to a string, that will be the name of a generated import library.</p>
+<p><em>Since 1.10.0</em> passing a boolean value is deprecated.</p>
 <p>When set to true, an import library is generated for the
 executable (the name of the import library is based on <em>exe_name</em>).
 Alternatively, when set to a string, that gives the base name for
@@ -7853,7 +7858,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#jar_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#jar_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
-  <a href="Reference-manual_functions.html#jar_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#jar_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#jar_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#jar_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
   <a href="Reference-manual_functions.html#jar_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
@@ -8095,12 +8100,13 @@ created with
       <tr id="jar_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8677,7 +8683,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#library_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                  # Defines the `compatibility version` and `current version` for the dylib on macOS
   <a href="Reference-manual_functions.html#library_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
-  <a href="Reference-manual_functions.html#library_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#library_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#library_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#library_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
   <a href="Reference-manual_functions.html#library_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
@@ -8981,12 +8987,13 @@ created with
       <tr id="library_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10463,7 +10470,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#shared_library_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                  # Defines the `compatibility version` and `current version` for the dylib on macOS
   <a href="Reference-manual_functions.html#shared_library_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
-  <a href="Reference-manual_functions.html#shared_library_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#shared_library_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#shared_library_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#shared_library_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
   <a href="Reference-manual_functions.html#shared_library_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
@@ -10726,12 +10733,13 @@ created with
       <tr id="shared_library_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11306,7 +11314,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#shared_module_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#shared_module_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
-  <a href="Reference-manual_functions.html#shared_module_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#shared_module_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#shared_module_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#shared_module_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
   <a href="Reference-manual_functions.html#shared_module_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
@@ -11568,12 +11576,13 @@ created with
       <tr id="shared_module_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -12104,7 +12113,7 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
   <a href="Reference-manual_functions.html#static_library_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions.html#static_library_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
-  <a href="Reference-manual_functions.html#static_library_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions.html#static_library_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions.html#static_library_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions.html#static_library_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
   <a href="Reference-manual_functions.html#static_library_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
@@ -12347,12 +12356,13 @@ created with
       <tr id="static_library_extra_files">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>Not used for the build itself but are shown as source files in IDEs
-that group files by targets (such as Visual Studio)</p>
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
