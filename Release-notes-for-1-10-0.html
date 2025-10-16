@@ -251,16 +251,6 @@ previously silently exit with an error code if the code was not formatted
 correctly.</p>
 <p>A new <code>--check-diff</code> option has been added which will instead print a diff of
 the required changes and then exit with an error code.</p>
-<h2 id="new-local_program-function">New <a href="Reference-manual_functions.html#local_program"><ins><code>local_program()</code></ins></a> function</h2>
-<p>Similar to <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>, but only work with a program that exists in
-source tree, or a built target. Meson will not look for the program in the
-system or in a subproject.</p>
-<p>In addition, <code>depends</code> keyword argument can be specified in case the program
-depends on built targets, for example a Python script could require a compiled
-C module. If any such dependency is present, the program can only be used in
-build-time commands (e.g. <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>).</p>
-<p>The program can be passed to <a href="Reference-manual_builtin_meson.html#mesonoverride_find_program"><ins><code>meson.override_find_program()</code></ins></a> and used in
-subprojects.</p>
 <h2 id="common-cargolock-for-all-cargo-subprojects">Common <code>Cargo.lock</code> for all Cargo subprojects</h2>
 <p>Whenever Meson finds a <code>Cargo.lock</code> file in the toplevel directory
 of the project, it will use it to resolve the versions of Cargo
