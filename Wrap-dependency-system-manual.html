@@ -556,10 +556,16 @@ Some naming conventions need to be respected:</p>
 This is typically used as <code>extra_args += ['--cfg', 'foo']</code>.</li>
 <li>The <code>extra_deps</code> variable is pre-defined and can be used to add extra dependencies.
 This is typically used as <code>extra_deps += dependency('foo')</code>.</li>
+<li>The <code>features</code> variable is pre-defined and contains the list of features enabled
+on this crate.</li>
 </ul>
 <p>Since <em>1.5.0</em> Cargo wraps can also be provided with <code>Cargo.lock</code> file at the root
 of (sub)project source tree. Meson will automatically load that file and convert
 it into a series of wraps definitions.</p>
+<p>Since <em>1.10.0</em> Workspace Cargo.toml are supported. For the time being it is
+recommended to regroup all Cargo dependencies inside a single workspace invoked
+from the main Meson project. When invoking multiple different Cargo subprojects
+from Meson, feature resolution of common dependencies might be wrong.</p>
 <h2 id="using-wrapped-projects">Using wrapped projects</h2>
 <p>Wraps provide a convenient way of obtaining a project into your
 subproject directory. Then you use it as a regular subproject (see

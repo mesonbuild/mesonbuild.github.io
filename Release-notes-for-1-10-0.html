@@ -243,6 +243,10 @@ linker.</p>
 <p>When parsing <code>Cargo.toml</code> files, Meson now recognizes workspaces
 and will process all the required members and any requested optional
 members of the workspace.</p>
+<p>For the time being it is recommended to regroup all Cargo dependencies inside a
+single workspace invoked from the main Meson project. When invoking multiple
+different Cargo subprojects from Meson, feature resolution of common
+dependencies might be wrong.</p>
 <h2 id="methods-from-compiler-object-now-accept-strings-for-include_directories">Methods from compiler object now accept strings for include_directories</h2>
 <p>The various <a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a> methods with a <code>include_directories</code> keyword argument
 now accept stings or array of strings, in addition to <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects
