@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Codegen Module</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
+<link rel="stylesheet" href="assets/css/devhelp.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Codegen-module.html">Codegen</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Codegen-module.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="codegen-module">Codegen Module</h1>
+<p><em>(New in 1.10.0)</em></p>
+<p>This module provides wrappers around common code generators, such as flex/lex and yacc/bison. This purpose of this is to make it easier and more pleasant to use <em>common</em> code generators in a mesonic way.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="lex">lex()</h3>
+<pre><code class="language-meson">lex_gen = codegen.lex(implementations : ['flex', 'reflex'], flex_version : ['&gt;= 2.6', '&lt; 3'], reflex_version : '!= 1.4.2')
+</code></pre>
+<p>This function provides fine grained control over what implementation(s) and version(s) of lex are acceptable for a given project (These are set per-subproject). It returns a <a href="Codegen-module.html#lexgenerator">new object</a>, which can be used to generate code.</p>
+<p>It accepts the following keyword arguments:</p>
+<ul>
+<li>
+<code>implementations</code>: a string array of acceptable implementations to use. May include: <code>lex</code>, <code>flex</code>, <code>reflex</code>, or <code>win_flex</code>.</li>
+<li>
+<code>lex_version</code>: a string array of version constraints to apply to the <code>lex</code> binary</li>
+<li>
+<code>flex_version</code>: a string array of version constraints to apply to the <code>flex</code> binary</li>
+<li>
+<code>reflex_version</code>: a string array of version constraints to apply to the <code>relex</code> binary</li>
+<li>
+<code>win_flex_version</code>: a string array of version constraints to apply to the <code>win_flex</code> binary</li>
+<li>
+<code>required</code>: A boolean or feature option</li>
+<li>
+<code>disabler</code>: Return a disabler if not found</li>
+<li>
+<code>native</code>: Is this generator for the host or build machine?</li>
+</ul>
+<h3 id="yacc">yacc()</h3>
+<pre><code class="language-meson">yacc = codegen.yacc(implementations : ['bison', 'win_bison'])
+</code></pre>
+<p>This function provides fine grained controls over which implementation(s) and version(s) of the parser generator to use.</p>
+<p>Accepts the following keyword arguments:</p>
+<ul>
+<li>
+<code>implementations</code>: a string array of acceptable implementations to use. May include: <code>yacc</code>, <code>byacc</code>,  <code>bison</code>, or <code>win_bison</code>.</li>
+<li>
+<code>yacc_version</code>: a string array of version constraints to apply to the <code>yacc</code> binary</li>
+<li>
+<code>byacc_version</code>: a string array of version constraints to apply to the <code>byacc</code> binary</li>
+<li>
+<code>bison_version</code>: a string array of version constraints to apply to the <code>bison</code> binary</li>
+<li>
+<code>win_bison_version</code>: a string array of version constraints to apply to the <code>win_bison</code> binary</li>
+<li>
+<code>required</code>: A boolean or feature option</li>
+<li>
+<code>disabler</code>: Return a disabler if not found</li>
+<li>
+<code>native</code>: Is this generator for the host or build machine?</li>
+</ul>
+<h2 id="returned-objects">Returned Objects</h2>
+<h3 id="lexgenerator">LexGenerator</h3>
+<h4 id="leximplementation">lex.implementation</h4>
+<pre><code class="language-meson">lex = codegen.lex()
+impl = lex.implementation()
+</code></pre>
+<p>Returns the string name of the lex implementation chosen. May be one of:</p>
+<ul>
+<li>lex</li>
+<li>flex</li>
+<li>reflex</li>
+<li>win_flex</li>
+</ul>
+<h4 id="lexgenerate">lex.generate</h4>
+<pre><code class="language-meson">lex = codegen.lex()
+lex.generate('lexer.l')
+</code></pre>
+<p>This function wraps flex, lex, reflex (but not RE/flex), and win_flex (on Windows). When using win_flex it will automatically add the <code>--wincompat</code> argument.</p>
+<p>This requires an input file, which may be a string, File, or generated source. It additionally takes the following options keyword arguments:</p>
+<ul>
+<li>
+<code>args</code>: An array of extra arguments to pass the lexer</li>
+<li>
+<code>plainname</code>: If set to true then <code>@PLAINNAME@</code> will be used as the source base, otherwise <code>@BASENAME@</code>.</li>
+<li>
+<code>source</code>: the name of the source output. If this is unset Meson will use <code>{base}.{ext}</code> with an extension of <code>cpp</code> if the input has an extension of <code>.ll</code>, or <code>c</code> otherwise, with base being determined by the <code>plainname</code> argument.</li>
+<li>
+<code>header</code>: The optional output name for a header file. If this is unset no header is added</li>
+<li>
+<code>table</code>: The optional output name for a table file. If this is unset no table will be generated</li>
+</ul>
+<p>The outputs will be in the form <code>source [header] [table]</code>, which means those can be accessed by indexing the output of the <code>lex</code> call:</p>
+<pre><code class="language-meson">lex = codegen.lex()
+l1 = lex.generate('lexer.l', header : '@BASENAME@.h', table : '@BASENAME@.tab.h')
+headers = [l1[1], l1[2]]  # [header, table]
+
+l2 = lex.generate('lexer.l', table : '@BASENAME@.tab.h')
+table = l2[1]
+</code></pre>
+<h3 id="yaccgenerator">YaccGenerator</h3>
+<h4 id="yaccimplementation">yacc.implementation</h4>
+<pre><code class="language-meson">yacc = codegen.yacc()
+impl = yacc.implementation()
+</code></pre>
+<p>Returns the string name of the yacc implementation chosen. May be one of:</p>
+<ul>
+<li>yacc</li>
+<li>bison</li>
+<li>byacc</li>
+<li>win_bison</li>
+</ul>
+<h4 id="yaccgenerate">yacc.generate</h4>
+<pre><code class="language-meson">yacc = codegen.yacc()
+yacc.generate('parser.y')
+</code></pre>
+<p>This function wraps bison, yacc, byacc, and win_bison (on Windows), and attempts to abstract away the differences between them</p>
+<p>This requires an input file, which may be a string, File, or generated source. It additionally takes the following options keyword arguments:</p>
+<ul>
+<li>
+<code>version</code>: Version constraints on the lexer</li>
+<li>
+<code>args</code>: An array of extra arguments to pass the lexer</li>
+<li>
+<code>plainname</code>: If set to true then <code>@PLAINNAME@</code> will be used as the source base, otherwise <code>@BASENAME@</code>.</li>
+<li>
+<code>source</code>: the name of the source output. If this is unset Meson will use <code>{base}.{ext}</code> with an extension of <code>cpp</code> if the input has an extension of <code>.yy</code> or <code>c</code> otherwise, with base being determined by the <code>plainname</code> argument.</li>
+<li>
+<code>header</code>: the name of the header output. If this is unset Meson will use <code>{base}.{ext}</code> with an extension of <code>hpp</code> if the input has an extension of <code>.yy</code> or <code>h</code> otherwise, with base being determined by the <code>plainname</code> argument.</li>
+<li>
+<code>locations</code>: The name of the locations file, if one is generated. Due to the way yacc works this must be duplicated in the file and in the command.</li>
+</ul>
+<p>The outputs will be in the form <code>source header [locations]</code>, which means those can be accessed by indexing the output of the <code>yacc</code> call:</p>
+<pre><code class="language-meson">yacc = codegen.yacc()
+p1 = yacc.generate('parser.y', header : '@BASENAME@.h', locations : 'locations.h')
+headers = [p1[1], p1[2]]  # [header, locations]
+
+p2 = yacc.generate('parser.yy', locations : 'locations.hpp')
+locations = p2[1]
+</code></pre>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+        
+<div class="copyrights-description">
+		<p>
+				© 								2024, 
+				2025, 
+													       	Dylan Baker 				(<a href="mailto:dylan@pnwbakers.com">dylan@pnwbakers.com</a>)
+			</p>
+	</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Codegen-module.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

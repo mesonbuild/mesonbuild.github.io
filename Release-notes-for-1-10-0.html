@@ -101,6 +101,9 @@ $('body').removeClass('no-script');
             <a href="CMake-module.html">CMake</a>
         </li>
         <li>
+            <a href="Codegen-module.html">Codegen</a>
+        </li>
+        <li>
             <a href="Cuda-module.html">CUDA</a>
         </li>
         <li>
@@ -247,6 +250,8 @@ members of the workspace.</p>
 single workspace invoked from the main Meson project. When invoking multiple
 different Cargo subprojects from Meson, feature resolution of common
 dependencies might be wrong.</p>
+<h2 id="experimental-codegen-module">Experimental Codegen module</h2>
+<p>A new module wrapping some common code generators has been added. Currently it supports lex/flex and yacc/bison.</p>
 <h2 id="methods-from-compiler-object-now-accept-strings-for-include_directories">Methods from compiler object now accept strings for include_directories</h2>
 <p>The various <a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a> methods with a <code>include_directories</code> keyword argument
 now accept stings or array of strings, in addition to <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects
