@@ -1,0 +1,1 @@
+urls_downloaded_cb({"token":"lib.c","urls":[{"url":"Snippets-module.html#symbol_visibility_header","node_type":"p","page":"Snippets module","sections":["Snippets module","Functions","symbol_visibility_header()"],"context":{"gi-language":["default"]}}]});

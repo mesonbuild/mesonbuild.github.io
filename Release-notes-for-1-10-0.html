@@ -158,6 +158,9 @@ $('body').removeClass('no-script');
             <a href="Simd-module.html">Simd</a>
         </li>
         <li>
+            <a href="Snippets-module.html">Snippets</a>
+        </li>
+        <li>
             <a href="SourceSet-module.html">SourceSet</a>
         </li>
         <li>
@@ -287,6 +290,14 @@ what Rust does. That is, shared libraries on Windows get a suffix
 <p>We expect to change the default value of this option to <code>platform</code> in
 a future major version. Until that happens we reserve the right to
 alter how <code>platform</code> actually names its output files.</p>
+<h2 id="new-method-to-handle-gnu-and-windows-symbol-visibility-for-ccobjcobjc">New method to handle GNU and Windows symbol visibility for C/C++/ObjC/ObjC++</h2>
+<p>Defining public API of a cross platform C/C++/ObjC/ObjC++ library is often
+painful and requires copying macro snippets into every projects, typically using
+<code>__declspec(dllexport)</code>, <code>__declspec(dllimport)</code> or
+<code>__attribute__((visibility("default")))</code>.</p>
+<p>Meson can now generate a header file that defines exactly what's needed for
+all supported platforms:
+<a href="Snippets-module.html#symbol_visibility_header"><code>snippets.symbol_visibility_header()</code></a>.</p>
 <h2 id="vala-buildtarget-dependency-enhancements">Vala BuildTarget dependency enhancements</h2>
 <p>A BuildTarget that has Vala sources can now get a File dependency for its
 generated header, vapi, and gir files.</p>
