@@ -279,6 +279,11 @@ did not have a <code>Cargo.lock</code> file itself.</p>
 to use <code>cargo</code> to set up <code>Cargo.lock</code> and <code>Cargo.toml</code> files,
 encompassing all Rust targets, in the toplevel source directory.
 Cargo subprojects remain unstable and subject to change.</p>
+<h2 id="add-a-configure-log-in-mesonlogs">Add a configure log in meson-logs</h2>
+<p>Add a second log file <code>meson-setup.txt</code> which contains the configure logs
+displayed on stdout during the meson <code>setup</code> stage.
+It allows user to navigate through the setup logs without searching in the terminal
+or the extensive informations of <code>meson-log.txt</code>.</p>
 <h2 id="added-new-namingscheme-option">Added new <code>namingscheme</code> option</h2>
 <p>Traditionally Meson has named output targets so that they don't clash
 with each other. This has meant, among other things, that on Windows
