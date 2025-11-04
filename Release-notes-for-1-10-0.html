@@ -247,6 +247,27 @@ meson setup --cross-file \
 the appropriate preprocessor symbols, also when the compiler is clang.
 This is only supported when using <code>link.exe</code> or <code>lld-link.exe</code> as the
 linker.</p>
+<h2 id="added-build_subdir-arg-to-various-targets">Added <code>build_subdir</code> arg to various targets</h2>
+<p><code>custom_target()</code>, <code>build_target()</code> and <code>configure_file()</code> now support
+the <code>build_subdir</code> argument. This directs meson to place the build
+result within the specified sub-directory path of the build directory.</p>
+<pre><code class="language-meson">configure_file(input : files('config.h.in'),
+               output : 'config.h',
+               build_subdir : 'config-subdir',
+               install_dir : 'share/appdir',
+               configuration : conf)
+</code></pre>
+<p>This places the build result, <code>config.h</code>, in a sub-directory named
+<code>config-subdir</code>, creating it if necessary. To prevent collisions
+within the build directory, <code>build_subdir</code> is not allowed to match a
+file or directory in the source directory nor contain '..' to refer to
+the parent of the build directory. <code>build_subdir</code> does not affect the
+install directory path at all; <code>config.h</code> will be installed as
+<code>share/appdir/config.h</code>. <code>build_subdir</code> may contain multiple levels of
+directory names.</p>
+<p>This allows construction of files within the build system that have
+any required trailing path name components as well as building
+multiple files with the same basename from the same source directory.</p>
 <h2 id="support-for-cargo-workspaces">Support for Cargo workspaces</h2>
 <p>When parsing <code>Cargo.toml</code> files, Meson now recognizes workspaces
 and will process all the required members and any requested optional

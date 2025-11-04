@@ -1452,6 +1452,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries__lang__static_args"><b>&lt;lang&gt;_static_args</b></a>           : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#both_libraries_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#both_libraries_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#both_libraries_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#both_libraries_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#both_libraries_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#both_libraries_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -1655,6 +1656,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -2419,6 +2435,7 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_android_exe_type"><b>android_exe_type</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the intended target of the executable
   <a href="Reference-manual_functions.html#build_target_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#build_target_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#build_target_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#build_target_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#build_target_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#build_target_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -2646,6 +2663,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -3532,6 +3564,7 @@ build directory with the name <code>output:</code> in the current directory.</p>
 </div>
 <pre><code class="language-meson"># This function can run in three modes depending on the keyword arguments
 <a href="Reference-manual_returned_file.html"><ins>file</ins></a> configure_file(
+  <a href="Reference-manual_functions.html#configure_file_build_subdir"><b>build_subdir</b></a>  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#configure_file_capture"><b>capture</b></a>       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                               # When this argument is set to true,
   <a href="Reference-manual_functions.html#configure_file_command"><b>command</b></a>       : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                  # As explained above, if specified, Meson does not create
   <a href="Reference-manual_functions.html#configure_file_configuration"><b>configuration</b></a> : <a href="Reference-manual_returned_cfg_data.html"><ins>cfg_data</ins></a> | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]  # As explained above, when passed this will provide the replacement
@@ -3575,6 +3608,21 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
+      <tr id="configure_file_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
+  </div>
+  </td>
+      </tr>
       <tr id="configure_file_capture">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">capture</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
@@ -5172,6 +5220,7 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_android_exe_type"><b>android_exe_type</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the intended target of the executable
   <a href="Reference-manual_functions.html#executable_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#executable_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#executable_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#executable_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#executable_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#executable_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -5369,6 +5418,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -7869,6 +7933,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
   <a href="Reference-manual_functions.html#jar_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#jar_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#jar_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#jar_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#jar_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#jar_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -8037,6 +8102,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="jar_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -8695,6 +8775,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library__lang__static_args"><b>&lt;lang&gt;_static_args</b></a>           : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Arguments that are only passed to a static library
   <a href="Reference-manual_functions.html#library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#library_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -8907,6 +8988,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -10356,6 +10452,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
   <a href="Reference-manual_functions.html#shared_library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#shared_library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#shared_library_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#shared_library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#shared_library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#shared_library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -10527,6 +10624,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_library_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -11203,6 +11315,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
   <a href="Reference-manual_functions.html#shared_module_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#shared_module_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#shared_module_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#shared_module_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#shared_module_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#shared_module_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -11391,6 +11504,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_module_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -12004,6 +12132,7 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
   <a href="Reference-manual_functions.html#static_library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
   <a href="Reference-manual_functions.html#static_library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions.html#static_library_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
   <a href="Reference-manual_functions.html#static_library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
   <a href="Reference-manual_functions.html#static_library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
   <a href="Reference-manual_functions.html#static_library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
@@ -12173,6 +12302,21 @@ but which will be removed on install</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
