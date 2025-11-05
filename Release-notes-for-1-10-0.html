@@ -228,6 +228,15 @@ to retrieve the dictionary values as an array, analogous to the
 <a href="Reference-manual_elementary_dict.html#dictkeys"><ins>dict.keys()</ins></a> # Returns ['a', 'b']
 <a href="Reference-manual_elementary_dict.html#dictvalues"><ins>dict.values()</ins></a> # Returns ['hello', 'world']
 </code></pre>
+<h2 id="add-cmd_array-method-to-externalprogram">Add cmd_array method to ExternalProgram</h2>
+<p>Added a new <code>cmd_array()</code> method to the <code>ExternalProgram</code> object that returns
+an array containing the command(s) for the program. This is particularly useful
+in cases like pyInstaller where the Python command is <code>meson.exe runpython</code>,
+and the full path should not be used but rather the command array.</p>
+<p>The method returns a list of strings representing the complete command needed
+to execute the external program, which may differ from just the full path
+returned by <code>full_path()</code> in cases where wrapper commands or interpreters are
+involved.</p>
 <h2 id="microchip-xc32-compiler-support">Microchip XC32 compiler support</h2>
 <p>The Microchip XC32 compiler is now supported.</p>
 <h2 id="android-cross-file-generator">Android cross file generator</h2>
