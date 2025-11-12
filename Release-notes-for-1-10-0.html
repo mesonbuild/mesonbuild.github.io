@@ -331,6 +331,17 @@ what Rust does. That is, shared libraries on Windows get a suffix
 <p>We expect to change the default value of this option to <code>platform</code> in
 a future major version. Until that happens we reserve the right to
 alter how <code>platform</code> actually names its output files.</p>
+<h2 id="passing-c-defaultlinkerlibraries-to-rustc">Passing <code>-C default-linker-libraries</code> to rustc</h2>
+<p>When calling rustc, Meson now passes the <code>-C default-linker-libraries</code> option.
+While rustc passes the necessary libraries for Rust programs, they are rarely
+enough for mixed Rust/C programs.</p>
+<h2 id="rustc-will-receive-c-embedbitcodeno-and-c-lto-command-line-options">
+<code>rustc</code> will receive <code>-C embed-bitcode=no</code> and <code>-C lto</code> command line options</h2>
+<p>With this release, Meson passes command line arguments to <code>rustc</code> to
+enable LTO when the <code>b_lto</code> built-in option is set to true.  As an
+optimization, Meson also passes <code>-C embed-bitcode=no</code> when LTO is
+disabled; note that this is incompatible with passing <code>-C lto</code> via
+<code>rust_args</code>.</p>
 <h2 id="new-method-to-handle-gnu-and-windows-symbol-visibility-for-ccobjcobjc">New method to handle GNU and Windows symbol visibility for C/C++/ObjC/ObjC++</h2>
 <p>Defining public API of a cross platform C/C++/ObjC/ObjC++ library is often
 painful and requires copying macro snippets into every projects, typically using
