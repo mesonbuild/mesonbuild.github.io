@@ -1484,6 +1484,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#both_libraries_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#both_libraries_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#both_libraries_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#both_libraries_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#both_libraries_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#both_libraries_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
@@ -2205,6 +2206,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
   </div>
   </td>
       </tr>
+      <tr id="both_libraries_shortname">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">shortname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string specifying a DLL name fitting to 8.3 limit on OS/2 of this shared library.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
+  </div>
+  </td>
+      </tr>
       <tr id="both_libraries_sources">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">sources</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
@@ -2472,6 +2486,7 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#build_target_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#build_target_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#build_target_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#build_target_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#build_target_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#build_target_target_type"><b>target_type</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The actual target type to build
@@ -3286,6 +3301,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_shortname">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">shortname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string specifying a DLL name fitting to 8.3 limit on OS/2 of this shared library.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -8807,6 +8835,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#library_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
@@ -9534,6 +9563,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library_shortname">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">shortname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string specifying a DLL name fitting to 8.3 limit on OS/2 of this shared library.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>
@@ -10482,6 +10524,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#shared_library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
   <a href="Reference-manual_functions.html#shared_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#shared_library_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#shared_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#shared_library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
   <a href="Reference-manual_functions.html#shared_library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
@@ -11137,6 +11180,19 @@ or <code>extern crate foo as bar</code> inside rust code.</p>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_library_shortname">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">shortname</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string specifying a DLL name fitting to 8.3 limit on OS/2 of this shared library.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
   </div>
   </td>
       </tr>

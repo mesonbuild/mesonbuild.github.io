@@ -239,6 +239,25 @@ returned by <code>full_path()</code> in cases where wrapper commands or interpre
 involved.</p>
 <h2 id="microchip-xc32-compiler-support">Microchip XC32 compiler support</h2>
 <p>The Microchip XC32 compiler is now supported.</p>
+<h2 id="added-os2-support">Added OS/2 support</h2>
+<p>Meson now supports OS/2 system. Especially, <code>shortname</code> kwarg and
+<code>os2_emxomf</code> builtin option are introduced.</p>
+<p><code>shortname</code> is used to specify a short DLL name fitting to a 8.3 rule.</p>
+<pre><code class="language-meson">lib = library('foo_library',
+    ...
+    shortname: 'foo',
+    ...
+)
+</code></pre>
+<p>This will generate <code>foo.dll</code> not <code>foo_library.dll</code> on OS/2. If
+<code>shortname</code> is not used, <code>foo_libr.dll</code> which is truncated up to 8
+characters is generated.</p>
+<p><code>os2_emxomf</code> is used to generate OMF files with OMF tool-chains.</p>
+<pre><code>meson setup --os2-emxomf builddir
+</code></pre>
+<p>This will generate OMF object files and <code>.lib</code> library files. If
+<code>--os2-emxomf</code> is not used, AOUT object files and <code>.a</code> library files are
+generated.</p>
 <h2 id="android-cross-file-generator">Android cross file generator</h2>
 <p>The <code>env2mfile</code> command now supports a <code>--android</code> argument. When
 specified, it tells the cross file generator to create cross files for
