@@ -242,8 +242,8 @@ the following syntax: <code>meson COMMAND --help</code></p>
                   [--sharedstatedir SHAREDSTATEDIR]
                   [--sysconfdir SYSCONFDIR]
                   [--auto-features {enabled,disabled,auto}]
-                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
-                  [--genvslite {vs2022}]
+                  [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}]
+                  [--genvslite {vs2022,vs2026}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
                   [--default-both-libraries {shared,static,auto}]
@@ -294,9 +294,9 @@ options:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}
                                         Backend to use (default: ninja).
-  --genvslite {vs2022}                  Setup multiple buildtype-suffixed ninja-
+  --genvslite {vs2022,vs2026}           Setup multiple buildtype-suffixed ninja-
                                         backend build directories, and a
                                         [builddir]_vs containing a Visual Studio
                                         meta-backend with multiple
@@ -558,7 +558,7 @@ by sniffing environment variables like <code>CC</code> and <code>CFLAGS</code>.<
                    [--buildsystem-files] [--compilers] [--dependencies]
                    [--scan-dependencies] [--installed] [--install-plan]
                    [--machines] [--projectinfo] [--targets] [--tests]
-                   [--backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}]
+                   [--backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode}]
                    [-a] [-i] [-f]
                    [builddir]
 </code></pre>
@@ -586,7 +586,7 @@ options:
   --projectinfo                         Information about projects.
   --targets                             List top level targets.
   --tests                               List all unit tests.
-  --backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode}
+  --backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode}
                                         The backend to use for the
                                         --buildoptions introspection.
   -a, --all                             Print all available information.
@@ -694,8 +694,8 @@ Rewriter commands:
               [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
               [--sysconfdir SYSCONFDIR]
               [--auto-features {enabled,disabled,auto}]
-              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}]
-              [--genvslite {vs2022}]
+              [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}]
+              [--genvslite {vs2022,vs2026}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
               [--default-both-libraries {shared,static,auto}] [--errorlogs]
@@ -758,9 +758,9 @@ options:
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
-  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,xcode,none}
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}
                                         Backend to use (default: ninja).
-  --genvslite {vs2022}                  Setup multiple buildtype-suffixed ninja-
+  --genvslite {vs2022,vs2026}           Setup multiple buildtype-suffixed ninja-
                                         backend build directories, and a
                                         [builddir]_vs containing a Visual Studio
                                         meta-backend with multiple

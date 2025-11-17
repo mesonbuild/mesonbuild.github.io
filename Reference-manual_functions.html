@@ -1483,7 +1483,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <a href="Reference-manual_functions.html#both_libraries_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#both_libraries_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#both_libraries_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#both_libraries_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#both_libraries_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#both_libraries_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#both_libraries_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
@@ -2195,10 +2195,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2485,7 +2487,7 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <a href="Reference-manual_functions.html#build_target_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#build_target_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#build_target_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#build_target_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#build_target_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#build_target_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#build_target_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
@@ -3293,10 +3295,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5278,7 +5282,7 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#executable_pie"><b>pie</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Build a position-independent executable
   <a href="Reference-manual_functions.html#executable_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#executable_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#executable_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#executable_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#executable_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
   <a href="Reference-manual_functions.html#executable_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
@@ -5961,10 +5965,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7990,7 +7996,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#jar_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#jar_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#jar_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#jar_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#jar_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#jar_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
   <a href="Reference-manual_functions.html#jar_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
@@ -8618,10 +8624,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8834,7 +8842,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <a href="Reference-manual_functions.html#library_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#library_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
@@ -9555,10 +9563,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10523,7 +10533,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#shared_library_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#shared_library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#shared_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#shared_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#shared_library_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions.html#shared_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#shared_library_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
@@ -11172,10 +11182,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11399,7 +11411,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
   <a href="Reference-manual_functions.html#shared_module_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#shared_module_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#shared_module_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#shared_module_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#shared_module_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#shared_module_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
   <a href="Reference-manual_functions.html#shared_module_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
@@ -12046,10 +12058,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -12218,7 +12232,7 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
   <a href="Reference-manual_functions.html#static_library_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
   <a href="Reference-manual_functions.html#static_library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
-  <a href="Reference-manual_functions.html#static_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this provides a map of library names to the crate name
+  <a href="Reference-manual_functions.html#static_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
   <a href="Reference-manual_functions.html#static_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions.html#static_library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
   <a href="Reference-manual_functions.html#static_library_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
@@ -12875,10 +12889,12 @@ method.</p>
 <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>On rust targets this provides a map of library names to the crate name
-with which it would be available inside the rust code.</p>
-<p>This allows renaming similar to the dependency renaming feature of cargo
-or <code>extern crate foo as bar</code> inside rust code.</p>
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
