@@ -291,7 +291,8 @@ command.</p>
 <h3 id="setting-the-project-version">Setting the project version</h3>
 <p>It is also possible to set kwargs of specific functions with the
 rewriter. The general command for setting or removing kwargs is:</p>
-<pre><code class="language-bash">meson rewrite kwargs {set/delete} &lt;function type&gt; &lt;function ID&gt; &lt;key1&gt; &lt;value1&gt; &lt;key2&gt; &lt;value2&gt; ...
+<pre><code class="language-bash">meson rewrite kwargs set &lt;function type&gt; &lt;function ID&gt; &lt;key1&gt; &lt;value1&gt; &lt;key2&gt; &lt;value2&gt; ...
+meson rewrite kwargs delete &lt;function type&gt; &lt;function ID&gt; &lt;key1&gt; &lt;key2&gt; ...
 </code></pre>
 <p>For instance, setting the project version can be achieved with this command:</p>
 <pre><code class="language-bash">meson rewrite kwargs set project / version 1.0.0
@@ -307,10 +308,17 @@ rewriter. The general command for setting or removing kwargs is:</p>
 converted to <code>/</code> by msys bash but in order to keep usage
 shell-agnostic, the rewrite command also allows <code>//</code> as the function
 ID such that it will work in both msys bash and other shells.</p>
+<p><em>Before 1.10.0</em>, the <code>delete</code> command expected <code>&lt;key&gt; &lt;value&gt;</code> pairs as
+in <code>set</code>; the <code>&lt;value&gt;</code> was ignored.  For backward compatibility, Meson
+accepts this syntax with a warning if all <code>&lt;value&gt;</code>s are the empty string.</p>
 <h3 id="setting-the-project-default-options">Setting the project default options</h3>
 <p>For setting and deleting default options, use the following command:</p>
-<pre><code class="language-bash">meson rewrite default-options {set/delete} &lt;opt1&gt; &lt;value1&gt; &lt;opt2&gt; &lt;value2&gt; ...
+<pre><code class="language-bash">meson rewrite default-options set &lt;opt1&gt; &lt;value1&gt; &lt;opt2&gt; &lt;value2&gt; ...
+meson rewrite default-options delete &lt;opt1&gt; &lt;opt2&gt; ...
 </code></pre>
+<p><em>Before 1.10.0</em>, the <code>delete</code> command expected <code>&lt;opt&gt; &lt;value&gt;</code> pairs as
+in <code>set</code>; the <code>&lt;value&gt;</code> was ignored.  For backward compatibility, Meson
+accepts this syntax with a warning if all <code>&lt;value&gt;</code>s are the empty string.</p>
 <h2 id="limitations">Limitations</h2>
 <p>Rewriting a Meson file is not guaranteed to keep the indentation of
 the modified functions. Additionally, comments inside a modified
@@ -392,6 +400,8 @@ function should be executed.</p>
   }
 }
 </code></pre>
+<p>For operation <code>delete</code>, the values of the <code>options</code> can be anything
+(including <code>null</code>).</p>
 <h3 id="default-options-modification-format">Default options modification format</h3>
 <p>The format for the type <code>default_options</code> is defined as follows:</p>
 <pre><code class="language-json">{
@@ -405,7 +415,7 @@ function should be executed.</p>
 }
 </code></pre>
 <p>For operation <code>delete</code>, the values of the <code>options</code> can be anything
-(including <code>null</code>)</p>
+(including <code>null</code>).</p>
 <h2 id="extracting-information">Extracting information</h2>
 <p>The rewriter also offers operation <code>info</code> for the types <code>target</code> and
 <code>kwargs</code>. When this operation is used, Meson will print a JSON dump to

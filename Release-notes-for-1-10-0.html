@@ -353,6 +353,13 @@ what Rust does. That is, shared libraries on Windows get a suffix
 <p>We expect to change the default value of this option to <code>platform</code> in
 a future major version. Until that happens we reserve the right to
 alter how <code>platform</code> actually names its output files.</p>
+<h2 id="rewriter-improvements">Rewriter improvements</h2>
+<p>The <a href="Rewriter.html">rewriter</a> added support for writing the <code>project()</code>
+<code>license_files</code> argument and for reading dict-valued kwargs.</p>
+<p>It also removed the unused but mandatory <code>value</code> arguments to the
+<code>default-options delete</code> and <code>kwargs delete</code> CLI subcommands.  To allow
+scripts to continue supporting previous releases, these arguments are
+still accepted (with a warning) if they're all equal to the empty string.</p>
 <h2 id="passing-c-defaultlinkerlibraries-to-rustc">Passing <code>-C default-linker-libraries</code> to rustc</h2>
 <p>When calling rustc, Meson now passes the <code>-C default-linker-libraries</code> option.
 While rustc passes the necessary libraries for Rust programs, they are rarely
