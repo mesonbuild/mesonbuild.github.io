@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>dependency()</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
+<link rel="stylesheet" href="assets/css/devhelp.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Codegen-module.html">Codegen</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="Snippets-module.html">Snippets</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Reference-manual_functions_dependency.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h2 id="dependency">dependency()</h2>
+<p>Finds an external dependency (usually a library installed on your
+system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#cmake">with
+CMake</a> if <code>pkg-config</code> fails. Additionally,
+frameworks (OSX only) and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific fallback detection
+logic</a>
+are also supported.</p>
+<p><em>Since 0.60.0</em> more than one name can be provided, they will be tried in order
+and the first name to be found will be used. The fallback subproject will be
+used only if none of the names are found on the system. Once one of the name has
+been found, all other names are added into the cache so subsequent calls for any
+of those name will return the same value. This is useful in case a dependency
+could have different names, such as <code>png</code> and <code>libpng</code>.</p>
+<ul>
+<li>Since <em>0.64.0</em> a dependency fallback can be provided by WrapDB. Simply download
+the database locally using <code>meson wrap update-db</code> command and Meson will
+automatically fallback to subprojects provided by WrapDB if the dependency is
+not found on the system and the project does not ship their own <code>.wrap</code> file.</li>
+</ul>
+<p>Dependencies can also be resolved in two other ways:</p>
+<ul>
+<li>
+<p>if the same name was used in a <code>meson.override_dependency</code> prior to
+the call to <code>dependency</code>, the overriding dependency will be returned
+unconditionally; that is, the overriding dependency will be used
+independent of whether an external dependency is installed in the system.
+Typically, <code>meson.override_dependency</code> will have been used by a
+subproject.</p>
+</li>
+<li>
+<p>by a fallback subproject which, if needed, will be brought into the current
+build specification as if <a href="Reference-manual_functions_dependency.html#subproject"><code>subproject()</code></a> had been called.
+The subproject can be specified with the <code>fallback</code> argument.  Alternatively,
+if the <code>fallback</code> argument is absent, <em>since 0.55.0</em> Meson can
+automatically identify a subproject as a fallback if a wrap file
+<a href="Wrap-dependency-system-manual.html#provide-section">provides</a> the
+dependency, or if a subproject has the same name as the dependency.
+In the latter case, the subproject must use <code>meson.override_dependency</code> to
+specify the replacement, or Meson will report a hard error.  See the
+<a href="Wrap-dependency-system-manual.html#provide-section">Wrap documentation</a>
+for more details.  This automatic search can be controlled using the
+<code>allow_fallback</code> keyword argument.</p>
+</li>
+</ul>
+<p>If <code>dependency_name</code> is <code>''</code>, the dependency is always not found. So
+with <code>required: false</code>, this always returns a dependency object for
+which the <code>found()</code> method returns <code>false</code>, and which can be passed
+like any other dependency to the <code>dependencies:</code> keyword argument of a
+<code>build_target</code>. This can be used to implement a dependency which is
+sometimes not required e.g. in some branches of a conditional, or with
+a <code>fallback:</code> kwarg, can be used to declare an optional dependency
+that only looks in the specified subproject, and only if that's
+allowed by <code>--wrap-mode</code>.</p>
+<p>The returned object <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> also has additional methods.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h3 style="margin-top: 0px;" id="signature">Signature</h3>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Finds an external dependency (usually a library installed on your
+<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a> dependency(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>names</b>...,  # The names of the dependency to look up
+
+  # Keyword arguments:
+  <a href="Reference-manual_functions_dependency.html#dependency_allow_fallback"><b>allow_fallback</b></a>    : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                            # Specifies whether Meson should automatically pick a fallback subproject
+  <a href="Reference-manual_functions_dependency.html#dependency_default_options"><b>default_options</b></a>   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]  # An array of default option values
+  <a href="Reference-manual_functions_dependency.html#dependency_disabler"><b>disabler</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                            # Returns a <a href="Reference-manual_functions.html#disabler"><ins><code>disabler()</code></ins></a> object instead of a not-found dependency
+  <a href="Reference-manual_functions_dependency.html#dependency_fallback"><b>fallback</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # Manually specifies a subproject fallback
+  <a href="Reference-manual_functions_dependency.html#dependency_include_type"><b>include_type</b></a>      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                             # An enum flag, marking how the dependency
+  <a href="Reference-manual_functions_dependency.html#dependency_language"><b>language</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                             # Defines what language-specific dependency to find
+  <a href="Reference-manual_functions_dependency.html#dependency_method"><b>method</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                             # Defines the way the dependency is detected, the default is
+  <a href="Reference-manual_functions_dependency.html#dependency_native"><b>native</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                            # If set to `true`, causes Meson to find the dependency on
+  <a href="Reference-manual_functions_dependency.html#dependency_not_found_message"><b>not_found_message</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                             # An optional string that will be printed as a <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> if the dependency was not found.
+  <a href="Reference-manual_functions_dependency.html#dependency_required"><b>required</b></a>          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_returned_feature.html"><ins>feature</ins></a>                                  # When set to `false`, Meson will proceed with the build
+  <a href="Reference-manual_functions_dependency.html#dependency_static"><b>static</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                            # Tells the dependency provider to try to get static
+  <a href="Reference-manual_functions_dependency.html#dependency_version"><b>version</b></a>           : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                # Specifies the required version,
+)</code></pre>
+<aside class="note note-info">
+<div class="note-topbar note-topbar-info">
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="note-title">Note:</span>
+</div>
+<div class="note-content">
+<p>This function supports additional <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">library-specific</a> keyword arguments that may also be accepted (e.g. <code>modules</code> specifies submodules to use for dependencies such as Qt5 or Boost. <code>components</code> allows the user to manually add CMake <code>COMPONENTS</code> for the <code>find_package</code> lookup)</p>
+</div>
+</aside>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h3 id="arguments">Arguments</h3>
+<p>The
+function accepts between <code>1</code> and <code>infinity</code> variadic
+arguments (<code>names...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></code>.</p>
+<p>The names of the dependency to look up. The dependencies are looked up in
+the order they are provided here. The first found dependency will then be
+used. The fallback subproject will be used only if none of the names are
+found on the system. Once one of the name has been found, all other names
+are added into the cache so subsequent calls for any of those name will
+return the same value. This is useful in case a dependency could have
+different names, such as <code>png</code> and <code>libpng</code>.</p>
+<p><strong>NOTE:</strong> Before <em>0.60.0</em> only a single dependency name was allowed.</p>
+  <div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>The function <code>dependency()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="dependency_allow_fallback">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">allow_fallback</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies whether Meson should automatically pick a fallback subproject
+in case the dependency
+is not found in the system.  If <code>true</code> and the dependency is not found
+on the system, Meson will fallback to a subproject that provides this
+dependency. If <code>false</code>, Meson will not fallback even if a subproject
+provides this dependency.  By default, Meson will do so if <code>required</code>
+is <code>true</code> or  <a href="Build-options.html#features"><code>enabled</code></a>; see the <a href="Wrap-dependency-system-manual.html#provide-section">Wrap
+documentation</a>
+for more details.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.56.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_default_options">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">default_options</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>An array of default option values
+that override those set in the subproject's <code>meson.options</code>
+(like <code>default_options</code> in <a href="Reference-manual_functions.html#project"><ins><code>project()</code></ins></a>, they only have
+effect when Meson is run for the first time, and command line
+arguments override any default options in build files)
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.38.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_disabler">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">disabler</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Returns a <a href="Reference-manual_functions.html#disabler"><ins><code>disabler()</code></ins></a> object instead of a not-found dependency
+if this kwarg is set to <code>true</code> and the dependency couldn't be found.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.49.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_fallback">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">fallback</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Manually specifies a subproject fallback
+to use in case the dependency is not found in the system.
+This is useful if the automatic search is not applicable or if you
+want to support versions of Meson older than 0.55.0.  If the value is an
+array <code>['subproj_name', 'subproj_dep']</code>, the first value is the name
+of the subproject and the second is the variable name in that
+subproject that contains a dependency object such as the return
+value of <a href="Reference-manual_functions.html#declare_dependency"><ins><code>declare_dependency()</code></ins></a> or
+<a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>, etc. Note that this means the
+fallback dependency may be a not-found dependency, in which
+case the value of the <code>required:</code> kwarg will be obeyed.
+<em>Since 0.54.0</em> the value can be a single string, the subproject name;
+in this case the subproject must use
+<code>meson.override_dependency('dependency_name', subproj_dep)</code>
+to specify the dependency object used in the superproject.
+If the value is an empty array it has the same effect as
+<code>allow_fallback: false</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_include_type">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_type</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>An enum flag, marking how the dependency
+flags should be converted. Supported values are <code>'preserve'</code>, <code>'system'</code> and
+<code>'non-system'</code>. System dependencies may be handled differently on some
+platforms, for instance, using <code>-isystem</code> instead of <code>-I</code>, where possible.
+If <code>include_type</code> is set to <code>'preserve'</code>, no additional conversion will be
+performed.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.52.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  'preserve'</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_language">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">language</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Defines what language-specific dependency to find
+if it's available for multiple languages.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_method">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">method</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Defines the way the dependency is detected, the default is
+<code>auto</code> but can be overridden to be e.g. <code>qmake</code> for Qt development,
+and <a href="Dependencies.html#dependencies-with-custom-lookup-functionality">different dependencies support different values</a>
+for this (though <code>auto</code> will work on all of them)</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.40.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  'auto'</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_native">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to <code>true</code>, causes Meson to find the dependency on
+the build machine system rather than the host system (i.e. where the
+cross compiled binary will run on), usually only needed if you build
+a tool to be used during compilation.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_not_found_message">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">not_found_message</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>An optional string that will be printed as a <a href="Reference-manual_functions.html#message"><ins><code>message()</code></ins></a> if the dependency was not found.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.50.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_required">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">required</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_returned_feature.html"><ins><code>feature</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to <code>false</code>, Meson will proceed with the build
+even if the dependency is not found.</p>
+<p>When set to a <a href="Build-options.html#features"><code>feature</code></a> option, the feature
+will control if it is searched and whether to fail if not found.</p>
+<p><em>(since 0.47.0)</em> The value of a <code>feature</code> option can also be passed.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_static">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">static</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Tells the dependency provider to try to get static
+libraries instead of dynamic ones (note that this is not supported
+by all dependency backends)</p>
+<p>Leaving this value unset will result in an implementation defined default
+value. For most dependencies this means the value of the <code>prefer_static</code>
+option, but some custom dependencies have their own method for determining
+the most useful default option.</p>
+<p><em>Since 0.60.0</em> it also sets <code>default_library</code> option accordingly on the fallback
+subproject if it was not set explicitly in <code>default_options</code> keyword argument.</p>
+<p><em>Since 0.63.0</em> when the <code>prefer_static</code> option is used to calculate the
+default value.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="dependency_version">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">version</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies the required version,
+a string containing a
+comparison operator followed by the version string, examples include
+<code>&gt;1.0.0</code>, <code>&lt;=2.3.5</code> or <code>3.1.4</code> for exact matching.
+You can also specify multiple restrictions by passing an array to this
+keyword argument, such as: <code>['&gt;=3.14.0', '&lt;=4.1.0']</code>.
+These requirements are never met if the version is unknown.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.37.0)</em></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Reference-manual_functions_dependency.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

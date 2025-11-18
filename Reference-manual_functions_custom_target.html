@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>custom_target()</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
+<link rel="stylesheet" href="assets/css/devhelp.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Codegen-module.html">Codegen</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="Snippets-module.html">Snippets</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Reference-manual_functions_custom_target.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h2 id="custom_target">custom_target()</h2>
+<p>Create a custom top level build target. The only positional argument
+is the name of this target and cannot contain path separators (<code>/</code> or <code>\</code>).
+The name of custom target might not be used by every backends, for instance with
+the Ninja backend, <code>subdir/meson.build</code> containing the example below,
+<code>ninja -C builddir foo</code> or <code>ninja -C builddir subdir/foo</code> won't work,
+it is instead <code>ninja -C builddir subdir/file.txt</code>. However, <code>meson compile subdir/foo</code>
+is accepted.</p>
+<pre><code class="language-meson">custom_target('foo', output: 'file.txt', ...)
+</code></pre>
+<p>The files passed to <code>output:</code> cannot contain path separators. See the
+<a href="Custom-build-targets.html#details-on-command-invocation">manual on custom build targets</a> for
+an explanation on where output files should be placed.</p>
+<p>You can install the outputted files with the <code>install_dir:</code> kwarg, see below.</p>
+<p><em>Since 0.60.0</em> the name argument is optional and defaults to the basename of the first
+output (<code>file.txt</code> in the example above).</p>
+<p>The array of strings passed to the <code>command</code> keyword argument accept
+the following special string substitutions:</p>
+<ul>
+<li>
+<code>@INPUT@</code>: the full path to the input passed to <code>input</code>. If more than
+one input is specified, all of them will be substituted as separate
+arguments only if the command uses <code>'@INPUT@'</code> as a
+standalone-argument. For instance, this would not work: <code>command : ['cp', './@INPUT@']</code>, but this would: <code>command : ['cp', '@INPUT@']</code>.</li>
+<li>
+<code>@OUTPUT@</code>: the full path to the output passed to <code>output</code>. If more
+than one outputs are specified, the behavior is the same as
+<code>@INPUT@</code>.</li>
+<li>
+<code>@INPUT0@</code> <code>@INPUT1@</code> <code>...</code>: the full path to the input with the specified array index in <code>input</code>
+</li>
+<li>
+<code>@OUTPUT0@</code> <code>@OUTPUT1@</code> <code>...</code>: the full path to the output with the specified array index in <code>output</code>
+</li>
+<li>
+<code>@OUTDIR@</code>: the full path to the directory where the output(s) must be written</li>
+<li>
+<code>@DEPFILE@</code>: the full path to the dependency file passed to <code>depfile</code>
+</li>
+<li>
+<code>@PLAINNAME@</code>: the input filename, without a path</li>
+<li>
+<code>@PLAINNAME0@</code> <code>@PLAINNAME1@</code> <code>...</code> <em>(since 1.5.0)</em>: the input filename without a path, with the specified array index in <code>input</code>
+</li>
+<li>
+<code>@BASENAME@</code>: the input filename, with extension removed</li>
+<li>
+<code>@BASENAME0@</code> <code>@BASENAME1@</code> <code>...</code> <em>(since 1.5.0)</em>: the input filename with extension removed, with the specified array index in <code>input</code>
+</li>
+<li>
+<code>@PRIVATE_DIR@</code> <em>(since 0.50.1)</em>: path to a directory where the custom target must store all its intermediate files.</li>
+<li>
+<code>@SOURCE_ROOT@</code>: the path to the root of the source tree. Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
+<li>
+<code>@BUILD_ROOT@</code>: the path to the root of the build tree. Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
+<li>
+<code>@CURRENT_SOURCE_DIR@</code>: this is the directory where the currently
+processed meson.build is located in.  Depending on the backend,
+this may be an absolute or a relative to current workdir path.</li>
+</ul>
+<p><em>(since 0.47.0)</em> The <code>depfile</code> keyword argument also accepts the
+<code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions.</p>
+<p>The returned object also has methods that are documented in <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h3 style="margin-top: 0px;" id="signature">Signature</h3>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Create a custom top level build target
+<a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> custom_target(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> [<a href="Reference-manual_functions_custom_target.html#custom_target_name"><b>name</b></a>],   # The *unique* id of the custom target
+
+  # Keyword arguments:
+  <a href="Reference-manual_functions_custom_target.html#custom_target_build_always"><b>build_always</b></a>       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # If `true` this target is always considered out of
+  <a href="Reference-manual_functions_custom_target.html#custom_target_build_always_stale"><b>build_always_stale</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # If `true` the target is always considered out of date
+  <a href="Reference-manual_functions_custom_target.html#custom_target_build_by_default"><b>build_by_default</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # Causes, when set to true, to
+  <a href="Reference-manual_functions_custom_target.html#custom_target_capture"><b>capture</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # There are some compilers that can't be told to write
+  <a href="Reference-manual_functions_custom_target.html#custom_target_command"><b>command</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a>]  # Command to run to create outputs from inputs
+  <a href="Reference-manual_functions_custom_target.html#custom_target_console"><b>console</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # Keyword argument conflicts with `capture`, and is meant
+  <a href="Reference-manual_functions_custom_target.html#custom_target_depend_files"><b>depend_files</b></a>       : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                           # files (<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>,
+  <a href="Reference-manual_functions_custom_target.html#custom_target_depends"><b>depends</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins>build_tgt</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]  # Specifies that this target depends on the specified
+  <a href="Reference-manual_functions_custom_target.html#custom_target_depfile"><b>depfile</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                         # A dependency file that the command can write listing
+  <a href="Reference-manual_functions_custom_target.html#custom_target_env"><b>env</b></a>                : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                # environment variables to set, such as
+  <a href="Reference-manual_functions_custom_target.html#custom_target_feed"><b>feed</b></a>               : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # There are some compilers that can't be told to read
+  <a href="Reference-manual_functions_custom_target.html#custom_target_input"><b>input</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                           # Array of source files
+  <a href="Reference-manual_functions_custom_target.html#custom_target_install"><b>install</b></a>            : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # When true, one or more files of this target are installed during the install step (see `install_dir` for details)
+  <a href="Reference-manual_functions_custom_target.html#custom_target_install_dir"><b>install_dir</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                     # If only one install_dir is provided, all outputs are installed there
+  <a href="Reference-manual_functions_custom_target.html#custom_target_install_mode"><b>install_mode</b></a>       : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                            # The file mode and optionally the owner/uid and group/gid
+  <a href="Reference-manual_functions_custom_target.html#custom_target_install_tag"><b>install_tag</b></a>        : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                  # An array of strings, one per output, used by the `meson install --tags` command
+  <a href="Reference-manual_functions_custom_target.html#custom_target_output"><b>output</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                  # Array of output files
+)</code></pre>
+<aside class="note note-info">
+<div class="note-topbar note-topbar-info">
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="note-title">Note:</span>
+</div>
+<div class="note-content">
+<p>Assuming that <code>command:</code> is executed by a POSIX <code>sh</code> shell
+is not portable, notably to Windows. Instead, consider using a
+<code>native: true</code> <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>, or a python script.</p>
+</div>
+</aside>
+<aside class="note note-warning">
+<div class="note-topbar note-topbar-warning">
+  <span class="glyphicon glyphicon-warning-sign"></span>
+  <span class="note-title">Warning:</span>
+</div>
+<div class="note-content">
+<p>the <code>install_mode</code> kwarg ignored integer values between 0.60.0 -- 1.1.0.</p>
+</div>
+</aside>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h3 id="arguments">Arguments</h3>
+<p>The function <code>custom_target()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="custom_target_name">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The <em>unique</em> id of the custom target</p>
+<p>This posarg is optional <em>since 0.60.0</em>. It defaults to the basename
+of the first output.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>custom_target()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="custom_target_build_always">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_always</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If <code>true</code> this target is always considered out of
+date and is rebuilt every time.  Equivalent to setting both
+<code>build_always_stale</code> and <code>build_by_default</code> to true.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <div style="color: #ffa844">
+      <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+      <p style="margin: 0px;"><em>in 0.47.0</em></p>
+  </div>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_build_always_stale">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_always_stale</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If <code>true</code> the target is always considered out of date.
+Useful for things such as build timestamps or revision control tags.
+The associated command is run even if the outputs are up to date.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.47.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_build_by_default">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_by_default</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Causes, when set to true, to
+have this target be built by default. This means it will be built when
+<code>meson compile</code> is called without any arguments. The default value is <code>false</code>.</p>
+<p><em>(since 0.50.0)</em> If <code>build_by_default</code> is explicitly set to false, <code>install</code>
+will no longer override it. If <code>build_by_default</code> is not set, <code>install</code> will
+still determine its default.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.38.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_capture">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">capture</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>There are some compilers that can't be told to write
+their output to a file but instead write it to standard output. When
+this argument is set to true, Meson captures <code>stdout</code> and writes it
+to the target file. Note that your command argument array may not
+contain <code>@OUTPUT@</code> when capture mode is active.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_command">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">command</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Command to run to create outputs from inputs. The command
+may be strings or the return value of functions that return file-like
+objects such as <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>,
+<a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>, <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>,
+<a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>, etc.
+Meson will automatically insert the appropriate dependencies on
+targets and files listed in this keyword argument.
+Note: always specify commands in array form <code>['commandname', '-arg1', '-arg2']</code> rather than as a string <code>'commandname -arg1 -arg2'</code> as the latter will <em>not</em> work.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_console">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">console</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Keyword argument conflicts with <code>capture</code>, and is meant
+for commands that are resource-intensive and take a long time to
+finish. With the Ninja backend, setting this will add this target
+to <a href="https://ninja-build.org/manual.html#_the_literal_console_literal_pool">Ninja's <code>console</code> pool</a>,
+which has special properties such as not buffering stdout and
+serializing all targets in this pool.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.48.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_depend_files">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depend_files</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>files (<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>,
+<a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>, or the return value of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a> that
+this target depends on but are not listed in the <code>command</code> keyword
+argument. Useful for adding regen dependencies.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_depends">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depends</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies that this target depends on the specified
+target(s), even though it does not take any of them as a command
+line argument. This is meant for cases where you have a tool that
+e.g. does globbing internally. Usually you should just put the
+generated sources as inputs and Meson will set up all dependencies
+automatically (custom_idx was unavailable as a type between 0.60
+and 1.4.0).</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_depfile">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depfile</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A dependency file that the command can write listing
+all the additional files this target depends on, for example a C
+compiler would list all the header files it included, and a change
+in any one of these files triggers a recompilation.</p>
+<p><em>(since 0.47.0)</em> the <code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions
+are also accepted.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_env">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">env</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>environment variables to set, such as
+<code>{'NAME1': 'value1', 'NAME2': 'value2'}</code> or <code>['NAME1=value1', 'NAME2=value2']</code>,
+or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object which allows more
+sophisticated environment juggling.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.57.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_feed">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">feed</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>There are some compilers that can't be told to read
+their input from a file and instead read it from standard input. When this
+argument is set to <code>true</code>, Meson feeds the input file to <code>stdin</code>. Note that
+your argument array may not contain <code>@INPUT@</code> when feed mode is active.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.59.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_input">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">input</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Array of source files. <em>(since 0.41.0)</em> the array is flattened.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_install">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When true, one or more files of this target are installed during the install step (see <code>install_dir</code> for details).</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_install_dir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If only one install_dir is provided, all outputs are installed there.
+<em>Since 0.40.0</em> Allows you to specify the installation directory for each
+corresponding output. For example:</p>
+<pre><code class="language-meson">custom_target('different-install-dirs',
+  output : ['first.file', 'second.file'],
+  install : true,
+  install_dir : ['somedir', 'otherdir'])
+</code></pre>
+<p>This would install <code>first.file</code> to <code>somedir</code> and <code>second.file</code> to <code>otherdir</code>.</p>
+<p>To only install some outputs, pass <code>false</code> for the outputs that you
+don't want installed. For example:</p>
+<pre><code class="language-meson">    custom_target('only-install-second',
+      output : ['first.file', 'second.file'],
+      install : true,
+      install_dir : [false, 'otherdir'])
+</code></pre>
+<p>This would install <code>second.file</code> to <code>otherdir</code> and not install <code>first.file</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_install_mode">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_mode</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The file mode and optionally the owner/uid and group/gid.
+See the <code>install_mode</code> kwarg of <a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a> for more information.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.47.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_install_tag">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_tag</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>An array of strings, one per output, used by the <code>meson install --tags</code> command
+to install only a subset of the files.</p>
+<p>By default all outputs have no install tag which means they are not being
+installed when <code>--tags</code> argument is specified. If only one tag is specified,
+it is assumed that all outputs have the same tag. <code>false</code> can be used for
+outputs that have no tag or are not installed.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="custom_target_output">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">output</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Array of output files. These cannot contain path separators.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Reference-manual_functions_custom_target.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

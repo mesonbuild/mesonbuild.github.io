@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>static_library()</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
+<link rel="stylesheet" href="assets/css/devhelp.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Codegen-module.html">Codegen</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="Snippets-module.html">Snippets</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Reference-manual_functions_static_library.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h2 id="static_library">static_library()</h2>
+<p>Builds a static library with the given sources.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h3 style="margin-top: 0px;" id="signature">Signature</h3>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Builds a static library with the given sources
+<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> static_library(
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                   <a href="Reference-manual_functions_static_library.html#static_library_target_name"><b>target_name</b></a>,     # The *unique* name of the build target
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> <b>source</b>...,       # Input source to compile
+
+  # Keyword arguments:
+  <a href="Reference-manual_functions_static_library.html#static_library__lang__args"><b>&lt;lang&gt;_args</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # compiler flags to use for the given language;
+  <a href="Reference-manual_functions_static_library.html#static_library__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
+  <a href="Reference-manual_functions_static_library.html#static_library_build_by_default"><b>build_by_default</b></a>             : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Causes, when set to `true`, to have this target be built by default
+  <a href="Reference-manual_functions_static_library.html#static_library_build_rpath"><b>build_rpath</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to add to target's rpath definition in the build dir,
+  <a href="Reference-manual_functions_static_library.html#static_library_build_subdir"><b>build_subdir</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Places the build results in a subdirectory of the given name rather than directly into the build directory
+  <a href="Reference-manual_functions_static_library.html#static_library_d_debug"><b>d_debug</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # The [D version identifiers](https://dlang
+  <a href="Reference-manual_functions_static_library.html#static_library_d_import_dirs"><b>d_import_dirs</b></a>                : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # the directories to add to the string search path (i
+  <a href="Reference-manual_functions_static_library.html#static_library_d_module_versions"><b>d_module_versions</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # List of module version identifiers set when compiling D sources
+  <a href="Reference-manual_functions_static_library.html#static_library_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
+  <a href="Reference-manual_functions_static_library.html#static_library_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
+  <a href="Reference-manual_functions_static_library.html#static_library_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
+  <a href="Reference-manual_functions_static_library.html#static_library_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
+  <a href="Reference-manual_functions_static_library.html#static_library_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
+  <a href="Reference-manual_functions_static_library.html#static_library_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
+  <a href="Reference-manual_functions_static_library.html#static_library_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
+  <a href="Reference-manual_functions_static_library.html#static_library_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
+  <a href="Reference-manual_functions_static_library.html#static_library_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions_static_library.html#static_library_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
+  <a href="Reference-manual_functions_static_library.html#static_library_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
+  <a href="Reference-manual_functions_static_library.html#static_library_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions_static_library.html#static_library_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
+  <a href="Reference-manual_functions_static_library.html#static_library_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
+  <a href="Reference-manual_functions_static_library.html#static_library_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
+  <a href="Reference-manual_functions_static_library.html#static_library_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
+  <a href="Reference-manual_functions_static_library.html#static_library_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
+  <a href="Reference-manual_functions_static_library.html#static_library_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions_static_library.html#static_library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions_static_library.html#static_library_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
+  <a href="Reference-manual_functions_static_library.html#static_library_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
+  <a href="Reference-manual_functions_static_library.html#static_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
+  <a href="Reference-manual_functions_static_library.html#static_library_pic"><b>pic</b></a>                          : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Builds the library as positional independent code
+  <a href="Reference-manual_functions_static_library.html#static_library_prelink"><b>prelink</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # If `true` the object files in the target will be prelinked,
+  <a href="Reference-manual_functions_static_library.html#static_library_rust_abi"><b>rust_abi</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific ABI to compile (when compiling rust)
+  <a href="Reference-manual_functions_static_library.html#static_library_rust_crate_type"><b>rust_crate_type</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Set the specific type of rust crate to compile (when compiling rust)
+  <a href="Reference-manual_functions_static_library.html#static_library_rust_dependency_map"><b>rust_dependency_map</b></a>          : <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                               # On rust targets this allows giving custom names to the crates that are
+  <a href="Reference-manual_functions_static_library.html#static_library_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
+  <a href="Reference-manual_functions_static_library.html#static_library_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
+  <a href="Reference-manual_functions_static_library.html#static_library_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
+  <a href="Reference-manual_functions_static_library.html#static_library_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
+  <a href="Reference-manual_functions_static_library.html#static_library_vala_vapi"><b>vala_vapi</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
+  <a href="Reference-manual_functions_static_library.html#static_library_win_subsystem"><b>win_subsystem</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies the subsystem type to use
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h3 id="arguments">Arguments</h3>
+<p>The function <code>static_library()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="static_library_target_name">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">target_name</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The <em>unique</em> name of the build target</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Additionally, the
+function accepts between <code>0</code> and <code>infinity</code> variadic
+arguments (<code>source...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a></code>.</p>
+<p>Input source to compile. The following types are supported:</p>
+<ul>
+<li>Strings relative to the current source directory</li>
+<li>
+<a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> objects defined in any preceding build file</li>
+<li>The return value of configure-time generators such as <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>
+</li>
+<li>The return value of build-time generators such as
+<a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> or <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a>
+</li>
+</ul>
+<p>These input files can be sources, objects, libraries, or any other
+file. Meson will automatically categorize them based on the extension
+and use them accordingly. For instance, sources (<code>.c</code>, <code>.cpp</code>,
+<code>.vala</code>, <code>.rs</code>, etc) will be compiled and objects (<code>.o</code>, <code>.obj</code>) and
+libraries (<code>.so</code>, <code>.dll</code>, etc) will be linked.</p>
+<p>With the Ninja backend, Meson will create a build-time <a href="https://ninja-build.org/manual.html#ref_dependencies">order-only
+dependency</a> on
+all generated input files, including unknown files. This is needed to
+bootstrap the generation of the real dependencies in the
+<a href="https://ninja-build.org/manual.html#ref_headers">depfile</a> generated
+by your compiler to determine when to rebuild sources. Ninja relies on
+this dependency file for all input files, generated and non-generated.
+The behavior is similar for other backends.</p>
+  <div style="margin: 0px; text-align: center;">
+  </div>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>static_library()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="static_library__lang__args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>compiler flags to use for the given language;
+eg: <code>cpp_args</code> for C++</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library__lang__pch">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_pch</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>precompiled header file to use for the given language</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_build_by_default">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_by_default</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Causes, when set to <code>true</code>, to have this target be built by default.
+This means it will be built when <code>meson compile</code> is called without any
+arguments. The default value is <code>true</code> for all built target types.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.38.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_build_rpath">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_rpath</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string to add to target's rpath definition in the build dir,
+but which will be removed on install</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_build_subdir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">build_subdir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Places the build results in a subdirectory of the given name rather than directly into the build directory. This does not affect the install directory, which uses install_dir.
+This allows inserting a directory name into the build path, either when needed to use the build result while building other targets or as a way to support multiple targets with the same basename by using unique build_subdir values for each one.
+To prevent collisions within the build directory, build_subdir is not allowed to match a file or directory in the source directory, nor contain '..' to refer to the parent of the build directory.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_d_debug">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_debug</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The <a href="https://dlang.org/spec/version.html#version">D version identifiers</a> to add
+during the compilation of D source files.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_d_import_dirs">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_import_dirs</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>the directories to add to the string search path (i.e. <code>-J</code> switch for DMD).
+Must be <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects or plain strings.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.62.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_d_module_versions">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_module_versions</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>List of module version identifiers set when compiling D sources.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_d_unittest">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">d_unittest</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to true, the D modules are compiled in debug mode.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_dependencies">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">dependencies</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>one or more dependency objects
+created with
+<a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a> or <a href="Reference-manual_returned_compiler.html#compilerfind_library"><ins><code>compiler.find_library()</code></ins></a>
+(for external deps) or <a href="Reference-manual_functions.html#declare_dependency"><ins><code>declare_dependency()</code></ins></a>
+(for deps built by the project)</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_extra_files">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">extra_files</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Not used for the build itself but are shown as source files in IDEs
+that group files by targets (such as Visual Studio).</p>
+<p>These may only be static sources.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_gnu_symbol_visibility">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">gnu_symbol_visibility</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies how symbols should be exported, see
+e.g <a href="https://gcc.gnu.org/wiki/Visibility">the GCC Wiki</a> for more
+information. This value can either be an empty string or one of
+<code>default</code>, <code>internal</code>, <code>hidden</code>, <code>protected</code> or <code>inlineshidden</code>, which
+is the same as <code>hidden</code> but also includes things like C++ implicit
+constructors as specified in the GCC manual. Ignored on compilers that
+do not support GNU visibility arguments. See also
+<a href="Snippets-module.html#symbol_visibility_header"><code>snippets.symbol_visibility_header()</code></a>
+method to help with defining public API.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.48.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_gui_app">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">gui_app</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to true flags this target as a GUI application
+on platforms where this makes a difference, <strong>deprecated</strong> since
+0.56.0, use <code>win_subsystem</code> instead.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <div style="color: #ffa844">
+      <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+      <p style="margin: 0px;"><em>in 0.56.0</em></p>
+  </div>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_implicit_include_directories">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">implicit_include_directories</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Controls whether Meson adds the current source and build directories to the include path</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  true</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_include_directories">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">include_directories</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
+or <em>(since 0.50.0)</em> strings, which will be transparently expanded to include directory objects</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>When set to true, this executable should be installed.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install_dir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>override install directory for this file. If the value is a relative path,
+it will be considered relative the <code>prefix</code> option.
+For example, if you want to install plugins into a subdir, you'd use
+something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install_mode">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_mode</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specify the file mode in symbolic format
+and optionally the owner/uid and group/gid for the installed files.</p>
+<p>See the <code>install_mode</code> kwarg of <a href="Reference-manual_functions.html#install_data"><ins><code>install_data()</code></ins></a> for more information.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.47.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install_rpath">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_rpath</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string to set the target's rpath to after install
+(but <em>not</em> before that). On Windows, this argument has no effect.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install_tag">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_tag</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>A string used by the <code>meson install --tags</code> command
+to install only a subset of the files. By default all build targets have the
+tag <code>runtime</code> except for static libraries that have the <code>devel</code> tag.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_link_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">link_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Flags to use during linking. You can use UNIX-style
+flags here for all platforms.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_link_depends">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">link_depends</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Strings, files, or custom targets the link step depends on
+such as a symbol visibility map. The purpose is to
+automatically trigger a re-link (but not a re-compile) of the target
+when this file changes.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_link_language">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">link_language</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Makes the linker for this target be for the specified language.
+It is generally unnecessary to set
+this, as Meson will detect the right linker to use in most cases. There are
+only two cases where this is needed. One, your main function in an
+executable is not in the language Meson picked, or second you want to force
+a library to use only one ABI.</p>
+<p><em>(broken until 0.55.0)</em></p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.51.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_link_whole">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">link_whole</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_lib.html"><ins><code>lib</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Links all contents of the given static libraries whether they are used or
+not, equivalent to the <code>-Wl,--whole-archive</code> argument flag of GCC, or the
+'/WHOLEARCHIVE' MSVC linker option. This allows the linked target to
+re-export symbols from all objects in the static libraries.</p>
+<p><em>(since 0.41.0)</em> If passed an array that array will be flattened.</p>
+<p><em>(since 0.51.0)</em> This argument also accepts outputs produced by
+custom targets. The user must ensure that the output is a library in
+the correct format.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.40.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_link_with">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">link_with</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_lib.html"><ins><code>lib</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>One or more shared or static libraries
+(built by this project) that this target should be linked with. <em>(since 0.41.0)</em> If passed an
+array that array will be flattened. <em>(since 0.51.0)</em> The arguments can also be custom targets.
+In this case Meson will assume that merely adding the output file in the linker command
+line is sufficient to make linking work. If this is not sufficient,
+then the build system writer must write all other steps manually.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_name_prefix">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The string that will be used as the prefix for the
+target output filename by overriding the default (only used for
+libraries). By default this is <code>lib</code> on all platforms and compilers,
+except for MSVC shared libraries where it is omitted to follow
+convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
+<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_name_suffix">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The string that will be used as the extension for the
+target by overriding the default. By default on Windows this is
+<code>exe</code> for executables and on other platforms it is omitted.</p>
+<p>For shared libraries, the default value
+is <code>dylib</code> on macOS, <code>dll</code> on Windows, and <code>so</code> everywhere else.
+For static libraries, it is <code>a</code> everywhere. By convention MSVC
+static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
+potential name clash with shared libraries which also generate
+import libraries with a <code>lib</code> suffix.</p>
+<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_native">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Controls whether the target is compiled for the build or host machines.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  false</code></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_objects">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">objects</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins><code>extracted_obj</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>List of object files that should be linked in this target.</p>
+<p><strong>Since 1.1.0</strong> this can include generated files in addition to
+object files that you don't have source to or that object files
+produced by other build targets.  In earlier release, generated
+object files had to be placed in <code>sources</code>.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_override_options">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">override_options</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a> | <a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>takes an array of strings in the same format as <code>project</code>'s <code>default_options</code>
+overriding the values of these options
+for this target only.
+<em>(since 1.2.0)</em>: A dictionary may now be passed.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.40.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_pic">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">pic</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Builds the library as positional independent code
+(so it can be linked into a shared library). This
+option has no effect on Windows and OS X since it doesn't make
+sense on Windows and PIC cannot be disabled on OS X.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.36.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_prelink">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">prelink</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If <code>true</code> the object files in the target will be prelinked,
+meaning that it will contain only one prelinked
+object file rather than the individual object files.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.57.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_rust_abi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_abi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Set the specific ABI to compile (when compiling rust).</p>
+<ul>
+<li>
+<p>'rust' (default): Create a "rlib" crate.</p>
+</li>
+<li>
+<p>'c': Create a "staticlib" crate.</p>
+</li>
+</ul>
+</td>
+      <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.3.0)</em></p>
+</div>
+</td>
+    </tr>
+    <tr id="static_library_rust_crate_type">
+      <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_crate_type</code></td>
+      <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+      <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+      <td style="width: 56%; padding: 6px;">
+<p>Set the specific type of rust crate to compile (when compiling rust).</p>
+
+
+<p>If the target is an <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a> this defaults to "bin", the only
+allowed value.</p>
+<p>If it is a <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"staticlib", or "rlib". If "lib" then Rustc will pick a default, "staticlib"
+means a C ABI library, "rlib" means a Rust ABI.</p>
+<p>If it is a <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> it defaults to "lib", and may be "lib",
+"dylib", "cdylib", or "proc-macro". If "lib" then Rustc will pick a
+default, "cdylib" means a C ABI library, "dylib" means a Rust ABI, and
+"proc-macro" is a special rust procedural macro crate.</p>
+<p>"proc-macro" is new in 0.62.0.</p>
+<p><em>Since 1.3.0</em> this is deprecated and replaced by "rust_abi" keyword argument.
+<code>proc_macro</code> crates are now handled by the <a href="Rust-module.html#proc_macro"><code>rust.proc_macro()</code></a>
+method.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.42.0)</em></p>
+  <div style="color: #ffa844">
+      <p style="margin: 0px;"><strong>DEPRECATED</strong></p>
+      <p style="margin: 0px;"><em>in 1.3.0</em></p>
+  </div>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_rust_dependency_map">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">rust_dependency_map</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_dict.html"><ins><code>dict</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On rust targets this allows giving custom names to the crates that are
+linked into the target.  For example, passing a dependency map of
+<code>{ 'gtk4': 'gtk' }</code> has the same effect of writing <code>gtk.package = "gtk4"</code>
+in the <code>dependencies</code> section of a Cargo.toml file, or
+<code>extern crate gtk4 as gtk</code> inside Rust code.</p>
+<p><em>Since 1.10.0</em>, the keys can be either crate names or target names.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.2.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_sources">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">sources</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins><code>generated_list</code></ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins><code>structured_src</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Additional source files. Same as the source varargs.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set, generates a GIR file with the given name. If this is unset then
+no GIR file will be generated.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+C compatible header for targets that generate them.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>On Vala targets, this provides a way to override the name of the generated
+VAPI file.</p>
+<p>If it is not set the default will be calculated from the target's name.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_win_subsystem">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">win_subsystem</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Specifies the subsystem type to use
+on the Windows platform. Typical values include <code>console</code> for text
+mode programs and <code>windows</code> for gui apps. The value can also contain
+version specification such as <code>windows,6.0</code>. See <a href="https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem">MSDN
+documentation</a>
+for the full list.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 0.56.0)</em></p>
+  <p style="margin: 0px;"><code class="language-meson">default =
+  'console'</code></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/_build/Reference-manual_functions_static_library.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
