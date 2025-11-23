@@ -325,6 +325,21 @@ the required changes and then exit with an error code.</p>
 <code>-Db_thinlto_cache</code> now supported for GCC</h2>
 <p><code>-Db_thinlto_cache</code> is now supported for GCC 15's incremental LTO, as is
 <code>-Db_thinlto_cache_dir</code>.</p>
+<h2 id="experimental-c-import-std-support">Experimental C++ import std support</h2>
+<p><strong>Note</strong>: this feature is experimental and not guaranteed to be
+backwards compatible or even exist at all in future Meson releases.</p>
+<p>Meson now supports <code>import std</code>, a new, modular way of using the C++
+standard library. This support is enabled with the new <code>cpp_importstd</code>
+option. It defaults to <code>false</code>, but you can set it to <code>true</code> either
+globally or per-target using <code>override_options</code> in the usual way.</p>
+<p>The implementation has many limitations. The biggest one is that the
+same module file is used on <em>all</em> targets. That means you can not mix
+multiple different C++ standards versions as the compiled module file
+can only be used with the same compiler options as were used to build
+it. This feature only works with the Ninja backend.</p>
+<p>As <code>import std</code> is a major new feature in compilers, expect to
+encounter toolchain issues when using it. For an example <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=122614">see
+here</a>.</p>
 <h2 id="common-cargolock-for-all-cargo-subprojects">Common <code>Cargo.lock</code> for all Cargo subprojects</h2>
 <p>Whenever Meson finds a <code>Cargo.lock</code> file in the toplevel directory
 of the project, it will use it to resolve the versions of Cargo
