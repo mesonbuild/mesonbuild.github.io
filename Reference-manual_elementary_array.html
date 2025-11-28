@@ -226,6 +226,7 @@ $('body').removeClass('no-script');
 <li><a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a></li>
 <li><a href="Reference-manual_functions.html#get_option"><ins><code>get_option()</code></ins></a></li>
 <li><a href="Reference-manual_elementary_array.html#arrayflatten"><ins><code>array.flatten()</code></ins></a></li>
+<li><a href="Reference-manual_elementary_array.html#arrayslice"><ins><code>array.slice()</code></ins></a></li>
 <li><a href="Reference-manual_returned_cfg_data.html#cfg_datakeys"><ins><code>cfg_data.keys()</code></ins></a></li>
 <li><a href="Reference-manual_returned_compiler.html#compilercmd_array"><ins><code>compiler.cmd_array()</code></ins></a></li>
 <li><a href="Reference-manual_returned_compiler.html#compilerfirst_supported_argument"><ins><code>compiler.first_supported_argument()</code></ins></a></li>
@@ -393,6 +394,113 @@ not specified, causes a fatal error</p>
 </div>
 </div>
 <pre><code class="language-meson"><a href="Reference-manual_elementary_int.html"><ins>int</ins></a> length()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<h3 id="arrayslice">array.slice()</h3>
+<p>Return a selection of the elements of the array starting at index <code>start</code>
+and continuing with <code>step</code> size jumps until <code>stop</code>. Negative indices count
+from the back of the array. The step size cannot be zero, but may be
+negative. If it is negative, <code>start</code> and <code>stop</code> default to the end and
+beginning of the array, respectively. If <code>step</code> is positive, <code>start</code>
+defaults to 0 and <code>stop</code> defaults to the length of the array. Either both
+or none of <code>start</code> and <code>stop</code> must be provided to prevent ambiguity.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h4 style="margin-top: 0px;" id="signature4">Signature</h4>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.10.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"># Return a selection of the elements of the array starting at index `start`
+<a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_any.html"><ins>any</ins></a>] slice(
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<a href="Reference-manual_elementary_array.html#slice_start"><b>start</b></a>],   # The lower bound of the slice
+  <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> [<a href="Reference-manual_elementary_array.html#slice_stop"><b>stop</b></a>],    # The upper bound of the slice
+
+  # Keyword arguments:
+  <a href="Reference-manual_elementary_array.html#slice_step"><b>step</b></a> : <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>  # The step size
+)</code></pre>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
+<h4 id="arguments2">Arguments</h4>
+<p>The method <code>array.slice()</code> accepts the following positional arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="slice_start">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">start</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The lower bound of the slice</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="slice_stop">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">stop</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The upper bound of the slice</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><b>[optional]</b></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>array.slice()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
+      <tr id="slice_step">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">step</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_int.html"><ins><code>int</code></ins></a></td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>The step size</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><code class="language-meson">default =
+  1</code></p>
+  </div>
+  </td>
+      </tr>
+    </tbody>
+  </table>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 
