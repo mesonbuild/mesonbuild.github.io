@@ -413,14 +413,6 @@ custom_target(
 )
 </code></pre>
 <p><code>static.c</code> will not start compilation until <code>lib.h</code> is generated.</p>
-<h2 id="windowscompile_resources-now-detects-header-changes-with-rcexe">windows.compile_resources now detects header changes with rc.exe</h2>
-<p>The <code>rc.exe</code> resource compiler neither provides <em>depfile</em> support nor
-allows showing includes, as is possible with C or C++ compilers.
-Therefore, changes to files included by the <code>.rc</code> file did not trigger
-recompilation of the resource file.</p>
-<p>A workaround was added to <em>meson</em> by calling the preprocessor on the
-<code>.rc</code> file to detect the included headers and adding the result as a
-dependency to the resource compilation.</p>
 <h2 id="i18nxgettext-now-accepts-customtarget-and-customtargetindex-as-sources">
 <code>i18n.xgettext</code> now accepts CustomTarget and CustomTargetIndex as sources</h2>
 <p>Previously, <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> were accepted but silently ignored, and
