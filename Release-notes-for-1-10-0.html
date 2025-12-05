@@ -327,6 +327,11 @@ the required changes and then exit with an error code.</p>
 <code>-Db_thinlto_cache</code> now supported for GCC</h2>
 <p><code>-Db_thinlto_cache</code> is now supported for GCC 15's incremental LTO, as is
 <code>-Db_thinlto_cache_dir</code>.</p>
+<h2 id="using-mesonget_compiler-to-get-a-language-from-another-project-is-marked-broken">Using <code>meson.get_compiler()</code> to get a language from another project is marked broken</h2>
+<p>Meson currently will return a compiler instance from the <code>meson.get_compiler()</code>
+call, if that language has been initialized in any project. This can result in
+situations where a project can only work as a subproject, or if a dependency is
+provided by a subproject rather than by a pre-built dependency.</p>
 <h2 id="experimental-c-import-std-support">Experimental C++ import std support</h2>
 <p><strong>Note</strong>: this feature is experimental and not guaranteed to be
 backwards compatible or even exist at all in future Meson releases.</p>
