@@ -564,9 +564,13 @@ This is typically used as <code>extra_deps += dependency('foo')</code>.</li>
 <li>The <code>features</code> variable is pre-defined and contains the list of features enabled
 on this crate.</li>
 </ul>
-<p>Since <em>1.5.0</em> Cargo wraps can also be provided with <code>Cargo.lock</code> file at the root
-of (sub)project source tree. Meson will automatically load that file and convert
-it into a series of wraps definitions.</p>
+<p>Since <em>1.5.0</em> Cargo wraps can also be provided with <code>Cargo.lock</code> file at the
+root of (sub)project source tree. Meson will automatically load that file, looking
+for crates found on <code>crates.io</code> or in a git repository, and will convert those
+crates into a series of wraps definitions.  Since <em>1.11.0</em> the overlay directory
+(<code>patch_directory</code>) is automatically detected, using the same directory as the
+dependency name for <code>crates.io</code> URLs, and the final component of the URL
+(possibly with the <code>.git</code> suffix removed) for "git" URLs.</p>
 <p>Since <em>1.10.0</em> Workspace Cargo.toml are supported. For the time being it is
 recommended to regroup all Cargo dependencies inside a single workspace invoked
 from the main Meson project. When invoking multiple different Cargo subprojects
