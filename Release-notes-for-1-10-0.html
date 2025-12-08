@@ -283,7 +283,7 @@ This is only supported when using <code>link.exe</code> or <code>lld-link.exe</c
 linker.</p>
 <h2 id="added-build_subdir-arg-to-various-targets">Added <code>build_subdir</code> arg to various targets</h2>
 <p><code>custom_target()</code>, <code>build_target()</code> and <code>configure_file()</code> now support
-the <code>build_subdir</code> argument. This directs meson to place the build
+the <code>build_subdir</code> argument. This directs Meson to place the build
 result within the specified sub-directory path of the build directory.</p>
 <pre><code class="language-meson">configure_file(input : files('config.h.in'),
                output : 'config.h',
@@ -314,7 +314,7 @@ dependencies might be wrong.</p>
 <p>A new module wrapping some common code generators has been added. Currently it supports lex/flex and yacc/bison.</p>
 <h2 id="methods-from-compiler-object-now-accept-strings-for-include_directories">Methods from compiler object now accept strings for include_directories</h2>
 <p>The various <a href="Reference-manual_returned_compiler.html"><ins><code>compiler</code></ins></a> methods with a <code>include_directories</code> keyword argument
-now accept stings or array of strings, in addition to <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects
+now accept strings or array of strings, in addition to <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects
 generated from <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function, as it was already the case for
 <a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a> family of functions.</p>
 <h2 id="meson-format-has-a-new-checkdiff-option">
@@ -362,7 +362,7 @@ Cargo subprojects remain unstable and subject to change.</p>
 <p>Add a second log file <code>meson-setup.txt</code> which contains the configure logs
 displayed on stdout during the meson <code>setup</code> stage.
 It allows user to navigate through the setup logs without searching in the terminal
-or the extensive informations of <code>meson-log.txt</code>.</p>
+or the extensive information of <code>meson-log.txt</code>.</p>
 <h2 id="added-new-namingscheme-option">Added new <code>namingscheme</code> option</h2>
 <p>Traditionally Meson has named output targets so that they don't clash
 with each other. This has meant, among other things, that on Windows
