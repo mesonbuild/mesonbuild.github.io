@@ -686,8 +686,8 @@ not provide them, it will search for the standard wrapper executables,
 <code>mpic</code>, <code>mpicxx</code>, <code>mpic++</code>, <code>mpifort</code>, <code>mpif90</code>, <code>mpif77</code>. If these
 are not in your path, they can be specified by setting the standard
 environment variables <code>MPICC</code>, <code>MPICXX</code>, <code>MPIFC</code>, <code>MPIF90</code>, or
-<code>MPIF77</code>, during configuration. It will also try to use the Microsoft
-implementation on windows via the <code>system</code> method.</p>
+<code>MPIF77</code>, during configuration. On Windows, Meson uses the <code>system</code> method and
+searches for Microsoft MPI. <em>Since 1.11.0</em> Intel MPI is also supported.</p>
 <p><code>method</code> may be <code>auto</code>, <code>config-tool</code>, <code>pkg-config</code> or <code>system</code>.</p>
 <p><em>New in 0.54.0</em> The <code>config-tool</code> and <code>system</code> method values. Previous
 versions would always try <code>pkg-config</code>, then <code>config-tool</code>, then <code>system</code>.</p>
