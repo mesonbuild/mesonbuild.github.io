@@ -326,9 +326,14 @@ the limited API. This behavior can be disabled by setting the value of
 <p>Additionally, the following diverge from <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a>'s default behavior:</p>
 <ul>
 <li>
-<code>gnu_symbol_visibility</code>: if unset, it will default to <code>'hidden'</code> on versions
+<p><code>install_dir</code> may only be a string, boolean, or unset, but an <code>array</code> is not
+allowed.</p>
+</li>
+<li>
+<p><code>gnu_symbol_visibility</code>: if unset, it will default to <code>'hidden'</code> on versions
 of Python that support this (the python headers define <code>PyMODINIT_FUNC</code> has
-default visibility).</li>
+default visibility).</p>
+</li>
 </ul>
 <p>Note that Cython support uses <code>extension_module</code>, see <a href="Cython.html">the reference for Cython</a>.</p>
 <p><em>since 0.63.0</em> <code>extension_module</code> automatically adds a dependency to the library

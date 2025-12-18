@@ -1465,7 +1465,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#both_libraries_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#both_libraries_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#both_libraries_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#both_libraries_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#both_libraries_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#both_libraries_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#both_libraries_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -1869,13 +1869,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="both_libraries_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2466,7 +2470,7 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#build_target_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#build_target_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#build_target_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#build_target_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#build_target_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#build_target_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#build_target_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -2931,13 +2935,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="build_target_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5266,7 +5274,7 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#executable_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#executable_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#executable_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#executable_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#executable_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#executable_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#executable_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -5682,13 +5690,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="executable_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -7979,7 +7991,7 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#jar_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#jar_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#jar_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#jar_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#jar_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#jar_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#jar_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -8329,13 +8341,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="jar_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8824,7 +8840,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#library_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#library_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#library_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#library_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#library_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#library_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#library_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -9237,13 +9253,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="library_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10517,7 +10537,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#shared_library_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#shared_library_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#shared_library_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#shared_library_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#shared_library_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#shared_library_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#shared_library_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -10889,13 +10909,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="shared_library_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11395,7 +11419,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#shared_module_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#shared_module_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#shared_module_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#shared_module_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#shared_module_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#shared_module_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#shared_module_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -11765,13 +11789,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="shared_module_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -12214,7 +12242,7 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_implicit_include_directories"><b>implicit_include_directories</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether Meson adds the current source and build directories to the include path
   <a href="Reference-manual_functions.html#static_library_include_directories"><b>include_directories</b></a>          : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function,
   <a href="Reference-manual_functions.html#static_library_install"><b>install</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, this executable should be installed
-  <a href="Reference-manual_functions.html#static_library_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # override install directory for this file
+  <a href="Reference-manual_functions.html#static_library_install_dir"><b>install_dir</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>]                                                       # override install directory for this file
   <a href="Reference-manual_functions.html#static_library_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#static_library_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#static_library_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
@@ -12565,13 +12593,17 @@ or <em>(since 0.50.0)</em> strings, which will be transparently expanded to incl
       </tr>
       <tr id="static_library_install_dir">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_dir</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>override install directory for this file. If the value is a relative path,
 it will be considered relative the <code>prefix</code> option.
 For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
+<p>This can be set to an array of values to control the the installation path
+of build targets with multiple outputs. Currently, that means Vala. Setting
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
