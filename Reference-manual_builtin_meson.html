@@ -393,8 +393,8 @@ lexically like a UNIX shell would. If your script uses Python,
 </div>
 <pre><code class="language-meson"># Causes the script given as argument to run during `dist`
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_dist_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <a href="Reference-manual_builtin_meson.html#add_dist_script_script_name"><b>script_name</b></a>,     # The script to execute
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> <a href="Reference-manual_builtin_meson.html#add_dist_script_script_name"><b>script_name</b></a>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> <b>arg</b>...,          # Additional arguments
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments1">Arguments</h4>
@@ -416,7 +416,7 @@ lexically like a UNIX shell would. If your script uses Python,
       <tr id="add_dist_script_script_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
@@ -434,7 +434,7 @@ lexically like a UNIX shell would. If your script uses Python,
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p>Additionally, the
 method accepts between <code>0</code> and <code>infinity</code> variadic
-arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a></code>.</p>
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a></code>.</p>
 <p>Additional arguments</p>
 <p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
 as well as strings are accepted.</p>
@@ -484,8 +484,8 @@ easiest correct way to do this.</p>
 </div>
 <pre><code class="language-meson"># Causes the script given as an argument to be run during the install step,
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_install_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <a href="Reference-manual_builtin_meson.html#add_install_script_script_name"><b>script_name</b></a>,     # The script to execute
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>arg</b>...,          # Additional arguments
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <a href="Reference-manual_builtin_meson.html#add_install_script_script_name"><b>script_name</b></a>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> | <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> <b>arg</b>...,          # Additional arguments
 
   # Keyword arguments:
   <a href="Reference-manual_builtin_meson.html#add_install_script_dry_run"><b>dry_run</b></a>         : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If `true` the script will be run even if `--dry-run` option is provided to
@@ -512,7 +512,7 @@ easiest correct way to do this.</p>
       <tr id="add_install_script_script_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
@@ -531,7 +531,7 @@ easiest correct way to do this.</p>
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p>Additionally, the
 method accepts between <code>0</code> and <code>infinity</code> variadic
-arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a></code>.</p>
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a> | <a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a></code>.</p>
 <p>Additional arguments</p>
 <p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>, <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>,
 <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>, as well as strings are accepted.</p>
@@ -625,8 +625,8 @@ This script will have the environment variables
 </div>
 <pre><code class="language-meson"># Runs the given command after all project files have been generated
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> add_postconf_script(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <a href="Reference-manual_builtin_meson.html#add_postconf_script_script_name"><b>script_name</b></a>,     # The script to execute
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <b>arg</b>...,          # Additional arguments
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> <a href="Reference-manual_builtin_meson.html#add_postconf_script_script_name"><b>script_name</b></a>,     # The script to execute
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> <b>arg</b>...,          # Additional arguments
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments3">Arguments</h4>
@@ -648,7 +648,7 @@ This script will have the environment variables
       <tr id="add_postconf_script_script_name">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">script_name</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
@@ -666,7 +666,7 @@ This script will have the environment variables
   <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p>Additionally, the
 method accepts between <code>0</code> and <code>infinity</code> variadic
-arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a></code>.</p>
+arguments (<code>arg...</code>) of type <code><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a></code>.</p>
 <p>Additional arguments</p>
 <p><em>(since 0.55.0)</em> The output of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, <a href="Reference-manual_functions.html#files"><ins><code>files()</code></ins></a>, and <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a>
 as well as strings are accepted.</p>
@@ -1473,8 +1473,8 @@ an executable, the current project version is used.</p>
 </div>
 <pre><code class="language-meson"># specifies that whenever <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> is used to find a program
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> override_find_program(
-  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           <a href="Reference-manual_builtin_meson.html#override_find_program_progname"><b>progname</b></a>,     # The name of the program to override
-  <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> <a href="Reference-manual_builtin_meson.html#override_find_program_program"><b>program</b></a>,      # The program to set as the override for `progname`
+  <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                  <a href="Reference-manual_builtin_meson.html#override_find_program_progname"><b>progname</b></a>,     # The name of the program to override
+  <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> <a href="Reference-manual_builtin_meson.html#override_find_program_program"><b>program</b></a>,      # The program to set as the override for `progname`
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments10">Arguments</h4>
@@ -1508,7 +1508,7 @@ an executable, the current project version is used.</p>
       <tr id="override_find_program_program">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">program</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a>
+<a href="Reference-manual_returned_exe.html"><ins><code>exe</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a>
 </td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">

@@ -265,7 +265,7 @@ need to construct the set of paths to search on the fly:</p>
 </code></pre>
 <p><em>Since 1.2.0</em> <code>find_program('meson')</code> is automatically overridden to the Meson
 command used to execute the build script.</p>
-<p>The returned <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> object also has documented methods.</p>
+<p>The returned <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a> object also has documented methods.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h3 style="margin-top: 0px;" id="signature">Signature</h3>
@@ -276,7 +276,7 @@ command used to execute the build script.</p>
 </div>
 </div>
 <pre><code class="language-meson"># `program_name` here is a string that can be an executable or script
-<a href="Reference-manual_returned_external_program.html"><ins>external_program</ins></a> find_program(
+<a href="Reference-manual_returned_program.html"><ins>program</ins></a> find_program(
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <a href="Reference-manual_functions_find_program.html#find_program_program_name"><b>program_name</b></a>,     # The name of the program to search, or a <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a> object to be used
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> <b>fallback</b>...,      # These parameters are used as fallback names to search for
 
@@ -429,7 +429,7 @@ file is ignored and the program is only searched from the system.</p>
 <p>When <code>true</code>, Meson will abort if no program can be found.
 If <code>required</code> is set to <code>false</code>,
 Meson continue even if none of the programs can be found. You can
-then use the <code>.found()</code> method on the returned <a href="Reference-manual_returned_external_program.html"><ins><code>external_program</code></ins></a> to check
+then use the <code>.found()</code> method on the returned <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a> to check
 whether it was found or not. <em>(since 0.47.0)</em> The value of a
 <a href="Build-options.html#features"><code>feature</code></a> option can also be passed to the
 <code>required</code> keyword argument.</p>
