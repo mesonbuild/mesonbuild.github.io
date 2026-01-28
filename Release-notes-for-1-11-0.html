@@ -219,6 +219,17 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="change-to-handling-of-linker-arguments-for-rust">Change to handling of linker arguments for Rust</h2>
+<p>Since the Rust compiler integrates the compiler and linker phase, previous
+Meson versions did not obey <code>link_args</code>, <code>add_project_link_arguments</code>
+or <code>add_global_link_arguments</code>.</p>
+<p>Starting in this version, <code>add_project_link_arguments()</code>,
+<code>add_global_link_arguments()</code>, and the <code>link_args</code> keyword argument are
+supported for Rust.  They wrap the arguments with <code>-Clink-arg=</code> when
+invoking rustc, and are only included when creating binary or shared
+library crates.</p>
+<p>Likewise, methods such as <code>has_link_argument()</code> now wrap the arguments
+being tested with <code>-Clink-arg=</code>.</p>
 <h2 id="xc32-support-now-aware-of-v500-features">XC32 support now aware of v5.00 features</h2>
 <p>XC32 features introduced in v5.00 can now be used. This includes
 support for LTO auto and the C2x and CPP23 standards.</p>
