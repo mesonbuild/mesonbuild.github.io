@@ -229,6 +229,7 @@ Windows.</p>
                             depend_files: [](string | File),
                             depends: [](BuildTarget | CustomTarget | CustomTargetIndex)
                             include_directories: [](IncludeDirectories | string)): []CustomTarget
+                            implicit_include_directories: bool
 </code></pre>
 <p>Compiles Windows <code>rc</code> files specified in the positional arguments.
 Returns a list of <code>CustomTarget</code> objects that you put in the list of sources for
@@ -250,6 +251,9 @@ take them as an argument (e.g. as above, but generated) (<em>since 0.47.0</em>)<
 <code>include_directories</code> lists directories to be both searched by the resource
 compiler for referenced resource files, and added to the preprocessor include
 search path.</li>
+<li>
+<code>implicit_include_directories</code> Controls whether Meson adds
+the current source and build directories to the include path (<em>since 1.11.0</em>)</li>
 </ul>
 <p>The resource compiler executable used is the first which exists from the
 following list:</p>

@@ -233,6 +233,20 @@ being tested with <code>-Clink-arg=</code>.</p>
 <h2 id="xc32-support-now-aware-of-v500-features">XC32 support now aware of v5.00 features</h2>
 <p>XC32 features introduced in v5.00 can now be used. This includes
 support for LTO auto and the C2x and CPP23 standards.</p>
+<h2 id="windowscompile_resources-now-detects-header-changes-with-rcexe">windows.compile_resources now detects header changes with rc.exe</h2>
+<p>The <code>rc.exe</code> resource compiler neither provides <em>depfile</em> support nor
+allows showing includes, as is possible with C or C++ compilers.
+Therefore, changes to files included by the <code>.rc</code> file did not trigger
+recompilation of the resource file.</p>
+<p>A workaround was added to <em>meson</em> by calling the preprocessor on the
+<code>.rc</code> file to display the included headers and allow ninja to record them
+as dependencies.</p>
+<h2 id="added-implicit_include_directories-argument-to-windowscompile_resources">Added <code>implicit_include_directories</code> argument to <code>windows.compile_resources</code>
+</h2>
+<p><a href="Windows-module.html">Windows</a> module <a href="Windows-module.html#compile_resources">compile_resources</a>
+now have a <code>implicit_include_directories</code> keyword argument to automatically
+add current build and source directories to the included paths when compiling
+a resource.</p>
 
     </div>
         
