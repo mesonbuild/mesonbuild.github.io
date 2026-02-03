@@ -219,6 +219,10 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="install_man-add-support-install_tag-kwarg">install_man: add support install_tag kwarg</h2>
+<p>By default install_man uses 'man' tag for its files which not always is desirable,
+for example if project uses plugin functionality and plugin wants to install its own man files
+it was not possible using <code>meson install --tags xxx</code>.</p>
 <h2 id="change-to-handling-of-linker-arguments-for-rust">Change to handling of linker arguments for Rust</h2>
 <p>Since the Rust compiler integrates the compiler and linker phase, previous
 Meson versions did not obey <code>link_args</code>, <code>add_project_link_arguments</code>
