@@ -307,6 +307,31 @@ arguments with <code>-Clink-arg=</code> before passing them to the Rust compiler
 Furthermore, these arguments are only included when creating binary or
 shared library crates.  Likewise, methods such as <code>has_link_argument()</code>
 wrap the arguments being tested with <code>-Clink-arg=</code>.</p>
+<h2 id="cargo-interaction">Cargo interaction</h2>
+<p><em>Since 1.11.0</em></p>
+<p>In most cases, a Rust program will use Cargo to download crates.  Meson is able
+to build Rust library crates based on a <code>Cargo.toml</code> file; each external crate
+corresponds to a subproject.  Rust module's <code>that do not need a</code>build.rs<code>file need no intervention, whereas if a</code>build.rs` file is present it needs to be
+converted manually to Meson code.</p>
+<p>To enable automatic configuration of Cargo dependencies, your project must
+have <code>Cargo.toml</code> and <code>Cargo.lock</code> files in the root source directory;
+this enables proper feature resolution across crates.  You can then
+create a workspace object using the Rust module, and retrieve specific
+packages from the workspace:</p>
+<pre><code class="language-meson">rust = import('rust')
+cargo_ws = rustmod.workspace()
+anyhow_dep = ws.subproject('anyhow').dependency()
+</code></pre>
+<p>The workspace object also enables configuration of Cargo features, for example
+from Meson options:</p>
+<pre><code class="language-meson">cargo_ws = rustmod.workspace(
+    features: ['feature1', 'feature2'])
+</code></pre>
+<h3 id="limitations">Limitations</h3>
+<p>All your own crates must be built using the usual Meson functions such as
+<a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> or <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.  In the future, workspace object
+functionality will be extended to help building rustc command lines
+based on features, dependency names, and so on.</p>
 
     </div>
         

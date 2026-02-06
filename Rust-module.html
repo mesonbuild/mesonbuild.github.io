@@ -368,6 +368,104 @@ targets.</p>
 <li>link_with</li>
 <li>override_options</li>
 </ul>
+<h3 id="workspace">workspace()</h3>
+<p>Basic usage:</p>
+<pre><code>cargo_ws = rustmod.workspace()
+</code></pre>
+<p>With custom features:</p>
+<pre><code>feature_list = get_feature('f1') ? ['feature1'] : []
+feature_list += get_feature('f2') ? ['feature2'] : []
+cargo_ws = rustmod.workspace(features: feature_list)
+</code></pre>
+<p><em>Since 1.11.0</em></p>
+<p>Create and return a <code>workspace</code> object for managing the project's Cargo
+workspace.</p>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>default_features</code>: (<code>bool</code>, optional) Whether to enable default features.</li>
+<li>
+<code>features</code>: (<code>list[str]</code>, optional) List of additional features to enable globally.</li>
+</ul>
+<p>A project that wishes to use Cargo subprojects should have <code>Cargo.lock</code> and <code>Cargo.toml</code>
+files in the root source directory, and should call this function before using
+Cargo subprojects.</p>
+<p>The first invocation of <code>workspace()</code> establishes the <em>Cargo interpreter</em>
+that resolves dependencies and features for both the toplevel project (the one
+containing <code>Cargo.lock</code>) and all subprojects that are invoked with the <code>cargo</code> method,</p>
+<p>You can optionally customize the feature set, by providing <code>default_features</code>
+and <code>features</code> when the Cargo interpreter is established.  If any of these
+arguments is not specified, <code>default_features</code> is taken as <code>true</code> and
+<code>features</code> as the empty list.</p>
+<p>Once established, the Cargo interpreter's configuration is locked. Later calls to
+<code>workspace()</code> must either omit all arguments (accepting the existing configuration)
+or provide the same set of features as the first call. Mismatched arguments will cause
+a build error.</p>
+<p>The recommendation is to not specify any keyword arguments in a subproject, so
+that they simply inherit the parent's configuration.  Be careful about the
+difference between specifying arguments and not doing so:</p>
+<pre><code># always works regardless of parent configuration
+cargo_ws = rustmod.workspace()
+
+# fails if parent configured different features
+cargo_ws = rustmod.workspace(default_features: true)
+cargo_ws = rustmod.workspace(features: [])
+</code></pre>
+<p>The first form says "use whatever features are configured," while the latter forms
+say "require this specific configuration," which may conflict with the parent project.</p>
+<h2 id="workspace-object">Workspace object</h2>
+<h3 id="workspacepackages">workspace.packages()</h3>
+<pre><code class="language-meson">packages = ws.packages()
+</code></pre>
+<p>Returns a list of package names in the workspace.</p>
+<h3 id="workspacesubproject">workspace.subproject()</h3>
+<pre><code class="language-meson">package = ws.subproject(package_name, api)
+</code></pre>
+<p>Returns a <code>package</code> object for managing a specific package within the workspace.</p>
+<p>Positional arguments:</p>
+<ul>
+<li>
+<code>package_name</code>: (<code>str</code>) The name of the package to retrieve</li>
+<li>
+<code>api</code>: (<code>str</code>, optional) The version constraints for the package in Cargo format</li>
+</ul>
+<h2 id="package-object">Package object</h2>
+<p>The package object returned by <code>workspace.subproject()</code> provides methods
+for working with individual packages in a Cargo workspace.</p>
+<h3 id="subprojectname">subproject.name()</h3>
+<pre><code class="language-meson">name = pkg.name()
+</code></pre>
+<p>Returns the name of the subproject.</p>
+<h3 id="subprojectversion">subproject.version()</h3>
+<pre><code class="language-meson">version = pkg.version()
+</code></pre>
+<p>Returns the normalized version number of the subproject.</p>
+<h3 id="subprojectapi">subproject.api()</h3>
+<pre><code class="language-meson">api = pkg.api()
+</code></pre>
+<p>Returns the API version of the subproject, that is the version up to the first
+nonzero element.</p>
+<h3 id="subprojectfeatures">subproject.features()</h3>
+<pre><code class="language-meson">features = pkg.features()
+</code></pre>
+<p>Returns selected features for a specific subproject.</p>
+<h3 id="subprojectall_features">subproject.all_features()</h3>
+<pre><code class="language-meson">all_features = pkg.all_features()
+</code></pre>
+<p>Returns all defined features for a specific subproject.</p>
+<h3 id="subprojectdependency">subproject.dependency()</h3>
+<pre><code class="language-meson">dep = subproject.dependency(...)
+</code></pre>
+<p>Returns a dependency object for the subproject that can be used with other Meson targets.</p>
+<p><em>Note</em>: right now, this method is implemented on top of the normal Meson function
+<a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>; this is subject to change in future releases.  It is recommended
+to always retrieve a Cargo subproject's dependency object via this method.</p>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>rust_abi</code>: (<code>str</code>, optional) The ABI to use for the dependency. Valid values are
+<code>'rust'</code>, <code>'c'</code>, or <code>'proc-macro'</code>. The package must support the specified ABI.</li>
+</ul>
 
     </div>
         
@@ -397,6 +495,10 @@ targets.</p>
 				2022, 
 				2024, 
 													       	Dylan Baker 				(<a href="mailto:dylan@pnwbakers.com">dylan@pnwbakers.com</a>)
+			</p>
+		<p>
+				© 								2025, 
+													       	Paolo Bonzini 				(<a href="mailto:bonzini@gnu.org">bonzini@gnu.org</a>)
 			</p>
 	</div>
 
