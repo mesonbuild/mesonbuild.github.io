@@ -238,6 +238,12 @@ it was not possible using <code>meson install --tags xxx</code>.</p>
 <p><code>-Db_lto</code> is now supported for MSVC's <code>/LTCG</code>, as is <code>-Db_lto_mode=thin</code>
 for <code>/LTCG:INCREMENTAL</code>. <code>-Db_pgo</code> is also supported, and should be used
 alongside <code>-Db_lto=true</code>.</p>
+<h2 id="python-extension-modules-default-to-c-abi-for-rust">Python extension modules default to C ABI for Rust</h2>
+<p><code>py.extension_module()</code> now defaults <code>rust_abi</code> to <code>'c'</code>, so that Rust
+extension modules produce a <code>cdylib</code> instead of a <code>dylib</code>.  This is the
+correct crate type for Python extension modules written in Rust, and
+previously had to be specified manually via <code>rust_crate_type: 'cdylib'</code>
+or <code>rust_abi: 'c'</code>.</p>
 <h2 id="change-to-handling-of-linker-arguments-for-rust">Change to handling of linker arguments for Rust</h2>
 <p>Since the Rust compiler integrates the compiler and linker phase, previous
 Meson versions did not obey <code>link_args</code>, <code>add_project_link_arguments</code>

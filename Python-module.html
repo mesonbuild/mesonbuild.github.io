@@ -339,6 +339,8 @@ default visibility).</p>
 <p><em>since 0.63.0</em> <code>extension_module</code> automatically adds a dependency to the library
 if one is not explicitly provided. To support older versions, the user may need to
 add <code>dependencies : py_installation.dependency()</code>, see <a href="Reference-manual_functions.html#dependency"><ins><code>dependency()</code></ins></a>.</p>
+<p><em>Since 1.11.0</em> <code>rust_abi</code>, if unset, will default to <code>'c'</code> so that Rust
+extension modules produce a <code>cdylib</code> crate.</p>
 <p><strong>Returns</strong>: a <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</p>
 <h4 id="dependency"><code>dependency()</code></h4>
 <pre><code class="language-meson">python_dependency py_installation.dependency(...)
