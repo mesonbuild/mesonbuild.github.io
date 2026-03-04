@@ -271,15 +271,6 @@ meson.override_dependency('arrow', arrow_dep)
 arrow_compute_dep = declare_dependency(...)
 meson.override_dependency('arrow-compute', arrow_compute_dep)
 </code></pre>
-<p>Note that <code>meson.override_dependency</code> was introduced in Meson version
-0.54.0. If your project supports older versions of Meson, you should
-add a condition to only call that function in versions where it is
-available:</p>
-<pre><code class="language-meson">if meson.version().version_compare('&gt;=0.54.0')
-    meson.override_dependency('arrow', arrow_dep)
-    meson.override_dependency('arrow-compute', arrow_compute_dep)
-endif
-</code></pre>
 <h2 id="how-to-contribute-a-new-wrap">How to contribute a new wrap</h2>
 <p>If the project already uses Meson build system, then only a wrap file
 <code>project.wrap</code> should be provided. In other case a Meson build
@@ -331,7 +322,7 @@ decoupled from the wrap file contents.</p>
 contain any, and work on them until the project builds correctly.
 Remember that all files go in the directory
 <code>subprojects/packagefiles/&lt;project-name&gt;</code>.</p>
-<pre><code>${EDITOR} meson.build meson.options
+<pre><code>${EDITOR} meson.build meson_options.txt
 </code></pre>
 <p>In order to apply the locally added build files to the upstream
 release tarball, the <code>wrap-file</code> section must contain a
@@ -374,11 +365,14 @@ recommended that you run the validation checks yourself so you can fix
 any issues faster.</p>
 <p>You can test the wrap itself with the following commands:</p>
 <pre><code>meson subprojects purge --confirm
-meson setup builddir/ -Dwraps=&lt;project-name&gt;
+tools/sanity_checks.py
 </code></pre>
 <p>The first command is to ensure the wrap is correctly fetched from the
-latest packagefiles. The second command configures meson and selects a
-set of subprojects to enable.</p>
+latest packagefiles. The second command builds the project and runs tests.</p>
+<p>If you want to manually build the project without running the full test
+suite, you can:</p>
+<pre><code>meson setup builddir/ -Dwraps=&lt;project-name&gt;
+</code></pre>
 <p>The GitHub project contains automatic CI on pushing to run the project
 and check the metadata for obvious mistakes. This can be checked from
 your fork before submitting a PR.</p>
