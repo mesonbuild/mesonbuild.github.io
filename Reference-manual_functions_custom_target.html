@@ -471,6 +471,8 @@ objects such as <a href="Reference-manual_functions.html#find_program"><ins><cod
 Meson will automatically insert the appropriate dependencies on
 targets and files listed in this keyword argument.
 Note: always specify commands in array form <code>['commandname', '-arg1', '-arg2']</code> rather than as a string <code>'commandname -arg1 -arg2'</code> as the latter will <em>not</em> work.</p>
+<p><em>Note:</em> due to an <a href="https://github.com/mesonbuild/meson/issues/1564">issue with path handling</a>
+any backslash (<code>\</code>) characters are rewritten as slash (<code>/</code>).</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">

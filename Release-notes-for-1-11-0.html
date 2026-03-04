@@ -233,6 +233,32 @@ try to keep the workspace object reasonably backwards-compatible.</p>
 <p>By default install_man uses 'man' tag for its files which not always is desirable,
 for example if project uses plugin functionality and plugin wants to install its own man files
 it was not possible using <code>meson install --tags xxx</code>.</p>
+<h2 id="added-link_early_args-to-targets-performing-linking">Added <code>link_early_args</code> to targets performing linking</h2>
+<p>Options passed to the linker using the <code>link_args</code> keyword argument
+get placed on the command line after all objects and libraries. Some
+linker options, like <code>-u</code> or <code>--defsym</code>, are only useful if placed
+before objects and libraries as they control how the linker
+manipulates those.</p>
+<p>The new <code>link_early_args</code> keyword argument passes linker options which
+are inserted into the command line before any objects and libraries
+allowing applications to use these kinds of linker options with meson.</p>
+<p>This is currently only supported when using the <code>ninja</code> backend.</p>
+<h2 id="machine-files-now-expand-as-the-users-home-directory">Machine files now expand <code>~</code> as the user's home directory</h2>
+<p>A new constant <code>~</code> has been added which can be used in machine files (native
+and cross files) to refer to the user's home directory. This is useful for
+specifying paths to SDKs and toolchains that are commonly installed into <code>~</code>,
+such as Qt, the Android SDK/NDK, or user-installed frameworks on macOS:</p>
+<pre><code class="language-ini">[constants]
+toolchain = ~ / 'Android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64'
+
+[binaries]
+c = toolchain / 'bin/clang'
+cpp = toolchain / 'bin/clang++'
+ar = toolchain / 'bin/llvm-ar'
+</code></pre>
+<p>Note that <code>~</code> can be used anywhere in the machine file. In the above example,
+the purpose of defining a new constant called <code>toolchain</code> is to not have to
+repeat yourself when using the path multiple times.</p>
 <h2 id="db_lto-and-db_pgo-now-supported-for-msvc">
 <code>-Db_lto</code> and <code>-Db_pgo</code> now supported for MSVC</h2>
 <p><code>-Db_lto</code> is now supported for MSVC's <code>/LTCG</code>, as is <code>-Db_lto_mode=thin</code>

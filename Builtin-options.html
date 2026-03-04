@@ -822,6 +822,10 @@ always returned as the <code>'address,undefined'</code> string, in this order.</
 <p>Otherwise, the array elements are returned in undefined order.</p>
 </li>
 </ul>
+<p>Be aware that <code>b_lundef</code> is <code>true</code> by default, which is incompatible with the
+address sanitizer when building shared libraries with clang, as documented
+<a href="https://clang.llvm.org/docs/AddressSanitizer.html#usage">by clang</a>
+(<code>b_lundef</code> makes meson use <code>-Wl,--no-undefined</code>, which is an alias for <code>-Wl,-z,defs</code>).</p>
 <p>* &lt; 0 means disable, == 0 means automatic selection, &gt; 0 sets a specific number to use</p>
 <p>LLVM supports <code>thin</code> lto, for more discussion see <a href="https://clang.llvm.org/docs/ThinLTO.html">LLVM's documentation</a></p>
 <p><a name="b_vscrt-from_buildtype"></a>

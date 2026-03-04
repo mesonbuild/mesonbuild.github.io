@@ -1,1 +1,0 @@
-urls_downloaded_cb({"token":"abuild.rs","urls":[{"url":"Rust.html#cargo-interaction","node_type":"p","page":"Rust","sections":["Using Rust with Meson","Cargo interaction"],"context":{"gi-language":["default"]}}]});

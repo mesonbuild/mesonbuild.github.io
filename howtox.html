@@ -348,6 +348,10 @@ sanitizer</a>. Meson
 has native support for these with the <code>b_sanitize</code> option.</p>
 <pre><code class="language-console">$ meson setup &lt;other options&gt; -Db_sanitize=address
 </code></pre>
+<p>Clang users might also need to set <code>-Db_lundef=false</code>, since otherwise meson will pass
+<code>-Wl,--no-undefined</code>, which is an alias for <code>-Wl,-z,defs</code>, which is incompatible
+with the address sanitizer when building shared libraries with clang as
+documented <a href="https://clang.llvm.org/docs/AddressSanitizer.html#usage">by clang</a>.</p>
 <p>After this you just compile your code and run the test suite. Address
 sanitizer will abort executables which have bugs so they show up as
 test failures.</p>

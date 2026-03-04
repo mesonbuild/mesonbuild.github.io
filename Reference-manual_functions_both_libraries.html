@@ -266,6 +266,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
+  <a href="Reference-manual_functions_both_libraries.html#both_libraries_link_early_args"><b>link_early_args</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
@@ -750,6 +751,23 @@ flags here for all platforms.</p>
 such as a symbol visibility map. The purpose is to
 automatically trigger a re-link (but not a re-compile) of the target
 when this file changes.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_link_early_args">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">link_early_args</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>Flags to use during linking. These are just like link_args,
+except that they are inserted into the linker command line
+before any object files or libraries. You can use UNIX-style
+flags here for all platforms. This is only supported when using
+the Ninja backend.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
