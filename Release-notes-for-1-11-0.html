@@ -229,6 +229,11 @@ features for the build.</p>
 for Cargo subprojects.</p>
 <p>While Cargo subprojects remain experimental, the Meson project will
 try to keep the workspace object reasonably backwards-compatible.</p>
+<h2 id="the-external_project-module-uses-the-cygpath-command-to-convert-paths">The external_project module uses the cygpath command to convert paths</h2>
+<p>In previous versions, the external_project module on Windows used a Windows-style path (e.g., <code>C:/path/to/configure</code>) to execute the configure file, and a relative path from the drive root (e.g., <code>/path/to/prefix</code>) as the installation prefix.
+However, since configure scripts are typically intended to be run in a POSIX-like environment (MSYS2, Cygwin, or GitBash), these paths were incompatible with some configure scripts.</p>
+<p>The external_project module now uses the <code>cygpath</code> command to convert the configure command path and prefix to Unix-style paths (e.g., <code>/c/path/to/configure</code> for MSYS2 and <code>/cygdrive/c/path/to/configure</code> for Cygwin).
+If the <code>cygpath</code> command is not found in the PATH, it will fall back to the previous behavior.</p>
 <h2 id="install_man-add-support-install_tag-kwarg">install_man: add support install_tag kwarg</h2>
 <p>By default install_man uses 'man' tag for its files which not always is desirable,
 for example if project uses plugin functionality and plugin wants to install its own man files
