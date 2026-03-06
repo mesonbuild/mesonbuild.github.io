@@ -229,6 +229,10 @@ features for the build.</p>
 for Cargo subprojects.</p>
 <p>While Cargo subprojects remain experimental, the Meson project will
 try to keep the workspace object reasonably backwards-compatible.</p>
+<h2 id="deprecate-should_fail-and-rename-it-to-expected_fail-also-introduce-expected_exitcode">Deprecate <code>should_fail</code> and rename it to <code>expected_fail</code>, also introduce <code>expected_exitcode</code>
+</h2>
+<p>In 1.11.0 <code>should_fail</code> has been renamed to <code>expected_error</code>.</p>
+<p>Before 1.11.0, there was no way to positively test a command/binary returning error/non-zero exit code when the used protocol was set to exitcode, so <code>expected_exitcode</code> has been introduced to achieve this. Do note that if the exitcode does not match the expected value, GNU skip and exit codes are still valid and the test result may be skip or error.</p>
 <h2 id="the-external_project-module-uses-the-cygpath-command-to-convert-paths">The external_project module uses the cygpath command to convert paths</h2>
 <p>In previous versions, the external_project module on Windows used a Windows-style path (e.g., <code>C:/path/to/configure</code>) to execute the configure file, and a relative path from the drive root (e.g., <code>/path/to/prefix</code>) as the installation prefix.
 However, since configure scripts are typically intended to be run in a POSIX-like environment (MSYS2, Cygwin, or GitBash), these paths were incompatible with some configure scripts.</p>
