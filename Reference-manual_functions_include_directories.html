@@ -277,6 +277,21 @@ executable('some-tool', sources,
 </code></pre>
 <p>If the build tree is <code>/tmp/build-tree</code>, the following include paths
 will be added to the <code>executable()</code> call: <code>-I/tmp/build-tree/include -I/home/user/project.git/include</code>.</p>
+<aside class="note note-warning">
+<div class="note-topbar note-topbar-warning">
+  <span class="glyphicon glyphicon-warning-sign"></span>
+  <span class="note-title">Warning:</span>
+</div>
+<div class="note-content">
+<p>When <code>is_system : true</code> is used, the include directory order on the
+command line is <strong>reversed</strong> compared to the order given in the
+arguments: the <em>last</em> directory listed has the highest priority
+(it appears first among the <code>-isystem</code> flags and is searched first
+by the compiler).  This is the opposite of the default (<code>is_system : false</code>), where the <em>first</em> directory listed has the highest priority.
+This may be changed in future releases, but behavior will not change
+as long as <code>meson_version</code> is not changed in <code>project()</code>.</p>
+</div>
+</aside>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments">Arguments</h3>
 <p>The
