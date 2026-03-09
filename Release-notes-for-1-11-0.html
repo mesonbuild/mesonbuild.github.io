@@ -283,6 +283,10 @@ repeat yourself when using the path multiple times.</p>
 <p><code>-Db_lto</code> is now supported for MSVC's <code>/LTCG</code>, as is <code>-Db_lto_mode=thin</code>
 for <code>/LTCG:INCREMENTAL</code>. <code>-Db_pgo</code> is also supported, and should be used
 alongside <code>-Db_lto=true</code>.</p>
+<h2 id="last-major-version-supporting-python-37-38-and-39">Last major version supporting Python 3.7, 3.8, and 3.9</h2>
+<p>Python older than 3.10 is now EOL, and Meson will drop support for these
+versions in the next major release, and will freely use features from 3.8, 3.9
+and 3.10. Support for these versions will remain for the 1.11.x series.</p>
 <h2 id="python-extension-modules-default-to-c-abi-for-rust">Python extension modules default to C ABI for Rust</h2>
 <p><code>py.extension_module()</code> now defaults <code>rust_abi</code> to <code>'c'</code>, so that Rust
 extension modules produce a <code>cdylib</code> instead of a <code>dylib</code>.  This is the
