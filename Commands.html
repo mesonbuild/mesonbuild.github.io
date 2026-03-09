@@ -233,40 +233,43 @@ Optional arguments. The most common workflow is to run
 <p>For the full list of all available options for a specific command use
 the following syntax: <code>meson COMMAND --help</code></p>
 <h3 id="configure">configure</h3>
-<pre><code class="language-inc">$ meson configure [-h] [--prefix PREFIX] [--bindir BINDIR]
-                  [--datadir DATADIR] [--includedir INCLUDEDIR]
-                  [--infodir INFODIR] [--libdir LIBDIR]
-                  [--licensedir LICENSEDIR] [--libexecdir LIBEXECDIR]
-                  [--localedir LOCALEDIR] [--localstatedir LOCALSTATEDIR]
-                  [--mandir MANDIR] [--sbindir SBINDIR]
-                  [--sharedstatedir SHAREDSTATEDIR]
-                  [--sysconfdir SYSCONFDIR]
+<pre><code class="language-inc">$ meson configure [-h] [--prefix CMD_LINE_OPTIONS]
+                  [--bindir CMD_LINE_OPTIONS] [--datadir CMD_LINE_OPTIONS]
+                  [--includedir CMD_LINE_OPTIONS]
+                  [--infodir CMD_LINE_OPTIONS] [--libdir CMD_LINE_OPTIONS]
+                  [--licensedir CMD_LINE_OPTIONS]
+                  [--libexecdir CMD_LINE_OPTIONS]
+                  [--localedir CMD_LINE_OPTIONS]
+                  [--localstatedir CMD_LINE_OPTIONS]
+                  [--mandir CMD_LINE_OPTIONS] [--sbindir CMD_LINE_OPTIONS]
+                  [--sharedstatedir CMD_LINE_OPTIONS]
+                  [--sysconfdir CMD_LINE_OPTIONS]
                   [--auto-features {enabled,disabled,auto}]
                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}]
                   [--genvslite {vs2022,vs2026}]
                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
                   [--debug] [--default-library {shared,static,both}]
                   [--default-both-libraries {shared,static,auto}]
-                  [--errorlogs] [--install-umask INSTALL_UMASK]
+                  [--errorlogs] [--install-umask CMD_LINE_OPTIONS]
                   [--layout {mirror,flat}]
                   [--namingscheme {platform,classic}]
                   [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
                   [--stdsplit] [--strip] [--unity {on,off,subprojects}]
-                  [--unity-size UNITY_SIZE]
+                  [--unity-size CMD_LINE_OPTIONS]
                   [--warnlevel {0,1,2,3,everything}] [--werror]
                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
-                  [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
+                  [--force-fallback-for CMD_LINE_OPTIONS] [--vsenv]
                   [--os2-emxomf] [--pkgconfig.relocatable]
-                  [--python.bytecompile PYTHON.BYTECOMPILE]
+                  [--python.bytecompile CMD_LINE_OPTIONS]
                   [--python.install-env {auto,prefix,system,venv}]
-                  [--python.platlibdir PYTHON.PLATLIBDIR]
-                  [--python.purelibdir PYTHON.PURELIBDIR]
+                  [--python.platlibdir CMD_LINE_OPTIONS]
+                  [--python.purelibdir CMD_LINE_OPTIONS]
                   [--python.allow-limited-api]
-                  [--python.build-config PYTHON.BUILD_CONFIG]
-                  [--pkg-config-path PKG_CONFIG_PATH]
-                  [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
-                  [--cmake-prefix-path CMAKE_PREFIX_PATH]
-                  [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
+                  [--python.build-config CMD_LINE_OPTIONS]
+                  [--pkg-config-path CMD_LINE_OPTIONS]
+                  [--build.pkg-config-path CMD_LINE_OPTIONS]
+                  [--cmake-prefix-path CMD_LINE_OPTIONS]
+                  [--build.cmake-prefix-path CMD_LINE_OPTIONS]
                   [-D option=value] [--clearcache] [--no-pager]
                   [-U CMD_LINE_OPTIONS]
                   [builddir]
@@ -277,20 +280,20 @@ the following syntax: <code>meson COMMAND --help</code></p>
 
 options:
   -h, --help                            show this help message and exit
-  --prefix PREFIX                       Installation prefix.
-  --bindir BINDIR                       Executable directory.
-  --datadir DATADIR                     Data file directory.
-  --includedir INCLUDEDIR               Header file directory.
-  --infodir INFODIR                     Info page directory.
-  --libdir LIBDIR                       Library directory.
-  --licensedir LICENSEDIR               Licenses directory (default: ).
-  --libexecdir LIBEXECDIR               Library executable directory.
-  --localedir LOCALEDIR                 Locale data directory.
-  --localstatedir LOCALSTATEDIR         Localstate data directory.
-  --mandir MANDIR                       Manual page directory.
-  --sbindir SBINDIR                     System executable directory.
-  --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
-  --sysconfdir SYSCONFDIR               Sysconf data directory.
+  --prefix CMD_LINE_OPTIONS             Installation prefix.
+  --bindir CMD_LINE_OPTIONS             Executable directory.
+  --datadir CMD_LINE_OPTIONS            Data file directory.
+  --includedir CMD_LINE_OPTIONS         Header file directory.
+  --infodir CMD_LINE_OPTIONS            Info page directory.
+  --libdir CMD_LINE_OPTIONS             Library directory.
+  --licensedir CMD_LINE_OPTIONS         Licenses directory (default: ).
+  --libexecdir CMD_LINE_OPTIONS         Library executable directory.
+  --localedir CMD_LINE_OPTIONS          Locale data directory.
+  --localstatedir CMD_LINE_OPTIONS      Localstate data directory.
+  --mandir CMD_LINE_OPTIONS             Manual page directory.
+  --sbindir CMD_LINE_OPTIONS            System executable directory.
+  --sharedstatedir CMD_LINE_OPTIONS     Architecture-independent data directory.
+  --sysconfdir CMD_LINE_OPTIONS         Sysconf data directory.
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
@@ -305,15 +308,15 @@ options:
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
   --debug                               Enable debug symbols and other
-                                        information
+                                        information.
   --default-library {shared,static,both}
                                         Default library type (default: shared).
   --default-both-libraries {shared,static,auto}
                                         Default library type for both_libraries
                                         (default: shared).
   --errorlogs                           Whether to print the logs from failing
-                                        tests
-  --install-umask INSTALL_UMASK         Default umask to apply on permissions of
+                                        tests.
+  --install-umask CMD_LINE_OPTIONS      Default umask to apply on permissions of
                                         installed files (default: 0o22).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
@@ -321,55 +324,52 @@ options:
                                         (default: classic).
   --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
   --prefer-static                       Whether to try static linking before
-                                        shared linking
-  --stdsplit                            Split stdout and stderr in test logs
-  --strip                               Strip targets on install
+                                        shared linking.
+  --stdsplit                            Split stdout and stderr in test logs.
+  --strip                               Strip targets on install.
   --unity {on,off,subprojects}          Unity build (default: off).
-  --unity-size UNITY_SIZE               Unity block size (default: 4).
+  --unity-size CMD_LINE_OPTIONS         Unity block size (default: 4).
   --warnlevel {0,1,2,3,everything}      Compiler warning level to use (default:
                                         1).
-  --werror                              Treat warnings as errors
+  --werror                              Treat warnings as errors.
   --wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}
                                         Wrap mode (default: default).
-  --force-fallback-for FORCE_FALLBACK_FOR
+  --force-fallback-for CMD_LINE_OPTIONS
                                         Force fallback for those subprojects
                                         (default: []).
-  --vsenv                               Activate Visual Studio environment
-  --os2-emxomf                          Use OMF format on OS/2
-  --pkgconfig.relocatable               Generate pkgconfig files as relocatable
-  --python.bytecompile PYTHON.BYTECOMPILE
+  --vsenv                               Activate Visual Studio environment.
+  --os2-emxomf                          Use OMF format on OS/2.
+  --pkgconfig.relocatable               Generate pkgconfig files as relocatable.
+  --python.bytecompile CMD_LINE_OPTIONS
                                         Whether to compile bytecode (default:
                                         0).
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
-  --python.platlibdir PYTHON.PLATLIBDIR
-                                        Directory for site-specific, platform-
+  --python.platlibdir CMD_LINE_OPTIONS  Directory for site-specific, platform-
                                         specific files (default: ).
-  --python.purelibdir PYTHON.PURELIBDIR
-                                        Directory for site-specific, non-
+  --python.purelibdir CMD_LINE_OPTIONS  Directory for site-specific, non-
                                         platform-specific files (default: ).
   --python.allow-limited-api            Whether to allow use of the Python
-                                        Limited API
-  --python.build-config PYTHON.BUILD_CONFIG
+                                        Limited API.
+  --python.build-config CMD_LINE_OPTIONS
                                         Config file containing the build details
                                         for the target Python installation
                                         (default: ).
-  --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
-                                        to search (default: []). (just for host
-                                        machine)
-  --build.pkg-config-path BUILD.PKG_CONFIG_PATH
+  --pkg-config-path CMD_LINE_OPTIONS    List of additional paths for pkg-config
+                                        to search (just for host machine,
+                                        default: []).
+  --build.pkg-config-path CMD_LINE_OPTIONS
                                         List of additional paths for pkg-config
-                                        to search (default: []). (just for build
-                                        machine)
-  --cmake-prefix-path CMAKE_PREFIX_PATH
+                                        to search (just for build machine,
+                                        default: []).
+  --cmake-prefix-path CMD_LINE_OPTIONS  List of additional prefixes for cmake to
+                                        search (just for host machine, default:
+                                        []).
+  --build.cmake-prefix-path CMD_LINE_OPTIONS
                                         List of additional prefixes for cmake to
-                                        search (default: []). (just for host
-                                        machine)
-  --build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH
-                                        List of additional prefixes for cmake to
-                                        search (default: []). (just for build
-                                        machine)
+                                        search (just for build machine, default:
+                                        []).
   -D option=value                       Set the value of an option, can be used
                                         several times to set multiple options.
   --clearcache                          Clear cached state (e.g. found
@@ -464,19 +464,24 @@ different type, and a <code>bar</code> target:</p>
 <h3 id="dist">dist</h3>
 <p><em>(since 0.52.0)</em></p>
 <pre><code class="language-inc">$ meson dist [-h] [-C WD] [--allow-dirty] [--formats FORMATS]
-             [--include-subprojects] [--no-tests]
+             [--include-subprojects] [--no-tests] [-j NUM_PROCESSES]
 </code></pre>
 <p>Generates a release archive from the current source tree.</p>
 <pre><code class="language-inc">options:
-  -h, --help             show this help message and exit
-  -C WD                  directory to cd into before running
-  --allow-dirty          Allow even when repository contains uncommitted
-                         changes.
-  --formats FORMATS      Comma separated list of archive types to create.
-                         Supports xztar (default), bztar, gztar, and zip.
-  --include-subprojects  Include source code of subprojects that have been used
-                         for the build.
-  --no-tests             Do not build and test generated packages.
+  -h, --help                            show this help message and exit
+  -C WD                                 directory to cd into before running
+  --allow-dirty                         Allow even when repository contains
+                                        uncommitted changes.
+  --formats FORMATS                     Comma separated list of archive types to
+                                        create. Supports xztar (default), bztar,
+                                        gztar, and zip.
+  --include-subprojects                 Include source code of subprojects that
+                                        have been used for the build.
+  --no-tests                            Do not build and test generated
+                                        packages.
+  -j NUM_PROCESSES, --num-processes NUM_PROCESSES
+                                        How many parallel processes to use (e.g.
+                                        for compilation and testing).
 </code></pre>
 <p>See <a href="Creating-releases.html">notes about creating releases</a> for more info.</p>
 <h4 id="examples2">Examples:</h4>
@@ -686,38 +691,41 @@ Rewriter commands:
 </code></pre>
 <p>See <a href="Rewriter.html">the Meson file rewriter documentation</a> for more info.</p>
 <h3 id="setup">setup</h3>
-<pre><code class="language-inc">$ meson setup [-h] [--prefix PREFIX] [--bindir BINDIR] [--datadir DATADIR]
-              [--includedir INCLUDEDIR] [--infodir INFODIR]
-              [--libdir LIBDIR] [--licensedir LICENSEDIR]
-              [--libexecdir LIBEXECDIR] [--localedir LOCALEDIR]
-              [--localstatedir LOCALSTATEDIR] [--mandir MANDIR]
-              [--sbindir SBINDIR] [--sharedstatedir SHAREDSTATEDIR]
-              [--sysconfdir SYSCONFDIR]
+<pre><code class="language-inc">$ meson setup [-h] [--prefix CMD_LINE_OPTIONS] [--bindir CMD_LINE_OPTIONS]
+              [--datadir CMD_LINE_OPTIONS] [--includedir CMD_LINE_OPTIONS]
+              [--infodir CMD_LINE_OPTIONS] [--libdir CMD_LINE_OPTIONS]
+              [--licensedir CMD_LINE_OPTIONS]
+              [--libexecdir CMD_LINE_OPTIONS]
+              [--localedir CMD_LINE_OPTIONS]
+              [--localstatedir CMD_LINE_OPTIONS]
+              [--mandir CMD_LINE_OPTIONS] [--sbindir CMD_LINE_OPTIONS]
+              [--sharedstatedir CMD_LINE_OPTIONS]
+              [--sysconfdir CMD_LINE_OPTIONS]
               [--auto-features {enabled,disabled,auto}]
               [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}]
               [--genvslite {vs2022,vs2026}]
               [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
               [--debug] [--default-library {shared,static,both}]
               [--default-both-libraries {shared,static,auto}] [--errorlogs]
-              [--install-umask INSTALL_UMASK] [--layout {mirror,flat}]
+              [--install-umask CMD_LINE_OPTIONS] [--layout {mirror,flat}]
               [--namingscheme {platform,classic}]
               [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
               [--stdsplit] [--strip] [--unity {on,off,subprojects}]
-              [--unity-size UNITY_SIZE] [--warnlevel {0,1,2,3,everything}]
-              [--werror]
+              [--unity-size CMD_LINE_OPTIONS]
+              [--warnlevel {0,1,2,3,everything}] [--werror]
               [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
-              [--force-fallback-for FORCE_FALLBACK_FOR] [--vsenv]
+              [--force-fallback-for CMD_LINE_OPTIONS] [--vsenv]
               [--os2-emxomf] [--pkgconfig.relocatable]
-              [--python.bytecompile PYTHON.BYTECOMPILE]
+              [--python.bytecompile CMD_LINE_OPTIONS]
               [--python.install-env {auto,prefix,system,venv}]
-              [--python.platlibdir PYTHON.PLATLIBDIR]
-              [--python.purelibdir PYTHON.PURELIBDIR]
+              [--python.platlibdir CMD_LINE_OPTIONS]
+              [--python.purelibdir CMD_LINE_OPTIONS]
               [--python.allow-limited-api]
-              [--python.build-config PYTHON.BUILD_CONFIG]
-              [--pkg-config-path PKG_CONFIG_PATH]
-              [--build.pkg-config-path BUILD.PKG_CONFIG_PATH]
-              [--cmake-prefix-path CMAKE_PREFIX_PATH]
-              [--build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH]
+              [--python.build-config CMD_LINE_OPTIONS]
+              [--pkg-config-path CMD_LINE_OPTIONS]
+              [--build.pkg-config-path CMD_LINE_OPTIONS]
+              [--cmake-prefix-path CMD_LINE_OPTIONS]
+              [--build.cmake-prefix-path CMD_LINE_OPTIONS]
               [-D option=value] [--native-file NATIVE_FILE]
               [--cross-file CROSS_FILE] [-v] [--fatal-meson-warnings]
               [--reconfigure] [--wipe] [--clearcache]
@@ -741,20 +749,20 @@ with <code>meson setup --clearcache --reconfigure &lt;builddir&gt;</code>.</p>
 
 options:
   -h, --help                            show this help message and exit
-  --prefix PREFIX                       Installation prefix.
-  --bindir BINDIR                       Executable directory.
-  --datadir DATADIR                     Data file directory.
-  --includedir INCLUDEDIR               Header file directory.
-  --infodir INFODIR                     Info page directory.
-  --libdir LIBDIR                       Library directory.
-  --licensedir LICENSEDIR               Licenses directory (default: ).
-  --libexecdir LIBEXECDIR               Library executable directory.
-  --localedir LOCALEDIR                 Locale data directory.
-  --localstatedir LOCALSTATEDIR         Localstate data directory.
-  --mandir MANDIR                       Manual page directory.
-  --sbindir SBINDIR                     System executable directory.
-  --sharedstatedir SHAREDSTATEDIR       Architecture-independent data directory.
-  --sysconfdir SYSCONFDIR               Sysconf data directory.
+  --prefix CMD_LINE_OPTIONS             Installation prefix.
+  --bindir CMD_LINE_OPTIONS             Executable directory.
+  --datadir CMD_LINE_OPTIONS            Data file directory.
+  --includedir CMD_LINE_OPTIONS         Header file directory.
+  --infodir CMD_LINE_OPTIONS            Info page directory.
+  --libdir CMD_LINE_OPTIONS             Library directory.
+  --licensedir CMD_LINE_OPTIONS         Licenses directory (default: ).
+  --libexecdir CMD_LINE_OPTIONS         Library executable directory.
+  --localedir CMD_LINE_OPTIONS          Locale data directory.
+  --localstatedir CMD_LINE_OPTIONS      Localstate data directory.
+  --mandir CMD_LINE_OPTIONS             Manual page directory.
+  --sbindir CMD_LINE_OPTIONS            System executable directory.
+  --sharedstatedir CMD_LINE_OPTIONS     Architecture-independent data directory.
+  --sysconfdir CMD_LINE_OPTIONS         Sysconf data directory.
   --auto-features {enabled,disabled,auto}
                                         Override value of all 'auto' features
                                         (default: auto).
@@ -769,15 +777,15 @@ options:
   --buildtype {plain,debug,debugoptimized,release,minsize,custom}
                                         Build type to use (default: debug).
   --debug                               Enable debug symbols and other
-                                        information
+                                        information.
   --default-library {shared,static,both}
                                         Default library type (default: shared).
   --default-both-libraries {shared,static,auto}
                                         Default library type for both_libraries
                                         (default: shared).
   --errorlogs                           Whether to print the logs from failing
-                                        tests
-  --install-umask INSTALL_UMASK         Default umask to apply on permissions of
+                                        tests.
+  --install-umask CMD_LINE_OPTIONS      Default umask to apply on permissions of
                                         installed files (default: 0o22).
   --layout {mirror,flat}                Build directory layout (default:
                                         mirror).
@@ -785,55 +793,52 @@ options:
                                         (default: classic).
   --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
   --prefer-static                       Whether to try static linking before
-                                        shared linking
-  --stdsplit                            Split stdout and stderr in test logs
-  --strip                               Strip targets on install
+                                        shared linking.
+  --stdsplit                            Split stdout and stderr in test logs.
+  --strip                               Strip targets on install.
   --unity {on,off,subprojects}          Unity build (default: off).
-  --unity-size UNITY_SIZE               Unity block size (default: 4).
+  --unity-size CMD_LINE_OPTIONS         Unity block size (default: 4).
   --warnlevel {0,1,2,3,everything}      Compiler warning level to use (default:
                                         1).
-  --werror                              Treat warnings as errors
+  --werror                              Treat warnings as errors.
   --wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}
                                         Wrap mode (default: default).
-  --force-fallback-for FORCE_FALLBACK_FOR
+  --force-fallback-for CMD_LINE_OPTIONS
                                         Force fallback for those subprojects
                                         (default: []).
-  --vsenv                               Activate Visual Studio environment
-  --os2-emxomf                          Use OMF format on OS/2
-  --pkgconfig.relocatable               Generate pkgconfig files as relocatable
-  --python.bytecompile PYTHON.BYTECOMPILE
+  --vsenv                               Activate Visual Studio environment.
+  --os2-emxomf                          Use OMF format on OS/2.
+  --pkgconfig.relocatable               Generate pkgconfig files as relocatable.
+  --python.bytecompile CMD_LINE_OPTIONS
                                         Whether to compile bytecode (default:
                                         0).
   --python.install-env {auto,prefix,system,venv}
                                         Which python environment to install to
                                         (default: prefix).
-  --python.platlibdir PYTHON.PLATLIBDIR
-                                        Directory for site-specific, platform-
+  --python.platlibdir CMD_LINE_OPTIONS  Directory for site-specific, platform-
                                         specific files (default: ).
-  --python.purelibdir PYTHON.PURELIBDIR
-                                        Directory for site-specific, non-
+  --python.purelibdir CMD_LINE_OPTIONS  Directory for site-specific, non-
                                         platform-specific files (default: ).
   --python.allow-limited-api            Whether to allow use of the Python
-                                        Limited API
-  --python.build-config PYTHON.BUILD_CONFIG
+                                        Limited API.
+  --python.build-config CMD_LINE_OPTIONS
                                         Config file containing the build details
                                         for the target Python installation
                                         (default: ).
-  --pkg-config-path PKG_CONFIG_PATH     List of additional paths for pkg-config
-                                        to search (default: []). (just for host
-                                        machine)
-  --build.pkg-config-path BUILD.PKG_CONFIG_PATH
+  --pkg-config-path CMD_LINE_OPTIONS    List of additional paths for pkg-config
+                                        to search (just for host machine,
+                                        default: []).
+  --build.pkg-config-path CMD_LINE_OPTIONS
                                         List of additional paths for pkg-config
-                                        to search (default: []). (just for build
-                                        machine)
-  --cmake-prefix-path CMAKE_PREFIX_PATH
+                                        to search (just for build machine,
+                                        default: []).
+  --cmake-prefix-path CMD_LINE_OPTIONS  List of additional prefixes for cmake to
+                                        search (just for host machine, default:
+                                        []).
+  --build.cmake-prefix-path CMD_LINE_OPTIONS
                                         List of additional prefixes for cmake to
-                                        search (default: []). (just for host
-                                        machine)
-  --build.cmake-prefix-path BUILD.CMAKE_PREFIX_PATH
-                                        List of additional prefixes for cmake to
-                                        search (default: []). (just for build
-                                        machine)
+                                        search (just for build machine, default:
+                                        []).
   -D option=value                       Set the value of an option, can be used
                                         several times to set multiple options.
   --native-file NATIVE_FILE             File containing overrides for native

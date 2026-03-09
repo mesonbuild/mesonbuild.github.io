@@ -231,6 +231,13 @@ for Cargo subprojects.</p>
 try to keep the workspace object reasonably backwards-compatible.</p>
 <h2 id="deduplication-of-openmp-linker-arguments">Deduplication of OpenMP linker arguments</h2>
 <p>Meson now deduplicates linker arguments <code>-fopenmp</code> and <code>-qopenmp</code>.</p>
+<h2 id="meson-dist-now-accepts-jnumprocesses">
+<code>meson dist</code> now accepts <code>-j</code>/<code>--num-processes</code>
+</h2>
+<p><code>meson dist</code> now supports a <code>-j</code>/<code>--num-processes</code> flag to control the number of
+parallel processes used during the distribution check (compilation and testing of
+the generated package).  The <code>MESON_NUM_PROCESSES</code> environment variable is also
+honored, consistent with other Meson commands.</p>
 <h2 id="deprecate-should_fail-and-rename-it-to-expected_fail-also-introduce-expected_exitcode">Deprecate <code>should_fail</code> and rename it to <code>expected_fail</code>, also introduce <code>expected_exitcode</code>
 </h2>
 <p>In 1.11.0 <code>should_fail</code> has been renamed to <code>expected_error</code>.</p>
@@ -240,10 +247,11 @@ try to keep the workspace object reasonably backwards-compatible.</p>
 However, since configure scripts are typically intended to be run in a POSIX-like environment (MSYS2, Cygwin, or GitBash), these paths were incompatible with some configure scripts.</p>
 <p>The external_project module now uses the <code>cygpath</code> command to convert the configure command path and prefix to Unix-style paths (e.g., <code>/c/path/to/configure</code> for MSYS2 and <code>/cygdrive/c/path/to/configure</code> for Cygwin).
 If the <code>cygpath</code> command is not found in the PATH, it will fall back to the previous behavior.</p>
-<h2 id="install_man-add-support-install_tag-kwarg">install_man: add support install_tag kwarg</h2>
-<p>By default install_man uses 'man' tag for its files which not always is desirable,
-for example if project uses plugin functionality and plugin wants to install its own man files
-it was not possible using <code>meson install --tags xxx</code>.</p>
+<h2 id="install_man-and-install_headers-add-support-for-install_tag-kwarg">install_man and install_headers: add support for install_tag kwarg</h2>
+<p><code>install_man</code> and <code>install_headers</code> now support the <code>install_tag</code> keyword argument,
+allowing selection of installed files via <code>meson install --tags</code>. Previously,
+<code>install_man</code> always used the <code>man</code> tag and <code>install_headers</code> always used the
+<code>devel</code> tag, with no way to override them.</p>
 <h2 id="added-link_early_args-to-targets-performing-linking">Added <code>link_early_args</code> to targets performing linking</h2>
 <p>Options passed to the linker using the <code>link_args</code> keyword argument
 get placed on the command line after all objects and libraries. Some
