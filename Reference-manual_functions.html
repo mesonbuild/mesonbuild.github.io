@@ -1508,6 +1508,9 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#both_libraries_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#both_libraries_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#both_libraries_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#both_libraries_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#both_libraries_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#both_libraries_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#both_libraries_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
   <a href="Reference-manual_functions.html#both_libraries_link_early_args"><b>link_early_args</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
@@ -1920,6 +1923,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1967,6 +1973,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
@@ -2531,6 +2594,9 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#build_target_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#build_target_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#build_target_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#build_target_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#build_target_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#build_target_java_resources"><b>java_resources</b></a>               : <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>                                                          # Resources to be added to the jar
   <a href="Reference-manual_functions.html#build_target_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#build_target_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
@@ -3004,6 +3070,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -3051,6 +3120,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="build_target_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
@@ -5371,6 +5497,9 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#executable_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#executable_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#executable_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#executable_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#executable_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#executable_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#executable_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
   <a href="Reference-manual_functions.html#executable_link_early_args"><b>link_early_args</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
@@ -5795,6 +5924,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -5842,6 +5974,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="executable_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
@@ -8154,6 +8343,9 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#jar_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#jar_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#jar_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#jar_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#jar_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#jar_java_resources"><b>java_resources</b></a>               : <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>                                                          # Resources to be added to the jar
   <a href="Reference-manual_functions.html#jar_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#jar_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
@@ -8512,6 +8704,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8559,6 +8754,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="jar_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="jar_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="jar_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
@@ -9021,6 +9273,9 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#library_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#library_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#library_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#library_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#library_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#library_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#library_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
   <a href="Reference-manual_functions.html#library_link_early_args"><b>link_early_args</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
@@ -9442,6 +9697,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9489,6 +9747,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="library_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
@@ -10753,6 +11068,9 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#shared_library_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#shared_library_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#shared_library_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#shared_library_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#shared_library_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#shared_library_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#shared_library_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
   <a href="Reference-manual_functions.html#shared_library_link_early_args"><b>link_early_args</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
@@ -11133,6 +11451,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11180,6 +11501,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_library_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_library_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_library_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
@@ -11653,6 +12031,9 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#shared_module_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#shared_module_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#shared_module_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#shared_module_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#shared_module_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#shared_module_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#shared_module_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
   <a href="Reference-manual_functions.html#shared_module_link_early_args"><b>link_early_args</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
@@ -12031,6 +12412,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -12078,6 +12462,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_module_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_module_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="shared_module_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
@@ -12494,6 +12935,9 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_install_mode"><b>install_mode</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>]                                                        # Specify the file mode in symbolic format
   <a href="Reference-manual_functions.html#static_library_install_rpath"><b>install_rpath</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string to set the target's rpath to after install
   <a href="Reference-manual_functions.html#static_library_install_tag"><b>install_tag</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string used by the `meson install --tags` command
+  <a href="Reference-manual_functions.html#static_library_install_vala_gir"><b>install_vala_gir</b></a>             : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated gir library will be
+  <a href="Reference-manual_functions.html#static_library_install_vala_header"><b>install_vala_header</b></a>          : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated header will be installed to
+  <a href="Reference-manual_functions.html#static_library_install_vala_vapi"><b>install_vala_vapi</b></a>            : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                              # If set to a string value, the vala generated vapi library will be
   <a href="Reference-manual_functions.html#static_library_link_args"><b>link_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
   <a href="Reference-manual_functions.html#static_library_link_depends"><b>link_depends</b></a>                 : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>                                    # Strings, files, or custom targets the link step depends on
   <a href="Reference-manual_functions.html#static_library_link_early_args"><b>link_early_args</b></a>              : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Flags to use during linking
@@ -12853,6 +13297,9 @@ something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
 them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+<p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
+install_vala_vapi, and install_vala_gir keyword arguments should be used
+instead.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -12900,6 +13347,63 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.60.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install_vala_gir">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_gir</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated gir library will be
+installed to that path, if set to <code>true</code>, the default gir path will be
+used, if <code>false</code> the gir library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
+is set to a value.</p>
+<p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
+be unset.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install_vala_header">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_header</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated header will be installed to
+that path, if set to <code>true</code>, the default include path will be used, if
+<code>false</code> the header will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
+  </div>
+  </td>
+      </tr>
+      <tr id="static_library_install_vala_vapi">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">install_vala_vapi</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a>
+</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>If set to a string value, the vala generated vapi library will be
+installed to that path, if set to <code>true</code>, the default vapi path will be
+used, if <code>false</code> the vapi library will not be installed.</p>
+<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.11.0)</em></p>
   </div>
   </td>
       </tr>
