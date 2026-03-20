@@ -272,7 +272,7 @@ and to query it. The source set becomes immutable after any method but
 <h4 id="add"><code>add()</code></h4>
 <pre><code class="language-meson">source_set.add([when: varnames_and_deps],
                [if_true: sources_and_deps],
-               [if_false: list_of_alt_sources])
+               [if_false: list_of_alt_sources_and_deps])
 source_set.add(sources_and_deps)
 </code></pre>
 <p>Add a <em>rule</em> to a source set. A rule determines the conditions under
@@ -288,14 +288,14 @@ and all dependencies are found, the rule will evaluate to true;
 argument in its result. Otherwise, that is if any of the strings in
 the positional arguments evaluate to false or any dependency is not
 found, <code>apply()</code> will instead use the contents of the <code>if_false</code>
-keyword argument.</p>
+keyword argument. <em>Since 1.11.0</em> Dependencies in <code>if_false</code> are supported.</p>
 <p>Dependencies can also appear in <code>sources_and_deps</code>. In this case, a
 missing dependency will simply be ignored and will <em>not</em> disable the
 rule, similar to how the <code>dependencies</code> keyword argument works in
 build targets.</p>
 <p><strong>Note</strong>: It is generally better to avoid mixing source sets and
 disablers. This is because disablers will cause the rule to be dropped
-altogether, and the <code>list_of_alt_sources</code> would not be taken into
+altogether, and the <code>list_of_alt_sources_and_deps</code> would not be taken into
 account anymore.</p>
 <h4 id="add_all"><code>add_all()</code></h4>
 <pre><code class="language-meson">source_set.add_all(when: varnames_and_deps,

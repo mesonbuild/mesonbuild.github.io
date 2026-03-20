@@ -302,6 +302,11 @@ ar = toolchain / 'bin/llvm-ar'
 <p>Note that <code>~</code> can be used anywhere in the machine file. In the above example,
 the purpose of defining a new constant called <code>toolchain</code> is to not have to
 repeat yourself when using the path multiple times.</p>
+<h2 id="meson-format-sorts-files-arguments-naturally">
+<code>meson format</code> sorts <code>files()</code> arguments naturally</h2>
+<p>If the <code>sort_files</code> option is enabled, as it is by default, <code>meson format</code>
+now sorts <code>files()</code> arguments <a href="Style-guide.html#sorting-source-paths">naturally</a>
+rather than alphabetically.</p>
 <h2 id="db_lto-and-db_pgo-now-supported-for-msvc">
 <code>-Db_lto</code> and <code>-Db_pgo</code> now supported for MSVC</h2>
 <p><code>-Db_lto</code> is now supported for MSVC's <code>/LTCG</code>, as is <code>-Db_lto_mode=thin</code>
