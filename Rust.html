@@ -328,11 +328,24 @@ from Meson options:</p>
 <pre><code class="language-meson">cargo_ws = rustmod.workspace(
     features: ['feature1', 'feature2'])
 </code></pre>
-<h3 id="limitations">Limitations</h3>
-<p>All your own crates must be built using the usual Meson functions such as
-<a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> or <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.  In the future, workspace object
-functionality will be extended to help building rustc command lines
-based on features, dependency names, and so on.</p>
+<p>Finally, the workspace object is able to build targets specified in <code>lib</code>
+or <code>bin</code> sections, extracting compiler arguments for dependencies and
+diagnostics from the Cargo.toml file.  The simplest case is that of building
+a simple binary crate:</p>
+<pre><code class="language-meson">cargo_ws.package().executable(install: true)
+</code></pre>
+<p>For a workspace:</p>
+<pre><code class="language-meson">pkg_lib = cargo_ws.package('myproject-lib')
+lib = pkg_lib.library(install: false)
+pkg_lib.override_dependency(declare_dependency(link_with: lib))
+
+cargo_ws.package().executable(install: true)
+</code></pre>
+<p>Sources are automatically discovered, but can be specified as a
+<a href="Reference-manual_returned_structured_src.html"><ins><code>structured_src</code></ins></a> if they are partly generated.</p>
+<p>It is still possible to use keyword arguments to link non-Rust build targets,
+or even to use the usual Meson functions such as <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> or
+<a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.</p>
 
     </div>
         

@@ -223,8 +223,8 @@ $('body').removeClass('no-script');
 <em>(Stable since 1.0.0)</em></p>
 <p>The rust module provides helper to integrate rust code into Meson. The
 goal is to make using rust in Meson more pleasant, while still
-remaining mesonic, this means that it attempts to make Rust work more
-like Meson, rather than Meson work more like rust.</p>
+remaining mesonic. Rust conventions are adopted in order to help the
+Meson user and Rust developer, rather than to make Meson work more like rust.</p>
 <h2 id="functions">Functions</h2>
 <h3 id="test">test()</h3>
 <pre><code class="language-meson">rustmod.test(name, target, ...)
@@ -368,6 +368,15 @@ targets.</p>
 <li>link_with</li>
 <li>override_options</li>
 </ul>
+<h3 id="to_system_dependency">to_system_dependency()</h3>
+<p><em>Since 1.11.0</em></p>
+<pre><code class="language-meson">rustmod.to_system_dependency(dep[, name])
+</code></pre>
+<p>Create and return an internal dependency that wraps <code>dep</code> and
+defines <code>cfg(system_deps_have_NAME)</code>.  This is compatible with
+how the <code>system-deps</code> crate reports the availability of a system
+dependency to Rust code.</p>
+<p>If omitted, the name defaults to the name of the dependency.</p>
 <h3 id="workspace">workspace()</h3>
 <p>Basic usage:</p>
 <pre><code>cargo_ws = rustmod.workspace()
@@ -418,6 +427,23 @@ say "require this specific configuration," which may conflict with the parent pr
 <pre><code class="language-meson">packages = ws.packages()
 </code></pre>
 <p>Returns a list of package names in the workspace.</p>
+<h3 id="workspacepackage">workspace.package()</h3>
+<pre><code class="language-meson">pkg = ws.package([package_name])
+</code></pre>
+<p>Returns a package object for the given package member.  If empty, returns
+the object for the root package.</p>
+<p>Arguments:</p>
+<ul>
+<li>
+<code>package_name</code>: (str, optional) Name of the package; not needed for the
+root package of a workspace</li>
+</ul>
+<p>Example usage:</p>
+<pre><code class="language-meson">rustmod = import('rust')
+cargo_ws = rustmod.workspace()
+pkg = cargo_ws.package()
+pkg.executable(install: true)
+</code></pre>
 <h3 id="workspacesubproject">workspace.subproject()</h3>
 <pre><code class="language-meson">package = ws.subproject(package_name, api)
 </code></pre>
@@ -432,28 +458,131 @@ say "require this specific configuration," which may conflict with the parent pr
 <h2 id="package-object">Package object</h2>
 <p>The package object returned by <code>workspace.subproject()</code> provides methods
 for working with individual packages in a Cargo workspace.</p>
-<h3 id="subprojectname">subproject.name()</h3>
+<h3 id="packagename-subprojectname">package.name(), subproject.name()</h3>
 <pre><code class="language-meson">name = pkg.name()
 </code></pre>
-<p>Returns the name of the subproject.</p>
-<h3 id="subprojectversion">subproject.version()</h3>
+<p>Returns the name of a package or subproject.</p>
+<h3 id="packageversion-subprojectversion">package.version(), subproject.version()</h3>
 <pre><code class="language-meson">version = pkg.version()
 </code></pre>
 <p>Returns the normalized version number of the subproject.</p>
-<h3 id="subprojectapi">subproject.api()</h3>
+<h3 id="packageapi-subprojectapi">package.api(), subproject.api()</h3>
 <pre><code class="language-meson">api = pkg.api()
 </code></pre>
 <p>Returns the API version of the subproject, that is the version up to the first
 nonzero element.</p>
-<h3 id="subprojectfeatures">subproject.features()</h3>
+<h3 id="packagefeatures-subprojectfeatures">package.features(), subproject.features()</h3>
 <pre><code class="language-meson">features = pkg.features()
 </code></pre>
-<p>Returns selected features for a specific subproject.</p>
-<h3 id="subprojectall_features">subproject.all_features()</h3>
+<p>Returns selected features for a specific package or subproject.</p>
+<h3 id="packageall_features-subprojectall_features">package.all_features(), subproject.all_features()</h3>
 <pre><code class="language-meson">all_features = pkg.all_features()
 </code></pre>
-<p>Returns all defined features for a specific subproject.</p>
-<h3 id="subprojectdependency">subproject.dependency()</h3>
+<p>Returns all defined features for a specific package or subproject.</p>
+<h3 id="packages-only">Packages only</h3>
+<p>Package objects are able to extract information from <code>Cargo.toml</code> files,
+and provide methods to query how Cargo would build this package.  They
+also contain convenience wrappers for non-Rust-specific functions
+(<code>executable</code>, <code>library</code>, <code>meson.override_dependency</code>, etc.), that
+automatically add dependencies and compiler arguments from <code>Cargo.toml</code>
+information.</p>
+<h4 id="packagerust_args">package.rust_args()</h4>
+<pre><code class="language-meson">args = pkg.rustc_args()
+</code></pre>
+<p>Returns rustc arguments for this package.</p>
+<h4 id="packageenv">package.env()</h4>
+<pre><code class="language-meson">env_vars = pkg.env()
+</code></pre>
+<p>Returns environment variables for this package.</p>
+<h4 id="packagerust_dependency_map">package.rust_dependency_map()</h4>
+<pre><code class="language-meson">dep_map = pkg.rust_dependency_map()
+</code></pre>
+<p>Returns rust dependency mapping for this package.</p>
+<h4 id="packagedependencies">package.dependencies()</h4>
+<pre><code class="language-meson">deps = pkg.dependencies(...)
+</code></pre>
+<p>Returns a list of dependency objects for all the dependencies required by this
+Rust package, including both Rust crate dependencies and system dependencies.
+The returned dependencies can be used directly in build target declarations.</p>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>dependencies</code>: (<code>bool</code>, default: true) Whether to include regular Rust crate dependencies</li>
+<li>
+<code>dev_dependencies</code>: (<code>bool</code>, default: false) Whether to include development dependencies (not yet implemented)</li>
+<li>
+<code>system_dependencies</code>: (<code>bool</code>, default: true) Whether to include system dependencies</li>
+</ul>
+<h4 id="packagelibrary">package.library()</h4>
+<pre><code class="language-meson">lib = pkg.library(...)
+</code></pre>
+<p>Builds library targets for a workspace package.  The method requires that
+the package's <code>Cargo.toml</code> file contains the <code>[lib]</code> section or that it
+is discovered from the contents of the file system.  Static vs. shared library is
+decided based on the crate types in <code>Cargo.toml</code></p>
+<p>Positional arguments:</p>
+<ul>
+<li>
+<code>target_name</code>: (<code>str</code>, optional) Name of the binary target to build.</li>
+<li>
+<code>sources</code>: (<code>StructuredSources</code>, optional) Source files for the executable.  If omitted,
+uses the path specified in the <code>[lib]</code> section of <code>Cargo.toml</code>.</li>
+</ul>
+<p>Accepts all keyword arguments from <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a> and <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a>.
+<code>rust_abi</code> must match the crate types and is mandatory if more than one
+ABI is exposed by the crate.</p>
+<h4 id="packageshared_module">package.shared_module()</h4>
+<pre><code class="language-meson">lib = pkg.shared_module(...)
+</code></pre>
+<p>Builds the <code>cdylib</code> for a workspace package as a shared module.</p>
+<p>Accepts all keyword arguments from <a href="Reference-manual_functions.html#shared_module"><ins><code>shared_module()</code></ins></a>.</p>
+<h4 id="packageproc_macro">package.proc_macro()</h4>
+<pre><code class="language-meson">lib = pkg.proc_macro(...)
+</code></pre>
+<p>Builds a proc-macro crate for a workspace package.</p>
+<p>Accepts all keyword arguments from <a href="Reference-manual_functions.html#shared_library"><ins><code>shared_library()</code></ins></a>.</p>
+<h4 id="packageoverride_dependency">package.override_dependency()</h4>
+<pre><code class="language-meson">pkg.override_dependency(dep[, rust_abi: abi])
+</code></pre>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>rust_abi</code>: (<code>str</code>, optional) The ABI to use for the dependency. Valid values are
+<code>'rust'</code>, <code>'c'</code>, or <code>'proc-macro'</code>; the value must match the crate types and is
+mandatory if more than one ABI is exposed by the crate.</li>
+</ul>
+<p>Make the crate available as a dependency to other crates.  This is the same
+as calling <code>meson.override_dependency</code>, but it computes the correct dependency
+name from <code>pkg</code>'s name, API version and ABI (Rust vs. C).</p>
+<p>It is typically used with <code>library() or</code>proc_macro()`, for example:</p>
+<pre><code class="language-meson">lib_pkg = cargo_ws.package('myproject-lib')
+lib = lib_pkg.library(install: false)
+lib_pkg.override_dependency(declare_dependency(link_with: lib))
+
+# Declares myproject-lib as a dependency in Cargo.toml
+exe_pkg = cargo_ws.package()
+exe_pkg.executable(install: true)
+</code></pre>
+<h4 id="packageexecutable">package.executable()</h4>
+<pre><code class="language-meson">exe = pkg.executable([target_name], [sources], ...)
+</code></pre>
+<p>Builds an executable target for a workspace package.  The method requires that the
+package has at least one <code>bin</code> section defined in its <code>Cargo.toml</code> file,
+or one binary discovered from the contents of the file system.</p>
+<p>Positional arguments:</p>
+<ul>
+<li>
+<code>target_name</code>: (<code>str</code>, optional) Name of the binary target to build. If the package
+has multiple <code>bin</code> sections in <code>Cargo.toml</code>, this argument is required and must
+match one of the binary names. If omitted and there's only one binary, that binary
+will be built automatically.</li>
+<li>
+<code>sources</code>: (<code>StructuredSources</code>, optional) Source files for the executable.  If omitted,
+uses the path specified in the corresponding <code>bin</code> section of <code>Cargo.toml</code>.</li>
+</ul>
+<p>Accepts all keyword arguments from <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.</p>
+<h3 id="subprojects-only">Subprojects only</h3>
+<h4 id="subprojectdependency">subproject.dependency()</h4>
 <pre><code class="language-meson">dep = subproject.dependency(...)
 </code></pre>
 <p>Returns a dependency object for the subproject that can be used with other Meson targets.</p>

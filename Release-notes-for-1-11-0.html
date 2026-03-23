@@ -246,8 +246,9 @@ project when the <code>workspace()</code> method of the Rust module is called.
 This guarantees that features are resolved according to what is
 in the <code>Cargo.toml</code> file, and in fact enables configuration of
 features for the build.</p>
-<p>The returned object also allows retrieving features and dependencies
-for Cargo subprojects.</p>
+<p>The returned object allows retrieving features and dependencies
+for Cargo subprojects, and contains method to build targets
+declared in <code>Cargo.toml</code> files.</p>
 <p>While Cargo subprojects remain experimental, the Meson project will
 try to keep the workspace object reasonably backwards-compatible.</p>
 <h2 id="cython-no-longer-requires-explicitly-enabling-c-or-c">Cython no longer requires explicitly enabling C or C++</h2>
