@@ -328,6 +328,12 @@ or <code>rust_abi: 'c'</code>.</p>
 <h2 id="meson-now-defines-qt_debug-or-qt_no_debug-depending-on-build-type">meson now defines <code>QT_DEBUG</code> or <code>QT_NO_DEBUG</code> depending on build type</h2>
 <p>When using the <code>qt</code> meson modules, the <code>QT_DEBUG</code> or <code>QT_NO_DEBUG</code> preprocessor macro is now set depending on the value of the <code>debug</code> built-in meson option.
 This mimicks the behavior of <code>qmake</code>, and is expected by the <code>&lt;QtGlobal&gt;</code> header.</p>
+<h2 id="compiler_target-method-in-the-rust-module">
+<code>compiler_target()</code> method in the Rust module</h2>
+<p>A <code>compiler_target()</code> that returns the Rust target triple has been added to
+the <code>rust</code> module. This method can be useful when converting build scripts
+making use of the Cargo's <code>TARGET</code> and <code>HOST</code> environment variables to
+Meson.</p>
 <h2 id="change-to-handling-of-linker-arguments-for-rust">Change to handling of linker arguments for Rust</h2>
 <p>Since the Rust compiler integrates the compiler and linker phase, previous
 Meson versions did not obey <code>link_args</code>, <code>add_project_link_arguments</code>
