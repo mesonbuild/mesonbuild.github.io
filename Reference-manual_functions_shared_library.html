@@ -638,7 +638,8 @@ For example, if you want to install plugins into a subdir, you'd use
 something like this: <code>install_dir : get_option('libdir') / 'projectname-1.0'</code>.</p>
 <p>This can be set to an array of values to control the the installation path
 of build targets with multiple outputs. Currently, that means Vala. Setting
-them to <code>true</code> means "use the default", and <code>false</code> means, don't install.</p>
+them to <code>true</code> means "use the default", and <code>false</code> means, don't install.
+By default the first element is true, and all other elements are false.</p>
 <p><em>Since 1.11.0</em> Passing an array is deprecated, and install_vala_header,
 install_vala_vapi, and install_vala_gir keyword arguments should be used
 instead.</p>
@@ -702,10 +703,9 @@ tag <code>runtime</code> except for static libraries that have the <code>devel</
 <p>If set to a string value, the vala generated gir library will be
 installed to that path, if set to <code>true</code>, the default gir path will be
 used, if <code>false</code> the gir library will not be installed.</p>
-<p>If it is unset then the value of <code>install_dir</code> will be used if <code>vala_gir</code>
-is set to a value.</p>
 <p>It is an error for this to be either <code>true</code> or a string and <code>vala_gir</code> to
 be unset.</p>
+<p>The default value is <code>false</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -723,7 +723,7 @@ be unset.</p>
 <p>If set to a string value, the vala generated header will be installed to
 that path, if set to <code>true</code>, the default include path will be used, if
 <code>false</code> the header will not be installed.</p>
-<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+<p>The default value is <code>false</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -741,7 +741,7 @@ that path, if set to <code>true</code>, the default include path will be used, i
 <p>If set to a string value, the vala generated vapi library will be
 installed to that path, if set to <code>true</code>, the default vapi path will be
 used, if <code>false</code> the vapi library will not be installed.</p>
-<p>If it is unset then the value of <code>install_dir</code> will be used.</p>
+<p>The default value is <code>false</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
