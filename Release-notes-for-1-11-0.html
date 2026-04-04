@@ -220,9 +220,11 @@ $('body').removeClass('no-script');
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
 <h2 id="buildtargetinstall_dir-length-1-replaced-with-keywords">BuildTarget(install_dir) length &gt; 1 replaced with keywords</h2>
-<p>Build Targets currently support (with limited documentation), passing an array
-of more than one element to <code>install_dir:</code> (except for in some wrappers), and
-will map these additional install_dir's to extra outputs. This is only used by vala, and has been replaced by explicit keyword arguments.</p>
+<p>Build targets previously supported (with limited documentation) passing an array
+of more than one element to <code>install_dir:</code> (except in some wrappers), and
+would map these additional <code>install_dir</code>s to extra outputs. This was only used by
+Vala, and separate explicit keyword arguments are now available that provide
+the same functionality.</p>
 <p>Code like this:</p>
 <pre><code class="language-meson">library(
   'foo',
@@ -236,18 +238,19 @@ will map these additional install_dir's to extra outputs. This is only used by v
   'foo',
   'foo.vala',
   install : true,
-  install_vala_header_dir : get_option('includedir') / 'foo
+  install_vala_header : get_option('includedir') / 'foo',
+  install_vala_vapi : true,
 )
 </code></pre>
-<p>Note that now you only need to specify values you want to deviate from the default.</p>
+<p>Note that the default is <code>false</code> for the Vala extra outputs.</p>
 <h2 id="cargo-workspace-object">Cargo workspace object</h2>
-<p>Meson now is able to parse the toplevel <code>Cargo.toml</code> file of the
+<p>Meson is now able to parse the toplevel <code>Cargo.toml</code> file of the
 project when the <code>workspace()</code> method of the Rust module is called.
 This guarantees that features are resolved according to what is
 in the <code>Cargo.toml</code> file, and in fact enables configuration of
 features for the build.</p>
 <p>The returned object allows retrieving features and dependencies
-for Cargo subprojects, and contains method to build targets
+for Cargo subprojects, and contains methods to build targets
 declared in <code>Cargo.toml</code> files.</p>
 <p>While Cargo subprojects remain experimental, the Meson project will
 try to keep the workspace object reasonably backwards-compatible.</p>
@@ -265,7 +268,7 @@ the generated package).  The <code>MESON_NUM_PROCESSES</code> environment variab
 honored, consistent with other Meson commands.</p>
 <h2 id="deprecate-should_fail-and-rename-it-to-expected_fail-also-introduce-expected_exitcode">Deprecate <code>should_fail</code> and rename it to <code>expected_fail</code>, also introduce <code>expected_exitcode</code>
 </h2>
-<p>In 1.11.0 <code>should_fail</code> has been renamed to <code>expected_error</code>.</p>
+<p>In 1.11.0 <code>should_fail</code> has been renamed to <code>expected_fail</code>.</p>
 <p>Before 1.11.0, there was no way to positively test a command/binary returning error/non-zero exit code when the used protocol was set to exitcode, so <code>expected_exitcode</code> has been introduced to achieve this. Do note that if the exitcode does not match the expected value, GNU skip and exit codes are still valid and the test result may be skip or error.</p>
 <h2 id="the-external_project-module-uses-the-cygpath-command-to-convert-paths">The external_project module uses the cygpath command to convert paths</h2>
 <p>In previous versions, the external_project module on Windows used a Windows-style path (e.g., <code>C:/path/to/configure</code>) to execute the configure file, and a relative path from the drive root (e.g., <code>/path/to/prefix</code>) as the installation prefix.
@@ -284,8 +287,8 @@ linker options, like <code>-u</code> or <code>--defsym</code>, are only useful i
 before objects and libraries as they control how the linker
 manipulates those.</p>
 <p>The new <code>link_early_args</code> keyword argument passes linker options which
-are inserted into the command line before any objects and libraries
-allowing applications to use these kinds of linker options with meson.</p>
+are inserted into the command line before any objects and libraries,
+allowing applications to use these kinds of linker options with Meson.</p>
 <p>This is currently only supported when using the <code>ninja</code> backend.</p>
 <h2 id="machine-files-now-expand-as-the-users-home-directory">Machine files now expand <code>~</code> as the user's home directory</h2>
 <p>A new constant <code>~</code> has been added which can be used in machine files (native
@@ -325,14 +328,14 @@ extension modules produce a <code>cdylib</code> instead of a <code>dylib</code>.
 correct crate type for Python extension modules written in Rust, and
 previously had to be specified manually via <code>rust_crate_type: 'cdylib'</code>
 or <code>rust_abi: 'c'</code>.</p>
-<h2 id="meson-now-defines-qt_debug-or-qt_no_debug-depending-on-build-type">meson now defines <code>QT_DEBUG</code> or <code>QT_NO_DEBUG</code> depending on build type</h2>
-<p>When using the <code>qt</code> meson modules, the <code>QT_DEBUG</code> or <code>QT_NO_DEBUG</code> preprocessor macro is now set depending on the value of the <code>debug</code> built-in meson option.
-This mimicks the behavior of <code>qmake</code>, and is expected by the <code>&lt;QtGlobal&gt;</code> header.</p>
+<h2 id="meson-now-defines-qt_debug-or-qt_no_debug-depending-on-build-type">Meson now defines <code>QT_DEBUG</code> or <code>QT_NO_DEBUG</code> depending on build type</h2>
+<p>When using the <code>qt</code> Meson modules, the <code>QT_DEBUG</code> or <code>QT_NO_DEBUG</code> preprocessor macro is now set depending on the value of the <code>debug</code> built-in Meson option.
+This mimics the behavior of <code>qmake</code>, and is expected by the <code>&lt;QtGlobal&gt;</code> header.</p>
 <h2 id="compiler_target-method-in-the-rust-module">
 <code>compiler_target()</code> method in the Rust module</h2>
-<p>A <code>compiler_target()</code> that returns the Rust target triple has been added to
+<p>A <code>compiler_target()</code> method that returns the Rust target triple has been added to
 the <code>rust</code> module. This method can be useful when converting build scripts
-making use of the Cargo's <code>TARGET</code> and <code>HOST</code> environment variables to
+making use of Cargo's <code>TARGET</code> and <code>HOST</code> environment variables to
 Meson.</p>
 <h2 id="change-to-handling-of-linker-arguments-for-rust">Change to handling of linker arguments for Rust</h2>
 <p>Since the Rust compiler integrates the compiler and linker phase, previous
@@ -353,13 +356,13 @@ support for LTO auto and the C2x and CPP23 standards.</p>
 allows showing includes, as is possible with C or C++ compilers.
 Therefore, changes to files included by the <code>.rc</code> file did not trigger
 recompilation of the resource file.</p>
-<p>A workaround was added to <em>meson</em> by calling the preprocessor on the
+<p>A workaround was added to Meson by calling the preprocessor on the
 <code>.rc</code> file to display the included headers and allow ninja to record them
 as dependencies.</p>
 <h2 id="added-implicit_include_directories-argument-to-windowscompile_resources">Added <code>implicit_include_directories</code> argument to <code>windows.compile_resources</code>
 </h2>
 <p><a href="Windows-module.html">Windows</a> module <a href="Windows-module.html#compile_resources">compile_resources</a>
-now have a <code>implicit_include_directories</code> keyword argument to automatically
+now has an <code>implicit_include_directories</code> keyword argument to automatically
 add current build and source directories to the included paths when compiling
 a resource.</p>
 

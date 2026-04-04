@@ -454,10 +454,26 @@ outputs the C header and the VAPI. They can be renamed by setting the
                   vala_vapi: 'foo-1.0.vapi',
                   dependencies: [glib_dep, gobject_dep],
                   install: true,
-                  install_dir: [true, true, true])
+                  install_vala_header : true,
+                  install_vala_vapi : true,
+)
+</code></pre>
+<p><em>(Before Meson 1.11)</em> the <code>install_vala_*</code> keyword arguments did not exist,
+and setting additional outputs to install was done via passing an array to
+<code>install_dirs</code>. This array was in the form <code>[build_target, vala_header, vala_vapi, vala_gir]</code>. Any elements not specified are treated as <code>false</code>.
+Whether using the array format or the keywords, the accepted values are: <code>true</code>,
+which means "install in default location"; <code>false</code>, which means "do not
+install"; and a string value, which means "install to this location".</p>
+<pre><code class="language-meson">foo_lib = shared_library('foo', 'foo.vala',
+                  vala_header: 'foo.h',
+                  vala_vapi: 'foo-1.0.vapi',
+                  dependencies: [glib_dep, gobject_dep],
+                  install: true,
+                  install_dirs : [true, true, true],
+)
 </code></pre>
 <p>In this example, the second and third elements of the <code>install_dir</code>
-array indicate the destination with <code>true</code> to use default directories
+array indicate the destination with <code>true</code> to use default directories.
 (i.e. <code>include</code> and <code>share/vala/vapi</code>).</p>
 <h3 id="depending-on-c-header">Depending on C header</h3>
 <p><em>(since 1.10.0)</em></p>
@@ -497,11 +513,12 @@ typelib file, which is generated from the GIR.</p>
                   vala_gir: 'Foo-1.0.gir',
                   dependencies: [glib_dep, gobject_dep],
                   install: true,
-                  install_dir: [true, true, true, true])
+                  install_vala_header : true,
+                  install_vala_gir : true,
+                  install_vala_vapi : true,
+)
 </code></pre>
-<p>The <code>true</code> value in <code>install_dir</code> tells Meson to use the default
-directory (i.e. <code>share/gir-1.0</code> for GIRs). The fourth element in the
-<code>install_dir</code> array indicates where the GIR file will be installed.</p>
+<p>The default install location for gir files is <code>share/gir-1.0</code>.</p>
 <p>To then generate a typelib file use a custom target with the
 <code>g-ir-compiler</code> program and a dependency on the library:</p>
 <p><em>Since Meson 1.10</em>, use the <code>.vala_gir()</code> method to get a handle to the generated <code>.gir</code> file:</p>
