@@ -757,43 +757,33 @@ used in <code>python3</code> module because modules uses the current interpreter
 but dependency tries <code>pkg-config</code> first.</p>
 <p><code>method</code> may be <code>auto</code>, <code>extraframework</code>, <code>pkg-config</code> or <code>sysconfig</code></p>
 <h2 id="qt">Qt</h2>
-<p>Meson has native Qt support. Its usage is best demonstrated with an
-example.</p>
-<pre><code class="language-meson">qt5_mod = import('qt5')
-qt5widgets = dependency('qt5', modules : 'Widgets')
-
-processed = qt5_mod.preprocess(
-  moc_headers : 'mainWindow.h',   # Only headers that need moc should be put here
-  moc_sources : 'helperFile.cpp', # must have #include"moc_helperFile.cpp"
-  ui_files    : 'mainWindow.ui',
-  qresources  : 'resources.qrc',
-)
-
-q5exe = executable('qt5test',
-  sources     : ['main.cpp',
-                 'mainWindow.cpp',
-                 processed],
-  dependencies: qt5widgets)
+<p>Meson has native support for Qt</p>
+<pre><code class="language-meson">qt6_dep = dependency('qt6', modules : ['Core', 'Gui', 'Widgets'])
 </code></pre>
-<p>Here we have an UI file created with Qt Designer and one source and
-header file each that require preprocessing with the <code>moc</code> tool. We
-also define a resource file to be compiled with <code>rcc</code>. We just have to
-tell Meson which files are which and it will take care of invoking all
-the necessary tools in the correct order, which is done with the
-<code>preprocess</code> method of the <code>qt5</code> module. Its output is simply put in
-the list of sources for the target. The <code>modules</code> keyword of
-<code>dependency</code> works just like it does with Boost. It tells which
-subparts of Qt the program uses.</p>
-<p>You can set the <code>main</code> keyword argument to <code>true</code> to use the
-<code>WinMain()</code> function provided by qtmain static library (this argument
-does nothing on platforms other than Windows).</p>
-<p>Setting the optional <code>private_headers</code> keyword to true adds the
-private header include path of the given module(s) to the compiler
-flags. (since v0.47.0)</p>
-<p><strong>Note</strong> using private headers in your project is a bad idea, do so at
-your own risk.</p>
-<p><code>method</code> may be <code>auto</code>, <code>pkg-config</code>, <code>config-tool</code> or <code>qmake</code> (<em>deprecated
+<p>An optional <code>method</code> keyword argument can be set: <code>auto</code> (default), <code>pkg-config</code>, <code>config-tool</code> or <code>qmake</code> (<em>deprecated
 since 0.58.0</em>; use <code>config-tool</code> instead).</p>
+<p>The <code>modules</code> keyword receives an array of Qt module names that will be required
+and linked against.</p>
+<p>Obtaining the list of possible is not straightforward, here is a
+non exhaustive list of possible Qt6 modules:</p>
+<ul>
+<li><code>Core</code></li>
+<li><code>Gui</code></li>
+<li><code>Widgets</code></li>
+<li><code>Network</code></li>
+<li><code>Svg</code></li>
+<li><code>Quick</code></li>
+<li><code>Qml</code></li>
+<li><code>QuickWidgets</code></li>
+<li><code>QmlIntegration</code></li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>In Qt's documentation, the module names are referenced with and extra <code>Qt</code> prefix,
+e.g. <code>QtCore</code> or <code>QtQmlIntegration</code>.</li>
+<li>For more information on how to build a Qt application with meson, see the <a href="Qt6-module.html">Qt6 module</a>
+</li>
+</ul>
 <h2 id="sdl2">SDL2</h2>
 <p>SDL2 can be located using <code>pkg-config</code>, the <code>sdl2-config</code> config tool,
 as an OSX framework, or <code>cmake</code>.</p>
