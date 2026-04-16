@@ -460,7 +460,7 @@ outputs the C header and the VAPI. They can be renamed by setting the
 </code></pre>
 <p><em>(Before Meson 1.11)</em> the <code>install_vala_*</code> keyword arguments did not exist,
 and setting additional outputs to install was done via passing an array to
-<code>install_dirs</code>. This array was in the form <code>[build_target, vala_header, vala_vapi, vala_gir]</code>. Any elements not specified are treated as <code>false</code>.
+<code>install_dir</code>. This array was in the form <code>[build_target, vala_header, vala_vapi, vala_gir]</code>. Any elements not specified are treated as <code>false</code>.
 Whether using the array format or the keywords, the accepted values are: <code>true</code>,
 which means "install in default location"; <code>false</code>, which means "do not
 install"; and a string value, which means "install to this location".</p>
@@ -469,7 +469,7 @@ install"; and a string value, which means "install to this location".</p>
                   vala_vapi: 'foo-1.0.vapi',
                   dependencies: [glib_dep, gobject_dep],
                   install: true,
-                  install_dirs : [true, true, true],
+                  install_dir: [true, true, true],
 )
 </code></pre>
 <p>In this example, the second and third elements of the <code>install_dir</code>
