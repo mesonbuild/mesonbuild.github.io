@@ -234,7 +234,11 @@ that the <code>output:</code> is produced when the specified command is run.</p>
 <p>You can install the outputted file with the <code>install_dir:</code> kwarg, see below.</p>
 <p><em>(since 0.47.0)</em> When the <code>copy:</code> keyword argument is set to <code>true</code>,
 this function will copy the file provided in <code>input:</code> to a file in the
-build directory with the name <code>output:</code> in the current directory.</p>
+current build directory with the name provided in <code>output:</code>.
+The copy happens at configuration.  If the input file is subsequently
+modified, Meson will regenerate the build files.
+To perform the copy at build time (with the usual dependency on the source
+file) use <code>copyfile()</code> from the FS (filesystem) module.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h3 style="margin-top: 0px;" id="signature">Signature</h3>

@@ -800,6 +800,9 @@ checked into git.</p>
 uses <code>/D</code> for preprocessor defines, its <a href="https://learn.microsoft.com/en-us/cpp/build/reference/compiler-command-line-syntax">command-line syntax</a>
 accepts <code>-</code> instead of <code>/</code>.
 It's not necessary to treat preprocessor defines specially in Meson (<a href="https://github.com/mesonbuild/meson/issues/6269#issuecomment-560003922">GH-6269</a>).</p>
+<h2 id="why-do-all-outputs-go-to-the-build-directory-that-corresponds-to-the-source-directory-in-which-they-are-declared">Why do all outputs go to the build directory that corresponds to the source directory in which they are declared?</h2>
+<p>This simplifies debugging build problems, since you always know that files in
+build directory X must come from the corresponding source directory X.</p>
 
     </div>
         
