@@ -895,14 +895,13 @@ Commands:
     packagefiles                        Manage the packagefiles overlay
 </code></pre>
 <h3 id="test">test</h3>
-<pre><code class="language-inc">$ meson test [-h] [--maxfail MAXFAIL] [--repeat REPEAT] [--no-rebuild]
-             [--gdb] [--gdb-path GDB_PATH] [-i] [--list]
-             [--wrapper WRAPPER] [-C WD] [--suite SUITE] [--no-suite SUITE]
-             [--no-stdsplit] [--print-errorlogs] [--benchmark]
-             [--logbase LOGBASE] [-j NUM_PROCESSES] [-v] [-q]
-             [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
-             [--test-args TEST_ARGS] [--max-lines MAX_LINES]
-             [--slice SLICE/NUM_SLICES]
+<pre><code class="language-inc">$ meson test [-h] [-k MAXFAIL] [--repeat REPEAT] [--no-rebuild] [--gdb]
+             [--gdb-path GDB_PATH] [-i] [--list] [--wrapper WRAPPER]
+             [-C WD] [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
+             [--print-errorlogs] [--benchmark] [--logbase LOGBASE]
+             [-j NUM_PROCESSES] [-v] [-q] [-t TIMEOUT_MULTIPLIER]
+             [--setup SETUP] [--test-args TEST_ARGS]
+             [--max-lines MAX_LINES] [--slice SLICE/NUM_SLICES]
              [args ...]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
@@ -916,7 +915,7 @@ Commands:
 
 options:
   -h, --help                            show this help message and exit
-  --maxfail MAXFAIL                     Number of failing tests before aborting
+  -k MAXFAIL, --maxfail MAXFAIL         Number of failing tests before aborting
                                         the test run. (default: 0, to disable
                                         aborting on failure)
   --repeat REPEAT                       Number of times to run the tests.

@@ -386,7 +386,7 @@ passed directly to CustomTarget (<em>since 0.61.0</em>)</li>
 <li>
 <code>skip_source</code>: if true, skip source location comments</li>
 <li>
-<code>sources</code> [](str | File) <em>required</em>: the list of sources to use as inputs</li>
+<code>sources</code> [](str | File | CustomTarget | CustomTargetIndex | generator_output) <em>required</em>: the list of sources to use as inputs (build-time generated files only allowed <em>since 1.12.0</em>)</li>
 <li>
 <code>stdinc</code>: if true, include the standard marshallers from glib</li>
 <li>
@@ -591,7 +591,8 @@ library.</p>
 <li>
 <code>packages</code>: VAPI packages that are depended upon</li>
 <li>
-<code>sources</code>: the gir source to generate the VAPI from</li>
+<code>sources</code>: the gir source to generate the VAPI from (File objects
+only supported <em>since 1.12.0</em>)</li>
 <li>
 <code>vapi_dirs</code>: extra directories to include for VAPI files</li>
 </ul>
