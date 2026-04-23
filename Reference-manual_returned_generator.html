@@ -246,9 +246,10 @@ which can then, for example, be passed into a build target definition.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> <b>source</b>...,  # sources to process
 
   # Keyword arguments:
-  <a href="Reference-manual_returned_generator.html#process_env"><b>env</b></a>                : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]  # environment variables to set, such as
-  <a href="Reference-manual_returned_generator.html#process_extra_args"><b>extra_args</b></a>         : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                    # If present, will be used to replace an entry `@EXTRA_ARGS@` in the argument array
-  <a href="Reference-manual_returned_generator.html#process_preserve_path_from"><b>preserve_path_from</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                           # If given, specifies that the output files need to maintain their directory structure
+  <a href="Reference-manual_returned_generator.html#process_depends"><b>depends</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins>build_tgt</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]  # An array of build targets that must be built before attempting to run this
+  <a href="Reference-manual_returned_generator.html#process_env"><b>env</b></a>                : <a href="Reference-manual_returned_env.html"><ins>env</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                # environment variables to set, such as
+  <a href="Reference-manual_returned_generator.html#process_extra_args"><b>extra_args</b></a>         : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                  # If present, will be used to replace an entry `@EXTRA_ARGS@` in the argument array
+  <a href="Reference-manual_returned_generator.html#process_preserve_path_from"><b>preserve_path_from</b></a> : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                         # If given, specifies that the output files need to maintain their directory structure
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments">Arguments</h4>
@@ -275,6 +276,22 @@ accepts the following keyword arguments:</p>
       </tr>
     </thead>
     <tbody class="nomargin">
+      <tr id="process_depends">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depends</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>An array of build targets that must be built before attempting to run this
+generator against the source files. This extends the <code>depends</code> value of the
+generator to be run.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.12.0)</em></p>
+  </div>
+  </td>
+      </tr>
       <tr id="process_env">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">env</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
