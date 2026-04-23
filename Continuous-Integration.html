@@ -423,29 +423,6 @@ the AppVeyor docs for more details.</p>
 <p>The following statement is sufficient for Meson to find Boost:</p>
 <pre><code class="language-yaml"> - cmd: set BOOST_ROOT=C:\Libraries\boost_1_67_0
 </code></pre>
-<h2 id="travis-without-docker">Travis without Docker</h2>
-<p>Non-Docker Travis-CI builds can use Linux, MacOS or Windows.
-Set the desired compiler(s) in the build <strong>matrix</strong>.
-This example is for <strong>Linux</strong> (Ubuntu 18.04) and <strong>C</strong>.</p>
-<pre><code class="language-yaml">dist: bionic
-group: travis_latest
-
-os: linux
-language: python
-
-matrix:
-  include:
-    - env: CC=gcc
-    - env: CC=clang
-
-install:
-  - pip install meson ninja
-
-script:
-  - meson setup builddir
-  - meson compile -C builddir
-  - meson test -C builddir
-</code></pre>
 <h2 id="github-actions">GitHub Actions</h2>
 <p>GitHub Actions provides a versatile platform for continuous integration
 (CI). This example workflow file, <code>ci_meson.yml</code>, is tailored for C-based

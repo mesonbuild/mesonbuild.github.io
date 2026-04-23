@@ -223,6 +223,11 @@ $('body').removeClass('no-script');
 <code>fs.copyfile()</code> now has a <code>build_subdir</code> argument</h2>
 <p><code>fs.copyfile()</code>'s new <code>build_subdir</code> argument allows creating a file
 inside a subdirectory of the current build directory.</p>
+<h2 id="fscopyfile-now-accepts-build-targets-as-input">
+<code>fs.copyfile()</code> now accepts build targets as input</h2>
+<p><code>fs.copyfile()</code> now accepts <code>build_tgt</code>, <code>custom_tgt</code>, and <code>custom_idx</code>
+as the source argument, in addition to <code>File</code> and <code>str</code>. This makes it
+possible to copy build artifacts without resorting to a <code>custom_target</code>.</p>
 <h2 id="added-depends-kwarg-to-generatorprocess">Added <code>depends</code> kwarg to <code>generator.process()</code>
 </h2>
 <p>The <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a> method now supports specifying <code>depends</code> as a kwarg
