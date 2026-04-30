@@ -897,11 +897,12 @@ Commands:
 <h3 id="test">test</h3>
 <pre><code class="language-inc">$ meson test [-h] [-k MAXFAIL] [--repeat REPEAT] [--no-rebuild] [--gdb]
              [--gdb-path GDB_PATH] [-i] [--list] [--wrapper WRAPPER]
-             [-C WD] [--suite SUITE] [--no-suite SUITE] [--no-stdsplit]
-             [--print-errorlogs] [--benchmark] [--logbase LOGBASE]
-             [-j NUM_PROCESSES] [-v] [-q] [-t TIMEOUT_MULTIPLIER]
-             [--setup SETUP] [--test-args TEST_ARGS]
-             [--max-lines MAX_LINES] [--slice SLICE/NUM_SLICES]
+             [-C WD] [--suite SUITE] [--no-suite SUITE] [--exclude EXCLUDE]
+             [--no-stdsplit] [--print-errorlogs] [--benchmark]
+             [--logbase LOGBASE] [-j NUM_PROCESSES] [-v] [-q]
+             [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
+             [--test-args TEST_ARGS] [--max-lines MAX_LINES]
+             [--slice SLICE/NUM_SLICES]
              [args ...]
 </code></pre>
 <p>Run tests for the configure Meson project.</p>
@@ -931,6 +932,7 @@ options:
                                         suite.
   --no-suite SUITE                      Do not run tests belonging to the given
                                         suite.
+  --exclude EXCLUDE                     Exclude tests with the given name.
   --no-stdsplit                         Do not split stderr and stdout in test
                                         logs.
   --print-errorlogs                     Whether to print failing tests' logs.

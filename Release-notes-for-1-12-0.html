@@ -227,6 +227,13 @@ inside a subdirectory of the current build directory.</p>
 </h2>
 <p>The <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a> method now supports specifying <code>depends</code> as a kwarg
 to extend the list of dependencies for generated files.</p>
+<h2 id="meson-test-now-accepts-exclude">
+<code>meson test</code> now accepts <code>--exclude</code>
+</h2>
+<p><code>meson test</code> has a new <code>--exclude</code> argument to allow skipping named
+tests. It takes a full test name and can be specified repeatedly. This
+should help distributions that need to skip tests irrelevant for them
+or known to be buggy.</p>
 
     </div>
         
