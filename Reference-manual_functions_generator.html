@@ -273,11 +273,11 @@ installed, and so on, use a <a href="Reference-manual_functions.html#custom_targ
   <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> <a href="Reference-manual_functions_generator.html#generator_exe"><b>exe</b></a>,     # Executable for the command to run
 
   # Keyword arguments:
-  <a href="Reference-manual_functions_generator.html#generator_arguments"><b>arguments</b></a> : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                  # An array of template strings that will be the command line arguments passed to the executable
-  <a href="Reference-manual_functions_generator.html#generator_capture"><b>capture</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                        # When this argument is set to true, Meson captures `stdout`
-  <a href="Reference-manual_functions_generator.html#generator_depends"><b>depends</b></a>   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins>build_tgt</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]  # An array of build targets that must be built before
-  <a href="Reference-manual_functions_generator.html#generator_depfile"><b>depfile</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                         # A template string pointing to a dependency file that a
-  <a href="Reference-manual_functions_generator.html#generator_output"><b>output</b></a>    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                  # Template string (or array of template strings) defining
+  <a href="Reference-manual_functions_generator.html#generator_arguments"><b>arguments</b></a> : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                            # An array of template strings that will be the command line arguments passed to the executable
+  <a href="Reference-manual_functions_generator.html#generator_capture"><b>capture</b></a>   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                  # When this argument is set to true, Meson captures `stdout`
+  <a href="Reference-manual_functions_generator.html#generator_depends"><b>depends</b></a>   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins>build_tgt</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a>]  # An array of build targets that must be built before
+  <a href="Reference-manual_functions_generator.html#generator_depfile"><b>depfile</b></a>   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                   # A template string pointing to a dependency file that a
+  <a href="Reference-manual_functions_generator.html#generator_output"><b>output</b></a>    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                            # Template string (or array of template strings) defining
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h3 id="arguments">Arguments</h3>
@@ -362,13 +362,13 @@ specified as <code>output</code>.</p>
       <tr id="generator_depends">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">depends</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a>]</td>
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins><code>custom_idx</code></ins></a> | <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>An array of build targets that must be built before
 this generator can be run. This is used if you have a generator that calls
 a second executable that is built in this project (custom_idx was not
-available between 0.60 and 1.4.0).</p>
+available between 0.60 and 1.4.0).  <code>program</code> is supported <em>since 1.11.2</em>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">

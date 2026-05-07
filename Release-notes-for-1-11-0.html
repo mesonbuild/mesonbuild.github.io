@@ -366,6 +366,14 @@ as dependencies.</p>
 now has an <code>implicit_include_directories</code> keyword argument to automatically
 add current build and source directories to the included paths when compiling
 a resource.</p>
+<h2 id="external-programs-as-inputs-and-dependencies-to-custom-targets">External programs as inputs and dependencies to custom targets</h2>
+<p>Custom targets now allow specifying an external program in
+the <code>input</code> and <code>depends</code> keyword arguments.  This also applies
+to several methods provided by modules, as they are lowered to
+custom targets internally. (<em>Added in 1.11.2</em>).</p>
+<h2 id="external-programs-as-dependencies-to-tests">External programs as dependencies to tests</h2>
+<p>Tests now allow specifying an external program in
+the <code>depends</code> keyword argument. (<em>Added in 1.11.2</em>).</p>
 
     </div>
         
