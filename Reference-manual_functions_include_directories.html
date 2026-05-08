@@ -219,12 +219,11 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h2 id="include_directories">include_directories()</h2>
-<p>Returns an opaque object which contains the directories (relative to
-the current directory) given in the positional arguments. The result
-can then be passed to the <code>include_directories:</code> keyword argument when
-building executables or libraries. You can use the returned object in
-any subdirectory you want, Meson will make the paths work
-automatically.</p>
+<p>Returns an opaque object which contains the directories (relative to the
+current directory) given in the positional arguments. The result can then be
+passed to the <code>include_directories:</code> and <code>d_import_dirs:</code> keyword arguments
+when building executables or libraries. You can use the returned object in any
+subdirectory you want, Meson will make the paths work automatically.</p>
 <p>Note that this function call itself does not add the directories into
 the search path, since there is no global search path. For something
 like that, see <a href="Reference-manual_functions_include_directories.html#add_project_arguments"><code>add_project_arguments()</code></a>.</p>
@@ -242,7 +241,7 @@ relative to the source root and one relative to the build root.</p>
 </div>
 </div>
 </div>
-<pre><code class="language-meson"># Returns an opaque object which contains the directories (relative to
+<pre><code class="language-meson"># Returns an opaque object which contains the directories (relative to the
 <a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> include_directories(
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> <b>includes</b>...,  # Include paths to add
 
