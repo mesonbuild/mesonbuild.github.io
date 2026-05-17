@@ -240,6 +240,12 @@ information.</p>
 tests. It takes a full test name and can be specified repeatedly. This
 should help distributions that need to skip tests irrelevant for them
 or known to be buggy.</p>
+<h2 id="werrortrue-now-applies-to-the-linker-as-well">
+<code>werror=true</code> now applies to the linker as well</h2>
+<p>When <code>werror=true</code> is set, Meson now passes the appropriate
+fatal-warnings flag to the linker (for example <code>--fatal-warnings</code>
+for GNU ld, <code>-fatal_warnings</code> for Apple ld, <code>/WX</code> for MSVC link).
+Previously, <code>werror=true</code> only affected compiler warnings.</p>
 
     </div>
         

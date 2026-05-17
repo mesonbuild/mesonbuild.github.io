@@ -241,7 +241,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> <b>source</b>...,       # Input source to compile
 
   # Keyword arguments:
-  <a href="Reference-manual_functions_both_libraries.html#both_libraries__lang__args"><b>&lt;lang&gt;_args</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # compiler flags to use for the given language;
+  <a href="Reference-manual_functions_both_libraries.html#both_libraries__lang__args"><b>&lt;lang&gt;_args</b></a>                  : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # compiler flags to use for the given language; eg: `cpp_args` for C++
   <a href="Reference-manual_functions_both_libraries.html#both_libraries__lang__pch"><b>&lt;lang&gt;_pch</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # precompiled header file to use for the given language
   <a href="Reference-manual_functions_both_libraries.html#both_libraries__lang__shared_args"><b>&lt;lang&gt;_shared_args</b></a>           : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Arguments that are only passed to a shared library
   <a href="Reference-manual_functions_both_libraries.html#both_libraries__lang__static_args"><b>&lt;lang&gt;_static_args</b></a>           : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                              # Arguments that are only passed to a static library
@@ -286,7 +286,6 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_shortname"><b>shortname</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # A string specifying a DLL name fitting to 8
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_sources"><b>sources</b></a>                      : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a> | <a href="Reference-manual_returned_generated_list.html"><ins>generated_list</ins></a> | <a href="Reference-manual_returned_structured_src.html"><ins>structured_src</ins></a>  # Additional source files
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_soversion"><b>soversion</b></a>                    : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a>                                                               # A string or integer specifying the soversion of this shared library,
-  <a href="Reference-manual_functions_both_libraries.html#both_libraries_vala_args"><b>vala_args</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Compiler flags for Vala
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_vala_gir"><b>vala_gir</b></a>                     : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # If set, generates a GIR file with the given name
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_vala_header"><b>vala_header</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # On Vala targets, this provides a way to override the name of the generated
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_vala_shared_args"><b>vala_shared_args</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>]                                                       # Arguments that are only passed to a shared library
@@ -377,11 +376,10 @@ accepts the following keyword arguments:</p>
       <tr id="both_libraries__lang__args">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">&lt;lang&gt;_args</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>compiler flags to use for the given language;
-eg: <code>cpp_args</code> for C++</p>
+<p>compiler flags to use for the given language; eg: <code>cpp_args</code> for C++</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1132,19 +1130,6 @@ of the aliases of the Linux shared library would be
 <code>libfoo.so.4</code>. If this is not specified, the first part of <code>version</code>
 is used instead (see below). For example, if <code>version</code> is <code>3.6.0</code> and
 <code>soversion</code> is not defined, it is set to <code>3</code>.</p>
-  </td>
-        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
-<div style="margin: 0px; text-align: center;">
-  </div>
-  </td>
-      </tr>
-      <tr id="both_libraries_vala_args">
-        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">vala_args</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_returned_file.html"><ins><code>file</code></ins></a>]</td>
-        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
-        <td style="width: 56%; padding: 6px;">
-<p>Compiler flags for Vala. Unlike other languages this may contain Files</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
