@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
 <link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
-<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
 <link rel="stylesheet" href="assets/css/notes.css" type="text/css">
@@ -346,6 +346,24 @@ cargo_ws.package().executable(install: true)
 <p>It is still possible to use keyword arguments to link non-Rust build targets,
 or even to use the usual Meson functions such as <a href="Reference-manual_functions.html#static_library"><ins><code>static_library()</code></ins></a> or
 <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.</p>
+<h3 id="nondefault-and-wildcard-workspace-members">Non-default and wildcard workspace members</h3>
+<p>With Cargo, workspace members that are not included in
+<code>workspace.default-members</code> can be accessed through the <code>-p</code> option.
+In Meson, non-default members are not part of dependency resolution
+by default; the set of optional packages that has to be configured
+is specified <em>since 1.12.0</em> in the <code>extra_members</code> argument of the
+<code>workspace()</code> method, while up to Meson 1.11.x non-default members would
+never be built.</p>
+<p>Cargo subprojects will only build default members unless they have a custom
+(handwritten) <code>meson.build</code> that sets <code>extra_members</code> appropriately;
+typically the choice of which members to build will come from a Meson
+option.</p>
+<p>Furthermore, while Cargo accepts glob patterns for the <code>workspace.members</code>
+field, Meson (<em>since 1.12.0</em>) expands such patterns but never treats
+globbed patterns as default members.  Therefore, they will only be built
+if included in <code>extra_members</code>.</p>
+<p>Note that crates that come from <code>crates.io</code> are never workspaces, and
+therefore they are not subject to these differences.</p>
 
     </div>
         

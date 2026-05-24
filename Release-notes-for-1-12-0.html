@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
 <link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
-<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
 <link rel="stylesheet" href="assets/css/notes.css" type="text/css">
@@ -233,6 +233,11 @@ to extend the list of dependencies for generated files.</p>
 some LTS releases. See the <a href="FAQ.html#Do-you-at-least-support-my-ancient-python-install">FAQ
 entry</a> for more
 information.</p>
+<h2 id="nondefault-members-of-cargo-workspaces-can-now-be-built">Non-default members of Cargo workspaces can now be built</h2>
+<p>The new keyword argument <code>extra_members</code> to the <code>workspace()</code> method
+allows configuring non-default members of a Cargo workspace.  Previously,
+non-default members were never used for dependency resolution and
+could not be built.</p>
 <h2 id="meson-test-now-accepts-exclude">
 <code>meson test</code> now accepts <code>--exclude</code>
 </h2>

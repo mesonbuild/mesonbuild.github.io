@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
 <link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
 <link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
-<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
 <link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
 
 <link rel="stylesheet" href="assets/css/notes.css" type="text/css">
@@ -406,6 +406,9 @@ workspace.</p>
 <code>default_features</code>: (<code>bool</code>, optional) Whether to enable default features.</li>
 <li>
 <code>features</code>: (<code>array[str]</code>, optional) List of additional features to enable globally.</li>
+<li>
+<code>extra_members</code>: (<code>array[str]</code>, optional) <em>Since 1.12.0</em> list of non-default
+workspace members to configure.</li>
 </ul>
 <p>A project that wishes to use Cargo subprojects should have <code>Cargo.lock</code> and <code>Cargo.toml</code>
 files in the root source directory, and should call this function before using
@@ -437,7 +440,9 @@ say "require this specific configuration," which may conflict with the parent pr
 <h3 id="workspacepackages">workspace.packages()</h3>
 <pre><code class="language-meson">packages = ws.packages()
 </code></pre>
-<p>Returns a list of package names in the workspace.</p>
+<p>Returns a list of configured package names in the workspace.  Non-default
+workspace members are not included unless they were passed as <code>extra_members</code>
+when the workspace was created.</p>
 <h3 id="workspacepackage">workspace.package()</h3>
 <pre><code class="language-meson">pkg = ws.package([package_name])
 </code></pre>
