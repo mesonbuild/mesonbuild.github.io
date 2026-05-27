@@ -271,9 +271,21 @@ int_1365 = 0b10101010101
 <pre><code class="language-meson">string_var = '42'
 num = string_var.to_int()
 </code></pre>
+<p>Hexadecimal, octal, and binary strings can be converted to numbers since
+1.12.0:</p>
+<pre><code class="language-meson">hex_var = '0xFF'.to_int()    # 255
+oct_var = '0o755'.to_int()   # 493
+bin_var = '0b1010'.to_int()  # 10
+</code></pre>
 <p>Numbers can be converted to a string:</p>
 <pre><code class="language-meson">int_var = 42
 string_var = int_var.to_string()
+</code></pre>
+<p>Numbers can be formatted as hexadecimal, octal, or binary strings since 1.12.0:</p>
+<pre><code class="language-meson">int_var = 255
+hex_str = int_var.to_string(format: 'hex')  # '0xff'
+oct_str = int_var.to_string(format: 'oct')  # '0o377'
+bin_str = int_var.to_string(format: 'bin')  # '0b11111111'
 </code></pre>
 <h2 id="booleans">Booleans</h2>
 <p>A boolean is either <code>true</code> or <code>false</code>.</p>

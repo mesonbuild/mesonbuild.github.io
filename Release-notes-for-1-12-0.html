@@ -227,6 +227,14 @@ inside a subdirectory of the current build directory.</p>
 </h2>
 <p>The <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a> method now supports specifying <code>depends</code> as a kwarg
 to extend the list of dependencies for generated files.</p>
+<h2 id="added-integer-base-conversions-to-strto_int-and-intto_string">Added integer base conversions to <code>str.to_int()</code> and <code>int.to_string()</code>
+</h2>
+<p>Meson strings can now be converted from hexadecimal, octal, and binary
+integer literals with <code>str.to_int()</code>. Integers can also be formatted back to
+strings in those bases with <code>int.to_string(format:)</code>.</p>
+<pre><code class="language-meson">assert('0xff'.to_int() == 255)
+assert(255.to_string(format: 'hex') == '0xff')
+</code></pre>
 <h2 id="support-for-python-37-38-and-39-dropped">Support for Python 3.7, 3.8, and 3.9 dropped</h2>
 <p>Meson 1.12 is the first version to require Python version 3.10 or greater.</p>
 <p>Support for older versions of Python is maintained with bug fixes only for
