@@ -268,6 +268,23 @@ or known to be buggy.</p>
 fatal-warnings flag to the linker (for example <code>--fatal-warnings</code>
 for GNU ld, <code>-fatal_warnings</code> for Apple ld, <code>/WX</code> for MSVC link).
 Previously, <code>werror=true</code> only affected compiler warnings.</p>
+<h2 id="i18nxgettext-recursive-option-now-includes-private-dependencies">i18n.xgettext recursive option now includes "private" dependencies</h2>
+<p>Suppose we have:</p>
+<pre><code>libA.dll -&gt; libB.dll -&gt; libC.dll
+</code></pre>
+<p>Here, <code>libA</code> links with <code>libB</code>, and <code>libB</code> links with <code>libC</code>, but <code>libA</code> does
+not link with <code>libC</code> directly. So, <code>libC</code> is a "private" dependency of <code>libB</code>.
+If we collect strings to translate using:</p>
+<pre><code>i18n.xgettext(libC)
+i18n.xgettext(libB)
+pot_file = i18n.xgettext(libA, recursive: true)
+</code></pre>
+<p>Previously, strings from <code>libC</code> would not be included in <code>pot_file</code>, since
+<code>libC</code> is not a direct link dependency of <code>libA</code>. This has been fixed: when
+the <code>recursive: true</code> option is used, <code>xgettext</code> now recursively includes
+translations from all dependencies, including those of dependencies. This is
+more logical, as even if <code>libA</code> does not directly link with <code>libC</code>, it may
+still need translated strings from <code>libC</code>.</p>
 
     </div>
         
