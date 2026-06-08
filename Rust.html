@@ -286,6 +286,10 @@ be configured to use the file as it's not in the source root (Meson does not
 write files into the source directory). <a href="https://rust-analyzer.github.io/book/non_cargo_based_projects.html">See the upstream
 docs</a> for
 more information on how to configure that.</p>
+<h3 id="clippy">Clippy</h3>
+<p>You can use the "clippy-json" build target as rust-analyer's "check command" to recieve clippy diagnostics in your editor.</p>
+<p>Without overriding the check command, the LSP will function in a limited state, only showing certain errors (for example, no borrow checking errors are shown).</p>
+<p><a href="https://rust-analyzer.github.io/book/non_cargo_based_projects.html">Non cargo based projects</a> shows how to override the check command, you probably want to set it to <code>ninja clippy-json -C build</code>.</p>
 <h2 id="linking-with-standard-libraries">Linking with standard libraries</h2>
 <p>Meson will link the Rust standard libraries (e.g. libstd) statically, unless the
 target is a proc macro or dylib, or it depends on a dylib, in which case <a href="https://doc.rust-lang.org/rustc/codegen-options/index.html#prefer-dynamic"><code>-C prefer-dynamic</code></a>

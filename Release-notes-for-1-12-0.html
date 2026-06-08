@@ -222,6 +222,10 @@ $('body').removeClass('no-script');
 <h2 id="custom-dependency-for-atomic-now-works-on-msvc">Custom dependency for atomic now works on MSVC</h2>
 <p><code>dependency('atomic')</code> now works on MSVC &gt;=19.35.32124.
 It requires <code>c_std=c11</code> or later, otherwise the dependency will return not found.</p>
+<h2 id="new-clippyjson-ninja-target-for-rustanalyzer">New "clippy-json" Ninja Target For rust-analyzer</h2>
+<p>A new <code>clippy-json</code> ninja target will now be generated for rust projects.</p>
+<p>rust-analyzer supports non-cargo based projects so long as you provide it with a <code>rust-project.json</code> file and a custom "check command" to provide compiler errors.  Meson already for some time has generated a <code>rust-project.json</code> file for rust-analyzer, but had no way to hook up its rustc/clippy output to rust-analyzer.</p>
+<p>To use the new feature, you need to override the rust-analyzer check command as shown <a href="https://rust-analyzer.github.io/book/non_cargo_based_projects.html">in the rust-analyzer documentation</a>, and set it to a <code>ninja invocation along the lines of</code>ninja clippy-json -C build`.</p>
 <h2 id="fscopyfile-now-has-a-build_subdir-argument">
 <code>fs.copyfile()</code> now has a <code>build_subdir</code> argument</h2>
 <p><code>fs.copyfile()</code>'s new <code>build_subdir</code> argument allows creating a file
@@ -244,6 +248,10 @@ assert(255.to_string(format: 'hex') == '0xff')
 <p>Previously, the <code>--recursive</code> option to <code>meson format</code> required
 either <code>--inplace</code> or <code>--output</code>.  With this version, <code>--check-diff</code>
 is allowed to.</p>
+<h2 id="new-option-subprojects-for-meson-format">New option <code>--subprojects</code> for <code>meson format</code>
+</h2>
+<p>A new option <code>--subprojects</code>, to be specified together with <code>--recursive</code>,
+tells <code>meson format</code> to also recurse into subprojects.</p>
 <h2 id="support-for-python-37-38-and-39-dropped">Support for Python 3.7, 3.8, and 3.9 dropped</h2>
 <p>Meson 1.12 is the first version to require Python version 3.10 or greater.</p>
 <p>Support for older versions of Python is maintained with bug fixes only for
