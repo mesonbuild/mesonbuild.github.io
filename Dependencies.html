@@ -762,6 +762,9 @@ but dependency tries <code>pkg-config</code> first.</p>
 </code></pre>
 <p>An optional <code>method</code> keyword argument can be set: <code>auto</code> (default), <code>pkg-config</code>, <code>config-tool</code> or <code>qmake</code> (<em>deprecated
 since 0.58.0</em>; use <code>config-tool</code> instead).</p>
+<p>An optional <code>main</code> boolean keyword argument can be set to <code>true</code> to add a link
+dependency on <code>Qt6EntryPoint</code> on Windows, which is in most cases necessary to
+be able to compile <code>win_subsystem: 'windows'</code> executables.</p>
 <p>The <code>modules</code> keyword receives an array of Qt module names that will be required
 and linked against.</p>
 <p>Obtaining the list of possible is not straightforward, here is a

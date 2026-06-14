@@ -242,6 +242,12 @@ strings in those bases with <code>int.to_string(format:)</code>.</p>
 <pre><code class="language-meson">assert('0xff'.to_int() == 255)
 assert(255.to_string(format: 'hex') == '0xff')
 </code></pre>
+<h2 id="multiple-positional-arguments-for-meson-wrap-install">Multiple positional arguments for <code>meson wrap install</code>
+</h2>
+<p>Previously <code>meson wrap install</code> only accepted a single wrap name to install.
+This limitation has now been lifted, and it is now possible to specify
+multiple wrap names for installation. The exit code will be non-zero
+if <em>any</em> of the wraps fail to install.</p>
 <h2 id="meson-format-allows-recursive-with-checkdiff">
 <code>meson format</code> allows <code>--recursive</code> with <code>--check-diff</code>
 </h2>

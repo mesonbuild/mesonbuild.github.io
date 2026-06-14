@@ -273,7 +273,12 @@ the install command.</p>
 Installed libjpeg branch 9a revision 2
 </code></pre>
 <p>Now you can issue a <code>subproject('libjpeg')</code> in your <code>meson.build</code> file
-to use it.</p>
+to use it. Since <em>1.12.0</em> you may also specify multiple dependencies to install.</p>
+<pre><code>$ meson wrap install cairo pango harfbuzz
+Installed cairo version 1.18.0 revision 1
+Installed pango version 1.51.0 revision 2
+Installed harfbuzz version 8.3.1 revision 1
+</code></pre>
 <p>To check if your projects are up to date you can issue the <code>status</code> command.</p>
 <pre><code>$ meson wrap status
 Subproject status
