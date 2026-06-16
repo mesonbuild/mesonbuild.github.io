@@ -287,6 +287,14 @@ or known to be buggy.</p>
 fatal-warnings flag to the linker (for example <code>--fatal-warnings</code>
 for GNU ld, <code>-fatal_warnings</code> for Apple ld, <code>/WX</code> for MSVC link).
 Previously, <code>werror=true</code> only affected compiler warnings.</p>
+<h2 id="added-win_subsystem-to-shared_library-and-shared_module">Added <code>win_subsystem</code> to <code>shared_library()</code> and <code>shared_module()</code>
+</h2>
+<p>Synonym for the one found in <code>executable()</code>.</p>
+<p>Mostly useful for setting the subsystem version in PE headers.
+This can affects Windows's ShimEngine, but not SxS lookups. Usually you still
+want to provide a manifest when targeting modern Windows.
+Sometime also useful for targeting other subsystems.</p>
+<p>Visual Studio backends now also properly supports setting subsystem versions.</p>
 <h2 id="i18nxgettext-recursive-option-now-includes-private-dependencies">i18n.xgettext recursive option now includes "private" dependencies</h2>
 <p>Suppose we have:</p>
 <pre><code>libA.dll -&gt; libB.dll -&gt; libC.dll
