@@ -444,7 +444,7 @@ say "require this specific configuration," which may conflict with the parent pr
 workspace members are not included unless they were passed as <code>extra_members</code>
 when the workspace was created.</p>
 <h3 id="workspacepackage">workspace.package()</h3>
-<pre><code class="language-meson">pkg = ws.package([package_name])
+<pre><code class="language-meson">pkg = ws.package([package_name], ...)
 </code></pre>
 <p>Returns a package object for the given package member.  If empty, returns
 the object for the root package.</p>
@@ -454,6 +454,13 @@ the object for the root package.</p>
 <code>package_name</code>: (str, optional) Name of the package; not needed for the
 root package of a workspace</li>
 </ul>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>native</code>: (<code>bool</code>) Whether the package is compiled for the
+host machine (false) or the build machine (true).  The argument is
+forwarded to Meson by methods such as <code>executable</code>, <code>library</code>, etc.</li>
+</ul>
 <p>Example usage:</p>
 <pre><code class="language-meson">rustmod = import('rust')
 cargo_ws = rustmod.workspace()
@@ -461,7 +468,7 @@ pkg = cargo_ws.package()
 pkg.executable(install: true)
 </code></pre>
 <h3 id="workspacesubproject">workspace.subproject()</h3>
-<pre><code class="language-meson">package = ws.subproject(package_name, api)
+<pre><code class="language-meson">package = ws.subproject(package_name, api, ...)
 </code></pre>
 <p>Returns a <code>package</code> object for managing a specific package within the workspace.</p>
 <p>Positional arguments:</p>
@@ -470,6 +477,13 @@ pkg.executable(install: true)
 <code>package_name</code>: (<code>str</code>) The name of the package to retrieve</li>
 <li>
 <code>api</code>: (<code>str</code>, optional) The version constraints for the package in Cargo format</li>
+</ul>
+<p>Keyword arguments:</p>
+<ul>
+<li>
+<code>native</code>: (<code>bool</code>) Whether the subproject is compiled for the
+host machine (false) or the build machine (true).  Default is false
+(proc-macro crates are only built once).</li>
 </ul>
 <h2 id="package-object">Package object</h2>
 <p>The package object returned by <code>workspace.subproject()</code> provides methods

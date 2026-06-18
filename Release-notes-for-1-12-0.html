@@ -234,6 +234,16 @@ inside a subdirectory of the current build directory.</p>
 </h2>
 <p>The <a href="Reference-manual_returned_generator.html#generatorprocess"><ins><code>generator.process()</code></ins></a> method now supports specifying <code>depends</code> as a kwarg
 to extend the list of dependencies for generated files.</p>
+<h2 id="added-msgfmt_args-arg-to-i18ngettext">Added <code>msgfmt_args</code> arg to <code>i18n.gettext</code>
+</h2>
+<p><code>i18n.gettext</code> now supports the <code>msgfmt_args</code> argument.
+This argument can be used to pass additional arguments to
+<code>msgfmt</code> when building the translations.</p>
+<pre><code class="language-meson">i18n = import('i18n')
+i18n.gettext('mycatalog',
+             args : ['-k_', '-kN_'],
+             msgfmt_args : ['--use-fuzzy'])
+</code></pre>
 <h2 id="added-integer-base-conversions-to-strto_int-and-intto_string">Added integer base conversions to <code>str.to_int()</code> and <code>int.to_string()</code>
 </h2>
 <p>Meson strings can now be converted from hexadecimal, octal, and binary
@@ -274,6 +284,17 @@ and <code>moc_headers</code>.</p>
 allows configuring non-default members of a Cargo workspace.  Previously,
 non-default members were never used for dependency resolution and
 could not be built.</p>
+<h2 id="subproject-and-mesonoverride_find_program-now-support-the-native-keyword-argument">subproject() and meson.override_find_program() now support the native keyword argument</h2>
+<p>Subprojects may now be built for the host or build machine (or both). Therefore,
+in a cross compile setup, build-time dependencies can be built for the machine
+running the build. When a subproject is run for the build machine it will act
+just like a normal build == host setup, except that no targets will be installed.</p>
+<p>This necessarily means that <code>meson.override_find_program()</code> must differentiate
+between programs for the host and those for the build machine, as you may need
+two versions of the same program, which have different outputs based on the
+machine they are for. For backwards compatibility reasons the default is for the
+host machine. Inside a native subproject the host and build machine will both be
+the build machine.</p>
 <h2 id="meson-test-now-accepts-exclude">
 <code>meson test</code> now accepts <code>--exclude</code>
 </h2>
