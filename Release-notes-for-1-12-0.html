@@ -226,6 +226,10 @@ It requires <code>c_std=c11</code> or later, otherwise the dependency will retur
 <p>A new <code>clippy-json</code> ninja target will now be generated for rust projects.</p>
 <p>rust-analyzer supports non-cargo based projects so long as you provide it with a <code>rust-project.json</code> file and a custom "check command" to provide compiler errors.  Meson already for some time has generated a <code>rust-project.json</code> file for rust-analyzer, but had no way to hook up its rustc/clippy output to rust-analyzer.</p>
 <p>To use the new feature, you need to override the rust-analyzer check command as shown <a href="https://rust-analyzer.github.io/book/non_cargo_based_projects.html">in the rust-analyzer documentation</a>, and set it to a <code>ninja invocation along the lines of</code>ninja clippy-json -C build`.</p>
+<h2 id="find_program-now-respects-forcefallbackfor">find_program() now respects --force-fallback-for</h2>
+<p>If a subproject listed in --force-fallback-for provides a particular
+program (via program_names in its wrapfile), find_program will use the
+program from the subproject instead of looking it up from the system.</p>
 <h2 id="fscopyfile-now-has-a-build_subdir-argument">
 <code>fs.copyfile()</code> now has a <code>build_subdir</code> argument</h2>
 <p><code>fs.copyfile()</code>'s new <code>build_subdir</code> argument allows creating a file
@@ -295,6 +299,8 @@ two versions of the same program, which have different outputs based on the
 machine they are for. For backwards compatibility reasons the default is for the
 host machine. Inside a native subproject the host and build machine will both be
 the build machine.</p>
+<p>Cargo workspaces use this feature automatically when building procedural macro
+crates and their dependencies.</p>
 <h2 id="meson-test-now-accepts-exclude">
 <code>meson test</code> now accepts <code>--exclude</code>
 </h2>
