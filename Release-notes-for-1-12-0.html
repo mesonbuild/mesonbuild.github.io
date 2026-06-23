@@ -222,6 +222,10 @@ $('body').removeClass('no-script');
 <h2 id="custom-dependency-for-atomic-now-works-on-msvc">Custom dependency for atomic now works on MSVC</h2>
 <p><code>dependency('atomic')</code> now works on MSVC &gt;=19.35.32124.
 It requires <code>c_std=c11</code> or later, otherwise the dependency will return not found.</p>
+<h2 id="support-for-cachedirtag-specification">Support for CACHEDIR.TAG specification</h2>
+<p>A CACHEDIR.TAG file (https://bford.info/cachedir/) is now created in the build
+directory as part of the setup and regenerate phases, allowing backup software
+to ignore the whole directory.</p>
 <h2 id="new-clippyjson-ninja-target-for-rustanalyzer">New "clippy-json" Ninja Target For rust-analyzer</h2>
 <p>A new <code>clippy-json</code> ninja target will now be generated for rust projects.</p>
 <p>rust-analyzer supports non-cargo based projects so long as you provide it with a <code>rust-project.json</code> file and a custom "check command" to provide compiler errors.  Meson already for some time has generated a <code>rust-project.json</code> file for rust-analyzer, but had no way to hook up its rustc/clippy output to rust-analyzer.</p>
