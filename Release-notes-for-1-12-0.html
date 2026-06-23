@@ -248,6 +248,13 @@ i18n.gettext('mycatalog',
              args : ['-k_', '-kN_'],
              msgfmt_args : ['--use-fuzzy'])
 </code></pre>
+<h2 id="include_directories-object-now-have-a-to_list-method">include_directories object now have a to_list() method</h2>
+<p>The <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> object returned by <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> now has a <code>to_list()</code> method that
+returns a list of strings of absolute paths. Unless the include path is a
+system path, there will be a path for the source root and one for the build root.</p>
+<pre><code>inc = include_directories('include')
+include_paths = inc.to_list()
+</code></pre>
 <h2 id="added-integer-base-conversions-to-strto_int-and-intto_string">Added integer base conversions to <code>str.to_int()</code> and <code>int.to_string()</code>
 </h2>
 <p>Meson strings can now be converted from hexadecimal, octal, and binary
