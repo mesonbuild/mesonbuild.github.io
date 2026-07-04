@@ -340,6 +340,12 @@ crates and their dependencies.</p>
 tests. It takes a full test name and can be specified repeatedly. This
 should help distributions that need to skip tests irrelevant for them
 or known to be buggy.</p>
+<h2 id="vala-cross-compilation-changes">Vala cross compilation changes</h2>
+<p>Traditionally Meson has used the same Vala compiler for cross and
+native compilation. It turned out that even though the Vala compiler
+generated C code, the output and its dependencies are platform
+dependent. Now Meson uses Vala in the same way as all other cross
+compilers and it can be defined in the cross file.</p>
 <h2 id="werrortrue-now-applies-to-the-linker-as-well">
 <code>werror=true</code> now applies to the linker as well</h2>
 <p>When <code>werror=true</code> is set, Meson now passes the appropriate
