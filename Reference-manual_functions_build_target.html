@@ -302,8 +302,8 @@ other build_target types.</p>
   <a href="Reference-manual_functions_build_target.html#build_target_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions_build_target.html#build_target_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
   <a href="Reference-manual_functions_build_target.html#build_target_main_class"><b>main_class</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Main class for running the built jar
-  <a href="Reference-manual_functions_build_target.html#build_target_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions_build_target.html#build_target_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions_build_target.html#build_target_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions_build_target.html#build_target_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions_build_target.html#build_target_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions_build_target.html#build_target_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions_build_target.html#build_target_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -1010,8 +1010,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="build_target_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -1019,7 +1018,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -1028,8 +1028,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="build_target_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -1041,7 +1040,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">

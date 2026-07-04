@@ -230,6 +230,16 @@ to ignore the whole directory.</p>
 <p>A new <code>clippy-json</code> ninja target will now be generated for rust projects.</p>
 <p>rust-analyzer supports non-cargo based projects so long as you provide it with a <code>rust-project.json</code> file and a custom "check command" to provide compiler errors.  Meson already for some time has generated a <code>rust-project.json</code> file for rust-analyzer, but had no way to hook up its rustc/clippy output to rust-analyzer.</p>
 <p>To use the new feature, you need to override the rust-analyzer check command as shown <a href="https://rust-analyzer.github.io/book/non_cargo_based_projects.html">in the rust-analyzer documentation</a>, and set it to a <code>ninja invocation along the lines of</code>ninja clippy-json -C build`.</p>
+<h2 id="add-a-new-default-function-and-object">Add a new <code>default()</code> function and object</h2>
+<p>This function and object allow setting a keyword argument to it's default value.
+This is especially useful for cases when a non-default value is wanted in some
+cases but not all.</p>
+<p>For example:</p>
+<pre><code class="language-meson">library(
+  ...
+  name_prefix : host_machine.system() == 'windows' ? '' : default(),
+)
+</code></pre>
 <h2 id="delay-install-script-errors-to-install-time">Delay install script errors to install time</h2>
 <p>Previously, <code>gnome.post_install</code> might've caused a configure to fail
 due to tools such as <code>update-desktop-database</code> not being installed or

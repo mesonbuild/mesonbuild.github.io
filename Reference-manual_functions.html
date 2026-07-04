@@ -1518,8 +1518,8 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions.html#both_libraries_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
   <a href="Reference-manual_functions.html#both_libraries_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#both_libraries_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
-  <a href="Reference-manual_functions.html#both_libraries_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#both_libraries_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#both_libraries_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#both_libraries_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#both_libraries_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#both_libraries_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#both_libraries_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -2142,8 +2142,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="both_libraries_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -2151,7 +2150,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2160,8 +2160,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="both_libraries_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -2173,7 +2172,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -2593,8 +2593,8 @@ other build_target types.</p>
   <a href="Reference-manual_functions.html#build_target_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#build_target_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
   <a href="Reference-manual_functions.html#build_target_main_class"><b>main_class</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Main class for running the built jar
-  <a href="Reference-manual_functions.html#build_target_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#build_target_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#build_target_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#build_target_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#build_target_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#build_target_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#build_target_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -3301,8 +3301,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="build_target_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -3310,7 +3309,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -3319,8 +3319,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="build_target_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -3332,7 +3331,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -4883,6 +4883,22 @@ such as <code>1.2.3</code>. Defaults to the project version.</p>
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>
+<h2 id="default">default()</h2>
+<p>Returns a <a href="Reference-manual_returned_default.html"><ins><code>default</code></ins></a> object.</p>
+<p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
+<div style="display: flex;">
+  <h3 style="margin-top: 0px;" id="signature17">Signature</h3>
+  <div style="flex-grow: 1;"></div>
+  <div>
+<div style="margin: 0px; text-align: center;">
+<p style="margin: 0px;"><em style="color: #5affff;">(since 1.12.0)</em></p>
+</div>
+</div>
+</div>
+<pre><code class="language-meson"><a href="Reference-manual_returned_default.html"><ins>default</ins></a> default()</code></pre>
+<p style="padding: 7.5px; margin: 0px;"></p>
+<hr>
+<p style="padding: 7.5px; margin: 0px;"></p>
 <h2 id="dependency">dependency()</h2>
 <p>Finds an external dependency (usually a library installed on your
 system) with the given name with <code>pkg-config</code> and <a href="Dependencies.html#cmake">with
@@ -4939,7 +4955,7 @@ allowed by <code>--wrap-mode</code>.</p>
 <p>The returned object <a href="Reference-manual_returned_dep.html"><ins><code>dep</code></ins></a> also has additional methods.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature17">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature18">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5246,7 +5262,7 @@ These requirements are never met if the version is unknown.</p>
 <p>Returns a <a href="Reference-manual_returned_disabler.html"><ins><code>disabler</code></ins></a> object.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature18">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature19">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5262,7 +5278,7 @@ These requirements are never met if the version is unknown.</p>
 <p>Returns an empty <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></a> object.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature19">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature20">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5374,7 +5390,7 @@ Windows and ':' for UNIX/POSIX systems.</p>
 <p>Print the argument string and halts the build process.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature20">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature21">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5441,7 +5457,7 @@ creating the final array.</p>
 long as they each have a different <code>name_suffix</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature21">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature22">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -5486,8 +5502,8 @@ long as they each have a different <code>name_suffix</code>.</p>
   <a href="Reference-manual_functions.html#executable_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
   <a href="Reference-manual_functions.html#executable_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#executable_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
-  <a href="Reference-manual_functions.html#executable_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#executable_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#executable_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#executable_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#executable_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#executable_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#executable_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -6122,8 +6138,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="executable_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -6131,7 +6146,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -6140,8 +6156,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="executable_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -6153,7 +6168,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -6375,7 +6391,7 @@ targets. The difference is that file objects remember the subdirectory
 they were defined in and can be used anywhere in the source tree.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature22">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature23">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6460,7 +6476,7 @@ command used to execute the build script.</p>
 <p>The returned <a href="Reference-manual_returned_program.html"><ins><code>program</code></ins></a> object also has documented methods.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature23">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature24">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6715,7 +6731,7 @@ generating headers to be used by several sources, or data that will be
 installed, and so on, use a <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a> instead.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature24">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature25">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6889,7 +6905,7 @@ per-machine</a>
 build machine if the argument starts with <code>build.</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature25">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature26">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -6943,7 +6959,7 @@ the variable does not exist, the variable <code>fallback</code> is stored to
 a non-existing variable will cause a fatal error.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature26">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature27">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7010,7 +7026,7 @@ the methods of the module. Here's an example for a hypothetical <code>testmod</c
 module.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature27">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature28">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7130,7 +7146,7 @@ directories to include path.</p>
 relative to the source root and one relative to the build root.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature28">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature29">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7243,7 +7259,7 @@ generators, such as <code>custom_target()</code> or <code>configure_file()</code
 <p>See <a href="Installing.html">Installing</a> for more examples.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature29">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature30">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7437,7 +7453,7 @@ argument. If the directory exists and is not empty, the contents are left in
 place.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature30">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature31">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7534,7 +7550,7 @@ Generated files are installed via the <code>install_dir:</code> kwarg on the res
 generators, such as <code>custom_target()</code> or <code>configure_file()</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature31">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature32">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7704,7 +7720,7 @@ overridden by specifying it with the <code>install_dir</code> keyword argument.<
 <em>(since 1.11.0)</em> install_man supports <code>install_tag</code> kwarg</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature32">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature33">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -7832,7 +7848,7 @@ intentionally designed to work this way, please use <a href="Reference-manual_fu
 instead.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature33">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature34">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8056,7 +8072,7 @@ If <code>strip_directory=true</code> only the last component of the source path 
 <p>Installs a symbolic link to <code>pointing_to</code> target under install_dir.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature34">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature35">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8171,7 +8187,7 @@ Can be absolute or relative and that will be respected when creating the link.</
 <p>Returns true if a variable is a disabler and false otherwise.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature35">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature36">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8222,7 +8238,7 @@ Can be absolute or relative and that will be respected when creating the link.</
 <p>Returns true if a variable of the given name exists and false otherwise.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature36">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature37">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8276,7 +8292,7 @@ are the same as <a href="Reference-manual_functions.html#executable"><ins><code>
 the jar with <code>java -jar file.jar</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature37">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature38">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -8320,8 +8336,8 @@ the jar with <code>java -jar file.jar</code>.</p>
   <a href="Reference-manual_functions.html#jar_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#jar_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
   <a href="Reference-manual_functions.html#jar_main_class"><b>main_class</b></a>                   : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Main class for running the built jar
-  <a href="Reference-manual_functions.html#jar_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#jar_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#jar_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#jar_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#jar_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#jar_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#jar_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -8913,8 +8929,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="jar_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -8922,7 +8937,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -8931,8 +8947,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="jar_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -8944,7 +8959,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9141,7 +9157,7 @@ res2 = foo / bar
 </code></pre>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature38">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature39">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -9190,7 +9206,7 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
 <a href="Reference-manual_functions.html#build_target"><ins><code>build_target()</code></ins></a></p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature39">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature40">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -9235,8 +9251,8 @@ library basis using the <a href="Reference-manual_functions.html#dependency"><in
   <a href="Reference-manual_functions.html#library_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
   <a href="Reference-manual_functions.html#library_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#library_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
-  <a href="Reference-manual_functions.html#library_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#library_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#library_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#library_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -9868,8 +9884,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="library_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -9877,7 +9892,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -9886,8 +9902,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="library_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -9899,7 +9914,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -10239,7 +10255,7 @@ for the full list.</p>
 <p>This function prints its argument to stdout.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature40">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature41">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -10317,7 +10333,7 @@ languages are not required.</p>
 <code>swift</code>, <code>nasm</code>, <code>masm</code>, <code>linearasm</code>, <code>vala</code> and <code>rust</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature41">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature42">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -10539,7 +10555,7 @@ text.</p>
 to <code>stop</code> excluded with an increment of <code>step</code> after each loop.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature42">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature43">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -10644,7 +10660,7 @@ respectively.</p>
 <p>See also <a href="External-commands.html">External commands</a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature43">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature44">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -10786,7 +10802,7 @@ this may be an absolute or a relative to current workdir path.</li>
 </ul>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature44">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature45">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -10911,7 +10927,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
 <p><em>(since 0.46.1)</em> The <code>value</code> parameter can be an array type.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature45">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature46">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -10975,7 +10991,7 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
 <p>Builds a shared library with the given sources.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature46">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature47">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11018,8 +11034,8 @@ or an <a href="Reference-manual_returned_env.html"><ins><code>env</code></ins></
   <a href="Reference-manual_functions.html#shared_library_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
   <a href="Reference-manual_functions.html#shared_library_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#shared_library_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
-  <a href="Reference-manual_functions.html#shared_library_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#shared_library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#shared_library_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#shared_library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#shared_library_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#shared_library_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#shared_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -11610,8 +11626,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="shared_library_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -11619,7 +11634,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11628,8 +11644,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="shared_library_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -11641,7 +11656,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -11925,7 +11941,7 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
 <code>true</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature47">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature48">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -11968,8 +11984,8 @@ you will need to set the <code>export_dynamic</code> argument of the executable 
   <a href="Reference-manual_functions.html#shared_module_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
   <a href="Reference-manual_functions.html#shared_module_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#shared_module_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
-  <a href="Reference-manual_functions.html#shared_module_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#shared_module_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#shared_module_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#shared_module_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#shared_module_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#shared_module_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#shared_module_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -12558,8 +12574,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="shared_module_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -12567,7 +12582,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -12576,8 +12592,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="shared_module_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -12589,7 +12604,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -12817,7 +12833,7 @@ for the full list.</p>
 <p>Builds a static library with the given sources.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature48">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature49">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -12859,8 +12875,8 @@ for the full list.</p>
   <a href="Reference-manual_functions.html#static_library_link_language"><b>link_language</b></a>                : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Makes the linker for this target be for the specified language
   <a href="Reference-manual_functions.html#static_library_link_whole"><b>link_whole</b></a>                   : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # Links all contents of the given static libraries whether they are used or
   <a href="Reference-manual_functions.html#static_library_link_with"><b>link_with</b></a>                    : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_lib.html"><ins>lib</ins></a> | <a href="Reference-manual_returned_custom_tgt.html"><ins>custom_tgt</ins></a> | <a href="Reference-manual_returned_custom_idx.html"><ins>custom_idx</ins></a>]                                    # One or more shared or static libraries
-  <a href="Reference-manual_functions.html#static_library_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the prefix for the
-  <a href="Reference-manual_functions.html#static_library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_void.html"><ins>void</ins></a>]                                                       # The string that will be used as the extension for the
+  <a href="Reference-manual_functions.html#static_library_name_prefix"><b>name_prefix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the prefix for the
+  <a href="Reference-manual_functions.html#static_library_name_suffix"><b>name_suffix</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # The string that will be used as the extension for the
   <a href="Reference-manual_functions.html#static_library_native"><b>native</b></a>                       : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # Controls whether the target is compiled for the build or host machines
   <a href="Reference-manual_functions.html#static_library_objects"><b>objects</b></a>                      : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_extracted_obj.html"><ins>extracted_obj</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                       # List of object files that should be linked in this target
   <a href="Reference-manual_functions.html#static_library_override_options"><b>override_options</b></a>             : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>] | <a href="Reference-manual_elementary_dict.html"><ins>dict</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]]                          # takes an array of strings in the same format as `project`'s `default_options`
@@ -13430,8 +13446,7 @@ then the build system writer must write all other steps manually.</p>
       </tr>
       <tr id="static_library_name_prefix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_prefix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the prefix for the
@@ -13439,7 +13454,8 @@ target output filename by overriding the default (only used for
 libraries). By default this is <code>lib</code> on all platforms and compilers,
 except for MSVC shared libraries where it is omitted to follow
 convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -13448,8 +13464,7 @@ convention, and Cygwin shared libraries where it is <code>cyg</code>.</p>
       </tr>
       <tr id="static_library_name_suffix">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">name_suffix</code></td>
-        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
-<a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a> | <a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_elementary_void.html"><ins><code>void</code></ins></a>]</td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
 <p>The string that will be used as the extension for the
@@ -13461,7 +13476,8 @@ For static libraries, it is <code>a</code> everywhere. By convention MSVC
 static libraries use the <code>lib</code> suffix, but we use <code>a</code> to avoid a
 potential name clash with shared libraries which also generate
 import libraries with a <code>lib</code> suffix.</p>
-<p>Set this to <code>[]</code>, or omit the keyword argument for the default behaviour.</p>
+<p>To conditionally keep the default behavior use a <a href="Reference-manual_functions.html#default"><ins><code>default()</code></ins></a> object.
+For Meson &lt; 1.12, use <code>[]</code>.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
@@ -13707,7 +13723,7 @@ to determine import names. This is only allowed in Rust targets, and cannot be
 mixed with non structured inputs.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature49">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature50">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -13782,7 +13798,7 @@ current build file and in all subsequent build files executed with
 and must only be executed once.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature50">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature51">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -13875,7 +13891,7 @@ end. If the current script is the top level script, Meson configures
 the project as defined up to this point.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature51">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature52">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -13932,7 +13948,7 @@ argument to <a href="Reference-manual_functions.html#dependency"><ins><code>depe
 <p><a href="Subprojects.html">See additional documentation</a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature52">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature53">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -14096,7 +14112,7 @@ and printed at the end of the configuration in the same order as they
 have been called.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature53">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature54">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -14299,7 +14315,7 @@ the whole log at the end of the run.</p>
 commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature54">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature55">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -14628,7 +14644,7 @@ for the test</p>
 Referencing a variable which has been unset is an error until it has been set again.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature55">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature56">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -14693,7 +14709,7 @@ which to build the targets.</p>
 you should use <a href="Reference-manual_functions.html#custom_target"><ins><code>custom_target()</code></ins></a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature56">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature57">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -14870,7 +14886,7 @@ tag which means it is not being installed when <code>--tags</code> argument is s
 <p>This function prints its argument to stdout prefixed with WARNING:.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
-  <h3 style="margin-top: 0px;" id="signature57">Signature</h3>
+  <h3 style="margin-top: 0px;" id="signature58">Signature</h3>
   <div style="flex-grow: 1;"></div>
   <div>
 <div style="margin: 0px; text-align: center;">
@@ -14939,7 +14955,7 @@ arguments (<code>more_text...</code>) of type <code><a href="Reference-manual_el
 <div id="subpages">
 	<p><b>Subpages:</b></p>
 	<div class="thumb-subpages">
-																																																																																																																																																																																																																																																																																																																																																																																																																									</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																</div>
 							<p>
 			<a href="Reference-manual_functions_add_global_arguments.html">add_global_arguments()</a>
 						</p>
@@ -14990,6 +15006,9 @@ arguments (<code>more_text...</code>) of type <code><a href="Reference-manual_el
 						</p>
 									<p>
 			<a href="Reference-manual_functions_declare_dependency.html">declare_dependency()</a>
+						</p>
+									<p>
+			<a href="Reference-manual_functions_default.html">default()</a>
 						</p>
 									<p>
 			<a href="Reference-manual_functions_dependency.html">dependency()</a>
