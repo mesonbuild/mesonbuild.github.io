@@ -345,6 +345,48 @@ were never turned on by Meson.</p>
 <pre><code class="language-ini">[properties]
 bindgen_clang_arguments = ['--target', 'x86_64-linux-gnu']
 </code></pre>
+<h2 id="cbindgen">cbindgen()</h2>
+<p><em>Since 1.12.0</em></p>
+<pre><code class="language-meson">file_h = rustmod.cbindgen('infile.rs', 'outfile.h', config : 'cbindgen.toml')
+</code></pre>
+<p>This function wraps cbindgen to simplify creating C bindings for Rust targets.
+It has several advantages over invoking a <code>custom_target</code> directly:</p>
+<ul>
+<li>Correctly handles depfiles, adding them when supported</li>
+<li>Sets the profile to <code>debug</code> when Meson is configured with -Ddebug=true</li>
+<li>Automatically passes some useful options for use in Meson, such as <code>--quiet</code>
+and <code>--cpp-compat</code>
+</li>
+<li>Handles structured_sources correctly</li>
+<li>Automatically detect language based on file extension (c or c++ only),</li>
+</ul>
+<p>The majority of the configuration should be handled inside the <code>config.toml</code>
+file.</p>
+<p>It takes the following positional arguments:</p>
+<ul>
+<li>
+<code>infile</code>: the root rust file to bind, or a <a href="Reference-manual_returned_structured_src.html"><ins><code>structured_src</code></ins></a> instance</li>
+<li>
+<code>outfile</code>: the header to generate</li>
+</ul>
+<p>It takes the following keyword arguments</p>
+<ul>
+<li>
+<code>config</code>: The Path to a configuration toml. May be a File, str, or CustomTarget.
+Customarily, this is called <code>cbindgen.toml</code>, but Meson does not require this.</li>
+<li>
+<code>language</code>: The language to bind for. If unset, Meson will choose a language
+based on the file extension of the output file. Currently, auto detection only
+works for C and C++. May be one of: <code>c</code>, <code>cpp</code>, <code>cython</code>.</li>
+<li>
+<code>depends</code>: An array of CustomTargets that this target depends on</li>
+<li>
+<code>depend_files</code>: An array of files that this target depends on</li>
+<li>
+<code>install</code>: A boolean controlling whether to install the generated header</li>
+<li>
+<code>install_dir</code>: Where to install the header. This is required if <code>install</code> is true.</li>
+</ul>
 <h3 id="compiler_target">compiler_target()</h3>
 <p><em>Since 1.11.0</em></p>
 <pre><code class="language-meson">rustmod.compiler_target()
