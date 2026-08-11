@@ -359,8 +359,62 @@ are:</p>
 </td>
 <td> 8.0, 8.6</td>
 </tr>
+<tr>
+<td> <code>'Orin'</code>
+</td>
+<td> 8.7</td>
+</tr>
+<tr>
+<td> <code>'Lovelace'</code>
+</td>
+<td> 8.9</td>
+</tr>
+<tr>
+<td> <code>'Hopper'</code>
+</td>
+<td> 9.0</td>
+</tr>
+<tr>
+<td> <code>'Hopper(A)'</code>
+</td>
+<td> 9.0a</td>
+</tr>
+<tr>
+<td> <code>'Thor'</code>
+</td>
+<td> 10.1, 11.0</td>
+</tr>
+<tr>
+<td> <code>'Thor(A)'</code>
+</td>
+<td> 10.1a, 11.0a</td>
+</tr>
+<tr>
+<td> <code>'Blackwell'</code>
+</td>
+<td> 10.0, 10.3, 12.0, 12.1</td>
+</tr>
+<tr>
+<td> <code>'Blackwell(A)'</code>
+</td>
+<td> 10.0a, 10.3a, 12.0a, 12.1a</td>
+</tr>
 </tbody>
 </table>
+<p>The <code>'(A)'</code> names select the architecture-specific (<code>a</code>-suffixed) compute
+capabilities of their family. Code built for these can use
+architecture-specific features, but runs only on exactly that architecture:
+it has no forward compatibility, so it cannot be combined with <code>+PTX</code>.
+The family-specific <code>f</code>-suffixed compute capabilities introduced with
+CUDA 12.9 (e.g. <code>10.0f</code>, which runs on all later members of the same
+family) may be requested explicitly, but are not part of any named set.</p>
+<p><em>Note:</em> the <code>f</code>-suffixed capabilities only benefit kernels that use
+architecture-conditional features (such as the 5th-generation tensor core
+instructions), which plain compute capabilities cannot express. For all
+other code they gain nothing: a plain capability plus <code>+PTX</code> is compatible
+<em>beyond</em> the family, and NVCC refuses to combine <code>X.Yf</code> with plain <code>X.Y</code>
+in the same build. Prefer the plain capabilities unless you know your
+kernels require family-specific features.</p>
 <p>Examples:</p>
 <pre><code>cuda.nvcc_arch_flags('10.0', '3.0', '3.5', '5.0+PTX')
 cuda.nvcc_arch_flags('10.0', ['3.0', '3.5', '5.0+PTX'])
