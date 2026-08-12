@@ -313,6 +313,8 @@ specified. The JSON format for one target is defined as follows:</p>
     "build_by_default": true / false,
     "target_sources": [],
     "extra_files": ["/path/to/file1.hpp", "/path/to/file2.hpp"],
+    "dependencies": ["external-dependency-name"],
+    "depends": ["target1-id", "target2-id"],
     "installed": true / false,
 }
 </code></pre>
@@ -323,6 +325,10 @@ corresponding install location is set to <code>null</code>.</p>
 <p>The <code>subproject</code> key specifies the name of the subproject this target
 was defined in, or <code>null</code> if the target was defined in the top level
 project.</p>
+<p>The <code>dependencies</code> key lists external dependencies used by the target.
+The <code>depends</code> key lists the IDs of other targets that must be built before
+this target. Those IDs can be looked up in the same targets introspection
+data.</p>
 <p><em>(New in 0.56.0)</em> The <code>extra_files</code> key lists all files specified via
 the <code>extra_files</code> kwarg of a build target. See
 <a href="Reference-manual_functions.html#executable"><ins><code>executable()</code></ins></a>.</p>
