@@ -233,6 +233,18 @@ logic) always returned <code>false</code>, even though Rosetta 2 lets these Macs
 execute <code>x86_64</code> binaries directly. Meson now detects whether Rosetta 2
 is installed and, if so, reports that <code>x86_64</code> host binaries can run
 natively without requiring an <code>exe_wrapper</code>.</p>
+<h2 id="persubproject-language-arguments-are-now-applied">Per-subproject language arguments are now applied</h2>
+<p>Compiler and linker arguments set for a specific subproject, for example
+<code>-Dsub:c_args=-DFOO</code> on the command line or <code>c_args</code> in the
+<code>default_options</code> of a <code>subproject()</code> call, are now added to the compile
+and link commands of that subproject's targets. Previously such values
+were accepted and stored but silently ignored.</p>
+<p>Similarly, <code>&lt;lang&gt;_args</code> and <code>&lt;lang&gt;_link_args</code> entries in a target's
+<code>override_options</code> now take effect.</p>
+<p>In all cases the per-subproject or per-target value replaces the global
+value (including flags coming from environment variables such as
+<code>CFLAGS</code>), it is not appended to it. This matches what
+<code>get_option('c_args')</code> already returned inside a subproject.</p>
 <h2 id="wild-linker-is-now-supported-on-linux">Wild linker is now supported on Linux</h2>
 <p>When <code>CC_LD</code> environment variables is set to <code>wild</code>, Meson will configure GCC 16+ or Clang
 to use Wild as the linker on Linux. You should expect to see line like this in the output:
