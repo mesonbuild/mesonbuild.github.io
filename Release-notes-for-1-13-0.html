@@ -235,6 +235,11 @@ logic) always returned <code>false</code>, even though Rosetta 2 lets these Macs
 execute <code>x86_64</code> binaries directly. Meson now detects whether Rosetta 2
 is installed and, if so, reports that <code>x86_64</code> host binaries can run
 natively without requiring an <code>exe_wrapper</code>.</p>
+<h2 id="c_stdclatest-support-for-msvc">
+<code>c_std=clatest</code> support for MSVC</h2>
+<p>The option enables all currently implemented compiler and standard library
+features proposed in the next draft C standard, as well as some in-progress and
+experimental features.</p>
 <h2 id="persubproject-language-arguments-are-now-applied">Per-subproject language arguments are now applied</h2>
 <p>Compiler and linker arguments set for a specific subproject, for example
 <code>-Dsub:c_args=-DFOO</code> on the command line or <code>c_args</code> in the
