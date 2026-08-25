@@ -227,6 +227,17 @@ reported the <code>dependencies</code> attribute used by alias and run targets, 
 build target and custom target dependencies were omitted.</p>
 <h2 id="allow-using-generator-with-any-build_tgt-object">Allow using generator with any <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</h2>
 <p>Passing any build target to <code>generator.process()</code> is now allowed.</p>
+<h2 id="jar-files-are-now-installed-reproducibly">Jar files are now installed reproducibly</h2>
+<p>Installing a jar target used to invoke the <code>jar</code> tool to strip the
+<code>Class-Path</code> attribute from its manifest, even when there was none.
+This replaced the manifest's timestamp inside the jar with the time of
+installation, so two builds of the same sources produced different
+installed jars.</p>
+<p>Manifests are now edited with Python's <code>zipfile</code> module instead. Jars
+without a <code>Class-Path</code> attribute are installed unmodified, and when the
+attribute has to be stripped, all entry metadata such as timestamps is
+preserved. As a side effect, the <code>jar</code> binary is no longer needed at
+install time.</p>
 <h2 id="mesoncan_run_host_binaries-now-accounts-for-rosetta-2-on-apple-silicon">
 <code>meson.can_run_host_binaries()</code> now accounts for Rosetta 2 on Apple Silicon</h2>
 <p>Previously, when cross-compiling for <code>x86_64</code> on an <code>aarch64</code> Mac,
