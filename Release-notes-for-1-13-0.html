@@ -263,6 +263,12 @@ were accepted and stored but silently ignored.</p>
 value (including flags coming from environment variables such as
 <code>CFLAGS</code>), it is not appended to it. This matches what
 <code>get_option('c_args')</code> already returned inside a subproject.</p>
+<h2 id="use-werror-for-gnomegenerate_girfatal_warnings">Use <code>werror</code> for <code>gnome.generate_gir(fatal_warnings:)</code>
+</h2>
+<p>If <code>fatal_warnings</code> is not passed to <code>gnome.generate_gir()</code>, the value of
+the <code>werror</code> option is now read to determine whether to turn it on.
+Explicitly passing <code>fatal_warnings: true</code> or <code>fatal_warnings: false</code>
+still takes precedence over <code>werror</code>.</p>
 <h2 id="wild-linker-is-now-supported-on-linux">Wild linker is now supported on Linux</h2>
 <p>When <code>CC_LD</code> environment variables is set to <code>wild</code>, Meson will configure GCC 16+ or Clang
 to use Wild as the linker on Linux. You should expect to see line like this in the output:

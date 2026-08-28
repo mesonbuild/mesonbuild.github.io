@@ -354,7 +354,10 @@ the typelib file into; (<em>Deprecated since 0.61.0</em>) can be false to disabl
 <code>symbol_prefix</code>: the symbol prefix for the gir object, e.g. <code>gtk</code>,
 (<em>Since 0.43.0</em>) an ordered list of multiple prefixes is allowed</li>
 <li>
-<code>fatal_warnings</code>: <em>Since 0.55.0</em> turn scanner warnings into fatal errors.</li>
+<code>fatal_warnings</code>: <em>Since 0.55.0</em> turn scanner warnings into fatal errors.
+If not set, <em>(Since 1.13.0)</em> Meson falls back to the value of the <code>werror</code>
+option to determine whether to turn this on automatically. Explicitly
+passing <code>true</code> or <code>false</code> always takes precedence over <code>werror</code>.</li>
 </ul>
 <p>Returns an array of two elements which are: <code>[gir_target, typelib_target]</code></p>
 <h3 id="gnomegenmarshal">gnome.genmarshal()</h3>
