@@ -1006,6 +1006,41 @@ or compiler being used:</p>
 </td>
 </tr>
 <tr>
+<td> rust_panic</td>
+<td> none</td>
+<td> none, unwind, abort</td>
+<td> Panic strategy (none=use the compiler default) <em>(Added in 1.13.0)</em>
+</td>
+</tr>
+<tr>
+<td> rust_overflow_checks</td>
+<td> false</td>
+<td> true, false</td>
+<td> Whether to enable runtime integer overflow checks <em>(Added in 1.13.0)</em>
+</td>
+</tr>
+<tr>
+<td> rust_codegen_units</td>
+<td> 0</td>
+<td> integer value ≥ 0</td>
+<td> Number of code generation units to split the crate into (0=use the compiler default) <em>(Added in 1.13.0)</em>
+</td>
+</tr>
+<tr>
+<td> rust_incremental</td>
+<td> false</td>
+<td> true, false</td>
+<td> Whether to enable incremental compilation <em>(Added in 1.13.0)</em>
+</td>
+</tr>
+<tr>
+<td> rust_incremental_cache_dir</td>
+<td></td>
+<td> filesystem path</td>
+<td> Directory used to store incremental compilation data (empty=pick a default under the build directory) <em>(Added in 1.13.0)</em>
+</td>
+</tr>
+<tr>
 <td> cuda_ccbindir</td>
 <td></td>
 <td> filesystem path</td>

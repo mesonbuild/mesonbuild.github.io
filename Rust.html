@@ -311,6 +311,33 @@ arguments with <code>-Clink-arg=</code> before passing them to the Rust compiler
 Furthermore, these arguments are only included when creating binary or
 shared library crates.  Likewise, methods such as <code>has_link_argument()</code>
 wrap the arguments being tested with <code>-Clink-arg=</code>.</p>
+<h2 id="interaction-between-rust_panicabort-and-testing">Interaction between <code>rust_panic=abort</code> and testing</h2>
+<p>Cargo and Meson build tests differently.  <code>cargo test</code> recompiles the whole
+dependency tree from scratch using the dedicated <code>test</code> profile, so the test
+build is wholly independent from the artifacts produced by <code>cargo build</code>.
+Meson instead reuses the libraries that were already built and only compiles an
+additional test-harness binary out of the crate's own sources.</p>
+<p>Each approach has tradeoffs.  Rebuilding everything lets the <code>test</code> profile
+differ arbitrarily from the <code>dev</code> profile, but it is slow and, in the common
+case where the two profiles are essentially the same, it duplicates a lot of
+work for no benefit.  Reusing the libraries is much faster and detects bugs
+caused by e.g. compiler optimizations; but it requires the test harness and
+the libraries it links against to be ABI compatible.</p>
+<p>This has a consequence for the <code>rust_panic</code> option, and therefore for the
+<code>panic</code> key of a Cargo <code>[profile]</code>.  Rust's test harness relies on catching
+panics in order to report failures, so it must be compiled with the default
+<code>unwind</code> strategy; <code>rust.test()</code> and <code>rust.doctest()</code> honor this by resetting
+<code>rust_panic</code> to <code>none</code> for the harness even when the rest of the build uses
+<code>rust_panic=abort</code>.  The harness recompiles the crate's own sources with
+<code>unwind</code>, but <code>rustc</code> refuses to link it against a dependency that was compiled
+with <code>-Cpanic=abort</code>:</p>
+<pre><code>error: the linked panic runtime `panic_unwind` is not compiled with this crate's panic strategy `abort`
+</code></pre>
+<p>As a result, a crate built with <code>rust_panic=abort</code> is effectively
+untestable unless it has no dependencies.  Therefore, <code>rust_panic=abort</code>
+is only recommended if you are building a simple <code>cdylib</code> or <code>staticlib</code>
+with most or all of your dependencies in subprojects.  In that case,
+you can test the dependencies by building the subprojects on their own.</p>
 <h2 id="cargo-interaction">Cargo interaction</h2>
 <p><em>Since 1.11.0</em></p>
 <p>In most cases, a Rust program will use Cargo to download crates.  Meson is able

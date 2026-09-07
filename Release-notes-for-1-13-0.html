@@ -252,6 +252,33 @@ logic) always returned <code>false</code>, even though Rosetta 2 lets these Macs
 execute <code>x86_64</code> binaries directly. Meson now detects whether Rosetta 2
 is installed and, if so, reports that <code>x86_64</code> host binaries can run
 natively without requiring an <code>exe_wrapper</code>.</p>
+<h2 id="new-rust-compiler-options-matching-cargo-profile-keys">New Rust compiler options matching Cargo profile keys</h2>
+<p>Several new per-machine Rust compiler options have been added so that the
+settings found in a Cargo <code>[profile]</code> section can be expressed natively:</p>
+<ul>
+<li>
+<code>rust_panic</code> (<code>none</code>, <code>unwind</code>, <code>abort</code>): selects the panic strategy
+(<code>-C panic=</code>).  It is ignored for <code>dylib</code> and <code>proc-macro</code> crates, which must
+always unwind.</li>
+<li>
+<code>rust_overflow_checks</code> (<code>true</code>, <code>false</code>): toggles runtime integer overflow
+checks (<code>-C overflow-checks=</code>).</li>
+<li>
+<code>rust_codegen_units</code> (integer, <code>0</code> to use the compiler default): number of
+code generation units to split a crate into (<code>-C codegen-units=</code>).</li>
+<li>
+<code>rust_incremental</code> (<code>true</code>, <code>false</code>): enables incremental compilation
+(<code>-C incremental=</code>).</li>
+<li>
+<code>rust_incremental_cache_dir</code> (path): directory used to store the incremental
+compilation data.  When left empty a per-target directory under the build
+directory is used.</li>
+</ul>
+<p>The remaining Cargo profile keys map onto existing built-in options:
+<code>opt-level</code> to <code>optimization</code>, <code>debug</code> to <code>debug</code>, <code>debug-assertions</code>
+to <code>b_ndebug</code> and <code>lto</code> to <code>b_lto</code>.</p>
+<p>The Cargo workspace object will also add these automatically based on
+the value of another new option, <code>rust_cargo_profile</code>.</p>
 <h2 id="c_stdclatest-support-for-msvc">
 <code>c_std=clatest</code> support for MSVC</h2>
 <p>The option enables all currently implemented compiler and standard library
