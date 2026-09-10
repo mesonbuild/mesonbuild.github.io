@@ -395,6 +395,17 @@ globbed patterns as default members.  Therefore, they will only be built
 if included in <code>extra_members</code>.</p>
 <p>Note that crates that come from <code>crates.io</code> are never workspaces, and
 therefore they are not subject to these differences.</p>
+<h3 id="subprojects-with-separate-workspaces">Subprojects with separate workspaces</h3>
+<p><em>Since 1.13.0</em> Meson honors the <code>workspace.exclude</code> field.  Directories
+listed there are not workspace members, and therefore they are not
+returned by the <code>packages()</code> method nor accepted by <code>package()</code>.  As with
+Cargo, excluding a directory also excludes everything below it, entries
+are not treated as glob patterns, and a member that is listed literally
+in <code>workspace.members</code> takes precedence over <code>workspace.exclude</code>.</p>
+<p>This is useful, for example, when path dependencies come from subprojects
+that have their own workspace and <code>Cargo.lock</code> files.  Because Meson
+only supports one <code>Cargo.lock</code> file per project, excluded members must
+be subprojects.</p>
 
     </div>
         

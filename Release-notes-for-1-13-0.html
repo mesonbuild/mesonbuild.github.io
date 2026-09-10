@@ -219,6 +219,11 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="support-for-workspaceexclude-in-cargo-manifests">Support for <code>workspace.exclude</code> in Cargo manifests</h2>
+<p>Directories that are listed in the <code>workspace.exclude</code> field of <code>Cargo.toml</code>
+are not treated as workspace members anymore.  Such packages can still be
+used through a <code>path</code> dependency, as long as they are placed directly in the
+<code>subprojects</code> directory.  This allows using nested workspaces if needed.</p>
 <h2 id="cmake-command-wrappers-accept-arguments-with-backslashes">CMake command wrappers accept arguments with backslashes</h2>
 <p>CMake subprojects can now configure <code>add_custom_command()</code>,
 <code>add_custom_target()</code>, and <code>set_property()</code> calls whose arguments contain
