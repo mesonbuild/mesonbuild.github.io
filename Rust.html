@@ -295,6 +295,11 @@ more information on how to configure that.</p>
 target is a proc macro or dylib, or it depends on a dylib, in which case <a href="https://doc.rust-lang.org/rustc/codegen-options/index.html#prefer-dynamic"><code>-C prefer-dynamic</code></a>
 will be passed to the Rust compiler, and the standard libraries will be
 dynamically linked.</p>
+<h2 id="building-static-libraries-for-no_std-environments">Building static libraries for <code>no_std</code> environments</h2>
+<p>Meson by default links all the dependencies of <code>libstd</code> into executables that depend
+on Rust <code>staticlib</code>s.  Specifying <code>b_freestanding=true</code> lets Meson know that the
+<code>staticlib</code> uses <code>#[no_std]</code>, and reduces the set of libraries that are linked into
+its dependencies.</p>
 <h2 id="multiple-targets-for-the-same-crate-name">Multiple targets for the same crate name</h2>
 <p>For library targets that have <code>rust_abi: 'rust'</code>, the crate name is derived from the
 target name.  First, dashes, spaces and dots are replaced with underscores.  Second,

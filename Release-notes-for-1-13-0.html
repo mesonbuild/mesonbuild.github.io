@@ -219,6 +219,13 @@ $('body').removeClass('no-script');
 	<div id="main">
 				    <div id="page-description" data-hotdoc-role="main">
         <h1 id="new-features-in-development">New features (in development)</h1>
+<h2 id="new-b_freestanding-base-option">New <code>b_freestanding</code> base option</h2>
+<p>The new <code>b_freestanding</code> base option tells supported compilers that targets do
+not assume a hosted standard library. GCC-compatible C-family compilers receive
+<code>-ffreestanding</code>, while clang-cl receives <code>/clang:-ffreestanding</code>.</p>
+<p>For Rust targets, the option declares that the crate uses <code>#![no_std]</code>. Meson
+uses this information when determining the native libraries required by Rust
+static libraries. Meson does not add the crate attribute itself.</p>
 <h2 id="support-for-workspaceexclude-in-cargo-manifests">Support for <code>workspace.exclude</code> in Cargo manifests</h2>
 <p>Directories that are listed in the <code>workspace.exclude</code> field of <code>Cargo.toml</code>
 are not treated as workspace members anymore.  Such packages can still be
