@@ -254,6 +254,7 @@ which case sources will be compiled twice.</p>
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_d_unittest"><b>d_unittest</b></a>                   : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true, the D modules are compiled in debug mode
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_darwin_versions"><b>darwin_versions</b></a>              : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_elementary_int.html"><ins>int</ins></a> | <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                  # Defines the `compatibility version` and `current version` for the dylib on macOS
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_dependencies"><b>dependencies</b></a>                 : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_dep.html"><ins>dep</ins></a>]                                                              # one or more dependency objects
+  <a href="Reference-manual_functions_both_libraries.html#both_libraries_embed_directories"><b>embed_directories</b></a>            : <a href="Reference-manual_elementary_array.html"><ins>array</ins></a>[<a href="Reference-manual_returned_inc.html"><ins>inc</ins></a> | <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>]                                                        # one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function, or
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_extra_files"><b>extra_files</b></a>                  : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a>                                                              # Not used for the build itself but are shown as source files in IDEs
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_gnu_symbol_visibility"><b>gnu_symbol_visibility</b></a>        : <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                                                                     # Specifies how symbols should be exported, see
   <a href="Reference-manual_functions_both_libraries.html#both_libraries_gui_app"><b>gui_app</b></a>                      : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                                                                    # When set to true flags this target as a GUI application
@@ -562,6 +563,22 @@ created with
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
+  </div>
+  </td>
+      </tr>
+      <tr id="both_libraries_embed_directories">
+        <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">embed_directories</code></td>
+        <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;">
+<a href="Reference-manual_elementary_array.html"><ins><code>array</code></ins></a>[<a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> | <a href="Reference-manual_elementary_str.html"><ins><code>str</code></ins></a>]</td>
+        <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
+        <td style="width: 56%; padding: 6px;">
+<p>one or more objects created with the <a href="Reference-manual_functions.html#include_directories"><ins><code>include_directories()</code></ins></a> function, or
+strings, which will be implicitly convert to <a href="Reference-manual_returned_inc.html"><ins><code>inc</code></ins></a> objects, that is
+used for the #embed preprocessor directive.</p>
+  </td>
+        <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
+<div style="margin: 0px; text-align: center;">
+  <p style="margin: 0px;"><em style="color: #5affff;">(since 1.13.0)</em></p>
   </div>
   </td>
       </tr>

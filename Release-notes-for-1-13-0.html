@@ -237,6 +237,9 @@ used through a <code>path</code> dependency, as long as they are placed directly
 backslashes. Meson's preload wrappers previously expanded those arguments a
 second time, which could reject valid values such as regular expression
 backreferences during configuration.</p>
+<h2 id="buildtarget-now-has-an-embed_directories-keyword-argument">BuildTarget now has an <code>embed_directories</code> keyword argument</h2>
+<p>This provides an include_directories like path for the c23 and c++26 <code>#embed</code>
+preprocessor directive.</p>
 <h2 id="target-introspection-reports-all-direct-target-dependencies">Target introspection reports all direct target dependencies</h2>
 <p>The <code>depends</code> entry in <code>intro-targets.json</code> now reports direct target
 dependencies from target inputs, generated sources, extracted objects,
