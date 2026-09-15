@@ -243,6 +243,13 @@ dependencies from target inputs, generated sources, extracted objects,
 internal linking, and explicit <code>depends</code> arguments. Previously it only
 reported the <code>dependencies</code> attribute used by alias and run targets, so most
 build target and custom target dependencies were omitted.</p>
+<h2 id="added-support-for-kache">Added support for kache</h2>
+<p>Meson now recognizes <a href="https://github.com/kunobi-ninja/kache">kache</a> as
+a compiler wrapper, so setting e.g. <code>CC="kache cc"</code> works like it
+already does for Ccache and sccache. Unlike those, kache is not
+auto-detected, because it must be invoked with a compiler subcommand
+(<code>kache cc</code>, <code>kache c++</code>, ...) rather than in front of an arbitrary
+compiler.</p>
 <h2 id="allow-using-generator-with-any-build_tgt-object">Allow using generator with any <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</h2>
 <p>Passing any build target to <code>generator.process()</code> is now allowed.</p>
 <h2 id="jar-files-are-now-installed-reproducibly">Jar files are now installed reproducibly</h2>

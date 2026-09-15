@@ -230,6 +230,13 @@ automatically.</p>
 compiler with environment variables <code>CC</code> and/or <code>CXX</code> when first
 running Meson (remember that once specified the compiler cannot be
 changed). Meson will then use the specified compiler without Ccache.</p>
+<p><a href="https://github.com/mozilla/sccache">sccache</a> is auto-detected the
+same way, and is preferred over Ccache when both are installed.</p>
+<p><a href="https://github.com/kunobi-ninja/kache">kache</a> is also supported, but
+is never added automatically: it must be invoked with a compiler
+subcommand (<code>kache cc</code>, <code>kache c++</code>, ...), so Meson cannot safely
+prepend it to an arbitrary compiler. To use it, put it in front of
+the compiler yourself, e.g. <code>CC="kache cc"</code>.</p>
 <h2 id="coverage">Coverage</h2>
 <p>When doing a code coverage build, Meson will check for existence of
 the binaries <code>gcovr</code>, <code>lcov</code> and <code>genhtml</code>. If version 3.3 or higher
