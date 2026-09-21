@@ -280,6 +280,10 @@ logic) always returned <code>false</code>, even though Rosetta 2 lets these Macs
 execute <code>x86_64</code> binaries directly. Meson now detects whether Rosetta 2
 is installed and, if so, reports that <code>x86_64</code> host binaries can run
 natively without requiring an <code>exe_wrapper</code>.</p>
+<h2 id="rust-now-supports-the-has_define-method">Rust now supports the <code>has_define</code> method</h2>
+<p>This method returns true if the given cfg (either a valueless symbol, or
+<code>name="value"</code>) is defined, else false is returned. Rust does not support
+<code>get_define</code>.</p>
 <h2 id="new-rust-compiler-options-matching-cargo-profile-keys">New Rust compiler options matching Cargo profile keys</h2>
 <p>Several new per-machine Rust compiler options have been added so that the
 settings found in a Cargo <code>[profile]</code> section can be expressed natively:</p>
