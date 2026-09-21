@@ -226,6 +226,12 @@ not assume a hosted standard library. GCC-compatible C-family compilers receive
 <p>For Rust targets, the option declares that the crate uses <code>#![no_std]</code>. Meson
 uses this information when determining the native libraries required by Rust
 static libraries. Meson does not add the crate attribute itself.</p>
+<h2 id="added-support-for-buildcache">Added support for buildcache</h2>
+<p>Meson now recognizes <a href="https://gitlab.com/bits-n-bites/buildcache">BuildCache</a>
+as a compiler wrapper, so setting e.g. <code>CC="buildcache cc"</code> works like it
+already does for Ccache and sccache. BuildCache is also auto-detected
+alongside Ccache and sccache, and is used as a fallback after both of those
+when no compiler is specified explicitly.</p>
 <h2 id="support-for-workspaceexclude-in-cargo-manifests">Support for <code>workspace.exclude</code> in Cargo manifests</h2>
 <p>Directories that are listed in the <code>workspace.exclude</code> field of <code>Cargo.toml</code>
 are not treated as workspace members anymore.  Such packages can still be
