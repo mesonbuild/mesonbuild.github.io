@@ -349,6 +349,10 @@ directories. Often one of them is used for development (the "debug"
 build) and others only every now and then (such as a "static analysis"
 build). Any configuration can be built just by <code>cd</code>'ing to the
 corresponding directory and running Ninja.</p>
+<p>To force Meson to reconfigure without building any targets, use the
+<code>reconfigure</code> target.</p>
+<pre><code class="language-sh">ninja -C builddir reconfigure
+</code></pre>
 <h2 id="running-tests">Running tests</h2>
 <p>Meson provides native support for running tests. The command to do
 that is simple.</p>
