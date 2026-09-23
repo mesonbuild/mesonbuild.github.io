@@ -252,6 +252,13 @@ dependencies from target inputs, generated sources, extracted objects,
 internal linking, and explicit <code>depends</code> arguments. Previously it only
 reported the <code>dependencies</code> attribute used by alias and run targets, so most
 build target and custom target dependencies were omitted.</p>
+<h2 id="persubproject-options-are-included-in-buildoptions-introspection">Per-subproject options are included in buildoptions introspection</h2>
+<p><code>meson introspect --buildoptions</code> and <code>meson-info/intro-buildoptions.json</code>
+now contain rows for per-subproject options in configured build
+directories: non-yielding builtin options get one row per subproject
+(e.g. <code>sub:warning_level</code>), and options with a per-subproject value set
+(e.g. via <code>-Dsub:c_args=...</code>) are reported with the value in effect for
+that subproject.</p>
 <h2 id="added-support-for-kache">Added support for kache</h2>
 <p>Meson now recognizes <a href="https://github.com/kunobi-ninja/kache">kache</a> as
 a compiler wrapper, so setting e.g. <code>CC="kache cc"</code> works like it
