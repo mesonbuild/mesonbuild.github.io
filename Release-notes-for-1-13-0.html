@@ -268,6 +268,32 @@ auto-detected, because it must be invoked with a compiler subcommand
 compiler.</p>
 <h2 id="allow-using-generator-with-any-build_tgt-object">Allow using generator with any <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</h2>
 <p>Passing any build target to <code>generator.process()</code> is now allowed.</p>
+<h2 id="added-support-for-the-qnx-qccq-compiler-driver">Added support for the QNX qcc/q++ compiler driver</h2>
+<p>Meson can now detect and use <code>qcc</code> and <code>q++</code>, the C and C++ compiler drivers shipped with the QNX Software Development Platform (SDP), and recognizes QNX as a target platform.</p>
+<p><strong>Cross-compiling for QNX</strong></p>
+<p>Point a cross file's <code>[binaries]</code> section at qcc/q++ including the
+required <code>-V</code> target selector, and declare <code>system = 'qnx'</code> in
+<code>[host_machine]</code>, for example:</p>
+<pre><code class="language-ini">[binaries]
+c = ['qcc', '-Vgcc_ntoaarch64le']
+cpp = ['q++', '-Vgcc_ntoaarch64le']
+
+[host_machine]
+system = 'qnx'
+cpu_family = 'aarch64'
+cpu = 'aarch64'
+endian = 'little'
+</code></pre>
+<p>Known Issues:</p>
+<ol>
+<li>ThinLTO incremental cache doesn't work — -Db_thinlto_cache=true raises a clear error at configure time; plain -Db_lto=true is unaffected. -flto-incremental= is rejected outright by cc1.</li>
+<li>No alternate linker selection — c_ld/cpp_ld in a cross/native file (e.g. 'lld', 'gold') raises MesonException. qcc's driver never invokes a separate linker binary itself, and QNX documents no equivalent mechanism.</li>
+<li>Stale dependency-file entries after deleting a header — -MP's phony-header rules aren't emitted by this cc1, unlike stock gcc. Narrow, unfixed; only shows up as a missed rebuild until a clean build.</li>
+<li>No static sanitizer runtime — -static-libasan is rejected as unknown; only the shared sanitizer runtime can ever be linked.</li>
+<li>Sanitizer runtime availability is SDP-version-dependent — SDP 7.1 ships only libubsan (no asan/lsan/tsan at all), so -Db_sanitize=address/=leak fail to link there; SDP 8.0 adds asan/lsan (still no tsan on either SDP). =undefined works on both.</li>
+<li>C++20 named modules are broken, differently per SDP — SDP 8.0: -fmodules-ts compiles but silently no-ops on .cppm/.ixx files (no code-level fix possible — it's driver-level source-suffix dispatch before cc1plus ever runs). SDP 7.1: worse — -fmodules-ts itself is hard-rejected as unrecognized on any C++ source. Plain -fmodules is hard-rejected on both SDPs. Only bites a project that explicitly opts into modules via cpp_args.</li>
+<li>Symbol-extraction relink-avoidance only applies natively — the gnu_syms() optimization (skip relinking when a shared library's exported symbols haven't changed) only kicks in for a native/self-hosted QNX build; cross-compiling to QNX from another host (the SDP's primary use case) always falls back to unconditional relinking, same as before this work.</li>
+</ol>
 <h2 id="jar-files-are-now-installed-reproducibly">Jar files are now installed reproducibly</h2>
 <p>Installing a jar target used to invoke the <code>jar</code> tool to strip the
 <code>Class-Path</code> attribute from its manifest, even when there was none.
