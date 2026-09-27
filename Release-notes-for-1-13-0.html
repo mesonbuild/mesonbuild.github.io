@@ -266,6 +266,11 @@ already does for Ccache and sccache. Unlike those, kache is not
 auto-detected, because it must be invoked with a compiler subcommand
 (<code>kache cc</code>, <code>kache c++</code>, ...) rather than in front of an arbitrary
 compiler.</p>
+<h2 id="cpp_rtti-is-honored-for-objectivec">
+<code>cpp_rtti</code> is honored for Objective-C++</h2>
+<p>The <code>cpp_rtti</code> option is now respected when compiling Objective-C++
+sources. Setting <code>cpp_rtti=false</code> passes <code>-fno-rtti</code> for <code>.mm</code> files,
+just like it already did for C++ sources.</p>
 <h2 id="allow-using-generator-with-any-build_tgt-object">Allow using generator with any <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</h2>
 <p>Passing any build target to <code>generator.process()</code> is now allowed.</p>
 <h2 id="added-support-for-the-qnx-qccq-compiler-driver">Added support for the QNX qcc/q++ compiler driver</h2>
