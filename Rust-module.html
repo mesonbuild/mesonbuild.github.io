@@ -455,6 +455,11 @@ workspace members to configure.</li>
 <p>A project that wishes to use Cargo subprojects should have <code>Cargo.lock</code> and <code>Cargo.toml</code>
 files in the root source directory, and should call this function before using
 Cargo subprojects.</p>
+<p><em>Since 1.13.0</em>, <code>extra_members</code> accepts, in addition to the entries of the
+<code>members</code> list, any package that a workspace member depends on through a
+<code>path</code> dependency.  This includes packages that <code>cargo</code> would not build,
+either because the dependency is optional and no feature enables it,
+or because it is declared under a <code>target</code> clause that is never true.</p>
 <p>The first invocation of <code>workspace()</code> establishes the <em>Cargo interpreter</em>
 that resolves dependencies and features for both the toplevel project (the one
 containing <code>Cargo.lock</code>) and all subprojects that are invoked with the <code>cargo</code> method,</p>
