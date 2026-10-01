@@ -4189,7 +4189,10 @@ processed meson.build is located in.  Depending on the backend,
 this may be an absolute or a relative to current workdir path.</li>
 </ul>
 <p><em>(since 0.47.0)</em> The <code>depfile</code> keyword argument also accepts the
-<code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions.</p>
+<code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions. <code>@OUTPUT@</code> and
+<code>@OUTPUT0@</code>, <code>@OUTPUT1@</code>, <code>...</code> are substituted with the output
+filename (without the target subdirectory), so <code>depfile: '@OUTPUT@.d'</code>
+is written next to the output file.</p>
 <p>The returned object also has methods that are documented in <a href="Reference-manual_returned_custom_tgt.html"><ins><code>custom_tgt</code></ins></a>.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
@@ -4466,7 +4469,9 @@ all the additional files this target depends on, for example a C
 compiler would list all the header files it included, and a change
 in any one of these files triggers a recompilation.</p>
 <p><em>(since 0.47.0)</em> the <code>@BASENAME@</code> and <code>@PLAINNAME@</code> substitutions
-are also accepted.</p>
+are also accepted. <code>@OUTPUT@</code> / <code>@OUTPUT0@</code> <code>...</code> are substituted
+with the output filename so the depfile is not placed in a doubled
+subdirectory path.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">

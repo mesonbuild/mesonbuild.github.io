@@ -366,6 +366,23 @@ were accepted and stored but silently ignored.</p>
 value (including flags coming from environment variables such as
 <code>CFLAGS</code>), it is not appended to it. This matches what
 <code>get_option('c_args')</code> already returned inside a subproject.</p>
+<h2 id="tap-tests-report-how-many-subtests-were-skipped">TAP tests report how many subtests were skipped</h2>
+<p>The result line of a TAP test now reports how many of its subtests were
+skipped, so environment-gated subtests no longer disappear silently from
+a passing test:</p>
+<pre><code>1/1 project:gated OK              0.02s   21 subtests passed, 5 skipped
+</code></pre>
+<h2 id="failing-tap-tests-list-their-subtests-in-the-summary-of-failures">Failing TAP tests list their subtests in the summary of failures</h2>
+<p>The summary of failures, printed with <code>--print-errorlogs</code> or <code>--verbose</code>,
+now lists the failing and skipped subtests of each failing TAP test, both
+on the console and in <code>testlog.txt</code>. On the console, <code>--verbose</code> lists all
+subtests, including the passing ones:</p>
+<pre><code>Summary of Failures:
+
+1/1 project:mixed FAIL            0.02s   2/3 subtests passed, 1 skipped
+  ▶ sub-fail      FAIL
+  ▶ sub-skip      SKIP
+</code></pre>
 <h2 id="use-werror-for-gnomegenerate_girfatal_warnings">Use <code>werror</code> for <code>gnome.generate_gir(fatal_warnings:)</code>
 </h2>
 <p>If <code>fatal_warnings</code> is not passed to <code>gnome.generate_gir()</code>, the value of
