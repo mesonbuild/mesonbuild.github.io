@@ -6496,13 +6496,13 @@ set to <code>forcefallback</code>
 </li>
 <li>
 <a href="Machine-files.html#binaries"><code>[binaries]</code> section</a> in your machine files</li>
-<li>Directories provided using the <code>dirs:</code> kwarg (see below)</li>
 <li>Project's source tree relative to the current subdir
 <ul>
 <li>If you use the return value of <a href="Reference-manual_functions.html#configure_file"><ins><code>configure_file()</code></ins></a>, the
 current subdir inside the build tree is used instead</li>
 </ul>
 </li>
+<li>Directories provided using the <code>dirs:</code> kwarg (see below)</li>
 <li>
 <code>PATH</code> environment variable</li>
 <li>
@@ -6511,6 +6511,29 @@ subproject wrap files, if <a href="Builtin-options.html#core-options"><code>wrap
 set to anything other than <code>nofallback</code>
 </li>
 </ol>
+<p>More precisely, program overrides and forced subproject fallbacks are checked first.
+If neither provides a program, Meson tries the names in the order given.
+Only after trying all names does it consider the remaining subproject fallbacks.</p>
+<p><em>Until 1.12.x</em> Meson looked first in the machine files for any name; then
+searched for the program in the project's source tree, the directories listed
+in <code>dirs:</code>, and <code>PATH</code>, as described above.  Machine-file entries
+took precedence over system lookup, even if their version did not satisfy
+the requirement.  Likewise, the first program found in the system was used
+even if its version did not satisfy the requirement, without trying later names.</p>
+<p><em>Since 1.13.0</em>, the search is conducted separately for each name:</p>
+<ul>
+<li>
+<p>If the first name is defined in a machine file, Meson uses that entry.</p>
+</li>
+<li>
+<p>Otherwise, Meson searches for the first name in the project's source tree,
+the directories listed in <code>dirs:</code>, and <code>PATH</code>, as described above.</p>
+</li>
+<li>
+<p>If the program is not found or does not satisfy the requested version,
+Meson tries the next name.</p>
+</li>
+</ul>
 <p>Meson will also autodetect scripts with a shebang line and run them
 with the executable/interpreter specified in it both on Windows
 (because the command invocator will reject the command otherwise) and
@@ -6595,7 +6618,8 @@ arguments (<code>fallback...</code>) of type <code><a href="Reference-manual_ele
 This is meant to be used for cases where the
 program may have many alternative names, such as <code>foo</code> and
 <code>foo.py</code>. The function will check for the arguments one by one and the
-first one that is found is returned.</p>
+first one that is found is returned. <em>Since 1.13.0</em>, programs that do not
+satisfy the requested version can fall back to subsequent names.</p>
   <div style="margin: 0px; text-align: center;">
   <p style="margin: 0px;"><em style="color: #5affff;">(since 0.37.0)</em></p>
   </div>
