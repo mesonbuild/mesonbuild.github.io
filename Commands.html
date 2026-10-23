@@ -1176,6 +1176,25 @@ or <code>--inline</code> arguments.</p>
 <code>--source-file-path</code> argument to ensure consistent results.</p>
 <p><em>Since 1.10.0</em> When <code>--check-diff</code> is specified, instead of silently exiting
 with an error code, <code>meson format</code> will print a diff of the formatting changes.</p>
+<h4 id="disabling-formatting">Disabling formatting</h4>
+<p><em>Since 1.13.0</em> Formatting can be disabled for part of a file using
+<code># meson-format off</code> and <code># meson-format on</code> comments. Lines between the two
+comments are left untouched by the formatter:</p>
+<pre><code class="language-meson"># meson-format off
+sources = files(
+  'a.c',      'b.c',
+  'c.c',      'd.c',
+)
+# meson-format on
+</code></pre>
+<p>Each directive must be alone on its own line, and must enclose complete
+statements: a directive following code on the same line, or inside
+parentheses, brackets or braces, is an error. When <code># meson-format off</code> is not followed by <code># meson-format on</code>,
+formatting stays disabled until the end of the file. Directives only apply to
+the file they appear in; with <code>--recursive</code>, files from <code>subdir</code> are formatted
+normally.</p>
+<p>For compatibility with <code>muon fmt</code>, <code># fmt: off</code> and <code># fmt: on</code> are also
+recognized as directives.</p>
 <h4 id="differences-with-muon-fmt">Differences with <code>muon fmt</code>
 </h4>
 <p>The <code>meson format</code> command should be compatible with the <code>muon fmt</code> command.
@@ -1192,6 +1211,10 @@ of them. <code>meson format</code> will always be consistent in the output it pr
 <code>insert_final_newline</code> and <code>tab_width</code> options.</li>
 <li>
 <code>meson format</code> has many additional format rules (see option list above).</li>
+<li>In addition to <code># fmt: off</code> and <code># fmt: on</code>, <code>meson format</code> recognizes
+<code># meson-format off</code> and <code># meson-format on</code> directives. Unlike <code>muon fmt</code>,
+<code>meson format</code> requires those directives to be on their own line and to
+enclose whole statements.</li>
 </ul>
 
     </div>

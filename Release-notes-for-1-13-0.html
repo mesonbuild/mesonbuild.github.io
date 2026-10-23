@@ -291,6 +291,20 @@ already does for Ccache and sccache. Unlike those, kache is not
 auto-detected, because it must be invoked with a compiler subcommand
 (<code>kache cc</code>, <code>kache c++</code>, ...) rather than in front of an arbitrary
 compiler.</p>
+<h2 id="meson-format-suppression-directives">
+<code>meson format</code> suppression directives</h2>
+<p><code>meson format</code> now leaves untouched the lines between
+<code># meson-format off</code> and <code># meson-format on</code> comments. When
+<code># meson-format off</code> is not followed by <code># meson-format on</code>, formatting
+is disabled until the end of the file. <code>muon fmt</code>'s <code># fmt: off</code> and
+<code># fmt: on</code> directives are also recognized.</p>
+<pre><code class="language-meson"># meson-format off
+sources = files(
+  'a.c',      'b.c',
+  'c.c',      'd.c',
+)
+# meson-format on
+</code></pre>
 <h2 id="cpp_rtti-is-honored-for-objectivec">
 <code>cpp_rtti</code> is honored for Objective-C++</h2>
 <p>The <code>cpp_rtti</code> option is now respected when compiling Objective-C++
