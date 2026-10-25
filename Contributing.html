@@ -764,8 +764,9 @@ following:</p>
 <li>contact the mailing list before embarking on large scale projects
 to avoid wasted effort</li>
 </ul>
-<p>Meson uses Flake8 for style guide enforcement. The Flake8 options for
-the project are contained in .flake8.</p>
+<p>Meson uses Flake8, Pylint, and Ruff for style guide enforcement. The Flake8
+options for the project are contained in <code>.flake8</code>, the ruff options are in
+<code>.ruff.toml</code>, pylint in <code>.pylintrc</code>.</p>
 <p>To run Flake8 on your local clone of Meson:</p>
 <pre><code class="language-console">$ python3 -m pip install flake8
 $ cd meson
@@ -775,6 +776,39 @@ $ flake8
 <pre><code class="language-console">$ flake8 --install-hook=git
 $ git config --bool flake8.strict true
 </code></pre>
+<h3 id="auto-formatters">Auto formatters</h3>
+<p>Apart from the configured <code>ruff check</code> rules, do not use any formatter. While
+<code>ruff format</code> and <code>black</code> (the two most popular) apply some useful changes, they also
+make some... choices. These are not only not in line with Meson's coding style,
+but make the code far more difficult to read. Some examples of things that they
+will apply that Meson considers anti-patterns:</p>
+<pre><code class="language-python">def function(
+    argument_1: int | float | None = None,
+    argument_2: int | float | None = None,
+) -&gt; tuple[int | float, int | float]:
+    return argument_1 or 0, argument_2 or 0
+</code></pre>
+<p>and</p>
+<pre><code class="language-python">(
+    x,
+    y
+) = function(
+    argument_1,
+    argument_2
+)
+</code></pre>
+<p>and</p>
+<pre><code class="language-python">for value in [
+    x,
+    y,
+    z,
+]:
+    print(value)
+</code></pre>
+<p>Because these tools lack the ability for projects to configure how they format,
+we have decided that their use would be a detriment to our project, and do not
+use them.  Please either disable them completely, or selectively apply their
+suggestions only as they make sense and follow our style.</p>
 <h2 id="cc-coding-style">C/C++ coding style</h2>
 <p>Meson has a bunch of test code in several languages. The rules for
 those are simple.</p>
