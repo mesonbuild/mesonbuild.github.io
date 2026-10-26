@@ -277,6 +277,18 @@ dependencies from target inputs, generated sources, extracted objects,
 internal linking, and explicit <code>depends</code> arguments. Previously it only
 reported the <code>dependencies</code> attribute used by alias and run targets, so most
 build target and custom target dependencies were omitted.</p>
+<h2 id="import-std-with-msvc-uses-the-arguments-of-the-targets">
+<code>import std</code> with MSVC uses the arguments of the targets</h2>
+<p>With the <code>cpp_importstd</code> option and the MSVC compiler, meson now builds the
+module with the arguments of the targets that matter to the compiler when it
+imports the module: the C runtime, the character set, the C++ standard, the
+exception and floating point options, the macros read by the standard library,
+and so on. This prevents reporting a C505 warning, which would become an error
+if using <code>werror</code>. Arguments that do not matter, such as warnings, optimization
+and include directories, are ignored. A module is built for each different set
+of arguments, and shared by the targets that have the same one, so the files in
+the build directory are named <code>std.&lt;id&gt;.ifc</code>.</p>
+<p>The module is no longer built through a compiler cache, which cannot restore it.</p>
 <h2 id="persubproject-options-are-included-in-buildoptions-introspection">Per-subproject options are included in buildoptions introspection</h2>
 <p><code>meson introspect --buildoptions</code> and <code>meson-info/intro-buildoptions.json</code>
 now contain rows for per-subproject options in configured build
