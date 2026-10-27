@@ -1461,6 +1461,8 @@ instead return <code>program</code>, which may either be the result of
 <p><em>(since 0.55.0)</em> If a version
 check is passed to <a href="Reference-manual_functions.html#find_program"><ins><code>find_program()</code></ins></a> for a program that has been overridden with
 an executable, the current project version is used.</p>
+<p><em>(since 1.12.0)</em> A program can be overridden both for the host machine and for the
+build machine.</p>
 <p style="padding: 5px; margin: 0px;"></p> <!-- A bit of space because we remove the top margin below -->
 <div style="display: flex;">
   <h4 style="margin-top: 0px;" id="signature22">Signature</h4>
@@ -1475,7 +1477,9 @@ an executable, the current project version is used.</p>
 <a href="Reference-manual_elementary_void.html"><ins>void</ins></a> override_find_program(
   <a href="Reference-manual_elementary_str.html"><ins>str</ins></a>                  <a href="Reference-manual_builtin_meson.html#override_find_program_progname"><b>progname</b></a>,     # The name of the program to override
   <a href="Reference-manual_returned_exe.html"><ins>exe</ins></a> | <a href="Reference-manual_returned_file.html"><ins>file</ins></a> | <a href="Reference-manual_returned_program.html"><ins>program</ins></a> <a href="Reference-manual_builtin_meson.html#override_find_program_program"><b>program</b></a>,      # The program to set as the override for `progname`
-  <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>                 <a href="Reference-manual_builtin_meson.html#override_find_program_native"><b>native</b></a>,       # If set to `true`, the override is for the build machine, and will be returned
+
+  # Keyword arguments:
+  <a href="Reference-manual_builtin_meson.html#override_find_program_native"><b>native</b></a> : <a href="Reference-manual_elementary_bool.html"><ins>bool</ins></a>  # If set to `true`, the override produces output that can be used on the
 )</code></pre>
   <p style="padding: 5px; margin: 0px;"></p> <!-- A bit more space -->
 <h4 id="arguments10">Arguments</h4>
@@ -1520,13 +1524,33 @@ an executable, the current project version is used.</p>
   </div>
   </td>
       </tr>
+    </tbody>
+  </table>
+  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
+<p>Finally, <code>meson.override_find_program()</code>
+accepts the following keyword arguments:</p>
+  <!-- Hotdoc / markdown inserts <p> around the table elements. Override the margin to make them invisible -->
+  <style>
+    .nomargin p:last-child { margin-bottom: 0px !important; }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; text-align: center;">Name</th>
+        <th style="white-space: nowrap; text-align: center;">Type</th>
+        <th style="width: 56%;">Description</th>
+        <th style="white-space: nowrap; text-align: center; width: 0px;">Tags</th>
+      </tr>
+    </thead>
+    <tbody class="nomargin">
       <tr id="override_find_program_native">
         <td style="white-space: nowrap; text-align: center; padding: 6px;"><code class="language-meson">native</code></td>
         <td style="white-space: revert; text-align: center; padding: 6px; word-wrap: break-word;"><a href="Reference-manual_elementary_bool.html"><ins><code>bool</code></ins></a></td>
         <!-- This suboptimal formatting is required to ensure hotdoc correctly generates the HTML -->
         <td style="width: 56%; padding: 6px;">
-<p>If set to <code>true</code>, the override is for the build machine, and will be returned
-by <code>find_program(..., native : true)</code>, otherwise for the host machine. This
+<p>If set to <code>true</code>, the override produces output that can be used on the
+build machine, and will be returned by <code>find_program(..., native : true)</code>,
+otherwise (the default) the output is for the host machine. This
 is an important distinction when cross compiling.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
@@ -1539,7 +1563,6 @@ is an important distinction when cross compiling.</p>
       </tr>
     </tbody>
   </table>
-  <p style="padding: 5px; margin: 0px;"></p> <!-- Extra space -->
 <p style="padding: 7.5px; margin: 0px;"></p>
 <hr>
 <p style="padding: 7.5px; margin: 0px;"></p>

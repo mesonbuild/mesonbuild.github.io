@@ -434,6 +434,19 @@ it is set to <code>false</code>, which causes Meson to first look for the
 executable in the cross file (when cross building) and if it is not
 defined there, then from the system. If set to <code>true</code>, the cross
 file is ignored and the program is only searched from the system.</p>
+<p>Note that <code>native</code> represent the machine that the program <em>generates
+output for</em>, not the machine that the program <em>runs</em> on.  Generally,
+<code>native: false</code> (the default) is the right choice, but if a program's
+output is known not to depend on the machine, you might look it up for
+the build machine as well:</p>
+<pre><code class="language-meson">tool = find_program('mytool', required : false)
+if not tool.found()
+  # The output of mytool is machine-independent.
+  tool = find_program('mytool', native : true)
+endif
+</code></pre>
+<p><em>Since 1.12.0</em>, if the program is provided by a wrap and <code>native: true</code>
+is provided, Meson configures the wrap's subproject for the build machine.</p>
   </td>
         <td style="white-space: nowrap; text-align: center; padding: 6px; width: 0px;">
 <div style="margin: 0px; text-align: center;">
