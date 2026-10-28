@@ -1,0 +1,1 @@
+urls_downloaded_cb({"token":"foo.rs","urls":[{"url":"Release-notes-for-1-13-0.html#structured_sources-is-now-checked-and-copies-files-when-needed","node_type":"p","page":"Release 1.13.0 (in development)","sections":["New features (in development)","\nstructured_sources() is now checked and copies files when needed"],"context":{"gi-language":["default"]}}]});

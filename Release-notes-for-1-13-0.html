@@ -243,6 +243,18 @@ used through a <code>path</code> dependency, as long as they are placed directly
 backslashes. Meson's preload wrappers previously expanded those arguments a
 second time, which could reject valid values such as regular expression
 backreferences during configuration.</p>
+<h2 id="the-cython_args-option-is-passed-to-the-cython-compiler">The <code>cython_args</code> option is passed to the Cython compiler</h2>
+<p>The <code>cython_args</code> built-in option, set with <code>-Dcython_args=...</code> or in a machine
+file, was ignored when translating <code>.pyx</code> files to C.  It is now added to the
+Cython command line, together with the <code>cython_args</code> keyword argument of the
+target.</p>
+<h2 id="a-dictionary-key-named-kwargs-is-no-longer-expanded">A dictionary key named <code>kwargs</code> is no longer expanded</h2>
+<p>A dictionary literal such as <code>{'kwargs': {'env': {'CFLAGS': '-DFOO'}}}</code> used to
+be evaluated as if <code>kwargs</code> were the special keyword argument of function
+calls, and the value of the dictionary was replaced with the contents of the
+nested dictionary.  The <code>kwargs</code> key is now a normal key in dictionary
+literals, and is only special in the arguments of a function or method call.
+This also makes it possible to write <code>func(kwargs: d['kwargs'])</code>.</p>
 <h2 id="buildtarget-now-has-an-embed_directories-keyword-argument">BuildTarget now has an <code>embed_directories</code> keyword argument</h2>
 <p>This provides an include_directories like path for the c23 and c++26 <code>#embed</code>
 preprocessor directive.</p>
@@ -277,6 +289,11 @@ dependencies from target inputs, generated sources, extracted objects,
 internal linking, and explicit <code>depends</code> arguments. Previously it only
 reported the <code>dependencies</code> attribute used by alias and run targets, so most
 build target and custom target dependencies were omitted.</p>
+<h2 id="added-support-for-ibm-i">Added support for IBM i</h2>
+<p>Meson now recognizes IBM i (also known as OS/400) when it is running
+in the PASE environment.  <code>host_machine.system()</code> returns <code>'aix'</code>
+because the user space is the same as AIX, but  <code>host_machine.kernel()</code>
+returns <code>'os400'</code> to tell the two systems apart.</p>
 <h2 id="import-std-with-msvc-uses-the-arguments-of-the-targets">
 <code>import std</code> with MSVC uses the arguments of the targets</h2>
 <p>With the <code>cpp_importstd</code> option and the MSVC compiler, meson now builds the
@@ -345,31 +362,9 @@ just like it already did for C++ sources.</p>
 <h2 id="allow-using-generator-with-any-build_tgt-object">Allow using generator with any <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</h2>
 <p>Passing any build target to <code>generator.process()</code> is now allowed.</p>
 <h2 id="added-support-for-the-qnx-qccq-compiler-driver">Added support for the QNX qcc/q++ compiler driver</h2>
-<p>Meson can now detect and use <code>qcc</code> and <code>q++</code>, the C and C++ compiler drivers shipped with the QNX Software Development Platform (SDP), and recognizes QNX as a target platform.</p>
-<p><strong>Cross-compiling for QNX</strong></p>
-<p>Point a cross file's <code>[binaries]</code> section at qcc/q++ including the
-required <code>-V</code> target selector, and declare <code>system = 'qnx'</code> in
-<code>[host_machine]</code>, for example:</p>
-<pre><code class="language-ini">[binaries]
-c = ['qcc', '-Vgcc_ntoaarch64le']
-cpp = ['q++', '-Vgcc_ntoaarch64le']
-
-[host_machine]
-system = 'qnx'
-cpu_family = 'aarch64'
-cpu = 'aarch64'
-endian = 'little'
-</code></pre>
-<p>Known Issues:</p>
-<ol>
-<li>ThinLTO incremental cache doesn't work — -Db_thinlto_cache=true raises a clear error at configure time; plain -Db_lto=true is unaffected. -flto-incremental= is rejected outright by cc1.</li>
-<li>No alternate linker selection — c_ld/cpp_ld in a cross/native file (e.g. 'lld', 'gold') raises MesonException. qcc's driver never invokes a separate linker binary itself, and QNX documents no equivalent mechanism.</li>
-<li>Stale dependency-file entries after deleting a header — -MP's phony-header rules aren't emitted by this cc1, unlike stock gcc. Narrow, unfixed; only shows up as a missed rebuild until a clean build.</li>
-<li>No static sanitizer runtime — -static-libasan is rejected as unknown; only the shared sanitizer runtime can ever be linked.</li>
-<li>Sanitizer runtime availability is SDP-version-dependent — SDP 7.1 ships only libubsan (no asan/lsan/tsan at all), so -Db_sanitize=address/=leak fail to link there; SDP 8.0 adds asan/lsan (still no tsan on either SDP). =undefined works on both.</li>
-<li>C++20 named modules are broken, differently per SDP — SDP 8.0: -fmodules-ts compiles but silently no-ops on .cppm/.ixx files (no code-level fix possible — it's driver-level source-suffix dispatch before cc1plus ever runs). SDP 7.1: worse — -fmodules-ts itself is hard-rejected as unrecognized on any C++ source. Plain -fmodules is hard-rejected on both SDPs. Only bites a project that explicitly opts into modules via cpp_args.</li>
-<li>Symbol-extraction relink-avoidance only applies natively — the gnu_syms() optimization (skip relinking when a shared library's exported symbols haven't changed) only kicks in for a native/self-hosted QNX build; cross-compiling to QNX from another host (the SDP's primary use case) always falls back to unconditional relinking, same as before this work.</li>
-</ol>
+<p>Meson can now detect and use <code>qcc</code> and <code>q++</code>, the C and C++ compiler drivers shipped with the
+QNX Software Development Platform (SDP), and recognizes QNX as a target platform.  See
+<a href="Platform-notes.html#qnx">Platform notes</a> for cross compilation setup and known limitations.</p>
 <h2 id="jar-files-are-now-installed-reproducibly">Jar files are now installed reproducibly</h2>
 <p>Installing a jar target used to invoke the <code>jar</code> tool to strip the
 <code>Class-Path</code> attribute from its manifest, even when there was none.
@@ -389,6 +384,12 @@ logic) always returned <code>false</code>, even though Rosetta 2 lets these Macs
 execute <code>x86_64</code> binaries directly. Meson now detects whether Rosetta 2
 is installed and, if so, reports that <code>x86_64</code> host binaries can run
 natively without requiring an <code>exe_wrapper</code>.</p>
+<h2 id="compilerrun-results-are-marked-as-not-compiled-if-the-program-fails">
+<code>compiler.run()</code> results are marked as not compiled if the program fails</h2>
+<p>When the program given to <code>compiler.run()</code> was built successfully but exited with a nonzero
+status, the <code>compiled()</code> method of the result used to return <code>true</code>.  It now returns <code>false</code>,
+as it does for a program that does not compile.  For backwards compatibility you can
+still check for zero <code>returncode()</code>, in addition to checking for <code>compiled()</code> being <code>true</code>.</p>
 <h2 id="rust-now-supports-the-has_define-method">Rust now supports the <code>has_define</code> method</h2>
 <p>This method returns true if the given cfg (either a valueless symbol, or
 <code>name="value"</code>) is defined, else false is returned. Rust does not support
@@ -420,11 +421,42 @@ directory is used.</li>
 to <code>b_ndebug</code> and <code>lto</code> to <code>b_lto</code>.</p>
 <p>The Cargo workspace object will also add these automatically based on
 the value of another new option, <code>rust_cargo_profile</code>.</p>
+<h2 id="added-support-for-the-small-device-c-compiler-sdcc">Added support for the Small Device C Compiler (SDCC)</h2>
+<p>Meson can now detect and use <code>sdcc</code> to compile C code for small 8-bit
+microcontrollers.  Static libraries are created with <code>sdar</code>, and executables are
+produced in the Intel HEX (<code>.ihx</code>) format.  The new CPU families <code>f8</code>, <code>hc08</code>,
+<code>mcs51</code>, <code>padauk</code>, <code>stm8</code> and <code>z80</code> are recognized in cross files.</p>
+<p>SDCC selects the target architecture with the <code>-m</code> option, which must be
+passed both when compiling and when linking.  Add it to the <code>c</code> entry of the
+<code>[binaries]</code> section so that it is used for all invocations of the compiler.
+See <code>cross/sdcc-mcs51.txt</code> for an example:</p>
+<pre><code class="language-ini">[binaries]
+c = ['sdcc', '-mmcs51']
+
+[host_machine]
+system = 'bare metal'
+cpu_family = 'mcs51'
+cpu = 'mcs51'
+endian = 'little'
+</code></pre>
 <h2 id="c_stdclatest-support-for-msvc">
 <code>c_std=clatest</code> support for MSVC</h2>
 <p>The option enables all currently implemented compiler and standard library
 features proposed in the next draft C standard, as well as some in-progress and
 experimental features.</p>
+<h2 id="structured_sources-is-now-checked-and-copies-files-when-needed">
+<code>structured_sources()</code> is now checked and copies files when needed</h2>
+<p>A bugs in <code>structured_sources()</code> has been fixed which can cause a Rust
+target to be built from a different set of files than before.
+In particular, the check to detect whether source files have to be copied
+to the build directory was previously wrong, and calls that only move
+around source files require Meson 1.13.0 or newer.  For example:</p>
+<pre><code class="language-meson">structured_sources(['main.rs'], {'foo': 'linux/foo.rs'})
+</code></pre>
+<p>did not place <code>linux/foo.rs</code> in <code>foo.rs</code>, and <code>mod foo;</code> failed to compile.
+The layout is now the same whether the structure contains generated
+files or not, and files are copied requested layout differs from the
+layout in the source directory.</p>
 <h2 id="persubproject-language-arguments-are-now-applied">Per-subproject language arguments are now applied</h2>
 <p>Compiler and linker arguments set for a specific subproject, for example
 <code>-Dsub:c_args=-DFOO</code> on the command line or <code>c_args</code> in the
@@ -464,6 +496,16 @@ still takes precedence over <code>werror</code>.</p>
 <p>When <code>CC_LD</code> environment variables is set to <code>wild</code>, Meson will configure GCC 16+ or Clang
 to use Wild as the linker on Linux. You should expect to see line like this in the output:
 <code>C linker for the host machine: cc ld.wild 0.10.0</code> confirming that Wild was picked up.</p>
+<h2 id="only-shared-libraries-are-added-to-path-for-tests-and-meson-devenv-on-windows">Only shared libraries are added to <code>PATH</code> for tests and <code>meson devenv</code> on Windows</h2>
+<p>On Windows, the directories of the shared libraries that an executable links to
+are added to <code>PATH</code> when running tests and in <code>meson devenv</code>.  The directories
+of other targets listed in <code>depends</code> or in the test arguments, for example
+a <code>custom_target()</code>, were also added.  This was not intended and could cause
+the wrong DLL to be found.  Now only the directories containing
+<code>shared_library()</code> targets, and the shared libraries that they depend on, are
+added.</p>
+<p>A project that relied on a <code>custom_target()</code> output directory being in <code>PATH</code>
+should add that directory to the test environment explicitly.</p>
 
     </div>
         

@@ -367,18 +367,8 @@ header <code>stdio.h</code></p>
   # function exists, do whatever is required.
 endif
 </code></pre>
-<p>Note that, on macOS programs can be compiled targeting older macOS
-versions than the one that the program is compiled on. It can't be
-assumed that the OS version that is compiled on matches the OS version
-that the binary will run on.</p>
-<p>Therefore when detecting function availability with <a href="Reference-manual_returned_compiler.html#compilerhas_function"><ins><code>compiler.has_function()</code></ins></a>, it
-is important to specify the correct header in the prefix argument.</p>
-<p>In the example above, the function <code>open_memstream</code> is detected, which
-was introduced in macOS 10.13. When the user builds on macOS 10.13,
-but targeting macOS 10.11 (<code>-mmacosx-version-min=10.11</code>), this will
-correctly report the function as missing. Without the header however,
-it would lack the necessary availability information and incorrectly
-report the function as available.</p>
+<p>When targeting macOS, the header in the prefix argument is also what makes the check
+respect the deployment target.  See <a href="Platform-notes.html#macos-deployment-target">Platform notes</a>.</p>
 <h2 id="is-a-macro-defined">Is a macro defined?</h2>
 <p>Macro detection can often be useful to determine if non-standard features
 are supported on your target platform. Fortunately, Meson makes it

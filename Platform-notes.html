@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Platform notes</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/notes.css" type="text/css">
+<link rel="stylesheet" href="assets/css/devhelp.css" type="text/css">
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/prism-keep-markup.js"></script>
+<script src="assets/js/trie.js"></script>
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/meson_logo.png" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+				
+<li class="dropdown">
+  <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Modules <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="modules-menu">
+        <li>
+            <a href="CMake-module.html">CMake</a>
+        </li>
+        <li>
+            <a href="Codegen-module.html">Codegen</a>
+        </li>
+        <li>
+            <a href="Cuda-module.html">CUDA</a>
+        </li>
+        <li>
+            <a href="Dlang-module.html">Dlang</a>
+        </li>
+        <li>
+            <a href="External-Project-module.html">External Project</a>
+        </li>
+        <li>
+            <a href="Fs-module.html">Filesystem</a>
+        </li>
+        <li>
+            <a href="Gnome-module.html">GNOME</a>
+        </li>
+        <li>
+            <a href="Hotdoc-module.html">Hotdoc</a>
+        </li>
+        <li>
+            <a href="i18n-module.html">i18n</a>
+        </li>
+        <li>
+            <a href="Icestorm-module.html">Icestorm</a>
+        </li>
+        <li>
+            <a href="Java-module.html">Java</a>
+        </li>
+        <li>
+            <a href="Keyval-module.html">Keyval</a>
+        </li>
+        <li>
+            <a href="Pkgconfig-module.html">Pkgconfig</a>
+        </li>
+        <li>
+            <a href="Python-3-module.html">Python 3</a>
+        </li>
+        <li>
+            <a href="Python-module.html">Python</a>
+        </li>
+        <li>
+            <a href="Qt4-module.html">Qt4</a>
+        </li>
+        <li>
+            <a href="Qt5-module.html">Qt5</a>
+        </li>
+        <li>
+            <a href="Qt6-module.html">Qt6</a>
+        </li>
+        <li>
+            <a href="Rust-module.html">Rust</a>
+        </li>
+        <li>
+            <a href="Simd-module.html">Simd</a>
+        </li>
+        <li>
+            <a href="Snippets-module.html">Snippets</a>
+        </li>
+        <li>
+            <a href="SourceSet-module.html">SourceSet</a>
+        </li>
+        <li>
+            <a href="Wayland-module.html">Wayland</a>
+        </li>
+        <li>
+            <a href="Windows-module.html">Windows</a>
+        </li>
+	</ul>
+</li>
+<li class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Quick References <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="quick-refs-menu">
+					<li>
+				<a href="Reference-manual.html">Functions</a>
+			</li>
+					<li>
+				<a href="Build-options.html">Options</a>
+			</li>
+					<li>
+				<a href="Configuration.html">Configuration</a>
+			</li>
+					<li>
+				<a href="Dependencies.html">Dependencies</a>
+			</li>
+					<li>
+				<a href="Unit-tests.html">Tests</a>
+			</li>
+					<li>
+				<a href="Syntax.html">Syntax</a>
+			</li>
+			</ul>
+</li>
+			</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+				<p><b>The Meson Build System</b></p>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="core" data-hotdoc-in-toplevel="True" data-hotdoc-project="Meson-documentation" data-hotdoc-ref="Platform-notes.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="platform-notes">Platform notes</h1>
+<p>This page collects information that is specific to a platform or to a toolchain.</p>
+<h2 id="macos-deployment-target">macOS deployment target</h2>
+<p>Programs can be compiled for older macOS versions than the one they are compiled on.  The
+version of the build machine therefore does not tell which functions are available when the
+program runs.</p>
+<p>The deployment target is chosen by the compiler.  Either set the <code>MACOSX_DEPLOYMENT_TARGET</code>
+environment variable before running Meson, or pass <code>-mmacosx-version-min</code> in both the compile
+and the link arguments, for example in a native file:</p>
+<pre><code class="language-ini">[built-in options]
+c_args = ['-mmacosx-version-min=10.11']
+c_link_args = ['-mmacosx-version-min=10.11']
+</code></pre>
+<p>The checks that Meson runs use the same arguments, so they see the deployment target.</p>
+<p>When detecting a function with <code>compiler.has_function()</code>, specify the header that declares it
+in the <code>prefix</code> argument.  For example, <code>open_memstream</code> was introduced in macOS 10.13.  When
+building on macOS 10.13 for macOS 10.11, the following check correctly reports the function as
+missing:</p>
+<pre><code class="language-meson">cc.has_function('open_memstream', prefix : '#include &lt;stdio.h&gt;')
+</code></pre>
+<p>Without the header, the check lacks the availability information and incorrectly reports the
+function as available.</p>
+<h2 id="aix-and-ibm-i">AIX and IBM i</h2>
+<p>Meson supports AIX with the GCC and OpenXL compilers.  IBM i is supported in the PASE
+environment, which uses the AIX user space.  On both, <code>host_machine.system()</code> returns <code>'aix'</code>.
+<code>host_machine.kernel()</code> returns <code>'aix'</code> or <code>'os400'</code> to tell them apart.</p>
+<p>The AIX linker always links the whole contents of static libraries, so <code>link_with</code> is accepted
+but has the same effect as <code>link_whole</code>.</p>
+<h2 id="windows">Windows</h2>
+<h3 id="mingw-ucrt-and-msvc">MinGW, UCRT and MSVC</h3>
+<p>On Windows, Meson uses the compiler that it finds first in the environment, so the shell used
+to run Meson selects the toolchain.  With MSYS2, this is the environment that was started
+(<code>MINGW64</code>, <code>UCRT64</code>, <code>CLANG64</code>, and so on).</p>
+<ul>
+<li>
+<code>MINGW64</code> links to the old <code>msvcrt.dll</code> C runtime.</li>
+<li>
+<code>UCRT64</code> and <code>CLANG64</code> link to the Universal C Runtime (UCRT), which is the runtime used by
+current versions of MSVC.</li>
+<li>MSVC and clang-cl link to the UCRT as well, and <code>b_vscrt</code> selects between the dynamic (<code>/MD</code>)
+and the static (<code>/MT</code>) version.</li>
+</ul>
+<p>Libraries built with MinGW and with MSVC can be mixed as long as they use the same C runtime,
+for example UCRT64 with MSVC.  Mixing runtimes is likely to cause crashes, because each
+runtime has its own heap and file descriptor table.</p>
+<p>The two toolchains differ in how they name and export libraries.  See
+<a href="Platform-notes.html#library-file-names">Library file names</a> for the names, and the
+<a href="FAQ.html#my-project-works-fine-on-linux-and-mingw-but-fails-to-link-with-msvc-due-to-a-missing-lib-file-fatal-error-lnk1181-why">FAQ</a>
+for the exported symbols.</p>
+<h3 id="search-path-for-dlls">Search path for DLLs</h3>
+<p>Windows has no equivalent of an rpath or of <code>LD_LIBRARY_PATH</code>.  A program finds its DLLs in its
+own directory and in the directories listed in <code>PATH</code>.  When Meson runs a program from the build
+tree, it adds to <code>PATH</code> the directories of the DLLs that the program needs.  This applies to:</p>
+<ul>
+<li>tests and benchmarks, including the programs and targets listed in their <code>depends</code>;</li>
+<li>
+<code>meson devenv</code>, for the executables of the project;</li>
+<li>custom targets and generators that run an executable from the build tree.</li>
+</ul>
+<p>The directories are:</p>
+<ul>
+<li>the directories of the <code>shared_library()</code> targets that the program links to, directly or
+transitively.  The output of a <code>custom_target()</code> is not included, even if it is a DLL;</li>
+<li>the directories of DLLs that the program links to outside the build tree, for example when
+they are found with <code>find_library()</code>;</li>
+<li>when cross compiling with MinGW, the <code>bin</code> directory of the toolchain and of the <code>sys_root</code>
+and <code>root</code> of the cross file, and the program and library directories of the compilers.</li>
+</ul>
+<h4 id="wine">Wine</h4>
+<p>When running Windows executables on another operating system, <code>PATH</code> is not used to find DLLs.
+Meson sets <code>WINEPATH</code> with the same directories in <code>meson devenv</code>, when the host machine is
+Windows and the build machine is not.  <code>meson test</code> does the same for tests whose command is
+<code>wine</code>, for example through an <code>exe_wrapper</code>.  The directories of the executables are added as
+well, so that <code>wine foo.exe</code> works.</p>
+<p>Wine limits the size of <code>WINEPATH</code> to 1024 bytes.  Meson shortens the paths if necessary, using
+paths relative to the working directory and Windows short names, and prints a warning if the
+result is still too long.</p>
+<h2 id="emscripten">Emscripten</h2>
+<p>Meson can use <code>emcc</code> and <code>em++</code> from Emscripten 1.39.19 or newer to build WebAssembly.  They can
+only be used for cross compilation.  A minimal cross file is:</p>
+<pre><code class="language-ini">[binaries]
+c = 'emcc'
+cpp = 'em++'
+ar = 'emar'
+
+[host_machine]
+system = 'emscripten'
+cpu_family = 'wasm32'
+cpu = 'wasm32'
+endian = 'little'
+</code></pre>
+<p>The following behavior is specific to Emscripten:</p>
+<ul>
+<li>Executables have the <code>.js</code> suffix.  If a <code>.wasm</code> file is produced next to it, <code>meson install</code>
+installs it as well.</li>
+<li>The linker is detected as <code>ld.wasm</code>, the name that Meson uses for <code>wasm-ld</code>.</li>
+<li>The <code>c_thread_count</code> and <code>cpp_thread_count</code> options set <code>-sPTHREAD_POOL_SIZE</code> when a target
+uses threads.  The default is 4, and 0 does not pass the option.</li>
+<li>
+<code>compiler.find_library()</code> can look up JavaScript libraries.  The name must end with <code>.js</code>, and
+either be an absolute path or be searched in the directories passed with <code>dirs</code>.</li>
+</ul>
+<pre><code class="language-meson">glue_lib = cc.find_library('gluefuncs.js', dirs: meson.current_source_dir())
+executable('prog', 'prog.c', dependencies: glue_lib)
+</code></pre>
+<p>Running the output requires <code>exe_wrapper</code>, for example <code>node</code>.  See
+<a href="Cross-compilation.html#running-target-programs">running target programs</a>.</p>
+<h2 id="qnx">QNX</h2>
+<p>Meson can detect and use <code>qcc</code> and <code>q++</code>, the C and C++ compiler drivers shipped with the QNX
+Software Development Platform (SDP).  For cross compilation, point the <code>[binaries]</code> section of
+the cross file at <code>qcc</code> and <code>q++</code>, including the required <code>-V</code> target selector, and set
+<code>system = 'qnx'</code> in <code>[host_machine]</code>:</p>
+<pre><code class="language-ini">[binaries]
+c = ['qcc', '-Vgcc_ntoaarch64le']
+cpp = ['q++', '-Vgcc_ntoaarch64le']
+
+[host_machine]
+system = 'qnx'
+cpu_family = 'aarch64'
+cpu = 'aarch64'
+endian = 'little'
+</code></pre>
+<p>The following limitations apply:</p>
+<ol>
+<li>ThinLTO incremental cache does not work.  <code>-Db_thinlto_cache=true</code> raises an error at
+configure time, while <code>-Db_lto=true</code> is unaffected.</li>
+<li>Alternate linker selection is not supported.  Setting <code>c_ld</code> or <code>cpp_ld</code> (for example to
+<code>lld</code> or <code>gold</code>) raises an error.</li>
+<li>If a header is deleted, stale entries remain in the dependency files, because <code>-MP</code> does not
+emit phony header rules.  A clean build is needed to recover.</li>
+<li>There is no static sanitizer runtime, so <code>-static-libasan</code> is rejected and only the shared
+runtime can be linked.</li>
+<li>The available sanitizers depend on the SDP version.  SDP 7.1 only provides <code>libubsan</code>, so
+<code>-Db_sanitize=address</code> and <code>-Db_sanitize=leak</code> fail to link there.  SDP 8.0 adds asan and
+lsan.  <code>-Db_sanitize=undefined</code> works on both, and tsan is not available on either.</li>
+<li>C++20 named modules do not work.  With SDP 8.0, <code>-fmodules-ts</code> compiles but silently ignores
+<code>.cppm</code> and <code>.ixx</code> files.  With SDP 7.1, <code>-fmodules-ts</code> is rejected for C++ sources.  Plain
+<code>-fmodules</code> is rejected on both.  This only affects projects that enable modules through
+<code>cpp_args</code>.</li>
+<li>Relinking is avoided for unchanged shared libraries only on native QNX builds.  When
+cross compiling to QNX, shared libraries are always relinked.</li>
+</ol>
+
+    </div>
+        
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+        
+<hr>
+
+<div class="license-description">
+    Website licensing information are available on the <a href="legal.html">Legal</a> page.
+</div>
+
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		<a href="https://github.com/mesonbuild/meson/edit/master/docs/markdown/Platform-notes.md" data-hotdoc-role="edit-button">Edit on GitHub</a>
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
