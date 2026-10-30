@@ -359,6 +359,12 @@ endif
 <p>The <code>cpp_rtti</code> option is now respected when compiling Objective-C++
 sources. Setting <code>cpp_rtti=false</code> passes <code>-fno-rtti</code> for <code>.mm</code> files,
 just like it already did for C++ sources.</p>
+<h2 id="mesonoverride_find_program-can-be-called-multiple-times-for-the-same-name-and-program">
+<code>meson.override_find_program</code> can be called multiple times for the same name and program</h2>
+<p>Meson now allows overriding the same program twice if both calls refer
+to the same executable.  This makes it easier to override a program
+for both <code>native: true</code> and <code>native: false</code>, if its output is
+target-independent.</p>
 <h2 id="allow-using-generator-with-any-build_tgt-object">Allow using generator with any <a href="Reference-manual_returned_build_tgt.html"><ins><code>build_tgt</code></ins></a> object</h2>
 <p>Passing any build target to <code>generator.process()</code> is now allowed.</p>
 <h2 id="added-support-for-the-qnx-qccq-compiler-driver">Added support for the QNX qcc/q++ compiler driver</h2>
