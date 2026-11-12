@@ -396,27 +396,26 @@ values (even if they were changed in <code>meson.build</code>).</p>
 </code></pre>
 <p>Builds a default or a specified target of a configured Meson project.</p>
 <pre><code class="language-inc">positional arguments:
-  TARGET                                Targets to build. Target has the
-                                        following format: [PATH_TO_TARGET/]TARGE
-                                        T_NAME.TARGET_SUFFIX[:TARGET_TYPE].
+  TARGET                           Targets to build. Target has the following
+                                   format: [PATH_TO_TARGET/]TARGET_NAME.TARGET_S
+                                   UFFIX[:TARGET_TYPE].
 
 options:
-  -h, --help                            show this help message and exit
-  --clean                               Clean the build directory.
-  -C WD                                 directory to cd into before running
-  -j JOBS, --jobs JOBS                  The number of worker jobs to run (if
-                                        supported). If the value is less than 1
-                                        the build program will guess.
-  -l LOAD_AVERAGE, --load-average LOAD_AVERAGE
-                                        The system load average to try to
-                                        maintain (if supported).
-  -v, --verbose                         Show more verbose output.
-  --ninja-args NINJA_ARGS               Arguments to pass to `ninja` (applied
-                                        only on `ninja` backend).
-  --vs-args VS_ARGS                     Arguments to pass to `msbuild` (applied
-                                        only on `vs` backend).
-  --xcode-args XCODE_ARGS               Arguments to pass to `xcodebuild`
-                                        (applied only on `xcode` backend).
+  -h, --help                       show this help message and exit
+  --clean                          Clean the build directory.
+  -C WD                            directory to cd into before running
+  -j, --jobs JOBS                  The number of worker jobs to run (if
+                                   supported). If the value is less than 1 the
+                                   build program will guess.
+  -l, --load-average LOAD_AVERAGE  The system load average to try to maintain
+                                   (if supported).
+  -v, --verbose                    Show more verbose output.
+  --ninja-args NINJA_ARGS          Arguments to pass to `ninja` (applied only on
+                                   `ninja` backend).
+  --vs-args VS_ARGS                Arguments to pass to `msbuild` (applied only
+                                   on `vs` backend).
+  --xcode-args XCODE_ARGS          Arguments to pass to `xcodebuild` (applied
+                                   only on `xcode` backend).
 </code></pre>
 <p><code>--verbose</code> argument is available since 0.55.0.</p>
 <h4 id="targets">Targets</h4>
@@ -468,20 +467,18 @@ different type, and a <code>bar</code> target:</p>
 </code></pre>
 <p>Generates a release archive from the current source tree.</p>
 <pre><code class="language-inc">options:
-  -h, --help                            show this help message and exit
-  -C WD                                 directory to cd into before running
-  --allow-dirty                         Allow even when repository contains
-                                        uncommitted changes.
-  --formats FORMATS                     Comma separated list of archive types to
-                                        create. Supports xztar (default), bztar,
-                                        gztar, and zip.
-  --include-subprojects                 Include source code of subprojects that
-                                        have been used for the build.
-  --no-tests                            Do not build and test generated
-                                        packages.
-  -j NUM_PROCESSES, --num-processes NUM_PROCESSES
-                                        How many parallel processes to use (e.g.
-                                        for compilation and testing).
+  -h, --help                         show this help message and exit
+  -C WD                              directory to cd into before running
+  --allow-dirty                      Allow even when repository contains
+                                     uncommitted changes.
+  --formats FORMATS                  Comma separated list of archive types to
+                                     create. Supports xztar (default), bztar,
+                                     gztar, and zip.
+  --include-subprojects              Include source code of subprojects that
+                                     have been used for the build.
+  --no-tests                         Do not build and test generated packages.
+  -j, --num-processes NUM_PROCESSES  How many parallel processes to use (e.g.
+                                     for compilation and testing).
 </code></pre>
 <p>See <a href="Creating-releases.html">notes about creating releases</a> for more info.</p>
 <h4 id="examples2">Examples:</h4>
@@ -504,12 +501,11 @@ different type, and a <code>bar</code> target:</p>
 options:
   -h, --help                            show this help message and exit
   -C WD                                 directory to cd into before running
-  -n NAME, --name NAME                  project name. default: name of current
+  -n, --name NAME                       project name. default: name of current
                                         directory
-  -e EXECUTABLE, --executable EXECUTABLE
-                                        executable name. default: project name
-  -d DEPS, --deps DEPS                  dependencies, comma-separated
-  -l {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}, --language {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}
+  -e, --executable EXECUTABLE           executable name. default: project name
+  -d, --deps DEPS                       dependencies, comma-separated
+  -l, --language {c,cpp,cs,cuda,d,fortran,java,objc,objcpp,rust,vala}
                                         project language. default: autodetected
                                         based on source files
   -b, --build                           build after generation
@@ -676,7 +672,7 @@ directory arguments automatically.</p>
 <p>Modifies the Meson project.</p>
 <pre><code class="language-inc">options:
   -h, --help                            show this help message and exit
-  -s SRCDIR, --sourcedir SRCDIR         Path to source directory.
+  -s, --sourcedir SRCDIR                Path to source directory.
   -V, --verbose                         Enable verbose output
   -S, --skip-errors                     Skip errors instead of aborting
 
@@ -868,8 +864,7 @@ page</a> for more info.</p>
 <h3 id="subprojects">subprojects</h3>
 <p><em>(since 0.49.0)</em></p>
 <pre><code class="language-inc">$ meson subprojects [-h]
-                    {update,checkout,download,foreach,purge,packagefiles}
-                    ...
+                    {update,checkout,download,foreach,purge,packagefiles} ...
 </code></pre>
 <p>Manages subprojects of the Meson project. <em>Since 0.59.0</em> commands are run on
 multiple subprojects in parallel by default, use <code>--num-processes=1</code> if it is
@@ -916,7 +911,7 @@ Commands:
 
 options:
   -h, --help                            show this help message and exit
-  -k MAXFAIL, --maxfail MAXFAIL         Number of failing tests before aborting
+  -k, --maxfail MAXFAIL                 Number of failing tests before aborting
                                         the test run. (default: 0, to disable
                                         aborting on failure)
   --repeat REPEAT                       Number of times to run the tests.
@@ -938,11 +933,10 @@ options:
   --print-errorlogs                     Whether to print failing tests' logs.
   --benchmark                           Run benchmarks instead of tests.
   --logbase LOGBASE                     Base name for log file.
-  -j NUM_PROCESSES, --num-processes NUM_PROCESSES
-                                        How many parallel processes to use.
+  -j, --num-processes NUM_PROCESSES     How many parallel processes to use.
   -v, --verbose                         Do not redirect stdout and stderr
   -q, --quiet                           Produce less output to the terminal.
-  -t TIMEOUT_MULTIPLIER, --timeout-multiplier TIMEOUT_MULTIPLIER
+  -t, --timeout-multiplier TIMEOUT_MULTIPLIER
                                         Define a multiplier for test timeout,
                                         for example when running tests in
                                         particular conditions they might take
@@ -1082,7 +1076,7 @@ seems to be properly supported by vscode.</li>
 options:
   -h, --help                        show this help message and exit
   -C BUILDDIR                       Path to build directory
-  --workdir WORKDIR, -w WORKDIR     Directory to cd into before running
+  --workdir, -w WORKDIR             Directory to cd into before running
                                     (default: builddir, Since 1.0.0)
   --dump [DUMP]                     Only print required environment (Since
                                     0.62.0) Takes an optional file path (Since
@@ -1098,26 +1092,25 @@ options:
 <p>Format specified <code>meson.build</code> documents. For compatibility with <code>muon</code>, <code>fmt</code>
 is an alias to <code>format</code>.</p>
 <pre><code class="language-inc">positional arguments:
-  sources                               meson source files
+  sources                              meson source files
 
 options:
-  -h, --help                            show this help message and exit
-  -q, --check-only                      silently exit with 1 if files would be
-                                        modified by meson format
-  -d, --check-diff                      exit with 1 and show diff if files would
-                                        be modified by meson format
-  -i, --inplace                         format files in-place
-  -r, --recursive                       recurse subdirs (requires --check-only,
-                                        --check-diff or --inplace option)
-  -s, --subprojects                     recurse subprojects (requires
-                                        --recursive)
-  -c meson.format, --configuration meson.format
-                                        read configuration from meson.format
-  -e, --editor-config                   try to read configuration from
-                                        .editorconfig
-  -o OUTPUT, --output OUTPUT            output file (implies having exactly one
-                                        input)
-  --source-file-path SOURCE_FILE_PATH   path to use, when reading from stdin
+  -h, --help                           show this help message and exit
+  -q, --check-only                     silently exit with 1 if files would be
+                                       modified by meson format
+  -d, --check-diff                     exit with 1 and show diff if files would
+                                       be modified by meson format
+  -i, --inplace                        format files in-place
+  -r, --recursive                      recurse subdirs (requires --check-only,
+                                       --check-diff or --inplace option)
+  -s, --subprojects                    recurse subprojects (requires
+                                       --recursive)
+  -c, --configuration meson.format     read configuration from meson.format
+  -e, --editor-config                  try to read configuration from
+                                       .editorconfig
+  -o, --output OUTPUT                  output file (implies having exactly one
+                                       input)
+  --source-file-path SOURCE_FILE_PATH  path to use, when reading from stdin
 </code></pre>
 <p>The configuration file is a <code>.ini</code> file. If a <code>meson.format</code> file exists
 beside the provided build file to analyze, and no configuration file is
